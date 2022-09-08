@@ -105,12 +105,6 @@ def main():
     verzia.close()
     tologin = False
     help = ['help','pomoc','-h','-help','?','-?']
-    def help(print1, vstup):
-        help = ['help','pomoc','-h','-help','?','-?']
-        for i in range(len(help)):
-            if vstup == help[i]:
-                print(print1)
-                continue
     while True:
         if not exit:
             global loginvstupuser
@@ -139,7 +133,10 @@ def main():
                 continue
             history = open(historyname, 'a')
             if vstup != "":
-                help("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec", vstup)
+                for i in range(len(help)):
+                    if vstup == help[i]:
+                        print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec")
+                        continue
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
                     tologin = False
