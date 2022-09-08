@@ -25,7 +25,7 @@ findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])
 
 def delcache(name, hist):
     global timer
-    timer = 10
+    timer = 300
     size = os.path.getsize(hist)
     sizehist = size
     while True:
@@ -41,7 +41,7 @@ def delcache(name, hist):
                 print("Stlač 'enter'")
                 break
             if size != sizehist:
-                timer = 10
+                timer = 300
                 sizehist = size
             else:
                 sizehist = size
