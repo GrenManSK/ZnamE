@@ -18,15 +18,16 @@ from threading import Thread
 from datetime import datetime
 import shutil, zipfile
 
-
 codeapp = str('import sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'\"\', \"`\"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah = \"\"\n        obsah += i\n        for i in obsah:\n            i.lower()\n            obsah_list.append(i)\n    return obsah_list\ndef encode(obsah):\n    sifra = []\n    for i in obsah:\n        riadok = 0\n        stlpec = 0\n        while True:\n            if riadok == 19 and stlpec == 0:\n                break\n            if i == PLOCHA[riadok][stlpec]:\n                sifra.append(str(riadok) + \" \" + str(stlpec))\n                break\n            if stlpec == 4:\n                riadok += 1\n                stlpec = 0\n            else:\n                stlpec += 1\n    return sifra\ndef output_file(file, name):\n    y = []\n    x = open(name + \"crypted\", \"w\")\n    for i in file:\n        y.append(i)\n    x.write(str(y))\n    x.close\n    return\ndef main():\n    name = sys.argv[1]\n    open_file = open(name, \"r\")\n    open_file.close\n    output_file(encode(read_file(open_file)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
-decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'"\', \"`"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah += i\n        for i in obsah:\n            obsah_list.append(i)\n    return obsah_list\ndef decode(obsah):\n    done = \"\"\n    sifra = []\n    for i in obsah:\n        done += str(i)\n        if i == \"[\" or i == \"\'\" or i == \",\" or i == \"]\":\n            done = \"\"\n            continue\n        if i == \" \":\n            sifra.append(i)\n        else:\n            sifra.append(i)\n    return sifra\ndef real_decode(obsah):\n    cislo = 0\n    pokracovanie = False\n    done = \"\"\n    vysledok = []\n    for i in obsah:\n        done += str(i)\n        cislo = 0\n        for i in done:\n            cislo += 1\n        if i == \" \":\n            done = \"\"\n            continue\n        if pokracovanie and done.isnumeric() and cislo == 1:\n            stlpec = int(done)\n            vysledok.append(PLOCHA[riadok][stlpec])\n            pokracovanie = False\n            done = \"\"\n            continue\n        if not pokracovanie or cislo == 2:\n            pokracovanie = True\n            riadok = int(done)\n            continue\n    return vysledok\ndef to_text(obsah):\n    text = \"\"\n    for i in obsah:\n        if i == \".\":\n            text += i + \"\\n\"\n            continue\n        text += i\n    return text\ndef create_file(obsah, name):\n    x = open(sys.argv[1], \"w\")\n    x.write(obsah)\n    x.close\n    return\ndef main():\n    name = \'data\'\n    open_file = open(name, \"r\")\n    code = list(decode(read_file(open_file)))\n    create_file(to_text(real_decode(code)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
+decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'"\', \"`"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah += i\n        for i in obsah:\n            obsah_list.append(i)\n    return obsah_list\ndef decode(obsah):\n    done = \"\"\n    sifra = []\n    for i in obsah:\n        done += str(i)\n        if i == \"[\" or i == \"\'\" or i == \",\" or i == \"]\":\n            done = \"\"\n            continue\n        if i == \" \":\n            sifra.append(i)\n        else:\n            sifra.append(i)\n    return sifra\ndef real_decode(obsah):\n    cislo = 0\n    pokracovanie = False\n    done = \"\"\n    vysledok = []\n    for i in obsah:\n        done += str(i)\n        cislo = 0\n        for i in done:\n            cislo += 1\n        if i == \" \":\n            done = \"\"\n            continue\n        if pokracovanie and done.isnumeric() and cislo == 1:\n            stlpec = int(done)\n            vysledok.append(PLOCHA[riadok][stlpec])\n            pokracovanie = False\n            done = \"\"\n            continue\n        if not pokracovanie or cislo == 2:\n            pokracovanie = True\n            riadok = int(done)\n            continue\n    return vysledok\ndef to_text(obsah):\n    text = \"\"\n    for i in obsah:\n        if i == \".\":\n            text += i + \"\\n\"\n            continue\n        text += i\n    return text\ndef create_file(obsah, name):\n    x = open(sys.argv[1], \"w\")\n    x.write(obsah)\n    x.close\n    return\ndef main():\n    if sys.argv[2] == \'False\':\n        name = \'data\'\n    else:\n        name = sys.argv[2]\n    open_file = open(name, \"r\")\n    code = list(decode(read_file(open_file)))\n    create_file(to_text(real_decode(code)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
 findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\npassword=\'\'\nicoend=False\nrnii=False\nfor i in dnr:\n    if rnii:\n        break\n    if i==\'[\':\n        bracket+=1\n    elif i==\']\':\n        bracket-=1\n    if icoend:\n        if password!=\'\':\n            rnii=True\n            continue\n    if bracket==5 and brackethist==5:\n        if i ==\',\':\n            icoend=True\n            passwordfile=open(decodename[:6], \'w\')\n            passwordfile.write(str(password))\n            continue\n        password+=i\n    brackethist=bracket\npasswordfile.close()\nx=open(\'DONE\',\'w\')\nx.write(decodename)\nx.close()')
+passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
+addapp= str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
 
 def delcache(name, hist):
     global timer
-    timer = 300
+    time_got = 300
+    timer = time_got
     size = os.path.getsize(hist)
     sizehist = size
     while True:
@@ -35,14 +36,14 @@ def delcache(name, hist):
                 if i == "END":
                     raise Exception
             if timer <= 0:
-                os.remove(name+'crypted')
+                os.remove(name)
                 x = open("INACTIVE", 'x')
                 x.close()
                 os.system('cls')
                 print("Stlač 'enter'")
                 break
             if size != sizehist:
-                timer = 300
+                timer = time_got
                 sizehist = size
             else:
                 sizehist = size
@@ -104,14 +105,64 @@ def main():
     verzia = open('version', 'r')
     print('Používate ZnámE ' + verzia.read())
     verzia.close()
+    try:
+        if sys.argv[1] == 'inactive':
+            sleep(0.25)
+            print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!')
+    except Exception:
+        pass
     tologin = False
     restart = False
     topassword = False
     topasswordhelp = False
+    loggedhelp = False
     help = ['help','pomoc','-h','-help','?','-?']
     while True:
         if not exit:
             global loginvstupuser
+            if logged:
+                if loggedhelp:
+                    print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
+                    loggedhelp = False
+                vstup = input('> ')
+                help = ['help','pomoc','-h','-help','?','-?']
+                for i in range(len(help)):
+                    if vstup == help[i]:
+                        loggedhelp = True
+                if loggedhelp:
+                    continue
+                if vstup == "zz":
+                    passwordfile = open(loginvstupuser, 'r')
+                    countersubject = 0
+                    counterfirst = True
+                    for i in passwordfile.read():
+                        try:
+                            if i == '\n':
+                                print('\n', end="")
+                                continue
+                            int(i)
+                            if counterfirst:
+                                print(i, end="")
+                            else:
+                                print(','+i, end="")
+                        except Exception:
+                            if countersubject > 2:
+                                countersubject = 0
+                            counterfirst = True
+                            countersubject += 1
+                            print(i, end="")
+                            if countersubject > 2:
+                                print(" | ", end="")
+                    passwordfile.close()
+                if vstup == "pz":
+                    subject = input('Predmet > ')
+                    mark = input('Znamka > ')
+                    code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
+                    os.mkdir("temp")
+                    shutil.move("data", 'temp/')
+                    os.rename('data1crypted', 'data')
+                    shutil.rmtree('temp')
+                    os.remove('data1')
             if topassword:
                 vstup = input('Heslo > ')
                 help = ['help','pomoc','-h','-help','?','-?']
@@ -133,28 +184,45 @@ def main():
                     os.remove(loginvstupuser + 'crypted')
                     exit = True
                     continue
-                password = code(password(decode(loginvstupuser + 'crypted')), True)[0]
+                password = password(decode(loginvstupuser + 'crypted', True))
                 if vstup == password:
                     print('Si prihlaseny')
+                    os.rename(loginvstupuser + 'crypted', loginvstupuser)
+                    passwordfile = open(loginvstupuser, 'r')
+                    passwordfile1 = open(loginvstupuser + "1", 'w')
+                    counter = 0
+                    for i in passwordfile.readlines():
+                        if counter == 0:
+                            counter += 1
+                            continue
+                        else:
+                            passwordfile1.write(i)
+                    passwordfile.close()
+                    passwordfile1.close()
+                    os.remove(loginvstupuser)
+                    os.rename(loginvstupuser + '1', loginvstupuser)
                     topassword = False
                     logged = True
+                    continue
                 elif vstup != password:
                     topassword = False
                     os.remove(loginvstupuser + 'crypted')
                     print("ZLÉ HESLO")
-            if not tologin:
+            if not tologin and not logged:
                 vstup = input('> ')
                 history.write(vstup + '\n')
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
             inactivelogout = inactive()
+            if vstup == 'clear' or vstup == 'cls':
+                os.system('cls')
             if inactivelogout:
                 restart = True
                 exit = True
             if logged and vstup == "logout" and not restart:
                 logged = False
-                os.remove(loginvstupuser + 'crypted')
+                os.remove(loginvstupuser)
                 print("Si odhlásený")
                 continue
             elif logged and inactivelogout and restart:
@@ -177,8 +245,33 @@ def main():
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
                     tologin = False
-                    def decode(name):
+                    def add(name, ico, subject, mark):
                         decodename = str(datetime.now().strftime("%H-%M-%S"))
+                        crdecode = open(decodename + ".py", "w")
+                        crdecode.write(addapp)
+                        crdecode.close()
+                        subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
+                        print('Pridávam ...', end='\r')
+                        while True:
+                            leave = False
+                            for i in os.listdir():
+                                if i == 'DONE':
+                                    leave = True
+                                    break
+                            if leave:
+                                sleep(0.05)
+                                break
+                        print('Pridávam Hotovo')
+                        os.remove(decodename + '.py')
+                        os.remove(name)
+                        os.remove('DONE')
+                        name = ('data1', None)
+                        return name
+                    def decode(name, password):
+                        decodename = str(datetime.now().strftime("%H-%M-%S"))
+                        decodename2 = 'False'
+                        if password:
+                            decodename2 = name
                         if name:
                             decodename1 = decodename
                         if isinstance(name, str):
@@ -186,7 +279,7 @@ def main():
                         crdecode = open(decodename + ".py", "w")
                         crdecode.write(decodeapp)
                         crdecode.close()
-                        subprocess.check_output('start ' + decodename + '.py ' + str(decodename1), shell=True)
+                        subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
                         print('Odkoduvávam ...', end='\r')
                         while True:
                             leave = False
@@ -219,12 +312,11 @@ def main():
                                 break
                         os.remove(passwordname + '.py')
                         password = ''
-                        for i in open(name[:6], 'r').read():
+                        for i in open('DONE', 'r').read():
                             password+=str(i)
                         print('Kontrolujem Hotovo')
-                        os.remove(loginvstupuser)
                         os.remove('DONE')
-                        return loginvstupuser+'crypted',password
+                        return password
                     def find(name):
                         findname = str(datetime.now().strftime("%H-%M-%S"))
                         crfind = open(findname + ".py", "w")
@@ -276,7 +368,9 @@ def main():
                                 break
                         print('Zakoduvávam Hotovo')
                         os.remove(codename + '.py')
-                        if new:
+                        if new == 'justcode':
+                            pass
+                        elif new:
                             os.remove(loginvstupuser + 'crypted')
                             shutil.move(loginvstupuser + 'cryptedcrypted', loginvstupuser + 'crypted')
                         else:
@@ -311,7 +405,7 @@ def main():
                     history.write(loginvstupuser + '\n')
                     if len(str(loginvstupuser)) == 6:
                         exit = False
-                        icofind = code(find(decode(True)), False)
+                        icofind = code(find(decode(True, False)), False)
                         if icofind[0]:
                             logged = False
                             os.remove(loginvstupuser + 'crypted')
@@ -333,7 +427,7 @@ def main():
             if logged:
                 try:
                     sleep(0.25)
-                    os.remove(loginvstupuser + 'crypted')
+                    os.remove(loginvstupuser)
                 except Exception:
                     pass
                 print("Si odhlásený")
@@ -382,7 +476,7 @@ def main():
             os.remove('END')
             sleep(1)
             if restart:
-                subprocess.check_call('start python edupage.py', shell=True)
+                subprocess.check_call('start python edupage.py inactive', shell=True)
                 quit()
             elif not restart:
                 quit()
