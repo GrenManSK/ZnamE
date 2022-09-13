@@ -1,0 +1,7 @@
+SK
+
+Pre pomoc s argumentmi použite terminal(CMD) zvyčajne 'py.exe edupage.py -h'
+
+EN
+
+For help with arguments use terminal(CMD) usually 'py.exe edupage.py -h'

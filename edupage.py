@@ -1,13 +1,30 @@
-import pkg_resources, sys, os, subprocess
+import argparse, pkg_resources, sys, os, subprocess
+global parser
+parser = argparse.ArgumentParser()
+UNSPECIFIED = object()
+parser.add_argument('-lang', '--language', choices=['SK','EN'], help='Language selsection', nargs='?', default='SK')
+parser.add_argument('-v', '--version', help='Show version of this program', default=UNSPECIFIED, nargs='?')
+args = parser.parse_args()
+if args.version == None:
+    verzia = open('version', 'r')
+    print(verzia.read())
+    verzia.close()
+    quit()
 potrebne = {'psutil', 'numpy'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
 if nenajdene:
     from time import sleep
-    print("Sťahujú sa aktualizácie")
+    if args.language == "SK":
+        print("Sťahujú sa aktualizácie")
+    if args.language == "EN":
+        print("Downloading updates")
     sleep(0.5)
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *nenajdene])
-    print("Program sa reštartuje!!!")
+    if args.language == "SK":
+        print("Program sa reštartuje!!!")
+    if args.language == "EN":
+        print("The program is restarting!!!")
     sleep(1)
     subprocess.check_call('start python edupage.py', shell=True)
     quit()
@@ -40,7 +57,10 @@ def delcache(name, hist):
                 x = open("INACTIVE", 'x')
                 x.close()
                 os.system('cls')
-                print("Stlač 'enter'")
+                if args.language == "SK":
+                    print("Stlač 'enter'")
+                if args.language == "EN":
+                    print("Press 'enter'")
                 break
             if size != sizehist:
                 timer = time_got
@@ -74,12 +94,20 @@ def main():
     history = open(historyname, 'w')
     logged = False
     exit = False
-    print("Načítavam...")
+    if args.language == "SK":
+        print('SK')
+        print("Načítavam...")
+    if args.language == "EN":
+        print('EN')
+        print("Loading...")
     try:
         with zipfile.ZipFile(cachename, mode='r') as zip:
             zip.extractall(pwd=bytes('grenmansk','utf-8'))
             zip.close()
-        subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
+        if args.language == "SK":
+            subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
+        if args.language == "EN":
+            subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
         shutil.move('data1/data', 'data')
         shutil.rmtree('data1')
         os.remove(cachename)
@@ -103,12 +131,18 @@ def main():
     except FileNotFoundError:
         pass
     verzia = open('version', 'r')
-    print('Používate ZnámE ' + verzia.read())
+    if args.language == "SK":
+        print('Používate ZnámE ' + verzia.read())
+    if args.language == "EN":
+        print('You\'re using ZnámE ' + verzia.read())
     verzia.close()
     try:
         if sys.argv[1] == 'inactive':
             sleep(0.25)
-            print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!')
+            if args.language == "SK":
+                print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!')
+            if args.language == "EN":
+                print('You were inactive, you were logged out and the program restarted!!!')
     except Exception:
         pass
     tologin = False
@@ -116,13 +150,20 @@ def main():
     topassword = False
     topasswordhelp = False
     loggedhelp = False
+    firstlogin = True
     help = ['help','pomoc','-h','-help','?','-?']
     while True:
         if not exit:
             global loginvstupuser
             if logged:
+                if firstlogin:
+                    firstlogin = False
+                    shutil.copy2('data', 'data_backup')
                 if loggedhelp:
-                    print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
+                    if args.language == "SK":
+                        print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
+                    if args.language == "EN":
+                        print("'zz' to display marks\n'pz' to add marks")
                     loggedhelp = False
                 vstup = input('> ')
                 help = ['help','pomoc','-h','-help','?','-?']
@@ -155,8 +196,12 @@ def main():
                                 print(" | ", end="")
                     passwordfile.close()
                 if vstup == "pz":
-                    subject = input('Predmet > ')
-                    mark = input('Znamka > ')
+                    if args.language == "SK":
+                        subject = input('Predmet > ')
+                        mark = input('Znamka > ')
+                    if args.language == "EN":
+                        subject = input('Subject > ')
+                        mark = input('Mark > ')
                     code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
                     os.mkdir("temp")
                     shutil.move("data", 'temp/')
@@ -164,13 +209,19 @@ def main():
                     shutil.rmtree('temp')
                     os.remove('data1')
             if topassword:
-                vstup = input('Heslo > ')
+                if args.language == "SK":
+                    vstup = input('Heslo > ')
+                if args.language == "EN":
+                    vstup = input('Password > ')
                 help = ['help','pomoc','-h','-help','?','-?']
                 for i in range(len(help)):
                     if vstup == help[i]:
                         topasswordhelp = True
                 if topasswordhelp:
-                    print("6 číselne heslo\n 'back' pre menu\n 'quit' pre koniec")
+                    if args.language == "SK":
+                        print("6 číselne heslo\n 'back' pre menu\n 'quit' pre koniec")
+                    if args.language == "EN":
+                        print("6 numeric password\n 'back' for menu\n 'quit' for end")
                     topasswordhelp = False
                     continue
                 if vstup == "back":
@@ -186,7 +237,10 @@ def main():
                     continue
                 password = password(decode(loginvstupuser + 'crypted', True))
                 if vstup == password:
-                    print('Si prihlaseny')
+                    if args.language == "SK":
+                        print('Si prihlaseny')
+                    if args.language == "EN":
+                        print('You\'re logged')
                     os.rename(loginvstupuser + 'crypted', loginvstupuser)
                     passwordfile = open(loginvstupuser, 'r')
                     passwordfile1 = open(loginvstupuser + "1", 'w')
@@ -207,7 +261,10 @@ def main():
                 elif vstup != password:
                     topassword = False
                     os.remove(loginvstupuser + 'crypted')
-                    print("ZLÉ HESLO")
+                    if args.language == "SK":
+                        print("ZLÉ HESLO")
+                    if args.language == "EN":
+                        print("WRONG PASSWORD")
             if not tologin and not logged:
                 vstup = input('> ')
                 history.write(vstup + '\n')
@@ -223,15 +280,24 @@ def main():
             if logged and vstup == "logout" and not restart:
                 logged = False
                 os.remove(loginvstupuser)
-                print("Si odhlásený")
+                if args.language == "SK":
+                    print("Si odhlásený")
+                if args.language == "EN":
+                    print("You\'re logged out")
                 continue
             elif logged and inactivelogout and restart:
                 logged = False
-                print("Si odhlásený!!!")
+                if args.language == "SK":
+                    print("Si odhlásený")
+                if args.language == "EN":
+                    print("You\'re logged out")
                 continue
             elif not logged and vstup == "logout" or inactivelogout:
                 logged = False
-                print('Nie si prihlásený!!!')
+                if args.language == "SK":
+                    print('Nie si prihlásený!!!')
+                if args.language == "EN":
+                    print("You\'re not logged in!!!")
                 continue
             elif vstup == 'quit' or vstup == 'koniec':
                 exit = True
@@ -240,7 +306,10 @@ def main():
             if vstup != "" and not restart:
                 for i in range(len(help)):
                     if vstup == help[i]:
-                        print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec")
+                        if args.language == "SK":
+                            print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec")
+                        if args.language == "EN":
+                            print("'login' for login\n'logout' for logout\n'quit' or 'end' for end")
                         continue
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
@@ -251,7 +320,10 @@ def main():
                         crdecode.write(addapp)
                         crdecode.close()
                         subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
-                        print('Pridávam ...', end='\r')
+                        if args.language == "SK":
+                            print('Pridávam ...', end='\r')
+                        if args.language == "EN":
+                            print('Adding ...', end='\r')
                         while True:
                             leave = False
                             for i in os.listdir():
@@ -261,7 +333,10 @@ def main():
                             if leave:
                                 sleep(0.05)
                                 break
-                        print('Pridávam Hotovo')
+                        if args.language == "SK":
+                            print('Pridávam Hotovo')
+                        if args.language == "EN":
+                            print('Adding Complete')
                         os.remove(decodename + '.py')
                         os.remove(name)
                         os.remove('DONE')
@@ -280,7 +355,10 @@ def main():
                         crdecode.write(decodeapp)
                         crdecode.close()
                         subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
-                        print('Odkoduvávam ...', end='\r')
+                        if args.language == "SK":
+                            print('Odkoduvávam ...', end='\r')
+                        if args.language == "EN":
+                            print('Encrypting ...', end='\r')
                         while True:
                             leave = False
                             for i in os.listdir():
@@ -288,9 +366,12 @@ def main():
                                     leave = True
                                     break
                             if leave:
-                                sleep(0.05)
+                                sleep(0.01)
                                 break
-                        print('Odkoduvávam Hotovo')
+                        if args.language == "SK":
+                            print('Odkoduvávam Hotovo')
+                        if args.language == "EN":
+                            print('Encrypting Complete')
                         os.remove(decodename + '.py')
                         os.remove('DONE')
                         return decodename1
@@ -299,7 +380,10 @@ def main():
                         crfind = open(passwordname + ".py", "w")
                         crfind.write(passwordapp)
                         crfind.close()
-                        print('Kontrolujem ...', end='\r')
+                        if args.language == "SK":
+                            print('Kontrolujem ...', end='\r')
+                        if args.language == "EN":
+                            print('Controling ...', end='\r')
                         subprocess.check_output('start ' + passwordname + '.py ' + str(name), shell=True)
                         while True:
                             leave = False
@@ -314,7 +398,10 @@ def main():
                         password = ''
                         for i in open('DONE', 'r').read():
                             password+=str(i)
-                        print('Kontrolujem Hotovo')
+                        if args.language == "SK":
+                            print('Kontrolujem Complete')
+                        if args.language == "EN":
+                            print('Controling Complete')
                         os.remove('DONE')
                         return password
                     def find(name):
@@ -322,7 +409,10 @@ def main():
                         crfind = open(findname + ".py", "w")
                         crfind.write(findapp)
                         crfind.close()
-                        print('Hľadám ...', end='\r')
+                        if args.language == "SK":
+                            print('Hľadám ...', end='\r')
+                        if args.language == "EN":
+                            print('Finding ...', end='\r')
                         subprocess.check_output('start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
                         while True:
                             leave = False
@@ -331,7 +421,7 @@ def main():
                                     leave = True
                                     break
                             if leave:
-                                sleep(0.05)
+                                sleep(0.01)
                                 break
                         os.remove(findname + '.py')
                         os.remove(name)
@@ -343,19 +433,28 @@ def main():
                             pocitadlo += 1
                         if 0 <= pocitadlo <= 5:
                             test.close()
-                            print('Hľadám CHYBA')
+                            if args.language == "SK":
+                                print('Hľadám CHYBA')
+                            if args.language == "EN":
+                                print('Finding ERROR')
                             end = True
                         if end:
                             return (loginvstupuser, end)
                         test.close()
-                        print('Hľadám Hotovo')
+                        if args.language == "SK":
+                            print('Hľadám Hotovo')
+                        if args.language == "EN":
+                            print('Finding Complete')
                         return (loginvstupuser, end)
                     def code(name, new):
                         codename = str(datetime.now().strftime("%H-%M-%S"))
                         crcode = open(codename + ".py", "w")
                         crcode.write(codeapp)
                         crcode.close()
-                        print('Zakoduvávam ...', end='\r')
+                        if args.language == "SK":
+                            print('Zakoduvávam ...', end='\r')
+                        if args.language == "EN":
+                            print('Coding ...', end='\r')
                         subprocess.check_output('start ' + codename + '.py ' + str(name[0]), shell=True)
                         while True:
                             leave = False
@@ -366,7 +465,10 @@ def main():
                             if leave:
                                 sleep(0.05)
                                 break
-                        print('Zakoduvávam Hotovo')
+                        if args.language == "SK":
+                            print('Zakoduvávam Complete')
+                        if args.language == "EN":
+                            print('Coding Complete')
                         os.remove(codename + '.py')
                         if new == 'justcode':
                             pass
@@ -377,16 +479,25 @@ def main():
                             os.remove(loginvstupuser)
                         os.remove('DONE')
                         return name[1], new
-                    loginvstupuser = input("Prihlasovacie číslo (PID) > ")
+                    if args.language == "SK":
+                        loginvstupuser = input("Prihlasovacie číslo (PID) > ")
+                    if args.language == "EN":
+                        loginvstupuser = input("Login Number (PID) > ")
                     history.write(loginvstupuser)
                     history.close()
                     history = open(historyname, 'a')
                     tologinhelp = False
                     if loginvstupuser == "back":
-                        print('Idem späť.')
+                        if args.language == "SK":
+                            print('Idem späť.')
+                        if args.language == "EN":
+                            print('Going back.')
                         continue
                     elif loginvstupuser == "quit" or loginvstupuser == "koniec":
-                        print("Idem späť a ukončujem program.")
+                        if args.language == "SK":
+                            print("Idem späť a ukončujem program.")
+                        if args.language == "EN":
+                            print("Going back and exiting the program.")
                         sleep(0.5)
                         exit = True
                         continue
@@ -395,11 +506,17 @@ def main():
                         if loginvstupuser == help[i]:
                             tologinhelp = True
                     if tologinhelp:
-                        print("'back' pre menu\n'quit' alebo 'koniec' pre koniec")
+                        if args.language == "SK":
+                            print("'back' pre menu\n'quit' alebo 'koniec' pre koniec")
+                        if args.language == "EN":
+                            print("'back' for menu\n'quit' or 'end' for end")
                         tologin = True
                         continue
                     elif not loginvstupuser.isnumeric():
-                        print('PID neobsahuje písmená alebo znaky!!!')
+                        if args.language == "SK":
+                            print('PID neobsahuje písmená alebo znaky!!!')
+                        if args.language == "EN":
+                            print('The PID does not contain letters or characters!!!')
                         tologin = True
                         continue
                     history.write(loginvstupuser + '\n')
@@ -409,16 +526,25 @@ def main():
                         if icofind[0]:
                             logged = False
                             os.remove(loginvstupuser + 'crypted')
-                            print("ZLÉ PID!!!")
+                            if args.language == "SK":
+                                print("ZLÉ PID!!!")
+                            if args.language == "EN":
+                                print("WRONG PID!!!")
                             tologin = True
                             continue
                         Thread(target=delcache, args=(loginvstupuser,historyname,), daemon=True).start()
                         topassword = True
                     else:
-                        print('PID má byt 6 čísel dlhé!!!')
+                        if args.language == "SK":
+                            print('PID má byt 6 čísel dlhé!!!')
+                        if args.language == "EN":
+                            print('The PID should be 6 numbers long!!!')
                         tologin = True
                 elif logged and vstup == 'login':
-                    print('Už si prihlasení!!!')
+                    if args.language == "SK":
+                        print('Už si prihlasení!!!')
+                    if args.language == "EN":
+                        print('You are already logged in!!!')
         elif vstup == 'quit' or vstup == 'koniec' or exit:
             try:
                 open('END', 'x')
@@ -430,11 +556,21 @@ def main():
                     os.remove(loginvstupuser)
                 except Exception:
                     pass
-                print("Si odhlásený")
+                if args.language == "SK":
+                    print("Si odhlásený")
+                if args.language == "EN":
+                    print('You are already logged in!!!')
             history.close()
-            print("ODSTRAŇOVANIE NEPOTREBNÝCH SÚBOROV")
+            if args.language == "SK":
+                print("ODSTRAŇOVANIE NEPOTREBNÝCH SÚBOROV")
+            if args.language == "EN":
+                print("DELETING UNNECESSARY FILES")
             try:
                 os.remove(historyname)
+            except Exception:
+                pass
+            try:
+                os.remove('data_backup')
             except Exception:
                 pass
             print('.', end='\r')
@@ -443,7 +579,10 @@ def main():
             sleep(0.2)
             shutil.move('data', 'datafolder/')
             sleep(0.2)
-            subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam'])
+            if args.language == "SK":
+                subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam'])
+            if args.language == "EN":
+                subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam', '-lang', 'EN'])
             shutil.rmtree('datafolder')
             with zipfile.ZipFile(cachename, mode='w') as zip:
                 zip.write('tests.py')
@@ -466,12 +605,21 @@ def main():
             shutil.rmtree('structs')
             print('...')
             sleep(0.2)
-            print("HOTOVO")
+            if args.language == "SK":
+                print("HOTOVO")
+            if args.language == "EN":
+                print("COMPLETE")
             sleep(0.5)
             if restart:
-                print('Program sa automaticky reštartuje.')
+                if args.language == "SK":
+                    print('Program sa automaticky reštartuje.')
+                if args.language == "EN":
+                    print('The program will restart automatically.')
             elif not restart:
-                print('Program sa automaticky vypne.')
+                if args.language == "SK":
+                    print('Program sa automaticky vypne.')
+                if args.language == "EN":
+                    print('The program will automatically shut down.')
             sleep(0.5)
             os.remove('END')
             sleep(1)
