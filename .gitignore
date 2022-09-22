@@ -1,3 +1,12 @@
 
 backup/data
 *.pyc
+unlock.py
+lock.py
+backup/data.xp2
+backup/edupage.py
+backup/help.txt
+backup/README.md
+backup/LICENSE
+backup/version
+ZnamE.zip
