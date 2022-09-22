@@ -1,7 +1,18 @@
 SK
 
 Pre pomoc s argumentmi použite terminal(CMD) zvyčajne 'py.exe edupage.py -h'
+Keď chcete zmeniť jazyk programu do terminalu(CMD) vložte zvyčajne 'py.exe edupage.py -lang {language}'
+Podporované jazyky: SK = Slovak
+                    EN = English
+
+Má časti ktoré sú naschvál spomalené
 
 EN
 
 For help with arguments use terminal(CMD) usually 'py.exe edupage.py -h'
+When you want to change the language of the program in the terminal (CMD) usually enter 'py.exe edupage.py -lang {language}'
+Supported languages: SK = Slovak
+                     EN = English
+
+It has parts that are slowed down on purpose
+
