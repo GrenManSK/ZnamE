@@ -72,7 +72,12 @@ updateapp = str('import argparse, shutil, os, subprocess\nfrom time import sleep
 if  semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
     pass
 else:
+    if args.language == "SK":
+        print("Bola nájdená nová aktualizacia: " + page.text)
+    if args.language == "EN":
+        print("Newer version was found: " + page.text)
     verzia.close()
+    sleep(0.5)
     url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
     r = requests.get(url)
     filename = "new.zip"
