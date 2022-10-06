@@ -161,9 +161,9 @@ else:
     crupdate.write(updateapp)
     crupdate.close()
     if args.endf == None:
-        subprocess.check_call('start python update.py ' + directory + ' -lang ' + args.language + ' -endf', shell=True)
+        subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language + ' -endf', shell=True)
     else:
-        subprocess.check_call('start python update.py ' + directory + ' -lang ' + args.language , shell=True)
+        subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language , shell=True)
     sleep(0.1)
     quit()
 
