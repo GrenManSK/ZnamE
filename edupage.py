@@ -784,7 +784,7 @@ def main():
                     Thread(target=progress_bar, args=('Checking', 2,), daemon=True).start()
                 if args.language == "JP":
                     Thread(target=progress_bar, args=('チェック中', 2,), daemon=True).start()
-                password = password(decode(loginvstupuser + 'crypted', True))
+                password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
                 sleep(0.1)
                 if vstup == password[0]:  # type: ignore
                     if args.language == "SK":
