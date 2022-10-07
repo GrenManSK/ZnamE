@@ -41,8 +41,8 @@ if args.update == None:
         os.remove('update.py')
     except FileNotFoundError:
         print('')
+import requests
 try:
-    import requests
     timeout = 1
     requests.head("http://www.google.com/", timeout=timeout)
 except requests.ConnectionError:
