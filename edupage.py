@@ -1,37 +1,57 @@
 import argparse, pkg_resources, sys, os, subprocess, configparser
 from time import sleep
+import time
 print('Reading config file (ini)\n')
 sleep(0.25)
-config = configparser.RawConfigParser()
-config.read('config.ini')
+try:
+    config = configparser.RawConfigParser()
+    config.read('config.ini')
+except configparser.DuplicateSectionError:
+    print("'config.ini' file is corrupt -> Duplicate section")
+    input("Press 'enter' to quit")
+    quit()
+except configparser.DuplicateOptionError:
+    print("'config.ini' file is corrupt -> Duplicate option")
+    input("Press 'enter' to quit")
+    quit()
+except configparser.NoSectionError:
+    print("'config.ini' file is corrupt -> No section")
+    input("Press 'enter' to quit")
+    quit()
 print(config.get('basic info','lang').split(' ')[0])
+print(config.get('basic info','enviroment').split(' ')[0])
+print(config.items('user history'))
 print('\nDone')
 global parser
 parser = argparse.ArgumentParser()
 UNSPECIFIED = object()
 sleep(0.5)
 os.system('cls')
-parser.add_argument('-lang', '--language', choices=['SK','EN','JP'], help='Language selection', nargs='?')
-parser.add_argument('-v', '--version', help='Show version of this program', default=UNSPECIFIED, nargs='?')
-parser.add_argument('-ef', '--endf', help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
+language = ['SK','EN','JP']
+parser.add_argument('-lang', '--language', choices=language, help='Language selection', nargs='?')
+parser.add_argument('-v', '--version', choices=[], help='Show version of this program', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 args = parser.parse_args()
 if args.language == None:
     args.language = config.get('basic info', 'lang').split(' ')[0]
 if args.update == None:
-    os.remove('update.py')
+    try:
+        os.remove('update.py')
+    except FileNotFoundError:
+        print('')
 try:
     import requests
     timeout = 1
     requests.head("http://www.google.com/", timeout=timeout)
-except requests.ConnectionError: # type: ignore
+except requests.ConnectionError:
     if args.language == "SK":
         print("Vaše internetové pripojenie nefunguje")
     if args.language == "EN":
         print("The internet connection is down")
     if args.language == "JP":
-        print("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています")
+        print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
     sleep(2)
     quit()
 potrebne = {'psutil', 'numpy','tqdm', 'semantic-version'}
@@ -254,6 +274,206 @@ def progress_bar(name, number):
                 progress_bar_check_old = progress_bar_check
                 break
 
+def add(name, ico, subject, mark):
+    global progress_bar_check
+    decodename = str(datetime.now().strftime("%H-%M-%S"))
+    crdecode = open(decodename + ".py", "w")
+    crdecode.write(addapp)
+    crdecode.close()
+    subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
+    if args.language == "SK":
+        tqdm.write('Pridávam ...', end='\r')
+    if args.language == "EN":
+        tqdm.write('Adding ...', end='\r')
+    if args.language == "JP":
+        tqdm.write('追加する ...', end='\r')
+    while True:
+        leave = False
+        for i in os.listdir():
+            if i == 'DONE':
+                leave = True
+                break
+        if leave:
+            sleep(0.05)
+            break
+    if args.language == "SK":
+        tqdm.write('Pridávam Hotovo')
+    if args.language == "EN":
+        tqdm.write('Adding Complete')
+    if args.language == "JP":
+        tqdm.write('追加完了')
+    os.remove(decodename + '.py')
+    os.remove(name)
+    os.remove('DONE')
+    progress_bar_check += 1
+    name = ('data1', None)
+    return name
+def decode(name, password):
+    global progress_bar_check
+    decodename = str(datetime.now().strftime("%H-%M-%S"))
+    decodename2 = 'False'
+    if password:
+        decodename2 = name
+    if name:
+        decodename1 = decodename
+    elif isinstance(name, str):
+        decodename1 = name
+    else:
+        decodename1 = "None"
+    crdecode = open(decodename + ".py", "w")
+    crdecode.write(decodeapp)
+    crdecode.close()
+    subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
+    if args.language == "SK":
+        tqdm.write('Odkoduvávam ...', end='\r')
+    if args.language == "EN":
+        tqdm.write('Encrypting ...', end='\r')
+    if args.language == "JP":
+        tqdm.write('暗号化 ...', end='\r')
+    while True:
+        leave = False
+        for i in os.listdir():
+            if i == 'DONE':
+                leave = True
+                break
+        if leave:
+            sleep(0.05)
+            break
+    if args.language == "SK":
+        tqdm.write('Odkoduvávam Hotovo')
+    if args.language == "EN":
+        tqdm.write('Encrypting Complete')
+    if args.language == "JP":
+        tqdm.write('暗号化完了')
+    os.remove(decodename + '.py')
+    os.remove('DONE')
+    progress_bar_check += 1
+    return decodename1
+def password(name):
+    global progress_bar_check
+    passwordname = str(datetime.now().strftime("%H-%M-%S"))
+    crfind = open(passwordname + ".py", "w")
+    crfind.write(passwordapp)
+    crfind.close()
+    if args.language == "SK":
+        tqdm.write('Kontrolujem ...', end='\r')
+    if args.language == "EN":
+        tqdm.write('Controling ...', end='\r')
+    if args.language == "JP":
+        tqdm.write('制御する ...', end='\r')
+    subprocess.check_output('start ' + passwordname + '.py ' + str(name), shell=True)
+    while True:
+        leave = False
+        for i in os.listdir():
+            if i == 'DONE':
+                leave = True
+                break
+        if leave:
+            sleep(0.05)
+            break
+    os.remove(passwordname + '.py')
+    password = ''
+    for i in open('DONE', 'r').read():
+        password+=str(i)
+    if args.language == "SK":
+        tqdm.write('Kontrolujem Hotovo')
+    if args.language == "EN":
+        tqdm.write('Controling Complete')
+    if args.language == "JP":
+        tqdm.write('制御完了')
+    os.remove('DONE')
+    progress_bar_check += 1
+    return (password, name)
+def find(name):
+    global progress_bar_check
+    findname = str(datetime.now().strftime("%H-%M-%S"))
+    crfind = open(findname + ".py", "w")
+    crfind.write(findapp)
+    crfind.close()
+    if args.language == "SK":
+        tqdm.write('Hľadám ...', end='\r')
+    if args.language == "EN":
+        tqdm.write('Finding ...', end='\r')
+    if args.language == "JP":
+        tqdm.write('発見 ...', end='\r')
+    subprocess.check_output('start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
+    while True:
+        leave = False
+        for i in os.listdir():
+            if i == 'DONE':
+                leave = True
+                break
+        if leave:
+            sleep(0.05)
+            break
+    os.remove(findname + '.py')
+    os.remove(name)
+    os.remove('DONE')
+    test = open(loginvstupuser, 'r')
+    end = False
+    pocitadlo = 0
+    for i in test.read():
+        pocitadlo += 1
+    if 0 <= pocitadlo <= 5:
+        test.close()
+        if args.language == "SK":
+            tqdm.write('Hľadám CHYBA')
+        if args.language == "EN":
+            tqdm.write('Finding ERROR')
+        if args.language == "JP":
+            tqdm.write('発見 エラー')
+        end = True
+    if end:
+        return (loginvstupuser, end)
+    test.close()
+    if args.language == "SK":
+        tqdm.write('Hľadám Hotovo')
+    if args.language == "EN":
+        tqdm.write('Finding Complete')
+    if args.language == "JP":
+        tqdm.write('発見完了')
+    progress_bar_check += 1
+    return (loginvstupuser, end)
+def code(name, new):
+    global progress_bar_check
+    codename = str(datetime.now().strftime("%H-%M-%S"))
+    crcode = open(codename + ".py", "w")
+    crcode.write(codeapp)
+    crcode.close()
+    if args.language == "SK":
+        tqdm.write('Zakoduvávam ...', end='\r')
+    if args.language == "EN":
+        tqdm.write('Coding ...', end='\r')
+    if args.language == "JP":
+        tqdm.write('コーディング ...', end='\r')
+    subprocess.check_output('start ' + codename + '.py ' + str(name[0]), shell=True)
+    while True:
+        leave = False
+        for i in os.listdir():
+            if i == 'DONE':
+                leave = True
+                break
+        if leave:
+            sleep(0.05)
+            break
+    if args.language == "SK":
+        tqdm.write('Zakoduvávam Complete')
+    if args.language == "EN":
+        tqdm.write('Coding Complete')
+    if args.language == "JP":
+        tqdm.write('コーディング 完了')
+    os.remove(codename + '.py')
+    if new == 'justcode':
+        pass
+    elif new:
+        os.remove(loginvstupuser + 'crypted')
+        shutil.move(loginvstupuser + 'cryptedcrypted', loginvstupuser + 'crypted')
+    else:
+        os.remove(loginvstupuser)
+    progress_bar_check += 1
+    os.remove('DONE')
+    return name[1], new
+
 def main():
     historyname = str(datetime.now().strftime("%H-%M-%S"))
     history = open(historyname, 'w')
@@ -365,6 +585,8 @@ def main():
                 print('プログラムが更新されました!!!\n')
     except Exception:
         pass
+    if args.language == 'JP':
+        print("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
     tologin = False
     restart = False
     topassword = False
@@ -503,7 +725,7 @@ def main():
                         Thread(target=progress_bar, args=('Checking', 3,), daemon=True).start()
                     if args.language == "JP":
                         Thread(target=progress_bar, args=('チェック中', 3,), daemon=True).start()
-                    code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')  # type: ignore
+                    code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
                     os.mkdir("temp")
                     shutil.move("data", 'temp/')
                     os.rename('data1crypted', 'data')
@@ -518,7 +740,7 @@ def main():
                     vstup = input('パスワード > ')
                 else:
                     vstup = input('Password > ')
-                history.write(vstup + '\n')
+                history.write(len(vstup)*'*' + '\n')
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
@@ -562,7 +784,7 @@ def main():
                     Thread(target=progress_bar, args=('Checking', 2,), daemon=True).start()
                 if args.language == "JP":
                     Thread(target=progress_bar, args=('チェック中', 2,), daemon=True).start()
-                password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
+                password = password(decode(loginvstupuser + 'crypted', True))
                 sleep(0.1)
                 if vstup == password[0]:  # type: ignore
                     if args.language == "SK":
@@ -645,220 +867,56 @@ def main():
             if vstup != "" and not restart:
                 for i in range(len(advhelp)):
                     if vstup == advhelp[i]:
+                        advhelpcont = False
                         advhelpfile = open('Help.txt', 'r', encoding='UTF-8')
-                        print(advhelpfile.read())
+                        for i in advhelpfile.readlines():
+                            if advhelpcont:
+                                for j in language:
+                                    if i == j + '\n':
+                                        if j == args.language:
+                                            break
+                                        else:
+                                            advhelpcont = False
+                                            break
+                                if not advhelpcont:
+                                    break
+                                if i == "":
+                                    continue
+                                print(i,end="")
+                                continue
+                            if i == args.language + '\n':
+                                advhelpcont = True
+                                print(i,end="")
+                                continue
                         advhelpfile.close()
                 for i in range(len(help)):
                     if vstup == help[i]:
                         if args.language == "SK":
-                            print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec\n\nKeď chceš zmeniť jazyk programu v terminalu do commandu pridaj '-lang EN' or '-lang SK'\n\nPre podrobnejšiu pomoc napíš '-ah' alebo '-advanced help' alebo 'ah' alebo 'advanced help'")
+                            print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec\n\nKeď chceš zmeniť jazyk programu v terminalu do commandu pridaj '-lang EN' or '-lang SK'\n\nPre podrobnejšiu pomoc napíš '-ah' alebo '-advanced help' alebo 'ah' alebo 'advanced help'\n'history' zobrazuje vašu aktuálne uloženú históriu")
                         if args.language == "EN":
-                            print("'login' for login\n'logout' for logout\n'quit' or 'end' for end\n\nWhen you want to change the language of the program in the terminal, add '-lang EN' or '-lang SK' to the command\n\nFor more detailed help, type '-ah' or '-advanced help' or 'ah' or 'advanced help'")
+                            print("'login' for login\n'logout' for logout\n'quit' or 'end' for end\n\nWhen you want to change the language of the program in the terminal, add '-lang EN' or '-lang SK' to the command\n\nFor more detailed help, type '-ah' or '-advanced help' or 'ah' or 'advanced help'\n'history' show your currently saved history")
                         if args.language == "JP":
-                            print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'")
+                            print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'\n「history」は、現在保存されている履歴を表示します")
                         continue
+                if vstup == 'history':
+                    historylist = config.items('user history')
+                    for i in historylist:
+                        if args.language == 'SK':
+                            print('Čas začiatku = ' + i[1][0:26] + ', Čas ukončenia = ' + i[0] + ', Vstup = ' + i[1][26:])
+                        if args.language == 'EN':
+                            print('Start time = ' + i[1][0:26] + ', End time = ' + i[0] + ', Input = ' + i[1][26:])
+                        if args.language == 'JP':
+                            print('開始時間 = ' + i[1][0:26] + '、終了時間 = ' + i[0] + '、入力 = ' + i[1][26:])
+                    if len(historylist) == 0:
+                        if args.language == 'SK':
+                            print('História je prázdna')
+                        if args.language == 'EN':
+                            print('History is empty')
+                        if args.language == 'JP':
+                            print('履歴が空です')
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
                     tologin = False
-                    def add(name, ico, subject, mark):
-                        global progress_bar_check
-                        decodename = str(datetime.now().strftime("%H-%M-%S"))
-                        crdecode = open(decodename + ".py", "w")
-                        crdecode.write(addapp)
-                        crdecode.close()
-                        subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
-                        if args.language == "SK":
-                            tqdm.write('Pridávam ...', end='\r')
-                        if args.language == "EN":
-                            tqdm.write('Adding ...', end='\r')
-                        if args.language == "JP":
-                            tqdm.write('追加する ...', end='\r')
-                        while True:
-                            leave = False
-                            for i in os.listdir():
-                                if i == 'DONE':
-                                    leave = True
-                                    break
-                            if leave:
-                                sleep(0.05)
-                                break
-                        if args.language == "SK":
-                            tqdm.write('Pridávam Hotovo')
-                        if args.language == "EN":
-                            tqdm.write('Adding Complete')
-                        if args.language == "JP":
-                            tqdm.write('追加完了')
-                        os.remove(decodename + '.py')
-                        os.remove(name)
-                        os.remove('DONE')
-                        progress_bar_check += 1
-                        name = ('data1', None)
-                        return name
-                    def decode(name, password):
-                        global progress_bar_check
-                        decodename = str(datetime.now().strftime("%H-%M-%S"))
-                        decodename2 = 'False'
-                        if password:
-                            decodename2 = name
-                        if name:
-                            decodename1 = decodename
-                        elif isinstance(name, str):
-                            decodename1 = name
-                        else:
-                            decodename1 = "None"
-                        crdecode = open(decodename + ".py", "w")
-                        crdecode.write(decodeapp)
-                        crdecode.close()
-                        subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
-                        if args.language == "SK":
-                            tqdm.write('Odkoduvávam ...', end='\r')
-                        if args.language == "EN":
-                            tqdm.write('Encrypting ...', end='\r')
-                        if args.language == "JP":
-                            tqdm.write('暗号化 ...', end='\r')
-                        while True:
-                            leave = False
-                            for i in os.listdir():
-                                if i == 'DONE':
-                                    leave = True
-                                    break
-                            if leave:
-                                sleep(0.05)
-                                break
-                        if args.language == "SK":
-                            tqdm.write('Odkoduvávam Hotovo')
-                        if args.language == "EN":
-                            tqdm.write('Encrypting Complete')
-                        if args.language == "JP":
-                            tqdm.write('暗号化完了')
-                        os.remove(decodename + '.py')
-                        os.remove('DONE')
-                        progress_bar_check += 1
-                        return decodename1
-                    def password(name):
-                        global progress_bar_check
-                        passwordname = str(datetime.now().strftime("%H-%M-%S"))
-                        crfind = open(passwordname + ".py", "w")
-                        crfind.write(passwordapp)
-                        crfind.close()
-                        if args.language == "SK":
-                            tqdm.write('Kontrolujem ...', end='\r')
-                        if args.language == "EN":
-                            tqdm.write('Controling ...', end='\r')
-                        if args.language == "JP":
-                            tqdm.write('制御する ...', end='\r')
-                        subprocess.check_output('start ' + passwordname + '.py ' + str(name), shell=True)
-                        while True:
-                            leave = False
-                            for i in os.listdir():
-                                if i == 'DONE':
-                                    leave = True
-                                    break
-                            if leave:
-                                sleep(0.05)
-                                break
-                        os.remove(passwordname + '.py')
-                        password = ''
-                        for i in open('DONE', 'r').read():
-                            password+=str(i)
-                        if args.language == "SK":
-                            tqdm.write('Kontrolujem Hotovo')
-                        if args.language == "EN":
-                            tqdm.write('Controling Complete')
-                        if args.language == "JP":
-                            tqdm.write('制御完了')
-                        os.remove('DONE')
-                        progress_bar_check += 1
-                        return (password, name)
-                    def find(name):
-                        global progress_bar_check
-                        findname = str(datetime.now().strftime("%H-%M-%S"))
-                        crfind = open(findname + ".py", "w")
-                        crfind.write(findapp)
-                        crfind.close()
-                        if args.language == "SK":
-                            tqdm.write('Hľadám ...', end='\r')
-                        if args.language == "EN":
-                            tqdm.write('Finding ...', end='\r')
-                        if args.language == "JP":
-                            tqdm.write('発見 ...', end='\r')
-                        subprocess.check_output('start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
-                        while True:
-                            leave = False
-                            for i in os.listdir():
-                                if i == 'DONE':
-                                    leave = True
-                                    break
-                            if leave:
-                                sleep(0.05)
-                                break
-                        os.remove(findname + '.py')
-                        os.remove(name)
-                        os.remove('DONE')
-                        test = open(loginvstupuser, 'r')
-                        end = False
-                        pocitadlo = 0
-                        for i in test.read():
-                            pocitadlo += 1
-                        if 0 <= pocitadlo <= 5:
-                            test.close()
-                            if args.language == "SK":
-                                tqdm.write('Hľadám CHYBA')
-                            if args.language == "EN":
-                                tqdm.write('Finding ERROR')
-                            if args.language == "JP":
-                                tqdm.write('発見 エラー')
-                            end = True
-                        if end:
-                            return (loginvstupuser, end)
-                        test.close()
-                        if args.language == "SK":
-                            tqdm.write('Hľadám Hotovo')
-                        if args.language == "EN":
-                            tqdm.write('Finding Complete')
-                        if args.language == "JP":
-                            tqdm.write('発見完了')
-                        progress_bar_check += 1
-                        return (loginvstupuser, end)
-                    def code(name, new):
-                        global progress_bar_check
-                        codename = str(datetime.now().strftime("%H-%M-%S"))
-                        crcode = open(codename + ".py", "w")
-                        crcode.write(codeapp)
-                        crcode.close()
-                        if args.language == "SK":
-                            tqdm.write('Zakoduvávam ...', end='\r')
-                        if args.language == "EN":
-                            tqdm.write('Coding ...', end='\r')
-                        if args.language == "JP":
-                            tqdm.write('コーディング ...', end='\r')
-                        subprocess.check_output('start ' + codename + '.py ' + str(name[0]), shell=True)
-                        while True:
-                            leave = False
-                            for i in os.listdir():
-                                if i == 'DONE':
-                                    leave = True
-                                    break
-                            if leave:
-                                sleep(0.05)
-                                break
-                        if args.language == "SK":
-                            tqdm.write('Zakoduvávam Complete')
-                        if args.language == "EN":
-                            tqdm.write('Coding Complete')
-                        if args.language == "JP":
-                            tqdm.write('コーディング 完了')
-                        os.remove(codename + '.py')
-                        if new == 'justcode':
-                            pass
-                        elif new:
-                            os.remove(loginvstupuser + 'crypted')
-                            shutil.move(loginvstupuser + 'cryptedcrypted', loginvstupuser + 'crypted')
-                        else:
-                            os.remove(loginvstupuser)
-                        progress_bar_check += 1
-                        os.remove('DONE')
-                        return name[1], new
                     if args.language == "SK":
                         loginvstupuser = input("Prihlasovacie číslo (PID) > ")
                     if args.language == "EN":
@@ -909,7 +967,6 @@ def main():
                             print('PID に文字が含まれていません!!!')
                         tologin = True
                         continue
-                    history.write(loginvstupuser + '\n')
                     if len(str(loginvstupuser)) == 6:
                         exit = False
                         if args.language == "SK":
@@ -970,22 +1027,47 @@ def main():
                 sleep(0.5)
             history.close()
             if args.language == "SK":
-                print("ODSTRAŇOVANIE NEPOTREBNÝCH SÚBOROV\n")
+                print("ODSTRAŇOVANIE NEPOTREBNÝCH SÚBOROV\n\nPísanie histórie\n")
             if args.language == "EN":
-                print("DELETING UNNECESSARY FILES\n")
+                print("DELETING UNNECESSARY FILES\n\nWriting history\n")
             if args.language == "JP":
-                print('不要なファイルを削除しています\n')
-            try:
-                os.remove(historyname)
-            except Exception:
-                pass
+                print('不要なファイルを削除しています\n\n執筆履歴\n')
+            start = time.time()
+            sleep(0.25)
+            version = open('version', 'r')
+            versionlist = version.readlines()[0].split('.')
+            version.close()
+            version = open('version', 'w')
+            version.write(versionlist[0] + '.' + versionlist[1] + '.' + versionlist[2] + '.' + str(datetime.today().strftime("%Y%m%d.%H%M%S")))
+            version.close()
+            os.remove('config.ini')
+            historylist = []
+            history = open(historyname, 'r')
+            configfile = open('config.ini', 'a')
+            for i in history.readlines():
+                historylist.append(i.strip('\n'))
+            config.set('user history', historyname, str(datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
+            config.write(configfile)
+            configfile.close()
+            history.close()
+            configfile.close()
+            os.remove(historyname)
+            if args.language == "SK":
+                print("Hotovo\n")
+            if args.language == "EN":
+                print("Done\n")
+            if args.language == "JP":
+                print('終わり\n')
             try:
                 os.remove('data_backup')
             except Exception:
                 pass
             print('.', end='\r')
             sleep(0.2)
-            os.mkdir('datafolder')
+            try:
+                os.mkdir('datafolder')
+            except FileExistsError:
+                pass
             sleep(0.2)
             shutil.move('data', 'datafolder/')
             sleep(0.2)
@@ -1022,13 +1104,14 @@ def main():
                     zipfiles.append(file_name)
                     zipfileswopath.append(file)
             with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
+                zip_kb_old = 0
+                zipfilesnumber = len(zipfiles)
                 if args.language == "SK":
                     bar = tqdm(range(0, len(zipfiles)), desc="Zabaľujem ")
-                    zip_kb_old = 0
                     for i in bar:
                         zip.write(zipfiles[i])
                         size = sum([zinfo.file_size for zinfo in zip.filelist])
-                        sleep(0.025)
+                        sleep(0.02)
                         tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(size - zip_kb_old,2)) + " KB")
                         zip_kb_old = size
                         os.remove(zipfiles[i])
@@ -1038,7 +1121,6 @@ def main():
                     tqdm.write("\nZabalené data majú > " + str(size)+ " KB")
                 if args.language == "EN":
                     bar = tqdm(range(0, len(zipfiles)), desc="Packing ")
-                    zip_kb_old = 0
                     for i in bar:
                         zip.write(zipfiles[i])
                         size = sum([zinfo.file_size for zinfo in zip.filelist])
@@ -1052,7 +1134,6 @@ def main():
                     tqdm.write("\nPacked data have > " + str(size)+ " KB")
                 if args.language == "JP":
                     bar = tqdm(range(0, len(zipfiles)), desc="梱包 ")
-                    zip_kb_old = 0
                     for i in bar:
                         zip.write(zipfiles[i])
                         size = sum([zinfo.file_size for zinfo in zip.filelist])
@@ -1073,6 +1154,14 @@ def main():
                 print("\nCOMPLETE\n")
             if args.language == "JP":
                 print('\n未完了\n')
+            end = time.time()
+            sleep(0.2)
+            if args.language == "SK":
+                print('Uplynutý čas balenia: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
+            if args.language == "EN":
+                print('Elapsed time of packing: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
+            if args.language == "JP":
+                print('梱包経過時間: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
             sleep(0.5)
             if restart:
                 if args.language == "SK":
@@ -1092,13 +1181,13 @@ def main():
                     if args.language == "JP":
                         print('プログラムは自動的にシャットダウンします。')
             sleep(0.5)
-            os.remove('END')
             if args.endf != None:
                 sleep(2.5)
             if restart:
                 subprocess.check_call('start python edupage.py --inactive -lang ' + args.language, shell=True)
                 quit()
             elif not restart:
+                os.remove('END')
                 if args.endf == None:
                     if args.language == "SK":
                         input("'ENTER' NA KONIEC")
