@@ -1,4 +1,5 @@
 import os, subprocess, sys
+from time import sleep
 
 def test_main():
     old = open('edupage.py', 'r', encoding='utf-8')
@@ -9,11 +10,11 @@ def test_main():
         new.write(i)
     old.close()
     new.close()
-    subprocess.check_call([sys.executable, 'test_edupage.py','-lang','SK'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','-lang', 'EN'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','-lang', 'JP'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','--version'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','--update'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','--endf'], shell=True)
-    subprocess.check_call([sys.executable, 'test_edupage.py','--inactive'], shell=True)
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"-lang", "SK"])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"-lang", "EN"])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"-lang", "JP"])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"--version", ])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"--update", ])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"--endf", ])
+    subprocess.check_output([sys.executable , "edupage_test.py" ,"--inactive", ])
     os.remove('edupage_test.py')
