@@ -100,8 +100,7 @@ from threading import Thread
 from tqdm import tqdm
 from datetime import datetime
 import shutil, zipfile
-import semantic_version  
-import requests
+import semantic_version
 from pathlib import Path
 url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
 page = requests.get(url)
