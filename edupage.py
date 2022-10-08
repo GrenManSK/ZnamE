@@ -45,7 +45,7 @@ try:
     import requests
     timeout = 1
     requests.head("http://www.google.com/", timeout=timeout)
-except requests.ConnectionError:
+except requests.ConnectionError: # type: ignore
     if args.language == "SK":
         print("Vaše internetové pripojenie nefunguje")
     if args.language == "EN":
