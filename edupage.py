@@ -101,7 +101,6 @@ from tqdm import tqdm
 from datetime import datetime
 import shutil, zipfile
 import semantic_version  
-import requests
 from pathlib import Path
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
@@ -109,6 +108,7 @@ os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
 updateapp = str('import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
 if args.test != None:
+    import requests
     url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
     page = requests.get(url)
     if  semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
