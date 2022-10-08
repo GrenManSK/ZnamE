@@ -33,6 +33,7 @@ parser.add_argument('-v', '--version', choices=[], help='Show version of this pr
 parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 args = parser.parse_args()
 if args.language == None:
     args.language = config.get('basic info', 'lang').split(' ')[0]
@@ -41,19 +42,20 @@ if args.update == None:
         os.remove('update.py')
     except FileNotFoundError:
         print('')
-try:
-    import requests
-    timeout = 1
-    requests.head("http://www.google.com/", timeout=timeout)
-except requests.ConnectionError: # type: ignore
-    if args.language == "SK":
-        print("Vaše internetové pripojenie nefunguje")
-    if args.language == "EN":
-        print("The internet connection is down")
-    if args.language == "JP":
-        print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
-    sleep(2)
-    quit()
+if args.test != None:
+    try:
+        import requests
+        timeout = 1
+        requests.head("http://www.google.com/", timeout=timeout)
+    except requests.ConnectionError: # type: ignore
+        if args.language == "SK":
+            print("Vaše internetové pripojenie nefunguje")
+        if args.language == "EN":
+            print("The internet connection is down")
+        if args.language == "JP":
+            print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
+        sleep(2)
+        quit()
 potrebne = {'psutil', 'numpy','tqdm', 'semantic-version'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
