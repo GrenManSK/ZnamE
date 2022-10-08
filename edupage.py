@@ -100,94 +100,96 @@ from threading import Thread
 from tqdm import tqdm
 from datetime import datetime
 import shutil, zipfile
-import semantic_version
+import semantic_version  
+import requests
 from pathlib import Path
-url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
-page = requests.get(url)
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
 
 updateapp = str('import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
-if  semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
-    pass
-else:
-    if args.language == "SK":
-        print("Bola nájdená nová aktualizacia: " + page.text)
-    if args.language == "EN":
-        print("Newer version was found: " + page.text)
-    if args.language == "JP":
-        print("新しいバージョンが見つかりました: " + page.text)
-    verzia.close()
-    sleep(0.5)
-    url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
-    r = requests.get(url)
-    filename = "new.zip"
-    with open(filename,'wb') as output_file:
-        output_file.write(r.content)
-    with zipfile.ZipFile("new.zip", mode='r') as zip:
-        if args.language == "SK":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                    sleep(0.05)
-                except zipfile.error as e:
-                    pass
-        elif args.language == "EN":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                    sleep(0.05)
-                except zipfile.error as e:
-                    pass
-        elif args.language == "JP":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                    sleep(0.05)
-                except zipfile.error as e:
-                    pass
-        zip.close()
-    os.remove("new.zip")
-    directory = None
-    for path, currentDirectory, files in os.walk(Path.cwd()):
-        for directory1 in currentDirectory:
-            if directory1.startswith("GrenManSK-ZnamE-"):
-                print(directory1)
-                directory = directory1
-    if directory == None:
-        if args.language == "SK":
-            print("CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
-        if args.language == "EN":
-            print("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-        if args.language == "JP":
-            print("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
-        sleep(2)
-        quit()
-    os.mkdir('old')
-    shutil.move('data.xp2','old/data.xp2')
-    shutil.move('help.txt','old/help.txt')
-    shutil.move('LICENSE','old/LICENSE')
-    shutil.move('README.md','old/README.md')
-    shutil.move('version','old/version')
-    sleep(0.5)
-    shutil.move(directory + "/data.xp2", 'data.xp2')
-    shutil.move(directory + "/help.txt", 'help.txt')
-    shutil.move(directory + "/LICENSE", 'LICENSE')
-    shutil.move(directory + "/README.md", 'README.md')
-    shutil.move(directory + "/version", 'version')
-    crupdate = open("update.py", "w")
-    crupdate.write(updateapp)
-    crupdate.close()
-    if args.endf == None:
-        subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language + ' -endf', shell=True)
+if args.test != None:
+    url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
+    page = requests.get(url)
+    if  semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
+        pass
     else:
-        subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language , shell=True)
-    sleep(0.1)
-    quit()
+        if args.language == "SK":
+            print("Bola nájdená nová aktualizacia: " + page.text)
+        if args.language == "EN":
+            print("Newer version was found: " + page.text)
+        if args.language == "JP":
+            print("新しいバージョンが見つかりました: " + page.text)
+        verzia.close()
+        sleep(0.5)
+        url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
+        r = requests.get(url)
+        filename = "new.zip"
+        with open(filename,'wb') as output_file:
+            output_file.write(r.content)
+        with zipfile.ZipFile("new.zip", mode='r') as zip:
+            if args.language == "SK":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                        sleep(0.05)
+                    except zipfile.error as e:
+                        pass
+            elif args.language == "EN":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                        sleep(0.05)
+                    except zipfile.error as e:
+                        pass
+            elif args.language == "JP":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                        sleep(0.05)
+                    except zipfile.error as e:
+                        pass
+            zip.close()
+        os.remove("new.zip")
+        directory = None
+        for path, currentDirectory, files in os.walk(Path.cwd()):
+            for directory1 in currentDirectory:
+                if directory1.startswith("GrenManSK-ZnamE-"):
+                    print(directory1)
+                    directory = directory1
+        if directory == None:
+            if args.language == "SK":
+                print("CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
+            if args.language == "EN":
+                print("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
+            if args.language == "JP":
+                print("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
+            sleep(2)
+            quit()
+        os.mkdir('old')
+        shutil.move('data.xp2','old/data.xp2')
+        shutil.move('help.txt','old/help.txt')
+        shutil.move('LICENSE','old/LICENSE')
+        shutil.move('README.md','old/README.md')
+        shutil.move('version','old/version')
+        sleep(0.5)
+        shutil.move(directory + "/data.xp2", 'data.xp2')
+        shutil.move(directory + "/help.txt", 'help.txt')
+        shutil.move(directory + "/LICENSE", 'LICENSE')
+        shutil.move(directory + "/README.md", 'README.md')
+        shutil.move(directory + "/version", 'version')
+        crupdate = open("update.py", "w")
+        crupdate.write(updateapp)
+        crupdate.close()
+        if args.endf == None:
+            subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language + ' -endf', shell=True)
+        else:
+            subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language , shell=True)
+        sleep(0.1)
+        quit()
 
 verzia.close()
 
