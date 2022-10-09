@@ -1,6 +1,5 @@
-import argparse, pkg_resources, sys, os, subprocess, configparser
+import argparse, pkg_resources, sys, os, subprocess, configparser, time
 from time import sleep
-import time
 print('Reading config file (ini)\n')
 sleep(0.25)
 try:
@@ -56,7 +55,7 @@ if args.test != None:
             print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
         sleep(2)
         quit()
-potrebne = {'psutil', 'numpy','tqdm', 'semantic-version'}
+potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','keyboard','pywin32'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
 if args.version == None:
@@ -95,15 +94,92 @@ if nenajdene:
     sleep(1)
     subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
     quit()
-os.system('Title ' + 'ZnámE')
 from threading import Thread
 from tqdm import tqdm
 from datetime import datetime
 import shutil, zipfile
-import semantic_version  
+import semantic_version
 from pathlib import Path
+import win32gui
+import ctypes
+import cv2
+import glob
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
+os.system('Title ' + 'ZnámE')
+user32 = ctypes.windll.user32
+screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+screensizepercentage = float((1/1920)*screensize[0]), float((1/1080)*screensize[1])
+
+def getWindow(Times):
+    stop_thread1 = True
+    a = None
+    cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty('frame2', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    test = "assets/banner.png"
+    for file in glob.glob(test):
+        a = cv2.imread(file)
+    cv2.imshow("Image", a)
+    cv2.waitKey(1)
+    sleep(0.1)
+    cv2.destroyWindow("Image")
+    if Times == 1 or Times == 0:
+        ctypes.windll.user32.keybd_event(0x12, 0, 0, 0)  # Alt
+        ctypes.windll.user32.keybd_event(0x09, 0, 0, 0)  # Tab
+        sleep(0.01)
+        if Times == 1:
+            ctypes.windll.user32.keybd_event(0x09, 0, 2, 0)  # ~Tab
+            sleep(0.1)
+            ctypes.windll.user32.keybd_event(0x09, 0, 0, 0)  # Tab
+            sleep(0.01)
+        ctypes.windll.user32.keybd_event(0x09, 0, 2, 0)  # ~Tab
+        ctypes.windll.user32.keybd_event(0x12, 0, 2, 0)  # ~Alt
+        sleep(0.01)
+
+def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
+    path = imgSrc
+    for file in glob.glob(path):
+        global a
+        a = cv2.imread(file)
+        cv2.imshow(name, a)
+        if x!=None and y!=None and width!=None and length!=None:
+            appname = name
+            xpos = x
+            ypos = y
+            if width == None:
+                width = int((screensize[0]/10)*9)
+            if length == None:
+                length = int((screensize[1]/10)*9)
+            def enumHandler(hwnd, lParam):
+                if win32gui.IsWindowVisible(hwnd):  # type: ignore
+                    if appname in win32gui.GetWindowText(hwnd):  # type: ignore
+                        win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)  # type: ignore
+            win32gui.EnumWindows(enumHandler, None)  # type: ignore
+        k = cv2.waitKey(33)
+        cv2.setWindowProperty(name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        if k == 27:
+            break
+        elif k == -1:
+            continue
+        else:
+            print(k)
+            cv2.destroyAllWindows()
+
+def move(window, x, y, width, length):
+    appname = window
+    xpos = x
+    ypos = y
+    if width == None:
+        width = int((screensize[0]/10)*9)
+    if length == None:
+        length = int((screensize[1]/10)*9)
+    def enumHandler(hwnd, lParam):  # type: ignore
+        if win32gui.IsWindowVisible(hwnd):  # type: ignore
+            if appname in win32gui.GetWindowText(hwnd):  # type: ignore
+                win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)  # type: ignore
+    win32gui.EnumWindows(enumHandler, None)  # type: ignore
+
+move("ZnámE", int(screensize[0]/20), int(-screensize[1]), None, None)
 
 updateapp = str('import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
@@ -599,6 +675,10 @@ def main():
     vstup = None
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
+    getWindow(1)
+    getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+    move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+    os.system('cls')
     while True:
         if not exit:
             global loginvstupuser
@@ -808,6 +888,9 @@ def main():
                     os.rename(loginvstupuser + '1', loginvstupuser)
                     topassword = False
                     logged = True
+                    history.write('*logged\n')
+                    history.close()
+                    history = open(historyname, 'a')
                     continue
                 elif vstup != password[0]:  # type: ignore
                     topassword = False
@@ -844,6 +927,9 @@ def main():
                     print("You\'re logged out")
                 if args.language == "JP":
                     print('ログアウトしました')
+                history.write('*logout\n')
+                history.close()
+                history = open(historyname, 'a')
                 continue
             elif logged and inactivelogout and restart:
                 logged = False
@@ -1027,6 +1113,9 @@ def main():
                     print('\nYou are logged out\n')
                 if args.language == "JP":
                     print('\nログアウトしました\n')
+                history.write('*logout\n')
+                history.close()
+                history = open(historyname, 'a')
                 sleep(0.5)
             history.close()
             if args.language == "SK":
@@ -1106,6 +1195,11 @@ def main():
                     file_name = os.path.join(path, file)
                     zipfiles.append(file_name)
                     zipfileswopath.append(file)
+            for path, directories, files in os.walk('assets'):
+                for file in files:
+                    file_name = os.path.join(path, file)
+                    zipfiles.append(file_name)
+                    zipfileswopath.append(file)
             with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
                 zip_kb_old = 0
                 zipfilesnumber = len(zipfiles)
@@ -1150,6 +1244,7 @@ def main():
                     tqdm.write("\nパックされたデータは > " + str(size)+ " KB")
                 zip.close()
             shutil.rmtree('structs')
+            shutil.rmtree('assets')
             sleep(0.2)
             if args.language == "SK":
                 print("\nHOTOVO\n")
