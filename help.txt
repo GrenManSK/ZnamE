@@ -1,5 +1,7 @@
 SK
 
+Ak kód okamžite zlyhá, skúste prejsť na terminál (CMD) a zadajte 'py.exe -m pip install request'
+
 Pre pomoc s argumentmi použite terminal(CMD) zvyčajne 'py.exe edupage.py -h'
 Keď chcete zmeniť jazyk programu do terminalu(CMD) vložte zvyčajne 'py.exe edupage.py -lang {language}'
 Podporované jazyky: SK = Slovak
@@ -15,6 +17,8 @@ Ak ste tu, pretože nevidíte japonské znaky, urobte zmeny ako vyššie uveden�
 Aby ste to urobili, musíte kliknúť na ikonu terminálu (CMD) Python > Vlastnosti > Písmo a zmeniť písmo podľa vlastného výberu
 
 EN
+
+If code crash immediately try going to terminal(CMD) and type 'py.exe -m pip install requests'
 
 For help with arguments use terminal(CMD) usually 'py.exe edupage.py -h'
 When you want to change the language of the program in the terminal (CMD) usually enter 'py.exe edupage.py -lang {language}'
@@ -32,6 +36,8 @@ FOr you to do it you need to click in terminal (CMD) Python icon > Properties > 
 
 
 JP
+
+コードがすぐにクラッシュする場合は、ターミナル (CMD) に移動して、「py.exe -m pip install requests」と入力してみてください。
 
 引数のヘルプについては、通常は「py.exe edupage.py -h」を使用して端末 (CMD) を使用します。
 端末 (CMD) でプログラムの言語を変更する場合は、通常、「py.exe edupage.py -lang {language}」と入力します。
