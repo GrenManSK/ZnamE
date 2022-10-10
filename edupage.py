@@ -675,6 +675,7 @@ def main():
     vstup = None
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
+    linenumber = 1
     getWindow(1)
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
@@ -694,8 +695,9 @@ def main():
                     if args.language == "JP":
                         print('「zz」でマークを表示\n「pz」でマークを追加')
                     loggedhelp = False
-                vstup = input('> ')
-                history.write(vstup + '\n')
+                vstup = input(str(linenumber) + ' > ')
+                linenumber += 1
+                history.write('[' + str(linenumber) + ', ' + vstup + ']\n')
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
@@ -734,8 +736,8 @@ def main():
                     passwordfile.close()
                 if vstup == "pz":
                     if args.language == "SK":
-                        subject = input('Predmet > ')
-                        history.write(subject + '\n')
+                        subject = input(str(linenumber) + ' Predmet > ')
+                        history.write('[' + str(linenumber) + ', ' + subject + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
@@ -744,14 +746,14 @@ def main():
                             continue
                         if subject == 'back':
                             continue
-                        mark = input('Známka > ')
-                        history.write(mark + '\n')
+                        mark = input(str(linenumber) + ' Známka > ')
+                        history.write('[' + str(linenumber) + ', ' + mark + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
                     elif args.language == "EN":
-                        subject = input('Subject > ')
-                        history.write(subject + '\n')
+                        subject = input(str(linenumber) + ' Subject > ')
+                        history.write('[' + str(linenumber) + ', ' + subject + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
@@ -760,14 +762,14 @@ def main():
                             continue
                         if subject == 'back':
                             continue
-                        mark = input('Mark > ')
-                        history.write(mark + '\n')
+                        mark = input(str(linenumber) + ' Mark > ')
+                        history.write('[' + str(linenumber) + ', ' + (mark) + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
                     elif args.language == "JP":
-                        subject = input('主題 > ')
-                        history.write(subject + '\n')
+                        subject = input(str(linenumber) + ' 主題 > ')
+                        history.write('[' + str(linenumber) + ', ' + subject + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
@@ -776,14 +778,14 @@ def main():
                             continue
                         if subject == 'back':
                             continue
-                        mark = input('マーク > ')
-                        history.write(mark + '\n')
+                        mark = input(str(linenumber) + ' マーク > ')
+                        history.write('[' + str(linenumber) + ', ' + mark + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
                     else:
-                        subject = input('Subject > ')
-                        history.write(subject + '\n')
+                        subject = input(str(linenumber) + ' Subject > ')
+                        history.write('[' + str(linenumber) + ', ' + subject + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
@@ -792,8 +794,8 @@ def main():
                             continue
                         if subject == 'back':
                             continue
-                        mark = input('Mark > ')
-                        history.write(mark + '\n')
+                        mark = input(str(linenumber) + ' Mark > ')
+                        history.write('[' + str(linenumber) + ', ' + mark + ']\n')
                         vstup.lower()
                         history.close()
                         history = open(historyname, 'a')
@@ -809,6 +811,8 @@ def main():
                     if args.language == "JP":
                         Thread(target=progress_bar, args=('チェック中', 3,), daemon=True).start()
                     code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
+                    cv2.destroyAllWindows()
+                    getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
                     os.mkdir("temp")
                     shutil.move("data", 'temp/')
                     os.rename('data1crypted', 'data')
@@ -816,14 +820,15 @@ def main():
                     os.remove('data1')
             if topassword:
                 if args.language == "SK":
-                    vstup = input('Heslo > ')
+                    vstup = input(str(linenumber) + ' Heslo > ')
                 elif args.language == "EN":
-                    vstup = input('Password > ')
+                    vstup = input(str(linenumber) + ' Password > ')
                 elif args.language == "JP":
-                    vstup = input('パスワード > ')
+                    vstup = input(str(linenumber) + ' パスワード > ')
                 else:
-                    vstup = input('Password > ')
-                history.write(len(vstup)*'*' + '\n')
+                    vstup = input(str(linenumber) + ' Password > ')
+                linenumber += 1
+                history.write('[' + str(linenumber) + ', ' + len(vstup)*'*' + ']\n')
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
@@ -860,7 +865,6 @@ def main():
                     sleep(0.5)
                     os.remove(loginvstupuser + 'crypted')
                     exit = True
-                    continue
                 if args.language == "SK":
                     Thread(target=progress_bar, args=('Preverujem', 2,), daemon=True).start()
                 if args.language == "EN":
@@ -868,6 +872,8 @@ def main():
                 if args.language == "JP":
                     Thread(target=progress_bar, args=('チェック中', 2,), daemon=True).start()
                 password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
+                cv2.destroyAllWindows()
+                getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
                 sleep(0.1)
                 if vstup == password[0]:  # type: ignore
                     if args.language == "SK":
@@ -888,7 +894,7 @@ def main():
                     os.rename(loginvstupuser + '1', loginvstupuser)
                     topassword = False
                     logged = True
-                    history.write('*logged\n')
+                    history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
                     history = open(historyname, 'a')
                     continue
@@ -906,11 +912,12 @@ def main():
                     if args.language == "JP":
                         print('間違ったパスワード')
             if not tologin and not logged:
-                vstup = input('> ')
-                history.write(vstup + '\n')
+                vstup = input(str(linenumber) + ' > ')
+                history.write('[' + str(linenumber) + ', ' + vstup + ']\n')
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
+                linenumber += 1
             inactivelogout = inactive()
             if vstup == 'clear' or vstup == 'cls':
                 os.system('cls')
@@ -927,7 +934,7 @@ def main():
                     print("You\'re logged out")
                 if args.language == "JP":
                     print('ログアウトしました')
-                history.write('*logout\n')
+                history.write('[' + str(linenumber) + ', ' + '*logout]\n')
                 history.close()
                 history = open(historyname, 'a')
                 continue
@@ -1007,14 +1014,15 @@ def main():
                     loginvstupuser = ''
                     tologin = False
                     if args.language == "SK":
-                        loginvstupuser = input("Prihlasovacie číslo (PID) > ")
+                        loginvstupuser = input(str(linenumber) + " Prihlasovacie číslo (PID) > ")
                     if args.language == "EN":
-                        loginvstupuser = input("Login Number (PID) > ")
+                        loginvstupuser = input(str(linenumber) + " Login Number (PID) > ")
                     if args.language == "JP":
-                        loginvstupuser = input("ログイン番号 (PID) > ")
-                    history.write(loginvstupuser + "\n")
+                        loginvstupuser = input(str(linenumber) + " ログイン番号 (PID) > ")
+                    history.write('[' + str(linenumber) + ', ' + loginvstupuser + "]\n")
                     history.close()
                     history = open(historyname, 'a')
+                    linenumber += 1
                     tologinhelp = False
                     if loginvstupuser == "back":
                         if args.language == "SK":
@@ -1065,6 +1073,8 @@ def main():
                         if args.language == "JP":
                             Thread(target=progress_bar, args=('チェック中', 3,), daemon=True).start()
                         icofind = code(find(decode(True, False)), False)
+                        cv2.destroyAllWindows()
+                        getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
                         if icofind[0]:
                             logged = False
                             os.remove(loginvstupuser + 'crypted')
@@ -1113,7 +1123,7 @@ def main():
                     print('\nYou are logged out\n')
                 if args.language == "JP":
                     print('\nログアウトしました\n')
-                history.write('*logout\n')
+                history.write('[' + str(linenumber) + ', ' + '*logout]\n')
                 history.close()
                 history = open(historyname, 'a')
                 sleep(0.5)
@@ -1179,14 +1189,17 @@ def main():
             if args.language == "SK":
                 print("HOTOVO\n")
                 sleep(0.5)
+                cv2.destroyAllWindows()
                 print("ZABAĽUJEM DRUHÚ ČASŤ DATA\n")
             if args.language == "EN":
                 print("COMPLETE\n")
                 sleep(0.5)
+                cv2.destroyAllWindows()
                 print("PACKING SECOND PART OF DATA\n")
             if args.language == "JP":
                 print("完了\n")
                 sleep(0.5)
+                cv2.destroyAllWindows()
                 print("データの 2 番目の部分のパッキング\n")
             zipfiles = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
             zipfileswopath = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
@@ -1288,11 +1301,11 @@ def main():
                 os.remove('END')
                 if args.endf == None:
                     if args.language == "SK":
-                        input("'ENTER' NA KONIEC")
+                        input(str(linenumber) + " 'ENTER' NA KONIEC")
                     if args.language == "EN":
-                        input("'ENTER' TO END")  
+                        input(str(linenumber) + " 'ENTER' TO END")  
                     if args.language == "JP":
-                        input("「ENTER」で終了")
+                        input(str(linenumber) + " 「ENTER」で終了")
                     quit()
                 else:
                     quit()
