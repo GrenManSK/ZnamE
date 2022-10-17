@@ -1,4 +1,4 @@
-import argparse, pkg_resources, sys, os, subprocess, configparser, time
+import argparse, pkg_resources, sys, os, subprocess, configparser
 from time import sleep
 print('Reading config file (ini)\n')
 sleep(0.25)
@@ -30,6 +30,7 @@ language = ['SK','EN','JP']
 parser.add_argument('-lang', '--language', choices=language, help='Language selection', nargs='?')
 parser.add_argument('-v', '--version', choices=[], help='Show version of this program', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-ni', '--nointro', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
@@ -55,7 +56,7 @@ if args.test != None:
             print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
         sleep(2)
         quit()
-potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','keyboard','pywin32'}
+potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','keyboard','pywin32', 'pywinauto'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
 if args.version == None:
@@ -97,13 +98,9 @@ if nenajdene:
 from threading import Thread
 from tqdm import tqdm
 from datetime import datetime
-import shutil, zipfile
-import semantic_version
 from pathlib import Path
-import win32gui
-import ctypes
-import cv2
-import glob
+import pyautogui as pg
+import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
 os.system('Title ' + 'ZnámE')
@@ -297,6 +294,7 @@ def delcache(name, hist):
                     print("Press 'enter'")
                 if args.language == "JP":
                     print("「入力」を押してください")
+                playhtml('html\\inactive')
                 break
             if size != sizehist:
                 timer = time_got
@@ -324,7 +322,6 @@ def inactive():
         if i == 'INACTIVE':
             leave = True
             try:
-                os.remove('INACTIVE')
                 os.remove(password[1])  # type: ignore
             except Exception:
                 pass
@@ -553,6 +550,46 @@ def code(name, new):
     os.remove('DONE')
     return name[1], new
 
+def mouseclick():
+    while True:
+        state_left = win32api.GetKeyState(0x01)   # type: ignore
+        a = win32api.GetKeyState(0x01)   # type: ignore
+        if state_left == -127 or state_left == -128:
+            sleep(2)
+            pg.press('f11')
+            pg.keyDown('ctrl')
+            pg.press('w')
+            pg.keyUp('ctrl')
+            break
+        else:
+            pass
+
+def playhtml(htmlFile):
+    if args.nointro == None:
+        if args.test == None:
+            if args.language == 'SK':
+                webbrowser.open(htmlFile + '_sk.html', 1)
+            if args.language == 'EN':
+                webbrowser.open(htmlFile + '.html', 1)
+            if args.language == 'JP':
+                webbrowser.open(htmlFile + '_jp.html', 1)
+            os.system('cls')
+            sleep(1)
+            pg.press('f11')
+            mouseclick()
+    else:
+        if args.language == 'SK':
+            webbrowser.open(htmlFile + '_sk.html', 1)
+        if args.language == 'EN':
+            webbrowser.open(htmlFile + '.html', 1)
+        if args.language == 'JP':
+            webbrowser.open(htmlFile + '_jp.html', 1)
+        os.system('cls')
+        sleep(1)
+        pg.press('f11')
+        mouseclick()
+        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+
 def main():
     historyname = str(datetime.now().strftime("%H-%M-%S"))
     history = open(historyname, 'w')
@@ -645,15 +682,20 @@ def main():
     if args.language == "JP":
         print('ZnámE を使用しています ' + verzia.read() + "\n")
     verzia.close()
+    inactive1 = False
     try:
-        if args.inactive == None:
-            sleep(0.25)
-            if args.language == "SK":
-                print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
-            if args.language == "EN":
-                print('You were inactive, you were logged out and the program restarted!!!\n')
-            if args.language == "JP":
-                print('非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
+        for root, dirs, files in os.walk('..\\'):
+            for i in files:
+                if i == 'INACTIVE':
+                    inactive1 = True
+                    os.remove('INACTIVE')
+                    sleep(0.25)
+                    if args.language == "SK":
+                        print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
+                    if args.language == "EN":
+                        print('You were inactive, you were logged out and the program restarted!!!\n')
+                    if args.language == "JP":
+                        print('非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
         if args.update == None:
             sleep(0.25)
             if args.language == "SK":
@@ -675,11 +717,17 @@ def main():
     vstup = None
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
-    linenumber = 1
+    linenumber = 1 # type: ignore
+    if not inactive1:
+        playhtml('html\\start')
     getWindow(1)
+    if args.nointro == None:
+        pass
+    else:
+        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='frame2')) # type: ignore
+        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
-    os.system('cls')
     while True:
         if not exit:
             global loginvstupuser
@@ -1203,16 +1251,13 @@ def main():
                 print("データの 2 番目の部分のパッキング\n")
             zipfiles = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
             zipfileswopath = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
-            for path, directories, files in os.walk('structs'):
-                for file in files:
-                    file_name = os.path.join(path, file)
-                    zipfiles.append(file_name)
-                    zipfileswopath.append(file)
-            for path, directories, files in os.walk('assets'):
-                for file in files:
-                    file_name = os.path.join(path, file)
-                    zipfiles.append(file_name)
-                    zipfileswopath.append(file)
+            folders = ['structs', 'assets', 'html']
+            for i in range(0, len(folders)):
+                for path, directories, files in os.walk(folders[i]):
+                    for file in files:
+                        file_name = os.path.join(path, file)
+                        zipfiles.append(file_name)
+                        zipfileswopath.append(file)
             with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
                 zip_kb_old = 0
                 zipfilesnumber = len(zipfiles)
@@ -1256,8 +1301,8 @@ def main():
                     size = sum([zinfo.file_size for zinfo in zip.filelist])
                     tqdm.write("\nパックされたデータは > " + str(size)+ " KB")
                 zip.close()
-            shutil.rmtree('structs')
-            shutil.rmtree('assets')
+            for i in range(0, len(folders)):
+                shutil.rmtree(folders[i])
             sleep(0.2)
             if args.language == "SK":
                 print("\nHOTOVO\n")
@@ -1295,7 +1340,7 @@ def main():
             if args.endf != None:
                 sleep(2.5)
             if restart:
-                subprocess.check_call('start python edupage.py --inactive -lang ' + args.language, shell=True)
+                subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
                 quit()
             elif not restart:
                 os.remove('END')
