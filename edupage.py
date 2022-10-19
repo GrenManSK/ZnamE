@@ -19,6 +19,7 @@ except configparser.NoSectionError:
     quit()
 print(config.get('basic info','lang').split(' ')[0])
 print(config.get('basic info','enviroment').split(' ')[0])
+print(config.get('basic info','intro').split(' ')[0])
 print(config.items('user history'))
 print('\nDone')
 global parser
@@ -384,7 +385,8 @@ def add(name, ico, subject, mark):
     progress_bar_check += 1
     name = ('data1', None)
     return name
-def decode(name, password):
+
+def decode(name, password, mode=0):
     global progress_bar_check
     decodename = str(datetime.now().strftime("%H-%M-%S"))
     decodename2 = 'False'
@@ -399,7 +401,10 @@ def decode(name, password):
     crdecode = open(decodename + ".py", "w")
     crdecode.write(decodeapp)
     crdecode.close()
-    subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
+    if mode == 1:
+        subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(password), shell=True)
+    elif mode == 0:
+        subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
     if args.language == "SK":
         tqdm.write('Odkoduvávam ...', end='\r')
     if args.language == "EN":
@@ -423,8 +428,16 @@ def decode(name, password):
         tqdm.write('暗号化完了')
     os.remove(decodename + '.py')
     os.remove('DONE')
+    if mode == 1:
+        file = open('1', 'r')
+        fileline = str(file.readlines())
+        fileline = fileline[2:len(fileline)-2]
+        file.close()
+        os.remove('1')
+        return fileline
     progress_bar_check += 1
     return decodename1
+
 def password(name):
     global progress_bar_check
     passwordname = str(datetime.now().strftime("%H-%M-%S"))
@@ -459,7 +472,8 @@ def password(name):
         tqdm.write('制御完了')
     os.remove('DONE')
     progress_bar_check += 1
-    return (password, name)
+    return [password, name]
+
 def find(name):
     global progress_bar_check
     findname = str(datetime.now().strftime("%H-%M-%S"))
@@ -509,8 +523,9 @@ def find(name):
     if args.language == "JP":
         tqdm.write('発見完了')
     progress_bar_check += 1
-    return (loginvstupuser, end)
-def code(name, new):
+    return [loginvstupuser, end]
+
+def code(name, new, mode=0):
     global progress_bar_check
     codename = str(datetime.now().strftime("%H-%M-%S"))
     crcode = open(codename + ".py", "w")
@@ -522,7 +537,13 @@ def code(name, new):
         tqdm.write('Coding ...', end='\r')
     if args.language == "JP":
         tqdm.write('コーディング ...', end='\r')
-    subprocess.check_output('start ' + codename + '.py ' + str(name[0]), shell=True)
+    if mode == 1:
+        file = open('1', 'w')
+        file.write(str(name) + ' = ' + str(new))
+        file.close()
+        subprocess.check_output('start ' + codename + '.py 1', shell=True)
+    if mode == 0:
+        subprocess.check_output('start ' + codename + '.py ' + str(name[0]), shell=True)
     while True:
         leave = False
         for i in os.listdir():
@@ -539,23 +560,30 @@ def code(name, new):
     if args.language == "JP":
         tqdm.write('コーディング 完了')
     os.remove(codename + '.py')
-    if new == 'justcode':
+    if mode == 0 and new == 'justcode':
         pass
-    elif new:
+    elif mode == 0 and new:
         os.remove(loginvstupuser + 'crypted')
         shutil.move(loginvstupuser + 'cryptedcrypted', loginvstupuser + 'crypted')
-    else:
+    elif mode == 0:
         os.remove(loginvstupuser)
     progress_bar_check += 1
     os.remove('DONE')
+    if mode == 1:
+        file = open('1crypted', 'r')
+        savelog = file.readlines()
+        file.close()
+        os.remove('1')
+        os.remove('1crypted')
+        return savelog
     return name[1], new
 
-def mouseclick():
+def mouseclick(time=0):
     while True:
         state_left = win32api.GetKeyState(0x01)   # type: ignore
         a = win32api.GetKeyState(0x01)   # type: ignore
-        if state_left == -127 or state_left == -128:
-            sleep(2)
+        if state_left == -127 or state_left == -128 or time != 0:
+            sleep(2 + time)
             pg.press('f11')
             pg.keyDown('ctrl')
             pg.press('w')
@@ -564,31 +592,40 @@ def mouseclick():
         else:
             pass
 
-def playhtml(htmlFile):
+def playhtml(htmlFile, mode=0, time=0):
     if args.nointro == None:
-        if args.test == None:
+        if args.test == None and config.get('basic info','intro').split(' ')[0] == 'True':
             if args.language == 'SK':
                 webbrowser.open(htmlFile + '_sk.html', 1)
             if args.language == 'EN':
                 webbrowser.open(htmlFile + '.html', 1)
             if args.language == 'JP':
                 webbrowser.open(htmlFile + '_jp.html', 1)
-            os.system('cls')
             sleep(1)
             pg.press('f11')
-            mouseclick()
+            if mode == 0:
+                mouseclick()
+            elif mode == 1:
+                mouseclick(time=time)
+        else:
+            pass
     else:
-        if args.language == 'SK':
-            webbrowser.open(htmlFile + '_sk.html', 1)
-        if args.language == 'EN':
-            webbrowser.open(htmlFile + '.html', 1)
-        if args.language == 'JP':
-            webbrowser.open(htmlFile + '_jp.html', 1)
-        os.system('cls')
-        sleep(1)
-        pg.press('f11')
-        mouseclick()
-        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+        if config.get('basic info','intro').split(' ')[0] == 'True':
+            if args.language == 'SK':
+                webbrowser.open(htmlFile + '_sk.html', 1)
+            if args.language == 'EN':
+                webbrowser.open(htmlFile + '.html', 1)
+            if args.language == 'JP':
+                webbrowser.open(htmlFile + '_jp.html', 1)
+            sleep(1.5)
+            pg.press('f11')
+            if mode == 0:
+                mouseclick()
+            elif mode == 1:
+                mouseclick(time=time)
+            #win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+        else:
+            pass
 
 def main():
     historyname = str(datetime.now().strftime("%H-%M-%S"))
@@ -674,6 +711,7 @@ def main():
         os.rename('data_dummy', 'data')
     except FileNotFoundError:
         pass
+    os.system('cls')
     verzia = open('version', 'r')
     if args.language == "SK":
         print('Používate ZnámE ' + verzia.read() + "\n")
@@ -719,13 +757,13 @@ def main():
     advhelp = ['advanced help','ah','-ah','-advanced help']
     linenumber = 1 # type: ignore
     if not inactive1:
-        playhtml('html\\start')
+        playhtml('html\\start', 1, 3,)
     getWindow(1)
-    if args.nointro == None:
+    if args.nointro == None or config.get('basic info','intro').split(' ')[0] == 'False':
         pass
     else:
         win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='frame2')) # type: ignore
-        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
+        #win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
     while True:
@@ -735,6 +773,26 @@ def main():
                 if firstlogin:
                     firstlogin = False
                     shutil.copy2('data', 'data_backup')
+                    if savefilemode:   # type: ignore
+                        flvstup = ''
+                        linenumber -= 1
+                    elif args.language == "SK":
+                        flvstup = input(str(linenumber) + "Chcete si uložiť svoje prihlasovacie údaje? (y/N)")
+                    elif args.language == "EN":
+                        flvstup = input(str(linenumber) + "Do you want to save your login credentials? (y/N)")
+                    elif args.language == "JP":
+                        flvstup = input(str(linenumber) + "ログイン資格情報を保存しますか? (y/N)")
+                    else:
+                        flvstup = input("Do you want to save your login credentials? (y/N)")
+                    flvstup.lower()
+                    if flvstup == "y":
+                        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                            os.mkdir("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
+                        savelog = open("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved", "w")
+                        tolog = str(code(str(loginvstupuser),str(password[0]), mode=1))  # type: ignore
+                        tolog = tolog[2:len(tolog)-2]
+                        savelog.write(tolog)
+                        savelog.close()
                 if loggedhelp:
                     if args.language == "SK":
                         print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
@@ -755,6 +813,8 @@ def main():
                         loggedhelp = True
                 if loggedhelp:
                     continue
+                if vstup == 'delsavlog':
+                    subprocess.check_output('start uninstall.py ', shell=True)
                 if vstup == "zz":
                     passwordfile = open(password[1], 'r')  # type: ignore
                     countersubject = 0
@@ -867,7 +927,9 @@ def main():
                     shutil.rmtree('temp')
                     os.remove('data1')
             if topassword:
-                if args.language == "SK":
+                if savefilemode:   # type: ignore
+                    vstup = savefile[9:15]   # type: ignore
+                elif args.language == "SK":
                     vstup = input(str(linenumber) + ' Heslo > ')
                 elif args.language == "EN":
                     vstup = input(str(linenumber) + ' Password > ')
@@ -876,7 +938,7 @@ def main():
                 else:
                     vstup = input(str(linenumber) + ' Password > ')
                 linenumber += 1
-                history.write('[' + str(linenumber) + ', ' + len(vstup)*'*' + ']\n')
+                history.write('[' + str(linenumber) + ', ' + len(vstup)*'*' + ']\n')   # type: ignore
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
@@ -945,6 +1007,7 @@ def main():
                     history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
                     history = open(historyname, 'a')
+                    Thread(target=delcache, args=(loginvstupuser,historyname,), daemon=True).start()
                     continue
                 elif vstup != password[0]:  # type: ignore
                     topassword = False
@@ -967,6 +1030,8 @@ def main():
                 history = open(historyname, 'a')
                 linenumber += 1
             inactivelogout = inactive()
+            if vstup == 'delsavlog':
+                subprocess.check_output('start uninstall.py ', shell=True)
             if vstup == 'clear' or vstup == 'cls':
                 os.system('cls')
             if inactivelogout:
@@ -1036,11 +1101,11 @@ def main():
                 for i in range(len(help)):
                     if vstup == help[i]:
                         if args.language == "SK":
-                            print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec\n\nKeď chceš zmeniť jazyk programu v terminalu do commandu pridaj '-lang EN' or '-lang SK'\n\nPre podrobnejšiu pomoc napíš '-ah' alebo '-advanced help' alebo 'ah' alebo 'advanced help'\n'history' zobrazuje vašu aktuálne uloženú históriu")
+                            print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec\n'delsavlog' pre vymazanie autoprihlasenia\n\nKeď chceš zmeniť jazyk programu v terminalu do commandu pridaj '-lang EN' or '-lang SK'\n\nPre podrobnejšiu pomoc napíš '-ah' alebo '-advanced help' alebo 'ah' alebo 'advanced help'\n'history' zobrazuje vašu aktuálne uloženú históriu")
                         if args.language == "EN":
-                            print("'login' for login\n'logout' for logout\n'quit' or 'end' for end\n\nWhen you want to change the language of the program in the terminal, add '-lang EN' or '-lang SK' to the command\n\nFor more detailed help, type '-ah' or '-advanced help' or 'ah' or 'advanced help'\n'history' show your currently saved history")
+                            print("'login' for login\n'logout' for logout\n'quit' or 'end' for end\n'delsavlog' to clear autologin\n\nWhen you want to change the language of the program in the terminal, add '-lang EN' or '-lang SK' to the command\n\nFor more detailed help, type '-ah' or '-advanced help' or 'ah' or 'advanced help'\n'history' show your currently saved history")
                         if args.language == "JP":
-                            print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'\n「history」は、現在保存されている履歴を表示します")
+                            print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n自動ログインをクリアする「delsavlog」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'\n「history」は、現在保存されている履歴を表示します")
                         continue
                 if vstup == 'history':
                     historylist = config.items('user history')
@@ -1061,11 +1126,29 @@ def main():
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
                     tologin = False
-                    if args.language == "SK":
+                    savefilemode = False
+                    if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                        loginvstupuser = ''
+                        savefile = decode('1',"C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved",mode=1)
+                        if args.language == "SK":
+                            loginvstupuser = input(str(linenumber) + " Chcete sa automaticky prihlásiť? (Y/n) > ")
+                            linenumber += 1
+                        elif args.language == "EN":
+                            loginvstupuser = input(str(linenumber) + " Do you want to auto-login? (Y/n) > ")
+                            linenumber += 1
+                        elif args.language == "JP":
+                            loginvstupuser = input(str(linenumber) + " 自動ログインしますか？ (Y/n) > ")
+                            linenumber += 1
+                        loginvstupuser.lower()
+                        if loginvstupuser == "" or loginvstupuser == "y":
+                            savefilemode = True
+                    if savefilemode:
+                        loginvstupuser = savefile[0:6]   # type: ignore
+                    elif args.language == "SK":
                         loginvstupuser = input(str(linenumber) + " Prihlasovacie číslo (PID) > ")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         loginvstupuser = input(str(linenumber) + " Login Number (PID) > ")
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         loginvstupuser = input(str(linenumber) + " ログイン番号 (PID) > ")
                     history.write('[' + str(linenumber) + ', ' + loginvstupuser + "]\n")
                     history.close()
@@ -1136,7 +1219,6 @@ def main():
                                 print('間違った PID !!!')
                             tologin = True
                             continue
-                        Thread(target=delcache, args=(loginvstupuser,historyname,), daemon=True).start()
                         topassword = True
                     else:
                         if args.language == "SK":
@@ -1174,6 +1256,7 @@ def main():
                 history.write('[' + str(linenumber) + ', ' + '*logout]\n')
                 history.close()
                 history = open(historyname, 'a')
+                loginvstupuser = ''
                 sleep(0.5)
             history.close()
             if args.language == "SK":
@@ -1208,6 +1291,7 @@ def main():
                 print("Done\n")
             if args.language == "JP":
                 print('終わり\n')
+            playhtml('html\\end', 1, 3)
             try:
                 os.remove('data_backup')
             except Exception:
