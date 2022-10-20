@@ -623,7 +623,7 @@ def playhtml(htmlFile, mode=0, time=0):
                 mouseclick()
             elif mode == 1:
                 mouseclick(time=time)
-            #win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+            win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
         else:
             pass
 
@@ -763,7 +763,7 @@ def main():
         pass
     else:
         win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='frame2')) # type: ignore
-        #win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
+        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
     while True:
