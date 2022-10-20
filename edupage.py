@@ -273,7 +273,7 @@ decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA
 findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
 passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
 addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-restartapp = str('import pyautogui as pg\nfrom time import sleep\nsleep(5)\npg.write("login\\n")\nsleep(1)\npg.write("\\n")')
+restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("\\n")')
 
 def delcache(name, hist):
     global timer
@@ -786,13 +786,13 @@ def main():
                         flvstup = ''
                         linenumber -= 1
                     elif args.language == "SK":
-                        flvstup = input(str(linenumber) + "Chcete si uložiť svoje prihlasovacie údaje? (y/N)")
+                        flvstup = input(str(linenumber) + "Chcete si uložiť svoje prihlasovacie údaje? (y/N) > ")
                     elif args.language == "EN":
-                        flvstup = input(str(linenumber) + "Do you want to save your login credentials? (y/N)")
+                        flvstup = input(str(linenumber) + "Do you want to save your login credentials? (y/N) > ")
                     elif args.language == "JP":
-                        flvstup = input(str(linenumber) + "ログイン資格情報を保存しますか? (y/N)")
+                        flvstup = input(str(linenumber) + "ログイン資格情報を保存しますか? (y/N) > ")
                     else:
-                        flvstup = input("Do you want to save your login credentials? (y/N)")
+                        flvstup = input("Do you want to save your login credentials? (y/N) > ")
                     flvstup.lower()
                     if flvstup == "y":
                         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
@@ -1462,24 +1462,34 @@ def main():
                 crrestart.write(restartapp)
                 crrestart.close()
                 os.remove('END')
-                if args.language == "SK":
-                    print("!\n!!\n!!!\nUPOZORNENIE\nČAKAJTE, KÝM VÁM PROGRAM POVIE ŽE MÔŽETE\n!!!\n!!\n!\n")
-                elif args.language == "EN":
-                    print("!\n!!\n!!!\nWARNING\nWAIT UNTIL PROGRAM SAYS YOU CAN\n!!!\n!!\n!\n")
-                elif args.language == "JP":
-                    print("!\n!!\n!!!\n警告\nプログラムができると言うまで待ってください\n!!!\n!!\n!\n")
-                if args.language == "SK":
-                    vstup = input("Rozumiete (Y/n) > ")
-                elif args.language == "EN":
-                    vstup = input("Do you understand (Y/n) > ")
-                elif args.language == "JP":
-                    vstup = input("わかりますか (Y/n) >")
-                vstup.lower()
-                if vstup == "n":
-                    if os.path.isfile("restart.py"):
-                        os.remove("restart.py")
-                    quit()
-                elif vstup in ['','y']:
+                if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                    if args.language == "SK":
+                        print("!\n!!\n!!!\nUPOZORNENIE\nČAKAJTE, KÝM VÁM PROGRAM POVIE ŽE MÔŽETE\n!!!\n!!\n!\n")
+                    elif args.language == "EN":
+                        print("!\n!!\n!!!\nWARNING\nWAIT UNTIL PROGRAM SAYS YOU CAN\n!!!\n!!\n!\n")
+                    elif args.language == "JP":
+                        print("!\n!!\n!!!\n警告\nプログラムができると言うまで待ってください\n!!!\n!!\n!\n")
+                    if args.language == "SK":
+                        vstup = input("Rozumiete (Y/n) > ")
+                    elif args.language == "EN":
+                        vstup = input("Do you understand (Y/n) > ")
+                    elif args.language == "JP":
+                        vstup = input("わかりますか (Y/n) >")
+                    vstup.lower()
+                    if vstup == "n":
+                        if os.path.isfile("restart.py"):
+                            os.remove("restart.py")
+                        quit()
+                    elif vstup in ['','y']:
+                        os.system('cls')
+                        sys.stdout.flush()
+                        if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                            subprocess.check_output('start restart.py --autol', shell=True)
+                            sys.stdout.flush()
+                        subprocess.check_output('start edupage.py --nointrof', shell=True)
+                        sys.stdout.flush()
+                        quit()
+                else:
                     os.system('cls')
                     sys.stdout.flush()
                     subprocess.check_output('start restart.py', shell=True)
@@ -1498,6 +1508,8 @@ def main():
                         input(str(linenumber) + " 「ENTER」で終了")
                     quit()
                 else:
+                    if os.path.exists('restart.py'):
+                        os.remove('restart.py')
                     quit()
 
 if '__main__' == __name__:
