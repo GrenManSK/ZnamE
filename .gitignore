@@ -1,13 +1,5 @@
 
-backup/data
 *.pyc
-backup/data.xp2
-backup/edupage.py
-backup/help.txt
-backup/README.md
-backup/LICENSE
-backup/version
+backup/
 ZnamE.zip
-backup/config.ini
-backup/test_edupage.py
-backup/uninstall.py
+.history/
