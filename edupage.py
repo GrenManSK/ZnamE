@@ -44,21 +44,20 @@ if args.update == None:
         os.remove('update.py')
     except FileNotFoundError:
         print('')
-if args.test != None:
-    try:
-        import requests
-        timeout = 1
-        requests.head("http://www.google.com/", timeout=timeout)
-    except requests.ConnectionError: # type: ignore
-        if args.language == "SK":
-            print("Vaše internetové pripojenie nefunguje")
-        if args.language == "EN":
-            print("The internet connection is down")
-        if args.language == "JP":
-            print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
-        sleep(2)
-        quit()
-potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','keyboard','pywin32', 'pywinauto'}
+try:
+    import requests
+    timeout = 1
+    requests.head("http://www.google.com/", timeout=timeout)
+except requests.ConnectionError: # type: ignore
+    if args.language == "SK":
+        print("Vaše internetové pripojenie nefunguje")
+    if args.language == "EN":
+        print("The internet connection is down")
+    if args.language == "JP":
+        print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
+    sleep(2)
+    quit()
+potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
 if args.version == None:
@@ -626,7 +625,8 @@ def playhtml(htmlFile, mode=0, time=0):
                 mouseclick()
             elif mode == 1:
                 mouseclick(time=time)
-            win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+            if args.test != None:
+                win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
         else:
             pass
 
@@ -771,7 +771,8 @@ def main():
         pass
     else:
         win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='frame2')) # type: ignore
-        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
+        if args.test != None:
+            win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
     while True:
@@ -938,6 +939,7 @@ def main():
             if topassword:
                 if savefilemode:   # type: ignore
                     vstup = savefile[9:15]   # type: ignore
+                    linenumber -= 1
                 elif args.language == "SK":
                     vstup = input(str(linenumber) + ' Heslo > ')
                 elif args.language == "EN":
@@ -1017,11 +1019,11 @@ def main():
                         os.remove('restart.py')
                         cv2.destroyAllWindows()
                         if args.language == 'SK':
-                            print("Všetko je nastavené!!!\nMôžete použiť program")
+                            print("Všetko je nastavené!!!\nMôžete použiť program\n")
                         if args.language == 'EN':
-                            print("All is set!!!\nYou can use progam")
+                            print("All is set!!!\nYou can use progam\n")
                         if args.language == 'JP':
-                            print("すべてが設定されました!!!\nプログラムを使用できます")
+                            print("すべてが設定されました!!!\nプログラムを使用できます\n")
                         getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
                     history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
@@ -1486,7 +1488,7 @@ def main():
                         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                             subprocess.check_output('start restart.py --autol', shell=True)
                             sys.stdout.flush()
-                        subprocess.check_output('start edupage.py --nointrof', shell=True)
+                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                         sys.stdout.flush()
                         quit()
                 else:
@@ -1494,7 +1496,7 @@ def main():
                     sys.stdout.flush()
                     subprocess.check_output('start restart.py', shell=True)
                     sys.stdout.flush()
-                    subprocess.check_output('start edupage.py --nointrof', shell=True)
+                    subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                     sys.stdout.flush()
                     quit()
             elif not restart:
