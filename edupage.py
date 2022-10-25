@@ -1,3 +1,10 @@
+
+"""
+Read the config file (ini) and print the contents.
+@param config - the config file itself
+@returns nothing
+"""
+
 import argparse, pkg_resources, sys, os, subprocess, configparser
 from time import sleep
 print('Reading config file (ini)\n')
@@ -22,6 +29,13 @@ print(config.get('basic info','enviroment').split(' ')[0])
 print(config.get('basic info','intro').split(' ')[0])
 print(config.items('user history'))
 print('\nDone')
+
+"""
+This function is the main function of the program. It will be called when the program is run.
+It will parse the arguments and call the appropriate functions.
+@param args - the arguments passed to the program.
+"""
+
 global parser
 parser = argparse.ArgumentParser()
 UNSPECIFIED = object()
@@ -37,13 +51,28 @@ parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument fo
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 args = parser.parse_args()
+
+"""
+If the language is not specified, use the default language from the config file.
+@param args.language - the language specified by the user, or the default language from the config file.
+"""
+
 if args.language == None:
     args.language = config.get('basic info', 'lang').split(' ')[0]
+    
+"""
+If the user has specified that we should update the rotation dictionary, remove the old update.py file.
+"""
 if args.update == None:
     try:
         os.remove('update.py')
     except FileNotFoundError:
         print('')
+
+"""
+Check if the internet is working. If it is not, print an error message and quit.
+"""
+
 try:
     import requests
     timeout = 1
@@ -57,6 +86,13 @@ except requests.ConnectionError: # type: ignore
         print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
     sleep(2)
     quit()
+
+"""
+Check if the program is up to date. If not, update the program.
+@param potrebne - the packages needed for the program to run properly           
+@param nainstalovane - the packages installed on the system           
+@param nenajdene - the packages that are not installed on the system
+"""
 potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
@@ -109,7 +145,19 @@ user32 = ctypes.windll.user32
 screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 screensizepercentage = float((1/1920)*screensize[0]), float((1/1080)*screensize[1])
 
+
 def getWindow(Times):
+    """
+    The getWindow function is used to get the window that we want to use.
+    It takes in a parameter called Times which is used for the number of times 
+    that we want to press tab and alt. The function will first open up a fullscreen 
+    window with an image, then it will press Alt+Tab so that you can switch windows, 
+    and then it will close out of the full screen window and return back into your previous window.
+    
+    :param Times: Determine if the window is to be closed or not
+    :return: The window that the program is currently on
+    """
+    
     stop_thread1 = True
     a = None
     cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
@@ -134,7 +182,20 @@ def getWindow(Times):
         ctypes.windll.user32.keybd_event(0x12, 0, 2, 0)  # ~Alt
         sleep(0.01)
 
+
 def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
+    """
+    The getImg function displays an image from the source. If x, y, width, and length are specified, then the image will be displayed at those coordinates with the specified width and length. Otherwise, the image will be displayed at the default coordinates and default width and length.
+    
+    :param imgSrc: Specify the source of the image
+    :param name: Name the window
+    :param x=None: Specify the x coordinate of the window
+    :param y=None: Specify the y coordinate of the window
+    :param width=None: Specify the width of the window
+    :param length=None: Set the length of the window to its default value
+    :return: The image that is displayed
+    """
+    
     path = imgSrc
     for file in glob.glob(path):
         global a
@@ -164,6 +225,21 @@ def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
             cv2.destroyAllWindows()
 
 def move(window, x, y, width, length):
+    """
+    The move function moves the specified window to a specified location.
+    The move function takes four arguments:
+        1) The name of the window as a string. This is case sensitive and should be enclosed in quotation marks if it contains spaces or special characters (e.g., &quot;Microsoft Word&quot;). 
+        2) The x-coordinate of the desired location on your screen, measured in pixels from the left edge of your screen to where you want your window located (e.g., 100). 
+        3) The y-coordinate of the desired location on your screen, measured in pixels from the top edge of your screen
+    
+    :param window: Specify the window name
+    :param x: Set the x position of the window, y is used to set the y position
+    :param y: Move the window to the top of your screen
+    :param width: Set the width of the window
+    :param length: Set the height of the window
+    :return: The window handle of the specified application
+    """
+    
     appname = window
     xpos = x
     ypos = y
@@ -180,6 +256,12 @@ def move(window, x, y, width, length):
 move("ZnámE", int(screensize[0]/20), int(-screensize[1]), None, None)
 
 updateapp = str('import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
+
+"""
+Update the program to the newest version.
+@param directory - the directory of the new version
+@param args.language - the language of the program
+"""
 
 if args.test != None:
     import requests
@@ -275,6 +357,15 @@ addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\
 restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("\\n")')
 
 def delcache(name, hist):
+    """
+    The delcache function deletes the cache file if it is empty.
+    
+    
+    :param name: Name the file that is used to store the time
+    :param hist: Check if the history file has changed
+    :return: The value of the timer
+    """
+    
     global timer
     time_got = 300
     timer = time_got
@@ -296,7 +387,7 @@ def delcache(name, hist):
                     print("Press 'enter'")
                 if args.language == "JP":
                     print("「入力」を押してください")
-                playhtml('html\\inactive')
+                playhtml('apphtml\\inactive')
                 break
             if size != sizehist:
                 timer = time_got
@@ -309,7 +400,7 @@ def delcache(name, hist):
         except Exception:
             pass
 
-
+loginvstupuser = ''
 global progress_bar_check
 progress_bar_check = 0
 global progress_bar_end
@@ -318,6 +409,12 @@ progress_bar_end = False
 cachename = 'data.xp2'
 
 def inactive():
+    """
+    The inactive function is used to check if the INACTIVE file exists in the current directory. If it does, then it will remove the password file and return True. Otherwise, it returns False.
+    
+    :return: True if the file inactive is found in the directory
+    """
+    
     global password
     leave = False
     for i in os.listdir():
@@ -335,6 +432,16 @@ def inactive():
         return False
     
 def progress_bar(name, number):
+    """
+    The progress_bar function is a function that takes in two parameters: name and number.
+    The progress_bar function will print out the name of the task being executed, and then display a progress bar for how 
+    far along it is to completion. The progress bar will be displayed as 100% if number = 1,000,000 or more.
+    
+    :param name: Give the progress bar a name
+    :param number: Determine the number of iterations
+    :return: The progress bar
+    """
+    
     global progress_bar_check
     progress_bar_check = 0
     progress_bar_check_old = 0
@@ -353,6 +460,20 @@ def progress_bar(name, number):
                 break
 
 def add(name, ico, subject, mark):
+    """
+    The add function adds a new subject to the database.
+    It takes 4 arguments: name, ico, subject and mark.
+    The name argument is the name of the school or college that you want to add as a string.
+    The ico argument is an integer representing your school's ICO number (the first 6 digits of your student ID).
+    The subject argument is a string containing what you want to be written in the &quot;predmet&quot; column in our database (e.g.: &quot;Matematika&quot;). The mark argument should be an integer between 1 and 5 inclusive.
+    
+    :param name: Name the file
+    :param ico: Check if the student already exists in the database
+    :param subject: Specify the subject of the student
+    :param mark: Specify the mark of the student
+    :return: The tuple (data, none)
+    """
+    
     global progress_bar_check
     decodename = str(datetime.now().strftime("%H-%M-%S"))
     crdecode = open(decodename + ".py", "w")
@@ -388,6 +509,16 @@ def add(name, ico, subject, mark):
     return name
 
 def decode(name, password, mode=0):
+    """
+    The decode function takes two arguments, name and password. If the name argument is not provided it will default to None.
+    If the password argument is not provided it will default to None as well. The function then creates a file with the current time in its name and writes a python script into that file which decrypts all files in this directory (except for itself) using pyAesCrypt library with given password or generated one if none was given.
+    
+    :param name: Specify the name of the file to be decoded
+    :param password: Encrypt the file with a password
+    :param mode=0: Encode the file, mode=0 is used to decode the file
+    :return: The value of the name variable, if it is not none
+    """
+    
     global progress_bar_check
     decodename = str(datetime.now().strftime("%H-%M-%S"))
     decodename2 = 'False'
@@ -440,6 +571,10 @@ def decode(name, password, mode=0):
     return decodename1
 
 def password(name):
+    """
+    Create a password file for the current session.
+    @param name - the name of the file to be created.
+    """
     global progress_bar_check
     passwordname = str(datetime.now().strftime("%H-%M-%S"))
     crfind = open(passwordname + ".py", "w")
@@ -476,6 +611,8 @@ def password(name):
     return [password, name]
 
 def find(name):
+    # Creating a file, writing to it, and then running it.
+    
     global progress_bar_check
     findname = str(datetime.now().strftime("%H-%M-%S"))
     crfind = open(findname + ".py", "w")
@@ -527,6 +664,18 @@ def find(name):
     return [loginvstupuser, end]
 
 def code(name, new, mode=0):
+    """
+    The code function is used to encrypt files.
+    It takes two arguments: name, new.
+    name is the file that will be encrypted.
+    new is the password for encryption.
+    
+    :param name: Get the name of the file to be encrypted
+    :param new: Save the new password
+    :param mode=0: Encrypt the file
+    :return: The name of the file and the new value
+    """
+    
     global progress_bar_check
     codename = str(datetime.now().strftime("%H-%M-%S"))
     crcode = open(codename + ".py", "w")
@@ -580,6 +729,14 @@ def code(name, new, mode=0):
     return name[1], new
 
 def mouseclick(time=0):
+    """
+    The mouseclick function is used to click the F11 key on the keyboard.
+    This function is useful for maximizing a window.
+    
+    :param time=0: Make the mouseclick function run for a specified amount of time
+    :return: The time it takes to click the mouse
+    """
+    
     while True:
         state_left = win32api.GetKeyState(0x01)   # type: ignore
         a = win32api.GetKeyState(0x01)   # type: ignore
@@ -594,6 +751,20 @@ def mouseclick(time=0):
             pass
 
 def playhtml(htmlFile, mode=0, time=0):
+    """
+    The playhtml function is used to open the html file containing the game's intro.
+    It can be called in two ways:
+        1) playhtml(htmlFile, mode=0, time=0):  # mode = 0 means that it will click through all of the intro automatically. 
+                                                # time = 0 means that it will not wait for a specific amount of time before clicking
+                                                # through each part of the intro.
+    
+    :param htmlFile: Specify which html file to open
+    :param mode=0: Determine whether the function is used to start a new game or load an existing one
+    :param time=0: Make the mouseclick function wait a certain amount of time
+    :return: Nothing
+    :doc-author: Trelent
+    """
+    
     if args.nointro == None or args.nointrof == None:
         args.nointrof = object()
         if args.test == None and config.get('basic info','intro').split(' ')[0] == 'True':
@@ -631,6 +802,10 @@ def playhtml(htmlFile, mode=0, time=0):
             pass
 
 def main():
+    """
+    The main function. This is where the program starts. It is the first function called.
+    """
+    
     historyname = str(datetime.now().strftime("%H-%M-%S"))
     history = open(historyname, 'w')
     if args.nointrof == None:
@@ -646,6 +821,12 @@ def main():
         print("言語 = 日本語\n\n抽出開始\n")
     sleep(0.25)
     try:
+        
+        """
+        Extract the zip file containing the data.
+        @param cachename - the name of the zip file containing the data.
+        """
+        
         with zipfile.ZipFile(cachename, mode='r') as zip:
             if args.language == "SK":
                 for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
@@ -684,6 +865,15 @@ def main():
             print('終わり\n')
             sleep(0.25)
             print("2 番目の部分を解凍しています...\n")
+            
+        """
+        Extract the data from the xp3 file.
+        @param xp3_file - the xp3 file to extract from
+        @param output_folder - the folder to extract to
+        @param extract_name - the name of the file to extract
+        @param language - the language to extract
+        """
+        
         if args.language == "SK":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
         if args.language == "EN":
@@ -719,6 +909,11 @@ def main():
     except FileNotFoundError:
         pass
     os.system('cls')
+    
+    """
+        this function prints the version of the program 
+    """
+    
     verzia = open('version', 'r')
     if args.language == "SK":
         print('Používate ZnámE ' + verzia.read() + "\n")
@@ -728,6 +923,13 @@ def main():
         print('ZnámE を使用しています ' + verzia.read() + "\n")
     verzia.close()
     inactive1 = False
+    """
+    If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
+    @param root - the root directory of the file system
+    @param dirs - the directories in the root directory
+    @param files - the files in the root directory
+    @returns nothing
+    """
     try:
         for root, dirs, files in os.walk('..\\'):
             for i in files:
@@ -751,6 +953,10 @@ def main():
                 print('プログラムが更新されました!!!\n')
     except Exception:
         pass
+    """
+    If the language is Japanese, print a message that tells the user to watch the help file.
+    @param args - the command line arguments
+    """
     if args.language == 'JP':
         print("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
     tologin = False
@@ -764,8 +970,13 @@ def main():
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
     linenumber = 1 # type: ignore
+    """
+    If the user has not disabled the intro, play it. Otherwise, do nothing.
+    @param None
+    @return None
+    """
     if not inactive1:
-        playhtml('html\\start', 1, 3,)
+        playhtml('apphtml\\start', 1, 3,)
     getWindow(1)
     if args.nointro == None or config.get('basic info','intro').split(' ')[0] == 'False':
         pass
@@ -783,6 +994,12 @@ def main():
                     logins += 1
                     firstlogin = False
                     shutil.copy2('data', 'data_backup')
+                    """
+                    If the user wants to save their login credentials, save them to a file.
+                    @param loginvstupuser - the username for the login credentials
+                    @param password - the password for the login credentials
+                    @param savefilemode - whether or not we are saving the file or not
+                    """
                     if savefilemode:   # type: ignore
                         flvstup = ''
                         linenumber -= 1
@@ -803,6 +1020,11 @@ def main():
                         tolog = tolog[2:len(tolog)-2]
                         savelog.write(tolog)
                         savelog.close()
+                """
+                Prints the help menu for the program.
+                @param loggedhelp - whether or not the help menu has been printed already.
+                @param args - the arguments passed to the program.
+                """
                 if loggedhelp:
                     if args.language == "SK":
                         print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
@@ -817,6 +1039,11 @@ def main():
                 vstup.lower()
                 history.close()
                 history = open(historyname, 'a')
+                """
+                Check if the user has asked for help. If so, print the help message.
+                @param vstup - the user input string
+                @returns True if the user has asked for help, False otherwise
+                """
                 help = ['help','pomoc','-h','-help','?','-?']
                 for i in range(len(help)):
                     if vstup == help[i]:
@@ -825,6 +1052,9 @@ def main():
                     continue
                 if vstup == 'delsavlog':
                     subprocess.check_output('start uninstall.py ', shell=True)
+                    
+                # Reading a file and printing it out.
+                    
                 if vstup == "zz":
                     passwordfile = open(password[1], 'r')  # type: ignore
                     countersubject = 0
@@ -852,6 +1082,13 @@ def main():
                             if countersubject > 2:
                                 print(" | ", end="")
                     passwordfile.close()
+                """
+                This function is used to add a new subject to the database. It is called when the user
+                enters the subject and mark for a new subject. It will then call the code function to
+                encrypt the data and save it to the database.
+                @param subject - the subject to be added to the database.
+                @param mark - the mark for the subject.
+                """
                 if vstup == "pz":
                     if args.language == "SK":
                         subject = input(str(linenumber) + ' Predmet > ')
@@ -957,6 +1194,10 @@ def main():
                 for i in range(len(help)):
                     if vstup == help[i]:
                         topasswordhelp = True
+                """
+                If the user has requested help, print the appropriate help message.
+                @param topasswordhelp - the boolean value for requesting help.
+                """
                 if topasswordhelp:
                     if args.language == "SK":
                         print("6 číselne heslo\n 'back' pre menu\n 'quit' pre koniec")
@@ -966,6 +1207,9 @@ def main():
                         print('6桁のパスワード\n メニューの「戻る」\n 終了の「終了」')
                     topasswordhelp = False
                     continue
+                """
+                    this function is used to go back to the main menu if the user wants to change their password. 
+                """
                 if vstup == "back":
                     if args.language == "SK":
                         print('Idem späť.')
@@ -976,7 +1220,12 @@ def main():
                     topassword = False
                     os.remove(loginvstupuser + 'crypted')
                     continue
-                elif vstup == "quit" or vstup == "koniec":
+                """
+                If the user types quit or koniec, remove the encrypted file and exit the program.
+                @param vstup - the user input
+                @returns nothing
+                """
+                if vstup == "quit" or vstup == "koniec":
                     if args.language == "SK":
                         print("Idem späť a ukončujem program.")
                     if args.language == "EN":
@@ -996,6 +1245,10 @@ def main():
                 cv2.destroyAllWindows()
                 getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
                 sleep(0.1)
+                """
+                If the user is logged in, check if the password is correct. If it is, then the user is logged in.
+                @param vstup - the password input by the user           
+                """
                 if vstup == password[0]:  # type: ignore
                     if args.language == "SK":
                         print('Si prihlaseny\n')
@@ -1030,7 +1283,14 @@ def main():
                     history = open(historyname, 'a')
                     Thread(target=delcache, args=(loginvstupuser,historyname,), daemon=True).start()
                     continue
-                elif vstup != password[0]:  # type: ignore
+                """
+                If the password is incorrect, remove the encrypted password file and the password file itself.
+                @param vstup - the user input password
+                @param password - the password from the encrypted file
+                @param loginvstupuser - the user input username
+                @param topassword - the boolean value for if the password is correct
+                """
+                if vstup != password[0]:  # type: ignore
                     topassword = False
                     os.remove(loginvstupuser + 'crypted')
                     os.remove(password[1])  # type: ignore
@@ -1043,6 +1303,12 @@ def main():
                         print("WRONG PASSWORD")
                     if args.language == "JP":
                         print('間違ったパスワード')
+            """
+                this function is used to get the input from the user and write it to the history file.
+            @param vstup - the input from the user.
+            @param history - the history file.
+            @param linenumber - the line number of the history file.
+            """
             if not tologin and not logged:
                 vstup = input(str(linenumber) + ' > ')
                 history.write('[' + str(linenumber) + ', ' + vstup + ']\n')
@@ -1051,13 +1317,31 @@ def main():
                 history = open(historyname, 'a')
                 linenumber += 1
             inactivelogout = inactive()
+            """
+            If the user inputs 'delsavlog' into the command line, delete the saved log files.
+            """
             if vstup == 'delsavlog':
                 subprocess.check_output('start uninstall.py ', shell=True)
+            """
+            Clear the screen.
+            @param vstup - the input from the user.
+            """
             if vstup == 'clear' or vstup == 'cls':
                 os.system('cls')
             if inactivelogout:
                 restart = True
                 exit = True
+            """
+            If the user is logged in and the user types "logout" in the command line, log the user out.
+            @param logged - whether the user is logged in or not.
+            @param vstup - the user input.
+            @param restart - whether the user is restarting the program or not.
+            @param loginvstupuser - the file that contains the username of the logged in user.
+            @param password - the file that contains the password of the logged in user.
+            @param args.language - the language of the program.
+            @param history - the file that contains the history of the user.
+            @param linenumber - the line number of the history file.
+            """
             if logged and vstup == "logout" and not restart:
                 logged = False
                 os.remove(loginvstupuser)
@@ -1072,7 +1356,13 @@ def main():
                 history.close()
                 history = open(historyname, 'a')
                 continue
-            elif logged and inactivelogout and restart:
+            """
+            If the user has logged in and is inactive for a long time, log them out.
+            @param logged - whether the user is logged in or not.
+            @param inactivelogout - whether the user is inactive or not.
+            @param restart - whether the user has restarted the program or not.
+            """
+            if logged and inactivelogout and restart:
                 logged = False
                 if args.language == "SK":
                     print("Si odhlásený")
@@ -1081,7 +1371,10 @@ def main():
                 if args.language == "JP":
                     print('ログアウトしました')
                 continue
-            elif not logged and vstup == "logout" or inactivelogout:
+            """
+            If the user is not logged in, print an error message and continue.           
+            """
+            if not logged and vstup == "logout" or inactivelogout:
                 logged = False
                 if args.language == "SK":
                     print('Nie si prihlásený!!!')
@@ -1090,10 +1383,20 @@ def main():
                 if args.language == "JP":
                     print('ログインしていません!!!')
                 continue
-            elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end':
+            """
+            Check if the user wants to quit the program. If so, exit the program. Otherwise, continue.
+            @param vstup - the user input for quitting the program.
+            @returns True if the user wants to quit the program, False otherwise.
+            """
+            if vstup == 'quit' or vstup == 'koniec' or vstup == 'end':
                 exit = True
                 continue
             history = open(historyname, 'a')
+            """
+            Print the help file for the advanced help menu.
+            @param vstup - the input from the user during the advanced help menu.
+            @param restart - whether the program is restarting.
+            """
             if vstup != "" and not restart:
                 for i in range(len(advhelp)):
                     if vstup == advhelp[i]:
@@ -1128,6 +1431,10 @@ def main():
                         if args.language == "JP":
                             print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n自動ログインをクリアする「delsavlog」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'\n「history」は、現在保存されている履歴を表示します")
                         continue
+                """
+                Print the history of the user.
+                @param args - the command line arguments
+                """
                 if vstup == 'history':
                     historylist = config.items('user history')
                     for i in historylist:
@@ -1148,6 +1455,13 @@ def main():
                     loginvstupuser = ''
                     tologin = False
                     savefilemode = False
+                    """
+                    If the user wants to login, check if the user wants to restart the program. If the user wants to restart the program,
+                    set the restart flag to true. If the user does not want to restart the program, set the restart flag to false.
+                    @param logins - the number of logins since the last restart.
+                    @param args - the arguments from the command line.
+                    @returns the restart flag and the exit flag.
+                    """
                     if logins == 1:
                         if args.language == "SK":
                             vstup = input("Ak sa chcete prihlásiť, musíte reštartovať program (Y/n) >")
@@ -1163,6 +1477,11 @@ def main():
                             exit = True
                             args.nointro = None
                             continue
+                    """
+                    Check if the save file exists. If it does, ask the user if they want to auto-login.
+                    @param savefile - the save file
+                    @returns the save file mode
+                    """
                     if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                         loginvstupuser = ''
                         savefile = decode('1',"C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved",mode=1)
@@ -1199,7 +1518,12 @@ def main():
                         if args.language == "JP":
                             print('戻る。')
                         continue
-                    elif loginvstupuser == "quit" or loginvstupuser == "koniec":
+                    """
+                    If the user types quit or koniec, then go back to the main menu. Otherwise, continue.
+                    @param loginvstupuser - the user's input for the login/signup menu
+                    @returns the user's input for the login/signup menu
+                    """
+                    if loginvstupuser == "quit" or loginvstupuser == "koniec":
                         if args.language == "SK":
                             print("Idem späť a ukončujem program.")
                         if args.language == "EN":
@@ -1327,7 +1651,7 @@ def main():
                 print("Done\n")
             if args.language == "JP":
                 print('終わり\n')
-            playhtml('html\\end', 1, 3)
+            playhtml('apphtml\\end', 1, 3)
             try:
                 os.remove('data_backup')
             except Exception:
@@ -1371,7 +1695,7 @@ def main():
                 print("データの 2 番目の部分のパッキング\n")
             zipfiles = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
             zipfileswopath = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
-            folders = ['structs', 'assets', 'html']
+            folders = ['structs', 'assets', 'apphtml']
             for i in range(0, len(folders)):
                 for path, directories, files in os.walk(folders[i]):
                     for file in files:
