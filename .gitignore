@@ -3,3 +3,6 @@
 backup/
 ZnamE.zip
 .history/
+.vscode/
+py_filter.bat
+Doxyfile
