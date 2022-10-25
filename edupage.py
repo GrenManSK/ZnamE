@@ -1,8 +1,7 @@
 
 """
-Read the config file (ini) and print the contents.
-@param config - the config file itself
-@returns nothing
+This app is for logging in and logging out with PID and password
+You can add mark with subject to database
 """
 
 import argparse, pkg_resources, sys, os, subprocess, configparser
@@ -137,6 +136,7 @@ from tqdm import tqdm
 from datetime import datetime
 from pathlib import Path
 import pyautogui as pg
+from uninstall import uninstall
 import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
@@ -1051,7 +1051,7 @@ def main():
                 if loggedhelp:
                     continue
                 if vstup == 'delsavlog':
-                    subprocess.check_output('start uninstall.py ', shell=True)
+                    uninstall()
                     
                 # Reading a file and printing it out.
                     
@@ -1321,7 +1321,7 @@ def main():
             If the user inputs 'delsavlog' into the command line, delete the saved log files.
             """
             if vstup == 'delsavlog':
-                subprocess.check_output('start uninstall.py ', shell=True)
+                uninstall()
             """
             Clear the screen.
             @param vstup - the input from the user.
