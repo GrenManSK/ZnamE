@@ -55,5 +55,7 @@ var namespaces_dup =
       [ "user32", "d0/d52/namespaceedupage.html#a42ac73748deb2669242da95bae43f0eb", null ],
       [ "verzia", "d0/d52/namespaceedupage.html#a9593eb2c11b28648f081e7f54e0e9b19", null ]
     ] ],
-    [ "uninstall", "dd/de8/namespaceuninstall.html", null ]
+    [ "uninstall", "dd/de8/namespaceuninstall.html", [
+      [ "uninstall", "dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd", null ]
+    ] ]
 ];
