@@ -1,5 +1,5 @@
 var files_dup =
 [
-    [ "edupage.py", "edupage_8py.html", "edupage_8py" ],
-    [ "uninstall.py", "uninstall_8py.html", null ]
+    [ "edupage.py", "df/dd7/edupage_8py.html", "df/dd7/edupage_8py" ],
+    [ "uninstall.py", "d5/d47/uninstall_8py.html", null ]
 ];
