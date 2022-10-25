@@ -138,6 +138,7 @@ from pathlib import Path
 import pyautogui as pg
 from uninstall import uninstall
 import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto
+from PIL import Image
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
 os.system('Title ' + 'ZnámE')
@@ -970,6 +971,7 @@ def main():
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
     linenumber = 1 # type: ignore
+    neko = False
     """
     If the user has not disabled the intro, play it. Otherwise, do nothing.
     @param None
@@ -1320,6 +1322,42 @@ def main():
             """
             If the user inputs 'delsavlog' into the command line, delete the saved log files.
             """
+            if vstup == 'motivational':
+                resp = requests.get("https://animechan.vercel.app/api/random")
+                data = resp.json()
+                anime = data["anime"]
+                character = data["character"]
+                quote = data["quote"]
+                print("Anime: "+ anime + '\nCharacter: ' + character + "\nQuote: " + quote )
+            if vstup == 'neko':
+                resp = requests.get("https://nekos.best/api/v2/neko")
+                data = resp.json()
+                img_data = requests.get(data["results"][0]["url"]).content
+                with open('neko.png', 'wb') as handler:
+                    handler.write(img_data)
+                img = Image.open('neko.png')
+                img.show()
+                sleep(0.1)
+                pg.keyDown('win')
+                pg.press('right')
+                pg.keyUp('win')
+                pg.press('esc')
+                sleep(0.25)
+                pg.keyDown('alt')
+                pg.press('tab')
+                pg.keyUp('alt')
+                neko = True
+                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), None)
+            if vstup == 'quitneko':
+                pg.keyDown('alt')
+                pg.press('tab')
+                pg.keyUp('alt')
+                pg.keyDown('alt')
+                pg.press('f4')
+                pg.keyUp('alt')
+                os.remove('neko.png')
+                move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+                neko = False
             if vstup == 'delsavlog':
                 uninstall()
             """
@@ -1596,6 +1634,15 @@ def main():
                     if args.language == "JP":
                         print('すでにログインしています！！！')
         elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
+            if neko:
+                pg.keyDown('alt')
+                pg.press('tab')
+                pg.keyUp('alt')
+                pg.keyDown('alt')
+                pg.press('f4')
+                pg.keyUp('alt')
+                os.remove('neko.png')
+                move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
             try:
                 open('END', 'x')
             except Exception:
