@@ -9,5 +9,5 @@ def uninstall():
         os.remove("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved")
         shutil.rmtree("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
  
- if __name__ == '__main__':
+if __name__ == '__main__':
      uninstall()
