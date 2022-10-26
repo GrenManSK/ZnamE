@@ -46,6 +46,7 @@ parser.add_argument('-v', '--version', choices=[], help='Show version of this pr
 parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-ni', '--nointro', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-nif', '--nointrof', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-neko', '--neko', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
@@ -137,7 +138,7 @@ from datetime import datetime
 from pathlib import Path
 import pyautogui as pg
 from uninstall import uninstall
-import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto
+import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil
 from PIL import Image
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
@@ -355,7 +356,89 @@ decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA
 findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
 passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
 addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("\\n")')
+restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None:\n    time.sleep(6)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
+
+ 
+def get_size(bytes):
+    """
+    The get_size function accepts a number of bytes and returns a human-readable string representation of the size.
+    For example, calling get_size(1024) will return '0.98KiB'.
+    
+    
+    :param bytes: Store the value of bytes
+    :return: The size of the bytes in human readable format
+    """
+    
+    for unit in ['', 'K', 'M', 'G', 'T', 'P']:
+        if bytes < 1024:
+            return f"{bytes:.2f}{unit}B"
+        bytes /= 1024
+        
+        
+def netspeed():
+    """
+    The netspeed function is a function that runs in the background and prints out the upload speed and download speed of your internet connection.
+    It does this by taking two readings from psutil's net_io_counters() function, subtracting them, then printing out their difference.
+    
+    :return: The upload and download speed of the system
+    """
+    
+    global netspeedend
+    netspeedend = False
+    totalup = 0
+    totaldown = 0
+    us, ds = 0, 0
+    while netspeedend == False: 
+        try:
+            for i in os.listdir():
+                if i == "NETSPEEDEND":
+                    raise Exception
+            io = psutil.net_io_counters()
+            bytes_sent, bytes_recv = io.bytes_sent, io.bytes_recv
+            for i in range(0,10):
+                io = psutil.net_io_counters()
+                qbytes_sent, qbytes_recv = io.bytes_sent, io.bytes_recv
+                sleep(0.1)
+                io_2 = psutil.net_io_counters()
+                if i == 9:
+                    us, ds = io_2.bytes_sent - bytes_sent, io_2.bytes_recv - bytes_recv
+                upspeed, downspeed = io_2.bytes_sent - qbytes_sent, io_2.bytes_recv - qbytes_recv
+                totalup += upspeed
+                totaldown += downspeed
+                if args.language == 'SK':
+                    print(f"Rýchlosť nahrávania: {get_size(us)}/s "
+                        f", Rýchlosť sťahovania: {get_size(ds)}/s "
+                        f", Celková veľkosť sťahovania {get_size(totalup)}   "
+                        f", Celková veľkosť nahrávania {get_size(totaldown)}      ", end="\r")
+                elif args.language == 'EN':
+                    print(f"Upload Speed: {get_size(us)}/s "
+                        f", Download Speed: {get_size(ds)}/s "
+                        f", Total download size {get_size(totalup)}   "
+                        f", Total upload size {get_size(totaldown)}      ", end="\r")
+                elif args.language == 'JP':
+                    print(f"アップロード速度: {get_size(us)}/s "
+                        f", ダウンロード速度: {get_size(ds)}/s "
+                        f", ダウンロードの合計サイズ {get_size(totalup)}   "
+                        f", 総アップロード サイズ {get_size(totaldown)}      ", end="\r")
+        except Exception:
+            os.remove("NETSPEEDEND")
+            if args.language == 'SK':
+                print(f"Rýchlosť nahrávania: {get_size(us)}/s "
+                     f", Rýchlosť sťahovania: {get_size(ds)}/s "
+                     f", Celková veľkosť sťahovania {get_size(totalup)}   "
+                     f", Celková veľkosť nahrávania {get_size(totaldown)}      ")
+            elif args.language == 'EN':
+                print(f"Upload Speed: {get_size(us)}/s "
+                     f", Download Speed: {get_size(ds)}/s "
+                     f", Total download size {get_size(totalup)}   "
+                     f", Total upload size {get_size(totaldown)}      ")
+            elif args.language == 'JP':
+                print(f"アップロード速度: {get_size(us)}/s "
+                     f", ダウンロード速度: {get_size(ds)}/s "
+                     f", ダウンロードの合計サイズ {get_size(totalup)}   "
+                     f", 総アップロード サイズ {get_size(totaldown)}      ")
+            break
+
 
 def delcache(name, hist):
     """
@@ -409,6 +492,7 @@ progress_bar_end = False
 
 cachename = 'data.xp2'
 
+
 def inactive():
     """
     The inactive function is used to check if the INACTIVE file exists in the current directory. If it does, then it will remove the password file and return True. Otherwise, it returns False.
@@ -431,6 +515,7 @@ def inactive():
         return True
     else:
         return False
+    
     
 def progress_bar(name, number):
     """
@@ -459,6 +544,7 @@ def progress_bar(name, number):
             elif progress_bar_check != progress_bar_check_old:
                 progress_bar_check_old = progress_bar_check
                 break
+
 
 def add(name, ico, subject, mark):
     """
@@ -508,6 +594,7 @@ def add(name, ico, subject, mark):
     progress_bar_check += 1
     name = ('data1', None)
     return name
+
 
 def decode(name, password, mode=0):
     """
@@ -570,6 +657,7 @@ def decode(name, password, mode=0):
         return fileline
     progress_bar_check += 1
     return decodename1
+
 
 def password(name):
     """
@@ -1246,6 +1334,13 @@ def main():
                 password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
                 cv2.destroyAllWindows()
                 getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+                if neko:
+                    pg.keyDown('alt')
+                    pg.press('tab')
+                    pg.keyUp('alt')
+                    pg.keyDown('alt')
+                    pg.press('tab')
+                    pg.keyUp('alt')
                 sleep(0.1)
                 """
                 If the user is logged in, check if the password is correct. If it is, then the user is logged in.
@@ -1280,6 +1375,13 @@ def main():
                         if args.language == 'JP':
                             print("すべてが設定されました!!!\nプログラムを使用できます\n")
                         getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+                        if neko:
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
                     history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
                     history = open(historyname, 'a')
@@ -1311,6 +1413,8 @@ def main():
             @param history - the history file.
             @param linenumber - the line number of the history file.
             """
+            if args.neko == None:
+                pg.write("nekon\n")
             if not tologin and not logged:
                 vstup = input(str(linenumber) + ' > ')
                 history.write('[' + str(linenumber) + ', ' + vstup + ']\n')
@@ -1323,39 +1427,91 @@ def main():
             If the user inputs 'delsavlog' into the command line, delete the saved log files.
             """
             if vstup == 'motivational':
+                Thread(target=netspeed, daemon=True).start()
                 resp = requests.get("https://animechan.vercel.app/api/random")
                 data = resp.json()
                 anime = data["anime"]
                 character = data["character"]
                 quote = data["quote"]
+                open("NETSPEEDEND", 'x')
+                sleep(1)
                 print("Anime: "+ anime + '\nCharacter: ' + character + "\nQuote: " + quote )
-            if vstup == 'neko':
-                resp = requests.get("https://nekos.best/api/v2/neko")
-                data = resp.json()
-                img_data = requests.get(data["results"][0]["url"]).content
-                with open('neko.png', 'wb') as handler:
-                    handler.write(img_data)
-                img = Image.open('neko.png')
+            if vstup == 'anotherneko':
+                pg.write("quitneko\nneko\n")
+            if vstup[0:4] == 'neko':
+                if neko:
+                    if args.language == 'SK':
+                        print('Prepáč, že nemôžeš mať dve neko')
+                    if args.language == 'EN':
+                        print("Sorry you can't have two nekos")
+                    if args.language == 'JP':
+                        print('ごめんね、ネコを2匹飼えないよ')
+                    continue                    
+                if args.language == 'SK':
+                    print('ČAKAJ')
+                if args.language == 'EN':
+                    print('WAIT')
+                if args.language == 'JP':
+                    print('待つ')
+                if args.neko != None:
+                    Thread(target=netspeed, daemon=True).start()
+                    resp = requests.get("https://nekos.best/api/v2/neko")
+                    data = resp.json()
+                    img_data = requests.get(data["results"][0]["url"]).content
+                    print('.',end='\r')
+                    with open('assets/neko.png', 'wb') as handler:
+                        handler.write(img_data)
+                    open("NETSPEEDEND", 'x')
+                else:
+                    args.neko = object()
+                print('..',end='\r')
+                img = Image.open('assets/neko.png')
+                print('....',end='\r')
                 img.show()
+                print('....',end='\r')
                 sleep(0.1)
+                print('.....',end='\r')
                 pg.keyDown('win')
+                print('......',end='\r')
                 pg.press('right')
+                print('.......',end='\r')
                 pg.keyUp('win')
+                print('........',end='\r')
                 pg.press('esc')
+                print('.........',end='\r')
                 sleep(0.25)
+                print('..........',end='\r')
                 pg.keyDown('alt')
+                print('...........',end='\r')
                 pg.press('tab')
+                print('............',end='\r')
                 pg.keyUp('alt')
+                print('.............',end='\r')
                 neko = True
-                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), None)
+                print('..............',end='\r')
+                if args.language == 'SK':
+                    print('HOTOVO         ')
+                if args.language == 'EN':
+                    print('DONE           ')
+                if args.language == 'JP':
+                    print('終わり          ')
+                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((1.05-(337/1080))*screensize[1], 0))))
             if vstup == 'quitneko':
+                if not neko:
+                    if args.language == 'SK':
+                        print(':( Nemôžeš mať -1 neko')
+                    if args.language == 'EN':
+                        print(":( You can't have -1 neko")
+                    if args.language == 'JP':
+                        print(':( 猫を-1にすることはできません')
+                    continue
                 pg.keyDown('alt')
                 pg.press('tab')
                 pg.keyUp('alt')
                 pg.keyDown('alt')
                 pg.press('f4')
                 pg.keyUp('alt')
-                os.remove('neko.png')
+                os.remove('assets/neko.png')
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
                 neko = False
             if vstup == 'delsavlog':
@@ -1604,6 +1760,13 @@ def main():
                         icofind = code(find(decode(True, False)), False)
                         cv2.destroyAllWindows()
                         getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+                        if neko:
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
                         if icofind[0]:
                             logged = False
                             os.remove(loginvstupuser + 'crypted')
@@ -1641,8 +1804,12 @@ def main():
                 pg.keyDown('alt')
                 pg.press('f4')
                 pg.keyUp('alt')
-                os.remove('neko.png')
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+            if not restart:
+                try:
+                    os.remove('assets/neko.png')
+                except Exception:
+                    pass
             try:
                 open('END', 'x')
             except Exception:
@@ -1757,7 +1924,7 @@ def main():
                     for i in bar:
                         zip.write(zipfiles[i])
                         size = sum([zinfo.file_size for zinfo in zip.filelist])
-                        sleep(0.02)
+                        sleep(0.04)
                         tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(size - zip_kb_old,2)) + " KB")
                         zip_kb_old = size
                         os.remove(zipfiles[i])
@@ -1852,14 +2019,19 @@ def main():
                     if vstup == "n":
                         if os.path.isfile("restart.py"):
                             os.remove("restart.py")
+                        if neko:
+                            os.remove('assets/neko.png')
                         quit()
                     elif vstup in ['','y']:
                         os.system('cls')
                         sys.stdout.flush()
                         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
-                            subprocess.check_output('start restart.py --autol', shell=True)
+                            if neko:
+                                subprocess.check_output('start restart.py --neko --autol', shell=True)
+                            else:
+                                subprocess.check_output('start restart.py --autol', shell=True)
                             sys.stdout.flush()
-                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
+                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
                         sys.stdout.flush()
                         quit()
                 else:
