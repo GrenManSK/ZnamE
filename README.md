@@ -6,6 +6,8 @@ Using https://github.com/RocktimSaikia/anime-chan for motivation
 
 Using https://github.com/nekos-best for NEKO photos
 
+Using https://github.com/Waifu-pics/waifu-api for WAIFU photos
+
 Size installed of required modules: 62.81 MB
 
 

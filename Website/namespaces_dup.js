@@ -17,6 +17,7 @@ var namespaces_dup =
       [ "password", "d0/d52/namespaceedupage.html#a93a40ace672019acb1ed8bd6f7c9a9b2", null ],
       [ "playhtml", "d0/d52/namespaceedupage.html#aa2119f61a68f401d65ae4cab60bd59e3", null ],
       [ "progress_bar", "d0/d52/namespaceedupage.html#aa59187fcfaa6a2852379afcac631b7fe", null ],
+      [ "set_config", "d0/d52/namespaceedupage.html#a0003b8cdfed4f905e18d2a94185fe84b", null ],
       [ "addapp", "d0/d52/namespaceedupage.html#a728ef682d8df706482552daa279806df", null ],
       [ "args", "d0/d52/namespaceedupage.html#ac8064107eac90ec58fd7651be1bb2016", null ],
       [ "cachename", "d0/d52/namespaceedupage.html#a25109826dff0140f3672672637dadd94", null ],
