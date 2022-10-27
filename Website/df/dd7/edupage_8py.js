@@ -16,6 +16,7 @@ var edupage_8py =
     [ "password", "df/dd7/edupage_8py.html#a93a40ace672019acb1ed8bd6f7c9a9b2", null ],
     [ "playhtml", "df/dd7/edupage_8py.html#aa2119f61a68f401d65ae4cab60bd59e3", null ],
     [ "progress_bar", "df/dd7/edupage_8py.html#aa59187fcfaa6a2852379afcac631b7fe", null ],
+    [ "set_config", "df/dd7/edupage_8py.html#a0003b8cdfed4f905e18d2a94185fe84b", null ],
     [ "addapp", "df/dd7/edupage_8py.html#a728ef682d8df706482552daa279806df", null ],
     [ "args", "df/dd7/edupage_8py.html#ac8064107eac90ec58fd7651be1bb2016", null ],
     [ "cachename", "df/dd7/edupage_8py.html#a25109826dff0140f3672672637dadd94", null ],

@@ -47,6 +47,7 @@ parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically en
 parser.add_argument('-ni', '--nointro', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-nif', '--nointrof', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-neko', '--neko', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-waifu', '--waifu', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
@@ -356,9 +357,23 @@ decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA
 findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
 passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
 addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None:\n    time.sleep(6)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
+restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
 
- 
+def set_config(section, name, info):
+    """
+    The set_config function writes a new config.ini file with the specified section, name, and info.
+    
+    :param section: Define the section of the config
+    :param name: Set the name of the configuration file
+    :param info: Set the value of the name parameter in the section specified
+    :return: None
+    """
+    os.remove('config.ini')
+    configfile = open('config.ini', 'a')
+    config.set(section, name, info)
+    config.write(configfile)
+    configfile.close()
+
 def get_size(bytes):
     """
     The get_size function accepts a number of bytes and returns a human-readable string representation of the size.
@@ -424,19 +439,19 @@ def netspeed():
             os.remove("NETSPEEDEND")
             if args.language == 'SK':
                 print(f"Rýchlosť nahrávania: {get_size(us)}/s "
-                     f", Rýchlosť sťahovania: {get_size(ds)}/s "
-                     f", Celková veľkosť sťahovania {get_size(totalup)}   "
-                     f", Celková veľkosť nahrávania {get_size(totaldown)}      ")
+                    f", Rýchlosť sťahovania: {get_size(ds)}/s "
+                    f", Celková veľkosť sťahovania {get_size(totalup)}   "
+                    f", Celková veľkosť nahrávania {get_size(totaldown)}      ")
             elif args.language == 'EN':
                 print(f"Upload Speed: {get_size(us)}/s "
-                     f", Download Speed: {get_size(ds)}/s "
-                     f", Total download size {get_size(totalup)}   "
-                     f", Total upload size {get_size(totaldown)}      ")
+                    f", Download Speed: {get_size(ds)}/s "
+                    f", Total download size {get_size(totalup)}   "
+                    f", Total upload size {get_size(totaldown)}      ")
             elif args.language == 'JP':
                 print(f"アップロード速度: {get_size(us)}/s "
-                     f", ダウンロード速度: {get_size(ds)}/s "
-                     f", ダウンロードの合計サイズ {get_size(totalup)}   "
-                     f", 総アップロード サイズ {get_size(totaldown)}      ")
+                    f", ダウンロード速度: {get_size(ds)}/s "
+                    f", ダウンロードの合計サイズ {get_size(totalup)}   "
+                    f", 総アップロード サイズ {get_size(totaldown)}      ")
             break
 
 
@@ -970,6 +985,20 @@ def main():
         if args.language == "JP":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
         shutil.move('data1/data', 'data')
+        os.mkdir('apphtml')
+        os.mkdir('assets')
+        for r, d, f in os.walk('data1/apphtml/'):
+            for file in f:
+                print(os.path.join('./', file))
+                shutil.move(os.path.join('data1/apphtml/', file), os.path.join('apphtml/', file))
+        for r, d, f in os.walk('data1/assets/'):
+            for file in f:
+                print(os.path.join('./', file))
+                shutil.move(os.path.join('data1/assets/', file), os.path.join('assets/', file))
+        for r, d, f in os.walk('data1/'):
+            for file in f:
+                print(os.path.join('./', file))
+                shutil.move(os.path.join('data1/', file), os.path.join('/', file))
         shutil.rmtree('data1')
         os.remove(cachename)
         os.remove('data.xp3')
@@ -995,6 +1024,7 @@ def main():
         shutil.move("temp/data_dummy", 'data')
         shutil.rmtree('temp')
         os.rename('data_dummy', 'data')
+        sleep(0.5)
     except FileNotFoundError:
         pass
     os.system('cls')
@@ -1054,12 +1084,13 @@ def main():
     topasswordhelp = False
     loggedhelp = False
     firstlogin = True
-    vstup = None
+    vstup = ''
     logins = 0
     help = ['help','pomoc','-h','-help','?','-?']
     advhelp = ['advanced help','ah','-ah','-advanced help']
     linenumber = 1 # type: ignore
     neko = False
+    waifu = False
     """
     If the user has not disabled the intro, play it. Otherwise, do nothing.
     @param None
@@ -1258,6 +1289,13 @@ def main():
                     code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
                     cv2.destroyAllWindows()
                     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+                    if neko or waifu:
+                        pg.keyDown('alt')
+                        pg.press('tab')
+                        pg.keyUp('alt')
+                        pg.keyDown('alt')
+                        pg.press('tab')
+                        pg.keyUp('alt')
                     os.mkdir("temp")
                     shutil.move("data", 'temp/')
                     os.rename('data1crypted', 'data')
@@ -1334,7 +1372,7 @@ def main():
                 password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
                 cv2.destroyAllWindows()
                 getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
-                if neko:
+                if neko or waifu:
                     pg.keyDown('alt')
                     pg.press('tab')
                     pg.keyUp('alt')
@@ -1368,20 +1406,20 @@ def main():
                     if os.path.exists("restart.py"):
                         os.remove('restart.py')
                         cv2.destroyAllWindows()
+                        getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
+                        if neko or waifu:
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
+                            pg.keyDown('alt')
+                            pg.press('tab')
+                            pg.keyUp('alt')
                         if args.language == 'SK':
                             print("Všetko je nastavené!!!\nMôžete použiť program\n")
                         if args.language == 'EN':
                             print("All is set!!!\nYou can use progam\n")
                         if args.language == 'JP':
                             print("すべてが設定されました!!!\nプログラムを使用できます\n")
-                        getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
-                        if neko:
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
                     history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
                     history = open(historyname, 'a')
@@ -1407,14 +1445,16 @@ def main():
                         print("WRONG PASSWORD")
                     if args.language == "JP":
                         print('間違ったパスワード')
+            if args.neko == None:
+                pg.write("nekon\n")
+            if args.waifu == None:
+                pg.write("waifun\n")
             """
                 this function is used to get the input from the user and write it to the history file.
             @param vstup - the input from the user.
             @param history - the history file.
             @param linenumber - the line number of the history file.
             """
-            if args.neko == None:
-                pg.write("nekon\n")
             if not tologin and not logged:
                 vstup = input(str(linenumber) + ' > ')
                 history.write('[' + str(linenumber) + ', ' + vstup + ']\n')
@@ -1423,9 +1463,99 @@ def main():
                 history = open(historyname, 'a')
                 linenumber += 1
             inactivelogout = inactive()
-            """
-            If the user inputs 'delsavlog' into the command line, delete the saved log files.
-            """
+            if vstup in ['settings', 'setup']:
+                while True:
+                    setvstup = input("1. basic info\n2. waifu setting\n3. neko settings\n4. back\n> ")
+                    if setvstup == '1':
+                        while True:
+                            setvstup = input('1. lang = ' + config.get('basic info','lang').split(' ')[0] + '\n2. enviroment = ' + config.get('basic info','enviroment').split(' ')[0] + '\n3. intro (toggle) = ' + config.get('basic info','intro').split(' ')[0] + '\n4. back\n> ')
+                            if setvstup == '1':
+                                while True:
+                                    setvstup = input('1. SK\n2. EN\n3. JP\n4. back\n> ')
+                                    if setvstup == '1':
+                                        set_config('basic info', 'lang', 'SK')
+                                        break
+                                    elif setvstup == '2':
+                                        set_config('basic info', 'lang', 'EN')
+                                        break
+                                    elif setvstup == '3':
+                                        set_config('basic info', 'lang', 'SK')
+                                        break
+                                    elif setvstup == '4':
+                                        break
+                            elif setvstup == '2':
+                                setvstup = input('Set enviroment\n> ')
+                                set_config('basic info', 'enviroment', setvstup)
+                            elif setvstup == '3':
+                                if config.get('basic info','intro').split(' ')[0] == "True":
+                                    set_config('basic info', 'intro', 'False')
+                                elif config.get('basic info','intro').split(' ')[0] == "False":
+                                    set_config('basic info', 'intro', 'True')
+                            elif setvstup == '4':
+                                break
+                    elif setvstup == '2':
+                        while True:
+                            setvstup = input('1. type = ' + config.get('waifu settings','type').split(' ')[0] + '\n2. category = ' + config.get('waifu settings','category').split(' ')[0] + '\n3. back\n> ')
+                            if setvstup == '1':
+                                while True:
+                                    setvstup = input('1. SFW\n2. NSFW\n3. back\n> ')
+                                    if setvstup == '1':
+                                        set_config('waifu settings', 'type', 'sfw')
+                                        setvstup = '2'
+                                        break
+                                    elif setvstup == '2':
+                                        set_config('waifu settings', 'type', 'nsfw')
+                                        break
+                                    elif setvstup == '3':
+                                        break
+                            if setvstup == '2':
+                                if config.get('waifu settings','type').split(' ')[0] == 'sfw':
+                                    category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe", "back"]
+                                    while True:
+                                        for i in range(0,len(category)):
+                                            print(str(i + 1) + '. ' + category[i])
+                                        setvstup = int(input("> "))
+                                        if category[setvstup-1] == 'back':
+                                            break
+                                        try:
+                                            set_config('waifu settings', 'category', category[setvstup-1])
+                                            break
+                                        except Exception:
+                                            continue
+                                elif config.get('waifu settings','type').split(' ')[0] == 'nsfw':
+                                    category = ['waifu', 'neko', 'trap', 'blowjob', 'back']
+                                    while True:
+                                        for i in range(0,len(category)):
+                                            print(str(i + 1) + '. ' + category[i])
+                                        setvstup = int(input("> "))
+                                        if category[setvstup-1] == 'back':
+                                            break
+                                        try:
+                                            set_config('waifu settings', 'category', category[setvstup-1])
+                                            break
+                                        except Exception:
+                                            continue
+                            elif setvstup == '3':
+                                break
+                    elif setvstup == '3':
+                        while True:
+                            setvstup = input('1. server\n2. back\n> ')
+                            if setvstup == '1':
+                                while True:
+                                    setvstup = input('1. nekos.best\n2. waifu.pics\n3. back\n> ')
+                                    if setvstup == '1':
+                                        set_config('neko settings', 'server', 'nekos.best')
+                                        break
+                                    elif setvstup == '2':
+                                        set_config('neko settings', 'server', 'waifu.pics')
+                                        break
+                                    elif setvstup == '3':
+                                        break
+                            elif setvstup == '2':
+                                break
+                    elif setvstup == '4':
+                        break
+                print('')
             if vstup == 'motivational':
                 Thread(target=netspeed, daemon=True).start()
                 resp = requests.get("https://animechan.vercel.app/api/random")
@@ -1446,6 +1576,14 @@ def main():
                         print("Sorry you can't have two nekos")
                     if args.language == 'JP':
                         print('ごめんね、ネコを2匹飼えないよ')
+                    continue   
+                if waifu:
+                    if args.language == 'SK':
+                        print('Prepáčte, že nemôžete mať neko, ak máte waifu')
+                    if args.language == 'EN':
+                        print("Sorry you can't have neko if you have waifu")
+                    if args.language == 'JP':
+                        print('すみません、ワイフを持っているならネコを持ってはいけない')
                     continue                    
                 if args.language == 'SK':
                     print('ČAKAJ')
@@ -1454,10 +1592,36 @@ def main():
                 if args.language == 'JP':
                     print('待つ')
                 if args.neko != None:
-                    Thread(target=netspeed, daemon=True).start()
-                    resp = requests.get("https://nekos.best/api/v2/neko")
-                    data = resp.json()
-                    img_data = requests.get(data["results"][0]["url"]).content
+                    if config.get('neko settings','server').split(' ')[0] == 'nekos.best':       
+                        if args.language == 'SK':
+                            print('Získavanie obrazu zo servera nekos.best')
+                        if args.language == 'EN':
+                            print('Getting image from nekos.best server')
+                        if args.language == 'JP':
+                            print('nekos.best サーバーから画像を取得する')
+                        Thread(target=netspeed, daemon=True).start()
+                        resp = requests.get("https://nekos.best/api/v2/neko")
+                        data = resp.json()
+                        img_data = requests.get(data["results"][0]["url"]).content
+                    elif config.get('neko settings','server').split(' ')[0] == 'waifu.pics':  
+                        if args.language == 'SK':
+                            print('Získavanie obrazu zo servera waifu.pics')
+                        if args.language == 'EN':
+                            print('Getting image from waifu.pics server')
+                        if args.language == 'JP':
+                            print('waifu.pics サーバーから画像を取得する')
+                        Thread(target=netspeed, daemon=True).start()
+                        resp = requests.get("https://api.waifu.pics/sfw/neko")
+                        data = resp.json()
+                        img_data = requests.get(data["url"]).content
+                    else:
+                        if args.language == 'SK':
+                            print('Nie je poskytnutý žiadny server')
+                        if args.language == 'EN':
+                            print('No server provided')
+                        if args.language == 'JP':
+                            print('サーバーが提供されていません')
+                        continue
                     print('.',end='\r')
                     with open('assets/neko.png', 'wb') as handler:
                         handler.write(img_data)
@@ -1487,7 +1651,6 @@ def main():
                 print('............',end='\r')
                 pg.keyUp('alt')
                 print('.............',end='\r')
-                neko = True
                 print('..............',end='\r')
                 if args.language == 'SK':
                     print('HOTOVO         ')
@@ -1495,7 +1658,8 @@ def main():
                     print('DONE           ')
                 if args.language == 'JP':
                     print('終わり          ')
-                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((1.05-(337/1080))*screensize[1], 0))))
+                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
+                neko = True
             if vstup == 'quitneko':
                 if not neko:
                     if args.language == 'SK':
@@ -1514,6 +1678,98 @@ def main():
                 os.remove('assets/neko.png')
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
                 neko = False
+            if vstup == 'anotherwaifu':
+                pg.write("quitwaifu\nwaifu\n")
+            if vstup[0:5] == 'waifu':
+                if waifu:
+                    if args.language == 'SK':
+                        print('Prepáčte, nemôžete mať dve waifu')
+                    if args.language == 'EN':
+                        print("Sorry you can't have two waifu")
+                    if args.language == 'JP':
+                        print('申し訳ありませんが、ワイフを 2 つ持つことはできません')
+                    continue  
+                if neko:
+                    if args.language == 'SK':
+                        print('Prepáčte, že nemôžete mať waifu a neko')
+                    if args.language == 'EN':
+                        print("Sorry you can't have waifu and neko")
+                    if args.language == 'JP':
+                        print('ごめんなさい、ワイフとネコは使えません')
+                    continue                    
+                if args.language == 'SK':
+                    print('ČAKAJ')
+                if args.language == 'EN':
+                    print('WAIT')
+                if args.language == 'JP':
+                    print('待つ')
+                if args.waifu != None: 
+                    if args.language == 'SK':
+                        print('Získavanie obrazu zo servera waifu.pics')
+                    if args.language == 'EN':
+                        print('Getting image from waifu.pics server')
+                    if args.language == 'JP':
+                        print('waifu.pics サーバーから画像を取得する')
+                    Thread(target=netspeed, daemon=True).start()
+                    resp = requests.get("https://api.waifu.pics/" + config.get('waifu settings','type').split(' ')[0] + "/" + config.get('waifu settings','category').split(' ')[0])
+                    data = resp.json()
+                    img_data = requests.get(data["url"]).content
+                    print('.',end='\r')
+                    with open('assets/waifu.png', 'wb') as handler:
+                        handler.write(img_data)
+                    open("NETSPEEDEND", 'x')
+                else:
+                    args.waifu = object()
+                print('..',end='\r')
+                img = Image.open('assets/waifu.png')
+                print('....',end='\r')
+                img.show()
+                print('....',end='\r')
+                sleep(0.1)
+                print('.....',end='\r')
+                pg.keyDown('win')
+                print('......',end='\r')
+                pg.press('right')
+                print('.......',end='\r')
+                pg.keyUp('win')
+                print('........',end='\r')
+                pg.press('esc')
+                print('.........',end='\r')
+                sleep(0.25)
+                print('..........',end='\r')
+                pg.keyDown('alt')
+                print('...........',end='\r')
+                pg.press('tab')
+                print('............',end='\r')
+                pg.keyUp('alt')
+                print('.............',end='\r')
+                print('..............',end='\r')
+                if args.language == 'SK':
+                    print('HOTOVO         ')
+                if args.language == 'EN':
+                    print('DONE           ')
+                if args.language == 'JP':
+                    print('終わり          ')
+                move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
+                waifu = True
+            if vstup == 'quitwaifu':
+                if not waifu:
+                    if args.language == 'SK':
+                        print(':( Nemôžeš mať -1 waifu')
+                    if args.language == 'EN':
+                        print(":( You can't have -1 waifu")
+                    if args.language == 'JP':
+                        print(':( -1ワイフを持つことはできません')
+                    continue
+                pg.keyDown('alt')
+                pg.press('tab')
+                pg.keyUp('alt')
+                pg.keyDown('alt')
+                pg.press('f4')
+                pg.keyUp('alt')
+                os.remove('assets/waifu.png')
+                move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+                waifu = False
             if vstup == 'delsavlog':
                 uninstall()
             """
@@ -1760,7 +2016,7 @@ def main():
                         icofind = code(find(decode(True, False)), False)
                         cv2.destroyAllWindows()
                         getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
-                        if neko:
+                        if neko or waifu:
                             pg.keyDown('alt')
                             pg.press('tab')
                             pg.keyUp('alt')
@@ -1797,7 +2053,7 @@ def main():
                     if args.language == "JP":
                         print('すでにログインしています！！！')
         elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
-            if neko:
+            if neko or waifu:
                 pg.keyDown('alt')
                 pg.press('tab')
                 pg.keyUp('alt')
@@ -1808,6 +2064,10 @@ def main():
             if not restart:
                 try:
                     os.remove('assets/neko.png')
+                except Exception:
+                    pass
+                try:
+                    os.remove('assets/waifu.png')
                 except Exception:
                     pass
             try:
@@ -1847,17 +2107,12 @@ def main():
             version = open('version', 'w')
             version.write(versionlist[0] + '.' + versionlist[1] + '.' + versionlist[2] + '.' + str(datetime.today().strftime("%Y%m%d.%H%M%S")))
             version.close()
-            os.remove('config.ini')
             historylist = []
             history = open(historyname, 'r')
-            configfile = open('config.ini', 'a')
             for i in history.readlines():
                 historylist.append(i.strip('\n'))
-            config.set('user history', historyname, str(datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
-            config.write(configfile)
-            configfile.close()
+            set_config('user history', historyname, str(datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist)) 
             history.close()
-            configfile.close()
             os.remove(historyname)
             if args.language == "SK":
                 print("Hotovo\n")
@@ -1878,6 +2133,14 @@ def main():
                 pass
             sleep(0.2)
             shutil.move('data', 'datafolder/')
+            source_dir = 'assets/'
+            os.mkdir('datafolder/' + source_dir)
+            for file_name in os.listdir(source_dir):
+                shutil.move(os.path.join(source_dir, file_name), 'datafolder/' + source_dir)
+            source_dir = 'apphtml/'
+            os.mkdir('datafolder/' + source_dir)
+            for file_name in os.listdir(source_dir):
+                shutil.move(os.path.join(source_dir, file_name), 'datafolder/' + source_dir)
             sleep(0.2)
             if args.language == "SK":
                 print("ZABAĽUJEM DATA\n")
@@ -2028,15 +2291,25 @@ def main():
                         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                             if neko:
                                 subprocess.check_output('start restart.py --neko --autol', shell=True)
+                                sys.stdout.flush()
+                                subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
+                            elif waifu:
+                                subprocess.check_output('start restart.py --waifu --autol', shell=True)
+                                sys.stdout.flush()
+                                subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
                             else:
                                 subprocess.check_output('start restart.py --autol', shell=True)
-                            sys.stdout.flush()
-                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
+                                sys.stdout.flush()
+                                subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                         sys.stdout.flush()
                         quit()
                 else:
                     os.system('cls')
                     sys.stdout.flush()
+                    if neko:
+                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
+                    elif waifu:
+                        subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
                     subprocess.check_output('start restart.py', shell=True)
                     sys.stdout.flush()
                     subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
@@ -2047,9 +2320,9 @@ def main():
                 if args.endf == None:
                     if args.language == "SK":
                         input(str(linenumber) + " 'ENTER' NA KONIEC")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         input(str(linenumber) + " 'ENTER' TO END")  
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         input(str(linenumber) + " 「ENTER」で終了")
                     quit()
                 else:

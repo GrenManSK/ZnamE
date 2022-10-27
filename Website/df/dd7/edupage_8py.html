@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v0.1.2-alpha+build.20221026.170921</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v0.1.3-alpha+build.20221028.001025</span>
    </div>
   </td>
  </tr>
@@ -112,6 +112,8 @@ Functions</h2></td></tr>
 <tr class="separator:acd370e8dab693a3c7c8cb2394f8b1c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3afb6aca23b9c2f5a17dfead6f08920"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#ad3afb6aca23b9c2f5a17dfead6f08920">edupage.move</a> (window, x, y, width, length)</td></tr>
 <tr class="separator:ad3afb6aca23b9c2f5a17dfead6f08920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0003b8cdfed4f905e18d2a94185fe84b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a0003b8cdfed4f905e18d2a94185fe84b">edupage.set_config</a> (section, name, info)</td></tr>
+<tr class="separator:a0003b8cdfed4f905e18d2a94185fe84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354083c63893b814752b84ce1d2260d4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a354083c63893b814752b84ce1d2260d4">edupage.get_size</a> (bytes)</td></tr>
 <tr class="separator:a354083c63893b814752b84ce1d2260d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6746f69c38da15fbb336974562c81630"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a6746f69c38da15fbb336974562c81630">edupage.netspeed</a> ()</td></tr>
@@ -209,7 +211,7 @@ Variables</h2></td></tr>
 <tr class="separator:a0af623e31eabe6fec619b35844e7add0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a728ef682d8df706482552daa279806df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a728ef682d8df706482552daa279806df">edupage.addapp</a> = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n user.write(i)\n if rnii:\n wh=True\n if i==\'[\':\n bracket+=1\n elif i==\']\':\n bracket-=1\n if add and subject==subjectfind and bracket==4 and brackethist==4:\n subjectfind=None\n user.write(str(markadd) + \',\')\n add=False\n if passend:\n passend=False\n if ik:\n if ik2:\n ik2=False\n add=True\n if bracket==3:\n subject=\'\'\n ik=False\n rniiend=False\n if rniiend:\n ik=True\n ik2=True\n rniiend=False\n brackethist=bracket\n continue\n if userdef:\n userdef=False\n if bracket==3 and brackethist==3 and i!=\&quot;\'\&quot;:\n if i ==\',\':\n rniiend=True\n continue\n subject+=str(i)\n elif bracket==5 and brackethist==5 and i!=\&quot;\'\&quot;:\n if i ==\',\':\n passend=True\n continue\n password+=str(i)\n brackethist=bracket\n else:\n if i==\'[\':\n bracket+=1\n elif i==\']\':\n bracket-=1\n if icoend:\n if icocurrent!=\'\':\n if int(icocurrent)==icofind:\n ico.append(icocurrent)\n rnii=True\n continue\n icocurrent=\'\'\n icoend=False\n if bracket==2 and brackethist==2:\n if i ==\',\':\n icoend=True\n userdef=True\n continue\n icocurrent+=i\n brackethist=bracket\nif not wh:\n user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')</td></tr>
 <tr class="separator:a728ef682d8df706482552daa279806df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a110ef0f892786cb4ef9aa51180e85d83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a110ef0f892786cb4ef9aa51180e85d83">edupage.restartapp</a> = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None:\n time.sleep(6)\npg.write(&quot;login\\n&quot;)\ntime.sleep(1)\nif args.autol == None:\n pg.write(&quot;y\\n&quot;)')</td></tr>
+<tr class="memitem:a110ef0f892786cb4ef9aa51180e85d83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a110ef0f892786cb4ef9aa51180e85d83">edupage.restartapp</a> = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None or args.waifu == None:\n time.sleep(7.5)\npg.write(&quot;login\\n&quot;)\ntime.sleep(1)\nif args.autol == None:\n pg.write(&quot;y\\n&quot;)')</td></tr>
 <tr class="separator:a110ef0f892786cb4ef9aa51180e85d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e71b4857120b4b245437e22d7e99b5b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d52/namespaceedupage.html#a3e71b4857120b4b245437e22d7e99b5b">edupage.loginvstupuser</a> = ''</td></tr>
 <tr class="separator:a3e71b4857120b4b245437e22d7e99b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,7 +228,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../df/dd7/edupage_8py.html">edupage.py</a></li>
-    <li class="footer">Generated on Wed Oct 26 2022 17:10:18 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Fri Oct 28 2022 00:16:56 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>
