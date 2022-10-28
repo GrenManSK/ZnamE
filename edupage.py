@@ -39,7 +39,6 @@ global parser
 parser = argparse.ArgumentParser()
 UNSPECIFIED = object()
 sleep(0.5)
-os.system('cls')
 language = ['SK','EN','JP']
 parser.add_argument('-lang', '--language', choices=language, help='Language selection', nargs='?')
 parser.add_argument('-v', '--version', choices=[], help='Show version of this program', default=UNSPECIFIED, nargs='?')
@@ -81,9 +80,9 @@ try:
 except requests.ConnectionError: # type: ignore
     if args.language == "SK":
         print("Vaše internetové pripojenie nefunguje")
-    if args.language == "EN":
+    elif args.language == "EN":
         print("The internet connection is down")
-    if args.language == "JP":
+    elif args.language == "JP":
         print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
     sleep(2)
     quit()
@@ -94,7 +93,7 @@ Check if the program is up to date. If not, update the program.
 @param nainstalovane - the packages installed on the system           
 @param nenajdene - the packages that are not installed on the system
 """
-potrebne = {'psutil', 'numpy','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto'}
+potrebne = {'psutil','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto','moviepy', 'python-vlc', 'pygetwindow'}
 nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
 nenajdene = potrebne - nainstalovane
 if args.version == None:
@@ -104,31 +103,31 @@ if args.version == None:
     if nenajdene:
         if args.language == "SK":
             print('Aktualizácia je k dispozícií: ', *nenajdene)
-        if args.language == "EN":
+        elif args.language == "EN":
             print('Update is available: ', *nenajdene)
-        if args.language == "JP":
+        elif args.language == "JP":
             print('アップデートが利用可能です： ', *nenajdene)
     quit()
 if nenajdene:
     if args.language == "SK":
         print('Aktualizácia je k dispozícií: ', *nenajdene)
-    if args.language == "EN":
+    elif args.language == "EN":
         print('Update is available: ', *nenajdene)
-    if args.language == "JP":
+    elif args.language == "JP":
         print('アップデートが利用可能です： ', *nenajdene)
     sleep(0.5)
     if args.language == "SK":
         print("Sťahujú sa aktualizácie")
-    if args.language == "EN":
+    elif args.language == "EN":
         print("Downloading updates")
-    if args.language == "JP":
+    elif args.language == "JP":
         print("アップデートのダウンロード")
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *nenajdene])
     if args.language == "SK":
         print("Program sa reštartuje!!!")
-    if args.language == "EN":
+    elif args.language == "EN":
         print("The program is restarting!!!")
-    if args.language == "JP":
+    elif args.language == "JP":
         print("番組再開！！！")
     sleep(1)
     subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
@@ -139,8 +138,9 @@ from datetime import datetime
 from pathlib import Path
 import pyautogui as pg
 from uninstall import uninstall
-import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil
+import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil, vlc, pygetwindow 
 from PIL import Image
+import moviepy.editor as mp
 verzia = open('version', 'r')
 os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
 os.system('Title ' + 'ZnámE')
@@ -275,9 +275,9 @@ if args.test != None:
     else:
         if args.language == "SK":
             print("Bola nájdená nová aktualizacia: " + page.text)
-        if args.language == "EN":
+        elif args.language == "EN":
             print("Newer version was found: " + page.text)
-        if args.language == "JP":
+        elif args.language == "JP":
             print("新しいバージョンが見つかりました: " + page.text)
         verzia.close()
         sleep(0.5)
@@ -322,9 +322,9 @@ if args.test != None:
         if directory == None:
             if args.language == "SK":
                 print("CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-            if args.language == "JP":
+            elif args.language == "JP":
                 print("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
             sleep(2)
             quit()
@@ -357,7 +357,7 @@ decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA
 findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
 passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
 addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(6)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
+restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(10)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
 
 def set_config(section, name, info):
     """
@@ -468,8 +468,8 @@ def delcache(name, hist):
     global timer
     time_got = 300
     timer = time_got
-    size = os.path.getsize(hist)
-    sizehist = size
+    filesize = os.path.getsize(hist)
+    sizehist = filesize
     while True:
         try:
             for i in os.listdir():
@@ -482,18 +482,18 @@ def delcache(name, hist):
                 os.system('cls')
                 if args.language == "SK":
                     print("Stlač 'enter'")
-                if args.language == "EN":
+                elif args.language == "EN":
                     print("Press 'enter'")
-                if args.language == "JP":
+                elif args.language == "JP":
                     print("「入力」を押してください")
                 playhtml('apphtml\\inactive')
                 break
-            if size != sizehist:
+            if filesize != sizehist:
                 timer = time_got
-                sizehist = size
+                sizehist = filesize
             else:
-                sizehist = size
-                size = os.path.getsize(hist)
+                sizehist = filesize
+                filesize = os.path.getsize(hist)
                 sleep(1)
                 timer -= 1
         except Exception:
@@ -584,9 +584,9 @@ def add(name, ico, subject, mark):
     subprocess.check_output('start ' + decodename + '.py ' + str(name) + ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
     if args.language == "SK":
         tqdm.write('Pridávam ...', end='\r')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Adding ...', end='\r')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('追加する ...', end='\r')
     while True:
         leave = False
@@ -599,9 +599,9 @@ def add(name, ico, subject, mark):
             break
     if args.language == "SK":
         tqdm.write('Pridávam Hotovo')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Adding Complete')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('追加完了')
     os.remove(decodename + '.py')
     os.remove(name)
@@ -642,9 +642,9 @@ def decode(name, password, mode=0):
         subprocess.check_output('start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
     if args.language == "SK":
         tqdm.write('Odkoduvávam ...', end='\r')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Encrypting ...', end='\r')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('暗号化 ...', end='\r')
     while True:
         leave = False
@@ -657,9 +657,9 @@ def decode(name, password, mode=0):
             break
     if args.language == "SK":
         tqdm.write('Odkoduvávam Hotovo')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Encrypting Complete')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('暗号化完了')
     os.remove(decodename + '.py')
     os.remove('DONE')
@@ -686,9 +686,9 @@ def password(name):
     crfind.close()
     if args.language == "SK":
         tqdm.write('Kontrolujem ...', end='\r')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Controling ...', end='\r')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('制御する ...', end='\r')
     subprocess.check_output('start ' + passwordname + '.py ' + str(name), shell=True)
     while True:
@@ -706,9 +706,9 @@ def password(name):
         password+=str(i)
     if args.language == "SK":
         tqdm.write('Kontrolujem Hotovo')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Controling Complete')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('制御完了')
     os.remove('DONE')
     progress_bar_check += 1
@@ -724,9 +724,9 @@ def find(name):
     crfind.close()
     if args.language == "SK":
         tqdm.write('Hľadám ...', end='\r')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Finding ...', end='\r')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('発見 ...', end='\r')
     subprocess.check_output('start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
     while True:
@@ -752,7 +752,7 @@ def find(name):
             tqdm.write('Hľadám CHYBA')
         if args.language == "EN":
             tqdm.write('Finding ERROR')
-        if args.language == "JP":
+        elif args.language == "JP":
             tqdm.write('発見 エラー')
         end = True
     if end:
@@ -760,9 +760,9 @@ def find(name):
     test.close()
     if args.language == "SK":
         tqdm.write('Hľadám Hotovo')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Finding Complete')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('発見完了')
     progress_bar_check += 1
     return [loginvstupuser, end]
@@ -787,9 +787,9 @@ def code(name, new, mode=0):
     crcode.close()
     if args.language == "SK":
         tqdm.write('Zakoduvávam ...', end='\r')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Coding ...', end='\r')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('コーディング ...', end='\r')
     if mode == 1:
         file = open('1', 'w')
@@ -809,9 +809,9 @@ def code(name, new, mode=0):
             break
     if args.language == "SK":
         tqdm.write('Zakoduvávam Complete')
-    if args.language == "EN":
+    elif args.language == "EN":
         tqdm.write('Coding Complete')
-    if args.language == "JP":
+    elif args.language == "JP":
         tqdm.write('コーディング 完了')
     os.remove(codename + '.py')
     if mode == 0 and new == 'justcode':
@@ -874,9 +874,9 @@ def playhtml(htmlFile, mode=0, time=0):
         if args.test == None and config.get('basic info','intro').split(' ')[0] == 'True':
             if args.language == 'SK':
                 webbrowser.open(htmlFile + '_sk.html', 1)
-            if args.language == 'EN':
+            elif args.language == 'EN':
                 webbrowser.open(htmlFile + '.html', 1)
-            if args.language == 'JP':
+            elif args.language == 'JP':
                 webbrowser.open(htmlFile + '_jp.html', 1)
             sleep(1)
             pg.press('f11')
@@ -890,9 +890,9 @@ def playhtml(htmlFile, mode=0, time=0):
         if config.get('basic info','intro').split(' ')[0] == 'True':
             if args.language == 'SK':
                 webbrowser.open(htmlFile + '_sk.html', 1)
-            if args.language == 'EN':
+            elif args.language == 'EN':
                 webbrowser.open(htmlFile + '.html', 1)
-            if args.language == 'JP':
+            elif args.language == 'JP':
                 webbrowser.open(htmlFile + '_jp.html', 1)
             sleep(1.5)
             pg.press('f11')
@@ -919,9 +919,9 @@ def main():
     global password
     if args.language == "SK":
         print('Jazyk = SK\n\nZačínam rozbaľovať\n')
-    if args.language == "EN":
+    elif args.language == "EN":
         print('Language = EN\n\nStarting to extract\n')
-    if args.language == "JP":
+    elif args.language == "JP":
         print("言語 = 日本語\n\n抽出開始\n")
     sleep(0.25)
     try:
@@ -961,11 +961,11 @@ def main():
             print('Hotovo\n')
             sleep(0.25)
             print("Rozbaľujem druhu časť...\n")
-        if args.language == "EN":
+        elif args.language == "EN":
             print('Done\n')
             sleep(0.25)
             print("Unpacking second part...\n")
-        if args.language == "JP":
+        elif args.language == "JP":
             print('終わり\n')
             sleep(0.25)
             print("2 番目の部分を解凍しています...\n")
@@ -980,9 +980,9 @@ def main():
         
         if args.language == "SK":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
-        if args.language == "EN":
+        elif args.language == "EN":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
-        if args.language == "JP":
+        elif args.language == "JP":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
         shutil.move('data1/data', 'data')
         os.mkdir('apphtml')
@@ -1004,9 +1004,9 @@ def main():
         os.remove('data.xp3')
         if args.language == "SK":
             print('\nHotovo\n')
-        if args.language == "EN":
+        elif args.language == "EN":
             print('\nDone\n')
-        if args.language == "JP":
+        elif args.language == "JP":
             print('\n完了\n')
         sleep(0.5)
         check = open('data', 'r')
@@ -1027,6 +1027,15 @@ def main():
         sleep(0.5)
     except FileNotFoundError:
         pass
+    if args.language == 'SK':
+        print('Inicializácia VLC')
+    elif args.language == 'EN':
+        print('Initialization VLC')
+    elif args.language == 'JP':
+        print('初期化 VLC')
+    sleep(0.25)
+    media_player = vlc.MediaPlayer()
+    sleep(0.25)
     os.system('cls')
     
     """
@@ -1036,9 +1045,9 @@ def main():
     verzia = open('version', 'r')
     if args.language == "SK":
         print('Používate ZnámE ' + verzia.read() + "\n")
-    if args.language == "EN":
+    elif args.language == "EN":
         print('You\'re using ZnámE ' + verzia.read() + "\n")
-    if args.language == "JP":
+    elif args.language == "JP":
         print('ZnámE を使用しています ' + verzia.read() + "\n")
     verzia.close()
     inactive1 = False
@@ -1058,17 +1067,17 @@ def main():
                     sleep(0.25)
                     if args.language == "SK":
                         print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print('You were inactive, you were logged out and the program restarted!!!\n')
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
         if args.update == None:
             sleep(0.25)
             if args.language == "SK":
                 print('Program bol aktualizovaný!!!\n')
-            if args.language == "EN":
+            elif args.language == "EN":
                 print('Program was updated!!!\n')
-            if args.language == "JP":
+            elif args.language == "JP":
                 print('プログラムが更新されました!!!\n')
     except Exception:
         pass
@@ -1091,6 +1100,7 @@ def main():
     linenumber = 1 # type: ignore
     neko = False
     waifu = False
+    waifuvid = False
     """
     If the user has not disabled the intro, play it. Otherwise, do nothing.
     @param None
@@ -1149,9 +1159,9 @@ def main():
                 if loggedhelp:
                     if args.language == "SK":
                         print("'zz' pre zobrazenie známok\n'pz' pre pridanie známok")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print("'zz' to display marks\n'pz' to add marks")
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('「zz」でマークを表示\n「pz」でマークを追加')
                     loggedhelp = False
                 vstup = input(str(linenumber) + ' > ')
@@ -1282,9 +1292,9 @@ def main():
                         continue
                     if args.language == "SK":
                         Thread(target=progress_bar, args=('Preverujem', 3,), daemon=True).start()
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         Thread(target=progress_bar, args=('Checking', 3,), daemon=True).start()
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         Thread(target=progress_bar, args=('チェック中', 3,), daemon=True).start()
                     code(add(decode(True, False), loginvstupuser, subject, mark), 'justcode')
                     cv2.destroyAllWindows()
@@ -1329,9 +1339,9 @@ def main():
                 if topasswordhelp:
                     if args.language == "SK":
                         print("6 číselne heslo\n 'back' pre menu\n 'quit' pre koniec")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print("6 numeric password\n 'back' for menu\n 'quit' for end")
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('6桁のパスワード\n メニューの「戻る」\n 終了の「終了」')
                     topasswordhelp = False
                     continue
@@ -1341,9 +1351,9 @@ def main():
                 if vstup == "back":
                     if args.language == "SK":
                         print('Idem späť.')
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print('Going back.')
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('戻る。')
                     topassword = False
                     os.remove(loginvstupuser + 'crypted')
@@ -1356,18 +1366,18 @@ def main():
                 if vstup == "quit" or vstup == "koniec":
                     if args.language == "SK":
                         print("Idem späť a ukončujem program.")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print("Going back and ending program.")
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('戻ってプログラムを終了します。')
                     sleep(0.5)
                     os.remove(loginvstupuser + 'crypted')
                     exit = True
                 if args.language == "SK":
                     Thread(target=progress_bar, args=('Preverujem', 2,), daemon=True).start()
-                if args.language == "EN":
+                elif args.language == "EN":
                     Thread(target=progress_bar, args=('Checking', 2,), daemon=True).start()
-                if args.language == "JP":
+                elif args.language == "JP":
                     Thread(target=progress_bar, args=('チェック中', 2,), daemon=True).start()
                 password = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
                 cv2.destroyAllWindows()
@@ -1387,9 +1397,9 @@ def main():
                 if vstup == password[0]:  # type: ignore
                     if args.language == "SK":
                         print('Si prihlaseny\n')
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print('You\'re logged\n')
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('あなたはログインしています\n')
                     os.rename(loginvstupuser + 'crypted', loginvstupuser)
                     passwordfile = open(loginvstupuser, 'r')
@@ -1416,9 +1426,9 @@ def main():
                             pg.keyUp('alt')
                         if args.language == 'SK':
                             print("Všetko je nastavené!!!\nMôžete použiť program\n")
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print("All is set!!!\nYou can use progam\n")
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print("すべてが設定されました!!!\nプログラムを使用できます\n")
                     history.write('[' + str(linenumber) + ', ' + '*logged]\n')
                     history.close()
@@ -1441,9 +1451,9 @@ def main():
                     sleep(0.1)
                     if args.language == "SK":
                         print("ZLÉ HESLO")
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print("WRONG PASSWORD")
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('間違ったパスワード')
             if args.neko == None:
                 pg.write("nekon\n")
@@ -1572,59 +1582,60 @@ def main():
                 if neko:
                     if args.language == 'SK':
                         print('Prepáč, že nemôžeš mať dve neko')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print("Sorry you can't have two nekos")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print('ごめんね、ネコを2匹飼えないよ')
                     continue   
                 if waifu:
                     if args.language == 'SK':
                         print('Prepáčte, že nemôžete mať neko, ak máte waifu')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print("Sorry you can't have neko if you have waifu")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print('すみません、ワイフを持っているならネコを持ってはいけない')
                     continue                    
                 if args.language == 'SK':
                     print('ČAKAJ')
-                if args.language == 'EN':
+                elif args.language == 'EN':
                     print('WAIT')
-                if args.language == 'JP':
+                elif args.language == 'JP':
                     print('待つ')
                 if args.neko != None:
                     if config.get('neko settings','server').split(' ')[0] == 'nekos.best':       
                         if args.language == 'SK':
                             print('Získavanie obrazu zo servera nekos.best')
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print('Getting image from nekos.best server')
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print('nekos.best サーバーから画像を取得する')
                         Thread(target=netspeed, daemon=True).start()
                         resp = requests.get("https://nekos.best/api/v2/neko")
                         data = resp.json()
-                        img_data = requests.get(data["results"][0]["url"]).content
+                        res = requests.get(data["results"][0]["url"], stream = True)
                     elif config.get('neko settings','server').split(' ')[0] == 'waifu.pics':  
                         if args.language == 'SK':
                             print('Získavanie obrazu zo servera waifu.pics')
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print('Getting image from waifu.pics server')
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print('waifu.pics サーバーから画像を取得する')
                         Thread(target=netspeed, daemon=True).start()
                         resp = requests.get("https://api.waifu.pics/sfw/neko")
                         data = resp.json()
-                        img_data = requests.get(data["url"]).content
+                        res = requests.get(data["url"], stream = True)
                     else:
                         if args.language == 'SK':
                             print('Nie je poskytnutý žiadny server')
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print('No server provided')
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print('サーバーが提供されていません')
                         continue
                     print('.',end='\r')
-                    with open('assets/neko.png', 'wb') as handler:
-                        handler.write(img_data)
+                    if res.status_code == 200:
+                        with open('assets/neko.png','wb') as f:
+                            shutil.copyfileobj(res.raw, f)
                     open("NETSPEEDEND", 'x')
                 else:
                     args.neko = object()
@@ -1654,9 +1665,9 @@ def main():
                 print('..............',end='\r')
                 if args.language == 'SK':
                     print('HOTOVO         ')
-                if args.language == 'EN':
+                elif args.language == 'EN':
                     print('DONE           ')
-                if args.language == 'JP':
+                elif args.language == 'JP':
                     print('終わり          ')
                 move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
                 neko = True
@@ -1664,9 +1675,9 @@ def main():
                 if not neko:
                     if args.language == 'SK':
                         print(':( Nemôžeš mať -1 neko')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print(":( You can't have -1 neko")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print(':( 猫を-1にすることはできません')
                     continue
                 pg.keyDown('alt')
@@ -1675,6 +1686,10 @@ def main():
                 pg.keyDown('alt')
                 pg.press('f4')
                 pg.keyUp('alt')
+                try:
+                    img.close()
+                except UnboundLocalError:
+                    pass
                 os.remove('assets/neko.png')
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
                 neko = False
@@ -1684,49 +1699,92 @@ def main():
                 if waifu:
                     if args.language == 'SK':
                         print('Prepáčte, nemôžete mať dve waifu')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print("Sorry you can't have two waifu")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print('申し訳ありませんが、ワイフを 2 つ持つことはできません')
                     continue  
                 if neko:
                     if args.language == 'SK':
                         print('Prepáčte, že nemôžete mať waifu a neko')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print("Sorry you can't have waifu and neko")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print('ごめんなさい、ワイフとネコは使えません')
                     continue                    
                 if args.language == 'SK':
                     print('ČAKAJ')
-                if args.language == 'EN':
+                elif args.language == 'EN':
                     print('WAIT')
-                if args.language == 'JP':
+                elif args.language == 'JP':
                     print('待つ')
                 if args.waifu != None: 
                     if args.language == 'SK':
                         print('Získavanie obrazu zo servera waifu.pics')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print('Getting image from waifu.pics server')
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print('waifu.pics サーバーから画像を取得する')
                     Thread(target=netspeed, daemon=True).start()
                     resp = requests.get("https://api.waifu.pics/" + config.get('waifu settings','type').split(' ')[0] + "/" + config.get('waifu settings','category').split(' ')[0])
                     data = resp.json()
                     img_data = requests.get(data["url"]).content
                     print('.',end='\r')
-                    with open('assets/waifu.png', 'wb') as handler:
-                        handler.write(img_data)
-                    open("NETSPEEDEND", 'x')
-                else:
+                    if data["url"].split('.')[-1] == 'gif':
+                        res = requests.get(data["url"], stream = True)
+                        if res.status_code == 200:
+                            with open('assets/waifu.gif','wb') as f:
+                                shutil.copyfileobj(res.raw, f)
+                            f.close()
+                        open("NETSPEEDEND", 'x')
+                        clip = mp.VideoFileClip("assets/waifu.gif")
+                        clip.write_videofile("assets/waifu.mp4")
+                        sleep(0.5)
+                        player = vlc.Instance('--input-repeat=999999')
+                        media_list = player.media_list_new()
+                        media_player = player.media_list_player_new()
+                        media = player.media_new("assets/waifu.mp4")
+                        media_list.add_media(media)
+                        media_player.set_media_list(media_list)
+                        player.vlm_set_loop("waifu", True)
+                        media_player.play()
+                        waifuvid = True
+                        sleep(1)
+                        os.remove('assets/waifu.gif')
+                    if data["url"].split('.')[-1] != 'gif':
+                        res = requests.get(data["url"], stream = True)
+                        if res.status_code == 200:
+                            with open('assets/waifu.png','wb') as f:
+                                shutil.copyfileobj(res.raw, f)
+                        open("NETSPEEDEND", 'x')
+                elif args.waifu == None:
+                    data = {'url' : 'https://api.waifu.pics/waifu.mp4'}
+                    waifuvid = True
+                    player = vlc.Instance('--input-repeat=999999')
+                    media_list = player.media_list_new()
+                    media_player = player.media_list_player_new()
+                    media = player.media_new("assets/waifu.mp4")
+                    media_list.add_media(media)
+                    media_player.set_media_list(media_list)
+                    player.vlm_set_loop("waifu", True)
+                    media_player.play()
                     args.waifu = object()
+                    sleep(1)
                 print('..',end='\r')
-                img = Image.open('assets/waifu.png')
-                print('....',end='\r')
-                img.show()
+                print(data)
+                if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':
+                    img = Image.open('assets/waifu.png')
+                    print('....',end='\r')
+                    img.show()
+                print(data)
                 print('....',end='\r')
                 sleep(0.1)
                 print('.....',end='\r')
+                if data["url"].split('.')[-1] == 'gif' or data["url"].split('.')[-1] == 'mp4':
+                    window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 Output)')[0]
+                    window.activate()
+                    sleep(0.1)
+                print(data)
                 pg.keyDown('win')
                 print('......',end='\r')
                 pg.press('right')
@@ -1743,12 +1801,11 @@ def main():
                 print('............',end='\r')
                 pg.keyUp('alt')
                 print('.............',end='\r')
-                print('..............',end='\r')
                 if args.language == 'SK':
                     print('HOTOVO         ')
-                if args.language == 'EN':
+                elif args.language == 'EN':
                     print('DONE           ')
-                if args.language == 'JP':
+                elif args.language == 'JP':
                     print('終わり          ')
                 move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
                 waifu = True
@@ -1756,18 +1813,27 @@ def main():
                 if not waifu:
                     if args.language == 'SK':
                         print(':( Nemôžeš mať -1 waifu')
-                    if args.language == 'EN':
+                    elif args.language == 'EN':
                         print(":( You can't have -1 waifu")
-                    if args.language == 'JP':
+                    elif args.language == 'JP':
                         print(':( -1ワイフを持つことはできません')
                     continue
-                pg.keyDown('alt')
-                pg.press('tab')
-                pg.keyUp('alt')
-                pg.keyDown('alt')
-                pg.press('f4')
-                pg.keyUp('alt')
-                os.remove('assets/waifu.png')
+                elif waifuvid:
+                    media_player.stop()
+                    waifuvid = False
+                    os.remove('assets/waifu.mp4')
+                else:
+                    pg.keyDown('alt')
+                    pg.press('tab')
+                    pg.keyUp('alt')
+                    pg.keyDown('alt')
+                    pg.press('f4')
+                    pg.keyUp('alt')
+                    try:
+                        img.close()
+                    except UnboundLocalError:
+                        pass
+                    os.remove('assets/waifu.png')
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
                 waifu = False
             if vstup == 'delsavlog':
@@ -1798,9 +1864,9 @@ def main():
                 os.remove(password[1])  # type: ignore
                 if args.language == "SK":
                     print("Si odhlásený")
-                if args.language == "EN":
+                elif args.language == "EN":
                     print("You\'re logged out")
-                if args.language == "JP":
+                elif args.language == "JP":
                     print('ログアウトしました')
                 history.write('[' + str(linenumber) + ', ' + '*logout]\n')
                 history.close()
@@ -1816,9 +1882,9 @@ def main():
                 logged = False
                 if args.language == "SK":
                     print("Si odhlásený")
-                if args.language == "EN":
+                elif args.language == "EN":
                     print("You\'re logged out")
-                if args.language == "JP":
+                elif args.language == "JP":
                     print('ログアウトしました')
                 continue
             """
@@ -1828,9 +1894,9 @@ def main():
                 logged = False
                 if args.language == "SK":
                     print('Nie si prihlásený!!!')
-                if args.language == "EN":
+                elif args.language == "EN":
                     print("You\'re not logged in!!!")
-                if args.language == "JP":
+                elif args.language == "JP":
                     print('ログインしていません!!!')
                 continue
             """
@@ -1876,9 +1942,9 @@ def main():
                     if vstup == help[i]:
                         if args.language == "SK":
                             print("'login' pre prihlásenie\n'logout' pre odhlásenie\n'quit' alebo 'koniec' pre koniec\n'delsavlog' pre vymazanie autoprihlasenia\n\nKeď chceš zmeniť jazyk programu v terminalu do commandu pridaj '-lang EN' or '-lang SK'\n\nPre podrobnejšiu pomoc napíš '-ah' alebo '-advanced help' alebo 'ah' alebo 'advanced help'\n'history' zobrazuje vašu aktuálne uloženú históriu")
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print("'login' for login\n'logout' for logout\n'quit' or 'end' for end\n'delsavlog' to clear autologin\n\nWhen you want to change the language of the program in the terminal, add '-lang EN' or '-lang SK' to the command\n\nFor more detailed help, type '-ah' or '-advanced help' or 'ah' or 'advanced help'\n'history' show your currently saved history")
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print("ログインの場合は「login」\nログアウトの場合は「logout」\n終了の場合は「quit」または「end」\n自動ログインをクリアする「delsavlog」\n\nターミナルでプログラムの言語を変更する場合は、「-lang EN」または「-lang」を追加します コマンドに SK'\n\n詳細なヘルプを表示するには、'-ah' または '-advanced help' または 'ah' または 'advanced help' と入力してください'\n「history」は、現在保存されている履歴を表示します")
                         continue
                 """
@@ -1890,16 +1956,16 @@ def main():
                     for i in historylist:
                         if args.language == 'SK':
                             print('Čas začiatku = ' + i[1][0:26] + ', Čas ukončenia = ' + i[0] + ', Vstup = ' + i[1][26:])
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print('Start time = ' + i[1][0:26] + ', End time = ' + i[0] + ', Input = ' + i[1][26:])
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print('開始時間 = ' + i[1][0:26] + '、終了時間 = ' + i[0] + '、入力 = ' + i[1][26:])
                     if len(historylist) == 0:
                         if args.language == 'SK':
                             print('História je prázdna')
-                        if args.language == 'EN':
+                        elif args.language == 'EN':
                             print('History is empty')
-                        if args.language == 'JP':
+                        elif args.language == 'JP':
                             print('履歴が空です')
                 if vstup == 'login' and not logged or tologin and not logged:
                     loginvstupuser = ''
@@ -1915,9 +1981,9 @@ def main():
                     if logins == 1:
                         if args.language == "SK":
                             vstup = input("Ak sa chcete prihlásiť, musíte reštartovať program (Y/n) >")
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             vstup = input("If you want to login you need to restart program (Y/n) > ")
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             vstup = input("ログインするには、プログラムを再起動する必要があります (Y/n) >")
                         vstup.lower()
                         if vstup == "n":
@@ -1963,9 +2029,9 @@ def main():
                     if loginvstupuser == "back":
                         if args.language == "SK":
                             print('Idem späť.')
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print('Going back.')
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print('戻る。')
                         continue
                     """
@@ -1976,9 +2042,9 @@ def main():
                     if loginvstupuser == "quit" or loginvstupuser == "koniec":
                         if args.language == "SK":
                             print("Idem späť a ukončujem program.")
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print("Going back and exiting the program.")
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print('戻ってプログラムを終了します。')
                         sleep(0.5)
                         exit = True
@@ -1990,18 +2056,18 @@ def main():
                     if tologinhelp:
                         if args.language == "SK":
                             print("'back' pre menu\n'quit' alebo 'koniec' pre koniec")
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print("'back' for menu\n'quit' or 'end' for end")
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print("メニューの「戻る」\n 'quit' または 'end' で終了")
                         tologin = True
                         continue
                     elif not loginvstupuser.isnumeric():
                         if args.language == "SK":
                             print('PID neobsahuje písmená alebo znaky!!!')
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print('The PID does not contain letters or characters!!!')
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print('PID に文字が含まれていません!!!')
                         tologin = True
                         continue
@@ -2009,9 +2075,9 @@ def main():
                         exit = False
                         if args.language == "SK":
                             Thread(target=progress_bar, args=('Preverujem', 3,), daemon=True).start()
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             Thread(target=progress_bar, args=('Checking', 3,), daemon=True).start()
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             Thread(target=progress_bar, args=('チェック中', 3,), daemon=True).start()
                         icofind = code(find(decode(True, False)), False)
                         cv2.destroyAllWindows()
@@ -2030,9 +2096,9 @@ def main():
                             sleep(0.1)
                             if args.language == "SK":
                                 print("ZLÉ PID!!!")
-                            if args.language == "EN":
+                            elif args.language == "EN":
                                 print("WRONG PID!!!")
-                            if args.language == "JP":
+                            elif args.language == "JP":
                                 print('間違った PID !!!')
                             tologin = True
                             continue
@@ -2040,27 +2106,36 @@ def main():
                     else:
                         if args.language == "SK":
                             print('PID má byt 6 čísel dlhé!!!')
-                        if args.language == "EN":
+                        elif args.language == "EN":
                             print('The PID should be 6 numbers long!!!')
-                        if args.language == "JP":
+                        elif args.language == "JP":
                             print('PID は 6 桁の長さでなければなりません!!!')
                         tologin = True
                 elif logged and vstup == 'login':
                     if args.language == "SK":
                         print('Už si prihlasení!!!')
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print('You are already logged in!!!')
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('すでにログインしています！！！')
         elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
             if neko or waifu:
-                pg.keyDown('alt')
-                pg.press('tab')
-                pg.keyUp('alt')
-                pg.keyDown('alt')
-                pg.press('f4')
-                pg.keyUp('alt')
+                if not waifuvid:
+                    pg.keyDown('alt')
+                    pg.press('tab')
+                    pg.keyUp('alt')
+                    pg.keyDown('alt')
+                    pg.press('f4')
+                    pg.keyUp('alt')
+                    try:
+                        img.close()
+                    except UnboundLocalError:
+                        pass
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+            try:
+                media_player.stop()
+            except Exception:
+                pass
             if not restart:
                 try:
                     os.remove('assets/neko.png')
@@ -2068,6 +2143,14 @@ def main():
                     pass
                 try:
                     os.remove('assets/waifu.png')
+                except Exception:
+                    pass
+                try:
+                    os.remove('assets/waifu.gif')
+                except Exception:
+                    pass
+                try:
+                    os.remove('assets/waifu.mp4')
                 except Exception:
                     pass
             try:
@@ -2083,9 +2166,9 @@ def main():
                     pass
                 if args.language == "SK":
                     print("\nSi odhlásený\n")
-                if args.language == "EN":
+                elif args.language == "EN":
                     print('\nYou are logged out\n')
-                if args.language == "JP":
+                elif args.language == "JP":
                     print('\nログアウトしました\n')
                 history.write('[' + str(linenumber) + ', ' + '*logout]\n')
                 history.close()
@@ -2095,9 +2178,9 @@ def main():
             history.close()
             if args.language == "SK":
                 print("ODSTRAŇOVANIE NEPOTREBNÝCH SÚBOROV\n\nPísanie histórie\n")
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("DELETING UNNECESSARY FILES\n\nWriting history\n")
-            if args.language == "JP":
+            elif args.language == "JP":
                 print('不要なファイルを削除しています\n\n執筆履歴\n')
             start = time.time()
             sleep(0.25)
@@ -2116,9 +2199,9 @@ def main():
             os.remove(historyname)
             if args.language == "SK":
                 print("Hotovo\n")
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("Done\n")
-            if args.language == "JP":
+            elif args.language == "JP":
                 print('終わり\n')
             playhtml('apphtml\\end', 1, 3)
             try:
@@ -2146,33 +2229,35 @@ def main():
                 print("ZABAĽUJEM DATA\n")
                 sleep(0.2)
                 subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam'])
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("PACKING DATA\n")
                 sleep(0.2)
                 subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam', '-lang', 'EN'])
-            if args.language == "JP":
+            elif args.language == "JP":
                 print("梱包データ\n")
                 sleep(0.2)
                 subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3', '-mode', 'repack', '-e', 'neko_vol0_steam', '-lang', 'JP'])
             shutil.rmtree('datafolder')
+            shutil.rmtree('apphtml')
+            shutil.rmtree('assets')
             if args.language == "SK":
                 print("HOTOVO\n")
                 sleep(0.5)
                 cv2.destroyAllWindows()
                 print("ZABAĽUJEM DRUHÚ ČASŤ DATA\n")
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("COMPLETE\n")
                 sleep(0.5)
                 cv2.destroyAllWindows()
                 print("PACKING SECOND PART OF DATA\n")
-            if args.language == "JP":
+            elif args.language == "JP":
                 print("完了\n")
                 sleep(0.5)
                 cv2.destroyAllWindows()
                 print("データの 2 番目の部分のパッキング\n")
             zipfiles = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
             zipfileswopath = ['tests.py', 'xp3.py', 'xp3reader.py', 'xp3writer.py', 'data.xp3']
-            folders = ['structs', 'assets', 'apphtml']
+            folders = ['structs']
             for i in range(0, len(folders)):
                 for path, directories, files in os.walk(folders[i]):
                     for file in files:
@@ -2186,66 +2271,66 @@ def main():
                     bar = tqdm(range(0, len(zipfiles)), desc="Zabaľujem ")
                     for i in bar:
                         zip.write(zipfiles[i])
-                        size = sum([zinfo.file_size for zinfo in zip.filelist])
+                        filesize = sum([zinfo.file_size for zinfo in zip.filelist])
                         sleep(0.04)
-                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(size - zip_kb_old,2)) + " KB")
-                        zip_kb_old = size
+                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old,2)) + " KB")
+                        zip_kb_old = filesize
                         os.remove(zipfiles[i])
                         if i == len(zipfiles)-1:
                             tqdm.write("\n")
-                    size = sum([zinfo.file_size for zinfo in zip.filelist])
-                    tqdm.write("\nZabalené data majú > " + str(size)+ " KB")
-                if args.language == "EN":
+                    filesize = sum([zinfo.file_size for zinfo in zip.filelist])
+                    tqdm.write("\nZabalené data majú > " + str(filesize)+ " KB")
+                elif args.language == "EN":
                     bar = tqdm(range(0, len(zipfiles)), desc="Packing ")
                     for i in bar:
                         zip.write(zipfiles[i])
-                        size = sum([zinfo.file_size for zinfo in zip.filelist])
+                        filesize = sum([zinfo.file_size for zinfo in zip.filelist])
                         sleep(0.02)
-                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(size - zip_kb_old,2)) + " KB")
-                        zip_kb_old = size
+                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old,2)) + " KB")
+                        zip_kb_old = filesize
                         os.remove(zipfiles[i])
                         if i == len(zipfiles)-1:
                             tqdm.write("\n")
-                    size = sum([zinfo.file_size for zinfo in zip.filelist])
-                    tqdm.write("\nPacked data have > " + str(size)+ " KB")
-                if args.language == "JP":
+                    filesize = sum([zinfo.file_size for zinfo in zip.filelist])
+                    tqdm.write("\nPacked data have > " + str(filesize)+ " KB")
+                elif args.language == "JP":
                     bar = tqdm(range(0, len(zipfiles)), desc="梱包 ")
                     for i in bar:
                         zip.write(zipfiles[i])
-                        size = sum([zinfo.file_size for zinfo in zip.filelist])
+                        filesize = sum([zinfo.file_size for zinfo in zip.filelist])
                         sleep(0.02)
-                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(size - zip_kb_old,2)) + " KB")
-                        zip_kb_old = size
+                        tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old,2)) + " KB")
+                        zip_kb_old = filesize
                         os.remove(zipfiles[i])
                         if i == len(zipfiles)-1:
                             tqdm.write("\n")
-                    size = sum([zinfo.file_size for zinfo in zip.filelist])
-                    tqdm.write("\nパックされたデータは > " + str(size)+ " KB")
+                    filesize = sum([zinfo.file_size for zinfo in zip.filelist])
+                    tqdm.write("\nパックされたデータは > " + str(filesize)+ " KB")
                 zip.close()
             for i in range(0, len(folders)):
                 shutil.rmtree(folders[i])
             sleep(0.2)
             if args.language == "SK":
                 print("\nHOTOVO\n")
-            if args.language == "EN":
+            elif args.language == "EN":
                 print("\nCOMPLETE\n")
-            if args.language == "JP":
+            elif args.language == "JP":
                 print('\n未完了\n')
             end = time.time()
             sleep(0.2)
             if args.language == "SK":
                 print('Uplynutý čas balenia: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
-            if args.language == "EN":
+            elif args.language == "EN":
                 print('Elapsed time of packing: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
-            if args.language == "JP":
+            elif args.language == "JP":
                 print('梱包経過時間: ' + str(end-start-1.75-zipfilesnumber*0.02) + '\n')
             sleep(0.5)
             if restart:
                 if args.language == "SK":
                     print('Program sa automaticky reštartuje.')
-                if args.language == "EN":
+                elif args.language == "EN":
                     print('The program will restart automatically.')
-                if args.language == "JP":
+                elif args.language == "JP":
                     print('プログラムが自動的に再起動します。')
             elif not restart:
                 if args.endf == None:
@@ -2253,9 +2338,9 @@ def main():
                 else:
                     if args.language == "SK":
                         print('Program sa automaticky vypne.')
-                    if args.language == "EN":
+                    elif args.language == "EN":
                         print('The program will automatically shut down.')   
-                    if args.language == "JP":
+                    elif args.language == "JP":
                         print('プログラムは自動的にシャットダウンします。')
             sleep(0.5)
             if args.endf != None and not restart:
@@ -2283,7 +2368,22 @@ def main():
                         if os.path.isfile("restart.py"):
                             os.remove("restart.py")
                         if neko:
-                            os.remove('assets/neko.png')
+                            try:
+                                os.remove('assets/neko.png')
+                            except Exception:
+                                pass
+                            try:
+                                os.remove('assets/waifu.png')
+                            except Exception:
+                                pass
+                            try:
+                                os.remove('assets/waifu.gif')
+                            except Exception:
+                                pass
+                            try:
+                                os.remove('assets/waifu.mp4')
+                            except Exception:
+                                pass
                         quit()
                     elif vstup in ['','y']:
                         os.system('cls')
@@ -2293,7 +2393,7 @@ def main():
                                 subprocess.check_output('start restart.py --neko --autol', shell=True)
                                 sys.stdout.flush()
                                 subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
-                            elif waifu:
+                            elif waifu or waifuvid:
                                 subprocess.check_output('start restart.py --waifu --autol', shell=True)
                                 sys.stdout.flush()
                                 subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
@@ -2301,6 +2401,8 @@ def main():
                                 subprocess.check_output('start restart.py --autol', shell=True)
                                 sys.stdout.flush()
                                 subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
+                        else:
+                            subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                         sys.stdout.flush()
                         quit()
                 else:
@@ -2310,9 +2412,10 @@ def main():
                         subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
                     elif waifu:
                         subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
-                    subprocess.check_output('start restart.py', shell=True)
+                    else:
+                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                     sys.stdout.flush()
-                    subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
+                    subprocess.check_output('start restart.py', shell=True)
                     sys.stdout.flush()
                     quit()
             elif not restart:
