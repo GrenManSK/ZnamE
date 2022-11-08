@@ -28,8 +28,12 @@ var edupage_8py =
     [ "default", "df/dd7/edupage_8py.html#a8db78ee51fe4b22d4d52f8ec2cc9ecb3", null ],
     [ "desc", "df/dd7/edupage_8py.html#a546f0ee6c73f7059564c777e42aa1713", null ],
     [ "directory", "df/dd7/edupage_8py.html#afcd629fb42a77fb7115a373af2b133b8", null ],
+    [ "exc_obj", "df/dd7/edupage_8py.html#a5577e183bb129217a4bee375453a4672", null ],
+    [ "exc_tb", "df/dd7/edupage_8py.html#a7d063d867c510eafda941826fa04591e", null ],
+    [ "exc_type", "df/dd7/edupage_8py.html#a9d69e5421402b7c8c84a45f76baeed68", null ],
     [ "filename", "df/dd7/edupage_8py.html#a5426b37a2ceaa0ac4895a823d8321438", null ],
     [ "findapp", "df/dd7/edupage_8py.html#a4e76721f3d3615af27c369efd760c5a3", null ],
+    [ "fname", "df/dd7/edupage_8py.html#aa7520d97a6375b4fed89a121d7e8080b", null ],
     [ "help", "df/dd7/edupage_8py.html#a08a7b70b9f407ce0bd61e0c6c9e58ac4", null ],
     [ "iterable", "df/dd7/edupage_8py.html#a6d814da27f3b2b7c5efb9a90cd5a15be", null ],
     [ "language", "df/dd7/edupage_8py.html#a8db05b61d06312002141c30965b17bf0", null ],
@@ -55,5 +59,6 @@ var edupage_8py =
     [ "updateapp", "df/dd7/edupage_8py.html#ac32f721d6dba7d6065d9ea4aad2fee09", null ],
     [ "url", "df/dd7/edupage_8py.html#a57309bd95951e13c51a34733d71cb1d0", null ],
     [ "user32", "df/dd7/edupage_8py.html#a42ac73748deb2669242da95bae43f0eb", null ],
-    [ "verzia", "df/dd7/edupage_8py.html#a9593eb2c11b28648f081e7f54e0e9b19", null ]
+    [ "verzia", "df/dd7/edupage_8py.html#a9593eb2c11b28648f081e7f54e0e9b19", null ],
+    [ "x", "df/dd7/edupage_8py.html#a40cefab09868a25da20408aada8b7d11", null ]
 ];

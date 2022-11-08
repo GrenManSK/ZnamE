@@ -29,8 +29,12 @@ var namespaces_dup =
       [ "default", "d0/d52/namespaceedupage.html#a8db78ee51fe4b22d4d52f8ec2cc9ecb3", null ],
       [ "desc", "d0/d52/namespaceedupage.html#a546f0ee6c73f7059564c777e42aa1713", null ],
       [ "directory", "d0/d52/namespaceedupage.html#afcd629fb42a77fb7115a373af2b133b8", null ],
+      [ "exc_obj", "d0/d52/namespaceedupage.html#a5577e183bb129217a4bee375453a4672", null ],
+      [ "exc_tb", "d0/d52/namespaceedupage.html#a7d063d867c510eafda941826fa04591e", null ],
+      [ "exc_type", "d0/d52/namespaceedupage.html#a9d69e5421402b7c8c84a45f76baeed68", null ],
       [ "filename", "d0/d52/namespaceedupage.html#a5426b37a2ceaa0ac4895a823d8321438", null ],
       [ "findapp", "d0/d52/namespaceedupage.html#a4e76721f3d3615af27c369efd760c5a3", null ],
+      [ "fname", "d0/d52/namespaceedupage.html#aa7520d97a6375b4fed89a121d7e8080b", null ],
       [ "help", "d0/d52/namespaceedupage.html#a08a7b70b9f407ce0bd61e0c6c9e58ac4", null ],
       [ "iterable", "d0/d52/namespaceedupage.html#a6d814da27f3b2b7c5efb9a90cd5a15be", null ],
       [ "language", "d0/d52/namespaceedupage.html#a8db05b61d06312002141c30965b17bf0", null ],
@@ -56,7 +60,8 @@ var namespaces_dup =
       [ "updateapp", "d0/d52/namespaceedupage.html#ac32f721d6dba7d6065d9ea4aad2fee09", null ],
       [ "url", "d0/d52/namespaceedupage.html#a57309bd95951e13c51a34733d71cb1d0", null ],
       [ "user32", "d0/d52/namespaceedupage.html#a42ac73748deb2669242da95bae43f0eb", null ],
-      [ "verzia", "d0/d52/namespaceedupage.html#a9593eb2c11b28648f081e7f54e0e9b19", null ]
+      [ "verzia", "d0/d52/namespaceedupage.html#a9593eb2c11b28648f081e7f54e0e9b19", null ],
+      [ "x", "d0/d52/namespaceedupage.html#a40cefab09868a25da20408aada8b7d11", null ]
     ] ],
     [ "uninstall", "dd/de8/namespaceuninstall.html", [
       [ "uninstall", "dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd", null ]
