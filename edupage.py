@@ -1,9 +1,4 @@
-
-"""
-This app is for logging in and logging out with PID and password
-You can add mark with subject to database
-"""
-
+try:
 import argparse, pkg_resources, sys, os, subprocess, configparser
 from time import sleep
 print('Reading config file (ini)\n')
@@ -47,6 +42,7 @@ parser.add_argument('-ni', '--nointro', choices=[], help='Will not start intro',
 parser.add_argument('-nif', '--nointrof', choices=[], help='Will not start intro', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-neko', '--neko', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-waifu', '--waifu', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+parser.add_argument('-waifuvid', '--waifuvid', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
 parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
@@ -75,7 +71,7 @@ Check if the internet is working. If it is not, print an error message and quit.
 
 try:
     import requests
-    timeout = 1
+    timeout = 2
     requests.head("http://www.google.com/", timeout=timeout)
 except requests.ConnectionError: # type: ignore
     if args.language == "SK":
@@ -138,7 +134,7 @@ from datetime import datetime
 from pathlib import Path
 import pyautogui as pg
 from uninstall import uninstall
-import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil, vlc, pygetwindow 
+import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil, vlc, pygetwindow
 from PIL import Image
 import moviepy.editor as mp
 verzia = open('version', 'r')
@@ -172,18 +168,9 @@ def getWindow(Times):
     cv2.waitKey(1)
     sleep(0.1)
     cv2.destroyWindow("Image")
-    if Times == 1 or Times == 0:
-        ctypes.windll.user32.keybd_event(0x12, 0, 0, 0)  # Alt
-        ctypes.windll.user32.keybd_event(0x09, 0, 0, 0)  # Tab
-        sleep(0.01)
-        if Times == 1:
-            ctypes.windll.user32.keybd_event(0x09, 0, 2, 0)  # ~Tab
-            sleep(0.1)
-            ctypes.windll.user32.keybd_event(0x09, 0, 0, 0)  # Tab
-            sleep(0.01)
-        ctypes.windll.user32.keybd_event(0x09, 0, 2, 0)  # ~Tab
-        ctypes.windll.user32.keybd_event(0x12, 0, 2, 0)  # ~Alt
-        sleep(0.01)
+    if args.test != None:
+        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+        window.activate()
 
 
 def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
@@ -901,7 +888,8 @@ def playhtml(htmlFile, mode=0, time=0):
             elif mode == 1:
                 mouseclick(time=time)
             if args.test != None:
-                win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE'))   # type: ignore
+                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                window.activate()
         else:
             pass
 
@@ -984,9 +972,12 @@ def main():
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
         elif args.language == "JP":
             subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
-        shutil.move('data1/data', 'data')
-        os.mkdir('apphtml')
-        os.mkdir('assets')
+        try:
+            shutil.move('data1/data', 'data')
+            os.mkdir('apphtml')
+            os.mkdir('assets')
+        except Exception:
+            pass
         for r, d, f in os.walk('data1/apphtml/'):
             for file in f:
                 print(os.path.join('./', file))
@@ -1035,6 +1026,13 @@ def main():
         print('初期化 VLC')
     sleep(0.25)
     media_player = vlc.MediaPlayer()
+    sleep(0.25)
+    if args.language == 'SK':
+        print('KONIEC')
+    elif args.language == 'EN':
+        print('END')
+    elif args.language == 'JP':
+        print('終わり')
     sleep(0.25)
     os.system('cls')
     
@@ -1112,9 +1110,11 @@ def main():
     if args.nointro == None or config.get('basic info','intro').split(' ')[0] == 'False':
         pass
     else:
-        win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='frame2')) # type: ignore
+        window = pygetwindow.getWindowsWithTitle('frame2')[0]
+        window.activate()
         if args.test != None:
-            win32gui.SetForegroundWindow(pywinauto.findwindows.find_window(title='ZnámE')) # type: ignore
+            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+            window.activate()
     getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
     move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
     while True:
@@ -1456,8 +1456,10 @@ def main():
                     elif args.language == "JP":
                         print('間違ったパスワード')
             if args.neko == None:
+                sleep(1)
                 pg.write("nekon\n")
             if args.waifu == None:
+                sleep(1)
                 pg.write("waifun\n")
             """
                 this function is used to get the input from the user and write it to the history file.
@@ -1514,8 +1516,13 @@ def main():
                                         setvstup = '2'
                                         break
                                     elif setvstup == '2':
-                                        set_config('waifu settings', 'type', 'nsfw')
-                                        break
+                                        setvstup = input('Do you have 18+ (y/N) > ').lower()
+                                        if setvstup == 'y':
+                                            set_config('waifu settings', 'type', 'nsfw')
+                                            setvstup = '2'
+                                            break
+                                        else:
+                                            break
                                     elif setvstup == '3':
                                         break
                             if setvstup == '2':
@@ -1566,6 +1573,29 @@ def main():
                     elif setvstup == '4':
                         break
                 print('')
+            if vstup == 'save':
+                if waifu or neko or waifuvid:
+                    imagetime = str(datetime.now().strftime("%H-%M-%S"))
+                    try:
+                        os.mkdir('download/')
+                    except Exception:
+                        pass
+                    if neko:
+                        shutil.copy('assets/neko.png','download/neko-' + imagetime + '.png')
+                        continue
+                    if waifuvid:
+                        shutil.copy('assets/waifu.mp4','download/waifu-' + imagetime + '.mp4')
+                        continue
+                    if waifu:
+                        shutil.copy('assets/waifu.png','download/waifu-' + imagetime + '.png')
+                        continue
+                else:
+                    if args.language == 'SK':
+                        print('Nemáte obrázok na uloženie')
+                    elif args.language == 'EN':
+                        print("You don't have image to save")
+                    elif args.language == 'JP':
+                        print('保存する画像がありません')
             if vstup == 'motivational':
                 Thread(target=netspeed, daemon=True).start()
                 resp = requests.get("https://animechan.vercel.app/api/random")
@@ -1687,7 +1717,7 @@ def main():
                 pg.press('f4')
                 pg.keyUp('alt')
                 try:
-                    img.close()
+                    img.close()  # type: ignore
                 except UnboundLocalError:
                     pass
                 os.remove('assets/neko.png')
@@ -1718,7 +1748,7 @@ def main():
                     print('WAIT')
                 elif args.language == 'JP':
                     print('待つ')
-                if args.waifu != None: 
+                if args.waifu != None and args.waifu != None: 
                     if args.language == 'SK':
                         print('Získavanie obrazu zo servera waifu.pics')
                     elif args.language == 'EN':
@@ -1741,46 +1771,49 @@ def main():
                         clip.write_videofile("assets/waifu.mp4")
                         sleep(0.5)
                         player = vlc.Instance('--input-repeat=999999')
-                        media_list = player.media_list_new()
-                        media_player = player.media_list_player_new()
-                        media = player.media_new("assets/waifu.mp4")
+                        media_list = player.media_list_new()  # type: ignore
+                        media_player = player.media_list_player_new()  # type: ignore
+                        media = player.media_new("assets/waifu.mp4")  # type: ignore
                         media_list.add_media(media)
                         media_player.set_media_list(media_list)
-                        player.vlm_set_loop("waifu", True)
+                        player.vlm_set_loop("waifu", True)  # type: ignore
                         media_player.play()
                         waifuvid = True
                         sleep(1)
-                        os.remove('assets/waifu.gif')
                     if data["url"].split('.')[-1] != 'gif':
                         res = requests.get(data["url"], stream = True)
                         if res.status_code == 200:
                             with open('assets/waifu.png','wb') as f:
                                 shutil.copyfileobj(res.raw, f)
                         open("NETSPEEDEND", 'x')
-                elif args.waifu == None:
+                elif args.waifuvid == None:
                     data = {'url' : 'https://api.waifu.pics/waifu.mp4'}
                     waifuvid = True
                     player = vlc.Instance('--input-repeat=999999')
-                    media_list = player.media_list_new()
-                    media_player = player.media_list_player_new()
-                    media = player.media_new("assets/waifu.mp4")
+                    media_list = player.media_list_new()  # type: ignore
+                    media_player = player.media_list_player_new()  # type: ignore
+                    media = player.media_new("assets/waifu.mp4")  # type: ignore
                     media_list.add_media(media)
                     media_player.set_media_list(media_list)
-                    player.vlm_set_loop("waifu", True)
+                    player.vlm_set_loop("waifu", True)  # type: ignore
                     media_player.play()
-                    args.waifu = object()
+                    args.waifu = UNSPECIFIED
                     sleep(1)
+                elif args.waifu == None:
+                    args.waifu = UNSPECIFIED
+                    data = {'url' : 'https://api.waifu.pics/waifu.png'}
+                    open("NETSPEEDEND", 'x')
                 print('..',end='\r')
-                print(data)
-                if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':
+                print(data)  # type: ignore
+                if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':  # type: ignore
                     img = Image.open('assets/waifu.png')
                     print('....',end='\r')
                     img.show()
-                print(data)
+                print(data)  # type: ignore
                 print('....',end='\r')
                 sleep(0.1)
                 print('.....',end='\r')
-                if data["url"].split('.')[-1] == 'gif' or data["url"].split('.')[-1] == 'mp4':
+                if data["url"].split('.')[-1] == 'gif' or data["url"].split('.')[-1] == 'mp4':  # type: ignore
                     window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 Output)')[0]
                     window.activate()
                     sleep(0.1)
@@ -1819,7 +1852,7 @@ def main():
                         print(':( -1ワイフを持つことはできません')
                     continue
                 elif waifuvid:
-                    media_player.stop()
+                    media_player.stop()  # type: ignore
                     waifuvid = False
                     os.remove('assets/waifu.mp4')
                 else:
@@ -1830,7 +1863,7 @@ def main():
                     pg.press('f4')
                     pg.keyUp('alt')
                     try:
-                        img.close()
+                        img.close()  # type: ignore
                     except UnboundLocalError:
                         pass
                     os.remove('assets/waifu.png')
@@ -2128,12 +2161,12 @@ def main():
                     pg.press('f4')
                     pg.keyUp('alt')
                     try:
-                        img.close()
+                        img.close()  # type: ignore
                     except UnboundLocalError:
                         pass
                 move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
             try:
-                media_player.stop()
+                media_player.stop()  # type: ignore
             except Exception:
                 pass
             if not restart:
@@ -2151,6 +2184,10 @@ def main():
                     pass
                 try:
                     os.remove('assets/waifu.mp4')
+                except Exception:
+                    pass
+                try:
+                    os.remove('NETSPEEDEND')
                 except Exception:
                     pass
             try:
@@ -2384,6 +2421,10 @@ def main():
                                 os.remove('assets/waifu.mp4')
                             except Exception:
                                 pass
+                            try:
+                                os.remove('NETSPEEDEND')
+                            except Exception:
+                                pass
                         quit()
                     elif vstup in ['','y']:
                         os.system('cls')
@@ -2393,10 +2434,14 @@ def main():
                                 subprocess.check_output('start restart.py --neko --autol', shell=True)
                                 sys.stdout.flush()
                                 subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
-                            elif waifu or waifuvid:
+                            elif waifu:
                                 subprocess.check_output('start restart.py --waifu --autol', shell=True)
                                 sys.stdout.flush()
                                 subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
+                            elif waifuvid:
+                                subprocess.check_output('start restart.py --waifu --autol', shell=True)
+                                sys.stdout.flush()
+                                subprocess.check_output('start edupage.py --nointrof --waifuvid -lang ' + args.language, shell=True)
                             else:
                                 subprocess.check_output('start restart.py --autol', shell=True)
                                 sys.stdout.flush()
@@ -2435,3 +2480,25 @@ def main():
 
 if '__main__' == __name__:
     main()
+except Exception as e:
+import os, sys
+from time import sleep
+x = open('error_log.txt', 'a')
+if args.language == 'SK':
+    print('Zapisujem chybu do \'error_log.txt\'!!!')
+if args.language == 'EN':
+    print('Writing an error to \'error_log.txt\'!!!')
+if args.language == 'JP':
+    print('\'error_log.txt\' にエラーを書き込みます!!!')
+exc_type, exc_obj, exc_tb = sys.exc_info()
+fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+x.write('Type of error: ' + str(exc_type) + ' | In file: ' + str(fname) + ' | On line: ' + str(exc_tb.tb_lineno) + '\n')
+x.close()
+print('Type of error: ' + str(exc_type) + ' | In file: ' + str(fname) + ' | On line: ' + str(exc_tb.tb_lineno))
+sleep(0.5)
+if args.language == 'SK':
+    print('Koniec!!!')
+if args.language == 'EN':
+    print('End')
+if args.language == 'JP':
+    print('終わり')
