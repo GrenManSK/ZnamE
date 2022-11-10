@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verzia_0',['verzia',['../d0/d52/namespaceedupage.html#a9593eb2c11b28648f081e7f54e0e9b19',1,'edupage']]]
+  ['x_0',['x',['../d0/d52/namespaceedupage.html#a40cefab09868a25da20408aada8b7d11',1,'edupage']]]
 ];

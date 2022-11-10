@@ -1,21 +1,65 @@
 try:
     import argparse, pkg_resources, sys, os, subprocess, configparser
     from time import sleep
+    import inspect
+    
+    def error_log(line):
+        """
+        It writes the error to a file and prints it to the console
+        
+        :param line: The line number of the error
+        """
+        x = open('error_log.txt', 'a')
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        x.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line) + '\n')
+        x.close()
+        print('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
+
+
+    def error_get(error, line, comment=None):
+        """
+        It takes an error, a line number, and a comment, and then raises the error with the comment, and
+        then logs the error with the line number
+        
+        :param error: The error to raise
+        :param line: The line of code that the error is on
+        :param comment: The comment that will be displayed in the error log
+        """
+        try:
+            raise error(comment)
+        except error:
+            error_log(line)
+        
+    def get_line_number(goback=0, relative_frame=1, msg=""):
+        """
+        It returns the line number of the code that called it
+        
+        :param relative_frame: The number of frames to go back, defaults to 1 (optional)
+        :param msg: The message to print
+        :return: The line number of the code that called the function.
+        """
+        return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
+
     print('Reading config file (ini)\n')
     sleep(0.25)
     try:
         config = configparser.RawConfigParser()
+        line_number = get_line_number(-1)
         config.read('config.ini')
     except configparser.DuplicateSectionError:
         print("'config.ini' file is corrupt -> Duplicate section")
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate section')
         input("Press 'enter' to quit")
         quit()
     except configparser.DuplicateOptionError:
         print("'config.ini' file is corrupt -> Duplicate option")
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate option')
         input("Press 'enter' to quit")
         quit()
     except configparser.NoSectionError:
         print("'config.ini' file is corrupt -> No section")
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => No section')
         input("Press 'enter' to quit")
         quit()
     print(config.get('basic info','lang').split(' ')[0])
@@ -64,11 +108,12 @@ try:
             os.remove('update.py')
         except FileNotFoundError:
             print('')
-
+            args.update = UNSPECIFIED
+            error_get(FileNotFoundError, get_line_number(), 'update.py isn\'t present, NOT FATAL ERROR')
     """
     Check if the internet is working. If it is not, print an error message and quit.
     """
-
+    
     try:
         import requests
         timeout = 2
@@ -157,6 +202,7 @@ try:
         :return: The window that the program is currently on
         """
         
+        global exit
         stop_thread1 = True
         a = None
         cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
@@ -169,8 +215,13 @@ try:
         sleep(0.1)
         cv2.destroyWindow("Image")
         if args.test != None:
-            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-            window.activate()
+            try:
+                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                window.activate()
+                return False
+            except IndexError:
+                error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
+                return True
 
 
     def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
@@ -902,8 +953,6 @@ try:
         history = open(historyname, 'w')
         if args.nointrof == None:
             history.write('[*restarted]\n')
-        logged = False
-        exit = False
         global password
         if args.language == "SK":
             print('Jazyk = SK\n\nZačínam rozbaľovať\n')
@@ -1085,6 +1134,8 @@ try:
         """
         if args.language == 'JP':
             print("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
+        logged = False
+        exit = False
         tologin = False
         restart = False
         topassword = False
@@ -1106,15 +1157,19 @@ try:
         """
         if not inactive1:
             playhtml('apphtml\\start', 1, 3,)
-        getWindow(1)
+        exit = getWindow(1)
         if args.nointro == None or config.get('basic info','intro').split(' ')[0] == 'False':
             pass
         else:
             window = pygetwindow.getWindowsWithTitle('frame2')[0]
             window.activate()
             if args.test != None:
-                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                window.activate()
+                try:
+                    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                    window.activate()
+                except IndexError:
+                    exit = True
+                    error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
         getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
         move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
         while True:
@@ -2486,19 +2541,15 @@ except Exception as e:
     x = open('error_log.txt', 'a')
     if args.language == 'SK':
         print('Zapisujem chybu do \'error_log.txt\'!!!')
-    if args.language == 'EN':
+    elif args.language == 'EN':
         print('Writing an error to \'error_log.txt\'!!!')
-    if args.language == 'JP':
+    elif args.language == 'JP':
         print('\'error_log.txt\' にエラーを書き込みます!!!')
-    exc_type, exc_obj, exc_tb = sys.exc_info()
-    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    x.write('Type of error: ' + str(exc_type) + ' | In file: ' + str(fname) + ' | On line: ' + str(exc_tb.tb_lineno) + '\n')
-    x.close()
-    print('Type of error: ' + str(exc_type) + ' | In file: ' + str(fname) + ' | On line: ' + str(exc_tb.tb_lineno))
+    error_get(TypeError, get_line_number(), '')
     sleep(0.5)
     if args.language == 'SK':
         print('Koniec!!!')
-    if args.language == 'EN':
+    elif args.language == 'EN':
         print('End')
-    if args.language == 'JP':
+    elif args.language == 'JP':
         print('終わり')

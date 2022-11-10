@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['screensize_0',['screensize',['../d0/d52/namespaceedupage.html#a7b26d1c4d02cd9dc1060abd9bbf338b7',1,'edupage']]],
-  ['screensizepercentage_1',['screensizepercentage',['../d0/d52/namespaceedupage.html#ac388ff14fbe6c03871027bfa64fa0ee3',1,'edupage']]],
-  ['shell_2',['shell',['../d0/d52/namespaceedupage.html#a7a4b0a4e523eb4440e9830818d283044',1,'edupage']]]
+  ['timeout_0',['timeout',['../d0/d52/namespaceedupage.html#a0f5a79eefde3f31817b10c4733ccd2ff',1,'edupage']]],
+  ['total_1',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]]
 ];

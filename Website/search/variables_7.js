@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['language_0',['language',['../d0/d52/namespaceedupage.html#a8db05b61d06312002141c30965b17bf0',1,'edupage']]],
-  ['loginvstupuser_1',['loginvstupuser',['../d0/d52/namespaceedupage.html#a3e71b4857120b4b245437e22d7e99b5b',1,'edupage']]]
+  ['mode_0',['mode',['../d0/d52/namespaceedupage.html#a7ee3f3010bc04cf901b7fb1ffb7c6ae1',1,'edupage']]]
 ];
