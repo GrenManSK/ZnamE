@@ -3,8 +3,8 @@ var indexSectionsWithContent =
   0: "acdefghilmnprstuvxz",
   1: "eu",
   2: "ceru",
-  3: "acdfgimnpsu",
-  4: "acdefhilmnprstuvx",
+  3: "acdefgimnpsu",
+  4: "acdfhilmnprstuvx",
   5: "cz"
 };
 

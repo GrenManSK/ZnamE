@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall']]]
+  ['set_5fconfig_0',['set_config',['../d0/d52/namespaceedupage.html#a0003b8cdfed4f905e18d2a94185fe84b',1,'edupage']]]
 ];
