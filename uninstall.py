@@ -1,5 +1,7 @@
 import os
 import shutil
+import traceback
+from edupage import get_line_number, error_log, error_get
 
 
 def uninstall():
@@ -7,21 +9,14 @@ def uninstall():
         """
         Remove the saved file and the directory containing the saved file.
         """
+        raise ValueError
         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
             os.remove("C:/Users/" + os.getlogin() +
                       "/AppData/Local/ZnámE/saved")
             shutil.rmtree("C:/Users/" + os.getlogin() +
                           "/AppData/Local/ZnámE/")
     except Exception as e:
-        import os
-        import sys
-        from time import sleep
-        x = open('error_log.txt', 'a')
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        x.write('Type of error: ' + str(exc_type) + ' | In file: ' +
-                str(fname) + ' | On line: ' + str(exc_tb.tb_lineno) + '\n')
-        x.close()
+        error_get(eval(type(e).__name__), get_line_number(), 'Unknown error')
 
 
 if __name__ == '__main__':
