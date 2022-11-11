@@ -11,7 +11,7 @@ try:
         """
         x = open('error_log.txt', 'a')
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
         x.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line) + '\n')
         x.close()
         print('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
@@ -49,17 +49,17 @@ try:
         config.read('config.ini')
     except configparser.DuplicateSectionError:
         print("'config.ini' file is corrupt -> Duplicate section")
-        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate section')
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate section') # type: ignore
         input("Press 'enter' to quit")
         quit()
     except configparser.DuplicateOptionError:
         print("'config.ini' file is corrupt -> Duplicate option")
-        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate option')
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate option') # type: ignore
         input("Press 'enter' to quit")
         quit()
     except configparser.NoSectionError:
         print("'config.ini' file is corrupt -> No section")
-        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => No section')
+        error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => No section') # type: ignore
         input("Press 'enter' to quit")
         quit()
     print(config.get('basic info','lang').split(' ')[0])
@@ -398,7 +398,7 @@ try:
                     subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language , shell=True)
                 sleep(0.1)
                 quit()
-        except requests.ConnectionError:
+        except requests.ConnectionError: # type: ignore
             line_number = get_line_number()
             pass
 
@@ -409,8 +409,8 @@ try:
     findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
     passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
     addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(10)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\npg.write("login\\n")\ntime.sleep(1)\nif args.autol == None:\n    pg.write("y\\n")')
-
+    restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(15)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\nif args.autol == None:\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
+    
     def set_config(section, name, info):
         """
         The set_config function writes a new config.ini file with the specified section, name, and info.
@@ -1883,7 +1883,10 @@ try:
                         elif args.waifu == None:
                             args.waifu = UNSPECIFIED
                             data = {'url' : 'https://api.waifu.pics/waifu.png'}
-                            open("NETSPEEDEND", 'x')
+                            try:
+                                open("NETSPEEDEND", 'x')
+                            except FileExistsError:
+                                pass
                         print('..',end='\r')
                         print(data)  # type: ignore
                         if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':  # type: ignore
@@ -2476,7 +2479,7 @@ try:
                         crrestart.write(restartapp)
                         crrestart.close()
                         os.remove('END')
-                        if not restart and os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                        if not inactivelogout and os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                             if args.language == "SK":
                                 print("!\n!!\n!!!\nUPOZORNENIE\nČAKAJTE, KÝM VÁM PROGRAM POVIE ŽE MÔŽETE\n!!!\n!!\n!\n")
                             elif args.language == "EN":
@@ -2490,7 +2493,7 @@ try:
                             elif args.language == "JP":
                                 vstup = input("わかりますか (Y/n) >")
                             vstup.lower()
-                            if vstup == "n":
+                            if not vstup in ['','y']:
                                 if os.path.isfile("restart.py"):
                                     os.remove("restart.py")
                                 if neko:
@@ -2543,8 +2546,19 @@ try:
                             os.system('cls')
                             sys.stdout.flush()
                             if neko or waifu:
-                                subprocess.check_output('start restart.py --neko', shell=True)
-                                sys.stdout.flush()
+                                if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                                    subprocess.check_output('start restart.py --neko --autol', shell=True)
+                                    sys.stdout.flush()
+                                else:
+                                    subprocess.check_output('start restart.py --neko', shell=True)
+                                    sys.stdout.flush()
+                            elif inactivelogout:
+                                if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                                    subprocess.check_output('start restart.py --autol', shell=True)
+                                    sys.stdout.flush()
+                                else:
+                                    subprocess.check_output('start restart.py', shell=True)
+                                    sys.stdout.flush()
                             else:
                                 subprocess.check_output('start restart.py', shell=True)
                                 sys.stdout.flush()
@@ -2564,6 +2578,8 @@ try:
                                 input(str(linenumber) + " 'ENTER' TO END")  
                             elif args.language == "JP":
                                 input(str(linenumber) + " 「ENTER」で終了")
+                            if os.path.exists('restart.py'):
+                                os.remove('restart.py')
                             quit()
                         else:
                             if os.path.exists('restart.py'):
