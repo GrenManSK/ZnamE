@@ -80,6 +80,7 @@ try:
     UNSPECIFIED = object()
     sleep(0.5)
     language = ['SK','EN','JP']
+    music = ['lowness','zurawie']
     parser.add_argument('-lang', '--language', choices=language, help='Language selection', nargs='?')
     parser.add_argument('-v', '--version', choices=[], help='Show version of this program', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-ef', '--endf', choices=[], help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
@@ -88,6 +89,7 @@ try:
     parser.add_argument('-neko', '--neko', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-waifu', '--waifu', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-waifuvid', '--waifuvid', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+    parser.add_argument('-music', '--music', choices=['0','1','2'], help='Starts music; you can select from: '+ str(i for i in music), default='0', nargs='?')
     parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
@@ -138,7 +140,7 @@ try:
     @param nainstalovane - the packages installed on the system           
     @param nenajdene - the packages that are not installed on the system
     """
-    potrebne = {'psutil','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto','moviepy', 'python-vlc', 'pygetwindow'}
+    potrebne = {'psutil','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto','moviepy', 'python-vlc', 'pygetwindow','pygame'}
     nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
     nenajdene = potrebne - nainstalovane
     if args.version == None:
@@ -187,6 +189,7 @@ try:
     import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil, vlc, pygetwindow
     from PIL import Image
     import moviepy.editor as mp
+    from pygame import mixer
     verzia = open('version', 'r')
     os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
     os.system('Title ' + 'ZnámE')
@@ -1147,6 +1150,10 @@ try:
                         print('プログラムが更新されました!!!\n')
             except Exception:
                 pass
+            if args.music != '0':
+                mixer.init()
+                mixer.music.load('assets/' + music[int(args.music)-1] +'.mp3')
+                mixer.music.play()
             """
             If the language is Japanese, print a message that tells the user to watch the help file.
             @param args - the command line arguments
@@ -1657,6 +1664,21 @@ try:
                             elif setvstup == '4':
                                 break
                         print('')
+                    if vstup == 'music':
+                        mixer.init()
+                        for i in range(0, len(music)):
+                            print(str(i + 1) + ') ' + music[i])
+                        musicvstup = int(input('> '))
+                        args.music = str(musicvstup)
+                        try:
+                            if musicvstup == len(music)+1:
+                                continue
+                            mixer.music.load('assets/' + music[musicvstup-1] +'.mp3')
+                        except IndexError:
+                            pg.write('music\n')
+                        mixer.music.play()
+                    if vstup == 'quitmusic':
+                        mixer.music.stop()
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime = str(datetime.now().strftime("%H-%M-%S"))
@@ -2264,6 +2286,11 @@ try:
                         media_player.stop()  # type: ignore
                     except Exception:
                         pass
+                    try:
+                        mixer.music.unload()
+                        mixer.music.stop()
+                    except Exception:
+                        pass
                     if not restart:
                         try:
                             os.remove('assets/neko.png')
@@ -2528,19 +2555,19 @@ try:
                                     if neko:
                                         subprocess.check_output('start restart.py --neko --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
+                                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     elif waifu:
                                         subprocess.check_output('start restart.py --waifu --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
+                                        subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     elif waifuvid:
                                         subprocess.check_output('start restart.py --waifu --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --waifuvid -lang ' + args.language, shell=True)
+                                        subprocess.check_output('start edupage.py --nointrof --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     else:
                                         subprocess.check_output('start restart.py --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
+                                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
                                 else:
                                     subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
                                 sys.stdout.flush()
@@ -2566,11 +2593,11 @@ try:
                                 subprocess.check_output('start restart.py', shell=True)
                                 sys.stdout.flush()
                             if neko:
-                                subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language, shell=True)
+                                subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
                             elif waifu:
-                                subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language, shell=True)
+                                subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
                             else:
-                                subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
+                                subprocess.check_output('start edupage.py --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
                             quit()
                     elif not restart:
                         os.remove('END')
