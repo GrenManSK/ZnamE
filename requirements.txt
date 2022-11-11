@@ -1,8 +1,10 @@
 moviepy==1.0.3
+numpy==1.21.3
 opencv_python==4.6.0.66
 Pillow==9.3.0
 psutil==5.9.2
 PyAutoGUI==0.9.53
+pygame==2.1.2
 PyGetWindow==0.0.9
 python_vlc==3.0.16120
 pywin32==304
@@ -11,3 +13,4 @@ requests==2.26.0
 semantic_version==2.10.0
 setuptools==49.2.1
 tqdm==4.62.3
+win32gui==221.5
