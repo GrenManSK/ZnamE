@@ -1578,11 +1578,11 @@ try:
                                         setvstup = input('Set inactivelimit\n> ')
                                         set_config('basic info', 'inactivelimit', setvstup)
                                         if logged:
-                                            if args.language = 'SK':
+                                            if args.language == 'SK':
                                                 print('Na vykonanie zmeny je potrebný reštart')
-                                            if args.language = 'EN':
+                                            if args.language == 'EN':
                                                 print('Needed restart to take change')
-                                            if args.language = 'JP':
+                                            if args.language == 'JP':
                                                 print('変更するには再起動が必要')
                                     elif setvstup == '5':
                                         break
