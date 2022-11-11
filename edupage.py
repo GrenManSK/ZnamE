@@ -376,6 +376,7 @@ try:
                     elif args.language == "JP":
                         print("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
                     sleep(2)
+                    input()
                     quit()
                 os.mkdir('old')
                 shutil.move('data.xp2','old/data.xp2')
@@ -383,12 +384,14 @@ try:
                 shutil.move('LICENSE','old/LICENSE')
                 shutil.move('README.md','old/README.md')
                 shutil.move('version','old/version')
+                shutil.copyfile('config.ini', 'config_old.ini')
                 sleep(0.5)
                 shutil.move(directory + "/data.xp2", 'data.xp2')
                 shutil.move(directory + "/help.txt", 'help.txt')
                 shutil.move(directory + "/LICENSE", 'LICENSE')
                 shutil.move(directory + "/README.md", 'README.md')
                 shutil.move(directory + "/version", 'version')
+                shutil.move(directory + "/config.ini", 'config.ini')
                 crupdate = open("update.py", "w")
                 crupdate.write(updateapp)
                 crupdate.close()
@@ -959,7 +962,7 @@ try:
             else:
                 pass
 
-    def main():
+    def main():  # type: ignore
         try:
             """
             The main function. This is where the program starts. It is the first function called.
@@ -1723,7 +1726,7 @@ try:
                                 Thread(target=netspeed, daemon=True).start()
                                 resp = requests.get("https://nekos.best/api/v2/neko")
                                 data = resp.json()
-                                res = requests.get(data["results"][0]["url"], stream = True)
+                                res = requests.get(data["results"][0]["url"], stream = True)  # type: ignore
                             elif config.get('neko settings','server').split(' ')[0] == 'waifu.pics':  
                                 if args.language == 'SK':
                                     print('Získavanie obrazu zo servera waifu.pics')
@@ -2611,20 +2614,20 @@ except Exception as e:
     import os, sys
     from time import sleep
     x = open('error_log.txt', 'a')
-    if args.language == 'SK':
+    if args.language == 'SK':  # type: ignore
         print('Zapisujem chybu do \'error_log.txt\'!!!')
-    elif args.language == 'EN':
+    elif args.language == 'EN':  # type: ignore
         print('Writing an error to \'error_log.txt\'!!!')
-    elif args.language == 'JP':
+    elif args.language == 'JP':  # type: ignore
         print('\'error_log.txt\' にエラーを書き込みます!!!')
     exception_type, exception_object, exception_traceback = sys.exc_info()
-    line_number = exception_traceback.tb_lineno
-    error_get(eval(type(e).__name__), line_number, '')
-    if args.language == 'SK':
+    line_number = exception_traceback.tb_lineno  # type: ignore
+    error_get(eval(type(e).__name__), line_number, '')  # type: ignore
+    if args.language == 'SK':  # type: ignore
         print('Koniec!!!')
-    elif args.language == 'EN':
+    elif args.language == 'EN':  # type: ignore
         print('End')
-    elif args.language == 'JP':
+    elif args.language == 'JP':  # type: ignore
         print('終わり')
     sleep(1)
     quit()
