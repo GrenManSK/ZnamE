@@ -4,6 +4,7 @@ backup/
 ZnamE.zip
 .history/
 .vscode/
+.test/
 py_filter.bat
 Doxyfile
 GPATH

@@ -66,5 +66,9 @@ var menudata={children:[
 {text:"u",url:"namespacemembers_vars.html#index_u"},
 {text:"v",url:"namespacemembers_vars.html#index_v"},
 {text:"x",url:"namespacemembers_vars.html#index_x"}]}]}]},
+{text:"Classes",url:"annotated.html",children:[
+{text:"Class List",url:"annotated.html"},
+{text:"Class Index",url:"classes.html"},
+{text:"Class Hierarchy",url:"inherits.html"}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"}]}]}
