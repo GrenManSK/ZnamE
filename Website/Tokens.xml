@@ -2,6 +2,69 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
+      <Name>edupage::argEnviromentError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argEnviromentError</Scope>
+    </TokenIdentifier>
+    <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argInactiveLimitError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argInactiveLimitError</Scope>
+    </TokenIdentifier>
+    <Path>d6/d7c/classedupage_1_1arg_inactive_limit_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argIntroError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argIntroError</Scope>
+    </TokenIdentifier>
+    <Path>da/d01/classedupage_1_1arg_intro_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argLanguageError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argLanguageError</Scope>
+    </TokenIdentifier>
+    <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argMusicListError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argMusicListError</Scope>
+    </TokenIdentifier>
+    <Path>d4/d54/classedupage_1_1arg_music_list_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argNekoError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argNekoError</Scope>
+    </TokenIdentifier>
+    <Path>d4/db7/classedupage_1_1arg_neko_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>edupage::argWaifuError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argWaifuError</Scope>
+    </TokenIdentifier>
+    <Path>d2/d19/classedupage_1_1arg_waifu_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>edupage</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -56,6 +119,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>allerror</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a3fd41c6f44d6133b03b697b4c82931a0</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>args</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -74,6 +148,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a25109826dff0140f3672672637dadd94</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>category</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>aa6596cad660e35814989e6faf831d515</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -326,7 +411,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a776b999c109882652c2802d5b61b37ac</Anchor>
+    <Anchor>afa5f19a9b12b6de7df52cb51a0e69882</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -338,6 +423,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a08a7b70b9f407ce0bd61e0c6c9e58ac4</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hexnumber</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a4dfbc2105aef0c7859144bcb757f4b13</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -437,6 +533,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>ad3afb6aca23b9c2f5a17dfead6f08920</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>music</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -624,6 +731,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>ac388ff14fbe6c03871027bfa64fa0ee3</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>server</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>af46e517a54e8917a6351ae61c92bb955</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>

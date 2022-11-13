@@ -1,7 +1,31 @@
 try:
-    import argparse, pkg_resources, sys, os, subprocess, configparser
+    import argparse, pkg_resources, sys, os, subprocess, configparser, inspect
     from time import sleep
-    import inspect
+    class argLanguageError(Exception):
+        pass
+    
+    class argIntroError(Exception):
+        pass
+    
+    class argInactiveLimitError(Exception):
+        pass
+
+    class argMusicListError(Exception):
+        pass
+    
+    class argEnviromentError(Exception):
+        pass
+    
+    class argWaifuError(Exception):
+        pass
+    
+    class argNekoError(Exception):
+        pass
+    
+    allerror = []
+    for name, obj in inspect.getmembers(sys.modules[__name__]):
+        if inspect.isclass(obj):
+            allerror.append(obj.__name__)
 
     def error_log(line):
         """
@@ -12,6 +36,8 @@ try:
         x = open('error_log.txt', 'a')
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
+        if str(exc_type.__name__) in allerror: # type: ignore
+            exc_type = exc_type.__name__ # type: ignore
         x.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line) + '\n')
         x.close()
         print('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
@@ -66,9 +92,10 @@ try:
     print(config.get('basic info','enviroment').split(' ')[0])
     print(config.get('basic info','intro').split(' ')[0])
     print(config.get('basic info','inactivelimit').split(' ')[0])
+    print(config.get('basic info','music').split(' ')[0])
+    print(config.get('basic info','musiclist').split(' ')[0])
     print(config.items('user history'))
     print('\nDone')
-
     """
     This function is the main function of the program. It will be called when the program is run.
     It will parse the arguments and call the appropriate functions.
@@ -94,14 +121,78 @@ try:
     parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     args = parser.parse_args()
+    hexnumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+    if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
+        error_get(argEnviromentError, get_line_number(), 'Wrong choice in \'basic info\' => enviroment')
+        input()
+        quit()
+    if not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
+        error_get(argEnviromentError, get_line_number(), 'Wrong choice in \'basic info\' => enviroment')
+        input()
+        quit()
+    if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
+        error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => type')
+        input()
+        quit()
+    if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
+        category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+        if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
+            input()
+            quit()
+    elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
+        category = ['waifu', 'neko', 'trap', 'blowjob']
+        if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
+            input()
+            quit()
+    server = ['nekos.best', 'waifu.pics']
+    if not config.get('neko settings', 'server').split(' ')[0] in server:
+            error_get(argNekoError, get_line_number(), 'Wrong choice in \'neko settings\' => server')
+            input()
+            quit()
+    try:
+        int(config.get('basic info','inactivelimit').split(' ')[0])
+    except ValueError:
+        error_get(argInactiveLimitError, get_line_number(), 'Wrong choice in \'basic info\' => inactivelimit; take only numbers')
+        input()
+        quit()
+    if not config.get('basic info','intro').split(' ')[0] in ['True','False']:
+        error_get(argIntroError, get_line_number(), 'Wrong choice in \'basic info\' => intro')
+        input()
+        quit()
+    if config.get('basic info','music').split(' ')[0] == 'enable':
+        args.music = config.get('basic info','musiclist').split(' ')[0]
+    elif config.get('basic info','music').split(' ')[0] == 'disable':
+        pass
+    else:
+        error_get(configparser.ParsingError, get_line_number(), 'Wrong choice in \'basic info\' => music')
+        input()
+        quit()
+    try:
+        int(config.get('basic info','musiclist').split(' ')[0])
+    except ValueError:
+        error_get(argMusicListError, get_line_number(), 'Wrong choice in \'basic info\' => musiclist; take only numbers')
+        input()
+        quit()
+    if int(config.get('basic info','musiclist').split(' ')[0]) > len(music) or int(config.get('basic info','musiclist').split(' ')[0]) < 0:
+        error_get(argMusicListError, get_line_number(), 'Wrong choice in \'basic info\' => musiclist; Index out of range')
+        input()
+        quit()
 
     """
     If the language is not specified, use the default language from the config file.
     @param args.language - the language specified by the user, or the default language from the config file.
     """
 
+
     if args.language == None:
-        args.language = config.get('basic info', 'lang').split(' ')[0]
+        if config.get('basic info', 'lang').split(' ')[0] in language:
+            args.language = config.get('basic info', 'lang').split(' ')[0]
+        else:
+            error_get(argLanguageError, get_line_number(), 'Language doesn\'t exist')
+            input()
+            quit()
         
     """
     If the user has specified that we should update the rotation dictionary, remove the old update.py file.
@@ -198,16 +289,12 @@ try:
     screensizepercentage = float((1/1920)*screensize[0]), float((1/1080)*screensize[1])
 
 
-    def getWindow(Times):
+    def getWindow():
         """
-        The getWindow function is used to get the window that we want to use.
-        It takes in a parameter called Times which is used for the number of times 
-        that we want to press tab and alt. The function will first open up a fullscreen 
-        window with an image, then it will press Alt+Tab so that you can switch windows, 
-        and then it will close out of the full screen window and return back into your previous window.
+        The getWindow function is used to find the window of Známý (the game) and activate it.
+        It also checks if the file 'banner.png' exists in the assets folder.
         
-        :param Times: Determine if the window is to be closed or not
-        :return: The window that the program is currently on
+        :return: If error occured
         """
         
         global exit
@@ -1105,20 +1192,22 @@ try:
             elif args.language == 'JP':
                 print('終わり')
             sleep(0.25)
-            os.system('cls')
+            move('ZnámE',-10,-10,screensize[0],screensize[1])
+            if args.test != None:
+                try:
+                    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                    window.maximize()
+                except IndexError:
+                    exit = True
+                    error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
             
-            """
-                this function prints the version of the program 
-            """
-            
-            verzia = open('version', 'r')
-            if args.language == "SK":
-                print('Používate ZnámE ' + verzia.read() + "\n")
-            elif args.language == "EN":
-                print('You\'re using ZnámE ' + verzia.read() + "\n")
-            elif args.language == "JP":
-                print('ZnámE を使用しています ' + verzia.read() + "\n")
-            verzia.close()
+            player = vlc.Instance('--fullscreen')
+            media_list = player.media_list_new()  # type: ignore
+            media_player = player.media_list_player_new()  # type: ignore
+            media = player.media_new("assets/transition.mp4")  # type: ignore
+            media_list.add_media(media)
+            media_player.set_media_list(media_list)
+            media_player.play()
             inactive1 = False
             """
             If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
@@ -1150,10 +1239,6 @@ try:
                         print('プログラムが更新されました!!!\n')
             except Exception:
                 pass
-            if args.music != '0':
-                mixer.init()
-                mixer.music.load('assets/' + music[int(args.music)-1] +'.mp3')
-                mixer.music.play()
             """
             If the language is Japanese, print a message that tells the user to watch the help file.
             @param args - the command line arguments
@@ -1183,21 +1268,46 @@ try:
             """
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
-            exit = getWindow(1)
+            exit = getWindow()
             if args.nointro == None or config.get('basic info','intro').split(' ')[0] == 'False':
                 pass
             else:
                 window = pygetwindow.getWindowsWithTitle('frame2')[0]
                 window.activate()
-                if args.test != None:
-                    try:
-                        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                        window.activate()
-                    except IndexError:
-                        exit = True
-                        error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
             getImg('assets/banner.png', 'banner', 0, 0, screensize[0], int((round((322/1736)*screensize[0], 0))))
             move('ZnámE',0,int((round((322/1736)*screensize[0], 0))-35),screensize[0],screensize[1]-int((round((322/1736)*screensize[0], 0))))
+            if args.test != None:
+                try:
+                    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                    window.activate()
+                except IndexError:
+                    exit = True
+                    error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
+            pg.press('win')
+            sleep(0.1)
+            pg.press('win')
+            window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 Output)')[0]
+            window.activate()
+            sleep(5)
+            os.system('cls')
+            media_player.stop()
+            if args.music != '0':
+                mixer.init()
+                mixer.music.load('assets/' + music[int(args.music)-1] +'.mp3')
+                mixer.music.play()
+            
+            """
+                this function prints the version of the program 
+            """
+            
+            verzia = open('version', 'r')
+            if args.language == "SK":
+                print('Používate ZnámE ' + verzia.read() + "\n")
+            elif args.language == "EN":
+                print('You\'re using ZnámE ' + verzia.read() + "\n")
+            elif args.language == "JP":
+                print('ZnámE を使用しています ' + verzia.read() + "\n")
+            verzia.close()
             while True:
                 if not exit:
                     global loginvstupuser
@@ -1264,9 +1374,6 @@ try:
                             continue
                         if vstup == 'delsavlog':
                             uninstall()
-                            
-                        # Reading a file and printing it out.
-                            
                         if vstup == "zz":
                             passwordfile = open(password[1], 'r')  # type: ignore
                             countersubject = 0
@@ -2641,20 +2748,10 @@ except Exception as e:
     import os, sys
     from time import sleep
     x = open('error_log.txt', 'a')
-    if args.language == 'SK':  # type: ignore
-        print('Zapisujem chybu do \'error_log.txt\'!!!')
-    elif args.language == 'EN':  # type: ignore
-        print('Writing an error to \'error_log.txt\'!!!')
-    elif args.language == 'JP':  # type: ignore
-        print('\'error_log.txt\' にエラーを書き込みます!!!')
+    print('Writing an error to \'error_log.txt\'!!!')
     exception_type, exception_object, exception_traceback = sys.exc_info()
     line_number = exception_traceback.tb_lineno  # type: ignore
     error_get(eval(type(e).__name__), line_number, '')  # type: ignore
-    if args.language == 'SK':  # type: ignore
-        print('Koniec!!!')
-    elif args.language == 'EN':  # type: ignore
-        print('End')
-    elif args.language == 'JP':  # type: ignore
-        print('終わり')
+    print('End')
     sleep(1)
     quit()
