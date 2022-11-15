@@ -1,6 +1,59 @@
 try:
-    import argparse, pkg_resources, sys, os, subprocess, configparser, inspect
+    from datetime import datetime
+    datelog = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
+
+    def printnlog(msg, end='\n'):
+        """
+        It takes a message and an end character, and prints the message to the console and to a file
+        
+        :param msg: The message to be printed and logged
+        :param end: The character that will be printed at the end of the message, defaults to \n
+        (optional)
+        """
+        x = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
+        print(str(msg), end=str(end))
+        x.write(str(msg) + str(end))
+        x.close()
+
+
+    def log(msg, end='\n'):
+        """
+        It opens a file, writes a message to it, and closes the file
+        
+        :param msg: The message to be logged
+        :param end: The character that will be used to end the line, defaults to \n (optional)
+        """
+        x = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
+        x.write(str(msg) + str(end))
+        x.close()
+
+    printnlog('Importing initial libraries\n')
+    import sys
+
+    modulenames = list(set(sys.modules) & set(globals()))
+    moduleminus = 0
+    def print_module(add=None):
+        global modulenames1
+        global modulenames
+        global moduleminus
+        modulenames1 = list(set(sys.modules) & set(globals()))
+        for i in range(len(modulenames) - moduleminus):
+            modulenames1.remove(modulenames[i])
+        for i in range(len(modulenames1)):
+            modulenames.append(modulenames1[i])
+        for i in modulenames1:
+            printnlog(i)
+        if add != None:
+            printnlog(add)
+    print_module()
+    import argparse, pkg_resources, os, subprocess, configparser, inspect
+    print_module()
     from time import sleep
+    print_module()
+    printnlog('\nDONE\n')
+    class configNoOption(Exception):
+        pass
+    
     class argLanguageError(Exception):
         pass
     
@@ -26,6 +79,11 @@ try:
     for name, obj in inspect.getmembers(sys.modules[__name__]):
         if inspect.isclass(obj):
             allerror.append(obj.__name__)
+    
+    for i in range(0, len(allerror)-1):
+        printnlog(allerror[i], end=', ')
+    printnlog(allerror[len(allerror)-1])
+     
 
     def error_log(line):
         """
@@ -40,7 +98,7 @@ try:
             exc_type = exc_type.__name__ # type: ignore
         x.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line) + '\n')
         x.close()
-        print('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
+        printnlog('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
 
 
     def error_get(error, line, comment=None):
@@ -67,35 +125,42 @@ try:
         """
         return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
 
-    print('Reading config file (ini)\n')
+    printnlog('\nReading config file (ini)\n')
     sleep(0.25)
     try:
         config = configparser.RawConfigParser()
         line_number = get_line_number(-1)
         config.read('config.ini')
     except configparser.DuplicateSectionError:
-        print("'config.ini' file is corrupt -> Duplicate section")
+        printnlog("'config.ini' file is corrupt -> Duplicate section")
         error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate section') # type: ignore
         input("Press 'enter' to quit")
         quit()
     except configparser.DuplicateOptionError:
-        print("'config.ini' file is corrupt -> Duplicate option")
+        printnlog("'config.ini' file is corrupt -> Duplicate option")
         error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => Duplicate option') # type: ignore
         input("Press 'enter' to quit")
         quit()
     except configparser.NoSectionError:
-        print("'config.ini' file is corrupt -> No section")
+        printnlog("'config.ini' file is corrupt -> No section")
         error_get(configparser.DuplicateSectionError, line_number, 'Corruption of config file => No section') # type: ignore
         input("Press 'enter' to quit")
         quit()
-    print(config.get('basic info','lang').split(' ')[0])
-    print(config.get('basic info','enviroment').split(' ')[0])
-    print(config.get('basic info','intro').split(' ')[0])
-    print(config.get('basic info','inactivelimit').split(' ')[0])
-    print(config.get('basic info','music').split(' ')[0])
-    print(config.get('basic info','musiclist').split(' ')[0])
-    print(config.items('user history'))
-    print('\nDone')
+    try:
+        printnlog('Language: ' + config.get('basic info','lang').split(' ')[0])
+        printnlog('Enviroment: ' + config.get('basic info','enviroment').split(' ')[0])
+        printnlog('Intro: ' + config.get('basic info','intro').split(' ')[0])
+        printnlog('Inactivelimit: ' + config.get('basic info','inactivelimit').split(' ')[0])
+        printnlog('Music: ' + config.get('basic info','music').split(' ')[0])
+        printnlog('Musiclist: ' + config.get('basic info','musiclist').split(' ')[0])
+        printnlog('User history: ' + str(config.items('user history')))
+    except configparser.NoOptionError:
+        printnlog("'config.ini' file is corrupt -> option missing")
+        error_get(configNoOption, line_number, 'Corruption of config file => option missing') # type: ignore
+        input("Press 'enter' to quit")
+        quit()
+    printnlog('\nDone\n')
+    
     """
     This function is the main function of the program. It will be called when the program is run.
     It will parse the arguments and call the appropriate functions.
@@ -118,41 +183,28 @@ try:
     parser.add_argument('-waifuvid', '--waifuvid', choices=[], help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-music', '--music', choices=['0','1','2'], help='Starts music; you can select from: '+ str(i for i in music), default='0', nargs='?')
     parser.add_argument('-inactive', '--inactive', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+    parser.add_argument('-restart', '--restart', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+    parser.add_argument('-log', '--log', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-update', '--update', choices=[], help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-test', '--test', choices=[], help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     args = parser.parse_args()
     hexnumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+    
+    printnlog("Checking argument correctness\n")
+    
     if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
         error_get(argEnviromentError, get_line_number(), 'Wrong choice in \'basic info\' => enviroment')
         input()
         quit()
-    if not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
+    elif not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
         error_get(argEnviromentError, get_line_number(), 'Wrong choice in \'basic info\' => enviroment')
         input()
         quit()
-    if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
-        error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => type')
-        input()
-        quit()
-    if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
-        category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-        if not config.get('waifu settings', 'category').split(' ')[0] in category:
-            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
-            input()
-            quit()
-    elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
-        category = ['waifu', 'neko', 'trap', 'blowjob']
-        if not config.get('waifu settings', 'category').split(' ')[0] in category:
-            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
-            input()
-            quit()
-    server = ['nekos.best', 'waifu.pics']
-    if not config.get('neko settings', 'server').split(' ')[0] in server:
-            error_get(argNekoError, get_line_number(), 'Wrong choice in \'neko settings\' => server')
-            input()
-            quit()
+    else:
+        printnlog('basic info => enviroment')
     try:
         int(config.get('basic info','inactivelimit').split(' ')[0])
+        printnlog('basic info => inactivelimit')
     except ValueError:
         error_get(argInactiveLimitError, get_line_number(), 'Wrong choice in \'basic info\' => inactivelimit; take only numbers')
         input()
@@ -161,9 +213,13 @@ try:
         error_get(argIntroError, get_line_number(), 'Wrong choice in \'basic info\' => intro')
         input()
         quit()
+    else:
+        printnlog('basic info => intro')
     if config.get('basic info','music').split(' ')[0] == 'enable':
         args.music = config.get('basic info','musiclist').split(' ')[0]
+        printnlog('basic info => music')
     elif config.get('basic info','music').split(' ')[0] == 'disable':
+        printnlog('basic info => music')
         pass
     else:
         error_get(configparser.ParsingError, get_line_number(), 'Wrong choice in \'basic info\' => music')
@@ -171,6 +227,7 @@ try:
         quit()
     try:
         int(config.get('basic info','musiclist').split(' ')[0])
+        printnlog('basic info => musiclist')
     except ValueError:
         error_get(argMusicListError, get_line_number(), 'Wrong choice in \'basic info\' => musiclist; take only numbers')
         input()
@@ -179,6 +236,35 @@ try:
         error_get(argMusicListError, get_line_number(), 'Wrong choice in \'basic info\' => musiclist; Index out of range')
         input()
         quit()
+    if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
+        error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => type')
+        input()
+        quit()
+    else:
+        printnlog('waifu settings => type')
+    if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
+        category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+        if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
+            input()
+            quit()
+        else:
+            printnlog('waifu settings => category')
+    elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
+        category = ['waifu', 'neko', 'trap', 'blowjob']
+        if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            error_get(argWaifuError, get_line_number(), 'Wrong choice in \'waifu settings\' => category')
+            input()
+            quit()
+        else:
+            printnlog('waifu settings => category')
+    server = ['nekos.best', 'waifu.pics']
+    if not config.get('neko settings', 'server').split(' ')[0] in server:
+            error_get(argNekoError, get_line_number(), 'Wrong choice in \'neko settings\' => server')
+            input()
+            quit()
+    else:
+        printnlog('neko settings => server')
 
     """
     If the language is not specified, use the default language from the config file.
@@ -201,13 +287,17 @@ try:
         try:
             os.remove('update.py')
         except FileNotFoundError:
-            print('')
             args.update = UNSPECIFIED
             error_get(FileNotFoundError, get_line_number(), 'update.py isn\'t present, NOT FATAL ERROR')
+            
+    printnlog('\nDONE\n')
+    
     """
     Check if the internet is working. If it is not, print an error message and quit.
     """
-
+    
+    printnlog('Checking internet connection\n')
+    
     try:
         import requests
         timeout = 2
@@ -216,14 +306,16 @@ try:
         line_number = get_line_number()
         if __name__ == '__main__':
             if args.language == "SK":
-                print("Vaše internetové pripojenie nefunguje")
+                printnlog("Vaše internetové pripojenie nefunguje")
             elif args.language == "EN":
-                print("The internet connection is down")
+                printnlog("The internet connection is down")
             elif args.language == "JP":
-                print("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
+                printnlog("インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
             sleep(2)
             quit()
         pass
+    
+    printnlog('DONE\n')
 
     """
     Check if the program is up to date. If not, update the program.
@@ -231,12 +323,17 @@ try:
     @param nainstalovane - the packages installed on the system           
     @param nenajdene - the packages that are not installed on the system
     """
-    potrebne = {'psutil','tqdm', 'semantic-version','screeninfo','opencv-python','glob2','keyboard','pywin32', 'pywinauto','moviepy', 'python-vlc', 'pygetwindow','pygame'}
+    potrebne = {'psutil', 'tqdm', 'semantic-version', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pywinauto', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame'}
+    printnlog('Libraries needed: ', end='')
+    potrebne1 = list(potrebne)
+    for i in range(0, len(potrebne1)):
+        printnlog(potrebne1[i], end=' ')
+    printnlog("\n\nChecking for updates\n")
     nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
     nenajdene = potrebne - nainstalovane
     if args.version == None:
         verzia = open('version', 'r')
-        print(verzia.read())
+        printnlog(verzia.read())
         verzia.close()
         if nenajdene:
             if args.language == "SK":
@@ -245,49 +342,193 @@ try:
                 print('Update is available: ', *nenajdene)
             elif args.language == "JP":
                 print('アップデートが利用可能です： ', *nenajdene)
+        os.remove('crash_dump-' + datelog + '.txt')
         quit()
     if __name__ == '__main__':
         if nenajdene:
             if args.language == "SK":
-                print('Aktualizácia je k dispozícií: ', *nenajdene)
+                printnlog('\nAktualizácia je k dispozícií: ', *nenajdene)
             elif args.language == "EN":
-                print('Update is available: ', *nenajdene)
+                printnlog('\nUpdate is available: ', *nenajdene)
             elif args.language == "JP":
-                print('アップデートが利用可能です： ', *nenajdene)
+                printnlog('\nアップデートが利用可能です： ', *nenajdene)
             sleep(0.5)
             if args.language == "SK":
-                print("Sťahujú sa aktualizácie")
+                printnlog("\nSťahujú sa aktualizácie")
             elif args.language == "EN":
-                print("Downloading updates")
+                printnlog("\nDownloading updates")
             elif args.language == "JP":
-                print("アップデートのダウンロード")
+                printnlog("\nアップデートのダウンロード")
             subprocess.check_call([sys.executable, '-m', 'pip', 'install', *nenajdene])
             if args.language == "SK":
-                print("Program sa reštartuje!!!")
+                printnlog("Program sa reštartuje!!!")
             elif args.language == "EN":
-                print("The program is restarting!!!")
+                printnlog("The program is restarting!!!")
             elif args.language == "JP":
-                print("番組再開！！！")
+                printnlog("番組再開！！！")
             sleep(1)
+            os.system('cls')
+            os.remove('crash_dump-' + datelog + '.txt')
             subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
-            quit()
+            quit()       
+    printnlog('DONE\n\nImporting libraries\n')
     from threading import Thread
+    print_module()
     from tqdm import tqdm
+    print_module()
     from datetime import datetime
+    print_module()
     from pathlib import Path
+    print_module('Path from pathlib')
     import pyautogui as pg
+    print_module('pyautogui')
     from uninstall import uninstall
-    import shutil, zipfile, semantic_version, win32gui, ctypes, cv2, glob, webbrowser, win32api, time, pywinauto, psutil, vlc, pygetwindow
+    print_module()
+    import shutil, zipfile, GPUtil, semantic_version, win32gui, ctypes, cpuinfo, cv2, glob, webbrowser, win32api, cpufreq, time, pywinauto, psutil, vlc, pygetwindow, random, wmi, platform, socket, re, uuid, json, logging
+    print_module()
+    from tabulate import tabulate
+    print_module()
     from PIL import Image
+    print_module('Image from PIL')
     import moviepy.editor as mp
+    print_module('moviepy.editor')
     from pygame import mixer
+    print_module('mixer from pygame')
+    printnlog('\nDONE\n')
+    pg.keyDown('win')
+    pg.press('up')
+    pg.keyUp('win')
     verzia = open('version', 'r')
     os.system('color ' + config.get('basic info','enviroment').split(' ')[0])
     os.system('Title ' + 'ZnámE')
     user32 = ctypes.windll.user32
     screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
     screensizepercentage = float((1/1920)*screensize[0]), float((1/1080)*screensize[1])
+    printnlog('Getting system information\n')
+    printnlog('Resolution: ' + str(screensize[0]) + 'x'+ str(screensize[1]) + '\n')
+    computer = wmi.WMI()
+    computer_info = computer.Win32_ComputerSystem()[0]
+    os_info = computer.Win32_OperatingSystem()[0]
+    proc_info = computer.Win32_Processor()[0]
+    gpu_info = computer.Win32_VideoController()[0]
+    def get_size1(bytes, suffix="B"):
+        """
+        It takes a number of bytes and returns a string with the number of bytes and the appropriate
+        unit
+        
+        :param bytes: The number of bytes to convert
+        :param suffix: The suffix to be appended to the size, defaults to B (optional)
+        """
+        """
+        Scale bytes to its proper format
+        e.g:
+            1253656 => '1.20MB'
+            1253656678 => '1.17GB'
+        """
+        factor = 1024
+        for unit in ["", "K", "M", "G", "T", "P"]:
+            if bytes < factor:
+                return f"{bytes:.2f}{unit}{suffix}"
+            bytes /= factor
+    my_system = platform.uname()
+    my_cpuinfo = cpuinfo.get_cpu_info()
+    pc = wmi.WMI()
+    svmem = psutil.virtual_memory()
+    swap = psutil.swap_memory()
+    gpus = GPUtil.getGPUs()
+    partitions = psutil.disk_partitions()
+    disk_io = psutil.disk_io_counters()
+    if_addrs = psutil.net_if_addrs()
+    net_io = psutil.net_io_counters()
+    os_info = pc.Win32_operatingSystem()[0]
+    os_name = os_info.Name.encode('utf-8').split(b'|')[0]
+    cpufreq = psutil.cpu_freq()
+    os_version = ' '.join([os_info.Version, os_info.BuildNumber])
+    printnlog(os_info)
+    system_ram = float(os_info.TotalVisibleMemorySize) / 1048576  # KB to GB
+    printnlog('OS Name: {0}'.format(os_name))
+    printnlog(f"Device Name: {my_system.node}")
+    printnlog(f"Architecture: {my_system.machine}")
+    printnlog(f"Processor: {my_system.processor}")
+    printnlog('CPU: {0}'.format(proc_info.Name))
+    printnlog("="*40 + "CPU Info" + "="*40)
+    printnlog(f"CPU architecture: {my_cpuinfo['arch']}")
+    printnlog("Physical cores:" + str(psutil.cpu_count(logical=False)))
+    printnlog("Total cores:" + str(psutil.cpu_count(logical=True)))
+    printnlog(f"Max Frequency: {cpufreq.max:.2f}Mhz")
+    printnlog(f"Min Frequency: {cpufreq.min:.2f}Mhz")
+    printnlog(f"Current Frequency: {cpufreq.current:.2f}Mhz")
+    printnlog("CPU Usage Per Core:")
+    for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):  # type: ignore
+        printnlog(f"Core {i}: {percentage}%")
+    printnlog(pc.Win32_Processor()[0])
+    printnlog(f"Total CPU Usage: {psutil.cpu_percent()}%")
+    printnlog('RAM: {0} GB'.format(system_ram))
+    printnlog("="*40 + "Memory Information" + "="*40)
+    printnlog(f"Total: {get_size1(svmem.total)}")
+    printnlog(f"Available: {get_size1(svmem.available)}")
+    printnlog(f"Used: {get_size1(svmem.used)}")
+    printnlog(f"Percentage: {svmem.percent}%")
+    printnlog("="*20 + "SWAP" + "="*20)
+    printnlog(f"Total: {get_size1(swap.total)}")
+    printnlog(f"Free: {get_size1(swap.free)}")
+    printnlog(f"Used: {get_size1(swap.used)}")
+    printnlog(f"Percentage: {swap.percent}%")
+    printnlog('Graphics Card: {0}'.format(gpu_info.Name))
+    printnlog("="*40 + "GPU Details" + "="*40)
+    list_gpus = []
+    for gpu in gpus:
+        gpu_id = gpu.id
+        gpu_name = gpu.name
+        gpu_load = f"{gpu.load*100}%"
+        gpu_free_memory = f"{gpu.memoryFree}MB"
+        gpu_used_memory = f"{gpu.memoryUsed}MB"
+        gpu_total_memory = f"{gpu.memoryTotal}MB"
+        gpu_temperature = f"{gpu.temperature} °C"
+        gpu_uuid = gpu.uuid
+        list_gpus.append((
+            gpu_id, gpu_name, gpu_load, gpu_free_memory, gpu_used_memory,
+            gpu_total_memory, gpu_temperature, gpu_uuid
+        ))
 
+    printnlog(tabulate(list_gpus, headers=("id", "name", "load", "free memory", "used memory", "total memory",
+                                    "temperature", "uuid")))
+    printnlog(f'IP Adress: {socket.gethostbyname(socket.gethostname())}')
+    printnlog(f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}")
+    printnlog("="*40 + "Disk Information" + "="*40)
+    printnlog("Partitions and Usage:")
+    for partition in partitions:
+        printnlog(f"=== Device: {partition.device} ===")
+        printnlog(f"  Mountpoint: {partition.mountpoint}")
+        printnlog(f"  File system type: {partition.fstype}")
+        try:
+            partition_usage = psutil.disk_usage(partition.mountpoint)
+        except PermissionError:
+            continue
+        printnlog(f"  Total Size: {get_size1(partition_usage.total)}")
+        printnlog(f"  Used: {get_size1(partition_usage.used)}")
+        printnlog(f"  Free: {get_size1(partition_usage.free)}")
+        printnlog(f"  Percentage: {partition_usage.percent}%")
+    printnlog(f"Total read: {get_size1(disk_io.read_bytes)}")
+    printnlog(f"Total write: {get_size1(disk_io.write_bytes)}")
+    printnlog("="*40 + "Network Information" + "="*40)
+    for interface_name, interface_addresses in if_addrs.items():
+        for address in interface_addresses:
+            printnlog(f"=== Interface: {interface_name} ===")
+            if str(address.family) == 'AddressFamily.AF_INET':
+                printnlog(f"  IP Address: {address.address}")
+                printnlog(f"  Netmask: {address.netmask}")
+                printnlog(f"  Broadcast IP: {address.broadcast}")
+            elif str(address.family) == 'AddressFamily.AF_PACKET':
+                printnlog(f"  MAC Address: {address.address}")
+                printnlog(f"  Netmask: {address.netmask}")
+                printnlog(f"  Broadcast MAC: {address.broadcast}")
+    printnlog(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}")
+    printnlog(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}")
+    printnlog(pc.Win32_VideoController()[0])
+    printnlog("User Current Version:-" + str(sys.version))
+    printnlog('\nDONE\n')
+    printnlog("\nDefining functions\n")
 
     def getWindow():
         """
@@ -321,7 +562,8 @@ try:
             except IndexError:
                 error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
                 return True
-
+            
+    printnlog('Function: getWindow')
 
     def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
         """
@@ -364,6 +606,8 @@ try:
                 print(k)
                 cv2.destroyAllWindows()
 
+    printnlog('Function: getImg')
+
     def move(window, x, y, width, length):
         """
         The move function moves the specified window to a specified location.
@@ -393,11 +637,15 @@ try:
                     win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)  # type: ignore
         win32gui.EnumWindows(enumHandler, None)  # type: ignore
 
-    if __name__ == '__main__':
-        move("ZnámE", int(screensize[0]/20), int(-screensize[1]), None, None)
+    printnlog('Function: move')
 
     updateapp = str('import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
-
+    
+    if args.log == None:
+        x = open('log_update.py', 'w')
+        x.write(updateapp)
+        x.close()
+    
     """
     Update the program to the newest version.
     @param directory - the directory of the new version
@@ -405,19 +653,20 @@ try:
     """
 
     if args.test != None:
+        printnlog('\nChecking for newer version of ZnámE\n')
         try:
             import requests
             url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
             page = requests.get(url)
             if  semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
-                pass
+                printnlog('You have the latest version\n')
             else:
                 if args.language == "SK":
-                    print("Bola nájdená nová aktualizacia: " + page.text)
+                    printnlog("Bola nájdená nová aktualizacia: " + page.text)
                 elif args.language == "EN":
-                    print("Newer version was found: " + page.text)
+                    printnlog("Newer version was found: " + page.text)
                 elif args.language == "JP":
-                    print("新しいバージョンが見つかりました: " + page.text)
+                    printnlog("新しいバージョンが見つかりました: " + page.text)
                 verzia.close()
                 sleep(0.5)
                 url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
@@ -456,15 +705,15 @@ try:
                 for path, currentDirectory, files in os.walk(Path.cwd()):
                     for directory1 in currentDirectory:
                         if directory1.startswith("GrenManSK-ZnamE-"):
-                            print(directory1)
+                            printnlog(directory1)
                             directory = directory1
                 if directory == None:
                     if args.language == "SK":
-                        print("CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
+                        printnlog("CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
                     elif args.language == "EN":
-                        print("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
+                        printnlog("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
                     elif args.language == "JP":
-                        print("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
+                        printnlog("ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
                     sleep(2)
                     input()
                     quit()
@@ -490,6 +739,7 @@ try:
                 else:
                     subprocess.call(sys.executable + ' update.py ' + directory + ' -lang ' + args.language , shell=True)
                 sleep(0.1)
+                os.remove('crash_dump-' + datelog + '.txt')
                 quit()
         except requests.ConnectionError: # type: ignore
             line_number = get_line_number()
@@ -497,12 +747,38 @@ try:
 
     verzia.close()
 
+    printnlog('\nDefining apps')
+
     codeapp = str('import sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'\"\', \"`\"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah = \"\"\n        obsah += i\n        for i in obsah:\n            i.lower()\n            obsah_list.append(i)\n    return obsah_list\ndef encode(obsah):\n    sifra = []\n    for i in obsah:\n        riadok = 0\n        stlpec = 0\n        while True:\n            if riadok == 19 and stlpec == 0:\n                break\n            if i == PLOCHA[riadok][stlpec]:\n                sifra.append(str(riadok) + \" \" + str(stlpec))\n                break\n            if stlpec == 4:\n                riadok += 1\n                stlpec = 0\n            else:\n                stlpec += 1\n    return sifra\ndef output_file(file, name):\n    y = []\n    x = open(name + \"crypted\", \"w\")\n    for i in file:\n        y.append(i)\n    x.write(str(y))\n    x.close\n    return\ndef main():\n    name = sys.argv[1]\n    open_file = open(name, \"r\")\n    open_file.close\n    output_file(encode(read_file(open_file)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
     decodeapp = str('import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'"\', \"`"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah += i\n        for i in obsah:\n            obsah_list.append(i)\n    return obsah_list\ndef decode(obsah):\n    done = \"\"\n    sifra = []\n    for i in obsah:\n        done += str(i)\n        if i == \"[\" or i == \"\'\" or i == \",\" or i == \"]\":\n            done = \"\"\n            continue\n        if i == \" \":\n            sifra.append(i)\n        else:\n            sifra.append(i)\n    return sifra\ndef real_decode(obsah):\n    cislo = 0\n    pokracovanie = False\n    done = \"\"\n    vysledok = []\n    for i in obsah:\n        done += str(i)\n        cislo = 0\n        for i in done:\n            cislo += 1\n        if i == \" \":\n            done = \"\"\n            continue\n        if pokracovanie and done.isnumeric() and cislo == 1:\n            stlpec = int(done)\n            vysledok.append(PLOCHA[riadok][stlpec])\n            pokracovanie = False\n            done = \"\"\n            continue\n        if not pokracovanie or cislo == 2:\n            pokracovanie = True\n            riadok = int(done)\n            continue\n    return vysledok\ndef to_text(obsah):\n    text = \"\"\n    for i in obsah:\n        if i == \".\":\n            text += i + \"\\n\"\n            continue\n        text += i\n    return text\ndef create_file(obsah, name):\n    x = open(sys.argv[1], \"w\")\n    x.write(obsah)\n    x.close\n    return\ndef main():\n    if sys.argv[2] == \'False\':\n        name = \'data\'\n    else:\n        name = sys.argv[2]\n    open_file = open(name, \"r\")\n    code = list(decode(read_file(open_file)))\n    create_file(to_text(real_decode(code)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
     findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
     passwordapp = str('import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
     addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    restartapp = str('import argparse, time\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\ntime.sleep(15)\nif args.neko == None or args.waifu == None:\n    time.sleep(7.5)\nif args.autol == None:\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
+    restartapp = str('import argparse, time, os\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwhile True:\n    leave = False\n    for i in os.listdir():\n        if i == \'CONTINUE\':\n            leave = True\n            break\n    if leave:\n        time.sleep(0.05)\n        os.remove(\'CONTINUE\')\n        break\nif args.neko == None and args.autol == None or args.waifu == None and args.autol == None:\n    time.sleep(10)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")\nelif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
+    
+    
+    if args.log == None:
+        x = open('log_codeapp.py', 'w')
+        x.write(codeapp)
+        x.close()
+        x = open('log_decodeapp.py', 'w')
+        x.write(decodeapp)
+        x.close()
+        x = open('log_findapp.py', 'w')
+        x.write(findapp)
+        x.close()
+        x = open('log_passwordapp.py', 'w')
+        x.write(passwordapp)
+        x.close()
+        x = open('log_addapp.py', 'w')
+        x.write(addapp)
+        x.close()
+        x = open('log_restartapp.py', 'w')
+        x.write(restartapp)
+        x.close()
+    
+    
+    printnlog('\nDONE\n')
     
     def set_config(section, name, info):
         """
@@ -519,6 +795,8 @@ try:
         config.write(configfile)
         configfile.close()
 
+    printnlog('Function: set_config')
+
     def get_size(bytes):
         """
         The get_size function accepts a number of bytes and returns a human-readable string representation of the size.
@@ -534,6 +812,7 @@ try:
                 return f"{bytes:.2f}{unit}B"
             bytes /= 1024
             
+    printnlog('Function: get_size')
             
     def netspeed():
         """
@@ -568,37 +847,38 @@ try:
                     if args.language == 'SK':
                         print(f"Rýchlosť nahrávania: {get_size(us)}/s "
                             f", Rýchlosť sťahovania: {get_size(ds)}/s "
-                            f", Celková veľkosť sťahovania {get_size(totalup)}   "
-                            f", Celková veľkosť nahrávania {get_size(totaldown)}      ", end="\r")
+                            f", Celková veľkosť sťahovania {get_size(totaldown)}   "
+                            f", Celková veľkosť nahrávania {get_size(totalup)}      ", end="\r")
                     elif args.language == 'EN':
                         print(f"Upload Speed: {get_size(us)}/s "
                             f", Download Speed: {get_size(ds)}/s "
-                            f", Total download size {get_size(totalup)}   "
-                            f", Total upload size {get_size(totaldown)}      ", end="\r")
+                            f", Total download size {get_size(totaldown)}   "
+                            f", Total upload size {get_size(totalup)}      ", end="\r")
                     elif args.language == 'JP':
                         print(f"アップロード速度: {get_size(us)}/s "
                             f", ダウンロード速度: {get_size(ds)}/s "
-                            f", ダウンロードの合計サイズ {get_size(totalup)}   "
-                            f", 総アップロード サイズ {get_size(totaldown)}      ", end="\r")
+                            f", ダウンロードの合計サイズ {get_size(totaldown)}   "
+                            f", 総アップロード サイズ {get_size(totalup)}      ", end="\r")
             except Exception:
                 os.remove("NETSPEEDEND")
                 if args.language == 'SK':
                     print(f"Rýchlosť nahrávania: {get_size(us)}/s "
                         f", Rýchlosť sťahovania: {get_size(ds)}/s "
-                        f", Celková veľkosť sťahovania {get_size(totalup)}   "
-                        f", Celková veľkosť nahrávania {get_size(totaldown)}      ")
+                        f", Celková veľkosť sťahovania {get_size(totaldown)}   "
+                        f", Celková veľkosť nahrávania {get_size(totalup)}      ")
                 elif args.language == 'EN':
                     print(f"Upload Speed: {get_size(us)}/s "
                         f", Download Speed: {get_size(ds)}/s "
-                        f", Total download size {get_size(totalup)}   "
-                        f", Total upload size {get_size(totaldown)}      ")
+                        f", Total download size {get_size(totaldown)}   "
+                        f", Total upload size {get_size(totalup)}      ")
                 elif args.language == 'JP':
                     print(f"アップロード速度: {get_size(us)}/s "
                         f", ダウンロード速度: {get_size(ds)}/s "
-                        f", ダウンロードの合計サイズ {get_size(totalup)}   "
-                        f", 総アップロード サイズ {get_size(totaldown)}      ")
+                        f", ダウンロードの合計サイズ {get_size(totaldown)}   "
+                        f", 総アップロード サイズ {get_size(totalup)}      ")
                 break
 
+    printnlog('Function: netspeed')
 
     def delcache(name, hist):
         """
@@ -645,6 +925,8 @@ try:
             except Exception:
                 pass
 
+    printnlog('Function: delcache')
+
     loginvstupuser = ''
     global progress_bar_check
     progress_bar_check = 0
@@ -677,7 +959,8 @@ try:
         else:
             return False
         
-        
+    printnlog('Function: inactive')
+    
     def progress_bar(name, number):
         """
         The progress_bar function is a function that takes in two parameters: name and number.
@@ -706,6 +989,7 @@ try:
                     progress_bar_check_old = progress_bar_check
                     break
 
+    printnlog('Function: progress_bar')
 
     def add(name, ico, subject, mark):
         """
@@ -756,6 +1040,7 @@ try:
         name = ('data1', None)
         return name
 
+    printnlog('Function: add')
 
     def decode(name, password, mode=0):
         """
@@ -819,6 +1104,7 @@ try:
         progress_bar_check += 1
         return decodename1
 
+    printnlog('Function: decode')
 
     def password(name):
         """
@@ -859,6 +1145,8 @@ try:
         os.remove('DONE')
         progress_bar_check += 1
         return [password, name]
+
+    printnlog('Function: password')
 
     def find(name):
         # Creating a file, writing to it, and then running it.
@@ -912,6 +1200,8 @@ try:
             tqdm.write('発見完了')
         progress_bar_check += 1
         return [loginvstupuser, end]
+
+    printnlog('Function: find')
 
     def code(name, new, mode=0):
         """
@@ -978,6 +1268,8 @@ try:
             return savelog
         return name[1], new
 
+    printnlog('Function: code')
+
     def mouseclick(time=0):
         """
         The mouseclick function is used to click the F11 key on the keyboard.
@@ -999,6 +1291,8 @@ try:
                 break
             else:
                 pass
+
+    printnlog('Function: mouseclick')
 
     def playhtml(htmlFile, mode=0, time=0):
         """
@@ -1052,6 +1346,8 @@ try:
             else:
                 pass
 
+    printnlog('Function: playhtml')
+
     def main():  # type: ignore
         try:
             """
@@ -1064,11 +1360,11 @@ try:
                 historyfile.write('[*restarted]\n')
             global password
             if args.language == "SK":
-                print('Jazyk = SK\n\nZačínam rozbaľovať\n')
+                printnlog('\nZačínam rozbaľovať\n')
             elif args.language == "EN":
-                print('Language = EN\n\nStarting to extract\n')
+                printnlog('\nStarting to extract\n')
             elif args.language == "JP":
-                print("言語 = 日本語\n\n抽出開始\n")
+                printnlog("\n抽出開始\n")
             sleep(0.25)
             try:
                 
@@ -1083,6 +1379,7 @@ try:
                             try:
                                 zip.extract(member)
                                 tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                log(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
                                 sleep(0.01)
                             except zipfile.error as e:
                                 pass
@@ -1091,6 +1388,7 @@ try:
                             try:
                                 zip.extract(member)
                                 tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                log(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
                                 sleep(0.01)
                             except zipfile.error as e:
                                 pass
@@ -1099,22 +1397,23 @@ try:
                             try:
                                 zip.extract(member)
                                 tqdm.write(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                log(f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
                                 sleep(0.01)
                             except zipfile.error as e:
                                 pass
                     zip.close()
                 if args.language == "SK":
-                    print('Hotovo\n')
+                    printnlog('Hotovo\n')
                     sleep(0.25)
-                    print("Rozbaľujem druhu časť...\n")
+                    printnlog("Rozbaľujem druhu časť...\n")
                 elif args.language == "EN":
-                    print('Done\n')
+                    printnlog('Done\n')
                     sleep(0.25)
-                    print("Unpacking second part...\n")
+                    printnlog("Unpacking second part...\n")
                 elif args.language == "JP":
-                    print('終わり\n')
+                    printnlog('終わり\n')
                     sleep(0.25)
-                    print("2 番目の部分を解凍しています...\n")
+                    printnlog("2 番目の部分を解凍しています...\n")
                     
                 """
                 Extract the data from the xp3 file.
@@ -1138,25 +1437,25 @@ try:
                     pass
                 for r, d, f in os.walk('data1/apphtml/'):
                     for file in f:
-                        print(os.path.join('./', file))
+                        printnlog(os.path.join('./', file))
                         shutil.move(os.path.join('data1/apphtml/', file), os.path.join('apphtml/', file))
                 for r, d, f in os.walk('data1/assets/'):
                     for file in f:
-                        print(os.path.join('./', file))
+                        printnlog(os.path.join('./', file))
                         shutil.move(os.path.join('data1/assets/', file), os.path.join('assets/', file))
                 for r, d, f in os.walk('data1/'):
                     for file in f:
-                        print(os.path.join('./', file))
+                        printnlog(os.path.join('./', file))
                         shutil.move(os.path.join('data1/', file), os.path.join('/', file))
                 shutil.rmtree('data1')
                 os.remove(cachename)
                 os.remove('data.xp3')
                 if args.language == "SK":
-                    print('\nHotovo\n')
+                    printnlog('\nHotovo\n')
                 elif args.language == "EN":
-                    print('\nDone\n')
+                    printnlog('\nDone\n')
                 elif args.language == "JP":
-                    print('\n完了\n')
+                    printnlog('\n完了\n')
                 sleep(0.5)
                 check = open('data', 'r')
                 check_new = open('data_dummy', 'w')
@@ -1177,20 +1476,20 @@ try:
             except FileNotFoundError:
                 pass
             if args.language == 'SK':
-                print('Inicializácia VLC')
+                printnlog('Inicializácia VLC\n')
             elif args.language == 'EN':
-                print('Initialization VLC')
+                printnlog('Initialization VLC\n')
             elif args.language == 'JP':
-                print('初期化 VLC')
+                printnlog('初期化 VLC\n')
             sleep(0.25)
             media_player = vlc.MediaPlayer()
             sleep(0.25)
             if args.language == 'SK':
-                print('KONIEC')
+                printnlog('KONIEC')
             elif args.language == 'EN':
-                print('END')
+                printnlog('END')
             elif args.language == 'JP':
-                print('終わり')
+                printnlog('終わり')
             sleep(0.25)
             move('ZnámE',-10,-10,screensize[0],screensize[1])
             if args.test != None:
@@ -1200,14 +1499,14 @@ try:
                 except IndexError:
                     exit = True
                     error_get(IndexError, get_line_number(), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
-            
-            player = vlc.Instance('--fullscreen')
-            media_list = player.media_list_new()  # type: ignore
-            media_player = player.media_list_player_new()  # type: ignore
-            media = player.media_new("assets/transition.mp4")  # type: ignore
-            media_list.add_media(media)
-            media_player.set_media_list(media_list)
-            media_player.play()
+            if args.restart != None:
+                player = vlc.Instance('--fullscreen')
+                media_list = player.media_list_new()  # type: ignore
+                media_player = player.media_list_player_new()  # type: ignore
+                media = player.media_new("assets/transition.mp4")  # type: ignore
+                media_list.add_media(media)
+                media_player.set_media_list(media_list)
+                media_player.play()
             inactive1 = False
             """
             If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
@@ -1224,19 +1523,19 @@ try:
                             os.remove('INACTIVE')
                             sleep(0.25)
                             if args.language == "SK":
-                                print('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
+                                printnlog('Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
                             elif args.language == "EN":
-                                print('You were inactive, you were logged out and the program restarted!!!\n')
+                                printnlog('You were inactive, you were logged out and the program restarted!!!\n')
                             elif args.language == "JP":
-                                print('非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
+                                printnlog('非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
                 if args.update == None:
                     sleep(0.25)
                     if args.language == "SK":
-                        print('Program bol aktualizovaný!!!\n')
+                        printnlog('Program bol aktualizovaný!!!\n')
                     elif args.language == "EN":
-                        print('Program was updated!!!\n')
+                        printnlog('Program was updated!!!\n')
                     elif args.language == "JP":
-                        print('プログラムが更新されました!!!\n')
+                        printnlog('プログラムが更新されました!!!\n')
             except Exception:
                 pass
             """
@@ -1244,7 +1543,7 @@ try:
             @param args - the command line arguments
             """
             if args.language == 'JP':
-                print("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
+                printnlog("If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
             logged = False
             exit = False
             tologin = False
@@ -1261,11 +1560,27 @@ try:
             neko = False
             waifu = False
             waifuvid = False
+            musicplay = False
             """
             If the user has not disabled the intro, play it. Otherwise, do nothing.
             @param None
             @return None
             """
+            if args.restart != None:
+                try:
+                    sleep(0.1)
+                    window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 output)')[0]
+                    window.activate()
+                    window.maximize()
+                except Exception:
+                    pass
+                sleep(2.5)
+                mixer.init()
+                mixer.music.load('assets/greeting.mp3')
+                mixer.music.play()
+                sleep(2.5)
+                media_player.stop()
+                    
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
             exit = getWindow()
@@ -1286,11 +1601,7 @@ try:
             pg.press('win')
             sleep(0.1)
             pg.press('win')
-            window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 Output)')[0]
-            window.activate()
-            sleep(5)
             os.system('cls')
-            media_player.stop()
             if args.music != '0':
                 mixer.init()
                 mixer.music.load('assets/' + music[int(args.music)-1] +'.mp3')
@@ -1308,6 +1619,8 @@ try:
             elif args.language == "JP":
                 print('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
+            if args.restart == None:
+                open('CONTINUE', 'x')
             while True:
                 if not exit:
                     global loginvstupuser
@@ -1784,8 +2097,10 @@ try:
                         except IndexError:
                             pg.write('music\n')
                         mixer.music.play()
+                        musicplay = True
                     if vstup == 'quitmusic':
                         mixer.music.stop()
+                        musicplay = False
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime = str(datetime.now().strftime("%H-%M-%S"))
@@ -1896,6 +2211,9 @@ try:
                         pg.keyUp('win')
                         print('........',end='\r')
                         pg.press('esc')
+                        mixer.init()
+                        mixer.music.load('assets/neko.mp3')
+                        mixer.music.play()
                         print('.........',end='\r')
                         sleep(0.25)
                         print('..........',end='\r')
@@ -1914,6 +2232,11 @@ try:
                             print('終わり          ')
                         move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
                         neko = True
+                        sleep(5)
+                        if musicplay or args.music != '0' or config.get('basic info', 'music') == 'enable' :
+                            mixer.init()
+                            mixer.music.load('assets/' + music[musicvstup-1] +'.mp3')
+                            mixer.music.play()
                     if vstup == 'quitneko':
                         if not neko:
                             if args.language == 'SK':
@@ -1961,7 +2284,7 @@ try:
                             print('WAIT')
                         elif args.language == 'JP':
                             print('待つ')
-                        if args.waifu != None and args.waifu != None: 
+                        if args.waifu != None: 
                             if args.language == 'SK':
                                 print('Získavanie obrazu zo servera waifu.pics')
                             elif args.language == 'EN':
@@ -2020,12 +2343,10 @@ try:
                             except FileExistsError:
                                 pass
                         print('..',end='\r')
-                        print(data)  # type: ignore
                         if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':  # type: ignore
                             img = Image.open('assets/waifu.png')
                             print('....',end='\r')
                             img.show()
-                        print(data)  # type: ignore
                         print('....',end='\r')
                         sleep(0.1)
                         print('.....',end='\r')
@@ -2033,7 +2354,6 @@ try:
                             window = pygetwindow.getWindowsWithTitle('VLC (Direct3D11 Output)')[0]
                             window.activate()
                             sleep(0.1)
-                        print(data)
                         pg.keyDown('win')
                         print('......',end='\r')
                         pg.press('right')
@@ -2056,6 +2376,10 @@ try:
                             print('DONE           ')
                         elif args.language == 'JP':
                             print('終わり          ')
+                        # if config.get('waifu settings', 'type') == 'sfw' and config.get('waifu settings', 'category') in ['kiss', 'lick']:
+                        #     mixer.init()
+                        #     mixer.music.load('assets/' + str(random.randint(1,4)) +'.mp3')
+                        #     mixer.music.play()
                         move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int((round((0.95-(0.31203703703703706))*screensize[1], 0)))) # 337/1080
                         waifu = True
                     if vstup == 'quitwaifu':
@@ -2419,6 +2743,10 @@ try:
                             os.remove('NETSPEEDEND')
                         except Exception:
                             pass
+                        try:
+                            os.remove('CONTINUE')
+                        except Exception:
+                            pass
                     try:
                         open('END', 'x')
                     except Exception:
@@ -2457,9 +2785,12 @@ try:
                     version.write(versionlist[0] + '.' + versionlist[1] + '.' + versionlist[2] + '.' + str(datetime.today().strftime("%Y%m%d.%H%M%S")))
                     version.close()
                     historylist = []
-                    historyfile = open(historyname, 'r')
-                    for i in historyfile.readlines():
-                        historylist.append(i.strip('\n'))
+                    try:
+                        historyfile = open(historyname, 'r')
+                        for i in historyfile.readlines():
+                            historylist.append(i.strip('\n'))
+                    except Exception:
+                        pass
                     set_config('user history', historyname, str(datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist)) 
                     historyfile.close()
                     os.remove(historyname)
@@ -2507,17 +2838,17 @@ try:
                     shutil.rmtree('apphtml')
                     shutil.rmtree('assets')
                     if args.language == "SK":
-                        print("HOTOVO\n")
+                        print("\nHOTOVO\n")
                         sleep(0.5)
                         cv2.destroyAllWindows()
                         print("ZABAĽUJEM DRUHÚ ČASŤ DATA\n")
                     elif args.language == "EN":
-                        print("COMPLETE\n")
+                        print("\nCOMPLETE\n")
                         sleep(0.5)
                         cv2.destroyAllWindows()
                         print("PACKING SECOND PART OF DATA\n")
                     elif args.language == "JP":
-                        print("完了\n")
+                        print("\n完了\n")
                         sleep(0.5)
                         cv2.destroyAllWindows()
                         print("データの 2 番目の部分のパッキング\n")
@@ -2654,31 +2985,33 @@ try:
                                         os.remove('NETSPEEDEND')
                                     except Exception:
                                         pass
+                                    try:
+                                        os.remove('CONTINUE')
+                                    except Exception:
+                                        pass
+                                os.remove('crash_dump-' + datelog + '.txt')
                                 quit()
                             elif vstup in ['','y']:
                                 os.system('cls')
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
-                                    if neko:
+                                    if waifuvid:
+                                        subprocess.check_output('start restart.py --waifu --autol', shell=True)
+                                        sys.stdout.flush()
+                                        subprocess.check_output('start edupage.py --restart --nointrof --waifu --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                    elif neko:
                                         subprocess.check_output('start restart.py --neko --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        subprocess.check_output('start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     elif waifu:
                                         subprocess.check_output('start restart.py --waifu --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
-                                    elif waifuvid:
-                                        subprocess.check_output('start restart.py --waifu --autol', shell=True)
-                                        sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        subprocess.check_output('start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     else:
                                         subprocess.check_output('start restart.py --autol', shell=True)
                                         sys.stdout.flush()
-                                        subprocess.check_output('start edupage.py --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
-                                else:
-                                    subprocess.check_output('start edupage.py --nointrof -lang ' + args.language, shell=True)
-                                sys.stdout.flush()
-                                quit()
+                                        subprocess.check_output('start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                    os.remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
                             sys.stdout.flush()
@@ -2700,11 +3033,12 @@ try:
                                 subprocess.check_output('start restart.py', shell=True)
                                 sys.stdout.flush()
                             if neko:
-                                subprocess.check_output('start edupage.py --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                subprocess.check_output('start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
                             elif waifu:
-                                subprocess.check_output('start edupage.py --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                subprocess.check_output('start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
                             else:
-                                subprocess.check_output('start edupage.py --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                subprocess.check_output('start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                            os.remove('crash_dump-' + datelog + '.txt')
                             quit()
                     elif not restart:
                         os.remove('END')
@@ -2717,41 +3051,35 @@ try:
                                 input(str(linenumber) + " 「ENTER」で終了")
                             if os.path.exists('restart.py'):
                                 os.remove('restart.py')
+                            os.remove('crash_dump-' + datelog + '.txt')
                             quit()
                         else:
                             if os.path.exists('restart.py'):
                                 os.remove('restart.py')
+                            os.remove('crash_dump-' + datelog + '.txt')
                             quit()
         except Exception as e:
             x = open('error_log.txt', 'a')
-            if args.language == 'SK':
-                print('Zapisujem chybu do \'error_log.txt\'!!!')
-            elif args.language == 'EN':
-                print('Writing an error to \'error_log.txt\'!!!')
-            elif args.language == 'JP':
-                print('\'error_log.txt\' にエラーを書き込みます!!!')
+            printnlog('Writing an error to \'error_log.txt\'!!!')
             exception_type, exception_object, exception_traceback = sys.exc_info()
             line_number = exception_traceback.tb_lineno
             error_get(eval(type(e).__name__), line_number, '')
-            if args.language == 'SK':
-                print('Koniec!!!')
-            elif args.language == 'EN':
-                print('End')
-            elif args.language == 'JP':
-                print('終わり')
+            printnlog('End')
             sleep(1)
             quit()
-
+    printnlog('Function: main\n')
+    printnlog('Done defining functions\n')
+    
     if '__main__' == __name__:
         main()
 except Exception as e:
     import os, sys
     from time import sleep
     x = open('error_log.txt', 'a')
-    print('Writing an error to \'error_log.txt\'!!!')
+    printnlog('Writing an error to \'error_log.txt\'!!!')  # type: ignore
     exception_type, exception_object, exception_traceback = sys.exc_info()
     line_number = exception_traceback.tb_lineno  # type: ignore
     error_get(eval(type(e).__name__), line_number, '')  # type: ignore
-    print('End')
+    printnlog('End')  # type: ignore
     sleep(1)
     quit()

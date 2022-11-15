@@ -13,3 +13,4 @@ requests>=2.26.0
 semantic_version>=2.10.0
 setuptools>=49.2.1
 tqdm>=4.62.3
+WMI>=1.5.1

@@ -7,6 +7,7 @@ var annotated_dup =
       [ "argLanguageError", "df/dc6/classedupage_1_1arg_language_error.html", null ],
       [ "argMusicListError", "d4/d54/classedupage_1_1arg_music_list_error.html", null ],
       [ "argNekoError", "d4/db7/classedupage_1_1arg_neko_error.html", null ],
-      [ "argWaifuError", "d2/d19/classedupage_1_1arg_waifu_error.html", null ]
+      [ "argWaifuError", "d2/d19/classedupage_1_1arg_waifu_error.html", null ],
+      [ "configNoOption", "d7/d7c/classedupage_1_1config_no_option.html", null ]
     ] ]
 ];

@@ -113,6 +113,10 @@
               <Path>d2/d19/classedupage_1_1arg_waifu_error.html</Path>
              </Node>
              <Node>
+              <Name>configNoOption</Name>
+              <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
+             </Node>
+             <Node>
               <Name>add</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>ae4a9cabaf4c03e341b57bba83ce101db</Anchor>
@@ -158,6 +162,11 @@
               <Anchor>a354083c63893b814752b84ce1d2260d4</Anchor>
              </Node>
              <Node>
+              <Name>get_size1</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aff324ce24d647ee63dcd3745f1daf436</Anchor>
+             </Node>
+             <Node>
               <Name>getImg</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>acd370e8dab693a3c7c8cb2394f8b1c6e</Anchor>
@@ -171,6 +180,11 @@
               <Name>inactive</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a3e074bd63c4b44876caa6dfa778fd91e</Anchor>
+             </Node>
+             <Node>
+              <Name>log</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a393ad4c8000dde893f173230504ebb10</Anchor>
              </Node>
              <Node>
               <Name>main</Name>
@@ -201,6 +215,16 @@
               <Name>playhtml</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>aa2119f61a68f401d65ae4cab60bd59e3</Anchor>
+             </Node>
+             <Node>
+              <Name>print_module</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a35574cc146becdb6117236948ec0ab54</Anchor>
+             </Node>
+             <Node>
+              <Name>printnlog</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a752735a2f5fba041834c7a436730d585</Anchor>
              </Node>
              <Node>
               <Name>progress_bar</Name>
@@ -248,14 +272,34 @@
               <Anchor>aa0c02b4c53f1e2663c387971761260a1</Anchor>
              </Node>
              <Node>
+              <Name>computer</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a079299072bf6a354e5cc56f9b42652ff</Anchor>
+             </Node>
+             <Node>
+              <Name>computer_info</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a1b46f59eef6671da0ad66c628a99969d</Anchor>
+             </Node>
+             <Node>
               <Name>config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a66456585d75fa170a00d4db223518fcc</Anchor>
              </Node>
              <Node>
+              <Name>cpufreq</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a9a16192b62550189b67b04f293821201</Anchor>
+             </Node>
+             <Node>
               <Name>crupdate</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
+             </Node>
+             <Node>
+              <Name>datelog</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a055385dba868b2f543030ee5192b0d7c</Anchor>
              </Node>
              <Node>
               <Name>decodeapp</Name>
@@ -276,6 +320,16 @@
               <Name>directory</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>afcd629fb42a77fb7115a373af2b133b8</Anchor>
+             </Node>
+             <Node>
+              <Name>disk_io</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a75cbe23ac13fca5cebeeb92e542229b3</Anchor>
+             </Node>
+             <Node>
+              <Name>end</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
               <Name>exception_object</Name>
@@ -303,6 +357,56 @@
               <Anchor>a4e76721f3d3615af27c369efd760c5a3</Anchor>
              </Node>
              <Node>
+              <Name>gpu_free_memory</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aa78d54a7d85eb19a7b38e9e279e50209</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_id</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a4a6355f559f6747763f6d4aa02e18065</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_info</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a81f70826f7aa8d0d472524f687a8c54a</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_load</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a18c9e37639eaf0c9218accec82fceda3</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_name</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a6c882875d8912b362b4958422b66082b</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_temperature</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a1367c30fba02ac2dd186a8656b5b3c4b</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_total_memory</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a2db115dcd0e17b963f60b17d1ef7f9e8</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_used_memory</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>addd35a80d3cb494dfb70c3dc242b900e</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_uuid</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a56dcf878969030c39054670cef005fa4</Anchor>
+             </Node>
+             <Node>
+              <Name>gpus</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>af116eb2b6c90db946d8165ed59808e30</Anchor>
+             </Node>
+             <Node>
               <Name>help</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a08a7b70b9f407ce0bd61e0c6c9e58ac4</Anchor>
@@ -311,6 +415,11 @@
               <Name>hexnumber</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a4dfbc2105aef0c7859144bcb757f4b13</Anchor>
+             </Node>
+             <Node>
+              <Name>if_addrs</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
               <Name>iterable</Name>
@@ -328,6 +437,11 @@
               <Anchor>a2c0c5ba04ed8c8f67abcb32c1df8fd38</Anchor>
              </Node>
              <Node>
+              <Name>list_gpus</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>af26fb9d80ec307320cff81139ef78492</Anchor>
+             </Node>
+             <Node>
               <Name>loginvstupuser</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a3e71b4857120b4b245437e22d7e99b5b</Anchor>
@@ -338,9 +452,29 @@
               <Anchor>a7ee3f3010bc04cf901b7fb1ffb7c6ae1</Anchor>
              </Node>
              <Node>
+              <Name>moduleminus</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a1db685fa6e5ce93bc5c43d824b2b9887</Anchor>
+             </Node>
+             <Node>
+              <Name>modulenames</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a22173f6b967a2681f2266dfb6eeaa7a9</Anchor>
+             </Node>
+             <Node>
               <Name>music</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
+             </Node>
+             <Node>
+              <Name>my_cpuinfo</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a5276f4fa76868d9c89b3294048a8baf0</Anchor>
+             </Node>
+             <Node>
+              <Name>my_system</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a3a3e90022918dc3641739bba8d7c1f96</Anchor>
              </Node>
              <Node>
               <Name>nainstalovane</Name>
@@ -358,6 +492,26 @@
               <Anchor>a83fb3bf28fc13c629f23ac9ff3122b9a</Anchor>
              </Node>
              <Node>
+              <Name>net_io</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a8b3c2b4aa69e20ad0ee46294665e7aed</Anchor>
+             </Node>
+             <Node>
+              <Name>os_info</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ac7d3fb73f5602c0dd9173512945059e0</Anchor>
+             </Node>
+             <Node>
+              <Name>os_name</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a97b4260a2875120e5e3bd13194d1fe9c</Anchor>
+             </Node>
+             <Node>
+              <Name>os_version</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a9c63a43352831b096451957448c2092f</Anchor>
+             </Node>
+             <Node>
               <Name>page</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a70455a548e588872237e853d8a9f1026</Anchor>
@@ -368,14 +522,39 @@
               <Anchor>a2d5d660ba0d864e3c255021852b4a19a</Anchor>
              </Node>
              <Node>
+              <Name>partition_usage</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a54a9915e24cadbee76989739bce781cf</Anchor>
+             </Node>
+             <Node>
+              <Name>partitions</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a8f345af643d876a4e37bc1557be0b70d</Anchor>
+             </Node>
+             <Node>
               <Name>passwordapp</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a0af623e31eabe6fec619b35844e7add0</Anchor>
              </Node>
              <Node>
+              <Name>pc</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a22a3e4a85f19b3518b25589770b5a028</Anchor>
+             </Node>
+             <Node>
               <Name>potrebne</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a5e76c0e5052969dd11bfdae3142eacd8</Anchor>
+             </Node>
+             <Node>
+              <Name>potrebne1</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a2845e73d67a2aa5ee8c5424387114d47</Anchor>
+             </Node>
+             <Node>
+              <Name>proc_info</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ab10f8e4ce90d381cf6f2ca787130a50f</Anchor>
              </Node>
              <Node>
               <Name>progress_bar_check</Name>
@@ -416,6 +595,21 @@
               <Name>shell</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
+             </Node>
+             <Node>
+              <Name>svmem</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a36d7b8f5bb3bd35586a5bc67f8069106</Anchor>
+             </Node>
+             <Node>
+              <Name>swap</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aeacc6fb166708647a0a4536b5e416694</Anchor>
+             </Node>
+             <Node>
+              <Name>system_ram</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
              </Node>
              <Node>
               <Name>timeout</Name>
@@ -537,6 +731,10 @@
               <Name>argWaifuError</Name>
               <Path>d2/d19/classedupage_1_1arg_waifu_error.html</Path>
              </Node>
+             <Node>
+              <Name>configNoOption</Name>
+              <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
+             </Node>
             </Subnodes>
            </Node>
           </Subnodes>
@@ -581,6 +779,10 @@
               <Name>edupage.argWaifuError</Name>
               <Path>d2/d19/classedupage_1_1arg_waifu_error.html</Path>
              </Node>
+             <Node>
+              <Name>edupage.configNoOption</Name>
+              <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
+             </Node>
             </Subnodes>
            </Node>
           </Subnodes>
@@ -599,6 +801,10 @@
             <Name>edupage.py</Name>
             <Path>df/dd7/edupage_8py.html</Path>
           <Subnodes>
+             <Node>
+              <Name>edupage.configNoOption</Name>
+              <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
+             </Node>
              <Node>
               <Name>edupage.argLanguageError</Name>
               <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
@@ -673,6 +879,11 @@
               <Anchor>a354083c63893b814752b84ce1d2260d4</Anchor>
              </Node>
              <Node>
+              <Name>get_size1</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aff324ce24d647ee63dcd3745f1daf436</Anchor>
+             </Node>
+             <Node>
               <Name>getImg</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>acd370e8dab693a3c7c8cb2394f8b1c6e</Anchor>
@@ -686,6 +897,11 @@
               <Name>inactive</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a3e074bd63c4b44876caa6dfa778fd91e</Anchor>
+             </Node>
+             <Node>
+              <Name>log</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a393ad4c8000dde893f173230504ebb10</Anchor>
              </Node>
              <Node>
               <Name>main</Name>
@@ -716,6 +932,16 @@
               <Name>playhtml</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>aa2119f61a68f401d65ae4cab60bd59e3</Anchor>
+             </Node>
+             <Node>
+              <Name>print_module</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a35574cc146becdb6117236948ec0ab54</Anchor>
+             </Node>
+             <Node>
+              <Name>printnlog</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a752735a2f5fba041834c7a436730d585</Anchor>
              </Node>
              <Node>
               <Name>progress_bar</Name>
@@ -763,14 +989,34 @@
               <Anchor>aa0c02b4c53f1e2663c387971761260a1</Anchor>
              </Node>
              <Node>
+              <Name>computer</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a079299072bf6a354e5cc56f9b42652ff</Anchor>
+             </Node>
+             <Node>
+              <Name>computer_info</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a1b46f59eef6671da0ad66c628a99969d</Anchor>
+             </Node>
+             <Node>
               <Name>config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a66456585d75fa170a00d4db223518fcc</Anchor>
              </Node>
              <Node>
+              <Name>cpufreq</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a9a16192b62550189b67b04f293821201</Anchor>
+             </Node>
+             <Node>
               <Name>crupdate</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
+             </Node>
+             <Node>
+              <Name>datelog</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a055385dba868b2f543030ee5192b0d7c</Anchor>
              </Node>
              <Node>
               <Name>decodeapp</Name>
@@ -791,6 +1037,16 @@
               <Name>directory</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>afcd629fb42a77fb7115a373af2b133b8</Anchor>
+             </Node>
+             <Node>
+              <Name>disk_io</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a75cbe23ac13fca5cebeeb92e542229b3</Anchor>
+             </Node>
+             <Node>
+              <Name>end</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
               <Name>exception_object</Name>
@@ -818,6 +1074,56 @@
               <Anchor>a4e76721f3d3615af27c369efd760c5a3</Anchor>
              </Node>
              <Node>
+              <Name>gpu_free_memory</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aa78d54a7d85eb19a7b38e9e279e50209</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_id</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a4a6355f559f6747763f6d4aa02e18065</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_info</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a81f70826f7aa8d0d472524f687a8c54a</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_load</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a18c9e37639eaf0c9218accec82fceda3</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_name</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a6c882875d8912b362b4958422b66082b</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_temperature</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a1367c30fba02ac2dd186a8656b5b3c4b</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_total_memory</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a2db115dcd0e17b963f60b17d1ef7f9e8</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_used_memory</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>addd35a80d3cb494dfb70c3dc242b900e</Anchor>
+             </Node>
+             <Node>
+              <Name>gpu_uuid</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a56dcf878969030c39054670cef005fa4</Anchor>
+             </Node>
+             <Node>
+              <Name>gpus</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>af116eb2b6c90db946d8165ed59808e30</Anchor>
+             </Node>
+             <Node>
               <Name>help</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a08a7b70b9f407ce0bd61e0c6c9e58ac4</Anchor>
@@ -826,6 +1132,11 @@
               <Name>hexnumber</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a4dfbc2105aef0c7859144bcb757f4b13</Anchor>
+             </Node>
+             <Node>
+              <Name>if_addrs</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
               <Name>iterable</Name>
@@ -843,6 +1154,11 @@
               <Anchor>a2c0c5ba04ed8c8f67abcb32c1df8fd38</Anchor>
              </Node>
              <Node>
+              <Name>list_gpus</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>af26fb9d80ec307320cff81139ef78492</Anchor>
+             </Node>
+             <Node>
               <Name>loginvstupuser</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a3e71b4857120b4b245437e22d7e99b5b</Anchor>
@@ -853,9 +1169,29 @@
               <Anchor>a7ee3f3010bc04cf901b7fb1ffb7c6ae1</Anchor>
              </Node>
              <Node>
+              <Name>moduleminus</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a1db685fa6e5ce93bc5c43d824b2b9887</Anchor>
+             </Node>
+             <Node>
+              <Name>modulenames</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a22173f6b967a2681f2266dfb6eeaa7a9</Anchor>
+             </Node>
+             <Node>
               <Name>music</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
+             </Node>
+             <Node>
+              <Name>my_cpuinfo</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a5276f4fa76868d9c89b3294048a8baf0</Anchor>
+             </Node>
+             <Node>
+              <Name>my_system</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a3a3e90022918dc3641739bba8d7c1f96</Anchor>
              </Node>
              <Node>
               <Name>nainstalovane</Name>
@@ -873,6 +1209,26 @@
               <Anchor>a83fb3bf28fc13c629f23ac9ff3122b9a</Anchor>
              </Node>
              <Node>
+              <Name>net_io</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a8b3c2b4aa69e20ad0ee46294665e7aed</Anchor>
+             </Node>
+             <Node>
+              <Name>os_info</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ac7d3fb73f5602c0dd9173512945059e0</Anchor>
+             </Node>
+             <Node>
+              <Name>os_name</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a97b4260a2875120e5e3bd13194d1fe9c</Anchor>
+             </Node>
+             <Node>
+              <Name>os_version</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a9c63a43352831b096451957448c2092f</Anchor>
+             </Node>
+             <Node>
               <Name>page</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a70455a548e588872237e853d8a9f1026</Anchor>
@@ -883,14 +1239,39 @@
               <Anchor>a2d5d660ba0d864e3c255021852b4a19a</Anchor>
              </Node>
              <Node>
+              <Name>partition_usage</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a54a9915e24cadbee76989739bce781cf</Anchor>
+             </Node>
+             <Node>
+              <Name>partitions</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a8f345af643d876a4e37bc1557be0b70d</Anchor>
+             </Node>
+             <Node>
               <Name>passwordapp</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a0af623e31eabe6fec619b35844e7add0</Anchor>
              </Node>
              <Node>
+              <Name>pc</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a22a3e4a85f19b3518b25589770b5a028</Anchor>
+             </Node>
+             <Node>
               <Name>potrebne</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a5e76c0e5052969dd11bfdae3142eacd8</Anchor>
+             </Node>
+             <Node>
+              <Name>potrebne1</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a2845e73d67a2aa5ee8c5424387114d47</Anchor>
+             </Node>
+             <Node>
+              <Name>proc_info</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ab10f8e4ce90d381cf6f2ca787130a50f</Anchor>
              </Node>
              <Node>
               <Name>progress_bar_check</Name>
@@ -931,6 +1312,21 @@
               <Name>shell</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
+             </Node>
+             <Node>
+              <Name>svmem</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a36d7b8f5bb3bd35586a5bc67f8069106</Anchor>
+             </Node>
+             <Node>
+              <Name>swap</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aeacc6fb166708647a0a4536b5e416694</Anchor>
+             </Node>
+             <Node>
+              <Name>system_ram</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
              </Node>
              <Node>
               <Name>timeout</Name>

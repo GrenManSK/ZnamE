@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verzia_0',['verzia',['../d0/d52/namespaceedupage.html#a9593eb2c11b28648f081e7f54e0e9b19',1,'edupage']]]
+  ['timeout_0',['timeout',['../d0/d52/namespaceedupage.html#a0f5a79eefde3f31817b10c4733ccd2ff',1,'edupage']]],
+  ['total_1',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]]
 ];
