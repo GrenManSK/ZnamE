@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['unspecified_0',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
-  ['update_1',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
-  ['updateapp_2',['updateapp',['../d0/d52/namespaceedupage.html#ac32f721d6dba7d6065d9ea4aad2fee09',1,'edupage']]],
-  ['url_3',['url',['../d0/d52/namespaceedupage.html#a57309bd95951e13c51a34733d71cb1d0',1,'edupage']]],
-  ['user32_4',['user32',['../d0/d52/namespaceedupage.html#a42ac73748deb2669242da95bae43f0eb',1,'edupage']]]
+  ['screensize_0',['screensize',['../d0/d52/namespaceedupage.html#a7b26d1c4d02cd9dc1060abd9bbf338b7',1,'edupage']]],
+  ['screensizepercentage_1',['screensizepercentage',['../d0/d52/namespaceedupage.html#ac388ff14fbe6c03871027bfa64fa0ee3',1,'edupage']]],
+  ['server_2',['server',['../d0/d52/namespaceedupage.html#af46e517a54e8917a6351ae61c92bb955',1,'edupage']]],
+  ['shell_3',['shell',['../d0/d52/namespaceedupage.html#a7a4b0a4e523eb4440e9830818d283044',1,'edupage']]],
+  ['svmem_4',['svmem',['../d0/d52/namespaceedupage.html#a36d7b8f5bb3bd35586a5bc67f8069106',1,'edupage']]],
+  ['swap_5',['swap',['../d0/d52/namespaceedupage.html#aeacc6fb166708647a0a4536b5e416694',1,'edupage']]],
+  ['system_5fram_6',['system_ram',['../d0/d52/namespaceedupage.html#ae5d8ff7331fe2c038038008a8000dcf0',1,'edupage']]]
 ];
