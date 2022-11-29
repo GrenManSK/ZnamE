@@ -12,5 +12,6 @@ var searchData=
   ['confignooption_9',['configNoOption',['../d7/d7c/classedupage_1_1config_no_option.html',1,'edupage']]],
   ['contributor_20covenant_20code_20of_20conduct_10',['Contributor Covenant Code of Conduct',['../d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html',1,'']]],
   ['cpufreq_11',['cpufreq',['../d0/d52/namespaceedupage.html#a9a16192b62550189b67b04f293821201',1,'edupage']]],
-  ['crupdate_12',['crupdate',['../d0/d52/namespaceedupage.html#a741bdc611845652a6f04c3124a890ea4',1,'edupage']]]
+  ['create_5fgamefiles_12',['create_gamefiles',['../d0/d52/namespaceedupage.html#a67480646b93e551a2250924d8acc0f1c',1,'edupage']]],
+  ['crupdate_13',['crupdate',['../d0/d52/namespaceedupage.html#a741bdc611845652a6f04c3124a890ea4',1,'edupage']]]
 ];

@@ -10,11 +10,16 @@ def uninstall():
     """
     if __name__ == '__main__':
         try:
-            if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
-                os.remove("C:/Users/" + os.getlogin() +
-                          "/AppData/Local/ZnámE/saved")
-                shutil.rmtree("C:/Users/" + os.getlogin() +
-                              "/AppData/Local/ZnámE/")
+            shutil.rmtree("C:/Users/" + os.getlogin() +
+                          "/AppData/Local/ZnámE/")
+            try:
+                os.remove('game.py')
+            except Exception:
+                pass
+            try:
+                shutil.rmtree('game/')
+            except Exception:
+                pass
         except Exception as e:
             error_get(eval(type(e).__name__),
                       get_line_number(), 'Unknown error')
@@ -22,8 +27,6 @@ def uninstall():
         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
             os.remove("C:/Users/" + os.getlogin() +
                       "/AppData/Local/ZnámE/saved")
-            shutil.rmtree("C:/Users/" + os.getlogin() +
-                          "/AppData/Local/ZnámE/")
 
 
 if __name__ == '__main__':
