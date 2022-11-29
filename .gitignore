@@ -2,6 +2,7 @@
 *.pyc
 backup/
 ZnamE.zip
+ZnamE_all.zip
 .history/
 .vscode/
 .test/

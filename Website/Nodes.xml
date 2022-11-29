@@ -89,6 +89,10 @@
               <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
              </Node>
              <Node>
+              <Name>argGameError</Name>
+              <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
+             </Node>
+             <Node>
               <Name>argInactiveLimitError</Name>
               <Path>d6/d7c/classedupage_1_1arg_inactive_limit_error.html</Path>
              </Node>
@@ -127,6 +131,11 @@
               <Anchor>a9f2fb33498a6ca319dbf12173811ed98</Anchor>
              </Node>
              <Node>
+              <Name>create_gamefiles</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a67480646b93e551a2250924d8acc0f1c</Anchor>
+             </Node>
+             <Node>
               <Name>decode</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a81eee952198f84436e037b0a0da72224</Anchor>
@@ -135,6 +144,11 @@
               <Name>delcache</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a16e7d4c2c6bcf9d97a85dbe77e17bc45</Anchor>
+             </Node>
+             <Node>
+              <Name>download</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ae291f35efa2f8728886735036dc40c24</Anchor>
              </Node>
              <Node>
               <Name>error_get</Name>
@@ -150,6 +164,11 @@
               <Name>find</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a0043cc90f496c13cd426dc0917cb8676</Anchor>
+             </Node>
+             <Node>
+              <Name>game</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a066160930144d9f301a7d3a6cf5a2ab7</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -182,6 +201,11 @@
               <Anchor>a3e074bd63c4b44876caa6dfa778fd91e</Anchor>
              </Node>
              <Node>
+              <Name>internet_check</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a179a5d50483544d634daeae83a1d88fd</Anchor>
+             </Node>
+             <Node>
               <Name>log</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a393ad4c8000dde893f173230504ebb10</Anchor>
@@ -202,11 +226,6 @@
               <Anchor>ad3afb6aca23b9c2f5a17dfead6f08920</Anchor>
              </Node>
              <Node>
-              <Name>netspeed</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a6746f69c38da15fbb336974562c81630</Anchor>
-             </Node>
-             <Node>
               <Name>password</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a93a40ace672019acb1ed8bd6f7c9a9b2</Anchor>
@@ -217,6 +236,11 @@
               <Anchor>aa2119f61a68f401d65ae4cab60bd59e3</Anchor>
              </Node>
              <Node>
+              <Name>PlayVideo</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a757a40ca796b386cf93e0f4ebc204053</Anchor>
+             </Node>
+             <Node>
               <Name>print_module</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a35574cc146becdb6117236948ec0ab54</Anchor>
@@ -224,7 +248,7 @@
              <Node>
               <Name>printnlog</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a752735a2f5fba041834c7a436730d585</Anchor>
+              <Anchor>a9cad38f92b76248b7fb0aaeb32ba0373</Anchor>
              </Node>
              <Node>
               <Name>progress_bar</Name>
@@ -235,6 +259,16 @@
               <Name>set_config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a0003b8cdfed4f905e18d2a94185fe84b</Anchor>
+             </Node>
+             <Node>
+              <Name>to_info</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a8b515f6ea41c05a33a54c3a28cc12b0f</Anchor>
+             </Node>
+             <Node>
+              <Name>typewriter</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a1ec1aa1ac2eab87e29fe39aed0716ea5</Anchor>
              </Node>
              <Node>
               <Name>addapp</Name>
@@ -347,6 +381,11 @@
               <Anchor>a564479a45c82366746fe44bf497fa1b7</Anchor>
              </Node>
              <Node>
+              <Name>file</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a5426b37a2ceaa0ac4895a823d8321438</Anchor>
@@ -355,6 +394,26 @@
               <Name>findapp</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a4e76721f3d3615af27c369efd760c5a3</Anchor>
+             </Node>
+             <Node>
+              <Name>format</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
+             </Node>
+             <Node>
+              <Name>gameapp</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a136fc5564a8866ed5907bd4b228d2565</Anchor>
+             </Node>
+             <Node>
+              <Name>gamefiles</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aa4d6561dd0023737102dcf9b2e515b09</Anchor>
+             </Node>
+             <Node>
+              <Name>goal_score</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a7cfb53d7e5e663aafcd1c09ffab3e41b</Anchor>
              </Node>
              <Node>
               <Name>gpu_free_memory</Name>
@@ -467,6 +526,11 @@
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
              </Node>
              <Node>
+              <Name>musicchoices</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a03a1bcbcb3513f1fa8173b8631e2e5c0</Anchor>
+             </Node>
+             <Node>
               <Name>my_cpuinfo</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a5276f4fa76868d9c89b3294048a8baf0</Anchor>
@@ -577,6 +641,16 @@
               <Anchor>a110ef0f892786cb4ef9aa51180e85d83</Anchor>
              </Node>
              <Node>
+              <Name>score</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a5a0b5125e3fab02c14f00e19543c624a</Anchor>
+             </Node>
+             <Node>
+              <Name>scorec</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a2f95261131827a7e406faf2544eb783e</Anchor>
+             </Node>
+             <Node>
               <Name>screensize</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7b26d1c4d02cd9dc1060abd9bbf338b7</Anchor>
@@ -610,11 +684,6 @@
               <Name>system_ram</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
-             </Node>
-             <Node>
-              <Name>timeout</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a0f5a79eefde3f31817b10c4733ccd2ff</Anchor>
              </Node>
              <Node>
               <Name>total</Name>
@@ -708,6 +777,10 @@
               <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
              </Node>
              <Node>
+              <Name>argGameError</Name>
+              <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
+             </Node>
+             <Node>
               <Name>argInactiveLimitError</Name>
               <Path>d6/d7c/classedupage_1_1arg_inactive_limit_error.html</Path>
              </Node>
@@ -754,6 +827,10 @@
              <Node>
               <Name>edupage.argEnviromentError</Name>
               <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
+             </Node>
+             <Node>
+              <Name>edupage.argGameError</Name>
+              <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
              </Node>
              <Node>
               <Name>edupage.argInactiveLimitError</Name>
@@ -834,6 +911,10 @@
               <Path>d4/db7/classedupage_1_1arg_neko_error.html</Path>
              </Node>
              <Node>
+              <Name>edupage.argGameError</Name>
+              <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
+             </Node>
+             <Node>
               <Name>add</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>ae4a9cabaf4c03e341b57bba83ce101db</Anchor>
@@ -844,6 +925,11 @@
               <Anchor>a9f2fb33498a6ca319dbf12173811ed98</Anchor>
              </Node>
              <Node>
+              <Name>create_gamefiles</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a67480646b93e551a2250924d8acc0f1c</Anchor>
+             </Node>
+             <Node>
               <Name>decode</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a81eee952198f84436e037b0a0da72224</Anchor>
@@ -852,6 +938,11 @@
               <Name>delcache</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a16e7d4c2c6bcf9d97a85dbe77e17bc45</Anchor>
+             </Node>
+             <Node>
+              <Name>download</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ae291f35efa2f8728886735036dc40c24</Anchor>
              </Node>
              <Node>
               <Name>error_get</Name>
@@ -867,6 +958,11 @@
               <Name>find</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a0043cc90f496c13cd426dc0917cb8676</Anchor>
+             </Node>
+             <Node>
+              <Name>game</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a066160930144d9f301a7d3a6cf5a2ab7</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -899,6 +995,11 @@
               <Anchor>a3e074bd63c4b44876caa6dfa778fd91e</Anchor>
              </Node>
              <Node>
+              <Name>internet_check</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a179a5d50483544d634daeae83a1d88fd</Anchor>
+             </Node>
+             <Node>
               <Name>log</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a393ad4c8000dde893f173230504ebb10</Anchor>
@@ -919,11 +1020,6 @@
               <Anchor>ad3afb6aca23b9c2f5a17dfead6f08920</Anchor>
              </Node>
              <Node>
-              <Name>netspeed</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a6746f69c38da15fbb336974562c81630</Anchor>
-             </Node>
-             <Node>
               <Name>password</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a93a40ace672019acb1ed8bd6f7c9a9b2</Anchor>
@@ -934,6 +1030,11 @@
               <Anchor>aa2119f61a68f401d65ae4cab60bd59e3</Anchor>
              </Node>
              <Node>
+              <Name>PlayVideo</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a757a40ca796b386cf93e0f4ebc204053</Anchor>
+             </Node>
+             <Node>
               <Name>print_module</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a35574cc146becdb6117236948ec0ab54</Anchor>
@@ -941,7 +1042,7 @@
              <Node>
               <Name>printnlog</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a752735a2f5fba041834c7a436730d585</Anchor>
+              <Anchor>a9cad38f92b76248b7fb0aaeb32ba0373</Anchor>
              </Node>
              <Node>
               <Name>progress_bar</Name>
@@ -952,6 +1053,16 @@
               <Name>set_config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a0003b8cdfed4f905e18d2a94185fe84b</Anchor>
+             </Node>
+             <Node>
+              <Name>to_info</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a8b515f6ea41c05a33a54c3a28cc12b0f</Anchor>
+             </Node>
+             <Node>
+              <Name>typewriter</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a1ec1aa1ac2eab87e29fe39aed0716ea5</Anchor>
              </Node>
              <Node>
               <Name>addapp</Name>
@@ -1064,6 +1175,11 @@
               <Anchor>a564479a45c82366746fe44bf497fa1b7</Anchor>
              </Node>
              <Node>
+              <Name>file</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a5426b37a2ceaa0ac4895a823d8321438</Anchor>
@@ -1072,6 +1188,26 @@
               <Name>findapp</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a4e76721f3d3615af27c369efd760c5a3</Anchor>
+             </Node>
+             <Node>
+              <Name>format</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
+             </Node>
+             <Node>
+              <Name>gameapp</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a136fc5564a8866ed5907bd4b228d2565</Anchor>
+             </Node>
+             <Node>
+              <Name>gamefiles</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aa4d6561dd0023737102dcf9b2e515b09</Anchor>
+             </Node>
+             <Node>
+              <Name>goal_score</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a7cfb53d7e5e663aafcd1c09ffab3e41b</Anchor>
              </Node>
              <Node>
               <Name>gpu_free_memory</Name>
@@ -1184,6 +1320,11 @@
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
              </Node>
              <Node>
+              <Name>musicchoices</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a03a1bcbcb3513f1fa8173b8631e2e5c0</Anchor>
+             </Node>
+             <Node>
               <Name>my_cpuinfo</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a5276f4fa76868d9c89b3294048a8baf0</Anchor>
@@ -1294,6 +1435,16 @@
               <Anchor>a110ef0f892786cb4ef9aa51180e85d83</Anchor>
              </Node>
              <Node>
+              <Name>score</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a5a0b5125e3fab02c14f00e19543c624a</Anchor>
+             </Node>
+             <Node>
+              <Name>scorec</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a2f95261131827a7e406faf2544eb783e</Anchor>
+             </Node>
+             <Node>
               <Name>screensize</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7b26d1c4d02cd9dc1060abd9bbf338b7</Anchor>
@@ -1327,11 +1478,6 @@
               <Name>system_ram</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
-             </Node>
-             <Node>
-              <Name>timeout</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a0f5a79eefde3f31817b10c4733ccd2ff</Anchor>
              </Node>
              <Node>
               <Name>total</Name>

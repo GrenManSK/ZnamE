@@ -11,6 +11,15 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>edupage::argGameError</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.argGameError</Scope>
+    </TokenIdentifier>
+    <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>edupage::argInactiveLimitError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
@@ -249,6 +258,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>create_gamefiles</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a67480646b93e551a2250924d8acc0f1c</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>crupdate</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -348,6 +368,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>download</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>ae291f35efa2f8728886735036dc40c24</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>end</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -414,6 +445,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>file</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>filename</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -443,6 +485,50 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a4e76721f3d3615af27c369efd760c5a3</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>format</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>game</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a066160930144d9f301a7d3a6cf5a2ab7</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>gameapp</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a136fc5564a8866ed5907bd4b228d2565</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>gamefiles</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>aa4d6561dd0023737102dcf9b2e515b09</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -498,6 +584,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>afa5f19a9b12b6de7df52cb51a0e69882</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>goal_score</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a7cfb53d7e5e663aafcd1c09ffab3e41b</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -656,6 +753,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>internet_check</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a179a5d50483544d634daeae83a1d88fd</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>iterable</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -799,6 +907,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>musicchoices</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a03a1bcbcb3513f1fa8173b8631e2e5c0</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>my_cpuinfo</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -861,17 +980,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a8b3c2b4aa69e20ad0ee46294665e7aed</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>netspeed</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a6746f69c38da15fbb336974562c81630</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -997,6 +1105,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>PlayVideo</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a757a40ca796b386cf93e0f4ebc204053</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>potrebne</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1036,7 +1155,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a752735a2f5fba041834c7a436730d585</Anchor>
+    <Anchor>a9cad38f92b76248b7fb0aaeb32ba0373</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1103,6 +1222,28 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a110ef0f892786cb4ef9aa51180e85d83</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>score</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a5a0b5125e3fab02c14f00e19543c624a</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>scorec</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a2f95261131827a7e406faf2544eb783e</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1195,13 +1336,13 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>timeout</Name>
+      <Name>to_info</Name>
       <APILanguage>python</APILanguage>
-      <Type>data</Type>
+      <Type>func</Type>
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a0f5a79eefde3f31817b10c4733ccd2ff</Anchor>
+    <Anchor>a8b515f6ea41c05a33a54c3a28cc12b0f</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1213,6 +1354,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>acc265ae5355756db29acc12bc617cd79</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>typewriter</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a1ec1aa1ac2eab87e29fe39aed0716ea5</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
