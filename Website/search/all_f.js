@@ -1,6 +1,13 @@
 var searchData=
 [
-  ['to_5finfo_0',['to_info',['../d0/d52/namespaceedupage.html#a8b515f6ea41c05a33a54c3a28cc12b0f',1,'edupage']]],
-  ['total_1',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]],
-  ['typewriter_2',['typewriter',['../d0/d52/namespaceedupage.html#a1ec1aa1ac2eab87e29fe39aed0716ea5',1,'edupage']]]
+  ['score_0',['score',['../d0/d52/namespaceedupage.html#a5a0b5125e3fab02c14f00e19543c624a',1,'edupage']]],
+  ['scorec_1',['scorec',['../d0/d52/namespaceedupage.html#a2f95261131827a7e406faf2544eb783e',1,'edupage']]],
+  ['screensize_2',['screensize',['../d0/d52/namespaceedupage.html#a7b26d1c4d02cd9dc1060abd9bbf338b7',1,'edupage']]],
+  ['screensizepercentage_3',['screensizepercentage',['../d0/d52/namespaceedupage.html#ac388ff14fbe6c03871027bfa64fa0ee3',1,'edupage']]],
+  ['server_4',['server',['../d0/d52/namespaceedupage.html#af46e517a54e8917a6351ae61c92bb955',1,'edupage']]],
+  ['set_5fconfig_5',['set_config',['../d0/d52/namespaceedupage.html#a0003b8cdfed4f905e18d2a94185fe84b',1,'edupage']]],
+  ['shell_6',['shell',['../d0/d52/namespaceedupage.html#a7a4b0a4e523eb4440e9830818d283044',1,'edupage']]],
+  ['svmem_7',['svmem',['../d0/d52/namespaceedupage.html#a36d7b8f5bb3bd35586a5bc67f8069106',1,'edupage']]],
+  ['swap_8',['swap',['../d0/d52/namespaceedupage.html#aeacc6fb166708647a0a4536b5e416694',1,'edupage']]],
+  ['system_5fram_9',['system_ram',['../d0/d52/namespaceedupage.html#ae5d8ff7331fe2c038038008a8000dcf0',1,'edupage']]]
 ];

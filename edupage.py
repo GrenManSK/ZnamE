@@ -1043,7 +1043,7 @@ try: #  type: ignore
     passwordapp = str(
         'import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
     addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    restartapp = str('import argparse, time, os\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-waifu\',\'--waifu\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-neko\',\'--neko\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwhile True:\n    leave = False\n    for i in os.listdir():\n        if i == \'CONTINUE\':\n            leave = True\n            break\n    if leave:\n        time.sleep(0.05)\n        os.remove(\'CONTINUE\')\n        break\nif args.neko == None and args.autol == None or args.waifu == None and args.autol == None:\n    time.sleep(10)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")\nelif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
+    restartapp = str('import argparse, time, pygetwindow\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwindow = pygetwindow.getWindowsWithTitle(\'ZnámE\')[0]\nwindow.activate()\nif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
     gameapp = str('from edupage import game\ngame()')
 
     if args.log == None:
@@ -1330,7 +1330,7 @@ try: #  type: ignore
         progress_bar_check += 1
         return decodename1
 
-    typewriter(printnlog('Function: decode'))
+    typewriter(printnlog('Function: decode', toprint=False))
 
     def password(name):
         """
@@ -1783,97 +1783,112 @@ try: #  type: ignore
                 @param cachename - the name of the zip file containing the data.
                 """
 
-                with zipfile.ZipFile(cachename, mode='r') as zip:
+                def unpack(cachename):
+                    with zipfile.ZipFile(cachename, mode='r') as zip:
+                        if args.language == "SK":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                    log(f"{os.path.basename(member)}(" +
+                                        str(os.path.getsize(member)) + "B)")
+                                    sleep(0.01)
+                                except zipfile.error as e:
+                                    pass
+                        elif args.language == "EN":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                    log(f"{os.path.basename(member)}(" +
+                                        str(os.path.getsize(member)) + "B)")
+                                    sleep(0.01)
+                                except zipfile.error as e:
+                                    pass
+                        elif args.language == "JP":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                                    log(f"{os.path.basename(member)}(" +
+                                        str(os.path.getsize(member)) + "B)")
+                                    sleep(0.01)
+                                except zipfile.error as e:
+                                    pass
+                        zip.close()
                     if args.language == "SK":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                log(f"{os.path.basename(member)}(" +
-                                    str(os.path.getsize(member)) + "B)")
-                                sleep(0.01)
-                            except zipfile.error as e:
-                                pass
+                        typewriter(printnlog('Hotovo\n', toprint=False))
+                        sleep(0.25)
+                        typewriter(printnlog("Rozbaľujem druhu časť...\n", toprint=False))
                     elif args.language == "EN":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                log(f"{os.path.basename(member)}(" +
-                                    str(os.path.getsize(member)) + "B)")
-                                sleep(0.01)
-                            except zipfile.error as e:
-                                pass
+                        typewriter(printnlog('Done\n', toprint=False))
+                        sleep(0.25)
+                        typewriter(printnlog("Unpacking second part...\n", toprint=False))
                     elif args.language == "JP":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                log(f"{os.path.basename(member)}(" +
-                                    str(os.path.getsize(member)) + "B)")
-                                sleep(0.01)
-                            except zipfile.error as e:
-                                pass
-                    zip.close()
-                if args.language == "SK":
-                    typewriter(printnlog('Hotovo\n', toprint=False))
-                    sleep(0.25)
-                    typewriter(printnlog("Rozbaľujem druhu časť...\n", toprint=False))
-                elif args.language == "EN":
-                    typewriter(printnlog('Done\n', toprint=False))
-                    sleep(0.25)
-                    typewriter(printnlog("Unpacking second part...\n", toprint=False))
-                elif args.language == "JP":
-                    typewriter(printnlog('終わり\n', toprint=False))
-                    sleep(0.25)
-                    typewriter(printnlog("2 番目の部分を解凍しています...\n", toprint=False))
+                        typewriter(printnlog('終わり\n', toprint=False))
+                        sleep(0.25)
+                        typewriter(printnlog("2 番目の部分を解凍しています...\n", toprint=False))
+                    """
+                    Extract the data from the xp3 file.
+                    @param xp3_file - the xp3 file to extract from
+                    @param output_folder - the folder to extract to
+                    @param extract_name - the name of the file to extract
+                    @param language - the language to extract
+                    """
+                    if args.language == "SK":
+                        subprocess.call(
+                            [sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
+                    elif args.language == "EN":
+                        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                                        'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
+                    elif args.language == "JP":
+                        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                                        'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
+                    try:
+                        shutil.move('data1/data', 'data')
+                    except Exception:
+                        pass
+                    try:
+                        os.mkdir('apphtml')
+                    except Exception:
+                        pass
+                    try:
+                        os.mkdir('assets')
+                    except Exception:
+                        pass
+                    if cachename == 'data.xp2':
+                        for r, d, f in os.walk('data1/apphtml/'):
+                            for file in f:
+                                printnlog(os.path.join('./', file))
+                                shutil.move(os.path.join('data1/apphtml/',
+                                            file), os.path.join('apphtml/', file))
+                        for r, d, f in os.walk('data1/assets/'):
+                            for file in f:
+                                printnlog(os.path.join('./', file))
+                                shutil.move(os.path.join('data1/assets/', file),
+                                            os.path.join('assets/', file))
+                        for r, d, f in os.walk('data1/'):
+                            for file in f:
+                                printnlog(os.path.join('./', file))
+                                shutil.move(os.path.join('data1/', file),
+                                            os.path.join('/', file))
+                        shutil.rmtree('data1')
+                        sleep(1)
+                    os.remove(cachename)
+                    os.remove('data.xp3')
 
-                """
-                Extract the data from the xp3 file.
-                @param xp3_file - the xp3 file to extract from
-                @param output_folder - the folder to extract to
-                @param extract_name - the name of the file to extract
-                @param language - the language to extract
-                """
 
-                if args.language == "SK":
-                    subprocess.call(
-                        [sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
-                elif args.language == "EN":
-                    subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                                    'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
-                elif args.language == "JP":
-                    subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                                    'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
-                try:
-                    shutil.move('data1/data', 'data')
-                    shutil.copy('data', 'data_backup')
-                    os.mkdir('apphtml')
-                    os.mkdir('assets')
-                except Exception:
-                    pass
-                for r, d, f in os.walk('data1/apphtml/'):
-                    for file in f:
-                        printnlog(os.path.join('./', file))
-                        shutil.move(os.path.join('data1/apphtml/',
-                                    file), os.path.join('apphtml/', file))
-                for r, d, f in os.walk('data1/assets/'):
-                    for file in f:
-                        printnlog(os.path.join('./', file))
-                        shutil.move(os.path.join('data1/assets/', file),
-                                    os.path.join('assets/', file))
-                for r, d, f in os.walk('data1/'):
-                    for file in f:
-                        printnlog(os.path.join('./', file))
-                        shutil.move(os.path.join('data1/', file),
-                                    os.path.join('/', file))
-                shutil.rmtree('data1')
-                sleep(1)
-                os.remove(cachename)
-                os.remove('data.xp3')
+                datafiles = []
+                for file in os.listdir("./"):
+                    if file.startswith("data"):
+                        if file.endswith('.xp2'):
+                            datafiles.append(file)
+                for i in range(1, len(datafiles)+1):
+                    unpack(datafiles[-i])
+                shutil.copy('data', 'data_backup')
                 if args.language == "SK":
                     printnlog('\nHotovo\n')
                 elif args.language == "EN":
@@ -2054,8 +2069,6 @@ try: #  type: ignore
             elif args.language == "JP":
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
-            if args.restart == None:
-                open('CONTINUE', 'x')
             while True:
                 internet_check()
                 if not exit:
@@ -2438,6 +2451,9 @@ try: #  type: ignore
                     if args.waifu == None:
                         sleep(1)
                         pg.write("waifun\n")
+                    if args.restart == None:
+                        args.restart = UNSPECIFIED
+                        pg.write('restarted\n')
                     """
                         this function is used to get the input from the user and write it to the history file.
                     @param vstup - the input from the user.
@@ -2604,6 +2620,8 @@ try: #  type: ignore
                             elif setvstup == '5':
                                 break
                         print('')
+                    if vstup == 'restarted':
+                        subprocess.check_output('start restart.py --autol', shell=True)
                     if vstup == 'playvideo':
                         while True:
                             videovstup = input('1. Dan Dan Don Don\n2. back\n> ')
@@ -3337,10 +3355,6 @@ try: #  type: ignore
                             os.remove('assets/waifu.mp4')
                         except Exception:
                             pass
-                        try:
-                            os.remove('CONTINUE')
-                        except Exception:
-                            pass
                     try:
                         open('END', 'x')
                     except Exception:
@@ -3598,7 +3612,7 @@ try: #  type: ignore
                         except Exception:
                             pass
                     if restart:
-                        crrestart = open("restart.py", "w")
+                        crrestart = open("restart.py", "w", encoding='utf-8')
                         crrestart.write(restartapp)
                         crrestart.close()
                         os.remove('END')
@@ -3639,10 +3653,6 @@ try: #  type: ignore
                                         os.remove('assets/waifu.mp4')
                                     except Exception:
                                         pass
-                                    try:
-                                        os.remove('CONTINUE')
-                                    except Exception:
-                                        pass
                                 os.remove('crash_dump-' + datelog + '.txt')
                                 quit()
                             elif vstup in ['', 'y']:
@@ -3650,55 +3660,21 @@ try: #  type: ignore
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                                     if waifuvid:
-                                        subprocess.check_output(
-                                            'start restart.py --waifu --autol', shell=True)
-                                        sys.stdout.flush()
-                                        subprocess.check_output(
-                                            'start edupage.py --restart --nointrof --waifu --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        sleep(0.5)
+                                        subprocess.check_output('start edupage.py --restart --nointrof --waifu --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     elif neko:
-                                        subprocess.check_output(
-                                            'start restart.py --neko --autol', shell=True)
-                                        sys.stdout.flush()
-                                        subprocess.check_output(
-                                            'start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        sleep(0.5)
+                                        subprocess.check_output('start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     elif waifu:
-                                        subprocess.check_output(
-                                            'start restart.py --waifu --autol', shell=True)
-                                        sys.stdout.flush()
-                                        subprocess.check_output(
-                                            'start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        sleep(0.5)
+                                        subprocess.check_output('start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     else:
-                                        subprocess.check_output(
-                                            'start restart.py --autol', shell=True)
-                                        sys.stdout.flush()
-                                        subprocess.check_output(
-                                            'start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                        sleep(0.5)
+                                        subprocess.check_output('start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
                                     os.remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
                             sys.stdout.flush()
-                            if neko or waifu:
-                                if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
-                                    subprocess.check_output(
-                                        'start restart.py --neko --autol', shell=True)
-                                    sys.stdout.flush()
-                                else:
-                                    subprocess.check_output(
-                                        'start restart.py --neko', shell=True)
-                                    sys.stdout.flush()
-                            elif inactivelogout:
-                                if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
-                                    subprocess.check_output(
-                                        'start restart.py --autol', shell=True)
-                                    sys.stdout.flush()
-                                else:
-                                    subprocess.check_output(
-                                        'start restart.py', shell=True)
-                                    sys.stdout.flush()
-                            else:
-                                subprocess.check_output(
-                                    'start restart.py', shell=True)
-                                sys.stdout.flush()
                             if neko:
                                 subprocess.check_output(
                                     'start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)

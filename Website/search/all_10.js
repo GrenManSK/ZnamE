@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'uninstall'],['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall.uninstall()']]],
-  ['uninstall_2epy_1',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]],
-  ['unspecified_2',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
-  ['update_3',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
-  ['updateapp_4',['updateapp',['../d0/d52/namespaceedupage.html#ac32f721d6dba7d6065d9ea4aad2fee09',1,'edupage']]],
-  ['url_5',['url',['../d0/d52/namespaceedupage.html#a57309bd95951e13c51a34733d71cb1d0',1,'edupage']]],
-  ['user32_6',['user32',['../d0/d52/namespaceedupage.html#a42ac73748deb2669242da95bae43f0eb',1,'edupage']]]
+  ['to_5finfo_0',['to_info',['../d0/d52/namespaceedupage.html#a8b515f6ea41c05a33a54c3a28cc12b0f',1,'edupage']]],
+  ['total_1',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]],
+  ['typewriter_2',['typewriter',['../d0/d52/namespaceedupage.html#a1ec1aa1ac2eab87e29fe39aed0716ea5',1,'edupage']]]
 ];
