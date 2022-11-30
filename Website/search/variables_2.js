@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['datelog_0',['datelog',['../d0/d52/namespaceedupage.html#a055385dba868b2f543030ee5192b0d7c',1,'edupage']]],
-  ['decodeapp_1',['decodeapp',['../d0/d52/namespaceedupage.html#ab24307825bcef50f240dd4fe34a29991',1,'edupage']]],
-  ['default_2',['default',['../d0/d52/namespaceedupage.html#a8db78ee51fe4b22d4d52f8ec2cc9ecb3',1,'edupage']]],
-  ['desc_3',['desc',['../d0/d52/namespaceedupage.html#a546f0ee6c73f7059564c777e42aa1713',1,'edupage']]],
-  ['directory_4',['directory',['../d0/d52/namespaceedupage.html#afcd629fb42a77fb7115a373af2b133b8',1,'edupage']]],
-  ['disk_5fio_5',['disk_io',['../d0/d52/namespaceedupage.html#a75cbe23ac13fca5cebeeb92e542229b3',1,'edupage']]]
+  ['cachename_0',['cachename',['../d0/d52/namespaceedupage.html#a25109826dff0140f3672672637dadd94',1,'edupage']]],
+  ['category_1',['category',['../d0/d52/namespaceedupage.html#aa6596cad660e35814989e6faf831d515',1,'edupage']]],
+  ['choices_2',['choices',['../d0/d52/namespaceedupage.html#a6fbef3749a253c118a3b40813311443a',1,'edupage']]],
+  ['codeapp_3',['codeapp',['../d0/d52/namespaceedupage.html#aa0c02b4c53f1e2663c387971761260a1',1,'edupage']]],
+  ['computer_4',['computer',['../d0/d52/namespaceedupage.html#a079299072bf6a354e5cc56f9b42652ff',1,'edupage']]],
+  ['computer_5finfo_5',['computer_info',['../d0/d52/namespaceedupage.html#a1b46f59eef6671da0ad66c628a99969d',1,'edupage']]],
+  ['config_6',['config',['../d0/d52/namespaceedupage.html#a66456585d75fa170a00d4db223518fcc',1,'edupage']]],
+  ['cpufreq_7',['cpufreq',['../d0/d52/namespaceedupage.html#a9a16192b62550189b67b04f293821201',1,'edupage']]],
+  ['crupdate_8',['crupdate',['../d0/d52/namespaceedupage.html#a741bdc611845652a6f04c3124a890ea4',1,'edupage']]]
 ];
