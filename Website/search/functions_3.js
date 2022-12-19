@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['error_5fget_0',['error_get',['../d0/d52/namespaceedupage.html#a58275789d072d6cc312a8e112c5f5b6f',1,'edupage']]],
-  ['error_5flog_1',['error_log',['../d0/d52/namespaceedupage.html#abb70582ef4e40b5d5439c72d19d8ef18',1,'edupage']]]
+  ['error_5fget_0',['error_get',['../d0/d52/namespaceedupage.html#a5e269aea71b090df9a8de1cfe78b8662',1,'edupage']]],
+  ['error_5flog_1',['error_log',['../d0/d52/namespaceedupage.html#a5f8fea0428e088bff636f0c3d29a05bc',1,'edupage']]]
 ];
