@@ -3,6 +3,8 @@
 backup/
 ZnamE.zip
 ZnamE_all.zip
+pack.py
+unpack.py
 .history/
 .vscode/
 .test/
