@@ -3,9 +3,9 @@ try: #  type: ignore
     from time import sleep
     import sys
     
-    datelog = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
+    datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
     
-    def printnlog(msg, end='\n', toprint=True):
+    def printnlog(msg: str, end: str='\n', toprint: bool=True) -> str:
         """
         It takes a message and an end character, and prints the message to the console and to a file
 
@@ -13,44 +13,47 @@ try: #  type: ignore
         :param end: The character that will be printed at the end of the message, defaults to \n
         (optional)
         """
-        x = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
+        crashfile = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
         if toprint:
             print(str(msg), end=str(end))
-        x.write(str(msg) + str(end))
-        x.close()
+        crashfile.write(str(msg) + str(end))
+        crashfile.close()
         return msg
 
-    def to_info(msg, end='\n', file='info.txt', format='a'):
+    def to_info(msg: str, end: str='\n', file: str='info.txt', mode: str='a') -> str:
         """
-        It takes a message and an end character, and prints the message to the console and to a file
-
-        :param msg: The message to be printed and logged
-        :param end: The character that will be printed at the end of the message, defaults to \n
-        (optional)
+        The to_info function takes a message and an end character, and prints the message to the console 
+        and to a file. It is used for logging purposes.
+        
+        :param msg: Print the message to the console and log file
+        :param end: Determine what character will be printed at the end of the message
+        :param file: Specify the file to which the message will be printed
+        :param mode: Determine whether the file is being read or written to
+        :return: The message that was passed to it
         """
-        x = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
+        crashfile = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
         print(str(msg), end=str(end))
-        x.write(str(msg) + str(end))
-        x.close()
-        x1 = open("C:/Users/" + os.getlogin() +
-                  "/AppData/Local/ZnámE/" + file, format, encoding='utf-8')
-        x1.write(str(msg) + str(end))
-        x1.close()
+        crashfile.write(str(msg) + str(end))
+        crashfile.close()
+        crashfile1 = open("C:/Users/" + os.getlogin() +
+                  "/AppData/Local/ZnámE/" + file, mode, encoding='utf-8')
+        crashfile1.write(str(msg) + str(end))
+        crashfile1.close()
         return msg
 
-    def log(msg, end='\n'):
+    def log(msg: str, end: str='\n') -> str:
         """
         It opens a file, writes a message to it, and closes the file
 
         :param msg: The message to be logged
         :param end: The character that will be used to end the line, defaults to \n (optional)
         """
-        x = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
-        x.write(str(msg) + str(end))
-        x.close()
+        crashfile = open('crash_dump-' + datelog + ".txt", 'a', encoding='utf-8')
+        crashfile.write(str(msg) + str(end))
+        crashfile.close()
         return msg
     
-    def typewriter(word, time=0.01, end='\n'):
+    def typewriter(word: str, ttime: float=0.01, end: str='\n') -> None:
         """
         The typewriter function prints each character in a word with a delay.
         The default time between characters is 0.01 seconds, but the user can specify
@@ -62,28 +65,36 @@ try: #  type: ignore
         :return: A string
         """
         for char in word:
-            sleep(time)
+            sleep(ttime)
             sys.stdout.write(char)
         sys.stdout.write(end)
+    if __name__ == '__main__':
+        printnlog('Importing initial libraries\n')
 
-    printnlog('Importing initial libraries\n')
+    modulenames: list = list(set(sys.modules) & set(globals()))
+    modulenames1: list = list(set(sys.modules) & set(globals()))
+    moduleminus: int = 0
 
-    modulenames = list(set(sys.modules) & set(globals()))
-    moduleminus = 0
-
-    def print_module(add=None):
+    def print_module(addto: str='') -> None:
+        """
+        The print_module function prints all the modules that are currently loaded in memory.
+        It also adds a new module to the list of modules printed by this function.
+        The print_module function is useful for debugging purposes.
+        
+        :param add: Add a module to the list of modules that will be printed
+        :return: The names of all the modules currently loaded
+        """
         global modulenames1
-        global modulenames
-        global moduleminus
         modulenames1 = list(set(sys.modules) & set(globals()))
         for i in range(len(modulenames) - moduleminus):
             modulenames1.remove(modulenames[i])
         for i in range(len(modulenames1)):
             modulenames.append(modulenames1[i])
-        for i in modulenames1:
-            typewriter(printnlog(i, toprint=False))
-        if add != None:
-            typewriter(printnlog(add, toprint=False))
+        if __name__ == '__main__':
+            for i in modulenames1:
+                typewriter(printnlog(i, toprint=False))
+            if addto != '':
+                typewriter(printnlog(addto, toprint=False))
     print_module('datetime')
     print_module('sleep from time')
     print_module('sys')
@@ -102,7 +113,8 @@ try: #  type: ignore
     print_module()
     from time import sleep
     print_module()
-    printnlog('\nDONE\n')
+    if __name__ == '__main__':
+        printnlog('\nDONE\n')
 
     class configNoOption(Exception):
         pass
@@ -136,29 +148,29 @@ try: #  type: ignore
         if inspect.isclass(obj):
             allerror.append(obj.__name__)
 
-    for i in range(0, len(allerror)-1):
-        printnlog(allerror[i], end=', ')
-    printnlog(allerror[len(allerror)-1])
+    if __name__ == '__main__':
+        for i in range(0, len(allerror)-1):
+            printnlog(allerror[i], end=', ')
+        printnlog(allerror[len(allerror)-1])
 
-    def error_log(line):
+    def error_log(line: int) -> None:
         """
         It writes the error to a file and prints it to the console
 
         :param line: The line number of the error
         """
-        x = open('error_log.txt', 'a')
+        errorfile = open('error_log.txt', 'a', encoding='utf-8')
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[# type: ignore
-            1]  
+        fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
         if str(exc_type.__name__) in allerror:  # type: ignore
             exc_type = exc_type.__name__  # type: ignore
-        x.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) +
+        errorfile.write('Type of error: ' + str(exc_type) + ' | Comment: ' + str(exc_obj) +
                 ' | In file: ' + str(fname) + ' | On line: ' + str(line) + '\n')
-        x.close()
+        errorfile.close()
         printnlog('Type of error: ' + str(exc_type) + ' | Comment: ' +
                   str(exc_obj) + ' | In file: ' + str(fname) + ' | On line: ' + str(line))
 
-    def error_get(error, line, comment=None):
+    def error_get(error, line: int, comment=None) -> None:# type: ignore
         """
         It takes an error, a line number, and a comment, and then raises the error with the comment, and
         then logs the error with the line number
@@ -172,7 +184,7 @@ try: #  type: ignore
         except error:
             error_log(line)
 
-    def get_line_number(goback=0, relative_frame=1, msg=""):
+    def get_line_number(goback: int=0, relative_frame: int=1) -> int:
         """
         It returns the line number of the code that called it
 
@@ -182,237 +194,244 @@ try: #  type: ignore
         """
         return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
 
-    printnlog('\nReading config file (ini)\n')
-    sleep(0.25)
+    if __name__ == '__main__':
+        printnlog('\nReading config file (ini)\n')
+        sleep(0.25)
+    line_number: int = get_line_number(1)
     try:
         config = configparser.RawConfigParser()
-        line_number = get_line_number(-1)
+        line_number: int = get_line_number(-1)
         config.read('config.ini')
     except configparser.DuplicateSectionError:
         printnlog("'config.ini' file is corrupt -> Duplicate section")
         error_get(configparser.DuplicateSectionError, line_number,  # type: ignore
-                  'Corruption of config file => Duplicate section')
+                'Corruption of config file => Duplicate section')
         input("Press 'enter' to quit")
         quit()
     except configparser.DuplicateOptionError:
         printnlog("'config.ini' file is corrupt -> Duplicate option")
         error_get(configparser.DuplicateSectionError, line_number,  # type: ignore
-                  'Corruption of config file => Duplicate option')
+                'Corruption of config file => Duplicate option')
         input("Press 'enter' to quit")
         quit()
     except configparser.NoSectionError:
         printnlog("'config.ini' file is corrupt -> No section")
         error_get(configparser.DuplicateSectionError, line_number,  # type: ignore
-                  'Corruption of config file => No section')
+                'Corruption of config file => No section')
         input("Press 'enter' to quit")
         quit()
     try:
-        printnlog('Language: ' +
-                  config.get('basic info', 'lang').split(' ')[0])
-        printnlog('Enviroment: ' + config.get('basic info',
-                  'enviroment').split(' ')[0])
-        printnlog('Intro: ' + config.get('basic info', 'intro').split(' ')[0])
-        printnlog('Inactivelimit: ' + config.get('basic info',
-                  'inactivelimit').split(' ')[0])
-        printnlog('Music: ' + config.get('basic info', 'music').split(' ')[0])
-        printnlog('Musiclist: ' + config.get('basic info',
-                  'musiclist').split(' ')[0])
-        printnlog('User history: ' + str(config.items('user history')))
+        if __name__ == '__main__':
+            printnlog('Language: ' +
+                    config.get('basic info', 'lang').split(' ')[0])
+            printnlog('Enviroment: ' + config.get('basic info',
+                    'enviroment').split(' ')[0])
+            printnlog('Intro: ' + config.get('basic info', 'intro').split(' ')[0])
+            printnlog('Inactivelimit: ' + config.get('basic info',
+                    'inactivelimit').split(' ')[0])
+            printnlog('Music: ' + config.get('basic info', 'music').split(' ')[0])
+            printnlog('Musiclist: ' + str(config.get('basic info',
+                    'musiclist').split(',')[0:]))
+            printnlog('User history: ' + str(config.items('user history')))
     except configparser.NoOptionError:
         printnlog("'config.ini' file is corrupt -> option missing")
         error_get(configNoOption, line_number,
                   'Corruption of config file => option missing')  # type: ignore
         input("Press 'enter' to quit")
         quit()
-    printnlog('\nDone\n')
-
-    """
-    This function is the main function of the program. It will be called when the program is run.
-    It will parse the arguments and call the appropriate functions.
-    @param args - the arguments passed to the program.
-    """
-
-    global parser
-    parser = argparse.ArgumentParser()
-    UNSPECIFIED = object()
-    sleep(0.5)
-    language = ['SK', 'EN', 'JP']
-    music = ['lowness', 'zurawie', 'Dan Dan Don Don']
-    musicchoices = ['0']
-    for i in range(1, len(music) + 1):
-        musicchoices.append(str(i))
-    parser.add_argument('-lang', '--language', choices=language,
-                        help='Language selection', nargs='?')
-    parser.add_argument('-v', '--version', choices=[],
-                        help='Show version of this program', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-ef', '--endf', choices=[],
-                        help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-ni', '--nointro', choices=[],
-                        help='Will not start intro', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-nif', '--nointrof', choices=[],
-                        help='Will not start intro', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-neko', '--neko', choices=[],
-                        help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-waifu', '--waifu', choices=[],
-                        help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-waifuvid', '--waifuvid', choices=[],
-                        help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-music', '--music', choices=musicchoices, help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
-    parser.add_argument('-inactive', '--inactive', choices=[],
-                        help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-restart', '--restart', choices=[],
-                        help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-log', '--log', choices=[],
-                        help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-update', '--update', choices=[],
-                        help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
-    parser.add_argument('-test', '--test', choices=[],
-                        help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
-    args = parser.parse_args()
-    hexnumber = ['0', '1', '2', '3', '4', '5', '6',
-                 '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+        printnlog('\nDone\n')
     
+    def set_config(section : str, name: str, info : str) -> None:
+        """
+        The set_config function writes a new config.ini file with the specified section, name, and info.
 
-    printnlog("Checking argument correctness\n")
-
-    if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
-        error_get(argEnviromentError, get_line_number(),
-                  'Wrong choice in \'basic info\' => enviroment')
-        input()
-        quit()
-    elif not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
-        error_get(argEnviromentError, get_line_number(),
-                  'Wrong choice in \'basic info\' => enviroment')
-        input()
-        quit()
-    else:
-        printnlog('basic info => enviroment')
-    try:
-        int(config.get('basic info', 'inactivelimit').split(' ')[0])
-        printnlog('basic info => inactivelimit')
-    except ValueError:
-        error_get(argInactiveLimitError, get_line_number(
-        ), 'Wrong choice in \'basic info\' => inactivelimit; take only numbers')
-        input()
-        quit()
-    if not config.get('basic info', 'intro').split(' ')[0] in ['True', 'False']:
-        error_get(argIntroError, get_line_number(),
-                  'Wrong choice in \'basic info\' => intro')
-        input()
-        quit()
-    else:
-        printnlog('basic info => intro')
-    if config.get('basic info', 'music').split(' ')[0] == 'enable':
-        args.music = config.get('basic info', 'musiclist').split(' ')[0]
-        printnlog('basic info => music')
-    elif config.get('basic info', 'music').split(' ')[0] == 'disable':
-        printnlog('basic info => music')
-        pass
-    else:
-        error_get(configparser.ParsingError, get_line_number(),
-                  'Wrong choice in \'basic info\' => music')
-        input()
-        quit()
-    try:
-        int(config.get('basic info', 'musiclist').split(' ')[0])
-        printnlog('basic info => musiclist')
-    except ValueError:
-        error_get(argMusicListError, get_line_number(
-        ), 'Wrong choice in \'basic info\' => musiclist; take only numbers')
-        input()
-        quit()
-    if int(config.get('basic info', 'musiclist').split(' ')[0]) > len(music) or int(config.get('basic info', 'musiclist').split(' ')[0]) < 0:
-        error_get(argMusicListError, get_line_number(
-        ), 'Wrong choice in \'basic info\' => musiclist; Index out of range')
-        input()
-        quit()
-    if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
-        error_get(argWaifuError, get_line_number(),
-                  'Wrong choice in \'waifu settings\' => type')
-        input()
-        quit()
-    else:
-        printnlog('waifu settings => type')
-    if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
-        category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
-                    "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-        if not config.get('waifu settings', 'category').split(' ')[0] in category:
-            error_get(argWaifuError, get_line_number(),
-                      'Wrong choice in \'waifu settings\' => category')
+        :param section: Define the section of the config
+        :param name: Set the name of the configuration file
+        :param info: Set the value of the name parameter in the section specified
+        :return: None
+        """
+        os.remove('config.ini')
+        configfile = open('config.ini', 'a')
+        config.set(section, name, str(info))
+        config.write(configfile)
+        configfile.close()
+        
+    if __name__ == '__main__':
+        global parser
+        parser = argparse.ArgumentParser()
+        UNSPECIFIED = object()
+        sleep(0.5)
+        language: list[str] = ['SK', 'EN', 'JP']
+        music: list[str] = config.get('basic info','musiclist').split(',')[0:]
+        if music[0] == '':
+            music = []
+        musicchoices: list[str] = ['0']
+        for i in range(1, len(music) + 1):
+            musicchoices.append(str(i))
+        parser.add_argument('-lang', '--language', choices=language,
+                            help='Language selection', nargs='?')
+        parser.add_argument('-v', '--version', choices=[],
+                            help='Show version of this program', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-ef', '--endf', choices=[],
+                            help='Will not automatically end program', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-ni', '--nointro', choices=[],
+                            help='Will not start intro', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-nif', '--nointrof', choices=[],
+                            help='Will not start intro', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-neko', '--neko', choices=[],
+                            help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-waifu', '--waifu', choices=[],
+                            help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-waifuvid', '--waifuvid', choices=[],
+                            help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-music', '--music', choices=musicchoices, help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
+        parser.add_argument('-inactive', '--inactive', choices=[],
+                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-restart', '--restart', choices=[],
+                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-log', '--log', choices=[],
+                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-update', '--update', choices=[],
+                            help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-test', '--test', choices=[],
+                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+        args = parser.parse_args()
+        hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
+                    '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+        printnlog("Checking argument correctness\n")
+        if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
+            error_get(argEnviromentError, get_line_number(),
+                    'Wrong choice in \'basic info\' => enviroment')
+            input()
+            quit()
+        elif not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
+            error_get(argEnviromentError, get_line_number(),
+                    'Wrong choice in \'basic info\' => enviroment')
             input()
             quit()
         else:
-            printnlog('waifu settings => category')
-    elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
-        category = ['waifu', 'neko', 'trap', 'blowjob']
-        if not config.get('waifu settings', 'category').split(' ')[0] in category:
-            error_get(argWaifuError, get_line_number(),
-                      'Wrong choice in \'waifu settings\' => category')
-            input()
-            quit()
-        else:
-            printnlog('waifu settings => category')
-    server = ['nekos.best', 'waifu.pics']
-    if not config.get('neko settings', 'server').split(' ')[0] in server:
-        error_get(argNekoError, get_line_number(),
-                  'Wrong choice in \'neko settings\' => server')
-        input()
-        quit()
-    else:
-        printnlog('neko settings => server')
-    try:
-        int(config.get('game settings', 'goal_score').split(' ')[0])
-        printnlog('game settings => goal_score')
-    except ValueError:
-        error_get(argGameError, get_line_number(
-        ), 'Wrong choice in \'game settings\' => goal_score; take only numbers')
-        input()
-        quit()
-    try:
-        if 10 <= int(config.get('game settings', 'goal_score').split(' ')[0]):
-            printnlog('game settings => goal_score')
-        else:
-            raise ValueError
-    except ValueError:
-        error_get(argGameError, get_line_number(
-        ), 'Wrong choice in \'game settings\' => goal_score; minimum is 10')
-        input()
-        quit()
-    try:
-        float(config.get('game settings', 'computer_power').split(' ')[0])
-        printnlog('game settings => computer_power')
-    except ValueError:
-        error_get(argMusicListError, get_line_number(
-        ), 'Wrong choice in \'game settings\' => computer_power; take only numbers')
-        input()
-        quit()
-
-    """
-    If the language is not specified, use the default language from the config file.
-    @param args.language - the language specified by the user, or the default language from the config file.
-    """
-
-    if args.language == None:
-        if config.get('basic info', 'lang').split(' ')[0] in language:
-            args.language = config.get('basic info', 'lang').split(' ')[0]
-        else:
-            error_get(argLanguageError, get_line_number(),
-                      'Language doesn\'t exist')
-            input()
-            quit()
-
-    """
-    If the user has specified that we should update the rotation dictionary, remove the old update.py file.
-    """
-    if args.update == None:
+            printnlog('basic info => enviroment')
         try:
-            os.remove('update.py')
-        except FileNotFoundError:
-            args.update = UNSPECIFIED
-            error_get(FileNotFoundError, get_line_number(),
-                      'update.py isn\'t present, NOT FATAL ERROR')
+            int(config.get('basic info', 'inactivelimit').split(' ')[0])
+            printnlog('basic info => inactivelimit')
+        except ValueError:
+            error_get(argInactiveLimitError, get_line_number(
+            ), 'Wrong choice in \'basic info\' => inactivelimit; take only numbers')
+            input()
+            quit()
+        if not config.get('basic info', 'intro').split(' ')[0] in ['True', 'False']:
+            error_get(argIntroError, get_line_number(),
+                    'Wrong choice in \'basic info\' => intro')
+            input()
+            quit()
+        else:
+            printnlog('basic info => intro')
+        if config.get('basic info', 'music').split(' ')[0] == 'enable':
+            args.music = config.get('basic info', 'musicnumber').split(' ')[0]
+            printnlog('basic info => music')
+        elif config.get('basic info', 'music').split(' ')[0] == 'disable':
+            printnlog('basic info => music')
+            pass
+        else:
+            error_get(configparser.ParsingError, get_line_number(),
+                    'Wrong choice in \'basic info\' => music')
+            input()
+            quit()
+        if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
+            error_get(argWaifuError, get_line_number(),
+                    'Wrong choice in \'waifu settings\' => type')
+            input()
+            quit()
+        else:
+            printnlog('waifu settings => type')
+        if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
+            category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
+                        "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+            if not config.get('waifu settings', 'category').split(' ')[0] in category:
+                error_get(argWaifuError, get_line_number(),
+                        'Wrong choice in \'waifu settings\' => category')
+                input()
+                quit()
+            else:
+                printnlog('waifu settings => category')
+        elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
+            category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
+            if not config.get('waifu settings', 'category').split(' ')[0] in category:
+                error_get(argWaifuError, get_line_number(),
+                        'Wrong choice in \'waifu settings\' => category')
+                input()
+                quit()
+            else:
+                printnlog('waifu settings => category')
+        server: list[str] = ['nekos.best', 'waifu.pics']
+        if not config.get('neko settings', 'server').split(' ')[0] in server:
+            error_get(argNekoError, get_line_number(),
+                    'Wrong choice in \'neko settings\' => server')
+            input()
+            quit()
+        else:
+            printnlog('neko settings => server')
+        try:
+            int(config.get('game settings', 'goal_score').split(' ')[0])
+            printnlog('game settings => goal_score')
+        except ValueError:
+            error_get(argGameError, get_line_number(
+            ), 'Wrong choice in \'game settings\' => goal_score; take only numbers')
+            input()
+            quit()
+        try:
+            if 10 <= int(config.get('game settings', 'goal_score').split(' ')[0]):
+                printnlog('game settings => goal_score')
+            else:
+                raise ValueError
+        except ValueError:
+            error_get(argGameError, get_line_number(
+            ), 'Wrong choice in \'game settings\' => goal_score; minimum is 10')
+            input()
+            quit()
+        try:
+            float(config.get('game settings', 'computer_power').split(' ')[0])
+            printnlog('game settings => computer_power')
+        except ValueError:
+            error_get(argMusicListError, get_line_number(
+            ), 'Wrong choice in \'game settings\' => computer_power; take only numbers')
+            input()
+            quit()
+        if config.get('basic info', 'music').split(' ')[0] == 'enable':
+            musiclimittext: bool = False
+            while len(music) < int(config.get('basic info', 'musicnumber')):
+                if not musiclimittext:
+                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' + str(int(config.get('basic info', 'musicnumber'))- len(music)), toprint=False))
+                    musiclimittext: bool = True
+                set_config('basic info', 'musicnumber', str(int(args.music)-1))
+                args.music = str(int(args.music)-1)
 
-    printnlog('\nDONE\n')
+        """
+        If the language is not specified, use the default language from the config file.
+        @param args.language - the language specified by the user, or the default language from the config file.
+        """
+
+        if args.language == None:
+            if config.get('basic info', 'lang').split(' ')[0] in language:
+                args.language = config.get('basic info', 'lang').split(' ')[0]
+            else:
+                error_get(argLanguageError, get_line_number(),
+                        'Language doesn\'t exist')
+                input()
+                quit()
+
+        """
+        If the user has specified that we should update the rotation dictionary, remove the old update.py file.
+        """
+        if args.update == None:
+            try:
+                os.remove('update.py')
+            except FileNotFoundError:
+                args.update = UNSPECIFIED
+                error_get(FileNotFoundError, get_line_number(),
+                        'update.py isn\'t present, NOT FATAL ERROR')
+
+        printnlog('\nDONE\n')
 
     """
     Check if the internet is working. If it is not, print an error message and quit.
@@ -424,53 +443,53 @@ try: #  type: ignore
     @param nainstalovane - the packages installed on the system           
     @param nenajdene - the packages that are not installed on the system
     """
-    potrebne = {'psutil', 'tqdm', 'semantic-version', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi',
-                'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pywinauto', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'keyboard'}
-    printnlog('Libraries needed: ', end='')
-    potrebne1 = list(potrebne)
-    for i in range(0, len(potrebne1)):
-        printnlog(potrebne1[i], end=' ')
-    printnlog("\n\nChecking for updates\n")
-    nainstalovane = {pkg.key for pkg in pkg_resources.working_set}
-    nenajdene = potrebne - nainstalovane
-    if args.version == None:
-        verzia = open('version', 'r')
-        printnlog(verzia.read())
-        verzia.close()
-        if nenajdene:
-            if args.language == "SK":
-                print('Aktualizácia je k dispozícií: ', *nenajdene)
-            elif args.language == "EN":
-                print('Update is available: ', *nenajdene)
-            elif args.language == "JP":
-                print('アップデートが利用可能です： ', *nenajdene)
-        os.remove('crash_dump-' + datelog + '.txt')
-        quit()
+    
     if __name__ == '__main__':
-        if nenajdene:
-            printnlog('\nUpdate is available: ' + str(nenajdene))
-            sleep(0.5)
-            printnlog("\nDownloading updates")
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', *nenajdene])
-            printnlog("The program is restarting!!!")
-            sleep(1)
-            os.system('cls')
+        potrebne: set[str] = {'psutil', 'tqdm', 'semantic-version', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi',
+                    'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pywinauto', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'keyboard', 'pytube', 'bs4', 'uuid'}
+        printnlog('Libraries needed: ', end='')
+        potrebne1: list[str] = list(potrebne)
+        for i in range(0, len(potrebne1)):
+            printnlog(potrebne1[i], end=' ')
+        printnlog("\n\nChecking for updates\n")
+        nainstalovane: set[str] = {pkg.key for pkg in pkg_resources.working_set}
+        nenajdene: set[str] = potrebne - nainstalovane
+        if args.version == None:
+            verzia = open('version', 'r')
+            printnlog(verzia.read())
+            verzia.close()
+            if nenajdene:
+                if args.language == "SK":
+                    print('Aktualizácia je k dispozícií: ', *nenajdene)
+                elif args.language == "EN":
+                    print('Update is available: ', *nenajdene)
+                elif args.language == "JP":
+                    print('アップデートが利用可能です： ', *nenajdene)
             os.remove('crash_dump-' + datelog + '.txt')
-            subprocess.call(
-                [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
             quit()
+        if __name__ == '__main__':
+            if nenajdene:
+                printnlog('\nUpdate is available: ' + str(nenajdene))
+                sleep(0.5)
+                printnlog("\nDownloading updates")
+                subprocess.check_call([sys.executable, '-m', 'pip', 'install', *nenajdene])
+                printnlog("The program is restarting!!!")
+                sleep(1)
+                os.system('cls')
+                os.remove('crash_dump-' + datelog + '.txt')
+                subprocess.call(
+                    [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
+                quit()
+            printnlog('DONE\n')
+            printnlog('Checking internet connection\n')
 
-    printnlog('DONE\n')
-
-    printnlog('Checking internet connection\n')
-
-    def internet_check():
+    def internet_check() -> None:
         try:
             import requests
-            timeout = 5
+            timeout: int = 5
             requests.head("http://www.google.com/", timeout=timeout)
         except requests.ConnectionError:  # type: ignore
-            line_number = get_line_number()
+            line_number: int = get_line_number()
             if __name__ == '__main__':
                 if args.language == "SK":
                     printnlog("Vaše internetové pripojenie nefunguje")
@@ -483,252 +502,293 @@ try: #  type: ignore
                 quit()
             pass
 
-    internet_check()
-
-    printnlog('DONE\n')
-    printnlog('\nImporting libraries\n')
+    if __name__ == '__main__':
+        internet_check()
+        printnlog('DONE\n')
+        printnlog('\nImporting libraries\n')
     import pyautogui as pg
-    print_module('pyautogui')
-    pg.keyDown('win')
-    pg.press('up')
-    pg.keyUp('win')
-    if args.restart == None:
-        pg.keyDown('alt')
-        pg.press('tab')
-        pg.keyUp('alt')
-        pg.keyDown('alt')
-        pg.press('tab')
-        pg.keyUp('alt')
+    if __name__ == '__main__':
+        print_module('pyautogui')
+        pg.keyDown('win')
+        pg.press('up')
+        pg.keyUp('win')
+        if args.restart == None:
+            pg.keyDown('alt')
+            pg.press('tab')
+            pg.keyUp('alt')
+            pg.keyDown('alt')
+            pg.press('tab')
+            pg.keyUp('alt')
     from threading import Thread
-    print_module('Thread from threading')
+    if __name__ == '__main__':
+        print_module('Thread from threading')
     from tqdm import tqdm
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     from pathlib import Path
-    print_module('Path from pathlib')
+    if __name__ == '__main__':
+        print_module('Path from pathlib')
     from uninstall import uninstall
-    print_module()
+    if __name__ == '__main__':
+        print_module()
+    from bs4 import BeautifulSoup
+    if __name__ == '__main__':
+        print_module()
     import shutil
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import zipfile
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import GPUtil
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import semantic_version
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import win32gui
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import ctypes
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import cpuinfo
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import cv2
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import glob
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import webbrowser
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import win32api
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import cpufreq
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import time
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import pywinauto
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import psutil
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import vlc
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import keyboard
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import pygetwindow
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import random
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import wmi
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import platform
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import socket
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import re
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     import uuid
-    print_module()
-    import json
-    print_module()
-    import logging
-    print_module()
+    if __name__ == '__main__':
+        print_module()
+    from pytube import YouTube
+    if __name__ == '__main__':
+        print_module('Youtube from pytube')
+    import urllib.parse
+    if __name__ == '__main__':
+        print_module('urllib.parse')
+    import urllib.request
+    if __name__ == '__main__':
+        print_module('urllib.request')
     from tabulate import tabulate
-    print_module()
+    if __name__ == '__main__':
+        print_module()
     from PIL import Image
-    print_module('Image from PIL')
+    if __name__ == '__main__':
+        print_module('Image from PIL')
     import moviepy.editor as mp
-    print_module('moviepy.editor')
+    if __name__ == '__main__':
+        print_module('moviepy.editor')
     from pygame import mixer
-    print_module('mixer from pygame')
-    printnlog('\nDONE\n')
-    verzia = open('version', 'r')
-    os.system('color ' + config.get('basic info', 'enviroment').split(' ')[0])
-    os.system('Title ' + 'ZnámE')
-    user32 = ctypes.windll.user32
-    screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
-    screensizepercentage = float(
-        (1/1920)*screensize[0]), float((1/1080)*screensize[1])
-
-    if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update == None:
-        printnlog('First time setup')
-        sleep(1)
-        try:
-            os.mkdir("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
-        except FileExistsError:
-            pass
-        open("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt", "x")
-        to_info(verzia.read(), end='', file='version', format='w')
-        printnlog('\n\nGetting system information\n')
-        to_info('Resolution: ' +
-                str(screensize[0]) + 'x' + str(screensize[1]) + '\n')
-        computer = wmi.WMI()
-        computer_info = computer.Win32_ComputerSystem()[0]
-        os_info = computer.Win32_OperatingSystem()[0]
-        proc_info = computer.Win32_Processor()[0]
-        gpu_info = computer.Win32_VideoController()[0]
-
-        def get_size1(bytes, suffix="B"):
-            """
-            It takes a number of bytes and returns a string with the number of bytes and the appropriate
-            unit
-
-            :param bytes: The number of bytes to convert
-            :param suffix: The suffix to be appended to the size, defaults to B (optional)
-            """
-            """
-            Scale bytes to its proper format
-            e.g:
-                1253656 => '1.20MB'
-                1253656678 => '1.17GB'
-            """
-            factor = 1024
-            for unit in ["", "K", "M", "G", "T", "P"]:
-                if bytes < factor:
-                    return f"{bytes:.2f}{unit}{suffix}"
-                bytes /= factor
-        my_system = platform.uname()
-        my_cpuinfo = cpuinfo.get_cpu_info()
-        pc = wmi.WMI()
-        svmem = psutil.virtual_memory()
-        swap = psutil.swap_memory()
-        gpus = GPUtil.getGPUs()
-        partitions = psutil.disk_partitions()
-        disk_io = psutil.disk_io_counters()
-        if_addrs = psutil.net_if_addrs()
-        net_io = psutil.net_io_counters()
-        os_info = pc.Win32_operatingSystem()[0]
-        os_name = os_info.Name.encode('utf-8').split(b'|')[0]
-        cpufreq = psutil.cpu_freq()
-        os_version = ' '.join([os_info.Version, os_info.BuildNumber])
-        to_info(os_info)
-        system_ram = float(os_info.TotalVisibleMemorySize) / \
-            1048576  # KB to GB
-        to_info('OS Name: {0}'.format(os_name))
-        to_info(f"Device Name: {my_system.node}")
-        to_info(f"Architecture: {my_system.machine}")
-        to_info(f"Processor: {my_system.processor}")
-        to_info('CPU: {0}'.format(proc_info.Name))
-        to_info("="*40 + "CPU Info" + "="*40)
-        to_info(f"CPU architecture: {my_cpuinfo['arch']}")
-        to_info("Physical cores:" + str(psutil.cpu_count(logical=False)))
-        to_info("Total cores:" + str(psutil.cpu_count(logical=True)))
-        to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz")
-        to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz")
-        to_info(f"Current Frequency: {cpufreq.current:.2f}Mhz")
-        to_info("CPU Usage Per Core:")
-        for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)): # type: ignore
-            to_info(f"Core {i}: {percentage}%")
-        to_info(pc.Win32_Processor()[0])
-        to_info(f"Total CPU Usage: {psutil.cpu_percent()}%")
-        to_info('RAM: {0} GB'.format(system_ram))
-        to_info("="*40 + "Memory Information" + "="*40)
-        to_info(f"Total: {get_size1(svmem.total)}")
-        to_info(f"Available: {get_size1(svmem.available)}")
-        to_info(f"Used: {get_size1(svmem.used)}")
-        to_info(f"Percentage: {svmem.percent}%")
-        to_info("="*20 + "SWAP" + "="*20)
-        to_info(f"Total: {get_size1(swap.total)}")
-        to_info(f"Free: {get_size1(swap.free)}")
-        to_info(f"Used: {get_size1(swap.used)}")
-        to_info(f"Percentage: {swap.percent}%")
-        to_info('Graphics Card: {0}'.format(gpu_info.Name))
-        to_info("="*40 + "GPU Details" + "="*40)
-        list_gpus = []
-        for gpu in gpus:
-            gpu_id = gpu.id
-            gpu_name = gpu.name
-            gpu_load = f"{gpu.load*100}%"
-            gpu_free_memory = f"{gpu.memoryFree}MB"
-            gpu_used_memory = f"{gpu.memoryUsed}MB"
-            gpu_total_memory = f"{gpu.memoryTotal}MB"
-            gpu_temperature = f"{gpu.temperature} °C"
-            gpu_uuid = gpu.uuid
-            list_gpus.append((
-                gpu_id, gpu_name, gpu_load, gpu_free_memory, gpu_used_memory,
-                gpu_total_memory, gpu_temperature, gpu_uuid
-            ))
-
-        to_info(tabulate(list_gpus, headers=("id", "name", "load", "free memory", "used memory", "total memory",
-                                             "temperature", "uuid")))
-        to_info(f'IP Adress: {socket.gethostbyname(socket.gethostname())}')
-        to_info(
-            f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}")
-        to_info("="*40 + "Disk Information" + "="*40)
-        to_info("Partitions and Usage:")
-        for partition in partitions:
-            to_info(f"=== Device: {partition.device} ===")
-            to_info(f"  Mountpoint: {partition.mountpoint}")
-            to_info(f"  File system type: {partition.fstype}")
-            try:
-                partition_usage = psutil.disk_usage(partition.mountpoint)
-            except PermissionError:
-                continue
-            to_info(f"  Total Size: {get_size1(partition_usage.total)}")
-            to_info(f"  Used: {get_size1(partition_usage.used)}")
-            to_info(f"  Free: {get_size1(partition_usage.free)}")
-            to_info(f"  Percentage: {partition_usage.percent}%")
-        to_info(f"Total read: {get_size1(disk_io.read_bytes)}")  # type: ignore
-        to_info(f"Total write: {get_size1(disk_io.write_bytes)}")# type: ignore
-        to_info("="*40 + "Network Information" + "="*40)
-        for interface_name, interface_addresses in if_addrs.items():
-            for address in interface_addresses:
-                to_info(f"=== Interface: {interface_name} ===")
-                if str(address.family) == 'AddressFamily.AF_INET':
-                    to_info(f"  IP Address: {address.address}")
-                    to_info(f"  Netmask: {address.netmask}")
-                    to_info(f"  Broadcast IP: {address.broadcast}")
-                elif str(address.family) == 'AddressFamily.AF_PACKET':
-                    to_info(f"  MAC Address: {address.address}")
-                    to_info(f"  Netmask: {address.netmask}")
-                    to_info(f"  Broadcast MAC: {address.broadcast}")
-        to_info(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}")
-        to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}")
-        to_info(pc.Win32_VideoController()[0])
-        to_info("User Current Version:-" + str(sys.version))
+    if __name__ == '__main__':
+        print_module('mixer from pygame')
         printnlog('\nDONE\n')
+        verzia = open('version', 'r')
+        os.system('color ' + config.get('basic info', 'enviroment').split(' ')[0])
+        os.system('Title ' + 'ZnámE')
+        user32 = ctypes.windll.user32
+        screensize: tuple[int, int] = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+        screensizepercentage: tuple[float, float] = float(
+            (1/1920)*screensize[0]), float((1/1080)*screensize[1])
 
-    if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
-        typewriter(printnlog('Creating backup...\b'))
-        os.mkdir("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/")
-        shutil.copy('data.xp2', "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/backup-" +
-                    str(datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
-        x = open("C:/Users/" + os.getlogin() +
-                 "/AppData/Local/ZnámE/backup/info.txt", 'w')
-        x.write(
-            'Rename \'xp2\' file to \'data.xp2\' and move it to your \'ZnámE\' directory')
-        x.close()
-        typewriter(printnlog('Done\n'))
+        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update == None:
+            printnlog('First time setup')
+            sleep(1)
+            try:
+                os.mkdir("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
+            except FileExistsError:
+                pass
+            open("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt", "x")
+            to_info(verzia.read(), end='', file='version', mode='w')
+            printnlog('\n\nGetting system information\n')
+            to_info('Resolution: ' +
+                    str(screensize[0]) + 'x' + str(screensize[1]) + '\n')
+            computer1 = wmi.WMI()
+            computer_info: list[str] = computer1.Win32_ComputerSystem()[0]
+            os_info: list[str] = computer1.Win32_OperatingSystem()[0]
+            proc_info: list[str] = computer1.Win32_Processor()[0]
+            gpu_info: list[str] = computer1.Win32_VideoController()[0]
 
-    typewriter(printnlog("\nDefining functions\n", toprint=False))
+            def get_size1(bytes: int|float, suffix: str="B"): # type: ignore
+                """
+                It takes a number of bytes and returns a string with the number of bytes and the appropriate
+                unit
+
+                :param bytes: The number of bytes to convert
+                :param suffix: The suffix to be appended to the size, defaults to B (optional)
+                """
+                """
+                Scale bytes to its proper format
+                e.g:
+                    1253656 => '1.20MB'
+                    1253656678 => '1.17GB'
+                """
+                factor: int = 1024
+                for unit in ["", "K", "M", "G", "T", "P"]:
+                    if bytes < factor:
+                        return f"{bytes:.2f}{unit}{suffix}"
+                    bytes /= factor
+            my_system = platform.uname()
+            my_cpuinfo = cpuinfo.get_cpu_info()
+            pc = wmi.WMI()
+            svmem = psutil.virtual_memory()
+            swap = psutil.swap_memory()
+            gpus = GPUtil.getGPUs()
+            partitions = psutil.disk_partitions()
+            disk_io = psutil.disk_io_counters()
+            if_addrs = psutil.net_if_addrs()
+            net_io = psutil.net_io_counters()
+            os_info = pc.Win32_operatingSystem()[0]
+            os_name = os_info.Name.encode('utf-8').split(b'|')[0]
+            cpufreq = psutil.cpu_freq()
+            os_version: str = ' '.join([os_info.Version, os_info.BuildNumber])
+            to_info(os_info)
+            system_ram = float(os_info.TotalVisibleMemorySize) / \
+                1048576  # KB to GB
+            to_info('OS Name: {0}'.format(os_name))
+            to_info(f"Device Name: {my_system.node}")
+            to_info(f"Architecture: {my_system.machine}")
+            to_info(f"Processor: {my_system.processor}")
+            to_info('CPU: {0}'.format(proc_info.Name))
+            to_info("="*40 + "CPU Info" + "="*40)
+            to_info(f"CPU architecture: {my_cpuinfo['arch']}")
+            to_info("Physical cores:" + str(psutil.cpu_count(logical=False)))
+            to_info("Total cores:" + str(psutil.cpu_count(logical=True)))
+            to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz")
+            to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz")
+            to_info(f"Current Frequency: {cpufreq.current:.2f}Mhz")
+            to_info("CPU Usage Per Core:")
+            for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)): # type: ignore
+                to_info(f"Core {i}: {percentage}%")
+            to_info(pc.Win32_Processor()[0])
+            to_info(f"Total CPU Usage: {psutil.cpu_percent()}%")
+            to_info('RAM: {0} GB'.format(system_ram))
+            to_info("="*40 + "Memory Information" + "="*40)
+            to_info(f"Total: {get_size1(svmem.total)}")
+            to_info(f"Available: {get_size1(svmem.available)}")
+            to_info(f"Used: {get_size1(svmem.used)}")
+            to_info(f"Percentage: {svmem.percent}%")
+            to_info("="*20 + "SWAP" + "="*20)
+            to_info(f"Total: {get_size1(swap.total)}")
+            to_info(f"Free: {get_size1(swap.free)}")
+            to_info(f"Used: {get_size1(swap.used)}")
+            to_info(f"Percentage: {swap.percent}%")
+            to_info('Graphics Card: {0}'.format(gpu_info.Name))
+            to_info("="*40 + "GPU Details" + "="*40)
+            list_gpus: list = []
+            for gpu in gpus:
+                gpu_id = gpu.id
+                gpu_name = gpu.name
+                gpu_load = f"{gpu.load*100}%"
+                gpu_free_memory = f"{gpu.memoryFree}MB"
+                gpu_used_memory = f"{gpu.memoryUsed}MB"
+                gpu_total_memory = f"{gpu.memoryTotal}MB"
+                gpu_temperature = f"{gpu.temperature} °C"
+                gpu_uuid = gpu.uuid
+                list_gpus.append((
+                    gpu_id, gpu_name, gpu_load, gpu_free_memory, gpu_used_memory,
+                    gpu_total_memory, gpu_temperature, gpu_uuid
+                ))
+
+            to_info(tabulate(list_gpus, headers=("id", "name", "load", "free memory", "used memory", "total memory",
+                                                "temperature", "uuid")))
+            to_info(f'IP Adress: {socket.gethostbyname(socket.gethostname())}')
+            to_info(
+                f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}")
+            to_info("="*40 + "Disk Information" + "="*40)
+            to_info("Partitions and Usage:")
+            for partition in partitions:
+                to_info(f"=== Device: {partition.device} ===")
+                to_info(f"  Mountpoint: {partition.mountpoint}")
+                to_info(f"  File system type: {partition.fstype}")
+                try:
+                    partition_usage = psutil.disk_usage(partition.mountpoint)
+                except PermissionError:
+                    continue
+                to_info(f"  Total Size: {get_size1(partition_usage.total)}")
+                to_info(f"  Used: {get_size1(partition_usage.used)}")
+                to_info(f"  Free: {get_size1(partition_usage.free)}")
+                to_info(f"  Percentage: {partition_usage.percent}%")
+            to_info(f"Total read: {get_size1(disk_io.read_bytes)}")  # type: ignore
+            to_info(f"Total write: {get_size1(disk_io.write_bytes)}")# type: ignore
+            to_info("="*40 + "Network Information" + "="*40)
+            for interface_name, interface_addresses in if_addrs.items():
+                for address in interface_addresses:
+                    to_info(f"=== Interface: {interface_name} ===")
+                    if str(address.family) == 'AddressFamily.AF_INET':
+                        to_info(f"  IP Address: {address.address}")
+                        to_info(f"  Netmask: {address.netmask}")
+                        to_info(f"  Broadcast IP: {address.broadcast}")
+                    elif str(address.family) == 'AddressFamily.AF_PACKET':
+                        to_info(f"  MAC Address: {address.address}")
+                        to_info(f"  Netmask: {address.netmask}")
+                        to_info(f"  Broadcast MAC: {address.broadcast}")
+            to_info(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}")
+            to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}")
+            to_info(pc.Win32_VideoController()[0])
+            to_info("User Current Version:-" + str(sys.version))
+            printnlog('\nDONE\n')
+
+        if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
+            typewriter(printnlog('Creating backup...\b'))
+            os.mkdir("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/")
+            shutil.copy('data.xp2', "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/backup-" +
+                        str(datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
+            x = open("C:/Users/" + os.getlogin() +
+                    "/AppData/Local/ZnámE/backup/info.txt", 'w')
+            x.write(
+                'Rename \'xp2\' file to \'data.xp2\' and move it to your \'ZnámE\' directory')
+            x.close()
+            typewriter(printnlog('Done\n'))
+
+        typewriter(printnlog("\nDefining functions\n", toprint=False))
     
-    def download(url: str, fname: str, chunk_size=1024):
+    def download(url: str, fname: str, chunk_size: int=1024) -> bool:
         """
         "Download a file from a URL to a local file."
 
@@ -741,11 +801,12 @@ try: #  type: ignore
         :type fname: str
         :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
         """
+        import requests
         try:
             resp = requests.get(url, stream=True)
-            total = int(resp.headers.get('content-length', 0))
+            total: int = int(resp.headers.get('content-length', 0))
             with open(fname, 'wb') as file, tqdm(
-                desc=fname,
+                desc = fname,
                 total=total,
                 unit='iB',
                 unit_scale=True,
@@ -756,16 +817,19 @@ try: #  type: ignore
                     bar.update(size)
         except ConnectionError:
             return False
+        return True
 
-    typewriter(printnlog('Function: download', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: download', toprint=False))
 
-    updateapp = str(
+    updateapp: str = str(
         'import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
-    if args.log == None:
-        x = open('log_update.py', 'w')
-        x.write(updateapp)
-        x.close()
+    if __name__ == '__main__':
+        if args.log == None:
+            x = open('log_update.py', 'w')
+            x.write(updateapp)
+            x.close()
 
     """
     Update the program to the newest version.
@@ -773,111 +837,112 @@ try: #  type: ignore
     @param args.language - the language of the program
     """
 
-    if args.test != None:
-        printnlog('\nChecking for newer version of ZnámE\n')
-        try:
-            import requests
-            url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
-            page = requests.get(url)
-            verzia = open('version', 'r')
-            if semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
-                printnlog('You have the latest version\n')
-            else:
-                if args.language == "SK":
-                    printnlog("Bola nájdená nová aktualizacia: " + page.text)
-                elif args.language == "EN":
-                    printnlog("Newer version was found: " + page.text)
-                elif args.language == "JP":
-                    printnlog("新しいバージョンが見つかりました: " + page.text)
-                verzia.close()
-                sleep(0.5)
-                url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
-                r = requests.get(url)
-                filename = "new.zip"
-                with open(filename, 'wb') as output_file:
-                    download(url, 'new.zip')
-                with zipfile.ZipFile("new.zip", mode='r') as zip:
-                    if args.language == "SK":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                sleep(0.05)
-                            except zipfile.error as e:
-                                pass
-                    elif args.language == "EN":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                sleep(0.05)
-                            except zipfile.error as e:
-                                pass
-                    elif args.language == "JP":
-                        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                            try:
-                                zip.extract(member)
-                                tqdm.write(
-                                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                sleep(0.05)
-                            except zipfile.error as e:
-                                pass
-                    zip.close()
-                os.remove("new.zip")
-                directory = None
-                for path, currentDirectory, files in os.walk(Path.cwd()):
-                    for directory1 in currentDirectory:
-                        if directory1.startswith("GrenManSK-ZnamE-"):
-                            printnlog(directory1)
-                            directory = directory1
-                if directory == None:
-                    if args.language == "SK":
-                        printnlog(
-                            "CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
-                    elif args.language == "EN":
-                        printnlog(
-                            "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-                    elif args.language == "JP":
-                        printnlog(
-                            "ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
-                    sleep(2)
-                    input()
-                    quit()
-                os.mkdir('old')
-                shutil.move('data.xp2', 'old/data.xp2')
-                shutil.move('help.txt', 'old/help.txt')
-                shutil.move('LICENSE', 'old/LICENSE')
-                shutil.move('README.md', 'old/README.md')
-                shutil.move('version', 'old/version')
-                shutil.copyfile('config.ini', 'config_old.ini')
-                sleep(0.5)
-                shutil.move(directory + "/data.xp2", 'data.xp2')
-                shutil.move(directory + "/help.txt", 'help.txt')
-                shutil.move(directory + "/LICENSE", 'LICENSE')
-                shutil.move(directory + "/README.md", 'README.md')
-                shutil.move(directory + "/version", 'version')
-                shutil.move(directory + "/config.ini", 'config.ini')
-                crupdate = open("update.py", "w")
-                crupdate.write(updateapp)
-                crupdate.close()
-                if args.endf == None:
-                    subprocess.call(sys.executable + ' update.py ' + directory +
-                                    ' -lang ' + args.language + ' -endf', shell=True)
+    if __name__ == '__main__':
+        if args.test != None:
+            printnlog('\nChecking for newer version of ZnámE\n')
+            try:
+                import requests
+                url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
+                page = requests.get(url)
+                verzia = open('version', 'r')
+                if semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
+                    printnlog('You have the latest version\n')
                 else:
-                    subprocess.call(sys.executable + ' update.py ' +
-                                    directory + ' -lang ' + args.language, shell=True)
-                sleep(0.1)
-                os.remove('crash_dump-' + datelog + '.txt')
-                quit()
-        except requests.ConnectionError:  # type: ignore
-            line_number = get_line_number()
-            pass
+                    if args.language == "SK":
+                        printnlog("Bola nájdená nová aktualizacia: " + page.text)
+                    elif args.language == "EN":
+                        printnlog("Newer version was found: " + page.text)
+                    elif args.language == "JP":
+                        printnlog("新しいバージョンが見つかりました: " + page.text)
+                    verzia.close()
+                    sleep(0.5)
+                    url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
+                    r = requests.get(url)
+                    filename = "new.zip"
+                    with open(filename, 'wb') as output_file:
+                        download(url, 'new.zip')
+                    with zipfile.ZipFile("new.zip", mode='r') as zip:
+                        if args.language == "SK":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                                    sleep(0.05)
+                                except zipfile.error as e:
+                                    pass
+                        elif args.language == "EN":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                                    sleep(0.05)
+                                except zipfile.error as e:
+                                    pass
+                        elif args.language == "JP":
+                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
+                                try:
+                                    zip.extract(member)
+                                    tqdm.write(
+                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                                    sleep(0.05)
+                                except zipfile.error as e:
+                                    pass
+                        zip.close()
+                    os.remove("new.zip")
+                    directory = None
+                    for path, currentDirectory, files in os.walk(Path.cwd()):
+                        for directory1 in currentDirectory:
+                            if directory1.startswith("GrenManSK-ZnamE-"):
+                                printnlog(directory1)
+                                directory = directory1
+                    if directory == None:
+                        if args.language == "SK":
+                            printnlog(
+                                "CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
+                        elif args.language == "EN":
+                            printnlog(
+                                "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
+                        elif args.language == "JP":
+                            printnlog(
+                                "ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
+                        sleep(2)
+                        input()
+                        quit()
+                    os.mkdir('old')
+                    shutil.move('data.xp2', 'old/data.xp2')
+                    shutil.move('help.txt', 'old/help.txt')
+                    shutil.move('LICENSE', 'old/LICENSE')
+                    shutil.move('README.md', 'old/README.md')
+                    shutil.move('version', 'old/version')
+                    shutil.copyfile('config.ini', 'config_old.ini')
+                    sleep(0.5)
+                    shutil.move(directory + "/data.xp2", 'data.xp2')
+                    shutil.move(directory + "/help.txt", 'help.txt')
+                    shutil.move(directory + "/LICENSE", 'LICENSE')
+                    shutil.move(directory + "/README.md", 'README.md')
+                    shutil.move(directory + "/version", 'version')
+                    shutil.move(directory + "/config.ini", 'config.ini')
+                    crupdate = open("update.py", "w")
+                    crupdate.write(updateapp)
+                    crupdate.close()
+                    if args.endf == None:
+                        subprocess.call(sys.executable + ' update.py ' + directory +
+                                        ' -lang ' + args.language + ' -endf', shell=True)
+                    else:
+                        subprocess.call(sys.executable + ' update.py ' +
+                                        directory + ' -lang ' + args.language, shell=True)
+                    sleep(0.1)
+                    os.remove('crash_dump-' + datelog + '.txt')
+                    quit()
+            except requests.ConnectionError:  # type: ignore
+                line_number: int = get_line_number()
+                pass
 
-    verzia.close()
+        verzia.close()
 
-    def getWindow():
+    def getWindow() -> bool:
         """
         The getWindow function is used to find the window of Známý (the game) and activate it.
         It also checks if the file 'banner.png' exists in the assets folder.
@@ -886,12 +951,12 @@ try: #  type: ignore
         """
 
         global exit
-        stop_thread1 = True
+        stop_thread1: bool = True
         a = None
         cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
         cv2.setWindowProperty(
             'frame2', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-        test = "assets/banner.png"
+        test: str = "assets/banner.png"
         for file in glob.glob(test):
             a = cv2.imread(file)
         try:
@@ -912,10 +977,12 @@ try: #  type: ignore
                 error_get(IndexError, get_line_number(
                 ), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
                 return True
+        return False
 
-    typewriter(printnlog('Function: getWindow', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: getWindow', toprint=False))
 
-    def PlayVideo(video_path):
+    def PlayVideo(video_path: str='assets/video.mp4') -> None:
         """
         The PlayVideo function plays a video from the specified path.
            The function will play the video in full screen mode and will not return until the user presses 'Q' to quit.
@@ -950,31 +1017,31 @@ try: #  type: ignore
                 ctypes.windll.user32.keybd_event(0x8, 0, 2, 0)
                 sleep(0.01)
                 break
-            
-    typewriter(printnlog('Function: PlayVideo', toprint=False))
+
+    if __name__ == '__main__':       
+        typewriter(printnlog('Function: PlayVideo', toprint=False))
     
-    def getImg(imgSrc, name, x=None, y=None, width=None, length=None):
+    def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> None:
         """
         The getImg function displays an image from the source. If x, y, width, and length are specified, then the image will be displayed at those coordinates with the specified width and length. Otherwise, the image will be displayed at the default coordinates and default width and length.
 
-        :param imgSrc: Specify the source of the image
-        :param name: Name the window
-        :param x=None: Specify the x coordinate of the window
-        :param y=None: Specify the y coordinate of the window
-        :param width=None: Specify the width of the window
-        :param length=None: Set the length of the window to its default value
+        :param imgSrc: str: Specify the source of the image
+        :param name: str: Name the window
+        :param x: Set the x coordinate of the window
+        :param y: Specify the y coordinate of the window
+        :param width: Set the width of the window
+        :param length: Set the length of the window
         :return: The image that is displayed
         """
-
-        path = imgSrc
+        path: str = imgSrc
         for file in glob.glob(path):
             global a
             a = cv2.imread(file)
             cv2.imshow(name, a)
             if x != None and y != None and width != None and length != None:
-                appname = name
-                xpos = x
-                ypos = y
+                appname: str = name
+                xpos: int = x
+                ypos: int = y
                 if width == None:
                     width = int((screensize[0]/10)*9)
                 if length == None:
@@ -998,9 +1065,10 @@ try: #  type: ignore
                 print(k)
                 cv2.destroyAllWindows()
 
-    typewriter(printnlog('Function: getImg', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: getImg', toprint=False))
 
-    def move(window, x, y, width, length):
+    def move(window: str, x: int, y: int, width, length) -> None:# type: ignore
         """
         The move function moves the specified window to a specified location.
         The move function takes four arguments:
@@ -1008,21 +1076,20 @@ try: #  type: ignore
             2) The x-coordinate of the desired location on your screen, measured in pixels from the left edge of your screen to where you want your window located (e.g., 100). 
             3) The y-coordinate of the desired location on your screen, measured in pixels from the top edge of your screen
 
-        :param window: Specify the window name
-        :param x: Set the x position of the window, y is used to set the y position
-        :param y: Move the window to the top of your screen
+        :param window: str: Specify the name of the window
+        :param x: int: Set the x position of the window, y is used to set the y position
+        :param y: int: Set the y position of the window, measured in pixels from the top edge of your screen
         :param width: Set the width of the window
         :param length: Set the height of the window
-        :return: The window handle of the specified application
+        :return: None
         """
-
-        appname = window
-        xpos = x
-        ypos = y
+        appname: str = window
+        xpos: int = x
+        ypos: int = y
         if width == None:
-            width = int((screensize[0]/10)*9)
+            width: int = int((screensize[0]/10)*9)
         if length == None:
-            length = int((screensize[1]/10)*9)
+            length: int = int((screensize[1]/10)*9)
 
         def enumHandler(hwnd, lParam):  # type: ignore
             if win32gui.IsWindowVisible(hwnd):  # type: ignore
@@ -1031,59 +1098,45 @@ try: #  type: ignore
                         hwnd, xpos, ypos, width, length, True)  # type: ignore
         win32gui.EnumWindows(enumHandler, None)  # type: ignore
 
-    typewriter(printnlog('Function: move', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: move', toprint=False))
 
-    typewriter(printnlog('\nDefining apps', toprint=False))
+        typewriter(printnlog('\nDefining apps', toprint=False))
 
-    codeapp = str(
+    codeapp: str = str(
         'import sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'\"\', \"`\"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah = \"\"\n        obsah += i\n        for i in obsah:\n            i.lower()\n            obsah_list.append(i)\n    return obsah_list\ndef encode(obsah):\n    sifra = []\n    for i in obsah:\n        riadok = 0\n        stlpec = 0\n        while True:\n            if riadok == 19 and stlpec == 0:\n                break\n            if i == PLOCHA[riadok][stlpec]:\n                sifra.append(str(riadok) + \" \" + str(stlpec))\n                break\n            if stlpec == 4:\n                riadok += 1\n                stlpec = 0\n            else:\n                stlpec += 1\n    return sifra\ndef output_file(file, name):\n    y = []\n    x = open(name + \"crypted\", \"w\")\n    for i in file:\n        y.append(i)\n    x.write(str(y))\n    x.close\n    return\ndef main():\n    name = sys.argv[1]\n    open_file = open(name, \"r\")\n    open_file.close\n    output_file(encode(read_file(open_file)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
-    decodeapp = str(
+    decodeapp: str = str(
         'import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'"\', \"`"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah += i\n        for i in obsah:\n            obsah_list.append(i)\n    return obsah_list\ndef decode(obsah):\n    done = \"\"\n    sifra = []\n    for i in obsah:\n        done += str(i)\n        if i == \"[\" or i == \"\'\" or i == \",\" or i == \"]\":\n            done = \"\"\n            continue\n        if i == \" \":\n            sifra.append(i)\n        else:\n            sifra.append(i)\n    return sifra\ndef real_decode(obsah):\n    cislo = 0\n    pokracovanie = False\n    done = \"\"\n    vysledok = []\n    for i in obsah:\n        done += str(i)\n        cislo = 0\n        for i in done:\n            cislo += 1\n        if i == \" \":\n            done = \"\"\n            continue\n        if pokracovanie and done.isnumeric() and cislo == 1:\n            stlpec = int(done)\n            vysledok.append(PLOCHA[riadok][stlpec])\n            pokracovanie = False\n            done = \"\"\n            continue\n        if not pokracovanie or cislo == 2:\n            pokracovanie = True\n            riadok = int(done)\n            continue\n    return vysledok\ndef to_text(obsah):\n    text = \"\"\n    for i in obsah:\n        if i == \".\":\n            text += i + \"\\n\"\n            continue\n        text += i\n    return text\ndef create_file(obsah, name):\n    x = open(sys.argv[1], \"w\")\n    x.write(obsah)\n    x.close\n    return\ndef main():\n    if sys.argv[2] == \'False\':\n        name = \'data\'\n    else:\n        name = sys.argv[2]\n    open_file = open(name, \"r\")\n    code = list(decode(read_file(open_file)))\n    create_file(to_text(real_decode(code)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
-    findapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    passwordapp = str(
+    findapp: str = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
+    passwordapp: str = str(
         'import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
-    addapp = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    restartapp = str('import argparse, time, pygetwindow\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwindow = pygetwindow.getWindowsWithTitle(\'ZnámE\')[0]\nwindow.activate()\nif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
-    gameapp = str('from edupage import game\ngame()')
+    addapp: str = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
+    restartapp: str = str('import argparse, time, pygetwindow\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwindow = pygetwindow.getWindowsWithTitle(\'ZnámE\')[0]\nwindow.activate()\nif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
+    gameapp: str = str('from edupage import game\ngame()')
 
-    if args.log == None:
-        x = open('log_codeapp.py', 'w')
-        x.write(codeapp)
-        x.close()
-        x = open('log_decodeapp.py', 'w')
-        x.write(decodeapp)
-        x.close()
-        x = open('log_findapp.py', 'w')
-        x.write(findapp)
-        x.close()
-        x = open('log_passwordapp.py', 'w')
-        x.write(passwordapp)
-        x.close()
-        x = open('log_addapp.py', 'w')
-        x.write(addapp)
-        x.close()
-        x = open('log_restartapp.py', 'w')
-        x.write(restartapp)
-        x.close()
+    if __name__ == '__main__':
+        if args.log == None:
+            x = open('log_codeapp.py', 'w')
+            x.write(codeapp)
+            x.close()
+            x = open('log_decodeapp.py', 'w')
+            x.write(decodeapp)
+            x.close()
+            x = open('log_findapp.py', 'w')
+            x.write(findapp)
+            x.close()
+            x = open('log_passwordapp.py', 'w')
+            x.write(passwordapp)
+            x.close()
+            x = open('log_addapp.py', 'w')
+            x.write(addapp)
+            x.close()
+            x = open('log_restartapp.py', 'w')
+            x.write(restartapp)
+            x.close()
 
-    typewriter(printnlog('\nDONE\n', toprint=False))
-
-    def set_config(section, name, info):
-        """
-        The set_config function writes a new config.ini file with the specified section, name, and info.
-
-        :param section: Define the section of the config
-        :param name: Set the name of the configuration file
-        :param info: Set the value of the name parameter in the section specified
-        :return: None
-        """
-        os.remove('config.ini')
-        configfile = open('config.ini', 'a')
-        config.set(section, name, info)
-        config.write(configfile)
-        configfile.close()
-
-    typewriter(printnlog('Function: set_config', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('\nDONE\n', toprint=False))
 
     def get_size(bytes):
         """
@@ -1100,9 +1153,10 @@ try: #  type: ignore
                 return f"{bytes:.2f}{unit}B"
             bytes /= 1024
 
-    typewriter(printnlog('Function: get_size', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: get_size', toprint=False))
 
-    def delcache(name, hist):
+    def delcache(name: str, hist: str) -> None:
         """
         The delcache function deletes the cache file if it is empty.
 
@@ -1113,10 +1167,10 @@ try: #  type: ignore
         """
 
         global timer
-        time_got = int(config.get('basic info', 'inactivelimit').split(' ')[0])
+        time_got: int = int(config.get('basic info', 'inactivelimit').split(' ')[0])
         timer = time_got
-        filesize = os.path.getsize(hist)
-        sizehist = filesize
+        filesize: int = os.path.getsize(hist)
+        sizehist: int = filesize
         while True:
             try:
                 for i in os.listdir():
@@ -1138,16 +1192,17 @@ try: #  type: ignore
                     break
                 if filesize != sizehist:
                     timer = time_got
-                    sizehist = filesize
+                    sizehist: int = filesize
                 else:
-                    sizehist = filesize
-                    filesize = os.path.getsize(hist)
+                    sizehist: int = filesize
+                    filesize: int = os.path.getsize(hist)
                     sleep(1)
                     timer -= 1
             except Exception:
                 pass
 
-    typewriter(printnlog('Function: delcache', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: delcache', toprint=False))
 
     loginvstupuser = ''
     global progress_bar_check
@@ -1157,20 +1212,19 @@ try: #  type: ignore
 
     cachename = 'data.xp2'
 
-    def inactive():
+    def inactive() -> bool:
         """
         The inactive function is used to check if the INACTIVE file exists in the current directory. If it does, then it will remove the password file and return True. Otherwise, it returns False.
 
-        :return: True if the file inactive is found in the directory
+        :return: True if the inactive file is found in the current directory
         """
-
-        global password
-        leave = False
+        global passwordp
+        leave: bool = False
         for i in os.listdir():
             if i == 'INACTIVE':
                 leave = True
                 try:
-                    os.remove(password[1])  # type: ignore
+                    os.remove(passwordp[1])  # type: ignore
                 except Exception:
                     pass
                 break
@@ -1180,9 +1234,10 @@ try: #  type: ignore
         else:
             return False
 
-    typewriter(printnlog('Function: inactive', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: inactive', toprint=False))
 
-    def progress_bar(name, number):
+    def progress_bar(name: str, number: int) -> None:
         """
         The progress_bar function is a function that takes in two parameters: name and number.
         The progress_bar function will print out the name of the task being executed, and then display a progress bar for how 
@@ -1195,24 +1250,25 @@ try: #  type: ignore
 
         global progress_bar_check
         progress_bar_check = 0
-        progress_bar_check_old = 0
-        end = False
+        progress_bar_check_old: int = 0
+        end: bool = False
         for i in tqdm(range(0, number), desc=name + ' '):
             if end:
                 break
             while True:
                 if progress_bar_check >= 100:
-                    end = True
+                    end: bool = True
                     break
                 if progress_bar_check == progress_bar_check_old:
                     continue
                 elif progress_bar_check != progress_bar_check_old:
-                    progress_bar_check_old = progress_bar_check
+                    progress_bar_check_old: int = progress_bar_check
                     break
 
-    typewriter(printnlog('Function: progress_bar', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: progress_bar', toprint=False))
 
-    def add(name, ico, subject, mark):
+    def add(name1, ico: int, subject: str, mark: str) -> tuple[str, None]:
         """
         The add function adds a new subject to the database.
         It takes 4 arguments: name, ico, subject and mark.
@@ -1228,12 +1284,12 @@ try: #  type: ignore
         """
 
         global progress_bar_check
-        decodename = str(datetime.now().strftime("%H-%M-%S"))
-        decodename = 'add'
+        decodename: str = str(datetime.now().strftime("%H-%M-%S"))
+        decodename: str = 'add'
         crdecode = open(decodename + ".py", "w")
         crdecode.write(addapp)
         crdecode.close()
-        subprocess.check_output('start ' + decodename + '.py ' + str(name) +
+        subprocess.check_output('start ' + decodename + '.py ' + str(name1) +
                                 ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
         if args.language == "SK":
             tqdm.write('Pridávam ...', end='\r')
@@ -1242,10 +1298,10 @@ try: #  type: ignore
         elif args.language == "JP":
             tqdm.write('追加する ...', end='\r')
         while True:
-            leave = False
+            leave: bool = False
             for i in os.listdir():
                 if i == 'DONE':
-                    leave = True
+                    leave: bool = True
                     break
             if leave:
                 sleep(0.05)
@@ -1257,15 +1313,16 @@ try: #  type: ignore
         elif args.language == "JP":
             tqdm.write('追加完了')
         os.remove(decodename + '.py')
-        os.remove(name)
+        os.remove(name1)
         os.remove('DONE')
         progress_bar_check += 1
-        name = ('data1', None)
+        name: tuple[str, None] = ('data1', None)
         return name
 
-    typewriter(printnlog('Function: add', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: add', toprint=False))
 
-    def decode(name, password, mode=0):
+    def decode(name: str, password, mode: int=0) -> str: # type: ignore
         """
         The decode function takes two arguments, name and password. If the name argument is not provided it will default to None.
         If the password argument is not provided it will default to None as well. The function then creates a file with the current time in its name and writes a python script into that file which decrypts all files in this directory (except for itself) using pyAesCrypt library with given password or generated one if none was given.
@@ -1277,17 +1334,17 @@ try: #  type: ignore
         """
 
         global progress_bar_check
-        decodename = str(datetime.now().strftime("%H-%M-%S"))
-        decodename = 'decode'
-        decodename2 = 'False'
+        decodename: str = str(datetime.now().strftime("%H-%M-%S"))
+        decodename: str = 'decode'
+        decodename2: str = 'False'
         if password:
-            decodename2 = name
+            decodename2: str = name
         if name:
-            decodename1 = decodename
+            decodename1: str = decodename
         elif isinstance(name, str):
-            decodename1 = name
+            decodename1: str = name
         else:
-            decodename1 = "None"
+            decodename1: str = "None"
         crdecode = open(decodename + ".py", "w")
         crdecode.write(decodeapp)
         crdecode.close()
@@ -1304,10 +1361,10 @@ try: #  type: ignore
         elif args.language == "JP":
             tqdm.write('暗号化 ...', end='\r')
         while True:
-            leave = False
+            leave: bool = False
             for i in os.listdir():
                 if i == 'DONE':
-                    leave = True
+                    leave: bool = True
                     break
             if leave:
                 sleep(0.05)
@@ -1322,24 +1379,25 @@ try: #  type: ignore
         os.remove('DONE')
         if mode == 1:
             file = open('1', 'r')
-            fileline = str(file.readlines())
-            fileline = fileline[2:len(fileline)-2]
+            fileline: str = str(file.readlines())
+            fileline: str = fileline[2:len(fileline)-2]
             file.close()
             os.remove('1')
             return fileline
         progress_bar_check += 1
         return decodename1
 
-    typewriter(printnlog('Function: decode', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: decode', toprint=False))
 
-    def password(name):
+    def password(name: str) -> list[str]:
         """
         Create a password file for the current session.
         @param name - the name of the file to be created.
         """
         global progress_bar_check
-        passwordname = str(datetime.now().strftime("%H-%M-%S"))
-        passwordname = 'pasword'
+        passwordname: str = str(datetime.now().strftime("%H-%M-%S"))
+        passwordnameL: str = 'pasword'
         crfind = open(passwordname + ".py", "w")
         crfind.write(passwordapp)
         crfind.close()
@@ -1352,16 +1410,16 @@ try: #  type: ignore
         subprocess.check_output(
             'start ' + passwordname + '.py ' + str(name), shell=True)
         while True:
-            leave = False
+            leave: bool = False
             for i in os.listdir():
                 if i == 'DONE':
-                    leave = True
+                    leave: bool = True
                     break
             if leave:
                 sleep(0.05)
                 break
         os.remove(passwordname + '.py')
-        password = ''
+        password: str = ''
         for i in open('DONE', 'r').read():
             password += str(i)
         if args.language == "SK":
@@ -1374,14 +1432,23 @@ try: #  type: ignore
         progress_bar_check += 1
         return [password, name]
 
-    typewriter(printnlog('Function: password', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: password', toprint=False))
 
-    def find(name):
-        # Creating a file, writing to it, and then running it.
+    def find(name: str) -> list: #type: ignore
+        """
+        The find function is used to find the password of a user. It takes in two arguments, 
+        the first being the name of the file that contains all usernames and passwords, and 
+        the second being a string containing what you are looking for. The function then creates 
+        a new file with an extension .py which it runs through cmd to find your password.
+
+        :param name: Find the name of the file that is being searched for
+        :return: The name of the file that was found
+        """
 
         global progress_bar_check
-        findname = str(datetime.now().strftime("%H-%M-%S"))
-        findname = 'find'
+        findname: str = str(datetime.now().strftime("%H-%M-%S"))
+        findname: str = 'find'
         crfind = open(findname + ".py", "w")
         crfind.write(findapp)
         crfind.close()
@@ -1394,10 +1461,10 @@ try: #  type: ignore
         subprocess.check_output(
             'start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
         while True:
-            leave = False
+            leave: bool = False
             for i in os.listdir():
                 if i == 'DONE':
-                    leave = True
+                    leave: bool = True
                     break
             if leave:
                 sleep(0.05)
@@ -1406,8 +1473,8 @@ try: #  type: ignore
         os.remove(name)
         os.remove('DONE')
         test = open(loginvstupuser, 'r')
-        end = False
-        pocitadlo = 0
+        end: bool = False
+        pocitadlo: int = 0
         for i in test.read():
             pocitadlo += 1
         if 0 <= pocitadlo <= 5:
@@ -1418,9 +1485,9 @@ try: #  type: ignore
                 tqdm.write('Finding ERROR')
             elif args.language == "JP":
                 tqdm.write('発見 エラー')
-            end = True
+            end: bool = True
         if end:
-            return (loginvstupuser, end)
+            return [loginvstupuser, end]
         test.close()
         if args.language == "SK":
             tqdm.write('Hľadám Hotovo')
@@ -1431,19 +1498,20 @@ try: #  type: ignore
         progress_bar_check += 1
         return [loginvstupuser, end]
 
-    typewriter(printnlog('Function: find', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: find', toprint=False))
 
-    def code(name, new, mode=0):
+    def code(name: str, new: str, mode: int=0) -> list[str]:
         """
         The code function is used to encrypt files.
         It takes two arguments: name, new.
         name is the file that will be encrypted.
         new is the password for encryption.
 
-        :param name: Get the name of the file to be encrypted
-        :param new: Save the new password
-        :param mode=0: Encrypt the file
-        :return: The name of the file and the new value
+        :param name: str: Get the name of the file to be encrypted
+        :param new: str: Save the password for encryption
+        :param mode: int: Determine the mode of operation
+        :return: The name and new value of the file
         """
 
         global progress_bar_check
@@ -1494,21 +1562,22 @@ try: #  type: ignore
         os.remove('DONE')
         if mode == 1:
             file = open('1crypted', 'r')
-            savelog = file.readlines()
+            savelog: list[str] = file.readlines()
             file.close()
             os.remove('1')
             os.remove('1crypted')
             return savelog
-        return name[1], new
+        return [name[1], new]
 
-    typewriter(printnlog('Function: code', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: code', toprint=False))
 
-    def mouseclick(time=0):
+    def mouseclick(time: int=0) -> None:
         """
         The mouseclick function is used to click the F11 key on the keyboard.
         This function is useful for maximizing a window.
 
-        :param time=0: Make the mouseclick function run for a specified amount of time
+        :param time: int=0: Make the mouseclick function run for a specified amount of time
         :return: The time it takes to click the mouse
         """
 
@@ -1525,9 +1594,10 @@ try: #  type: ignore
             else:
                 pass
 
-    typewriter(printnlog('Function: mouseclick', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: mouseclick', toprint=False))
 
-    def playhtml(htmlFile, mode=0, time=0):
+    def playhtml(htmlFile: str, mode: int=0, time: int=0):
         """
         The playhtml function is used to open the html file containing the game's intro.
         It can be called in two ways:
@@ -1535,13 +1605,11 @@ try: #  type: ignore
                                                     # time = 0 means that it will not wait for a specific amount of time before clicking
                                                     # through each part of the intro.
 
-        :param htmlFile: Specify which html file to open
-        :param mode=0: Determine whether the function is used to start a new game or load an existing one
-        :param time=0: Make the mouseclick function wait a certain amount of time
+        :param htmlFile: str: Specify which html file to open
+        :param mode: int: Determine whether the function is used to start a new game or load an existing one
+        :param time: int: Specify how long the mouseclick function should wait before clicking
         :return: Nothing
-        :doc-author: Trelent
         """
-
         if args.nointro == None or args.nointrof == None:
             args.nointrof = object()
             if args.test == None and config.get('basic info', 'intro').split(' ')[0] == 'True':
@@ -1579,22 +1647,23 @@ try: #  type: ignore
             else:
                 pass
 
-    typewriter(printnlog('Function: playhtml', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: playhtml', toprint=False))
 
-    gamefiles = ['losing1_add.mp3', 'losing1_add2.mp3', 'losing1_end.mp3', 'losing1_loop.mp3', 'winning1_add.mp3', 'winning1_add2.mp3', 'winning1_end.mp3', 'winning1_loop.mp3',
+    gamefiles: list[str] = ['losing1_add.mp3', 'losing1_add2.mp3', 'losing1_end.mp3', 'losing1_loop.mp3', 'winning1_add.mp3', 'winning1_add2.mp3', 'winning1_end.mp3', 'winning1_loop.mp3',
                  'losing2_add.mp3', 'losing2_add2.mp3', 'losing2_end.mp3', 'losing2_loop.mp3', 'winning2_add.mp3', 'winning2_add2.mp3', 'winning2_end.mp3', 'winning2_loop.mp3', 'word.txt']
 
-    def create_gamefiles():
+    def create_gamefiles() -> None:
         """
         The create_gamefiles function creates the game files needed to run a game.
         It copies over the assets folder and all of its contents into a new folder called 'game'.
         The create_gamefiles function does not take any arguments. It returns nothing.
-
-        :return: A list of the files that were created
+        
+        :return: Nothing
         """
         try:
             os.mkdir('game')
-        except Exception:
+        except FileExistsError:
             pass
         try:
             x = open('game.py', 'w')
@@ -1611,13 +1680,44 @@ try: #  type: ignore
                 shutil.copy(source, destination)
                 typewriter(destination)
 
-    typewriter(printnlog('Function: create_gamefiles', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: create_gamefiles', toprint=False))
 
     score = 0
     scorec = 0
-    goal_score = int(config.get('game settings', 'goal_score'))
+    if __name__ == '__main__':
+        goal_score: int = int(config.get('game settings', 'goal_score'))
 
-    def game():
+
+    def computer() -> None:
+        """
+        The computer function is the function that will be called when the user wants to play against a computer. 
+        It will generate a random word from a list of words, and then ask for input from the user. The user can type 'start' to start a new game, or 'quit' to quit it.
+        
+        :return: None
+        """
+        global score
+        global scorec
+        global goal_score
+        word = open('game/word.txt', 'r')
+        words: list[str] = word.readlines()
+        while scorec < goal_score and score < goal_score:
+            number: int = random.randint(0, 10000-1)
+            timeis: float = float(config.get('game settings', 'computer_power')
+                            )*len(words[number][:-1])  # type: ignore
+            sleep(timeis)
+            scorec += 100/(timeis + 1)  # type: ignore
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: computer', toprint=False))
+
+
+    def game() -> None:
+        """
+        The game function is the main function of the game. It will be called when you run 'python edupage.py'.
+        It will ask you if you want to play offline or online, and then it will call either offlinegame or onlinegame depending on your answer.
+        
+        :return: The score
+        """
         os.system('title GAME')
         global score
         global scorec
@@ -1637,23 +1737,10 @@ try: #  type: ignore
                     return
         print('You will be playing against computer')
         word = open('game/word.txt', 'r')
-        words = word.readlines()
-        music = False
-        music_tense = 0
-        after_game = False
-
-        def computer():
-            global score
-            global scorec
-            global goal_score
-            word = open('game/word.txt', 'r')
-            words = word.readlines()
-            while scorec < goal_score and score < goal_score:
-                number = random.randint(0, 10000-1)
-                timeis = float(config.get('game settings', 'computer_power')
-                               )*len(words[number][:-1])  # type: ignore
-                sleep(timeis)
-                scorec += 100/(timeis + 1)  # type: ignore
+        words: list[str] = word.readlines()
+        music: bool = False
+        music_tense: int = 0
+        after_game: bool = False
         while True:
             os.system('cls')
             if after_game:
@@ -1665,18 +1752,18 @@ try: #  type: ignore
                     print('Draw')
                 print(score)
                 print(scorec)
-            maxmusicset = 1
-            musicset = [random.randint(
+            maxmusicset: int = 1
+            musicset: list[int] = [random.randint(
                 1, maxmusicset), random.randint(1, maxmusicset)]
             score = 0
             scorec = 0
-            quitgame = False
+            quitgame: bool = False
             goal_score = int(config.get('game settings', 'goal_score'))
-            gameinput = input('> ')
+            gameinput: str = input('> ')
             if gameinput == 'start':
                 mixer.Channel(0).fadeout(1000)
                 mixer.Channel(1).fadeout(1000)
-                nopoints = False
+                nopoints: bool = False
                 Thread(target=computer, daemon=True).start()
                 while score < goal_score and scorec < goal_score:
                     os.system('cls')
@@ -1685,47 +1772,47 @@ try: #  type: ignore
                     if not music and score >= goal_score/2 and score > scorec:
                         mixer.Channel(0).play(mixer.Sound(
                             'game\\winning' + str(musicset[0]) + '_loop.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 1
-                        music = True
+                        music_tense: int = 1
+                        music: bool = True
                     elif music_tense == 1 and music and score >= (goal_score/3)*2 and score > scorec:
                         mixer.Channel(0).fadeout(1000)
                         mixer.Channel(1).play(mixer.Sound(
                             'game\\winning' + str(musicset[0]) + '_add.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 2
-                        music = True
+                        music_tense: int = 2
+                        music: bool = True
                     elif music_tense == 2 and music and score >= (goal_score/6)*5 and score > scorec:
                         mixer.Channel(1).fadeout(1000)
                         mixer.Channel(0).play(mixer.Sound(
                             'game\\winning' + str(musicset[0]) + '_add2.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 3
-                        music = True
+                        music_tense: int = 3
+                        music: bool = True
                     elif not music and scorec >= goal_score/2 and score < scorec:
                         mixer.Channel(0).play(mixer.Sound(
                             'game\\losing' + str(musicset[1]) + '_loop.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 1
-                        music = True
+                        music_tense: int = 1
+                        music: bool = True
                     elif music_tense == 1 and music and scorec >= (goal_score/3)*2 and score < scorec:
                         mixer.Channel(0).fadeout(1000)
                         mixer.Channel(1).play(mixer.Sound(
                             'game\\losing' + str(musicset[1]) + '_add.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 2
-                        music = True
+                        music_tense: int = 2
+                        music: bool = True
                     elif music_tense == 2 and music and scorec >= (goal_score/6)*5 and score < scorec:
                         mixer.Channel(1).fadeout(1000)
                         mixer.Channel(0).play(mixer.Sound(
                             'game\\losing' + str(musicset[1]) + '_add2.mp3'), fade_ms=1000, loops=-1)
-                        music_tense = 3
-                        music = True
-                    number = random.randint(0, 10000-1)
+                        music_tense: int = 3
+                        music: bool = True
+                    number: int = random.randint(0, 10000-1)
                     print(words[number][:-1])
-                    start = time.time()
+                    start: float = time.time()
                     while True:
-                        gameinput = input('> ')
+                        gameinput: str = input('> ')
                         if gameinput == '-n':
-                            nopoints = True
+                            nopoints: bool = True
                             break
                         if gameinput == '-q':
-                            quitgame = True
+                            quitgame: bool = True
                             break
                         if gameinput == words[number][:-1]:
                             break
@@ -1735,15 +1822,15 @@ try: #  type: ignore
                         score = 0
                         scorec = 0
                         break
-                    end = time.time()
-                    timeis = end - start
+                    end: float = time.time()
+                    timeis: float = end - start
                     if timeis < 10 and not nopoints:
                         score += 100/(timeis + 1)
                     else:
-                        nopoints = False
+                        nopoints: bool = False
                 print(score)
                 print(scorec)
-                after_game = True
+                after_game: bool = True
                 if score > scorec:
                     mixer.Channel(0).fadeout(1000)
                     mixer.Channel(1).play(mixer.Sound(
@@ -1756,15 +1843,155 @@ try: #  type: ignore
                 break
         word.close()
 
-    typewriter(printnlog('Function: game', toprint=False))
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: game', toprint=False))
 
-    def main():  # type: ignore
+    def DownloadVideo(link: str, name: str='video') -> str:
+        """
+        The Download function downloads the video from YouTube.
+        It takes in a link as an argument and then downloads the video.
+
+        :param link: Download the video from youtube
+        :return: The name of the file that has been downloaded
+        """
+        out_file = YouTube(
+            str(link)).streams.get_highest_resolution().download()
+        base, ext = os.path.splitext(out_file)
+        base = os.path.basename(base)
+        base.replace("[","(")
+        base.replace("]",")")
+        base.replace("'","")
+        base.replace("\"","")
+        new_file = name + '.mp4'
+        print(os.path.join(out_file))
+        print(os.path.join('assets\\' + new_file))
+        shutil.move(out_file, 'assets\\' + new_file)
+        os.remove(out_file)
+        print('Done\n')
+        return base
+
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: DownloadVideo', toprint=False))
+        
+        
+    def unpack(cachename: str) -> None:
+        """
+        The unpack function unpacks the downloaded zip file and extracts the data from it.
+        It then moves all of the files to their appropriate locations, deletes any unneeded folders,
+        and removes the zip file. It also prints out a progress bar for each step.
+        
+        :param cachename: Determine the name of the file to extract from
+        :return: :
+        """
+        with zipfile.ZipFile(cachename, mode='r') as zip:
+            if args.language == "SK":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                        log(f"{os.path.basename(member)}(" +
+                            str(os.path.getsize(member)) + "B)")
+                        sleep(0.01)
+                    except zipfile.error as e:
+                        pass
+            elif args.language == "EN":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                        log(f"{os.path.basename(member)}(" +
+                            str(os.path.getsize(member)) + "B)")
+                        sleep(0.01)
+                    except zipfile.error as e:
+                        pass
+            elif args.language == "JP":
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                        log(f"{os.path.basename(member)}(" +
+                            str(os.path.getsize(member)) + "B)")
+                        sleep(0.01)
+                    except zipfile.error as e:
+                        pass
+            zip.close()
+        if args.language == "SK":
+            typewriter(printnlog('Hotovo\n', toprint=False))
+            sleep(0.25)
+            typewriter(printnlog("Rozbaľujem druhu časť...\n", toprint=False))
+        elif args.language == "EN":
+            typewriter(printnlog('Done\n', toprint=False))
+            sleep(0.25)
+            typewriter(printnlog("Unpacking second part...\n", toprint=False))
+        elif args.language == "JP":
+            typewriter(printnlog('終わり\n', toprint=False))
+            sleep(0.25)
+            typewriter(printnlog("2 番目の部分を解凍しています...\n", toprint=False))
+        """
+        Extract the data from the xp3 file.
+        @param xp3_file - the xp3 file to extract from
+        @param output_folder - the folder to extract to
+        @param extract_name - the name of the file to extract
+        @param language - the language to extract
+        """
+        if args.language == "SK":
+            subprocess.call(
+                [sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
+        elif args.language == "EN":
+            subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                            'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
+        elif args.language == "JP":
+            subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                            'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
+        try:
+            shutil.move('data1/data', 'data')
+        except Exception:
+            pass
+        try:
+            os.mkdir('apphtml')
+        except Exception:
+            pass
+        try:
+            os.mkdir('assets')
+        except Exception:
+            pass
+        if cachename == 'data.xp2':
+            for r, d, f in os.walk('data1/apphtml/'):
+                for file in f:
+                    printnlog(os.path.join('./', file))
+                    shutil.move(os.path.join('data1/apphtml/',
+                                file), os.path.join('apphtml/', file))
+            for r, d, f in os.walk('data1/assets/'):
+                for file in f:
+                    printnlog(os.path.join('./', file))
+                    shutil.move(os.path.join('data1/assets/', file),
+                                os.path.join('assets/', file))
+            for r, d, f in os.walk('data1/'):
+                for file in f:
+                    printnlog(os.path.join('./', file))
+                    shutil.move(os.path.join('data1/', file),
+                                os.path.join('/', file))
+            shutil.rmtree('data1')
+            sleep(1)
+        os.remove(cachename)
+        os.remove('data.xp3')
+        
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: unpack', toprint=False))
+
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: DownloadVideo', toprint=False))
+
+    def main() -> None: # type: ignore
         try:
             """
             The main function. This is where the program starts. It is the first function called.
             """
 
-            historyname = str(datetime.now().strftime("%H-%M-%S"))
+            historyname: str = str(datetime.now().strftime("%H-%M-%S"))
             historyfile = open(historyname, 'w')
             if args.nointrof == None:
                 historyfile.write('[*restarted]\n')
@@ -1777,111 +2004,7 @@ try: #  type: ignore
                 typewriter(printnlog("\n抽出開始\n", toprint=False))
             sleep(0.25)
             try:
-
-                """
-                Extract the zip file containing the data.
-                @param cachename - the name of the zip file containing the data.
-                """
-
-                def unpack(cachename):
-                    with zipfile.ZipFile(cachename, mode='r') as zip:
-                        if args.language == "SK":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                    log(f"{os.path.basename(member)}(" +
-                                        str(os.path.getsize(member)) + "B)")
-                                    sleep(0.01)
-                                except zipfile.error as e:
-                                    pass
-                        elif args.language == "EN":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                    log(f"{os.path.basename(member)}(" +
-                                        str(os.path.getsize(member)) + "B)")
-                                    sleep(0.01)
-                                except zipfile.error as e:
-                                    pass
-                        elif args.language == "JP":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                                    log(f"{os.path.basename(member)}(" +
-                                        str(os.path.getsize(member)) + "B)")
-                                    sleep(0.01)
-                                except zipfile.error as e:
-                                    pass
-                        zip.close()
-                    if args.language == "SK":
-                        typewriter(printnlog('Hotovo\n', toprint=False))
-                        sleep(0.25)
-                        typewriter(printnlog("Rozbaľujem druhu časť...\n", toprint=False))
-                    elif args.language == "EN":
-                        typewriter(printnlog('Done\n', toprint=False))
-                        sleep(0.25)
-                        typewriter(printnlog("Unpacking second part...\n", toprint=False))
-                    elif args.language == "JP":
-                        typewriter(printnlog('終わり\n', toprint=False))
-                        sleep(0.25)
-                        typewriter(printnlog("2 番目の部分を解凍しています...\n", toprint=False))
-                    """
-                    Extract the data from the xp3 file.
-                    @param xp3_file - the xp3 file to extract from
-                    @param output_folder - the folder to extract to
-                    @param extract_name - the name of the file to extract
-                    @param language - the language to extract
-                    """
-                    if args.language == "SK":
-                        subprocess.call(
-                            [sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
-                    elif args.language == "EN":
-                        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                                        'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
-                    elif args.language == "JP":
-                        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                                        'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
-                    try:
-                        shutil.move('data1/data', 'data')
-                    except Exception:
-                        pass
-                    try:
-                        os.mkdir('apphtml')
-                    except Exception:
-                        pass
-                    try:
-                        os.mkdir('assets')
-                    except Exception:
-                        pass
-                    if cachename == 'data.xp2':
-                        for r, d, f in os.walk('data1/apphtml/'):
-                            for file in f:
-                                printnlog(os.path.join('./', file))
-                                shutil.move(os.path.join('data1/apphtml/',
-                                            file), os.path.join('apphtml/', file))
-                        for r, d, f in os.walk('data1/assets/'):
-                            for file in f:
-                                printnlog(os.path.join('./', file))
-                                shutil.move(os.path.join('data1/assets/', file),
-                                            os.path.join('assets/', file))
-                        for r, d, f in os.walk('data1/'):
-                            for file in f:
-                                printnlog(os.path.join('./', file))
-                                shutil.move(os.path.join('data1/', file),
-                                            os.path.join('/', file))
-                        shutil.rmtree('data1')
-                        sleep(1)
-                    os.remove(cachename)
-                    os.remove('data.xp3')
-
-
-                datafiles = []
+                datafiles: list = []
                 for file in os.listdir("./"):
                     if file.startswith("data"):
                         if file.endswith('.xp2'):
@@ -1924,11 +2047,21 @@ try: #  type: ignore
             media_player = vlc.MediaPlayer()
             sleep(0.25)
             if args.language == 'SK':
-                typewriter(printnlog('KONIEC', toprint=False))
+                typewriter(printnlog('KONIEC\n', toprint=False))
             elif args.language == 'EN':
-                typewriter(printnlog('END', toprint=False))
+                typewriter(printnlog('END\n', toprint=False))
             elif args.language == 'JP':
-                typewriter(printnlog('終わり', toprint=False))
+                typewriter(printnlog('終わり\n', toprint=False))
+            sleep(0.25)
+            from downloadmusic import DownloadMusic  # type: ignore
+            print_module('DownloadMusic from downloadmusic')
+            musiclistnew: list = []
+            for i in range(len(music)):
+                print(str(music[i]))
+                if not os.path.exists('assets/' + str(music[i]) + '.mp3'):
+                    musiclistnew.append(DownloadMusic(str(music[i])))
+                else:
+                    musiclistnew.append(music[i])
             sleep(0.25)
             move('ZnámE', -10, -10, screensize[0], screensize[1])
             if args.test != None:
@@ -1936,7 +2069,7 @@ try: #  type: ignore
                     window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                     window.maximize()
                 except IndexError:
-                    exit = True
+                    exit: bool = True
                     error_get(IndexError, get_line_number(
                     ), 'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\'')
             if args.restart != None:
@@ -1948,7 +2081,7 @@ try: #  type: ignore
                 media_list.add_media(media)
                 media_player.set_media_list(media_list)
                 media_player.play()
-            inactive1 = False
+            inactive1: bool = False
             """
             If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
             @param root - the root directory of the file system
@@ -1960,7 +2093,7 @@ try: #  type: ignore
                 for root, dirs, files in os.walk('..\\'):
                     for i in files:
                         if i == 'INACTIVE':
-                            inactive1 = True
+                            inactive1: bool = True
                             os.remove('INACTIVE')
                             sleep(0.25)
                             if args.language == "SK":
@@ -1989,24 +2122,26 @@ try: #  type: ignore
             if args.language == 'JP':
                 printnlog(
                     "If you don't see any of characters watch 'help.txt'\nインターネット接続がダウンしています\n")
-            logged = False
-            exit = False
-            tologin = False
-            restart = False
-            topassword = False
-            topasswordhelp = False
-            loggedhelp = False
-            firstlogin = True
-            vstup = ''
-            logins = 0
-            help = ['help', 'pomoc', '-h', '-help', '?', '-?']
-            advhelp = ['advanced help', 'ah', '-ah', '-advanced help']
-            linenumber = 1  # type: ignore
-            neko = False
-            waifu = False
-            waifuvid = False
-            musicplay = False
-            offline_game = False
+            logged: bool = False
+            exit: bool = False
+            tologin: bool = False
+            restart: bool = False
+            topassword: bool = False
+            topasswordhelp: bool = False
+            loggedhelp: bool = False
+            firstlogin: bool = True
+            vstup: str = ''
+            logins: int = 0
+            help: list[str] = ['help', 'pomoc', '-h', '-help', '?', '-?']
+            advhelp: list[str] = ['advanced help', 'ah', '-ah', '-advanced help']
+            linenumber: int = 1  # type: ignore
+            neko: bool = False
+            waifu: bool = False
+            waifuvid: bool = False
+            musicplay: bool = False
+            savefilemode: bool = False
+            offline_game: bool = False
+            maxlogins: int = 1
             """
             If the user has not disabled the intro, play it. Otherwise, do nothing.
             @param None
@@ -2030,7 +2165,7 @@ try: #  type: ignore
 
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
-            exit = getWindow()
+            exit: bool = getWindow()
             if args.nointro == None or config.get('basic info', 'intro').split(' ')[0] == 'False':
                 pass
             else:
@@ -2054,7 +2189,7 @@ try: #  type: ignore
             os.system('cls')
             if args.music != '0':
                 mixer.init()
-                mixer.music.load('assets/' + music[int(args.music)-1] + '.mp3')
+                mixer.music.load('assets/' + musiclistnew[int(args.music)-1] + '.mp3')
                 mixer.music.play()
 
             """
@@ -2069,6 +2204,7 @@ try: #  type: ignore
             elif args.language == "JP":
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
+            import requests
             while True:
                 internet_check()
                 if not exit:
@@ -2076,7 +2212,7 @@ try: #  type: ignore
                     if logged:
                         if firstlogin:
                             logins += 1
-                            firstlogin = False
+                            firstlogin: bool = False
                             shutil.copy2('data', 'data_backup')
                             """
                             If the user wants to save their login credentials, save them to a file.
@@ -2085,19 +2221,19 @@ try: #  type: ignore
                             @param savefilemode - whether or not we are saving the file or not
                             """
                             if savefilemode:   # type: ignore
-                                flvstup = ''
+                                flvstup: str = ''
                                 linenumber -= 1
                             elif args.language == "SK":
-                                flvstup = input(
+                                flvstup: str = input(
                                     str(linenumber) + "Chcete si uložiť svoje prihlasovacie údaje? (y/N) > ")
                             elif args.language == "EN":
-                                flvstup = input(
+                                flvstup: str = input(
                                     str(linenumber) + "Do you want to save your login credentials? (y/N) > ")
                             elif args.language == "JP":
-                                flvstup = input(
+                                flvstup: str = input(
                                     str(linenumber) + "ログイン資格情報を保存しますか? (y/N) > ")
                             else:
-                                flvstup = input(
+                                flvstup: str = input(
                                     "Do you want to save your login credentials? (y/N) > ")
                             flvstup.lower()
                             if flvstup == "y":
@@ -2106,9 +2242,9 @@ try: #  type: ignore
                                         "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
                                 savelog = open(
                                     "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved", "w")
-                                tolog = str(code(str(loginvstupuser), str(
+                                tolog: str = str(code(str(loginvstupuser), str(
                                     passwordp[0]), mode=1))  # type: ignore
-                                tolog = tolog[2:len(tolog)-2]
+                                tolog: str = tolog[2:len(tolog)-2]
                                 savelog.write(tolog)
                                 savelog.close()
                         """
@@ -2124,8 +2260,8 @@ try: #  type: ignore
                                 typewriter("'zz' to display marks\n'pz' to add marks")
                             elif args.language == "JP":
                                 typewriter('「zz」でマークを表示\n「pz」でマークを追加')
-                            loggedhelp = False
-                        vstup = input(str(linenumber) + ' > ')
+                            loggedhelp: bool = False
+                        vstup: str = input(str(linenumber) + ' > ')
                         linenumber += 1
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + vstup + ']\n')
@@ -2137,10 +2273,10 @@ try: #  type: ignore
                         @param vstup - the user input string
                         @returns True if the user has asked for help, False otherwise
                         """
-                        help = ['help', 'pomoc', '-h', '-help', '?', '-?']
+                        help: list[str] = ['help', 'pomoc', '-h', '-help', '?', '-?']
                         for i in range(len(help)):
                             if vstup == help[i]:
-                                loggedhelp = True
+                                loggedhelp: bool = True
                         if loggedhelp:
                             continue
                         if vstup == 'delsavlog':
@@ -2148,9 +2284,9 @@ try: #  type: ignore
                         if vstup == "zz":
                             passwordfile = open(
                                 passwordp[1], 'r')  # type: ignore
-                            countersubject = 0
-                            counter = 6
-                            counterfirst = True
+                            countersubject: int = 0
+                            counter: int = 6
+                            counterfirst: bool = True
                             for i in passwordfile.read():
                                 if counter != 0:
                                     counter -= 1
@@ -2166,8 +2302,8 @@ try: #  type: ignore
                                         typewriter(','+i, end="")
                                 except Exception:
                                     if countersubject > 2:
-                                        countersubject = 0
-                                    counterfirst = True
+                                        countersubject: int = 0
+                                    counterfirst: bool = True
                                     countersubject += 1
                                     print(i, end="")
                                     if countersubject > 2:
@@ -2182,7 +2318,7 @@ try: #  type: ignore
                         """
                         if vstup == "pz":
                             if args.language == "SK":
-                                subject = input(
+                                subject: str = input(
                                     str(linenumber) + ' Predmet > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + subject + ']\n')
@@ -2190,18 +2326,18 @@ try: #  type: ignore
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                                 if subject == 'quit':
-                                    exit = True
+                                    exit: bool = True
                                     continue
                                 if subject == 'back':
                                     continue
-                                mark = input(str(linenumber) + ' Známka > ')
+                                mark: str = input(str(linenumber) + ' Známka > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + mark + ']\n')
                                 vstup.lower()
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                             elif args.language == "EN":
-                                subject = input(
+                                subject: str = input(
                                     str(linenumber) + ' Subject > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + subject + ']\n')
@@ -2209,36 +2345,36 @@ try: #  type: ignore
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                                 if subject == 'quit':
-                                    exit = True
+                                    exit: bool = True
                                     continue
                                 if subject == 'back':
                                     continue
-                                mark = input(str(linenumber) + ' Mark > ')
+                                mark: str = input(str(linenumber) + ' Mark > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + (mark) + ']\n')
                                 vstup.lower()
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                             elif args.language == "JP":
-                                subject = input(str(linenumber) + ' 主題 > ')
+                                subject: str = input(str(linenumber) + ' 主題 > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + subject + ']\n')
                                 vstup.lower()
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                                 if subject == 'quit':
-                                    exit = True
+                                    exit: bool = True
                                     continue
                                 if subject == 'back':
                                     continue
-                                mark = input(str(linenumber) + ' マーク > ')
+                                mark: str = input(str(linenumber) + ' マーク > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + mark + ']\n')
                                 vstup.lower()
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                             else:
-                                subject = input(
+                                subject: str = input(
                                     str(linenumber) + ' Subject > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + subject + ']\n')
@@ -2246,18 +2382,18 @@ try: #  type: ignore
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                                 if subject == 'quit':
-                                    exit = True
+                                    exit: bool = True
                                     continue
                                 if subject == 'back':
                                     continue
-                                mark = input(str(linenumber) + ' Mark > ')
+                                mark: str = input(str(linenumber) + ' Mark > ')
                                 historyfile.write(
                                     '[' + str(linenumber) + ', ' + mark + ']\n')
                                 vstup.lower()
                                 historyfile.close()
                                 historyfile = open(historyname, 'a')
                             if subject == 'quit' or mark == 'quit':
-                                exit = True
+                                exit: bool = True
                                 continue
                             if subject == 'back' or mark == 'back':
                                 continue
@@ -2289,7 +2425,7 @@ try: #  type: ignore
                             os.remove('data1')
                     if topassword:
                         if savefilemode:   # type: ignore
-                            vstup = savefile[9:15]   # type: ignore
+                            vstup: str = savefile[9:15]   # type: ignore
                             linenumber -= 1
                         elif args.language == "SK":
                             vstup = input(str(linenumber) + ' Heslo > ')
@@ -2305,10 +2441,10 @@ try: #  type: ignore
                         vstup.lower()
                         historyfile.close()
                         historyfile = open(historyname, 'a')
-                        help = ['help', 'pomoc', '-h', '-help', '?', '-?']
+                        help: list[str] = ['help', 'pomoc', '-h', '-help', '?', '-?']
                         for i in range(len(help)):
                             if vstup == help[i]:
-                                topasswordhelp = True
+                                topasswordhelp: bool = True
                         """
                         If the user has requested help, print the appropriate help message.
                         @param topasswordhelp - the boolean value for requesting help.
@@ -2322,7 +2458,7 @@ try: #  type: ignore
                                     "6 numeric password\n 'back' for menu\n 'quit' for end")
                             elif args.language == "JP":
                                 typewriter('6桁のパスワード\n メニューの「戻る」\n 終了の「終了」')
-                            topasswordhelp = False
+                            topasswordhelp: bool = False
                             continue
                         """
                             this function is used to go back to the main menu if the user wants to change their password. 
@@ -2334,7 +2470,7 @@ try: #  type: ignore
                                 typewriter('Going back.')
                             elif args.language == "JP":
                                 typewriter('戻る。')
-                            topassword = False
+                            topassword: bool = False
                             os.remove(loginvstupuser + 'crypted')
                             continue
                         """
@@ -2351,7 +2487,7 @@ try: #  type: ignore
                                 typewriter('戻ってプログラムを終了します。')
                             sleep(0.5)
                             os.remove(loginvstupuser + 'crypted')
-                            exit = True
+                            exit: bool = True
                         if args.language == "SK":
                             Thread(target=progress_bar, args=(
                                 'Preverujem', 2,), daemon=True).start()
@@ -2361,7 +2497,7 @@ try: #  type: ignore
                         elif args.language == "JP":
                             Thread(target=progress_bar, args=(
                                 'チェック中', 2,), daemon=True).start()
-                        passwordp = password(decode(loginvstupuser + 'crypted', True))  # type: ignore
+                        passwordp = password(decode(loginvstupuser + 'crypted', True))
                         cv2.destroyAllWindows()
                         getImg('assets/banner.png', 'banner', 0, 0,
                                screensize[0], int((round((322/1736)*screensize[0], 0))))
@@ -2388,15 +2524,19 @@ try: #  type: ignore
                                       'crypted', loginvstupuser)
                             passwordfile = open(loginvstupuser, 'r')
                             passwordfile1 = open(loginvstupuser + "1", 'w')
-                            counter = 0
+                            counter: int = 0
                             for i in passwordfile.read():
                                 passwordfile1.write(i)
                             passwordfile.close()
                             passwordfile1.close()
                             os.remove(loginvstupuser)
                             os.rename(loginvstupuser + '1', loginvstupuser)
-                            topassword = False
-                            logged = True
+                            topassword: bool = False
+                            logged: bool = True
+                            mixer.music.pause()
+                            mixer.Channel(1).play(mixer.Sound('assets\\maxtac.mp3'), fade_ms=10)
+                            sleep(2.5)
+                            mixer.music.unpause()
                             if os.path.exists("restart.py"):
                                 os.remove('restart.py')
                                 cv2.destroyAllWindows()
@@ -2431,7 +2571,7 @@ try: #  type: ignore
                         @param topassword - the boolean value for if the password is correct
                         """
                         if vstup != passwordp[0]:  # type: ignore
-                            topassword = False
+                            topassword: bool = False
                             os.remove(loginvstupuser + 'crypted')
                             os.remove(passwordp[1])  # type: ignore
                             global progress_bar_check
@@ -2461,25 +2601,25 @@ try: #  type: ignore
                     @param linenumber - the line number of the history file.
                     """
                     if not tologin and not logged:
-                        vstup = input(str(linenumber) + ' > ')
+                        vstup: str = input(str(linenumber) + ' > ')
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + vstup + ']\n')
                         vstup.lower()
                         historyfile.close()
                         historyfile = open(historyname, 'a')
                         linenumber += 1
-                    inactivelogout = inactive()
+                    inactivelogout: bool = inactive()
                     if vstup in ['settings', 'setup']:
                         while True:
-                            setvstup = input(
+                            setvstup: str = input(
                                 "1. basic info\n2. waifu setting\n3. neko settings\n4. game settings\n5. back\n> ")
                             if setvstup == '1':
                                 while True:
-                                    setvstup = input('1. lang = ' + config.get('basic info', 'lang').split(' ')[0] + '\n2. enviroment = ' + config.get('basic info', 'enviroment').split(' ')[0] + '\n3. intro (toggle) = ' + config.get('basic info', 'intro').split(' ')[
-                                                     0] + '\n4. inactivelimit = ' + config.get('basic info', 'inactivelimit').split(' ')[0] + '\n5. music = ' + config.get('basic info', 'music').split(' ')[0] + '\n6. musiclist = ' + config.get('basic info', 'musiclist').split(' ')[0] + '\n7. back\n> ')
+                                    setvstup: str = input('1. lang = ' + config.get('basic info', 'lang').split(' ')[0] + '\n2. enviroment = ' + config.get('basic info', 'enviroment').split(' ')[0] + '\n3. intro (toggle) = ' + config.get('basic info', 'intro').split(' ')[
+                                                     0] + '\n4. inactivelimit = ' + config.get('basic info', 'inactivelimit').split(' ')[0] + '\n5. music = ' + config.get('basic info', 'music').split(' ')[0] + '\n6. back\n> ')
                                     if setvstup == '1':
                                         while True:
-                                            setvstup = input(
+                                            setvstup:str = input(
                                                 '1. SK\n2. EN\n3. JP\n4. back\n> ')
                                             if setvstup == '1':
                                                 set_config(
@@ -2496,7 +2636,7 @@ try: #  type: ignore
                                             elif setvstup == '4':
                                                 break
                                     elif setvstup == '2':
-                                        setvstup = input('Set enviroment\n> ')
+                                        setvstup: str = input('Set enviroment\n> ')
                                         set_config(
                                             'basic info', 'enviroment', setvstup)
                                     elif setvstup == '3':
@@ -2507,7 +2647,7 @@ try: #  type: ignore
                                             set_config(
                                                 'basic info', 'intro', 'True')
                                     elif setvstup == '4':
-                                        setvstup = input(
+                                        setvstup: str = input(
                                             'Set inactivelimit\n> ')
                                         set_config(
                                             'basic info', 'inactivelimit', setvstup)
@@ -2527,33 +2667,28 @@ try: #  type: ignore
                                         elif config.get('basic info', 'music').split(' ')[0] == "disable":
                                             set_config(
                                                 'basic info', 'music', 'enable')
-                                    elif setvstup == '6':
-                                        setvstup = input(
-                                            'Set musiclist' + str(music) + '\n> ')
-                                        set_config(
-                                            'basic info', 'musiclist', setvstup)
                                     elif setvstup == '7':
                                         break
                             elif setvstup == '2':
                                 while True:
-                                    setvstup = input('1. type = ' + config.get('waifu settings', 'type').split(' ')[
+                                    setvstup: str = input('1. type = ' + config.get('waifu settings', 'type').split(' ')[
                                                      0] + '\n2. category = ' + config.get('waifu settings', 'category').split(' ')[0] + '\n3. back\n> ')
                                     if setvstup == '1':
                                         while True:
-                                            setvstup = input(
+                                            setvstup: str = input(
                                                 '1. SFW\n2. NSFW\n3. back\n> ')
                                             if setvstup == '1':
                                                 set_config(
                                                     'waifu settings', 'type', 'sfw')
-                                                setvstup = '2'
+                                                setvstup: str = '2'
                                                 break
                                             elif setvstup == '2':
-                                                setvstup = input(
+                                                setvstup: str = input(
                                                     'Do you have 18+ (y/N) > ').lower()
                                                 if setvstup == 'y':
                                                     set_config(
                                                         'waifu settings', 'type', 'nsfw')
-                                                    setvstup = '2'
+                                                    setvstup: str = '2'
                                                     break
                                                 else:
                                                     break
@@ -2561,13 +2696,13 @@ try: #  type: ignore
                                                 break
                                     if setvstup == '2':
                                         if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
-                                            category = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush",
+                                            category: list [str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush",
                                                         "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe", "back"]
                                             while True:
                                                 for i in range(0, len(category)):
                                                     typewriter(str(i + 1) +
                                                           '. ' + category[i])
-                                                setvstup = int(input("> "))
+                                                setvstup: int = int(input("> ")) # type: ignore
                                                 if category[setvstup-1] == 'back':
                                                     break
                                                 try:
@@ -2577,13 +2712,13 @@ try: #  type: ignore
                                                 except Exception:
                                                     continue
                                         elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
-                                            category = [
+                                            category: list[str] = [
                                                 'waifu', 'neko', 'trap', 'blowjob', 'back']
                                             while True:
                                                 for i in range(0, len(category)):
                                                     typewriter(str(i + 1) +
                                                           '. ' + category[i])
-                                                setvstup = int(input("> "))
+                                                setvstup: int = int(input("> ")) # type: ignore
                                                 if category[setvstup-1] == 'back':
                                                     break
                                                 try:
@@ -2596,10 +2731,10 @@ try: #  type: ignore
                                         break
                             elif setvstup == '3':
                                 while True:
-                                    setvstup = input('1. server\n2. back\n> ')
+                                    setvstup: str = input('1. server\n2. back\n> ')
                                     if setvstup == '1':
                                         while True:
-                                            setvstup = input(
+                                            setvstup: str = input(
                                                 '1. nekos.best\n2. waifu.pics\n3. back\n> ')
                                             if setvstup == '1':
                                                 set_config(
@@ -2615,7 +2750,7 @@ try: #  type: ignore
                                         break
                             elif setvstup == '4':
                                 while True:
-                                    setvstup = input('1. goal_score = ' + config.get('game settings', 'goal_score').split(' ')[
+                                    setvstup: str = input('1. goal_score = ' + config.get('game settings', 'goal_score').split(' ')[
                                                         0] + '\n2. computer_power = ' + config.get('game settings', 'computer_power').split(' ')[0] + '\n3. back\n> ')
                             elif setvstup == '5':
                                 break
@@ -2623,42 +2758,120 @@ try: #  type: ignore
                     if vstup == 'restarted':
                         subprocess.check_output('start restart.py --autol', shell=True)
                     if vstup == 'playvideo':
+                        print('Not working')
+                        continue
                         while True:
-                            videovstup = input('1. Dan Dan Don Don\n2. back\n> ')
+                            videovstup: str = input('1) Search your own video\n2) Dan Dan Don Don\n3) back\n> ')
                             if videovstup == '1':
+                                music_name: str = str(input('Name of the video> '))
+                                query_string = urllib.parse.urlencode({"search_query": music_name})
+                                formatUrl = urllib.request.urlopen(
+                                    "https://www.youtube.com/results?" + query_string)
+                                search_results = re.findall(
+                                    r"watch\?v=(\S{11})", formatUrl.read().decode())
+                                clip = requests.get("https://www.youtube.com/watch?v=" +
+                                                    "{}".format(search_results[0]))
+                                clip2 = "https://www.youtube.com/watch?v=" + "{}".format(search_results[0])
+                                inspect = BeautifulSoup(clip.content, "html.parser")
+                                yt_title = inspect.find_all("meta", property="og:title")
+                                for concatMusic1 in yt_title:
+                                    pass
                                 try:
                                     mixer.music.pause()
                                 except Exception:
                                     pass
-                                PlayVideo('assets/Dan_Dan_Don_Don.mp4')
+                                DownloadVideo(concatMusic1['content'])
+                                PlayVideo()
+                                try:
+                                    mixer.music.unpause()
+                                except Exception:
+                                    pass
+                            elif videovstup == '2':
+                                try:
+                                    mixer.music.pause()
+                                except Exception:
+                                    pass
+                                DownloadVideo('https://www.youtube.com/watch?v=RRq4-uktHiI')
+                                PlayVideo()
                                 try:
                                     mixer.music.unpause()
                                 except Exception:
                                     pass
                             elif videovstup == '2':
                                 break
-                        
                     if vstup == 'music':
                         mixer.init()
-                        for i in range(0, len(music)):
-                            typewriter(str(i + 1) + ') ' + music[i])
-                        musicvstup = int(input('> '))
+                        if len(musiclistnew) == 0:
+                            if args.language == 'EN':
+                                typewriter('No audio is downloaded')
+                            if args.language == 'SK':
+                                typewriter('Nie je stiahnutý žiadny zvuk')
+                            if args.language == 'JP':
+                                typewriter('オーディオはダウンロードされません')
+                            continue
+                        for i in range(0, len(musiclistnew)):
+                            typewriter(str(i + 1) + ') ' + musiclistnew[i])
+                        if args.language == 'EN':
+                            typewriter(str(i + 2) + ') Delete audio')
+                        if args.language == 'SK':
+                            typewriter(str(i + 2) + ') Vymaž audio')
+                        if args.language == 'JP':
+                            typewriter(str(i + 2) + ') 音声を削除')
+                        typewriter(str(i + 3) + ') Back')
+                        while True:
+                            try:
+                                musicvstup: int = int(input('> '))
+                                break
+                            except ValueError:
+                                continue
+                        if musicvstup == len(musiclistnew) + 1: # remove audio
+                            if args.language == 'EN':
+                                typewriter('Delete audio')
+                            if args.language == 'SK':
+                                typewriter('Vymaž audio')
+                            if args.language == 'JP':
+                                typewriter('音声を削除')
+                            for i in range(0, len(musiclistnew)):
+                                typewriter(str(i + 1) + ') ' + musiclistnew[i])
+                            while True:
+                                try:
+                                    musicvstup: int = int(input('> '))
+                                    break
+                                except ValueError:
+                                    continue
+                            mixer.music.stop()
+                            mixer.music.unload()
+                            os.remove('assets/' + musiclistnew[musicvstup-1] + '.mp3')
+                            musiclistnew.remove(musiclistnew[musicvstup-1])
+                            while len(musiclistnew) < int(config.get('basic info', 'musicnumber')):
+                                set_config('basic info', 'musicnumber', str(int(args.music)-1))
+                            if len(musiclistnew) == 0:
+                                if args.language == 'EN':
+                                    typewriter('No audio is downloaded')
+                                if args.language == 'SK':
+                                    typewriter('Nie je stiahnutý žiadny zvuk')
+                                if args.language == 'JP':
+                                    typewriter('オーディオはダウンロードされません')
+                                continue
+                            pg.write('music\n')
+                        if musicvstup == len(musiclistnew) + 2: # back
+                            continue
                         args.music = str(musicvstup)
                         try:
                             if musicvstup == len(music)+1:
                                 continue
                             mixer.music.load(
-                                'assets/' + music[musicvstup-1] + '.mp3')
+                                'assets/' + musiclistnew[musicvstup-1] + '.mp3')
                         except IndexError:
                             pg.write('music\n')
                         mixer.music.play()
-                        musicplay = True
+                        musicplay: bool = True
                     if vstup == 'quitmusic':
                         mixer.music.stop()
-                        musicplay = False
+                        musicplay: bool = False
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
-                            imagetime = str(
+                            imagetime: str = str(
                                 datetime.now().strftime("%H-%M-%S"))
                             try:
                                 os.mkdir('download/')
@@ -2686,8 +2899,11 @@ try: #  type: ignore
                             elif args.language == 'JP':
                                 typewriter('保存する画像がありません')
                     if vstup == 'offlinegame':
-                        offline_game = True
+                        offline_game: bool = True
                         create_gamefiles()
+                    if vstup == 'restart':
+                        restart: bool = True
+                        continue
                     if vstup == 'game':
                         if waifu or waifuvid or neko:
                             if args.language == 'SK':
@@ -2712,12 +2928,11 @@ try: #  type: ignore
                             typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
                         verzia.close()
                     if vstup == 'motivational':
-                        resp = requests.get(
-                            "https://animechan.vercel.app/api/random")
-                        data = resp.json()
-                        anime = data["anime"]
-                        character = data["character"]
-                        quote = data["quote"]
+                        resp = requests.get("https://animechan.vercel.app/api/random")
+                        data: dict[str, str] = resp.json()
+                        anime: str = data["anime"]
+                        character: str = data["character"]
+                        quote: str = data["quote"]
                         sleep(1)
                         typewriter("Anime: " + anime + '\nCharacter: ' +
                               character + "\nQuote: " + quote)
@@ -2757,7 +2972,7 @@ try: #  type: ignore
                                 elif args.language == 'JP':
                                     typewriter('nekos.best サーバーから画像を取得する')
                                 resp = requests.get("https://nekos.best/api/v2/neko")
-                                data = resp.json()
+                                data: dict[str, str] = resp.json()
                                 res = requests.get(
                                     data["results"][0]["url"], stream=True)  # type: ignore
                             elif config.get('neko settings', 'server').split(' ')[0] == 'waifu.pics':
@@ -2770,7 +2985,7 @@ try: #  type: ignore
                                     typewriter('waifu.pics サーバーから画像を取得する')
                                 resp = requests.get(
                                     "https://api.waifu.pics/sfw/neko")
-                                data = resp.json()
+                                data: dict[str, str] = resp.json()
                                 res = requests.get(data["url"], stream=True)
                             else:
                                 if args.language == 'SK':
@@ -2801,8 +3016,9 @@ try: #  type: ignore
                         pg.keyUp('win')
                         pg.press('esc')
                         typewriter('Getting cli in foreground     ', end='\r')
-                        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                        window.activate()
+                        if args.test != None:
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window.activate()
                         mixer.Channel(0).play(mixer.Sound('assets/neko.mp3'))
                         typewriter('Playing sound                 ', end='\r')
                         sleep(0.5)
@@ -2878,7 +3094,7 @@ try: #  type: ignore
                                 typewriter('waifu.pics サーバーから画像を取得する')
                             resp = requests.get("https://api.waifu.pics/" + config.get('waifu settings', 'type').split(
                                 ' ')[0] + "/" + config.get('waifu settings', 'category').split(' ')[0])
-                            data = resp.json()
+                            data: dict[str, str] = resp.json()
                             img_data = requests.get(data["url"]).content
                             typewriter('Downloading image')
                             if data["url"].split('.')[-1] == 'gif':
@@ -2898,15 +3114,15 @@ try: #  type: ignore
                                 player.vlm_set_loop(
                                     "waifu", True)  # type: ignore
                                 media_player.play()
-                                waifuvid = True
+                                waifuvid: bool = True
                                 sleep(1)
                             elif data["url"].split('.')[-1] != 'gif':
                                 res = requests.get(data["url"], stream=True)
                                 if res.status_code == 200:
                                     download(data['url'], 'assets/waifu.png')
                         elif args.waifuvid == None:
-                            data = {'url': 'https://api.waifu.pics/waifu.mp4'}
-                            waifuvid = True
+                            data: dict[str, str] = {'url': 'https://api.waifu.pics/waifu.mp4'}
+                            waifuvid: bool = True
                             player = vlc.Instance('--input-repeat=999999')
                             media_list = player.media_list_new()  # type: ignore
                             media_player = player.media_list_player_new()  # type: ignore
@@ -2920,7 +3136,7 @@ try: #  type: ignore
                             sleep(1)
                         elif args.waifu == None:
                             args.waifu = UNSPECIFIED
-                            data = {'url': 'https://api.waifu.pics/waifu.png'}
+                            data: dict[str, str] = {'url': 'https://api.waifu.pics/waifu.png'}
                         typewriter('Setting image    ', end='\r')
                         if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':
                             img = Image.open('assets/waifu.png')
@@ -2943,8 +3159,9 @@ try: #  type: ignore
                         typewriter('........', end='\r')
                         pg.press('esc')
                         typewriter('Getting cli in foreground', end='\r')
-                        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                        window.activate()
+                        if args.test != None:
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window.activate()
                         sleep(0.5)
                         typewriter('..........                  ', end='\r')
                         sleep(0.25)
@@ -2955,13 +3172,9 @@ try: #  type: ignore
                             typewriter('DONE           ')
                         elif args.language == 'JP':
                             typewriter('終わり          ')
-                        # if config.get('waifu settings', 'type') == 'sfw' and config.get('waifu settings', 'category') in ['kiss', 'lick']:
-                        #     mixer.init()
-                        #     mixer.music.load('assets/' + str(random.randint(1,4)) +'.mp3')
-                        #     mixer.music.play()
                         move("ZnámE", 0, int((round((322/1736)*screensize[0], 0))-35), int(screensize[0]/2), int(
                             (round((0.95-(0.31203703703703706))*screensize[1], 0))))  # 337/1080
-                        waifu = True
+                        waifu: bool = True
                     if vstup == 'quitwaifu':
                         if not waifu:
                             if args.language == 'SK':
@@ -2974,7 +3187,7 @@ try: #  type: ignore
                         elif waifuvid:
                             typewriter('Stoping video', end='\r')
                             media_player.stop()  # type: ignore
-                            waifuvid = False
+                            waifuvid: bool = False
                             typewriter('Removing video   ', end='\r')
                             os.remove('assets/waifu.mp4')
                         else:
@@ -2997,7 +3210,7 @@ try: #  type: ignore
                             os.remove('assets/waifu.png')
                         except Exception:
                             pass
-                        waifu = False
+                        waifu: bool = False
                         typewriter('Done               ')
                     if vstup == 'delsavlog':
                         uninstall()
@@ -3017,8 +3230,8 @@ try: #  type: ignore
                             print('ZnámE を使用しています ' + verzia.read() + "\n")
                         verzia.close()
                     if inactivelogout:
-                        restart = True
-                        exit = True
+                        restart: bool = True
+                        exit: bool = True
                     """
                     If the user is logged in and the user types "logout" in the command line, log the user out.
                     @param logged - whether the user is logged in or not.
@@ -3031,7 +3244,7 @@ try: #  type: ignore
                     @param linenumber - the line number of the history file.
                     """
                     if logged and vstup == "logout" and not restart:
-                        logged = False
+                        logged: bool = False
                         os.remove(loginvstupuser)
                         os.remove(passwordp[1])  # type: ignore
                         if args.language == "SK":
@@ -3044,6 +3257,10 @@ try: #  type: ignore
                             '[' + str(linenumber) + ', ' + '*logout]\n')
                         historyfile.close()
                         historyfile = open(historyname, 'a')
+                        mixer.music.pause()
+                        mixer.Channel(1).play(mixer.Sound('assets\\horror.mp3'), fade_ms=10)
+                        sleep(6)
+                        mixer.music.unpause()
                         continue
                     """
                     If the user has logged in and is inactive for a long time, log them out.
@@ -3052,7 +3269,7 @@ try: #  type: ignore
                     @param restart - whether the user has restarted the program or not.
                     """
                     if logged and inactivelogout and restart:
-                        logged = False
+                        logged: bool = False
                         if args.language == "SK":
                             print("Si odhlásený")
                         elif args.language == "EN":
@@ -3064,7 +3281,7 @@ try: #  type: ignore
                     If the user is not logged in, print an error message and continue.           
                     """
                     if not logged and vstup == "logout" or inactivelogout:
-                        logged = False
+                        logged: bool = False
                         if args.language == "SK":
                             print('Nie si prihlásený!!!')
                         elif args.language == "EN":
@@ -3078,7 +3295,7 @@ try: #  type: ignore
                     @returns True if the user wants to quit the program, False otherwise.
                     """
                     if vstup == 'quit' or vstup == 'koniec' or vstup == 'end':
-                        exit = True
+                        exit: bool = True
                         continue
                     historyfile = open(historyname, 'a')
                     """
@@ -3089,7 +3306,7 @@ try: #  type: ignore
                     if vstup != "" and not restart:
                         for i in range(len(advhelp)):
                             if vstup == advhelp[i]:
-                                advhelpcont = False
+                                advhelpcont: bool = False
                                 advhelpfile = open(
                                     'Help.txt', 'r', encoding='UTF-8')
                                 for i in advhelpfile.readlines():
@@ -3108,7 +3325,7 @@ try: #  type: ignore
                                         print(i, end="")
                                         continue
                                     if i == args.language + '\n':
-                                        advhelpcont = True
+                                        advhelpcont: bool = True
                                         print(i, end="")
                                         continue
                                 advhelpfile.close()
@@ -3145,9 +3362,9 @@ try: #  type: ignore
                                 elif args.language == 'JP':
                                     print('履歴が空です')
                         if vstup == 'login' and not logged or tologin and not logged:
-                            loginvstupuser = ''
-                            tologin = False
-                            savefilemode = False
+                            loginvstupuserL: str = ''
+                            tologin: bool = False
+                            savefilemode: bool = False
                             """
                             If the user wants to login, check if the user wants to restart the program. If the user wants to restart the program,
                             set the restart flag to true. If the user does not want to restart the program, set the restart flag to false.
@@ -3155,7 +3372,7 @@ try: #  type: ignore
                             @param args - the arguments from the command line.
                             @returns the restart flag and the exit flag.
                             """
-                            if logins == 1:
+                            if logins == maxlogins:
                                 if args.language == "SK":
                                     vstup = input(
                                         "Ak sa chcete prihlásiť, musíte reštartovať program (Y/n) >")
@@ -3169,8 +3386,8 @@ try: #  type: ignore
                                 if vstup == "n":
                                     continue
                                 elif vstup == "y" or vstup == "":
-                                    restart = True
-                                    exit = True
+                                    restart: bool = True
+                                    exit: bool = True
                                     args.nointro = None
                                     continue
                             """
@@ -3196,7 +3413,7 @@ try: #  type: ignore
                                     linenumber += 1
                                 loginvstupuser.lower()
                                 if loginvstupuser == "" or loginvstupuser == "y":
-                                    savefilemode = True
+                                    savefilemode: bool = True
                             if savefilemode:
                                 loginvstupuser = savefile[0:6]   # type: ignore
                             elif args.language == "SK":
@@ -3213,7 +3430,7 @@ try: #  type: ignore
                             historyfile.close()
                             historyfile = open(historyname, 'a')
                             linenumber += 1
-                            tologinhelp = False
+                            tologinhelp: bool = False
                             if loginvstupuser == "back":
                                 if args.language == "SK":
                                     print('Idem späť.')
@@ -3235,12 +3452,12 @@ try: #  type: ignore
                                 elif args.language == "JP":
                                     print('戻ってプログラムを終了します。')
                                 sleep(0.5)
-                                exit = True
+                                exit: bool = True
                                 continue
-                            help = ['help', 'pomoc', '-h', '-help', '?', '-?']
+                            help: list[str] = ['help', 'pomoc', '-h', '-help', '?', '-?']
                             for i in range(len(help)):
                                 if loginvstupuser == help[i]:
-                                    tologinhelp = True
+                                    tologinhelp: bool = True
                             if tologinhelp:
                                 if args.language == "SK":
                                     print(
@@ -3250,7 +3467,7 @@ try: #  type: ignore
                                         "'back' for menu\n'quit' or 'end' for end")
                                 elif args.language == "JP":
                                     print("メニューの「戻る」\n 'quit' または 'end' で終了")
-                                tologin = True
+                                tologin: bool = True
                                 continue
                             elif not loginvstupuser.isnumeric():
                                 if args.language == "SK":
@@ -3260,10 +3477,10 @@ try: #  type: ignore
                                         'The PID does not contain letters or characters!!!')
                                 elif args.language == "JP":
                                     print('PID に文字が含まれていません!!!')
-                                tologin = True
+                                tologin: bool = True
                                 continue
                             if len(str(loginvstupuser)) == 6:
-                                exit = False
+                                exit: bool = False
                                 if args.language == "SK":
                                     Thread(target=progress_bar, args=(
                                         'Preverujem', 3,), daemon=True).start()
@@ -3286,7 +3503,7 @@ try: #  type: ignore
                                     pg.press('tab')
                                     pg.keyUp('alt')
                                 if icofind[0]:
-                                    logged = False
+                                    logged: bool = False
                                     os.remove(loginvstupuser + 'crypted')
                                     progress_bar_check = 100
                                     sleep(0.1)
@@ -3296,9 +3513,9 @@ try: #  type: ignore
                                         print("WRONG PID!!!")
                                     elif args.language == "JP":
                                         print('間違った PID !!!')
-                                    tologin = True
+                                    tologin: bool = True
                                     continue
-                                topassword = True
+                                topassword: bool = True
                             else:
                                 if args.language == "SK":
                                     print('PID má byt 6 čísel dlhé!!!')
@@ -3306,7 +3523,7 @@ try: #  type: ignore
                                     print('The PID should be 6 numbers long!!!')
                                 elif args.language == "JP":
                                     print('PID は 6 桁の長さでなければなりません!!!')
-                                tologin = True
+                                tologin: bool = True
                         elif logged and vstup == 'login':
                             if args.language == "SK":
                                 print('Už si prihlasení!!!')
@@ -3355,6 +3572,10 @@ try: #  type: ignore
                             os.remove('assets/waifu.mp4')
                         except Exception:
                             pass
+                        try:
+                            os.remove('assets/video.mp4')
+                        except Exception:
+                            pass
                     try:
                         open('END', 'x')
                     except Exception:
@@ -3389,21 +3610,25 @@ try: #  type: ignore
                     start = time.time()
                     sleep(0.25)
                     version = open('version', 'r')
-                    versionlist = version.readlines()[0].split('.')
+                    versionlist: list[str] = version.readlines()[0].split('.')
                     version.close()
                     version = open('version', 'w')
                     version.write(versionlist[0] + '.' + versionlist[1] + '.' + versionlist[2] + '.' + str(
                                   datetime.today().strftime("%Y%m%d.%H%M%S")))
                     version.close()
-                    historylist = []
+                    historylist: list = []
                     try:
                         historyfile = open(historyname, 'r')
                         for i in historyfile.readlines():
                             historylist.append(i.strip('\n'))
                     except Exception:
                         pass
+                    musiclistnewstring: str = ''
+                    for i in range(len(musiclistnew)):
+                        musiclistnewstring += str(musiclistnew[i]) +','
                     set_config('user history', historyname, str(
                                      datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
+                    set_config('basic info', 'musiclist', str(musiclistnewstring[0:-1]))
                     typewriter(historyname + ' ' + str(
                                      datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist) + '\n')
                     historyfile.close()
@@ -3433,12 +3658,12 @@ try: #  type: ignore
                         shutil.move('data', 'datafolder/')
                     except Exception:
                         quit()
-                    source_dir = 'assets/'
+                    source_dir: str = 'assets/'
                     os.mkdir('datafolder/' + source_dir)
                     for file_name in os.listdir(source_dir):
                         shutil.move(os.path.join(source_dir, file_name),
                                     'datafolder/' + source_dir)
-                    source_dir = 'apphtml/'
+                    source_dir: str = 'apphtml/'
                     os.mkdir('datafolder/' + source_dir)
                     for file_name in os.listdir(source_dir):
                         shutil.move(os.path.join(source_dir, file_name),
@@ -3477,35 +3702,35 @@ try: #  type: ignore
                         sleep(0.5)
                         cv2.destroyAllWindows()
                         typewriter("データの 2 番目の部分のパッキング\n")
-                    zipfiles = ['tests.py', 'xp3.py',
-                                'xp3reader.py', 'xp3writer.py', 'data.xp3']
-                    zipfileswopath = ['tests.py', 'xp3.py',
-                                      'xp3reader.py', 'xp3writer.py', 'data.xp3']
-                    folders = ['structs']
+                    zipfiles: list[str] = ['tests.py', 'xp3.py',
+                                'xp3reader.py', 'xp3writer.py', 'data.xp3','downloadmusic.py']
+                    zipfileswopath: list[str] = ['tests.py', 'xp3.py',
+                                      'xp3reader.py', 'xp3writer.py', 'data.xp3','downloadmusic.py']
+                    folders: list[str] = ['structs']
                     for i in range(0, len(folders)):
                         for path, directories, files in os.walk(folders[i]):
                             for file in files:
-                                file_name = os.path.join(path, file)
+                                file_name: str = os.path.join(path, file)
                                 zipfiles.append(file_name)
                                 zipfileswopath.append(file)
                     with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
-                        zip_kb_old = 0
-                        zipfilesnumber = len(zipfiles)
+                        zip_kb_old: int = 0
+                        zipfilesnumber: int = len(zipfiles)
                         if args.language == "SK":
                             bar = tqdm(range(0, len(zipfiles)),
                                        desc="Zabaľujem ")
                             for i in bar:
                                 zip.write(zipfiles[i])
-                                filesize = sum(
+                                filesize: int = sum(
                                     [zinfo.file_size for zinfo in zip.filelist])
                                 sleep(0.04)
                                 tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(
                                     zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old, 2)) + " KB")
-                                zip_kb_old = filesize
+                                zip_kb_old: int = filesize
                                 os.remove(zipfiles[i])
                                 if i == len(zipfiles)-1:
                                     tqdm.write("\n")
-                            filesize = sum(
+                            filesize: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             typewriter("\nZabalené data majú > " +
                                        str(filesize) + " KB")
@@ -3514,16 +3739,16 @@ try: #  type: ignore
                                        desc="Packing ")
                             for i in bar:
                                 zip.write(zipfiles[i])
-                                filesize = sum(
+                                filesize: int = sum(
                                     [zinfo.file_size for zinfo in zip.filelist])
                                 sleep(0.02)
                                 tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(
                                     zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old, 2)) + " KB")
-                                zip_kb_old = filesize
+                                zip_kb_old: int = filesize
                                 os.remove(zipfiles[i])
                                 if i == len(zipfiles)-1:
                                     tqdm.write("\n")
-                            filesize = sum(
+                            filesize: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             typewriter("\nPacked data have > " +
                                        str(filesize) + " KB")
@@ -3531,16 +3756,16 @@ try: #  type: ignore
                             bar = tqdm(range(0, len(zipfiles)), desc="梱包 ")
                             for i in bar:
                                 zip.write(zipfiles[i])
-                                filesize = sum(
+                                filesize: int = sum(
                                     [zinfo.file_size for zinfo in zip.filelist])
                                 sleep(0.02)
                                 tqdm.write(zipfileswopath[i] + "(" + str(os.path.getsize(
                                     zipfiles[i])) + " KB) -> " + str(round(filesize - zip_kb_old, 2)) + " KB")
-                                zip_kb_old = filesize
+                                zip_kb_old: int = filesize
                                 os.remove(zipfiles[i])
                                 if i == len(zipfiles)-1:
                                     tqdm.write("\n")
-                            filesize = sum(
+                            filesize: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             typewriter("\nパックされたデータは > " +
                                        str(filesize) + " KB")
@@ -3584,7 +3809,7 @@ try: #  type: ignore
                             elif args.language == "JP":
                                 typewriter('プログラムは自動的にシャットダウンします。')
                     sleep(0.5)
-                    count = 0
+                    count: int = 0
                     for root_dir, cur_dir, files in os.walk(r"C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
                         count += len(files)
                     if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
@@ -3653,6 +3878,10 @@ try: #  type: ignore
                                         os.remove('assets/waifu.mp4')
                                     except Exception:
                                         pass
+                                    try:
+                                        os.remove('assets/video.mp4')
+                                    except Exception:
+                                        pass
                                 os.remove('crash_dump-' + datelog + '.txt')
                                 quit()
                             elif vstup in ['', 'y']:
@@ -3690,11 +3919,11 @@ try: #  type: ignore
                         os.remove('END')
                         if args.endf == None:
                             if args.language == "SK":
-                                input(str(linenumber) + " 'ENTER' NA KONIEC")
+                                input("'ENTER' NA KONIEC")
                             elif args.language == "EN":
-                                input(str(linenumber) + " 'ENTER' TO END")
+                                input("'ENTER' TO END")
                             elif args.language == "JP":
-                                input(str(linenumber) + " 「ENTER」で終了")
+                                input("「ENTER」で終了")
                             if os.path.exists('restart.py'):
                                 os.remove('restart.py')
                             os.remove('crash_dump-' + datelog + '.txt')
@@ -3708,18 +3937,20 @@ try: #  type: ignore
             x = open('error_log.txt', 'a')
             printnlog('Writing an error to \'error_log.txt\'!!!')
             exception_type, exception_object, exception_traceback = sys.exc_info()
-            line_number = exception_traceback.tb_lineno
+            line_number: int = exception_traceback.tb_lineno
             error_get(eval(type(e).__name__), line_number, '')
             printnlog('End')
             sleep(1)
             quit()
-    typewriter(printnlog('Function: main\n', toprint=False))
-    typewriter(printnlog('Done defining functions\n', toprint=False))
-
-    if '__main__' == __name__:
+    if __name__ == '__main__':
+        typewriter(printnlog('Function: main\n', toprint=False))
+        typewriter(printnlog('Done defining functions\n', toprint=False))
         main()
     else:
-        os.remove('crash_dump-' + datelog + '.txt')
+        try:
+            os.remove('crash_dump-' + datelog + '.txt')
+        except FileNotFoundError:
+            pass
 except Exception as e:
     import os
     import sys
@@ -3727,7 +3958,7 @@ except Exception as e:
     x = open('error_log.txt', 'a')
     printnlog('Writing an error to \'error_log.txt\'!!!')  # type: ignore
     exception_type, exception_object, exception_traceback = sys.exc_info()
-    line_number = exception_traceback.tb_lineno  # type: ignore
+    line_number: int = exception_traceback.tb_lineno  # type: ignore
     error_get(eval(type(e).__name__), line_number, '')  # type: ignore
     printnlog('End')  # type: ignore
     sleep(1)
