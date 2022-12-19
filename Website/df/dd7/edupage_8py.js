@@ -16,7 +16,7 @@ var edupage_8py =
     [ "decode", "df/dd7/edupage_8py.html#aa92a47e21588e2d0650510eb9f359d9b", null ],
     [ "delcache", "df/dd7/edupage_8py.html#af3edba33bdd8d0c84716b44bce6cfcd6", null ],
     [ "download", "df/dd7/edupage_8py.html#a4528534caaf20f4dcead5a6737a89488", null ],
-    [ "DownloadVideo", "df/dd7/edupage_8py.html#ae9946061c70e98ae3a3c7c52cb56cbd4", null ],
+    [ "DownloadVideo", "df/dd7/edupage_8py.html#a4f71d0522b964579503956c59cf0f81f", null ],
     [ "error_get", "df/dd7/edupage_8py.html#a5e269aea71b090df9a8de1cfe78b8662", null ],
     [ "error_log", "df/dd7/edupage_8py.html#a5f8fea0428e088bff636f0c3d29a05bc", null ],
     [ "find", "df/dd7/edupage_8py.html#ab1dd4f4e3c6e977625585c13c4c23ed8", null ],

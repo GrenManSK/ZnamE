@@ -92,30 +92,12 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>pack</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>pack</Scope>
-    </TokenIdentifier>
-    <Path>de/d29/namespacepack.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>uninstall</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
       <Scope>uninstall</Scope>
     </TokenIdentifier>
     <Path>dd/de8/namespaceuninstall.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>unpack</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>unpack</Scope>
-    </TokenIdentifier>
-    <Path>d7/d92/namespaceunpack.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -174,17 +156,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a9df75e72b824fb82230186fe53716726</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>breaked</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>pack</Scope>
-    </TokenIdentifier>
-    <Path>de/d29/namespacepack.html</Path>
-    <Anchor>ad5fd941050c5d1b1980797394c796aaf</Anchor>
-    <DeclaredIn>pack.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -287,28 +258,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>datafiles</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>unpack</Scope>
-    </TokenIdentifier>
-    <Path>d7/d92/namespaceunpack.html</Path>
-    <Anchor>ad63b22cc92a4b35ecd0570c2f39e99ac</Anchor>
-    <DeclaredIn>unpack.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>datapart</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>pack</Scope>
-    </TokenIdentifier>
-    <Path>de/d29/namespacepack.html</Path>
-    <Anchor>ade46067637c02cc0a181df8189705cee</Anchor>
-    <DeclaredIn>pack.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>decode</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -392,7 +341,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ae9946061c70e98ae3a3c7c52cb56cbd4</Anchor>
+    <Anchor>a4f71d0522b964579503956c59cf0f81f</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -903,17 +852,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>pack</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>pack</Scope>
-    </TokenIdentifier>
-    <Path>de/d29/namespacepack.html</Path>
-    <Anchor>a68f9bb325c92d61480f18fd455040778</Anchor>
-    <DeclaredIn>pack.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>page</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1208,17 +1146,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a17d25ec04c8180522deae8449911dcb6</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>unpack</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>unpack</Scope>
-    </TokenIdentifier>
-    <Path>d7/d92/namespaceunpack.html</Path>
-    <Anchor>a757d4db06b384aa040605facafc08ccf</Anchor>
-    <DeclaredIn>unpack.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
