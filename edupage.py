@@ -4,7 +4,7 @@ try:  # type: ignore
     import sys
     import logging
     import os
-    if os.path.isfile('RESTART'):
+    if os.path.isfile('INSTALL_RESTART'):
         sleep(1)
     if not os.path.isfile('DEBUG'):
         logging.basicConfig(level=logging.INFO, filename='log.log', filemode='w', format="%(asctime)s - %(levelname)s - %(message)s")
@@ -880,7 +880,7 @@ try:  # type: ignore
 
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             printnlog('First time setup')
-            if not os.path.isfile('RESTART'):
+            if not os.path.isfile('INSTALL_RESTART'):
                 with open('choco.ps1', 'w') as file:
                     file.write('$InstallDir=\'C:\ProgramData\chocoportable\'\n$env:ChocolateyInstall="$InstallDir"\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\'https://community.chocolatey.org/install.ps1\'))')
                 typewriter("Checking if chocolatey is installed if not downloading\n")
@@ -907,7 +907,7 @@ try:  # type: ignore
                 subprocess.check_output('start edupage.py --language ' + args.language, shell=True)
                 os.remove(f"crash_dump-{datelog}.txt")
                 open('INSTALL', 'x')
-                open('RESTART', 'x')
+                open('INSTALL_RESTART', 'x')
                 os.remove('choco.ps1')
                 os.remove('choco_output')
                 sleep(1)
@@ -930,7 +930,7 @@ try:  # type: ignore
                 if inst_number != 0:
                     quit()
             sleep(1)
-            os.remove('RESTART')
+            os.remove('INSTALL_RESTART')
             typewriter('Trying ffmpeg ...')
             os.system('ffmpeg')
             sleep(1)
