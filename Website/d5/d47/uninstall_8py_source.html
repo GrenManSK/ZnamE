@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v0.3.0-alpha+build.20221219.191112</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.0.0-alpha+build.20230115.230759</span>
    </div>
   </td>
  </tr>
@@ -104,27 +104,30 @@ $(document).ready(function(){initNavTree('d5/d47/uninstall_8py_source.html','../
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="stringliteral">    </span><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            shutil.rmtree(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() +</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                          <span class="stringliteral">&quot;/AppData/Local/ZnámE/&quot;</span>)</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                os.remove(<span class="stringliteral">&#39;game.py&#39;</span>)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                shutil.rmtree(<span class="stringliteral">&#39;game/&#39;</span>)</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            error_get(eval(type(e).__name__),</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                      get_line_number(), <span class="stringliteral">&#39;Unknown error&#39;</span>)</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">if</span> os.path.isfile(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() + <span class="stringliteral">&quot;/AppData/Local/ZnámE/saved&quot;</span>):</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            os.remove(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() +</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                      <span class="stringliteral">&quot;/AppData/Local/ZnámE/saved&quot;</span>)</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_namespace" href="../../dd/de8/namespaceuninstall.html">uninstall</a>()</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                shutil.rmtree(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() +</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                            <span class="stringliteral">&quot;/AppData/Local/ZnámE/&quot;</span>)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                os.remove(<span class="stringliteral">&#39;game.py&#39;</span>)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                shutil.rmtree(<span class="stringliteral">&#39;game/&#39;</span>)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            error_get(eval(type(e).__name__),</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                        get_line_number(), <span class="stringliteral">&#39;Unknown error&#39;</span>)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">if</span> os.path.isfile(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() + <span class="stringliteral">&quot;/AppData/Local/ZnámE/saved&quot;</span>):</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            os.remove(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() +</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                      <span class="stringliteral">&quot;/AppData/Local/ZnámE/saved&quot;</span>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_namespace" href="../../dd/de8/namespaceuninstall.html">uninstall</a>()</div>
 <div class="ttc" id="anamespaceuninstall_html"><div class="ttname"><a href="../../dd/de8/namespaceuninstall.html">uninstall</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d47/uninstall_8py_source.html#l00001">uninstall.py:1</a></div></div>
 <div class="ttc" id="anamespaceuninstall_html_a9c4fc960681931cdc878bae58b9ce6dd"><div class="ttname"><a href="../../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd">uninstall.uninstall</a></div><div class="ttdeci">def uninstall()</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d47/uninstall_8py_source.html#l00007">uninstall.py:7</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -133,7 +136,7 @@ $(document).ready(function(){initNavTree('d5/d47/uninstall_8py_source.html','../
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d5/d47/uninstall_8py.html">uninstall.py</a></li>
-    <li class="footer">Generated on Mon Dec 19 2022 19:50:03 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Sun Jan 15 2023 23:14:45 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>
