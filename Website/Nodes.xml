@@ -105,6 +105,10 @@
               <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
              </Node>
              <Node>
+              <Name>argMusicError</Name>
+              <Path>db/d25/classedupage_1_1arg_music_error.html</Path>
+             </Node>
+             <Node>
               <Name>argMusicListError</Name>
               <Path>d4/d54/classedupage_1_1arg_music_list_error.html</Path>
              </Node>
@@ -126,19 +130,24 @@
               <Anchor>af8155c1c90674d76615b11b6d0c5c8ba</Anchor>
              </Node>
              <Node>
+              <Name>add_marks</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_check</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_install</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a0fc206f074bcf5906cb25140d58a796c</Anchor>
+             </Node>
+             <Node>
               <Name>code</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a0ac684340ab80b572e1871d02551129b</Anchor>
-             </Node>
-             <Node>
-              <Name>computer</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>adfbe4e9b7812639564d51c4895fffa0e</Anchor>
-             </Node>
-             <Node>
-              <Name>create_gamefiles</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a3ac053e382947b5d0bdca0a1f1127042</Anchor>
              </Node>
              <Node>
               <Name>decode</Name>
@@ -156,14 +165,9 @@
               <Anchor>a4528534caaf20f4dcead5a6737a89488</Anchor>
              </Node>
              <Node>
-              <Name>DownloadVideo</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a4f71d0522b964579503956c59cf0f81f</Anchor>
-             </Node>
-             <Node>
               <Name>error_get</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a5e269aea71b090df9a8de1cfe78b8662</Anchor>
+              <Anchor>a922af095416f68deed5a0aaa23506b1e</Anchor>
              </Node>
              <Node>
               <Name>error_log</Name>
@@ -174,11 +178,6 @@
               <Name>find</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
-             </Node>
-             <Node>
-              <Name>game</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ab332eec013635aeaf5f172580ca26a2e</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -209,6 +208,11 @@
               <Name>inactive</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a341571d7a41b53af5510ed61722c2847</Anchor>
+             </Node>
+             <Node>
+              <Name>installing_carousel</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a22aa34fcf73aaef27ee025ee84602465</Anchor>
              </Node>
              <Node>
               <Name>internet_check</Name>
@@ -246,11 +250,6 @@
               <Anchor>a33f41efcd3eb007421b3e63b542940ba</Anchor>
              </Node>
              <Node>
-              <Name>PlayVideo</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a777644ca2b5705a25029389562ba8680</Anchor>
-             </Node>
-             <Node>
               <Name>print_module</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a87e4619e345ef843fdc09d1a602c3ce3</Anchor>
@@ -271,6 +270,11 @@
               <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
              </Node>
              <Node>
+              <Name>show_marks</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
               <Name>to_info</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>afaf0f856a23cfd0b87e6f278f6407184</Anchor>
@@ -278,12 +282,17 @@
              <Node>
               <Name>typewriter</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a947c77771c13dd534d546c1796c72823</Anchor>
+              <Anchor>a7faa24d24074c579901eff9ea313b508</Anchor>
              </Node>
              <Node>
               <Name>unpack</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a17d25ec04c8180522deae8449911dcb6</Anchor>
+             </Node>
+             <Node>
+              <Name>alinst_number</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>af3d335a1f083bc59f4c926095d94e416</Anchor>
              </Node>
              <Node>
               <Name>allerror</Name>
@@ -304,6 +313,16 @@
               <Name>cachename</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a25109826dff0140f3672672637dadd94</Anchor>
+             </Node>
+             <Node>
+              <Name>choco</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a8ec9de9af0e50160b01bd666e31757f4</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_check</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a6b969c5ba9549a783c8591d8d58a8b89</Anchor>
              </Node>
              <Node>
               <Name>choices</Name>
@@ -331,6 +350,11 @@
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
              </Node>
              <Node>
+              <Name>DEBUG</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a9ac7ec4915d6cf8b6eb9f2e2554de617</Anchor>
+             </Node>
+             <Node>
               <Name>default</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a8db78ee51fe4b22d4d52f8ec2cc9ecb3</Anchor>
@@ -356,29 +380,24 @@
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
-              <Name>exception_object</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a3c17658eaff29e17d2391e8c30d35afa</Anchor>
-             </Node>
-             <Node>
-              <Name>exception_traceback</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a5a373bd2dcd3dc93f4c896cdf07f56ff</Anchor>
-             </Node>
-             <Node>
-              <Name>exception_type</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a564479a45c82366746fe44bf497fa1b7</Anchor>
-             </Node>
-             <Node>
               <Name>file</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
              </Node>
              <Node>
+              <Name>filemode</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>abd7ae69959c07baaf321f0dde1d1a6d6</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a5426b37a2ceaa0ac4895a823d8321438</Anchor>
+              <Anchor>ad9ed50a6ace0092423f595e4a1292df1</Anchor>
+             </Node>
+             <Node>
+              <Name>format</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
              </Node>
              <Node>
               <Name>gpu_free_memory</Name>
@@ -436,6 +455,21 @@
               <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
+              <Name>INFO</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aa457cf40fe705e05d0a69e9e14b37b2b</Anchor>
+             </Node>
+             <Node>
+              <Name>inst_number</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
+             </Node>
+             <Node>
+              <Name>installing_carousel</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a8b546090b1849c26bc61a0f32ec63093</Anchor>
+             </Node>
+             <Node>
               <Name>int</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a9b26b5cf5cc2b42a9582c333fd30c5f2</Anchor>
@@ -449,6 +483,16 @@
               <Name>language</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a8db05b61d06312002141c30965b17bf0</Anchor>
+             </Node>
+             <Node>
+              <Name>level</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>af6159be7d7eb7e3aa9f1f5f7965f7597</Anchor>
+             </Node>
+             <Node>
+              <Name>line_number</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a49353c8fab469cc86b62ca78201e8fdc</Anchor>
              </Node>
              <Node>
               <Name>list</Name>
@@ -469,11 +513,6 @@
               <Name>music</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
-             </Node>
-             <Node>
-              <Name>musicchoices</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a03a1bcbcb3513f1fa8173b8631e2e5c0</Anchor>
              </Node>
              <Node>
               <Name>my_cpuinfo</Name>
@@ -504,6 +543,11 @@
               <Name>os_name</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a97b4260a2875120e5e3bd13194d1fe9c</Anchor>
+             </Node>
+             <Node>
+              <Name>osCommandString</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a44c78461dbe305144eea5c43ef0a647b</Anchor>
              </Node>
              <Node>
               <Name>page</Name>
@@ -546,16 +590,6 @@
               <Anchor>a014be7f15a6ad4a6e649fef6f82a5de8</Anchor>
              </Node>
              <Node>
-              <Name>score</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a5a0b5125e3fab02c14f00e19543c624a</Anchor>
-             </Node>
-             <Node>
-              <Name>scorec</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a2f95261131827a7e406faf2544eb783e</Anchor>
-             </Node>
-             <Node>
               <Name>shell</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
@@ -581,9 +615,19 @@
               <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
              </Node>
              <Node>
+              <Name>target</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>af67a89d4998ce9e5f27f8161e842951a</Anchor>
+             </Node>
+             <Node>
               <Name>total</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>acc265ae5355756db29acc12bc617cd79</Anchor>
+             </Node>
+             <Node>
+              <Name>ttime</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a92830aadf5e130a1b1a6c00ab8101545</Anchor>
              </Node>
              <Node>
               <Name>UNSPECIFIED</Name>
@@ -618,6 +662,27 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>pack</Name>
+            <Path>de/d29/namespacepack.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>pack</Name>
+              <Path>de/d29/namespacepack.html</Path>
+              <Anchor>a68f9bb325c92d61480f18fd455040778</Anchor>
+             </Node>
+             <Node>
+              <Name>breaked</Name>
+              <Path>de/d29/namespacepack.html</Path>
+              <Anchor>ad5fd941050c5d1b1980797394c796aaf</Anchor>
+             </Node>
+             <Node>
+              <Name>datapart</Name>
+              <Path>de/d29/namespacepack.html</Path>
+              <Anchor>ade46067637c02cc0a181df8189705cee</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>uninstall</Name>
             <Path>dd/de8/namespaceuninstall.html</Path>
           <Subnodes>
@@ -625,6 +690,22 @@
               <Name>uninstall</Name>
               <Path>dd/de8/namespaceuninstall.html</Path>
               <Anchor>a9c4fc960681931cdc878bae58b9ce6dd</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>unpack</Name>
+            <Path>d7/d92/namespaceunpack.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>unpack</Name>
+              <Path>d7/d92/namespaceunpack.html</Path>
+              <Anchor>a757d4db06b384aa040605facafc08ccf</Anchor>
+             </Node>
+             <Node>
+              <Name>datafiles</Name>
+              <Path>d7/d92/namespaceunpack.html</Path>
+              <Anchor>ad63b22cc92a4b35ecd0570c2f39e99ac</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -683,6 +764,10 @@
               <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
              </Node>
              <Node>
+              <Name>argMusicError</Name>
+              <Path>db/d25/classedupage_1_1arg_music_error.html</Path>
+             </Node>
+             <Node>
               <Name>argMusicListError</Name>
               <Path>d4/d54/classedupage_1_1arg_music_list_error.html</Path>
              </Node>
@@ -733,6 +818,10 @@
              <Node>
               <Name>edupage.argLanguageError</Name>
               <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
+             </Node>
+             <Node>
+              <Name>edupage.argMusicError</Name>
+              <Path>db/d25/classedupage_1_1arg_music_error.html</Path>
              </Node>
              <Node>
               <Name>edupage.argMusicListError</Name>
@@ -789,6 +878,10 @@
               <Path>d4/d54/classedupage_1_1arg_music_list_error.html</Path>
              </Node>
              <Node>
+              <Name>edupage.argMusicError</Name>
+              <Path>db/d25/classedupage_1_1arg_music_error.html</Path>
+             </Node>
+             <Node>
               <Name>edupage.argEnviromentError</Name>
               <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
              </Node>
@@ -810,19 +903,24 @@
               <Anchor>af8155c1c90674d76615b11b6d0c5c8ba</Anchor>
              </Node>
              <Node>
+              <Name>add_marks</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_check</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_install</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a0fc206f074bcf5906cb25140d58a796c</Anchor>
+             </Node>
+             <Node>
               <Name>code</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a0ac684340ab80b572e1871d02551129b</Anchor>
-             </Node>
-             <Node>
-              <Name>computer</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>adfbe4e9b7812639564d51c4895fffa0e</Anchor>
-             </Node>
-             <Node>
-              <Name>create_gamefiles</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a3ac053e382947b5d0bdca0a1f1127042</Anchor>
              </Node>
              <Node>
               <Name>decode</Name>
@@ -840,14 +938,9 @@
               <Anchor>a4528534caaf20f4dcead5a6737a89488</Anchor>
              </Node>
              <Node>
-              <Name>DownloadVideo</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a4f71d0522b964579503956c59cf0f81f</Anchor>
-             </Node>
-             <Node>
               <Name>error_get</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a5e269aea71b090df9a8de1cfe78b8662</Anchor>
+              <Anchor>a922af095416f68deed5a0aaa23506b1e</Anchor>
              </Node>
              <Node>
               <Name>error_log</Name>
@@ -858,11 +951,6 @@
               <Name>find</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
-             </Node>
-             <Node>
-              <Name>game</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ab332eec013635aeaf5f172580ca26a2e</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -893,6 +981,11 @@
               <Name>inactive</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a341571d7a41b53af5510ed61722c2847</Anchor>
+             </Node>
+             <Node>
+              <Name>installing_carousel</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a22aa34fcf73aaef27ee025ee84602465</Anchor>
              </Node>
              <Node>
               <Name>internet_check</Name>
@@ -930,11 +1023,6 @@
               <Anchor>a33f41efcd3eb007421b3e63b542940ba</Anchor>
              </Node>
              <Node>
-              <Name>PlayVideo</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a777644ca2b5705a25029389562ba8680</Anchor>
-             </Node>
-             <Node>
               <Name>print_module</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a87e4619e345ef843fdc09d1a602c3ce3</Anchor>
@@ -955,6 +1043,11 @@
               <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
              </Node>
              <Node>
+              <Name>show_marks</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
               <Name>to_info</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>afaf0f856a23cfd0b87e6f278f6407184</Anchor>
@@ -962,12 +1055,17 @@
              <Node>
               <Name>typewriter</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a947c77771c13dd534d546c1796c72823</Anchor>
+              <Anchor>a7faa24d24074c579901eff9ea313b508</Anchor>
              </Node>
              <Node>
               <Name>unpack</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a17d25ec04c8180522deae8449911dcb6</Anchor>
+             </Node>
+             <Node>
+              <Name>alinst_number</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>af3d335a1f083bc59f4c926095d94e416</Anchor>
              </Node>
              <Node>
               <Name>allerror</Name>
@@ -988,6 +1086,16 @@
               <Name>cachename</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a25109826dff0140f3672672637dadd94</Anchor>
+             </Node>
+             <Node>
+              <Name>choco</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a8ec9de9af0e50160b01bd666e31757f4</Anchor>
+             </Node>
+             <Node>
+              <Name>choco_check</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a6b969c5ba9549a783c8591d8d58a8b89</Anchor>
              </Node>
              <Node>
               <Name>choices</Name>
@@ -1015,6 +1123,11 @@
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
              </Node>
              <Node>
+              <Name>DEBUG</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a9ac7ec4915d6cf8b6eb9f2e2554de617</Anchor>
+             </Node>
+             <Node>
               <Name>default</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a8db78ee51fe4b22d4d52f8ec2cc9ecb3</Anchor>
@@ -1040,29 +1153,24 @@
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
-              <Name>exception_object</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a3c17658eaff29e17d2391e8c30d35afa</Anchor>
-             </Node>
-             <Node>
-              <Name>exception_traceback</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a5a373bd2dcd3dc93f4c896cdf07f56ff</Anchor>
-             </Node>
-             <Node>
-              <Name>exception_type</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a564479a45c82366746fe44bf497fa1b7</Anchor>
-             </Node>
-             <Node>
               <Name>file</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
              </Node>
              <Node>
+              <Name>filemode</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>abd7ae69959c07baaf321f0dde1d1a6d6</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a5426b37a2ceaa0ac4895a823d8321438</Anchor>
+              <Anchor>ad9ed50a6ace0092423f595e4a1292df1</Anchor>
+             </Node>
+             <Node>
+              <Name>format</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
              </Node>
              <Node>
               <Name>gpu_free_memory</Name>
@@ -1120,6 +1228,21 @@
               <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
+              <Name>INFO</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aa457cf40fe705e05d0a69e9e14b37b2b</Anchor>
+             </Node>
+             <Node>
+              <Name>inst_number</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
+             </Node>
+             <Node>
+              <Name>installing_carousel</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a8b546090b1849c26bc61a0f32ec63093</Anchor>
+             </Node>
+             <Node>
               <Name>int</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a9b26b5cf5cc2b42a9582c333fd30c5f2</Anchor>
@@ -1133,6 +1256,16 @@
               <Name>language</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a8db05b61d06312002141c30965b17bf0</Anchor>
+             </Node>
+             <Node>
+              <Name>level</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>af6159be7d7eb7e3aa9f1f5f7965f7597</Anchor>
+             </Node>
+             <Node>
+              <Name>line_number</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a49353c8fab469cc86b62ca78201e8fdc</Anchor>
              </Node>
              <Node>
               <Name>list</Name>
@@ -1153,11 +1286,6 @@
               <Name>music</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
-             </Node>
-             <Node>
-              <Name>musicchoices</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a03a1bcbcb3513f1fa8173b8631e2e5c0</Anchor>
              </Node>
              <Node>
               <Name>my_cpuinfo</Name>
@@ -1188,6 +1316,11 @@
               <Name>os_name</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a97b4260a2875120e5e3bd13194d1fe9c</Anchor>
+             </Node>
+             <Node>
+              <Name>osCommandString</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a44c78461dbe305144eea5c43ef0a647b</Anchor>
              </Node>
              <Node>
               <Name>page</Name>
@@ -1230,16 +1363,6 @@
               <Anchor>a014be7f15a6ad4a6e649fef6f82a5de8</Anchor>
              </Node>
              <Node>
-              <Name>score</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a5a0b5125e3fab02c14f00e19543c624a</Anchor>
-             </Node>
-             <Node>
-              <Name>scorec</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a2f95261131827a7e406faf2544eb783e</Anchor>
-             </Node>
-             <Node>
               <Name>shell</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
@@ -1265,9 +1388,19 @@
               <Anchor>ae5d8ff7331fe2c038038008a8000dcf0</Anchor>
              </Node>
              <Node>
+              <Name>target</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>af67a89d4998ce9e5f27f8161e842951a</Anchor>
+             </Node>
+             <Node>
               <Name>total</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>acc265ae5355756db29acc12bc617cd79</Anchor>
+             </Node>
+             <Node>
+              <Name>ttime</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a92830aadf5e130a1b1a6c00ab8101545</Anchor>
              </Node>
              <Node>
               <Name>UNSPECIFIED</Name>
@@ -1302,6 +1435,27 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>pack.py</Name>
+            <Path>df/df6/pack_8py.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>pack</Name>
+              <Path>df/df6/pack_8py.html</Path>
+              <Anchor>a68f9bb325c92d61480f18fd455040778</Anchor>
+             </Node>
+             <Node>
+              <Name>breaked</Name>
+              <Path>df/df6/pack_8py.html</Path>
+              <Anchor>ad5fd941050c5d1b1980797394c796aaf</Anchor>
+             </Node>
+             <Node>
+              <Name>datapart</Name>
+              <Path>df/df6/pack_8py.html</Path>
+              <Anchor>ade46067637c02cc0a181df8189705cee</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>uninstall.py</Name>
             <Path>d5/d47/uninstall_8py.html</Path>
           <Subnodes>
@@ -1309,6 +1463,22 @@
               <Name>uninstall</Name>
               <Path>d5/d47/uninstall_8py.html</Path>
               <Anchor>a9c4fc960681931cdc878bae58b9ce6dd</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>unpack.py</Name>
+            <Path>d3/d29/unpack_8py.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>unpack</Name>
+              <Path>d3/d29/unpack_8py.html</Path>
+              <Anchor>a757d4db06b384aa040605facafc08ccf</Anchor>
+             </Node>
+             <Node>
+              <Name>datafiles</Name>
+              <Path>d3/d29/unpack_8py.html</Path>
+              <Anchor>ad63b22cc92a4b35ecd0570c2f39e99ac</Anchor>
              </Node>
             </Subnodes>
            </Node>

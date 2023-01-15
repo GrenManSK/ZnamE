@@ -1,12 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,219,85,244"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,244,85,269"/>
 <area shape="rect" id="node2" href="$db/d4d/classedupage_1_1arg_enviroment_error.html" title=" " alt="" coords="133,5,319,31"/>
 <area shape="rect" id="node3" href="$dc/d03/classedupage_1_1arg_game_error.html" title=" " alt="" coords="148,55,304,80"/>
 <area shape="rect" id="node4" href="$d6/d7c/classedupage_1_1arg_inactive_limit_error.html" title=" " alt="" coords="144,105,308,145"/>
 <area shape="rect" id="node5" href="$da/d01/classedupage_1_1arg_intro_error.html" title=" " alt="" coords="153,169,299,195"/>
 <area shape="rect" id="node6" href="$df/dc6/classedupage_1_1arg_language_error.html" title=" " alt="" coords="137,219,315,244"/>
-<area shape="rect" id="node7" href="$d4/d54/classedupage_1_1arg_music_list_error.html" title=" " alt="" coords="137,268,315,293"/>
-<area shape="rect" id="node8" href="$d4/db7/classedupage_1_1arg_neko_error.html" title=" " alt="" coords="151,317,301,343"/>
-<area shape="rect" id="node9" href="$d2/d19/classedupage_1_1arg_waifu_error.html" title=" " alt="" coords="149,367,303,392"/>
-<area shape="rect" id="node10" href="$d7/d7c/classedupage_1_1config_no_option.html" title=" " alt="" coords="145,416,307,441"/>
+<area shape="rect" id="node7" href="$db/d25/classedupage_1_1arg_music_error.html" title=" " alt="" coords="148,268,304,293"/>
+<area shape="rect" id="node8" href="$d4/d54/classedupage_1_1arg_music_list_error.html" title=" " alt="" coords="137,317,315,343"/>
+<area shape="rect" id="node9" href="$d4/db7/classedupage_1_1arg_neko_error.html" title=" " alt="" coords="151,367,301,392"/>
+<area shape="rect" id="node10" href="$d2/d19/classedupage_1_1arg_waifu_error.html" title=" " alt="" coords="149,416,303,441"/>
+<area shape="rect" id="node11" href="$d7/d7c/classedupage_1_1config_no_option.html" title=" " alt="" coords="145,465,307,491"/>
 </map>
