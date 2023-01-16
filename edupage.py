@@ -326,6 +326,7 @@ try:  # type: ignore
         parser.add_argument('-debug', '--debug', choices=[],
                             help='Debugging enabled', default=UNSPECIFIED, nargs='?')
         args = parser.parse_args()
+        args.test = None
         if args.debug:
             logging.debug("")
             logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -526,150 +527,7 @@ try:  # type: ignore
                 sleep(2)
                 quit()
 
-    if __name__ == '__main__':
-        internet_check()
-        printnlog('DONE\n')
-        printnlog('\nImporting libraries\n')
-    import pyautogui as pg
-    if __name__ == '__main__':
-        print_module('pyautogui')
-        if args.restart is None:
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
-        pg.keyDown('win')
-        pg.press('up')
-        pg.keyUp('win')
-    from threading import Thread
-    if __name__ == '__main__':
-        print_module('Thread from threading')
-    from tqdm import tqdm
-    if __name__ == '__main__':
-        print_module()
-    from pathlib import Path
-    if __name__ == '__main__':
-        print_module('Path from pathlib')
-    import pathlib
-    if __name__ == '__main__':
-        print_module()
-    from uninstall import uninstall
-    if __name__ == '__main__':
-        print_module()
-    import shutil
-    if __name__ == '__main__':
-        print_module()
-    import zipfile
-    if __name__ == '__main__':
-        print_module()
-    import GPUtil
-    if __name__ == '__main__':
-        print_module()
-    import semantic_version
-    if __name__ == '__main__':
-        print_module()
-    import win32gui
-    if __name__ == '__main__':
-        print_module()
-    import ctypes
-    if __name__ == '__main__':
-        print_module()
-    import cpuinfo
-    if __name__ == '__main__':
-        print_module()
-    import cv2
-    if __name__ == '__main__':
-        print_module()
-    import glob
-    if __name__ == '__main__':
-        print_module()
-    import webbrowser
-    if __name__ == '__main__':
-        print_module()
-    import win32api
-    if __name__ == '__main__':
-        print_module()
-    import cpufreq
-    if __name__ == '__main__':
-        print_module()
-    import time
-    if __name__ == '__main__':
-        print_module()
-    import psutil
-    if __name__ == '__main__':
-        print_module()
-    import vlc
-    if __name__ == '__main__':
-        print_module()
-    import pygetwindow
-    if __name__ == '__main__':
-        print_module()
-    import wmi
-    if __name__ == '__main__':
-        print_module()
-    from showinfm import show_in_file_manager
-    if __name__ == '__main__':
-        print_module('show_in_file_manager from showinfm')
-    import platform
-    if __name__ == '__main__':
-        print_module()
-    import socket
-    if __name__ == '__main__':
-        print_module()
-    import re
-    if __name__ == '__main__':
-        print_module()
-    import uuid
-    if __name__ == '__main__':
-        print_module()
-    from tabulate import tabulate
-    if __name__ == '__main__':
-        print_module()
-    from PIL import Image
-    if __name__ == '__main__':
-        print_module('Image from PIL')
-    import moviepy.editor as mp
-    if __name__ == '__main__':
-        print_module('moviepy.editor')
-    from pygame import mixer
-
-    logging.debug("Imported main group of modules")
-
-    def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
-        """
-        "Download a file from a URL to a local file."
-
-        The first line is the function's signature. It's a single line of code that tells you everything
-        you need to know about the function
-
-        :param url: The URL of the file to download
-        :type url: str
-        :param fname: The name of the file to be downloaded
-        :type fname: str
-        :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
-        """
-        import requests
-        try:
-            logging.debug(url)
-            resp = requests.get(url, stream=True)
-            total: int = int(resp.headers.get('content-length', 0))
-            with open(fname, 'wb') as file, tqdm(
-                desc=fname,
-                total=total,
-                unit='iB',
-                unit_scale=True,
-                unit_divisor=1024,
-            ) as bar:
-                for data in resp.iter_content(chunk_size=chunk_size):
-                    size = file.write(data)
-                    bar.update(size)
-        except ConnectionError:
-            logging.warning("Connection error")
-            return False
-        return True
-
+    
     def installing_carousel(package: str, comment: str = 'Installing', bar=False):
         """
         The installing_carousel function is a function that will print out the string 'Installing' and then
@@ -825,85 +683,79 @@ try:  # type: ignore
                 open('INSTALL_DONE', 'x')
             sleep(2)
         return (inst_number, alinst_number)
+    
+    def choco_check(module: str) -> None:
+        """
+        The choco_check function checks if chocolatey is installed and prompts the user to continue.
+        It also checks if the user is an admin, and confirms that they want to run as non-admin.
+        
+        :param module: str: Determine which module is being checked for
+        :return: True when chocolatey is installed, and false when it is not
+        """
+        admin: bool = True
+        adminline = -1
+        cont = False
+        contline = -1
+        ffmpeg_conf = False
+        ffmpegline = -1
+        ffmpeg_confline = -1
+        sleep(2)
+        while os.path.isfile('choco_output'):
+            sleep(0.1)
+            for line, content in enumerate(open('choco_output', 'r').readlines()):
+                if 'WARNING: \'choco\' was found at' in content and module == 'chocolatey':
+                    return True
+                if 'Ensuring chocolatey.nupkg is in the lib folder' in content and module == 'chocolatey':
+                    return False
+                if 'Chocolatey detected you are not running' in content and admin:
+                    if adminline == line:
+                        pass
+                    else:
+                        admin = False
+                        adminline = line
+                if 'Do you want to continue' in content and not admin:
+                    if contline == line:
+                        pass
+                    else:
+                        cont = True
+                        contline = line
+                if 'ffmpeg package files install completed. Performing other installation steps.' in content and module == 'ffmpeg':
+                    if ffmpegline == line:
+                        pass
+                    else:
+                        ffmpeg_conf = True
+                        ffmpegline = line
+                if 'Do you want to run the script' in content and module == 'ffmpeg':
+                    if ffmpeg_confline == line:
+                        pass
+                    else:
+                        cont = True
+                        ffmpeg_confline = line
+            if not admin or ffmpeg_conf or cont:
+                open('INSTALL_PAUSE', 'x')
+                sleep(0.25)
+            if not admin:
+                pg.press('y')
+                admin = True
+            if ffmpeg_conf:
+                pg.press('a')
+                ffmpeg_conf = False
+            if cont or ffmpeg_conf:
+                pg.press('enter')
+                cont = False
+                ffmpeg_conf = False
+            if os.path.isfile('choco_end'):
+                os.remove('choco_end')
+                break
 
+    from threading import Thread
     if __name__ == '__main__':
-        print_module('mixer from pygame')
-        printnlog('\nDONE\n')
-        verzia = open('version', 'r')
-        os.system('color ' + config.get('basic info',
-                  'enviroment').split(' ')[0])
-        os.system('Title ' + 'ZnámE')
-        user32 = ctypes.windll.user32
-        screensize: tuple[int, int] = user32.GetSystemMetrics(
-            0), user32.GetSystemMetrics(1)
-        screensizepercentage: tuple[float, float] = float(
-            (1/1920)*screensize[0]), float((1/1080)*screensize[1])
-
-        def choco_check(module: str) -> None:
-            """
-            The choco_check function checks if chocolatey is installed and prompts the user to continue.
-            It also checks if the user is an admin, and confirms that they want to run as non-admin.
-            
-            :param module: str: Determine which module is being checked for
-            :return: True when chocolatey is installed, and false when it is not
-            """
-            admin: bool = True
-            adminline = -1
-            cont = False
-            contline = -1
-            ffmpeg_conf = False
-            ffmpegline = -1
-            ffmpeg_confline = -1
-            sleep(2)
-            while os.path.isfile('choco_output'):
-                sleep(0.1)
-                for line, content in enumerate(open('choco_output', 'r').readlines()):
-                    if 'WARNING: \'choco\' was found at' in content and module == 'chocolatey':
-                        return True
-                    if 'Ensuring chocolatey.nupkg is in the lib folder' in content and module == 'chocolatey':
-                        return False
-                    if 'Chocolatey detected you are not running' in content and admin:
-                        if adminline == line:
-                            pass
-                        else:
-                            admin = False
-                            adminline = line
-                    if 'Do you want to continue' in content and not admin:
-                        if contline == line:
-                            pass
-                        else:
-                            cont = True
-                            contline = line
-                    if 'ffmpeg package files install completed. Performing other installation steps.' in content and module == 'ffmpeg':
-                        if ffmpegline == line:
-                            pass
-                        else:
-                            ffmpeg_conf = True
-                            ffmpegline = line
-                    if 'Do you want to run the script' in content and module == 'ffmpeg':
-                        if ffmpeg_confline == line:
-                            pass
-                        else:
-                            cont = True
-                            ffmpeg_confline = line
-                if not admin or ffmpeg_conf or cont:
-                    open('INSTALL_PAUSE', 'x')
-                    sleep(0.25)
-                if not admin:
-                    pg.press('y')
-                    admin = True
-                if ffmpeg_conf:
-                    pg.press('a')
-                    ffmpeg_conf = False
-                if cont or ffmpeg_conf:
-                    pg.press('enter')
-                    cont = False
-                    ffmpeg_conf = False
-                if os.path.isfile('choco_end'):
-                    os.remove('choco_end')
-                    break
-
-
+        print_module('Thread from threading')
+    import pyautogui as pg
+    if __name__ == '__main__':
+        print_module('pyautogui')
+    
+    if __name__ == '__main__':
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             printnlog('First time setup')
             if not os.path.isfile('INSTALL_RESTART'):
@@ -959,6 +811,160 @@ try:  # type: ignore
             os.remove('INSTALL_RESTART')
             typewriter('Trying ffmpeg ...')
             os.system('ffmpeg')
+
+    if __name__ == '__main__':
+        internet_check()
+        printnlog('DONE\n')
+        printnlog('\nImporting libraries\n')
+        if args.restart is None:
+            pg.keyDown('alt')
+            pg.press('tab')
+            pg.keyUp('alt')
+            pg.keyDown('alt')
+            pg.press('tab')
+            pg.keyUp('alt')
+        pg.keyDown('win')
+        pg.press('up')
+        pg.keyUp('win')
+    from tqdm import tqdm
+    if __name__ == '__main__':
+        print_module()
+    from pathlib import Path
+    if __name__ == '__main__':
+        print_module('Path from pathlib')
+    import pathlib
+    if __name__ == '__main__':
+        print_module()
+    from uninstall import uninstall
+    if __name__ == '__main__':
+        print_module()
+    import shutil
+    if __name__ == '__main__':
+        print_module()
+    import zipfile
+    if __name__ == '__main__':
+        print_module()
+    import GPUtil
+    if __name__ == '__main__':
+        print_module()
+    import semantic_version
+    if __name__ == '__main__':
+        print_module()
+    import win32gui
+    if __name__ == '__main__':
+        print_module()
+    import ctypes
+    if __name__ == '__main__':
+        print_module()
+    import cpuinfo
+    if __name__ == '__main__':
+        print_module()
+    import cv2
+    if __name__ == '__main__':
+        print_module()
+    import glob
+    if __name__ == '__main__':
+        print_module()
+    import webbrowser
+    if __name__ == '__main__':
+        print_module()
+    import win32api
+    if __name__ == '__main__':
+        print_module()
+    import cpufreq
+    if __name__ == '__main__':
+        print_module()
+    import time
+    if __name__ == '__main__':
+        print_module()
+    import psutil
+    if __name__ == '__main__':
+        print_module()
+    import vlc
+    if __name__ == '__main__':
+        print_module()
+    import pygetwindow
+    if __name__ == '__main__':
+        print_module()
+    import wmi
+    if __name__ == '__main__':
+        print_module()
+    from showinfm import show_in_file_manager
+    if __name__ == '__main__':
+        print_module('show_in_file_manager from showinfm')
+    import platform
+    if __name__ == '__main__':
+        print_module()
+    import socket
+    if __name__ == '__main__':
+        print_module()
+    import re
+    if __name__ == '__main__':
+        print_module()
+    import uuid
+    if __name__ == '__main__':
+        print_module()
+    from tabulate import tabulate
+    if __name__ == '__main__':
+        print_module()
+    from PIL import Image
+    if __name__ == '__main__':
+        print_module('Image from PIL')
+    import moviepy.editor as mp
+    if __name__ == '__main__':
+        print_module('moviepy.editor')
+    from pygame import mixer
+
+    logging.debug("Imported main group of modules")
+
+    def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
+        """
+        "Download a file from a URL to a local file."
+
+        The first line is the function's signature. It's a single line of code that tells you everything
+        you need to know about the function
+
+        :param url: The URL of the file to download
+        :type url: str
+        :param fname: The name of the file to be downloaded
+        :type fname: str
+        :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
+        """
+        import requests
+        try:
+            logging.debug(url)
+            resp = requests.get(url, stream=True)
+            total: int = int(resp.headers.get('content-length', 0))
+            with open(fname, 'wb') as file, tqdm(
+                desc=fname,
+                total=total,
+                unit='iB',
+                unit_scale=True,
+                unit_divisor=1024,
+            ) as bar:
+                for data in resp.iter_content(chunk_size=chunk_size):
+                    size = file.write(data)
+                    bar.update(size)
+        except ConnectionError:
+            logging.warning("Connection error")
+            return False
+        return True
+
+    if __name__ == '__main__':
+        print_module('mixer from pygame')
+        printnlog('\nDONE\n')
+        verzia = open('version', 'r')
+        os.system('color ' + config.get('basic info',
+                  'enviroment').split(' ')[0])
+        os.system('Title ' + 'ZnámE')
+        user32 = ctypes.windll.user32
+        screensize: tuple[int, int] = user32.GetSystemMetrics(
+            0), user32.GetSystemMetrics(1)
+        screensizepercentage: tuple[float, float] = float(
+            (1/1920)*screensize[0]), float((1/1080)*screensize[1])
+
+
+        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             sleep(1)
             try:
                 os.makedirs("C:/Users/" + os.getlogin() +
@@ -2157,6 +2163,99 @@ try:  # type: ignore
     if __name__ == '__main__':
         typewriter(printnlog('Function: unpack', toprint=False))
 
+    def get_download_path():
+        """Returns the default downloads path for linux or windows"""
+        if os.name == 'nt':
+            import winreg
+            sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+            downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+                location = winreg.QueryValueEx(key, downloads_guid)[0]
+            return location
+        else:
+            return os.path.join(os.path.expanduser('~'), 'downloads')
+
+    def spotdl_get():
+        lines = []
+        sleep(1)
+        while not os.path.isfile('SPOTDL_QUIT'):
+            for line, content in enumerate(open('SPOTDL_OUTPUT').readlines()):
+                if '"GET /api/download/file?file=' in content:
+                    if not line in lines:
+                        open('SPOTDL_QUEUE', 'x')
+                        lines.append(line)
+                        content = content.split('"GET /api/download/file?file=')[1].split('&client_id=')[0].replace('%20', ' ')
+                        download_path = get_download_path()
+                        old_kb = 0
+                        new_kb = 0
+                        sleep(0.5)
+                        while True:
+                            new_kb = os.path.getsize(download_path + '/' + content)
+                            print(new_kb)
+                            if new_kb == old_kb:
+                                print('breaked')
+                                break
+                            sleep(0.25)
+                            old_kb = new_kb
+                        sleep(2.5)
+                        shutil.move(download_path + '/' + content, 'assets/' + content)
+                        new_content = ''
+                        for i in content.split('.'):
+                            if i == content.split('.')[-1]:
+                                continue
+                            else:
+                                new_content += i
+                        with open('MUSIC', 'a') as file:
+                            file.write(str(new_content) + ',')
+                        os.remove('SPOTDL_QUEUE')
+        if os.path.isfile('MUSIC'):
+            with open('MUSIC', 'r') as file:
+                fileread = file.readlines()[0]
+            with open('MUSIC', 'w') as file:
+                file.write(fileread[:-1])
+                    
+    def spotMusicDow():
+        typewriter('Starting web player', ttime=0.01)
+        spotdl = Thread(target=spotdl_get)
+        spotdl.start()
+        with open('SPOTDL_OUTPUT', 'w') as file:
+            subprocess.run(['spotdl','web'], stdout=file, text=True)
+        sleep(1)
+        Thread(target=installing_carousel, args=('',), kwargs={'comment': 'Waiting for synchronization'}).start()
+        while os.path.isfile('SPOTDL_QUEUE'):
+            sleep(1)
+        open('SPOTDL_QUIT', 'x')
+        open("INSTALL_DONE", 'x')
+        music: list[str] = list(
+            set(config.get('basic info', 'musiclist').split(',')[0:]))
+        if music[0] == '':
+            music = []
+        else:
+            for i in music:
+                if i == '':
+                    music.remove('')
+        musiclistnewstring: str = ''
+        for i in range(len(music)):
+            musiclistnewstring += str(music[i]) + ','
+        try:
+            for line, content in enumerate(open('MUSIC', 'r').readlines()):
+                musiclistnewstring += content + ','
+        except Exception:
+            pass
+        try:
+            os.remove('MUSIC')
+        except Exception:
+            pass
+        try:
+            os.remove('SPOTDL_QUIT')
+        except Exception:
+            pass
+        try:
+            os.remove('SPOTDL_OUTPUT')
+        except Exception:
+            pass
+        return musiclistnewstring
+
     def main() -> None:
         try:
             """
@@ -2223,11 +2322,12 @@ try:  # type: ignore
             from media import PlayVideo, DownloadVideo  # type: ignore
             musiclistnew: list = []
             for i in range(len(music)):
-                print(str(music[i]))
-                if not os.path.exists('assets/' + str(music[i]) + '.mp3'):
-                    musiclistnew.append(DownloadMusic(str(music[i])))
+                music_name = music[i]
+                print(str(music_name[1]))
+                if not os.path.exists('assets/' + str(music_name) + '.mp3'):
+                    musiclistnew.append(DownloadMusic(str(music_name)))
                 else:
-                    musiclistnew.append(music[i])
+                    musiclistnew.append(music_name)
             move('ZnámE', -10, -10, screensize[0], screensize[1])
             if args.test is not None:
                 try:
@@ -2657,7 +2757,12 @@ try:  # type: ignore
                                 typewriter('オーディオはダウンロードされません')
                             musicvstup: str = input('1) Download music\n2) Back\n> ')
                             if musicvstup == '1':
-                                pass
+                                to_append = spotMusicDow().split(',')
+                                for item in to_append:
+                                    if item == '':
+                                        continue
+                                    musiclistnew.append(item)
+                                continue
                             elif musicvstup == '2':
                                 continue
                         if not musicnone:
@@ -2678,9 +2783,9 @@ try:  # type: ignore
                                 except ValueError:
                                     continue
                         if musicnone or musicvstup == str(i+4):
-                            download('https://github.com/Shabinder/SpotiFlyer/releases/download/v3.6.3/SpotiFlyer-3.6.3.msi', 'spotiflyer.msi')
-                            os.system('spotiflyer.msi')
-                            os.remove('spotiflyer.msi')
+                            to_append = spotMusicDow().split(',')
+                            for item in to_append:
+                                musiclistnew.append(item)
                         elif musicvstup == len(musiclistnew) + 1 and not musicnone:  # remove audio
                             if args.language == 'EN':
                                 typewriter('Delete audio')
@@ -2704,17 +2809,10 @@ try:  # type: ignore
                             while len(musiclistnew) < int(config.get('basic info', 'musicnumber')):
                                 set_config('basic info', 'musicnumber',
                                            str(int(args.music)-1))
-                            if len(musiclistnew) == 0:
-                                if args.language == 'EN':
-                                    typewriter('No audio is downloaded')
-                                if args.language == 'SK':
-                                    typewriter('Nie je stiahnutý žiadny zvuk')
-                                if args.language == 'JP':
-                                    typewriter('オーディオはダウンロードされません')
                                 continue
                             pg.write('music\n')
                         if not musicnone:
-                            if musicvstup == len(musiclistnew) + 2:  # back
+                            if musicvstup == len(musiclistnew) + 3:  # back
                                 continue
                             args.music = str(musicvstup)
                             try:
@@ -2723,12 +2821,18 @@ try:  # type: ignore
                                 mixer.music.load(
                                     'assets/' + musiclistnew[musicvstup-1] + '.mp3')
                             except IndexError:
-                                pg.write('music\n')
-                            mixer.music.play()
-                            musicplay: bool = True
+                                pass
+                            try:
+                                mixer.music.play()
+                                musicplay: bool = True
+                            except Exception:
+                                pass
                     if vstup == 'quitmusic':
-                        mixer.music.stop()
-                        musicplay: bool = False
+                        try:
+                            mixer.music.stop()
+                            musicplay: bool = False
+                        except Exception:
+                            pass
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime: str = str(
@@ -3465,6 +3569,10 @@ try:  # type: ignore
                             pass
                         try:
                             os.remove('assets/video.mp4')
+                        except Exception:
+                            pass
+                        try:
+                            os.remove('MUSIC')
                         except Exception:
                             pass
                         try:
