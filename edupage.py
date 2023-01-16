@@ -670,7 +670,7 @@ try:  # type: ignore
             return False
         return True
 
-    def installing_carousel(package: str, comment: str = 'Installing'):
+    def installing_carousel(package: str, comment: str = 'Installing', bar=False):
         """
         The installing_carousel function is a function that will print out the string 'Installing' and then
         the package name, in an animated fashion. It will do this until it reaches the INSTALL_DONE file, which
@@ -692,10 +692,16 @@ try:  # type: ignore
                 alinst = True
                 break
             if os.path.isfile('INSTALL_PAUSE'):
-                print('                                            ', end='\r')
+                if not bar:
+                    print('                                            ', end='\r')
+                if bar:
+                    tqdm.write('                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
-            print(f'{comment} {package} /               ', end='\r')
+            if not bar:
+                print(f'{comment} {package} /               ', end='\r')
+            if bar:
+                tqdm.write(f'{comment} {package} /               ', end='\r')
             sleep(0.25)
             if os.path.isfile('INSTALL_DONE'):
                 break
@@ -706,10 +712,16 @@ try:  # type: ignore
                 alinst = True
                 break
             if os.path.isfile('INSTALL_PAUSE'):
-                print('                                            ', end='\r')
+                if not bar:
+                    print('                                            ', end='\r')
+                if bar:
+                    tqdm.write('                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
-            print(f'{comment} {package} -               ', end='\r')
+            if not bar:    
+                print(f'{comment} {package} -               ', end='\r')
+            if bar:
+                tqdm.write(f'{comment} {package} -               ', end='\r')
             sleep(0.25)
             if os.path.isfile('INSTALL_DONE'):
                 break
@@ -720,10 +732,16 @@ try:  # type: ignore
                 alinst = True
                 break
             if os.path.isfile('INSTALL_PAUSE'):
-                print('                                            ', end='\r')
+                if not bar:
+                    print('                                            ', end='\r')
+                if bar:
+                    tqdm.write('                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
-            print(f'{comment} {package} \\              ', end='\r')
+            if not bar:
+                print(f'{comment} {package} \\              ', end='\r')
+            if bar:
+                tqdm.write(f'{comment} {package} \\              ', end='\r')
             sleep(0.25)
             if os.path.isfile('INSTALL_DONE'):
                 break
@@ -734,17 +752,32 @@ try:  # type: ignore
                 alinst = True
                 break
             if os.path.isfile('INSTALL_PAUSE'):
-                print('                                            ', end='\r')
+                if not bar:
+                    print('                                            ', end='\r')
+                if bar:
+                    tqdm.write('                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
-            print(f'{comment} {package} |               ', end='\r')
+            if not bar:
+                print(f'{comment} {package} |               ', end='\r')
+            if bar:
+                tqdm.write(f'{comment} {package} |               ', end='\r')
             sleep(0.25)
         if error:
-            print(f'{comment} {package} ERROR             ')
+            if not bar:
+                print(f'{comment} {package} ERROR             ')
+            if bar:
+                tqdm.write(f'{comment} {package} ERROR             ')
         elif alinst:
-            print(f'{comment} {package} ALREADY INSTALLED             ')
+            if not bar:
+                print(f'{comment} {package} ALREADY INSTALLED             ')
+            if bar:
+                tqdm.write(f'{comment} {package} ALREADY INSTALLED             ')
         else:
-            print(f'{comment} {package} DONE             ')
+            if not bar:
+                print(f'{comment} {package} DONE             ')
+            if bar:
+                tqdm.write(f'{comment} {package} DONE             ')
         try:
             os.remove('INSTALL_DONE')
         except Exception:
@@ -781,7 +814,7 @@ try:  # type: ignore
             with open('choco_output', 'r') as file:
                 alinst = False
                 for line, content in enumerate(file.readlines()):
-                    if 'already installed.' in content:
+                    if 'already installed.' in content and package in content:
                         open('INSTALL_ALINST', 'x')
                         alinst = True
                         alinst_number += 1
@@ -821,40 +854,33 @@ try:  # type: ignore
             ffmpeg_conf = False
             ffmpegline = -1
             ffmpeg_confline = -1
-            sleep(1)
+            sleep(2)
             while os.path.isfile('choco_output'):
-                logging.debug('Running')
                 sleep(0.1)
                 for line, content in enumerate(open('choco_output', 'r').readlines()):
                     if 'WARNING: \'choco\' was found at' in content and module == 'chocolatey':
-                        logging.debug("Chocolatey is already installed")
                         return True
                     if 'Ensuring chocolatey.nupkg is in the lib folder' in content and module == 'chocolatey':
-                        logging.debug("Chocolatey is installed")
                         return False
-                    if 'Chocolatey detected you are not running from an elevated command' in content and admin:
-                        logging.debug("Not admin account")
+                    if 'Chocolatey detected you are not running' in content and admin:
                         if adminline == line:
                             pass
                         else:
                             admin = False
                             adminline = line
                     if 'Do you want to continue' in content and not admin:
-                        logging.debug("Admin confirmation")
                         if contline == line:
                             pass
                         else:
                             cont = True
                             contline = line
                     if 'ffmpeg package files install completed. Performing other installation steps.' in content and module == 'ffmpeg':
-                        print('ffmpeg')
                         if ffmpegline == line:
                             pass
                         else:
                             ffmpeg_conf = True
                             ffmpegline = line
                     if 'Do you want to run the script' in content and module == 'ffmpeg':
-                        print('ffmpeg')
                         if ffmpeg_confline == line:
                             pass
                         else:
@@ -1202,6 +1228,18 @@ try:  # type: ignore
                                         directory + ' -lang ' + args.language, shell=True)
                     sleep(0.1)
                     os.remove('crash_dump-' + datelog + '.txt')
+                    try:
+                        os.remove('choco_end')
+                    except Exception:
+                        pass
+                    try:
+                        os.remove('INSTALL')
+                    except Exception:
+                        pass
+                    try:
+                        os.remove('INSTALL_RESTART')
+                    except Exception:
+                        pass
                     quit()
             except requests.ConnectionError:  # type: ignore
                 line_number: int = get_line_number()

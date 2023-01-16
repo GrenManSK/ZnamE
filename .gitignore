@@ -8,6 +8,7 @@ unpack.py
 edupage.md
 edupage.pptx
 PATH
+log.log
 .history/
 .vs/
 .pytest_cache/
