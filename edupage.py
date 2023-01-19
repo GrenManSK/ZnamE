@@ -309,6 +309,8 @@ try:  # type: ignore
                             help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-waifuvid', '--waifuvid', choices=[],
                             help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-co', '--configoptions', choices=[],
+                            help='Make a file with all config options', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-music', '--music', choices=musicchoices,
                             help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
         parser.add_argument('-inactive', '--inactive', choices=[],
@@ -326,7 +328,6 @@ try:  # type: ignore
         parser.add_argument('-debug', '--debug', choices=[],
                             help='Debugging enabled', default=UNSPECIFIED, nargs='?')
         args = parser.parse_args()
-        args.test = None
         if args.debug:
             logging.debug("")
             logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -383,10 +384,10 @@ try:  # type: ignore
                 quit()
             else:
                 printnlog('waifu settings => category')
-        server: list[str] = ['nekos.best', 'waifu.pics']
+        server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
         if not config.get('neko settings', 'server').split(' ')[0] in server:
             logging.error("Wrong choice")
-            error_get(ExceptionGroup('',[argNekoError('Wrong choice in \'neko settings\' => server'), ValueError('Only take \'nekos.best\' or \'waifu.pics\'')]), [get_line_number()])
+            error_get(ExceptionGroup('',[argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(f'Only take {str(server)}')]), [get_line_number()])
             quit()
         else:
             printnlog('neko settings => server')
@@ -449,16 +450,31 @@ try:  # type: ignore
 
         printnlog('\nDONE\n')
 
-    """
-    Check if the internet is working. If it is not, print an error message and quit.
-    """
+        if args.configoptions == None:
+            with open('CONFIG_OPTIONS.txt', 'w') as file:
+                file.write('[BASIC INFO]\n')
+                file.write(f'lang = {language}\n')
+                file.write(f'enviroment = [0-f][0-f]\n')
+                file.write(f'intro = [True/False]\n')
+                file.write(f'inactivelimit = [Any number]\n')
+                file.write(f'music = [disable/enable]\n')
+                file.write(f'musiclist = [Any Youtube video title, divided by comma]\n')
+                file.write(f'musicnumber = [Any number; Max is number of items in musiclist]\n')
+                file.write('[WAIFU SETTINGS]\n')
+                file.write(f'type = [sfw/nsfw]\n')
+                category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
+                                   "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+                file.write(f'category (sfw) = {category}\n')
+                category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
+                file.write(f'category (nsfw) = {category}\n')
+                file.write('[NEKO SETTINGS]\n')
+                file.write(f'server = {server}\n')
+                file.write('[GAME SETTINGS]\n')
+                file.write('goal_score = [Any number]\n')
+                file.write('computer_power = [Any number; Lower the powerfull]\n')
+            os.remove(f'crash_dump-{datelog}.txt')
+            quit()
 
-    """
-    Check if the program is up to date. If not, update the program.
-    @param potrebne - the packages needed for the program to run properly           
-    @param nainstalovane - the packages installed on the system           
-    @param nenajdene - the packages that are not installed on the system
-    """
 
     if __name__ == '__main__':
         potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager',
@@ -527,7 +543,6 @@ try:  # type: ignore
                 sleep(2)
                 quit()
 
-    
     def installing_carousel(package: str, comment: str = 'Installing', bar=False):
         """
         The installing_carousel function is a function that will print out the string 'Installing' and then
@@ -829,6 +844,9 @@ try:  # type: ignore
     from tqdm import tqdm
     if __name__ == '__main__':
         print_module()
+    from urllib.parse import unquote
+    if __name__ == '__main__':
+        print_module('unquote from urllib.parse')
     from pathlib import Path
     if __name__ == '__main__':
         print_module('Path from pathlib')
@@ -1085,9 +1103,7 @@ try:  # type: ignore
                 to_info(f"  Used: {get_size1(partition_usage.used)}")
                 to_info(f"  Free: {get_size1(partition_usage.free)}")
                 to_info(f"  Percentage: {partition_usage.percent}%")
-            # type: ignore
             to_info(f"Total read: {get_size1(disk_io.read_bytes)}")
-            # type: ignore
             to_info(f"Total write: {get_size1(disk_io.write_bytes)}")
             to_info("="*40 + "Network Information" + "="*40)
             for interface_name, interface_addresses in if_addrs.items():
@@ -1290,9 +1306,6 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         typewriter(printnlog('Function: getWindow', toprint=False))
-
-    if __name__ == '__main__':
-        typewriter(printnlog('Function: PlayVideo', toprint=False))
 
     def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> None:
         """
@@ -2184,7 +2197,7 @@ try:  # type: ignore
                     if not line in lines:
                         open('SPOTDL_QUEUE', 'x')
                         lines.append(line)
-                        content = content.split('"GET /api/download/file?file=')[1].split('&client_id=')[0].replace('%20', ' ')
+                        content = unquote(content.split('"GET /api/download/file?file=')[1].split('&client_id=')[0])
                         download_path = get_download_path()
                         old_kb = 0
                         new_kb = 0
@@ -2198,7 +2211,13 @@ try:  # type: ignore
                             sleep(0.25)
                             old_kb = new_kb
                         sleep(2.5)
-                        shutil.move(download_path + '/' + content, 'assets/' + content)
+                        try:
+                            shutil.move(download_path + '/' + content, 'assets/' + content.replace(',', ''))
+                        except FileNotFoundError:
+                            os.remove('SPOTDL_QUEUE')
+                            return
+                        content = content.replace(',','')
+                        content = content.replace('\n','')
                         new_content = ''
                         for i in content.split('.'):
                             if i == content.split('.')[-1]:
@@ -2254,6 +2273,7 @@ try:  # type: ignore
             os.remove('SPOTDL_OUTPUT')
         except Exception:
             pass
+        sleep(1)
         return musiclistnewstring
 
     def main() -> None:
@@ -2762,6 +2782,10 @@ try:  # type: ignore
                                     if item == '':
                                         continue
                                     musiclistnew.append(item)
+                                try:
+                                    os.remove('MUSIC')
+                                except Exception:
+                                    pass
                                 continue
                             elif musicvstup == '2':
                                 continue
@@ -2782,10 +2806,14 @@ try:  # type: ignore
                                     break
                                 except ValueError:
                                     continue
-                        if musicnone or musicvstup == str(i+4):
+                        if musicnone or musicvstup == i+3:
                             to_append = spotMusicDow().split(',')
                             for item in to_append:
                                 musiclistnew.append(item)
+                            try:
+                                os.remove('MUSIC')
+                            except Exception:
+                                pass
                         elif musicvstup == len(musiclistnew) + 1 and not musicnone:  # remove audio
                             if args.language == 'EN':
                                 typewriter('Delete audio')
@@ -2969,6 +2997,32 @@ try:  # type: ignore
                                     "https://api.waifu.pics/sfw/neko")
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(data["url"], stream=True)
+                            elif config.get('neko settings', 'server').split(' ')[0] == 'kyoko':
+                                if args.language == 'SK':
+                                    typewriter(
+                                        'Získavanie obrazu zo servera kyoko', ttime=0.01)
+                                elif args.language == 'EN':
+                                    typewriter(
+                                        'Getting image from kyoko server', ttime=0.01)
+                                elif args.language == 'JP':
+                                    typewriter('kyoko サーバーから画像を取得する', ttime=0.01)
+                                resp = requests.get(
+                                    "https://kyoko.rei.my.id/api/sfw.php")
+                                data: dict[str, str] = resp.json()
+                                res = requests.get(data["apiResult"]["url"][0], stream=True)
+                            elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
+                                if args.language == 'SK':
+                                    typewriter(
+                                        'Získavanie obrazu zo servera nekos_api', ttime=0.01)
+                                elif args.language == 'EN':
+                                    typewriter(
+                                        'Getting image from nekos_api server', ttime=0.01)
+                                elif args.language == 'JP':
+                                    typewriter('nekos_api サーバーから画像を取得する', ttime=0.01)
+                                resp = requests.get(
+                                    "https://nekos.nekidev.com/api/image/random?categories=catgirl")
+                                data: dict[str, str] = resp.json()
+                                res = requests.get(data["data"][0]["url"], stream=True)
                             else:
                                 if args.language == 'SK':
                                     typewriter(
@@ -2985,6 +3039,10 @@ try:  # type: ignore
                                              ["url"], 'assets/neko.png')
                                 elif config.get('neko settings', 'server').split(' ')[0] == 'waifu.pics':
                                     download(data['url'], 'assets/neko.png')
+                                elif config.get('neko settings', 'server').split(' ')[0] == 'kyoko':
+                                    download(data["apiResult"]["url"][0], 'assets/neko.png')
+                                elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
+                                    download(data["data"][0]["url"], 'assets/neko.png')
                         else:
                             args.neko = object()
                         typewriter('Setting image          ', end='\r', ttime=0.01)
@@ -2998,7 +3056,9 @@ try:  # type: ignore
                         pg.press('right')
                         typewriter('.......', end='\r', ttime=0.01)
                         pg.keyUp('win')
+                        sleep(0.1)
                         pg.press('esc')
+                        sleep(0.1)
                         typewriter('Getting cli in foreground     ', end='\r', ttime=0.01)
                         if args.test is not None:
                             window = pygetwindow.getWindowsWithTitle('ZnámE')[

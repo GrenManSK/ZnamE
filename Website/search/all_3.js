@@ -1,13 +1,16 @@
 var searchData=
 [
-  ['datafiles_0',['datafiles',['../d7/d92/namespaceunpack.html#ad63b22cc92a4b35ecd0570c2f39e99ac',1,'unpack']]],
-  ['datapart_1',['datapart',['../de/d29/namespacepack.html#ade46067637c02cc0a181df8189705cee',1,'pack']]],
-  ['debug_2',['DEBUG',['../d0/d52/namespaceedupage.html#a9ac7ec4915d6cf8b6eb9f2e2554de617',1,'edupage']]],
-  ['decode_3',['decode',['../d0/d52/namespaceedupage.html#aa92a47e21588e2d0650510eb9f359d9b',1,'edupage']]],
-  ['default_4',['default',['../d0/d52/namespaceedupage.html#a8db78ee51fe4b22d4d52f8ec2cc9ecb3',1,'edupage']]],
-  ['delcache_5',['delcache',['../d0/d52/namespaceedupage.html#af3edba33bdd8d0c84716b44bce6cfcd6',1,'edupage']]],
-  ['desc_6',['desc',['../d0/d52/namespaceedupage.html#a546f0ee6c73f7059564c777e42aa1713',1,'edupage']]],
-  ['directory_7',['directory',['../d0/d52/namespaceedupage.html#afcd629fb42a77fb7115a373af2b133b8',1,'edupage']]],
-  ['disk_5fio_8',['disk_io',['../d0/d52/namespaceedupage.html#a75cbe23ac13fca5cebeeb92e542229b3',1,'edupage']]],
-  ['download_9',['download',['../d0/d52/namespaceedupage.html#a4528534caaf20f4dcead5a6737a89488',1,'edupage']]]
+  ['cachename_0',['cachename',['../d0/d52/namespaceedupage.html#a25109826dff0140f3672672637dadd94',1,'edupage']]],
+  ['choco_1',['choco',['../d0/d52/namespaceedupage.html#a8ec9de9af0e50160b01bd666e31757f4',1,'edupage']]],
+  ['choco_5fcheck_2',['choco_check',['../d0/d52/namespaceedupage.html#a6b969c5ba9549a783c8591d8d58a8b89',1,'edupage.choco_check()'],['../d0/d52/namespaceedupage.html#a836208f7b35a1d7c15727ed75a5f997f',1,'edupage.choco_check(str module)']]],
+  ['choco_5finstall_3',['choco_install',['../d0/d52/namespaceedupage.html#a0fc206f074bcf5906cb25140d58a796c',1,'edupage']]],
+  ['choices_4',['choices',['../d0/d52/namespaceedupage.html#a6fbef3749a253c118a3b40813311443a',1,'edupage']]],
+  ['code_5',['code',['../d0/d52/namespaceedupage.html#a0ac684340ab80b572e1871d02551129b',1,'edupage']]],
+  ['code_5fof_5fconduct_2emd_6',['CODE_OF_CONDUCT.md',['../d7/de1/_c_o_d_e___o_f___c_o_n_d_u_c_t_8md.html',1,'']]],
+  ['computer1_7',['computer1',['../d0/d52/namespaceedupage.html#ae4c033613f1f1cc1e76d892d5c41e40e',1,'edupage']]],
+  ['config_8',['config',['../d0/d52/namespaceedupage.html#a66456585d75fa170a00d4db223518fcc',1,'edupage']]],
+  ['confignooption_9',['configNoOption',['../d7/d7c/classedupage_1_1config_no_option.html',1,'edupage']]],
+  ['contributor_20covenant_20code_20of_20conduct_10',['Contributor Covenant Code of Conduct',['../d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html',1,'']]],
+  ['cpufreq_11',['cpufreq',['../d0/d52/namespaceedupage.html#a9a16192b62550189b67b04f293821201',1,'edupage']]],
+  ['crupdate_12',['crupdate',['../d0/d52/namespaceedupage.html#a741bdc611845652a6f04c3124a890ea4',1,'edupage']]]
 ];
