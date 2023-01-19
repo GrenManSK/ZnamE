@@ -69,8 +69,15 @@
         </Subnodes>
        </Node>
        <Node>
-        <Name>ZnamE</Name>
+        <Name>&lt;strong&gt;ZnamE&lt;/strong&gt;</Name>
         <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
+      <Subnodes>
+         <Node>
+          <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
+          <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
+          <Anchor>autotoc_md106</Anchor>
+         </Node>
+        </Subnodes>
        </Node>
        <Node>
         <Name>Packages</Name>
@@ -180,6 +187,11 @@
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
              </Node>
              <Node>
+              <Name>get_download_path</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
+             </Node>
+             <Node>
               <Name>get_line_number</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a812e6a75d3ee97e0f71e7d0d90b4a355</Anchor>
@@ -212,7 +224,7 @@
              <Node>
               <Name>installing_carousel</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a22aa34fcf73aaef27ee025ee84602465</Anchor>
+              <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
               <Name>internet_check</Name>
@@ -273,6 +285,16 @@
               <Name>show_marks</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
+              <Name>spotdl_get</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>afe952af2ff6f8a764046068392c7e92a</Anchor>
+             </Node>
+             <Node>
+              <Name>spotMusicDow</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a454714ea6e0c4835b3d5d99f545c37e8</Anchor>
              </Node>
              <Node>
               <Name>to_info</Name>
@@ -662,27 +684,6 @@
             </Subnodes>
            </Node>
            <Node>
-            <Name>pack</Name>
-            <Path>de/d29/namespacepack.html</Path>
-          <Subnodes>
-             <Node>
-              <Name>pack</Name>
-              <Path>de/d29/namespacepack.html</Path>
-              <Anchor>a68f9bb325c92d61480f18fd455040778</Anchor>
-             </Node>
-             <Node>
-              <Name>breaked</Name>
-              <Path>de/d29/namespacepack.html</Path>
-              <Anchor>ad5fd941050c5d1b1980797394c796aaf</Anchor>
-             </Node>
-             <Node>
-              <Name>datapart</Name>
-              <Path>de/d29/namespacepack.html</Path>
-              <Anchor>ade46067637c02cc0a181df8189705cee</Anchor>
-             </Node>
-            </Subnodes>
-           </Node>
-           <Node>
             <Name>uninstall</Name>
             <Path>dd/de8/namespaceuninstall.html</Path>
           <Subnodes>
@@ -690,22 +691,6 @@
               <Name>uninstall</Name>
               <Path>dd/de8/namespaceuninstall.html</Path>
               <Anchor>a9c4fc960681931cdc878bae58b9ce6dd</Anchor>
-             </Node>
-            </Subnodes>
-           </Node>
-           <Node>
-            <Name>unpack</Name>
-            <Path>d7/d92/namespaceunpack.html</Path>
-          <Subnodes>
-             <Node>
-              <Name>unpack</Name>
-              <Path>d7/d92/namespaceunpack.html</Path>
-              <Anchor>a757d4db06b384aa040605facafc08ccf</Anchor>
-             </Node>
-             <Node>
-              <Name>datafiles</Name>
-              <Path>d7/d92/namespaceunpack.html</Path>
-              <Anchor>ad63b22cc92a4b35ecd0570c2f39e99ac</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -953,6 +938,11 @@
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
              </Node>
              <Node>
+              <Name>get_download_path</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
+             </Node>
+             <Node>
               <Name>get_line_number</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a812e6a75d3ee97e0f71e7d0d90b4a355</Anchor>
@@ -985,7 +975,7 @@
              <Node>
               <Name>installing_carousel</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a22aa34fcf73aaef27ee025ee84602465</Anchor>
+              <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
               <Name>internet_check</Name>
@@ -1046,6 +1036,16 @@
               <Name>show_marks</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
+              <Name>spotdl_get</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>afe952af2ff6f8a764046068392c7e92a</Anchor>
+             </Node>
+             <Node>
+              <Name>spotMusicDow</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a454714ea6e0c4835b3d5d99f545c37e8</Anchor>
              </Node>
              <Node>
               <Name>to_info</Name>
@@ -1435,27 +1435,6 @@
             </Subnodes>
            </Node>
            <Node>
-            <Name>pack.py</Name>
-            <Path>df/df6/pack_8py.html</Path>
-          <Subnodes>
-             <Node>
-              <Name>pack</Name>
-              <Path>df/df6/pack_8py.html</Path>
-              <Anchor>a68f9bb325c92d61480f18fd455040778</Anchor>
-             </Node>
-             <Node>
-              <Name>breaked</Name>
-              <Path>df/df6/pack_8py.html</Path>
-              <Anchor>ad5fd941050c5d1b1980797394c796aaf</Anchor>
-             </Node>
-             <Node>
-              <Name>datapart</Name>
-              <Path>df/df6/pack_8py.html</Path>
-              <Anchor>ade46067637c02cc0a181df8189705cee</Anchor>
-             </Node>
-            </Subnodes>
-           </Node>
-           <Node>
             <Name>uninstall.py</Name>
             <Path>d5/d47/uninstall_8py.html</Path>
           <Subnodes>
@@ -1463,22 +1442,6 @@
               <Name>uninstall</Name>
               <Path>d5/d47/uninstall_8py.html</Path>
               <Anchor>a9c4fc960681931cdc878bae58b9ce6dd</Anchor>
-             </Node>
-            </Subnodes>
-           </Node>
-           <Node>
-            <Name>unpack.py</Name>
-            <Path>d3/d29/unpack_8py.html</Path>
-          <Subnodes>
-             <Node>
-              <Name>unpack</Name>
-              <Path>d3/d29/unpack_8py.html</Path>
-              <Anchor>a757d4db06b384aa040605facafc08ccf</Anchor>
-             </Node>
-             <Node>
-              <Name>datafiles</Name>
-              <Path>d3/d29/unpack_8py.html</Path>
-              <Anchor>ad63b22cc92a4b35ecd0570c2f39e99ac</Anchor>
              </Node>
             </Subnodes>
            </Node>

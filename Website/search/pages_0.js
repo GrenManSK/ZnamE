@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contributor_20covenant_20code_20of_20conduct_0',['Contributor Covenant Code of Conduct',['../d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html',1,'']]]
+  ['_3cstrong_3ezname_3c_2fstrong_3e_0',['&lt;strong&gt;ZnamE&lt;/strong&gt;',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]]
 ];

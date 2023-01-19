@@ -39,7 +39,9 @@ var NAVTREE =
       ] ],
       [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
     ] ],
-    [ "ZnamE", "d3/dcc/md__r_e_a_d_m_e.html", null ],
+    [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md106", null ]
+    ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
       [ "Package Members", "namespacemembers.html", [
@@ -62,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#acc265ae5355756db29acc12bc617cd79"
+"df/dd7/edupage_8py.html#ae4daabd33ec43e883f3b5260cd0d70aa"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

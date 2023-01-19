@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['target_0',['target',['../d0/d52/namespaceedupage.html#af67a89d4998ce9e5f27f8161e842951a',1,'edupage']]],
-  ['to_5finfo_1',['to_info',['../d0/d52/namespaceedupage.html#afaf0f856a23cfd0b87e6f278f6407184',1,'edupage']]],
-  ['total_2',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]],
-  ['ttime_3',['ttime',['../d0/d52/namespaceedupage.html#a92830aadf5e130a1b1a6c00ab8101545',1,'edupage']]],
-  ['typewriter_4',['typewriter',['../d0/d52/namespaceedupage.html#a7faa24d24074c579901eff9ea313b508',1,'edupage']]]
+  ['set_5fconfig_0',['set_config',['../d0/d52/namespaceedupage.html#a165cb5daaa47f244a58647a6b6a7eedf',1,'edupage']]],
+  ['shell_1',['shell',['../d0/d52/namespaceedupage.html#a7a4b0a4e523eb4440e9830818d283044',1,'edupage']]],
+  ['show_5fmarks_2',['show_marks',['../d0/d52/namespaceedupage.html#a12e03073ead2aa68c686d435b8b1e3b8',1,'edupage']]],
+  ['spotdl_5fget_3',['spotdl_get',['../d0/d52/namespaceedupage.html#afe952af2ff6f8a764046068392c7e92a',1,'edupage']]],
+  ['spotmusicdow_4',['spotMusicDow',['../d0/d52/namespaceedupage.html#a454714ea6e0c4835b3d5d99f545c37e8',1,'edupage']]],
+  ['str_5',['str',['../d0/d52/namespaceedupage.html#af6d4467ad4a0c8a394f14a7270effd9a',1,'edupage']]],
+  ['svmem_6',['svmem',['../d0/d52/namespaceedupage.html#a36d7b8f5bb3bd35586a5bc67f8069106',1,'edupage']]],
+  ['swap_7',['swap',['../d0/d52/namespaceedupage.html#aeacc6fb166708647a0a4536b5e416694',1,'edupage']]],
+  ['system_5fram_8',['system_ram',['../d0/d52/namespaceedupage.html#ae5d8ff7331fe2c038038008a8000dcf0',1,'edupage']]]
 ];
