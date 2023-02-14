@@ -142,6 +142,11 @@
               <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
              </Node>
              <Node>
+              <Name>checkAdmin</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a048ca9963d67feb89282ab12b5f70a49</Anchor>
+             </Node>
+             <Node>
               <Name>choco_check</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
@@ -227,9 +232,19 @@
               <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
+              <Name>internet</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a24008aa497ff16992e765fb4c470bb7b</Anchor>
+             </Node>
+             <Node>
               <Name>internet_check</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>acfd9e8f73e3eb2e829ac13cec7ad3898</Anchor>
+             </Node>
+             <Node>
+              <Name>isUserAdmin</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a13c25255a4a60c10799fdb24feed36a3</Anchor>
              </Node>
              <Node>
               <Name>log</Name>
@@ -277,6 +292,11 @@
               <Anchor>a4f9d80b1580d4e61d23dc4cf947f6e4c</Anchor>
              </Node>
              <Node>
+              <Name>runAsAdmin</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ac91b642ed43535490d0de48ebab52497</Anchor>
+             </Node>
+             <Node>
               <Name>set_config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
@@ -299,7 +319,7 @@
              <Node>
               <Name>to_info</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>afaf0f856a23cfd0b87e6f278f6407184</Anchor>
+              <Anchor>af42cb60f429fbe9cb11f585512cd2c4c</Anchor>
              </Node>
              <Node>
               <Name>typewriter</Name>
@@ -330,6 +350,11 @@
               <Name>bool</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a9df75e72b824fb82230186fe53716726</Anchor>
+             </Node>
+             <Node>
+              <Name>by</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ac85622dd87fcf21ec0b7f1035fd430d6</Anchor>
              </Node>
              <Node>
               <Name>cachename</Name>
@@ -372,9 +397,9 @@
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
              </Node>
              <Node>
-              <Name>DEBUG</Name>
+              <Name>datefmt</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a9ac7ec4915d6cf8b6eb9f2e2554de617</Anchor>
+              <Anchor>ae9e1ca835d79cae511d79b287611a382</Anchor>
              </Node>
              <Node>
               <Name>default</Name>
@@ -400,16 +425,6 @@
               <Name>end</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
-             </Node>
-             <Node>
-              <Name>file</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
-             </Node>
-             <Node>
-              <Name>filemode</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>abd7ae69959c07baaf321f0dde1d1a6d6</Anchor>
              </Node>
              <Node>
               <Name>filename</Name>
@@ -477,11 +492,6 @@
               <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
-              <Name>INFO</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aa457cf40fe705e05d0a69e9e14b37b2b</Anchor>
-             </Node>
-             <Node>
               <Name>inst_number</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
@@ -520,6 +530,16 @@
               <Name>list</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a74e24e61de8cffc7ff86acd17d52ed72</Anchor>
+             </Node>
+             <Node>
+              <Name>LOG_FILENAME</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a3a98b79f5e3cb60699379fbd6eb84190</Anchor>
+             </Node>
+             <Node>
+              <Name>logger</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a44216a57ab468182d926a8f78e8f5ba3</Anchor>
              </Node>
              <Node>
               <Name>loginvstupuser</Name>
@@ -617,6 +637,11 @@
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
              </Node>
              <Node>
+              <Name>stats</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a938650e7777494e82f580f399c2b5897</Anchor>
+             </Node>
+             <Node>
               <Name>str</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>af6d4467ad4a0c8a394f14a7270effd9a</Anchor>
@@ -640,6 +665,11 @@
               <Name>target</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>af67a89d4998ce9e5f27f8161e842951a</Anchor>
+             </Node>
+             <Node>
+              <Name>toprint</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a581047f676f7385cb101b2f5e2829e75</Anchor>
              </Node>
              <Node>
               <Name>total</Name>
@@ -893,6 +923,11 @@
               <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
              </Node>
              <Node>
+              <Name>checkAdmin</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a048ca9963d67feb89282ab12b5f70a49</Anchor>
+             </Node>
+             <Node>
               <Name>choco_check</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
@@ -978,9 +1013,19 @@
               <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
+              <Name>internet</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a24008aa497ff16992e765fb4c470bb7b</Anchor>
+             </Node>
+             <Node>
               <Name>internet_check</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>acfd9e8f73e3eb2e829ac13cec7ad3898</Anchor>
+             </Node>
+             <Node>
+              <Name>isUserAdmin</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a13c25255a4a60c10799fdb24feed36a3</Anchor>
              </Node>
              <Node>
               <Name>log</Name>
@@ -1028,6 +1073,11 @@
               <Anchor>a4f9d80b1580d4e61d23dc4cf947f6e4c</Anchor>
              </Node>
              <Node>
+              <Name>runAsAdmin</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ac91b642ed43535490d0de48ebab52497</Anchor>
+             </Node>
+             <Node>
               <Name>set_config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
@@ -1050,7 +1100,7 @@
              <Node>
               <Name>to_info</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>afaf0f856a23cfd0b87e6f278f6407184</Anchor>
+              <Anchor>af42cb60f429fbe9cb11f585512cd2c4c</Anchor>
              </Node>
              <Node>
               <Name>typewriter</Name>
@@ -1081,6 +1131,11 @@
               <Name>bool</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a9df75e72b824fb82230186fe53716726</Anchor>
+             </Node>
+             <Node>
+              <Name>by</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ac85622dd87fcf21ec0b7f1035fd430d6</Anchor>
              </Node>
              <Node>
               <Name>cachename</Name>
@@ -1123,9 +1178,9 @@
               <Anchor>a741bdc611845652a6f04c3124a890ea4</Anchor>
              </Node>
              <Node>
-              <Name>DEBUG</Name>
+              <Name>datefmt</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a9ac7ec4915d6cf8b6eb9f2e2554de617</Anchor>
+              <Anchor>ae9e1ca835d79cae511d79b287611a382</Anchor>
              </Node>
              <Node>
               <Name>default</Name>
@@ -1151,16 +1206,6 @@
               <Name>end</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
-             </Node>
-             <Node>
-              <Name>file</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a21fff62fb052440860a7b6839b154617</Anchor>
-             </Node>
-             <Node>
-              <Name>filemode</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>abd7ae69959c07baaf321f0dde1d1a6d6</Anchor>
              </Node>
              <Node>
               <Name>filename</Name>
@@ -1228,11 +1273,6 @@
               <Anchor>a5ef76dbf3933018b29f2075660073f5d</Anchor>
              </Node>
              <Node>
-              <Name>INFO</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aa457cf40fe705e05d0a69e9e14b37b2b</Anchor>
-             </Node>
-             <Node>
               <Name>inst_number</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
@@ -1271,6 +1311,16 @@
               <Name>list</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a74e24e61de8cffc7ff86acd17d52ed72</Anchor>
+             </Node>
+             <Node>
+              <Name>LOG_FILENAME</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a3a98b79f5e3cb60699379fbd6eb84190</Anchor>
+             </Node>
+             <Node>
+              <Name>logger</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a44216a57ab468182d926a8f78e8f5ba3</Anchor>
              </Node>
              <Node>
               <Name>loginvstupuser</Name>
@@ -1368,6 +1418,11 @@
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
              </Node>
              <Node>
+              <Name>stats</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a938650e7777494e82f580f399c2b5897</Anchor>
+             </Node>
+             <Node>
               <Name>str</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>af6d4467ad4a0c8a394f14a7270effd9a</Anchor>
@@ -1391,6 +1446,11 @@
               <Name>target</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>af67a89d4998ce9e5f27f8161e842951a</Anchor>
+             </Node>
+             <Node>
+              <Name>toprint</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a581047f676f7385cb101b2f5e2829e75</Anchor>
              </Node>
              <Node>
               <Name>total</Name>

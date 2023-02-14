@@ -42,3 +42,15 @@ goal_score = [Any number]
 computer_power = [Any number; Lower the powerfull]
 
 ```
+---
+
+CLI Arguments
+
+```
+-lang --language {EN, SK, JP} # Select language of the aplication defaut to config option
+-v --version {} # Show version of the app
+-ef --endf {} # Will not automatically end program
+-ni --nointro {} # Will not start intro
+-co --configoptions {} # Will make a file with all config options, frankly speaking it will put previous text to file
+-music --music {Any number} # Max is number of items in 'basic info' => 'musiclist' in config file
+```
