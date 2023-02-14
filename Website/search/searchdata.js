@@ -4,7 +4,7 @@ var indexSectionsWithContent =
   1: "ac",
   2: "eu",
   3: "ceru",
-  4: "acdefgilmpstu",
+  4: "acdefgilmprstu",
   5: "abcdefghilmnoprstuvx",
   6: "<c"
 };

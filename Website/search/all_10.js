@@ -5,8 +5,9 @@ var searchData=
   ['show_5fmarks_2',['show_marks',['../d0/d52/namespaceedupage.html#a12e03073ead2aa68c686d435b8b1e3b8',1,'edupage']]],
   ['spotdl_5fget_3',['spotdl_get',['../d0/d52/namespaceedupage.html#afe952af2ff6f8a764046068392c7e92a',1,'edupage']]],
   ['spotmusicdow_4',['spotMusicDow',['../d0/d52/namespaceedupage.html#a454714ea6e0c4835b3d5d99f545c37e8',1,'edupage']]],
-  ['str_5',['str',['../d0/d52/namespaceedupage.html#af6d4467ad4a0c8a394f14a7270effd9a',1,'edupage']]],
-  ['svmem_6',['svmem',['../d0/d52/namespaceedupage.html#a36d7b8f5bb3bd35586a5bc67f8069106',1,'edupage']]],
-  ['swap_7',['swap',['../d0/d52/namespaceedupage.html#aeacc6fb166708647a0a4536b5e416694',1,'edupage']]],
-  ['system_5fram_8',['system_ram',['../d0/d52/namespaceedupage.html#ae5d8ff7331fe2c038038008a8000dcf0',1,'edupage']]]
+  ['stats_5',['stats',['../d0/d52/namespaceedupage.html#a938650e7777494e82f580f399c2b5897',1,'edupage']]],
+  ['str_6',['str',['../d0/d52/namespaceedupage.html#af6d4467ad4a0c8a394f14a7270effd9a',1,'edupage']]],
+  ['svmem_7',['svmem',['../d0/d52/namespaceedupage.html#a36d7b8f5bb3bd35586a5bc67f8069106',1,'edupage']]],
+  ['swap_8',['swap',['../d0/d52/namespaceedupage.html#aeacc6fb166708647a0a4536b5e416694',1,'edupage']]],
+  ['system_5fram_9',['system_ram',['../d0/d52/namespaceedupage.html#ae5d8ff7331fe2c038038008a8000dcf0',1,'edupage']]]
 ];

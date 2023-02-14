@@ -64,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#ae4daabd33ec43e883f3b5260cd0d70aa"
+"df/dd7/edupage_8py.html#ac2af202d51ecd2e5f8759016912b4d4c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

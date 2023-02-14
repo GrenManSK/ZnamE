@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['debug_0',['DEBUG',['../d0/d52/namespaceedupage.html#a9ac7ec4915d6cf8b6eb9f2e2554de617',1,'edupage']]],
+  ['datefmt_0',['datefmt',['../d0/d52/namespaceedupage.html#ae9e1ca835d79cae511d79b287611a382',1,'edupage']]],
   ['decode_1',['decode',['../d0/d52/namespaceedupage.html#aa92a47e21588e2d0650510eb9f359d9b',1,'edupage']]],
   ['default_2',['default',['../d0/d52/namespaceedupage.html#a8db78ee51fe4b22d4d52f8ec2cc9ecb3',1,'edupage']]],
   ['delcache_3',['delcache',['../d0/d52/namespaceedupage.html#af3edba33bdd8d0c84716b44bce6cfcd6',1,'edupage']]],
