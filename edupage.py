@@ -944,6 +944,9 @@ try:  # type: ignore
     import zipfile
     if __name__ == '__main__':
         print_module()
+    import hashlib
+    if __name__ == '__main__':
+        print_module()
     import GPUtil
     if __name__ == '__main__':
         print_module()
@@ -1367,6 +1370,42 @@ try:  # type: ignore
                 pass
 
         verzia.close()
+    
+    errors = 0
+
+    def check_files():
+        global errors
+        logger.next('')
+        with open('security/security.pem', 'r', encoding='utf-8') as sig:
+            sigr = sig.readlines()
+            for file in sigr:
+                signature = file.split(',')[1][0:-1]
+                filename = file.split(',')[0]
+                if filename == 'security\security.pem':
+                    continue
+                if os.path.isdir(filename):
+                    check_files(filename)
+                    continue
+                logger.stay(f"Checking file {filename} ...", end='\r')
+                sleep(0.1)
+                with open(filename, "rb") as f:
+                    bytes = f.read()  # read file as bytes
+                    readable_hash = hashlib.md5(bytes).hexdigest()
+                if signature != readable_hash:
+                    logger.stay(
+                        f"Checking file {filename} ERROR: signature mismatch")
+                    errors += 1
+                else:
+                    logger.stay(f"Checking file {filename} DONE")
+        logger.prev('')
+    check_files()
+    print(errors)
+    if errors != 0:
+        print("Checking signatures failed")
+        input()
+        os.remove('crash_dump-' + datelog + '.txt')
+        quit()
+
 
     def getWindow() -> bool:
         """
