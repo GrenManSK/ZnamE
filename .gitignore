@@ -19,3 +19,4 @@ ffmpeg/
 py_filter.bat
 Doxyfile
 download/
+signatures.py
