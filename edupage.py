@@ -1373,6 +1373,17 @@ try:  # type: ignore
     
     errors = 0
 
+    html = requests.get("https://raw.githubusercontent.com/GrenManSK/ZnamE/main/security/security.pem").text
+
+    try:
+        os.mkdir('security')
+    except FileExistsError:
+        pass
+
+    with open('security/security.pem', 'w') as file:
+        for line in html:
+            file.write(line)
+            
     def check_files():
         global errors
         logger.next('')
