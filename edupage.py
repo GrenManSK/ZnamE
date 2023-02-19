@@ -524,6 +524,7 @@ try:  # type: ignore
 
     def internet_check() -> None:
         try:
+            global requests
             import requests
             timeout: int = 10
             Thread(target=internet).start()
@@ -1047,7 +1048,6 @@ try:  # type: ignore
         :type fname: str
         :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
         """
-        import requests
         try:
             resp = requests.get(url, stream=True)
             total: int = int(resp.headers.get('content-length', 0))
@@ -1259,7 +1259,6 @@ try:  # type: ignore
         if args.test is not None:
             logger.stay(printnlog('Checking for newer version of ZnámE', toprint=False))
             try:
-                import requests
                 url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
                 page = requests.get(url)
                 verzia = open('version', 'r')
@@ -2653,7 +2652,6 @@ try:  # type: ignore
             elif args.language == "JP":
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
-            import requests
             from completer import SimpleCompleter # type: ignore
             unlogged_completer = ['ffmpeg','animesearch','save','clear','cls','quit', 'quitneko', 'quitwaifu','quitmusic','login', 'delsavlog', 'waifu', 'neko', 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
             logged_completer = ['ffmpeg','animesearch','save','clear','cls','quit', 'quitneko', 'quitwaifu','quitmusic','logout', 'delsavlog', 'waifu', 'neko', 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
