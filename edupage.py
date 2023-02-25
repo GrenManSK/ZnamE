@@ -800,7 +800,7 @@ try:  # type: ignore
                     for line in file.readlines():
                         if 'cannot be loaded because running scripts is disabled on this system' in line:
                             open('INSTALL_ERROR', 'x')
-                            logger.stay('Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'', ttime=0.01)
+                            logger.stay('Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'')
                             with open('set_permissions.txt', 'w') as file:
                                 file.write('Run Powershell as administrator and type following code press \'enter\' type Y and press \'enter\'\n\nSet-ExecutionPolicy RemoteSigned')
                             osCommandString = "notepad.exe set_permissions.txt"
