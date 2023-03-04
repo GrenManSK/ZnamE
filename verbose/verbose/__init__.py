@@ -1,4 +1,4 @@
-class verbose:
+class get_logger:
     def __init__(self, strict: bool = True):
         self.level = 0
         self.start = True
