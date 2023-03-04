@@ -8,7 +8,7 @@ try:  # type: ignore
     import os
     if os.path.isfile('INSTALL_RESTART'):
         sleep(1)
-    logger = verbose.verbose()
+    logger = verbose.get_logger()
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
     def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:

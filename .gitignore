@@ -9,14 +9,13 @@ edupage.md
 edupage.pptx
 edupage.png
 ~$edupage.pptx
-PATH
 completer.log
 .history/
 .vs/
 .pytest_cache/
 .mypy_cache/
-ffmpeg/
-py_filter.bat
 Doxyfile
 download/
 signatures.py
+edupage_old.py
+patch.py
