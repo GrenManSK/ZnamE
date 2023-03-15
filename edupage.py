@@ -77,6 +77,8 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Importing initial libraries', toprint=False))
 
+    "List of all imported modules and globals"
+
     modulenames: list = list(set(sys.modules) & set(globals()))
     modulenames1: list = list(set(sys.modules) & set(globals()))
     moduleminus: int = 0
@@ -102,6 +104,8 @@ try:  # type: ignore
             if addto != '':
                 logger.stay(printnlog(addto, toprint=False))
 
+    "Printing the unlisted modules + importing others dependencies using chocolatey"
+
     print_module('datetime')
     print_module('sleep from time')
     print_module('cProfile')
@@ -125,6 +129,7 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('DONE', toprint=False))
 
+    "Defining custom exceptions"
 
     class configNoOption(Exception):
         pass
@@ -140,7 +145,7 @@ try:  # type: ignore
 
     class argMusicListError(Exception):
         pass
-    
+
     class argMusicError(Exception):
         pass
 
@@ -181,18 +186,22 @@ try:  # type: ignore
         printnlog(
             f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}')
 
-    def error_get(errors, line: int) -> None:
+    def error_get(errors, line: list) -> None:
         """
-        It takes an error, a line number, and a comment, and then raises the error with the comment, and
-        then logs the error with the line number
+        The error_get function is used to raise the errors that are found in the error_log function.
+            The error_get function takes two arguments:
+                1) errors - a list of exceptions that were raised by the code being tested.
+                2) line - a list of strings containing information about each exception raised.
 
-        :param error: The error to raise
-        :param line: The line of code that the error is on
-        :param comment: The comment that will be displayed in the error log
+        :param errors: Store the errors that are raised by the function
+        :param line: list: Store the line numbers of the errors
+        :return: The error code and the line number of the error
         """
-        for times ,error in enumerate(errors.exceptions):
+
+        for times, error in enumerate(errors.exceptions):
             try:
-                raise eval(error.with_traceback.__qualname__.split('.')[0])(error)
+                raise eval(
+                    error.with_traceback.__qualname__.split('.')[0])(error)
             except eval(error.with_traceback.__qualname__.split('.')[0]):
                 if len(line) == 1 and times > 0:
                     error_log(line[0])
@@ -201,59 +210,71 @@ try:  # type: ignore
 
     def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
         """
-        It returns the line number of the code that called it
+        The get_line_number function returns the line number of the caller.
 
-        :param relative_frame: The number of frames to go back, defaults to 1 (optional)
-        :param msg: The message to print
-        :return: The line number of the code that called the function.
+            The get_line_number function is a helper function that returns the line number of 
+            where it was called from. This can be useful for debugging purposes, or to help 
+            identify where an error occurred in your code. It also allows you to go back a few lines if needed, which can be helpful when using this function inside loops and other functions that may have multiple calls on one line (such as list comprehensions).
+
+        :param goback: int: Go back a certain number of lines in the stack
+        :param relative_frame: int: Specify the frame in the stack to get the line number from
+        :return: The line number of the function call
         """
         return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
 
+    "Checking if config file is in correct state"
+
     if __name__ == '__main__':
         logger.stay(printnlog('Reading config file (ini)', toprint=False))
-    line_number: int = get_line_number(1)
     try:
         config = configparser.RawConfigParser()
         line_number: int = get_line_number(-1)
         config.read('config.ini')
     except configparser.DuplicateSectionError:
         printnlog("'config.ini' file is corrupt -> Duplicate section")
-        error_get(configparser.DuplicateSectionError('Corruption of config file => Duplicate section'), [line_number])
+        error_get(configparser.DuplicateSectionError(
+            'Corruption of config file => Duplicate section'), [line_number])
         input("Press 'enter' to quit")
         quit()
     except configparser.DuplicateOptionError:
         printnlog("'config.ini' file is corrupt -> Duplicate option")
-        error_get(configparser.DuplicateSectionError('Corruption of config file => Duplicate option'), [line_number])
+        error_get(configparser.DuplicateSectionError(
+            'Corruption of config file => Duplicate option'), [line_number])
         input("Press 'enter' to quit")
         quit()
     except configparser.NoSectionError:
         printnlog("'config.ini' file is corrupt -> No section")
-        error_get(configparser.DuplicateSectionError('Corruption of config file => No section'), [line_number])
+        error_get(configparser.DuplicateSectionError(
+            'Corruption of config file => No section'), [line_number])
         input("Press 'enter' to quit")
         quit()
+
+    "Printing out important config setting"
+
     try:
         if __name__ == '__main__':
             logger.next((printnlog('Language: ' +
-                                 config.get('basic info', 'lang').split(' ')[0], toprint=False)))
+                                   config.get('basic info', 'lang').split(' ')[0], toprint=False)))
             logger.stay((printnlog('Enviroment: ' + config.get('basic info',
-                                                             'enviroment').split(' ')[0], toprint=False)))
+                                                               'enviroment').split(' ')[0], toprint=False)))
             logger.stay((printnlog('Intro: ' + config.get('basic info',
-                       'intro').split(' ')[0], toprint=False)), toprint=False)
+                                                          'intro').split(' ')[0], toprint=False)), toprint=False)
             logger.stay((printnlog('Inactivelimit: ' + config.get('basic info',
-                                                                'inactivelimit').split(' ')[0], toprint=False)))
+                                                                  'inactivelimit').split(' ')[0], toprint=False)))
             logger.stay((printnlog('Music: ' + config.get('basic info',
-                       'music').split(' ')[0], toprint=False)), toprint=False)
+                                                          'music').split(' ')[0], toprint=False)), toprint=False)
             logger.stay((printnlog('Musiclist: ' + str(config.get('basic info',
-                                                                'musiclist').split(',')[0:]), toprint=False)))
-            logger.stay(printnlog('User history: ' + str(config.items('user history')), toprint=False))
+                                                                  'musiclist').split(',')[0:]), toprint=False)))
+            logger.stay(printnlog('User history: ' +
+                        str(config.items('user history')), toprint=False))
             logger.prev('')
     except configparser.NoOptionError:
         printnlog("'config.ini' file is corrupt -> option missing")
-        error_get(configNoOption('Corruption of config file => option missing'), [line_number],)
+        error_get(configNoOption(
+            'Corruption of config file => option missing'), [line_number],)
         input("Press 'enter' to quit")
         quit()
         printnlog('\nDone\n')
-    
 
     def set_config(section: str, name: str, info: str) -> None:
         """
@@ -273,7 +294,10 @@ try:  # type: ignore
         global parser
         parser = argparse.ArgumentParser()
         UNSPECIFIED = object()
-        language: list[str] = ['SK', 'EN', 'JP']
+        language: list[str] = ['SK', 'EN', 'JP']  # Supported languages
+
+        "Setting up music if none leaving empty list"
+
         music: list[str] = list(
             set(config.get('basic info', 'musiclist').split(',')[0:]))
         if music[0] == '':
@@ -295,21 +319,24 @@ try:  # type: ignore
                             help='Will not start intro', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-nif', '--nointrof', choices=[],
                             help='Will not start intro', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-co', '--configoptions', choices=[],
+                            help='Make a file with all config options', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-log', '--log', choices=[],
+                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
+        parser.add_argument('-music', '--music', choices=musicchoices,
+                            help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
+
+        "These are arguments for program to use"
+
         parser.add_argument('-neko', '--neko', choices=[],
                             help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-waifu', '--waifu', choices=[],
                             help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-waifuvid', '--waifuvid', choices=[],
                             help='Easter egg was activated', default=UNSPECIFIED, nargs='?')
-        parser.add_argument('-co', '--configoptions', choices=[],
-                            help='Make a file with all config options', default=UNSPECIFIED, nargs='?')
-        parser.add_argument('-music', '--music', choices=musicchoices,
-                            help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
         parser.add_argument('-inactive', '--inactive', choices=[],
                             help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-restart', '--restart', choices=[],
-                            help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
-        parser.add_argument('-log', '--log', choices=[],
                             help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-update', '--update', choices=[],
                             help='!!! Argument for program to use (this command won\'t update this program, it does it automatically)', default=UNSPECIFIED, nargs='?')
@@ -322,12 +349,14 @@ try:  # type: ignore
         args = parser.parse_args()
         hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                                 '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
-        logger.stay(printnlog("Checking argument correctness", toprint=False))
+        logger.stay(printnlog("Checking config correctness", toprint=False))
         if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
-            error_get(ExceptionGroup('',[argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(
+                f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
             quit()
         elif not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
-            error_get(ExceptionGroup('',[argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(
+                f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
             quit()
         else:
             printnlog('basic info => enviroment')
@@ -335,10 +364,12 @@ try:  # type: ignore
             int(config.get('basic info', 'inactivelimit').split(' ')[0])
             printnlog('basic info => inactivelimit')
         except ValueError:
-            error_get(ExceptionGroup('',[argInactiveLimitError('Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argInactiveLimitError(
+                'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
             quit()
         if not config.get('basic info', 'intro').split(' ')[0] in ['True', 'False']:
-            error_get(ExceptionGroup('',[argIntroError('Wrong choice in \'basic info\' => intro'), ValueError('Only \'True\' or \'False\'')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argIntroError('Wrong choice in \'basic info\' => intro'), ValueError(
+                'Only \'True\' or \'False\'')]), [get_line_number()])
             quit()
         else:
             printnlog('basic info => intro')
@@ -349,10 +380,12 @@ try:  # type: ignore
             printnlog('basic info => music')
             pass
         else:
-            error_get(ExceptionGroup('',[argMusicError('Wrong choice in \'basic info\' => music'), ValueError('Only \'enable\' or \'disable\'')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argMusicError('Wrong choice in \'basic info\' => music'), ValueError(
+                'Only \'enable\' or \'disable\'')]), [get_line_number()])
             quit()
         if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
-            error_get(ExceptionGroup('',[argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError('Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError(
+                'Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
             quit()
         else:
             printnlog('waifu settings => type')
@@ -360,20 +393,23 @@ try:  # type: ignore
             category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
                                    "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
             if not config.get('waifu settings', 'category').split(' ')[0] in category:
-                error_get(ExceptionGroup('',[argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError('Use \'waifu\' and see option in setup function')]), [get_line_number()])
+                error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
+                    'Use \'waifu\' and see option in setup function')]), [get_line_number()])
                 quit()
             else:
                 printnlog('waifu settings => category')
         elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
             category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
             if not config.get('waifu settings', 'category').split(' ')[0] in category:
-                error_get(ExceptionGroup('',[argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError('Use \'waifu\' and see option in setup function')]), [get_line_number()])
+                error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
+                    'Use \'waifu\' and see option in setup function')]), [get_line_number()])
                 quit()
             else:
                 printnlog('waifu settings => category')
         server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
         if not config.get('neko settings', 'server').split(' ')[0] in server:
-            error_get(ExceptionGroup('',[argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(f'Only take {str(server)}')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(
+                f'Only take {str(server)}')]), [get_line_number()])
             quit()
         else:
             printnlog('neko settings => server')
@@ -381,7 +417,8 @@ try:  # type: ignore
             int(config.get('game settings', 'goal_score').split(' ')[0])
             printnlog('game settings => goal_score')
         except ValueError:
-            error_get(ExceptionGroup('',[argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError('take only numbers')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError(
+                'take only numbers')]), [get_line_number()])
             quit()
         try:
             if 10 <= int(config.get('game settings', 'goal_score').split(' ')[0]):
@@ -389,13 +426,15 @@ try:  # type: ignore
             else:
                 raise ValueError
         except ValueError:
-            error_get(ExceptionGroup('',[argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argGameError(
+                'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
             quit()
         try:
             float(config.get('game settings', 'computer_power').split(' ')[0])
             printnlog('game settings => computer_power')
         except ValueError:
-            error_get(ExceptionGroup('',[argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError('take only numbers')]), [get_line_number()])
+            error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError(
+                'take only numbers')]), [get_line_number()])
             quit()
         if config.get('basic info', 'music').split(' ')[0] == 'enable':
             musiclimittext: bool = False
@@ -415,22 +454,27 @@ try:  # type: ignore
             if config.get('basic info', 'lang').split(' ')[0] in language:
                 args.language = config.get('basic info', 'lang').split(' ')[0]
             else:
-                error_get(ExceptionGroup('',[argLanguageError('Wrong choice in \'basic info\' => lang'), ValueError('Language doesn\'t exist')]), [get_line_number()])
+                error_get(ExceptionGroup('', [argLanguageError('Wrong choice in \'basic info\' => lang'), ValueError(
+                    'Language doesn\'t exist')]), [get_line_number()])
                 quit()
 
         """
-        If the user has specified that we should update the rotation dictionary, remove the old update.py file.
+        If the program has specified that we should update the rotation dictionary, remove the old update.py file.
         """
         if args.update is None:
             try:
                 os.remove('update.py')
             except FileNotFoundError:
                 args.update = UNSPECIFIED
-                error_get(ExceptionGroup('',[FileNotFoundError('update.py isn\'t present'), TypeError('NOT FATAL ERROR')]), [get_line_number()])
+                error_get(ExceptionGroup('', [FileNotFoundError(
+                    'update.py isn\'t present'), TypeError('NOT FATAL ERROR')]), [get_line_number()])
 
         logger.stay(printnlog('DONE', toprint=False))
 
         if args.configoptions == None:
+
+            "configoptions argument functionality"
+
             with open('CONFIG_OPTIONS.txt', 'w') as file:
                 file.write('[BASIC INFO]\n')
                 file.write(f'lang = {language}\n')
@@ -438,12 +482,14 @@ try:  # type: ignore
                 file.write(f'intro = [True/False]\n')
                 file.write(f'inactivelimit = [Any number]\n')
                 file.write(f'music = [disable/enable]\n')
-                file.write(f'musiclist = [Any Youtube video title, divided by comma]\n')
-                file.write(f'musicnumber = [Any number; Max is number of items in musiclist]\n')
+                file.write(
+                    f'musiclist = [Any Youtube video title, divided by comma]\n')
+                file.write(
+                    f'musicnumber = [Any number; Max is number of items in musiclist]\n')
                 file.write('[WAIFU SETTINGS]\n')
                 file.write(f'type = [sfw/nsfw]\n')
                 category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
-                                   "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+                                       "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
                 file.write(f'category (sfw) = {category}\n')
                 category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
                 file.write(f'category (nsfw) = {category}\n')
@@ -451,12 +497,15 @@ try:  # type: ignore
                 file.write(f'server = {server}\n')
                 file.write('[GAME SETTINGS]\n')
                 file.write('goal_score = [Any number]\n')
-                file.write('computer_power = [Any number; Lower the powerfull]\n')
+                file.write(
+                    'computer_power = [Any number; Lower the powerfull]\n')
             os.remove(f'crash_dump-{datelog}.txt')
             quit()
 
-
     if __name__ == '__main__':
+
+        "Set of all dependencies using chocolatey"
+
         potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager',
                               'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3'}
         printnlog('Libraries needed: ', end='')
@@ -468,6 +517,9 @@ try:  # type: ignore
             pkg.key for pkg in pkg_resources.working_set}
         nenajdene: set[str] = potrebne - nainstalovane
         if args.version is None:
+
+            "Printing out version and possible updates"
+
             verzia = open('version', 'r')
             logger.stay(printnlog(verzia.read(), toprint=False))
             verzia.close()
@@ -481,6 +533,9 @@ try:  # type: ignore
             os.remove('crash_dump-' + datelog + '.txt')
             quit()
         if __name__ == '__main__':
+
+            "Downloading dependencies using chocolatey"
+
             if nenajdene:
                 printnlog('\nUpdate is available: ' + str(nenajdene))
                 vstup: str = input(
@@ -499,7 +554,6 @@ try:  # type: ignore
                 else:
                     quit()
             printnlog('DONE\n')
-            printnlog('Checking internet connection\n')
 
     def internet():
         number = 0
@@ -511,16 +565,17 @@ try:  # type: ignore
             number += 1
             if 10 >= number >= 5:
                 if args.language == "SK":
-                    printnlog("Zdá sa, že máme problém s internetovým pripojením")
+                    printnlog(
+                        "Zdá sa, že máme problém s internetovým pripojením")
                 elif args.language == "EN":
-                    printnlog("Seems like we're having trouble with internet connection")
+                    printnlog(
+                        "Seems like we're having trouble with internet connection")
                 elif args.language == "JP":
                     printnlog(
                         "インターネット接続に問題があるようです\nIf you don't see any of characters watch 'help.txt'")
                 break
             if number >= 10:
-                break 
-
+                break
 
     def internet_check() -> None:
         try:
@@ -551,7 +606,7 @@ try:  # type: ignore
         The installing_carousel function is a function that will print out the string 'Installing' and then
         the package name, in an animated fashion. It will do this until it reaches the INSTALL_DONE file, which
         is created by another function. This is to prevent multiple instances of installing_carousel from running at once.
-        
+
         :param package: str: Specify the package that is being installed
         :param comment: str: Tell the user what is happening during the installation process
         :return: :
@@ -571,7 +626,8 @@ try:  # type: ignore
                 if not bar:
                     print('                                            ', end='\r')
                 if bar:
-                    tqdm.write('                                            ', end='\r')
+                    tqdm.write(
+                        '                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
             if not bar:
@@ -591,10 +647,11 @@ try:  # type: ignore
                 if not bar:
                     print('                                            ', end='\r')
                 if bar:
-                    tqdm.write('                                            ', end='\r')
+                    tqdm.write(
+                        '                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
-            if not bar:    
+            if not bar:
                 print(f'{comment} {package} -               ', end='\r')
             if bar:
                 tqdm.write(f'{comment} {package} -               ', end='\r')
@@ -611,7 +668,8 @@ try:  # type: ignore
                 if not bar:
                     print('                                            ', end='\r')
                 if bar:
-                    tqdm.write('                                            ', end='\r')
+                    tqdm.write(
+                        '                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
             if not bar:
@@ -631,7 +689,8 @@ try:  # type: ignore
                 if not bar:
                     print('                                            ', end='\r')
                 if bar:
-                    tqdm.write('                                            ', end='\r')
+                    tqdm.write(
+                        '                                            ', end='\r')
                 sleep(0.4)
                 os.remove('INSTALL_PAUSE')
             if not bar:
@@ -648,7 +707,8 @@ try:  # type: ignore
             if not bar:
                 print(f'{comment} {package} ALREADY INSTALLED             ')
             if bar:
-                tqdm.write(f'{comment} {package} ALREADY INSTALLED             ')
+                tqdm.write(
+                    f'{comment} {package} ALREADY INSTALLED             ')
         else:
             if not bar:
                 print(f'{comment} {package} DONE             ')
@@ -667,15 +727,15 @@ try:  # type: ignore
         except Exception:
             pass
 
-    def choco_install(*packages: str) -> None:
+    def choco_install(*packages: str) -> tuple(int, int):
         """
         The choco_install function installs a list of packages using Chocolatey.
         It returns the number of packages successfully installed and the number that were already installed.
-        
+
         :param *packages: str: Pass a variable number of arguments to the function
         :return: A tuple of two integers
         """
-        
+
         alinst_number = 0
         inst_number = 0
         for package in packages:
@@ -686,7 +746,8 @@ try:  # type: ignore
             with open('choco_output', 'w') as file:
                 Thread(target=installing_carousel, args=(package,)).start()
                 Thread(target=choco_check, args=(package,)).start()
-                subprocess.run(['choco', 'install', package, version, '-y'], stdout=file, text=True)
+                subprocess.run(['choco', 'install', package,
+                               version, '-y'], stdout=file, text=True)
             with open('choco_output', 'r') as file:
                 alinst = False
                 for line, content in enumerate(file.readlines()):
@@ -704,12 +765,12 @@ try:  # type: ignore
                 inst_number += 1
             sleep(2)
         return (inst_number, alinst_number)
-    
+
     def choco_check(module: str) -> None:
         """
         The choco_check function checks if chocolatey is installed and prompts the user to continue.
         It also checks if the user is an admin, and confirms that they want to run as non-admin.
-        
+
         :param module: str: Determine which module is being checked for
         :return: True when chocolatey is installed, and false when it is not
         """
@@ -791,24 +852,32 @@ try:  # type: ignore
             if not os.path.isfile('INSTALL_RESTART'):
                 with open('choco.ps1', 'w') as file:
                     file.write('$InstallDir=\'C:\ProgramData\chocoportable\'\n$env:ChocolateyInstall="$InstallDir"\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\'https://community.chocolatey.org/install.ps1\'))')
-                logger.next("Checking if chocolatey is installed if not downloading\n")
-                Thread(target=installing_carousel, args=('chocolatey',)).start()
+                logger.next(
+                    "Checking if chocolatey is installed if not downloading\n")
+                Thread(target=installing_carousel,
+                       args=('chocolatey',)).start()
                 Thread(target=choco_check, args=('chocolatey',)).start()
                 with open('choco_output', 'w') as file:
-                    choco = subprocess.run(['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
+                    choco = subprocess.run(
+                        ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
                 with open('choco_output', 'r') as file:
                     for line in file.readlines():
+
+                        "If system don\'t allow running powershell scripts navigate user to allow it"
+
                         if 'cannot be loaded because running scripts is disabled on this system' in line:
                             open('INSTALL_ERROR', 'x')
-                            logger.stay('Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'')
+                            logger.stay(
+                                'Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'')
                             with open('set_permissions.txt', 'w') as file:
-                                file.write('Run Powershell as administrator and type following code press \'enter\' type Y and press \'enter\'\n\nSet-ExecutionPolicy RemoteSigned')
-                            osCommandString = "notepad.exe set_permissions.txt"
-                            os.system(osCommandString)
+                                file.write(
+                                    'Run Powershell as administrator and type following code press \'enter\' type Y and press \'enter\'\n\nSet-ExecutionPolicy RemoteSigned')
+                            os.system("notepad.exe set_permissions.txt")
                             input('Enter to continue ...')
                             os.remove('set_permissions.txt')
                             with open('choco_output', 'w') as file:
-                                choco = subprocess.run(['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
+                                choco = subprocess.run(
+                                    ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
                 open('choco_end', 'x')
                 open('INSTALL_DONE', 'x')
                 logger.prev('')
@@ -833,7 +902,8 @@ try:  # type: ignore
                         # Check for root on Posix
                         return os.getuid() == 0
                     else:
-                        raise RuntimeError("Unsupported operating system for this module: %s" % (os.name,))
+                        raise RuntimeError(
+                            "Unsupported operating system for this module: %s" % (os.name,))
 
                 def runAsAdmin(cmdLine=None, wait=True):
                     """
@@ -844,17 +914,21 @@ try:  # type: ignore
                     :return: The process handle of the elevated process
                     """
                     if os.name != 'nt':
-                        raise RuntimeError("This function is only implemented on Windows.")
+                        raise RuntimeError(
+                            "This function is only implemented on Windows.")
 
-                    import win32api, win32con, win32event, win32process
-                    from win32com.shell.shell import ShellExecuteEx # type: ignore
-                    from win32com.shell import shellcon # type: ignore
+                    import win32api
+                    import win32con
+                    import win32event
+                    import win32process
+                    from win32com.shell.shell import ShellExecuteEx  # type: ignore
+                    from win32com.shell import shellcon  # type: ignore
 
                     python_exe = sys.executable
 
                     if cmdLine is None:
                         cmdLine = [python_exe] + sys.argv
-                    elif type(cmdLine) not in (ctypes.TupleType,ctypes.ListType):
+                    elif type(cmdLine) not in (ctypes.TupleType, ctypes.ListType):
                         raise ValueError("cmdLine is not a sequence.")
                     cmd = '"%s"' % (cmdLine[0],)
                     params = " ".join(['"%s"' % (x,) for x in cmdLine[1:]])
@@ -862,13 +936,14 @@ try:  # type: ignore
                     showCmd = win32con.SW_SHOWNORMAL
                     lpVerb = 'runas'
                     procInfo = ShellExecuteEx(nShow=showCmd,
-                                            fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,
-                                            lpVerb=lpVerb,
-                                            lpFile=cmd,
-                                            lpParameters=params)
+                                              fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,
+                                              lpVerb=lpVerb,
+                                              lpFile=cmd,
+                                              lpParameters=params)
                     if wait:
-                        procHandle = procInfo['hProcess']    
-                        obj = win32event.WaitForSingleObject(procHandle, win32event.INFINITE)
+                        procHandle = procInfo['hProcess']
+                        obj = win32event.WaitForSingleObject(
+                            procHandle, win32event.INFINITE)
                         rc = win32process.GetExitCodeProcess(procHandle)
                     else:
                         rc = None
@@ -882,10 +957,12 @@ try:  # type: ignore
                     """
                     rc = 0
                     if not isUserAdmin():
-                        print("You're not an admin.", os.getpid(), "params: ", sys.argv)
+                        print("You're not an admin.",
+                              os.getpid(), "params: ", sys.argv)
                         rc = runAsAdmin()
                     else:
-                        print("You are an admin!", os.getpid(), "params: ", sys.argv)
+                        print("You are an admin!", os.getpid(),
+                              "params: ", sys.argv)
                         rc = 0
                     return rc
 
@@ -899,13 +976,22 @@ try:  # type: ignore
                 quit()
             if os.path.isfile('INSTALL'):
                 os.remove('INSTALL')
-                inst_number, alinst_number = choco_install('ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201 -y')
+
+                "Downloading dependencies using chocolatey"
+
+                choco_packages: list[str] = [
+                    'ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201 -y']
+
+                "inst_number is number of installed packages; alinst_number is number of already installed"
+
+                inst_number, alinst_number = choco_install(*choco_packages)
                 if inst_number == 0:
                     pass
                 else:
                     logger.stay("Restarting program ...")
                     sleep(1)
-                    subprocess.check_output('start edupage.py --language ' + args.language, shell=True)
+                    subprocess.check_output(
+                        'start edupage.py --language ' + args.language, shell=True)
                     os.remove(f"crash_dump-{datelog}.txt")
                 os.remove('choco_output')
                 try:
@@ -1033,8 +1119,6 @@ try:  # type: ignore
                         format="%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s",
                         datefmt='%Y-%m-%d:%H:%M:%S')
 
-
-
     def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
         """
         "Download a file from a URL to a local file."
@@ -1079,7 +1163,6 @@ try:  # type: ignore
         screensizepercentage: tuple[float, float] = float(
             (1/1920)*screensize[0]), float((1/1080)*screensize[1])
 
-
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             sleep(1)
             try:
@@ -1089,10 +1172,11 @@ try:  # type: ignore
                 pass
             open("C:/Users/" + os.getlogin() +
                  "/AppData/Local/ZnámE/info.txt", "x")
-            logger.stay(to_info(verzia.read(), end='', file='version', mode='w', toprint=False))
+            logger.stay(to_info(verzia.read(), end='',
+                        file='version', mode='w', toprint=False))
             logger.stay(printnlog('Getting system information', toprint=False))
             logger.next(to_info('Resolution: ' +
-                    str(screensize[0]) + 'x' + str(screensize[1]) + '\n', toprint=False))
+                                str(screensize[0]) + 'x' + str(screensize[1]) + '\n', toprint=False))
             computer1 = wmi.WMI()
             computer_info: list[str] = computer1.Win32_ComputerSystem()[0]
             os_info: list[str] = computer1.Win32_OperatingSystem()[0]
@@ -1119,6 +1203,8 @@ try:  # type: ignore
                         return f"{bytes:.2f}{unit}{suffix}"
                     bytes /= factor
 
+            "Printing and logging user PC info; !! info is send to none server"
+
             my_system = platform.uname()
             my_cpuinfo = cpuinfo.get_cpu_info()
             pc = wmi.WMI()
@@ -1137,36 +1223,58 @@ try:  # type: ignore
             system_ram = float(os_info.TotalVisibleMemorySize) / \
                 1048576  # KB to GB
             logger.stay(to_info('OS Name: {0}'.format(os_name), toprint=False))
-            logger.stay(to_info(f"Device Name: {my_system.node}", toprint=False))
-            logger.stay(to_info(f"Architecture: {my_system.machine}", toprint=False))
-            logger.stay(to_info(f"Processor: {my_system.processor}", toprint=False))
-            logger.stay(to_info('CPU: {0}'.format(proc_info.Name), toprint=False))
+            logger.stay(
+                to_info(f"Device Name: {my_system.node}", toprint=False))
+            logger.stay(
+                to_info(f"Architecture: {my_system.machine}", toprint=False))
+            logger.stay(
+                to_info(f"Processor: {my_system.processor}", toprint=False))
+            logger.stay(to_info('CPU: {0}'.format(
+                proc_info.Name), toprint=False))
             logger.stay(to_info("="*40 + "CPU Info" + "="*40, toprint=False))
-            logger.stay(to_info(f"CPU architecture: {my_cpuinfo['arch']}", toprint=False))
-            logger.stay(to_info("Physical cores:" + str(psutil.cpu_count(logical=False)), toprint=False))
-            logger.stay(to_info("Total cores:" + str(psutil.cpu_count(logical=True)), toprint=False))
-            logger.stay(to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz", toprint=False))
-            logger.stay(to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz", toprint=False))
-            logger.stay(to_info(f"Current Frequency: {cpufreq.current:.2f}Mhz", toprint=False))
+            logger.stay(
+                to_info(f"CPU architecture: {my_cpuinfo['arch']}", toprint=False))
+            logger.stay(to_info("Physical cores:" +
+                        str(psutil.cpu_count(logical=False)), toprint=False))
+            logger.stay(to_info("Total cores:" +
+                        str(psutil.cpu_count(logical=True)), toprint=False))
+            logger.stay(
+                to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz", toprint=False))
+            logger.stay(
+                to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz", toprint=False))
+            logger.stay(
+                to_info(f"Current Frequency: {cpufreq.current:.2f}Mhz", toprint=False))
             logger.stay(to_info("CPU Usage Per Core:", toprint=False))
             logger.next('')
             for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
                 to_info(f"Core {i}: {percentage}%")
             logger.prev(to_info(pc.Win32_Processor()[0], toprint=False))
-            logger.stay(to_info(f"Total CPU Usage: {psutil.cpu_percent()}%", toprint=False))
-            logger.stay(to_info('RAM: {0} GB'.format(system_ram), toprint=False))
-            logger.stay(to_info("="*40 + "Memory Information" + "="*40, toprint=False))
-            logger.stay(to_info(f"Total: {get_size1(svmem.total)}", toprint=False))
-            logger.stay(to_info(f"Available: {get_size1(svmem.available)}", toprint=False))
-            logger.stay(to_info(f"Used: {get_size1(svmem.used)}", toprint=False))
-            logger.stay(to_info(f"Percentage: {svmem.percent}%", toprint=False))
+            logger.stay(
+                to_info(f"Total CPU Usage: {psutil.cpu_percent()}%", toprint=False))
+            logger.stay(
+                to_info('RAM: {0} GB'.format(system_ram), toprint=False))
+            logger.stay(
+                to_info("="*40 + "Memory Information" + "="*40, toprint=False))
+            logger.stay(
+                to_info(f"Total: {get_size1(svmem.total)}", toprint=False))
+            logger.stay(
+                to_info(f"Available: {get_size1(svmem.available)}", toprint=False))
+            logger.stay(
+                to_info(f"Used: {get_size1(svmem.used)}", toprint=False))
+            logger.stay(
+                to_info(f"Percentage: {svmem.percent}%", toprint=False))
             logger.stay(to_info("="*20 + "SWAP" + "="*20, toprint=False))
-            logger.stay(to_info(f"Total: {get_size1(swap.total)}", toprint=False))
-            logger.stay(to_info(f"Free: {get_size1(swap.free)}", toprint=False))
-            logger.stay(to_info(f"Used: {get_size1(swap.used)}", toprint=False))
+            logger.stay(
+                to_info(f"Total: {get_size1(swap.total)}", toprint=False))
+            logger.stay(
+                to_info(f"Free: {get_size1(swap.free)}", toprint=False))
+            logger.stay(
+                to_info(f"Used: {get_size1(swap.used)}", toprint=False))
             logger.stay(to_info(f"Percentage: {swap.percent}%", toprint=False))
-            logger.stay(to_info('Graphics Card: {0}'.format(gpu_info.Name), toprint=False))
-            logger.stay(to_info("="*40 + "GPU Details" + "="*40, toprint=False))
+            logger.stay(to_info('Graphics Card: {0}'.format(
+                gpu_info.Name), toprint=False))
+            logger.stay(
+                to_info("="*40 + "GPU Details" + "="*40, toprint=False))
             list_gpus: list = []
             for gpu in gpus:
                 gpu_id = gpu.id
@@ -1183,48 +1291,73 @@ try:  # type: ignore
                 ))
 
             logger.stay(to_info(tabulate(list_gpus, headers=("id", "name", "load", "free memory", "used memory", "total memory",
-                                                 "temperature", "uuid")), toprint=False))
-            logger.stay(to_info(f'IP Adress: {socket.gethostbyname(socket.gethostname())}', toprint=False))
+                                                             "temperature", "uuid")), toprint=False))
+            logger.stay(to_info(
+                f'IP Adress: {socket.gethostbyname(socket.gethostname())}', toprint=False))
             logger.stay(to_info(
                 f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}, toprint=False"))
-            logger.stay(to_info("="*40 + "Disk Information" + "="*40, toprint=False))
+            logger.stay(
+                to_info("="*40 + "Disk Information" + "="*40, toprint=False))
             logger.stay(to_info("Partitions and Usage:", toprint=False))
             logger.next('')
             for partition in partitions:
-                logger.stay(to_info(f"=== Device: {partition.device} ===", toprint=False))
-                logger.stay(to_info(f"  Mountpoint: {partition.mountpoint}", toprint=False))
-                logger.stay(to_info(f"  File system type: {partition.fstype}", toprint=False))
+                logger.stay(
+                    to_info(f"=== Device: {partition.device} ===", toprint=False))
+                logger.stay(
+                    to_info(f"  Mountpoint: {partition.mountpoint}", toprint=False))
+                logger.stay(
+                    to_info(f"  File system type: {partition.fstype}", toprint=False))
                 try:
                     partition_usage = psutil.disk_usage(partition.mountpoint)
                 except PermissionError:
                     continue
-                logger.stay(to_info(f"  Total Size: {get_size1(partition_usage.total)}", toprint=False))
-                logger.stay(to_info(f"  Used: {get_size1(partition_usage.used)}", toprint=False))
-                logger.stay(to_info(f"  Free: {get_size1(partition_usage.free)}", toprint=False))
-                logger.stay(to_info(f"  Percentage: {partition_usage.percent}%", toprint=False))
-            logger.prev(to_info(f"Total read: {get_size1(disk_io.read_bytes)}", toprint=False))
-            logger.stay(to_info(f"Total write: {get_size1(disk_io.write_bytes)}", toprint=False))
-            logger.stay(to_info("="*40 + "Network Information" + "="*40, toprint=False))
+                logger.stay(
+                    to_info(f"  Total Size: {get_size1(partition_usage.total)}", toprint=False))
+                logger.stay(
+                    to_info(f"  Used: {get_size1(partition_usage.used)}", toprint=False))
+                logger.stay(
+                    to_info(f"  Free: {get_size1(partition_usage.free)}", toprint=False))
+                logger.stay(
+                    to_info(f"  Percentage: {partition_usage.percent}%", toprint=False))
+            logger.prev(
+                to_info(f"Total read: {get_size1(disk_io.read_bytes)}", toprint=False))
+            logger.stay(
+                to_info(f"Total write: {get_size1(disk_io.write_bytes)}", toprint=False))
+            logger.stay(
+                to_info("="*40 + "Network Information" + "="*40, toprint=False))
             for interface_name, interface_addresses in if_addrs.items():
                 for address in interface_addresses:
-                    logger.next(to_info(f"=== Interface: {interface_name} ===", toprint=False))
+                    logger.next(
+                        to_info(f"=== Interface: {interface_name} ===", toprint=False))
                     if str(address.family) == 'AddressFamily.AF_INET':
-                        logger.next(to_info(f"  IP Address: {address.address}", toprint=False))
-                        logger.stay(to_info(f"  Netmask: {address.netmask}", toprint=False))
-                        logger.stay(to_info(f"  Broadcast IP: {address.broadcast}", toprint=False))
+                        logger.next(
+                            to_info(f"  IP Address: {address.address}", toprint=False))
+                        logger.stay(
+                            to_info(f"  Netmask: {address.netmask}", toprint=False))
+                        logger.stay(
+                            to_info(f"  Broadcast IP: {address.broadcast}", toprint=False))
                     elif str(address.family) == 'AddressFamily.AF_PACKET':
-                        logger.next(to_info(f"  MAC Address: {address.address}", toprint=False))
-                        logger.stay(to_info(f"  Netmask: {address.netmask}", toprint=False))
-                        logger.stay(to_info(f"  Broadcast MAC: {address.broadcast}", toprint=False))
+                        logger.next(
+                            to_info(f"  MAC Address: {address.address}", toprint=False))
+                        logger.stay(
+                            to_info(f"  Netmask: {address.netmask}", toprint=False))
+                        logger.stay(
+                            to_info(f"  Broadcast MAC: {address.broadcast}", toprint=False))
                     logger.prev('', by=1)
             logger.prev('')
-            logger.stay(to_info(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}", toprint=False))
-            logger.stay(to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}", toprint=False))
+            logger.stay(
+                to_info(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}", toprint=False))
+            logger.stay(
+                to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}", toprint=False))
             logger.stay(to_info(pc.Win32_VideoController()[0], toprint=False))
-            logger.stay(to_info("User Current Version:-" + str(sys.version), toprint=False))
+            logger.stay(to_info("User Current Version:-" +
+                        str(sys.version), toprint=False))
             logger.stay(printnlog('\nDONE\n', toprint=False))
 
         if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
+
+            "Creating backup files of data.xp2"
+
             logger.stay(printnlog('Creating backup...\b', toprint=False))
             os.makedirs("C:/Users/" + os.getlogin() +
                         "/AppData/Local/ZnámE/backup/")
@@ -1238,7 +1371,6 @@ try:  # type: ignore
             logger.stay(printnlog('Done'))
 
         logger.stay(printnlog("Defining functions", toprint=False))
-
 
     updateapp: str = str(
         'import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
@@ -1257,13 +1389,15 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         if args.test is not None:
-            logger.stay(printnlog('Checking for newer version of ZnámE', toprint=False))
+            logger.stay(
+                printnlog('Checking for newer version of ZnámE', toprint=False))
             try:
                 url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
                 page = requests.get(url)
                 verzia = open('version', 'r')
                 if semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
-                    logger.next(printnlog('You have the latest version', toprint=False))
+                    logger.next(
+                        printnlog('You have the latest version', toprint=False))
                     logger.prev('')
                 else:
                     if args.language == "SK":
@@ -1314,6 +1448,9 @@ try:  # type: ignore
                                 printnlog(directory1)
                                 directory = directory1
                     if directory is None:
+
+                        "If program fails to download update refer user to website"
+
                         if args.language == "SK":
                             printnlog(
                                 "CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
@@ -1377,20 +1514,19 @@ try:  # type: ignore
 
         :return: If error occured
         """
-
         global exit
-        stop_thread1: bool = True
-        a = None
+        dummy = None
         cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
         cv2.setWindowProperty(
             'frame2', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         test: str = "assets/banner.png"
         for file in glob.glob(test):
-            a = cv2.imread(file)
+            dummy = cv2.imread(file)
         try:
-            cv2.imshow("Image", a)
+            cv2.imshow("Image", dummy)
         except cv2.error:
-            error_get(cv2.error('File is corrupt (probably \'banner.png\')'), [get_line_number()])
+            error_get(cv2.error('File is corrupt (probably \'banner.png\')'), [
+                      get_line_number()])
             return True
         cv2.waitKey(1)
         sleep(0.1)
@@ -1401,7 +1537,8 @@ try:  # type: ignore
                 window.activate()
                 return False
             except IndexError:
-                error_get(IndexError('Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                error_get(IndexError(
+                    'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
                 return True
         return False
 
@@ -1422,9 +1559,9 @@ try:  # type: ignore
         """
         path: str = imgSrc
         for file in glob.glob(path):
-            global a
-            a = cv2.imread(file)
-            cv2.imshow(name, a)
+            global dummy
+            dummy = cv2.imread(file)
+            cv2.imshow(name, dummy)
             if x is not None and y is not None and width is not None and length is not None:
                 appname: str = name
                 xpos: int = x
@@ -1487,7 +1624,6 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: move', toprint=False))
-
         logger.next(printnlog('\nDefining apps', toprint=False))
 
     codeapp: str = str(
@@ -1538,11 +1674,9 @@ try:  # type: ignore
         The get_size function accepts a number of bytes and returns a human-readable string representation of the size.
         For example, calling get_size(1024) will return '0.98KiB'.
 
-
         :param bytes: Store the value of bytes
         :return: The size of the bytes in human readable format
         """
-
         for unit in ['', 'K', 'M', 'G', 'T', 'P']:
             if bytes < 1024:
                 return f"{bytes:.2f}{unit}B"
@@ -1555,12 +1689,10 @@ try:  # type: ignore
         """
         The delcache function deletes the cache file if it is empty.
 
-
         :param name: Name the file that is used to store the time
         :param hist: Check if the history file has changed
         :return: The value of the timer
         """
-
         global timer
         time_got: int = int(config.get(
             'basic info', 'inactivelimit').split(' ')[0])
@@ -1637,7 +1769,6 @@ try:  # type: ignore
         :param number: Determine the number of iterations
         :return: The progress bar
         """
-
         global progress_bar_check
         progress_bar_check = 0
         progress_bar_check_old: int = 0
@@ -1672,7 +1803,6 @@ try:  # type: ignore
         :param mark: Specify the mark of the student
         :return: The tuple (data, none)
         """
-
         global progress_bar_check
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = 'add'
@@ -1722,7 +1852,6 @@ try:  # type: ignore
         :param mode=0: Encode the file, mode=0 is used to decode the file
         :return: The value of the name variable, if it is not none
         """
-
         global progress_bar_check
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = 'decode'
@@ -1835,7 +1964,6 @@ try:  # type: ignore
         :param name: Find the name of the file that is being searched for
         :return: The name of the file that was found
         """
-
         global progress_bar_check
         findname: str = str(datetime.now().strftime("%H-%M-%S"))
         findname: str = 'find'
@@ -1903,7 +2031,6 @@ try:  # type: ignore
         :param mode: int: Determine the mode of operation
         :return: The name and new value of the file
         """
-
         global progress_bar_check
         codename = str(datetime.now().strftime("%H-%M-%S"))
         codename = 'code'
@@ -1971,10 +2098,7 @@ try:  # type: ignore
             subject.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
-            if subject == 'quit':
-                exit: bool = True
-                return
-            if subject == 'back':
+            if subject == 'quit' or subject == 'back':
                 return
             mark: str = input(str(linenumber) + ' Známka > ')
             historyfile.write(
@@ -1990,10 +2114,7 @@ try:  # type: ignore
             vstup.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
-            if subject == 'quit':
-                exit: bool = True
-                return
-            if subject == 'back':
+            if subject == 'quit' or subject == 'back':
                 return
             mark: str = input(str(linenumber) + ' Mark > ')
             historyfile.write(
@@ -2008,10 +2129,7 @@ try:  # type: ignore
             vstup.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
-            if subject == 'quit':
-                exit: bool = True
-                return
-            if subject == 'back':
+            if subject == 'quit' or subject == 'back':
                 return
             mark: str = input(str(linenumber) + ' マーク > ')
             historyfile.write(
@@ -2027,10 +2145,7 @@ try:  # type: ignore
             vstup.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
-            if subject == 'quit':
-                exit: bool = True
-                return
-            if subject == 'back':
+            if subject == 'quit' or subject == 'back':
                 return
             mark: str = input(str(linenumber) + ' Mark > ')
             historyfile.write(
@@ -2111,7 +2226,6 @@ try:  # type: ignore
         :param time: int=0: Make the mouseclick function run for a specified amount of time
         :return: The time it takes to click the mouse
         """
-
         while True:
             state_left = win32api.GetKeyState(0x01)   # type: ignore
             a = win32api.GetKeyState(0x01)   # type: ignore
@@ -2301,6 +2415,15 @@ try:  # type: ignore
         logger.stay(printnlog('Function: get_download_path', toprint=False))
 
     def spotdl_get():
+        """
+        The spotdl_get function is used to download the songs from spotify.
+        It uses a while loop that checks if the SPOTDL_QUIT file exists, and if it does not exist, then it will continue to run.
+        The function also has an inner for loop that iterates through each line in the SPOTDL_OUTPUT file
+        and checks if there is a GET request in that line. If there is one, then it will append the current line number
+        into an array called lines so we can keep track of which lines have been processed already (so we don't process them again).
+        
+        :return: The name of the song downloaded
+        """
         lines = []
         sleep(1)
         while not os.path.isfile('SPOTDL_QUIT'):
@@ -2309,13 +2432,15 @@ try:  # type: ignore
                     if not line in lines:
                         open('SPOTDL_QUEUE', 'x')
                         lines.append(line)
-                        content = unquote(content.split('"GET /api/download/file?file=')[1].split('&client_id=')[0])
+                        content = unquote(content.split(
+                            '"GET /api/download/file?file=')[1].split('&client_id=')[0])
                         download_path = get_download_path()
                         old_kb = 0
                         new_kb = 0
                         sleep(0.5)
                         while True:
-                            new_kb = os.path.getsize(download_path + '/' + content)
+                            new_kb = os.path.getsize(
+                                download_path + '/' + content)
                             print(new_kb)
                             if new_kb == old_kb:
                                 print('breaked')
@@ -2324,12 +2449,13 @@ try:  # type: ignore
                             old_kb = new_kb
                         sleep(2.5)
                         try:
-                            shutil.move(download_path + '/' + content, 'assets/' + content.replace(',', ''))
+                            shutil.move(download_path + '/' + content,
+                                        'assets/' + content.replace(',', ''))
                         except FileNotFoundError:
                             os.remove('SPOTDL_QUEUE')
                             return
-                        content = content.replace(',','')
-                        content = content.replace('\n','')
+                        content = content.replace(',', '')
+                        content = content.replace('\n', '')
                         new_content = ''
                         for i in content.split('.'):
                             if i == content.split('.')[-1]:
@@ -2347,15 +2473,23 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: spotdl_get', toprint=False))
-                    
+
     def spotMusicDow():
+        """
+        The spotMusicDow function is a function that downloads music from Spotify.
+        It uses the spotdl module to download music from Spotify, and then adds it to the user's playlist.
+        
+        :return: A string
+        """
         typewriter('Starting web player', ttime=0.01)
         spotdl = Thread(target=spotdl_get)
         spotdl.start()
         with open('SPOTDL_OUTPUT', 'w') as file:
-            subprocess.run(['python' ,'-m' ,'spotdl','web'], stdout=file, text=True)
+            subprocess.run(['python', '-m', 'spotdl', 'web'],
+                           stdout=file, text=True)
         sleep(1)
-        Thread(target=installing_carousel, args=('',), kwargs={'comment': 'Waiting for synchronization'}).start()
+        Thread(target=installing_carousel, args=('',), kwargs={
+               'comment': 'Waiting for synchronization'}).start()
         while os.path.isfile('SPOTDL_QUEUE'):
             sleep(1)
         open('SPOTDL_QUIT', 'x')
@@ -2473,7 +2607,8 @@ try:  # type: ignore
                     window.maximize()
                 except IndexError:
                     exit: bool = True
-                    error_get(IndexError('Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                    error_get(IndexError(
+                        'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
             if args.restart is not None:
                 player = vlc.Instance('--fullscreen')
                 media_list = player.media_list_new()  # type: ignore
@@ -2584,7 +2719,8 @@ try:  # type: ignore
                     window.activate()
                 except IndexError:
                     exit = True
-                    error_get(IndexError('Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                    error_get(IndexError(
+                        'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
             pg.press('win')
             sleep(0.1)
             pg.press('win')
@@ -2605,21 +2741,25 @@ try:  # type: ignore
             elif args.language == "JP":
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
-            from completer import SimpleCompleter # type: ignore
-            unlogged_completer = ['ffmpeg','animesearch','save','clear','cls','quit', 'quitneko', 'quitwaifu','quitmusic','login', 'delsavlog', 'waifu', 'neko', 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
-            logged_completer = ['ffmpeg','animesearch','save','clear','cls','quit', 'quitneko', 'quitwaifu','quitmusic','logout', 'delsavlog', 'waifu', 'neko', 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
+            from completer import SimpleCompleter  # type: ignore
+            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko',
+                                  'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
+            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
+                                'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
             bq_completer = ['back', 'quit']
             if args.debug == None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
             while True:
-                readline.set_completer(SimpleCompleter(unlogged_completer).complete)
+                readline.set_completer(
+                    SimpleCompleter(unlogged_completer).complete)
                 readline.parse_and_bind('tab: complete')
                 internet_check()
                 if not exit:
                     global loginvstupuser
                     if logged:
-                        readline.set_completer(SimpleCompleter(logged_completer).complete)
+                        readline.set_completer(
+                            SimpleCompleter(logged_completer).complete)
                         readline.parse_and_bind('tab: complete')
                         if firstlogin:
                             logins += 1
@@ -2700,7 +2840,8 @@ try:  # type: ignore
                             add_marks(
                                 linenumber=linenumber, historyname=historyname, neko=neko, waifu=waifu)
                     if topassword:
-                        readline.set_completer(SimpleCompleter(bq_completer).complete)
+                        readline.set_completer(
+                            SimpleCompleter(bq_completer).complete)
                         readline.parse_and_bind('tab: complete')
                         if savefilemode:   # type: ignore
                             vstup: str = savefile[9:15]   # type: ignore
@@ -2921,7 +3062,8 @@ try:  # type: ignore
                                 typewriter('Nie je stiahnutý žiadny zvuk')
                             if args.language == 'JP':
                                 typewriter('オーディオはダウンロードされません')
-                            musicvstup: str = input('1) Download music\n2) Back\n> ')
+                            musicvstup: str = input(
+                                '1) Download music\n2) Back\n> ')
                             if musicvstup == '1':
                                 to_append = spotMusicDow().split(',')
                                 for item in to_append:
@@ -2960,7 +3102,8 @@ try:  # type: ignore
                                 os.remove('MUSIC')
                             except Exception:
                                 pass
-                        elif musicvstup == len(musiclistnew) + 1 and not musicnone:  # remove audio
+                        # remove audio
+                        elif musicvstup == len(musiclistnew) + 1 and not musicnone:
                             if args.language == 'EN':
                                 typewriter('Delete audio')
                             if args.language == 'SK':
@@ -3036,9 +3179,11 @@ try:  # type: ignore
                                 'Done                                            ', ttime=0.01)
                         else:
                             if args.language == 'SK':
-                                typewriter('Nemáte obrázok na uloženie', ttime=0.01)
+                                typewriter(
+                                    'Nemáte obrázok na uloženie', ttime=0.01)
                             elif args.language == 'EN':
-                                typewriter("You don't have image to save", ttime=0.01)
+                                typewriter(
+                                    "You don't have image to save", ttime=0.01)
                             elif args.language == 'JP':
                                 typewriter('保存する画像がありません', ttime=0.01)
                     if vstup == 'offlinegame':
@@ -3093,9 +3238,11 @@ try:  # type: ignore
                     if vstup[0:4] == 'neko':
                         if neko:
                             if args.language == 'SK':
-                                typewriter('Prepáč, že nemôžeš mať dve neko', ttime=0.01)
+                                typewriter(
+                                    'Prepáč, že nemôžeš mať dve neko', ttime=0.01)
                             elif args.language == 'EN':
-                                typewriter("Sorry you can't have two nekos", ttime=0.01)
+                                typewriter(
+                                    "Sorry you can't have two nekos", ttime=0.01)
                             elif args.language == 'JP':
                                 typewriter('ごめんね、ネコを2匹飼えないよ', ttime=0.01)
                             continue
@@ -3107,7 +3254,8 @@ try:  # type: ignore
                                 typewriter(
                                     "Sorry you can't have neko if you have waifu", ttime=0.01)
                             elif args.language == 'JP':
-                                typewriter('すみません、ワイフを持っているならネコを持ってはいけない', ttime=0.01)
+                                typewriter(
+                                    'すみません、ワイフを持っているならネコを持ってはいけない', ttime=0.01)
                             continue
                         if args.language == 'SK':
                             typewriter('ČAKAJ', ttime=0.01)
@@ -3124,7 +3272,8 @@ try:  # type: ignore
                                     typewriter(
                                         'Getting image from nekos.best server', ttime=0.01)
                                 elif args.language == 'JP':
-                                    typewriter('nekos.best サーバーから画像を取得する', ttime=0.01)
+                                    typewriter(
+                                        'nekos.best サーバーから画像を取得する', ttime=0.01)
                                 resp = requests.get(
                                     "https://nekos.best/api/v2/neko")
                                 data: dict[str, str] = resp.json()
@@ -3138,7 +3287,8 @@ try:  # type: ignore
                                     typewriter(
                                         'Getting image from waifu.pics server', ttime=0.01)
                                 elif args.language == 'JP':
-                                    typewriter('waifu.pics サーバーから画像を取得する', ttime=0.01)
+                                    typewriter(
+                                        'waifu.pics サーバーから画像を取得する', ttime=0.01)
                                 resp = requests.get(
                                     "https://api.waifu.pics/sfw/neko")
                                 data: dict[str, str] = resp.json()
@@ -3151,11 +3301,13 @@ try:  # type: ignore
                                     typewriter(
                                         'Getting image from kyoko server', ttime=0.01)
                                 elif args.language == 'JP':
-                                    typewriter('kyoko サーバーから画像を取得する', ttime=0.01)
+                                    typewriter(
+                                        'kyoko サーバーから画像を取得する', ttime=0.01)
                                 resp = requests.get(
                                     "https://kyoko.rei.my.id/api/sfw.php")
                                 data: dict[str, str] = resp.json()
-                                res = requests.get(data["apiResult"]["url"][0], stream=True)
+                                res = requests.get(
+                                    data["apiResult"]["url"][0], stream=True)
                             elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
                                 if args.language == 'SK':
                                     typewriter(
@@ -3164,17 +3316,20 @@ try:  # type: ignore
                                     typewriter(
                                         'Getting image from nekos_api server', ttime=0.01)
                                 elif args.language == 'JP':
-                                    typewriter('nekos_api サーバーから画像を取得する', ttime=0.01)
+                                    typewriter(
+                                        'nekos_api サーバーから画像を取得する', ttime=0.01)
                                 resp = requests.get(
                                     "https://nekos.nekidev.com/api/image/random?categories=catgirl")
                                 data: dict[str, str] = resp.json()
-                                res = requests.get(data["data"][0]["url"], stream=True)
+                                res = requests.get(
+                                    data["data"][0]["url"], stream=True)
                             else:
                                 if args.language == 'SK':
                                     typewriter(
                                         'Nie je poskytnutý žiadny server', ttime=0.01)
                                 elif args.language == 'EN':
-                                    typewriter('No server provided', ttime=0.01)
+                                    typewriter(
+                                        'No server provided', ttime=0.01)
                                 elif args.language == 'JP':
                                     typewriter('サーバーが提供されていません', ttime=0.01)
                                 continue
@@ -3186,14 +3341,18 @@ try:  # type: ignore
                                 elif config.get('neko settings', 'server').split(' ')[0] == 'waifu.pics':
                                     download(data['url'], 'assets/neko.png')
                                 elif config.get('neko settings', 'server').split(' ')[0] == 'kyoko':
-                                    download(data["apiResult"]["url"][0], 'assets/neko.png')
+                                    download(data["apiResult"]
+                                             ["url"][0], 'assets/neko.png')
                                 elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
-                                    download(data["data"][0]["url"], 'assets/neko.png')
+                                    download(data["data"][0]
+                                             ["url"], 'assets/neko.png')
                         else:
                             args.neko = object()
-                        typewriter('Setting image          ', end='\r', ttime=0.01)
+                        typewriter('Setting image          ',
+                                   end='\r', ttime=0.01)
                         img = Image.open('assets/neko.png')
-                        typewriter('Opening image          ', end='\r', ttime=0.01)
+                        typewriter('Opening image          ',
+                                   end='\r', ttime=0.01)
                         img.show()
                         sleep(0.1)
                         typewriter('DONE                          ', end='\r')
@@ -3205,13 +3364,15 @@ try:  # type: ignore
                         sleep(0.1)
                         pg.press('esc')
                         sleep(0.1)
-                        typewriter('Getting cli in foreground     ', end='\r', ttime=0.01)
+                        typewriter('Getting cli in foreground     ',
+                                   end='\r', ttime=0.01)
                         if args.test is not None:
                             window = pygetwindow.getWindowsWithTitle('ZnámE')[
                                 0]
                             window.activate()
                         mixer.Channel(0).play(mixer.Sound('assets/neko.mp3'))
-                        typewriter('Playing sound                 ', end='\r', ttime=0.01)
+                        typewriter('Playing sound                 ',
+                                   end='\r', ttime=0.01)
                         sleep(0.5)
                         if args.language == 'SK':
                             typewriter('HOTOVO         ')
@@ -3225,9 +3386,11 @@ try:  # type: ignore
                     if vstup == 'quitneko':
                         if not neko:
                             if args.language == 'SK':
-                                typewriter(':( Nemôžeš mať -1 neko', ttime=0.01)
+                                typewriter(
+                                    ':( Nemôžeš mať -1 neko', ttime=0.01)
                             elif args.language == 'EN':
-                                typewriter(":( You can't have -1 neko", ttime=0.01)
+                                typewriter(
+                                    ":( You can't have -1 neko", ttime=0.01)
                             elif args.language == 'JP':
                                 typewriter(':( 猫を-1にすることはできません', ttime=0.01)
                             continue
@@ -3256,11 +3419,14 @@ try:  # type: ignore
                     if vstup[0:5] == 'waifu':
                         if waifu:
                             if args.language == 'SK':
-                                typewriter('Prepáčte, nemôžete mať dve waifu', ttime=0.01)
+                                typewriter(
+                                    'Prepáčte, nemôžete mať dve waifu', ttime=0.01)
                             elif args.language == 'EN':
-                                typewriter("Sorry you can't have two waifu", ttime=0.01)
+                                typewriter(
+                                    "Sorry you can't have two waifu", ttime=0.01)
                             elif args.language == 'JP':
-                                typewriter('申し訳ありませんが、ワイフを 2 つ持つことはできません', ttime=0.01)
+                                typewriter(
+                                    '申し訳ありませんが、ワイフを 2 つ持つことはできません', ttime=0.01)
                             continue
                         if neko:
                             if args.language == 'SK':
@@ -3286,7 +3452,8 @@ try:  # type: ignore
                                 typewriter(
                                     'Getting image from waifu.pics server', ttime=0.01)
                             elif args.language == 'JP':
-                                typewriter('waifu.pics サーバーから画像を取得する', ttime=0.01)
+                                typewriter(
+                                    'waifu.pics サーバーから画像を取得する', ttime=0.01)
                             resp = requests.get("https://api.waifu.pics/" + config.get('waifu settings', 'type').split(
                                 ' ')[0] + "/" + config.get('waifu settings', 'category').split(' ')[0])
                             data: dict[str, str] = resp.json()
@@ -3337,29 +3504,35 @@ try:  # type: ignore
                         typewriter('Setting image    ', end='\r', ttime=0.01)
                         if data["url"].split('.')[-1] != 'gif' and data["url"].split('.')[-1] != 'mp4':
                             img = Image.open('assets/waifu.png')
-                            typewriter('Opening image   ', end='\r', ttime=0.01)
+                            typewriter('Opening image   ',
+                                       end='\r', ttime=0.01)
                             img.show()
                         elif data["url"].split('.')[-1] == 'gif' or data["url"].split('.')[-1] == 'mp4':
                             sleep(0.2)
-                            typewriter('Getting video in foreground', end='\r', ttime=0.01)
+                            typewriter('Getting video in foreground',
+                                       end='\r', ttime=0.01)
                             window = pygetwindow.getWindowsWithTitle(
                                 'VLC (Direct3D11 Output)')[0]
                             window.activate()
                             sleep(0.1)
                         sleep(0.1)
                         pg.keyDown('win')
-                        typewriter('......                        ', end='\r', ttime=0.01)
+                        typewriter('......                        ',
+                                   end='\r', ttime=0.01)
                         pg.press('right')
                         typewriter('.......', end='\r', ttime=0.01)
                         pg.keyUp('win')
                         typewriter('........', end='\r', ttime=0.01)
                         pg.press('esc')
-                        typewriter('Getting cli in foreground', end='\r', ttime=0.01)
+                        typewriter('Getting cli in foreground',
+                                   end='\r', ttime=0.01)
                         if args.test is not None:
-                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[
+                                0]
                             window.activate()
                         sleep(0.5)
-                        typewriter('..........                  ', end='\r', ttime=0.01)
+                        typewriter('..........                  ',
+                                   end='\r', ttime=0.01)
                         sleep(0.25)
                         typewriter('.............', end='\r', ttime=0.01)
                         if args.language == 'SK':
@@ -3374,9 +3547,11 @@ try:  # type: ignore
                     if vstup == 'quitwaifu':
                         if not waifu:
                             if args.language == 'SK':
-                                typewriter(':( Nemôžeš mať -1 waifu', ttime=0.01)
+                                typewriter(
+                                    ':( Nemôžeš mať -1 waifu', ttime=0.01)
                             elif args.language == 'EN':
-                                typewriter(":( You can't have -1 waifu", ttime=0.01)
+                                typewriter(
+                                    ":( You can't have -1 waifu", ttime=0.01)
                             elif args.language == 'JP':
                                 typewriter(':( -1ワイフを持つことはできません', ttime=0.01)
                             continue
@@ -3384,7 +3559,8 @@ try:  # type: ignore
                             typewriter('Stoping video', end='\r', ttime=0.01)
                             media_player.stop()  # type: ignore
                             waifuvid: bool = False
-                            typewriter('Removing video   ', end='\r', ttime=0.01)
+                            typewriter('Removing video   ',
+                                       end='\r', ttime=0.01)
                             os.remove('assets/waifu.mp4')
                         else:
                             typewriter('Closing image', end='\r', ttime=0.01)
@@ -3562,7 +3738,8 @@ try:  # type: ignore
                                 elif args.language == 'JP':
                                     print('履歴が空です')
                         if vstup == 'login' and not logged or tologin and not logged:
-                            readline.set_completer(SimpleCompleter(bq_completer).complete)
+                            readline.set_completer(
+                                SimpleCompleter(bq_completer).complete)
                             readline.parse_and_bind('tab: complete')
                             loginvstupuserL: str = ''
                             tologin: bool = False
@@ -3870,7 +4047,8 @@ try:  # type: ignore
                         logger.prev('終わり\n')
                     pg.screenshot().save('bg.png')
                     shutil.move('assets/green.mp4', 'green.mp4')
-                    os.system("ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
+                    os.system(
+                        "ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
                     os.remove('bg.png')
                     shutil.move('green.mp4', 'assets/green.mp4')
                     player = vlc.Instance('--fullscreen')
@@ -3973,7 +4151,7 @@ try:  # type: ignore
                             filesizeskend: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             logger.prev("\nZabalené data majú > " +
-                                       str(filesizeskend) + " KB")
+                                        str(filesizeskend) + " KB")
                         elif args.language == "EN":
                             bar = tqdm(range(0, len(zipfiles)),
                                        desc="Packing ")
@@ -3990,7 +4168,7 @@ try:  # type: ignore
                             filesizeenend: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             logger.prev("\nPacked data have > " +
-                                       str(filesizeenend) + " KB")
+                                        str(filesizeenend) + " KB")
                         elif args.language == "JP":
                             bar = tqdm(range(0, len(zipfiles)), desc="梱包 ")
                             for i in bar:
@@ -4006,17 +4184,17 @@ try:  # type: ignore
                             filesizejpend: int = sum(
                                 [zinfo.file_size for zinfo in zip.filelist])
                             logger.prev("\nパックされたデータは > " +
-                                       str(filesizejpend) + " KB")
+                                        str(filesizejpend) + " KB")
                         zip.close()
                     for i in range(0, len(folders)):
                         shutil.rmtree(folders[i])
                     end = time.time()
                     if args.language == "SK":
                         logger.stay('Uplynutý čas balenia: ' +
-                                   str(end-start) + '\n')
+                                    str(end-start) + '\n')
                     elif args.language == "EN":
                         logger.stay('Elapsed time of packing: ' +
-                                   str(end-start) + '\n')
+                                    str(end-start) + '\n')
                     elif args.language == "JP":
                         logger.stay('梱包経過時間: ' + str(end-start) + '\n')
                     if restart:
@@ -4177,7 +4355,7 @@ try:  # type: ignore
             printnlog('End')
             input("Enter to quit")
             quit()
-            
+
     if __name__ == '__main__':
         logger.stay(printnlog('Function: main\n', toprint=False))
         logger.prev(printnlog('Done defining functions\n', toprint=False))
