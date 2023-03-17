@@ -727,7 +727,7 @@ try:  # type: ignore
         except Exception:
             pass
 
-    def choco_install(*packages: str) -> tuple(int, int):
+    def choco_install(*packages: str):
         """
         The choco_install function installs a list of packages using Chocolatey.
         It returns the number of packages successfully installed and the number that were already installed.
