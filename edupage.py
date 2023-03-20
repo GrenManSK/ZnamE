@@ -234,13 +234,20 @@ try:  # type: ignore
 
     try:
         if __name__ == '__main__':
-            logger.next(printnlog('Language: ' + config['basic info']['lang'].split(' ')[0], toprint=False))
-            logger.stay(printnlog('Enviroment: ' + config['basic info']['enviroment'].split(' ')[0], toprint=False))
-            logger.stay(printnlog('Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
-            logger.stay(printnlog('Inactivelimit: ' + str(config['basic info']['inactivelimit']).split(' ')[0], toprint=False))
-            logger.stay(printnlog('Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
-            logger.stay(printnlog('Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
-            logger.stay(printnlog('User history: ' + str(config['user history']), toprint=False))
+            logger.next(printnlog(
+                'Language: ' + config['basic info']['lang'].split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'Enviroment: ' + config['basic info']['enviroment'].split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'Inactivelimit: ' + str(config['basic info']['inactivelimit']).split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
+            logger.stay(printnlog('User history: ' +
+                        str(config['user history']), toprint=False))
             logger.prev('')
     except AttributeError:
         printnlog("'config.ini' file is corrupt -> option missing")
@@ -257,7 +264,7 @@ try:  # type: ignore
             specifies which part of the config file you want to change (e.g., 'general' or 'database'). 
             The name argument specifies which key within that section you want to change (e.g., 'hostname' or 
             'username'). Finally, the info argument is what you want that key's value changed to.
-        
+
         :param section: str: Specify the section of the config file that you want to change
         :param name: str: Set the name of the config option
         :param info: str: Set the value of a config option
@@ -305,7 +312,7 @@ try:  # type: ignore
         parser.add_argument('-log', '--log', choices=[],
                             help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
         parser.add_argument('-music', '--music', choices=musicchoices,
-                            help='Starts music; you can select from: ' + str(i for i in music), default='0', nargs='?')
+                            help='Starts music; you can select from: ' + str(i for i in music), default=0, nargs='?')
 
         "These are arguments for program to use"
 
@@ -328,7 +335,6 @@ try:  # type: ignore
         parser.add_argument('-debug', '--debug', choices=[],
                             help='Debugging enabled', default=UNSPECIFIED, nargs='?')
         args = parser.parse_args()
-        args.test = None
         hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                                 '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
         logger.stay(printnlog("Checking config correctness", toprint=False))
@@ -421,8 +427,8 @@ try:  # type: ignore
             musiclimittext: bool = False
             while len(music) < int(config['basic info']['musicnumber']):
                 if not musiclimittext:
-                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' + 
-                        str(int(config['basic info']['musicnumber']) - len(music)), toprint=False))
+                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' +
+                                         str(int(config['basic info']['musicnumber']) - len(music)), toprint=False))
                     musiclimittext: bool = True
                 set_config('basic info', 'musicnumber', int(args.music)-1)
                 args.music = str(int(args.music)-1)
@@ -457,29 +463,29 @@ try:  # type: ignore
             "configoptions argument functionality"
 
             with open('CONFIG_OPTIONS.txt', 'w') as file:
-                file.write('[BASIC INFO]\n')
-                file.write(f'lang = {language}\n')
-                file.write(f'enviroment = [0-f][0-f]\n')
-                file.write(f'intro = [True/False]\n')
-                file.write(f'inactivelimit = [Any number]\n')
-                file.write(f'music = [disable/enable]\n')
+                file.write('basic info:\n')
+                file.write(f'  enviroment: [0-f][0-f]\n')
+                file.write(f'  inactivelimit: [Any number]\n')
+                file.write(f'  intro: [True/False]\n')
+                file.write(f'  lang: {language}\n')
+                file.write(f'  music: [disable/enable]\n')
                 file.write(
-                    f'musiclist = [Any Youtube video title, divided by comma]\n')
+                    f'  st: [Any Youtube video title, divided by comma]\n')
                 file.write(
-                    f'musicnumber = [Any number; Max is number of items in musiclist]\n')
-                file.write('[WAIFU SETTINGS]\n')
-                file.write(f'type = [sfw/nsfw]\n')
+                    f'  [Any number; Max is number of items in musiclist]\n')
+                file.write('game settings:\n')
+                file.write(
+                    f'  computer_power: [Any number; Lower the powerfull]\n')
+                file.write(f'  goal_score: [Any number]\n')
+                file.write(f'neko settings:\n')
+                file.write(f'  server: {server}\n')
+                file.write(f'user history:\n')
                 category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
                                        "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
                 file.write(f'category (sfw) = {category}\n')
                 category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
                 file.write(f'category (nsfw) = {category}\n')
-                file.write('[NEKO SETTINGS]\n')
-                file.write(f'server = {server}\n')
-                file.write('[GAME SETTINGS]\n')
-                file.write('goal_score = [Any number]\n')
-                file.write(
-                    'computer_power = [Any number; Lower the powerfull]\n')
+                file.write('  type: [sfw/nsfw]\n')
             os.remove(f'crash_dump-{datelog}.txt')
             quit()
 
@@ -529,7 +535,8 @@ try:  # type: ignore
                         import site
                         site_packages = site.getsitepackages()[1]
                         input('Now you will be transferred to the script file in which you need to change code in line 411\nto \'transform_plan_raw = js\'\n!!! This is important without it downloading music won\'t work')
-                        os.system(f'notepad.exe {site_packages}/pytube/cipher.py')
+                        os.system(
+                            f'notepad.exe {site_packages}/pytube/cipher.py')
                     printnlog("The program is restarting!!!")
                     sleep(1)
                     os.system('cls')
@@ -1357,7 +1364,8 @@ try:  # type: ignore
 
         logger.stay(printnlog("Defining functions", toprint=False))
 
-    updateapp: str = str('import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
+    updateapp: str = str(
+        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
     if __name__ == '__main__':
         if args.log is None:
@@ -2404,7 +2412,7 @@ try:  # type: ignore
         The function also has an inner for loop that iterates through each line in the SPOTDL_OUTPUT file
         and checks if there is a GET request in that line. If there is one, then it will append the current line number
         into an array called lines so we can keep track of which lines have been processed already (so we don't process them again).
-        
+
         :return: The name of the song downloaded
         """
         lines = []
@@ -2461,7 +2469,7 @@ try:  # type: ignore
         """
         The spotMusicDow function is a function that downloads music from Spotify.
         It uses the spotdl module to download music from Spotify, and then adds it to the user's playlist.
-        
+
         :return: A string
         """
         typewriter('Starting web player', ttime=0.01)
@@ -2488,7 +2496,7 @@ try:  # type: ignore
         musiclistnewstring: str = ''
         for i in range(len(music)):
             musiclistnewstring += str(music[i]) + ','
-        
+
         try:
             for line, content in enumerate(open('MUSIC', 'r').readlines()):
                 musiclistnewstring += content + ','
@@ -2709,7 +2717,7 @@ try:  # type: ignore
             sleep(0.1)
             pg.press('win')
             os.system('cls')
-            if args.music != '0':
+            if args.music != 0:
                 mixer.init()
                 mixer.music.load(
                     'assets/' + musiclistnew[int(args.music)-1] + '.mp3')
@@ -2726,9 +2734,9 @@ try:  # type: ignore
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
             from completer import SimpleCompleter  # type: ignore
-            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko','setup', 'settings',
+            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko', 'setup', 'settings',
                                   'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
-            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko','setup','settings',
+            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko', 'setup', 'settings',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
             bq_completer = ['back', 'quit']
             if args.debug == None:
@@ -3438,7 +3446,8 @@ try:  # type: ignore
                             elif args.language == 'JP':
                                 typewriter(
                                     'waifu.pics サーバーから画像を取得する', ttime=0.01)
-                            resp = requests.get("https://api.waifu.pics/" + config['waifu settings']['type'] + "/" + config['waifu settings']['category'])
+                            resp = requests.get(
+                                "https://api.waifu.pics/" + config['waifu settings']['type'] + "/" + config['waifu settings']['category'])
                             data: dict[str, str] = resp.json()
                             img_data = requests.get(data["url"]).content
                             typewriter('Downloading image', ttime=0.01)
