@@ -1,14 +1,14 @@
 # **ZnamE**
 
-Using https://github.com/awaken1ng/krkr-xp3 as extraction tool
+Using [krkr-xp3](https://github.com/awaken1ng/krkr-xp3) as extraction tool
 
 Rewritten to python3 and added some functions to work with ZnámE
 
-Using https://github.com/RocktimSaikia/anime-chan for motivation function
+Using [anime-chan](https://github.com/RocktimSaikia/anime-chan) for motivation function
 
-Using https://github.com/nekos-best for NEKO photos
+Using [nekos-best](https://github.com/nekos-best) for NEKO photos
 
-Using https://github.com/Waifu-pics/waifu-api for WAIFU photos
+Using [waifu-api](https://github.com/Waifu-pics/waifu-api) for WAIFU photos
 
 ---
 
@@ -17,6 +17,16 @@ PID: 426738
 Password: 123456
 
 Program will make backup files and credentials saves in 'C:/Users/your_name/AppData/Local/ZnámE'
+
+---
+
+## Installation
+
+If you have already installed pytube go to the pytube directory and cipher.py file ({your_python}/site-packages/pytube/cipher.py)
+
+On line 411 remove all content of the line and change it to 'transform_plan_raw = js'
+
+Without it download music function from yml file won't work
 
 ---
 
