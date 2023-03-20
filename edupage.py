@@ -118,7 +118,7 @@ try:  # type: ignore
     print_module()
     import subprocess
     print_module()
-    import configparser
+    import yaml
     print_module()
     import inspect
     print_module()
@@ -216,7 +216,7 @@ try:  # type: ignore
             where it was called from. This can be useful for debugging purposes, or to help 
             identify where an error occurred in your code. It also allows you to go back a few lines if needed, which can be helpful when using this function inside loops and other functions that may have multiple calls on one line (such as list comprehensions).
 
-        :param goback: int: Go back a certain number of lines in the stack
+        :param goback: int: Go back a certain number of lines in the stackconfig.
         :param relative_frame: int: Specify the frame in the stack to get the line number from
         :return: The line number of the function call
         """
@@ -226,49 +226,23 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('Reading config file (ini)', toprint=False))
-    try:
-        config = configparser.RawConfigParser()
+        config = yaml.safe_load(open('config.yml', 'r'))
+        config['user history'] = {}
         line_number: int = get_line_number(-1)
-        config.read('config.ini')
-    except configparser.DuplicateSectionError:
-        printnlog("'config.ini' file is corrupt -> Duplicate section")
-        error_get(configparser.DuplicateSectionError(
-            'Corruption of config file => Duplicate section'), [line_number])
-        input("Press 'enter' to quit")
-        quit()
-    except configparser.DuplicateOptionError:
-        printnlog("'config.ini' file is corrupt -> Duplicate option")
-        error_get(configparser.DuplicateSectionError(
-            'Corruption of config file => Duplicate option'), [line_number])
-        input("Press 'enter' to quit")
-        quit()
-    except configparser.NoSectionError:
-        printnlog("'config.ini' file is corrupt -> No section")
-        error_get(configparser.DuplicateSectionError(
-            'Corruption of config file => No section'), [line_number])
-        input("Press 'enter' to quit")
-        quit()
 
     "Printing out important config setting"
 
     try:
         if __name__ == '__main__':
-            logger.next((printnlog('Language: ' +
-                                   config.get('basic info', 'lang').split(' ')[0], toprint=False)))
-            logger.stay((printnlog('Enviroment: ' + config.get('basic info',
-                                                               'enviroment').split(' ')[0], toprint=False)))
-            logger.stay((printnlog('Intro: ' + config.get('basic info',
-                                                          'intro').split(' ')[0], toprint=False)), toprint=False)
-            logger.stay((printnlog('Inactivelimit: ' + config.get('basic info',
-                                                                  'inactivelimit').split(' ')[0], toprint=False)))
-            logger.stay((printnlog('Music: ' + config.get('basic info',
-                                                          'music').split(' ')[0], toprint=False)), toprint=False)
-            logger.stay((printnlog('Musiclist: ' + str(config.get('basic info',
-                                                                  'musiclist').split(',')[0:]), toprint=False)))
-            logger.stay(printnlog('User history: ' +
-                        str(config.items('user history')), toprint=False))
+            logger.next(printnlog('Language: ' + config['basic info']['lang'].split(' ')[0], toprint=False))
+            logger.stay(printnlog('Enviroment: ' + config['basic info']['enviroment'].split(' ')[0], toprint=False))
+            logger.stay(printnlog('Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
+            logger.stay(printnlog('Inactivelimit: ' + str(config['basic info']['inactivelimit']).split(' ')[0], toprint=False))
+            logger.stay(printnlog('Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
+            logger.stay(printnlog('Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
+            logger.stay(printnlog('User history: ' + str(config['user history']), toprint=False))
             logger.prev('')
-    except configparser.NoOptionError:
+    except AttributeError:
         printnlog("'config.ini' file is corrupt -> option missing")
         error_get(configNoOption(
             'Corruption of config file => option missing'), [line_number],)
@@ -278,17 +252,24 @@ try:  # type: ignore
 
     def set_config(section: str, name: str, info: str) -> None:
         """
-        The set_config function writes a new config.ini file with the specified section, name, and info.
-
-        :param section: Define the section of the config
-        :param name: Set the name of the configuration file
-        :param info: Set the value of the name parameter in the section specified
+        The set_config function is used to set a value in the config.yml file.
+            It takes three arguments: section, name, and info. The section argument
+            specifies which part of the config file you want to change (e.g., 'general' or 'database'). 
+            The name argument specifies which key within that section you want to change (e.g., 'hostname' or 
+            'username'). Finally, the info argument is what you want that key's value changed to.
+        
+        :param section: str: Specify the section of the config file that you want to change
+        :param name: str: Set the name of the config option
+        :param info: str: Set the value of a config option
         :return: None
         """
-        os.remove('config.ini')
-        with open('config.ini', 'a') as configfile:
-            config.set(section, name, str(info))
-            config.write(configfile)
+        config = yaml.safe_load(open('config.yml', 'r'))
+        if not isinstance(config['user history'], dict):
+            config['user history'] = {}
+        config[section][name] = info
+        os.remove('config.yml')
+        with open('config.yml', 'w') as configfile:
+            yaml.dump(config, configfile)
 
     if __name__ == '__main__':
         global parser
@@ -299,8 +280,8 @@ try:  # type: ignore
         "Setting up music if none leaving empty list"
 
         music: list[str] = list(
-            set(config.get('basic info', 'musiclist').split(',')[0:]))
-        if music[0] == '':
+            set(str(config['basic info']['musiclist']).split(',')[0:]))
+        if music[0] == 'None':
             music = []
         else:
             for i in music:
@@ -347,81 +328,81 @@ try:  # type: ignore
         parser.add_argument('-debug', '--debug', choices=[],
                             help='Debugging enabled', default=UNSPECIFIED, nargs='?')
         args = parser.parse_args()
+        args.test = None
         hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                                 '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
         logger.stay(printnlog("Checking config correctness", toprint=False))
-        if not config.get('basic info', 'enviroment').split(' ')[0][0] in hexnumber:
+        if not config['basic info']['enviroment'].split(' ')[0][0] in hexnumber:
             error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(
                 f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
             quit()
-        elif not config.get('basic info', 'enviroment').split(' ')[0][1] in hexnumber:
+        elif not config['basic info']['enviroment'].split(' ')[0][1] in hexnumber:
             error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(
                 f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
             quit()
         else:
             printnlog('basic info => enviroment')
         try:
-            int(config.get('basic info', 'inactivelimit').split(' ')[0])
+            int(config['basic info']['inactivelimit'])
             printnlog('basic info => inactivelimit')
         except ValueError:
             error_get(ExceptionGroup('', [argInactiveLimitError(
                 'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
             quit()
-        if not config.get('basic info', 'intro').split(' ')[0] in ['True', 'False']:
+        if not config['basic info']['intro'] in [True, False]:
             error_get(ExceptionGroup('', [argIntroError('Wrong choice in \'basic info\' => intro'), ValueError(
                 'Only \'True\' or \'False\'')]), [get_line_number()])
             quit()
         else:
             printnlog('basic info => intro')
-        if config.get('basic info', 'music').split(' ')[0] == 'enable':
-            args.music = config.get('basic info', 'musicnumber').split(' ')[0]
+        if config['basic info']['music'].split(' ')[0] == 'enable':
+            args.music = config['basic info']['musicnumber']
             printnlog('basic info => music')
-        elif config.get('basic info', 'music').split(' ')[0] == 'disable':
+        elif config['basic info']['music'].split(' ')[0] == 'disable':
             printnlog('basic info => music')
             pass
         else:
             error_get(ExceptionGroup('', [argMusicError('Wrong choice in \'basic info\' => music'), ValueError(
                 'Only \'enable\' or \'disable\'')]), [get_line_number()])
             quit()
-        if not config.get('waifu settings', 'type').split(' ')[0] in ['sfw', 'nsfw']:
+        if not config['waifu settings']['type'].split(' ')[0] in ['sfw', 'nsfw']:
             error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError(
                 'Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
             quit()
         else:
             printnlog('waifu settings => type')
-        if config.get('waifu settings', 'type').split(' ')[0] == 'sfw':
+        if config['waifu settings']['type'] == 'sfw':
             category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
                                    "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-            if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            if not config['waifu settings']['category'].split(' ')[0] in category:
                 error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
                     'Use \'waifu\' and see option in setup function')]), [get_line_number()])
                 quit()
             else:
                 printnlog('waifu settings => category')
-        elif config.get('waifu settings', 'type').split(' ')[0] == 'nsfw':
+        elif config['waifu settings']['type'] == 'nsfw':
             category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
-            if not config.get('waifu settings', 'category').split(' ')[0] in category:
+            if not config['waifu settings']['category'].split(' ')[0] in category:
                 error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
                     'Use \'waifu\' and see option in setup function')]), [get_line_number()])
                 quit()
             else:
                 printnlog('waifu settings => category')
         server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
-        if not config.get('neko settings', 'server').split(' ')[0] in server:
+        if not config['neko settings']['server'] in server:
             error_get(ExceptionGroup('', [argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(
                 f'Only take {str(server)}')]), [get_line_number()])
             quit()
         else:
             printnlog('neko settings => server')
         try:
-            int(config.get('game settings', 'goal_score').split(' ')[0])
-            printnlog('game settings => goal_score')
+            int(config['game settings']['goal_score'])
         except ValueError:
             error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError(
                 'take only numbers')]), [get_line_number()])
             quit()
         try:
-            if 10 <= int(config.get('game settings', 'goal_score').split(' ')[0]):
+            if 10 <= int(config['game settings']['goal_score']):
                 printnlog('game settings => goal_score')
             else:
                 raise ValueError
@@ -430,20 +411,20 @@ try:  # type: ignore
                 'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
             quit()
         try:
-            float(config.get('game settings', 'computer_power').split(' ')[0])
+            float(config['game settings']['computer_power'])
             printnlog('game settings => computer_power')
         except ValueError:
             error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError(
                 'take only numbers')]), [get_line_number()])
             quit()
-        if config.get('basic info', 'music').split(' ')[0] == 'enable':
+        if config['basic info']['music'] == 'enable':
             musiclimittext: bool = False
-            while len(music) < int(config.get('basic info', 'musicnumber')):
+            while len(music) < int(config['basic info']['musicnumber']):
                 if not musiclimittext:
-                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' + str(
-                        int(config.get('basic info', 'musicnumber')) - len(music)), toprint=False))
+                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' + 
+                        str(int(config['basic info']['musicnumber']) - len(music)), toprint=False))
                     musiclimittext: bool = True
-                set_config('basic info', 'musicnumber', str(int(args.music)-1))
+                set_config('basic info', 'musicnumber', int(args.music)-1)
                 args.music = str(int(args.music)-1)
 
         """
@@ -451,8 +432,8 @@ try:  # type: ignore
         @param args.language - the language specified by the user, or the default language from the config file.
         """
         if args.language is None:
-            if config.get('basic info', 'lang').split(' ')[0] in language:
-                args.language = config.get('basic info', 'lang').split(' ')[0]
+            if config['basic info']['lang'] in language:
+                args.language = config['basic info']['lang']
             else:
                 error_get(ExceptionGroup('', [argLanguageError('Wrong choice in \'basic info\' => lang'), ValueError(
                     'Language doesn\'t exist')]), [get_line_number()])
@@ -544,6 +525,11 @@ try:  # type: ignore
                     printnlog("\nDownloading updates")
                     subprocess.check_call(
                         ['python', '-m', 'pip', 'install', *nenajdene])
+                    if 'pytube' in nenajdene:
+                        import site
+                        site_packages = site.getsitepackages()[1]
+                        input('Now you will be transferred to the script file in which you need to change code in line 411\nto \'transform_plan_raw = js\'\n!!! This is important without it downloading music won\'t work')
+                        os.system(f'notepad.exe {site_packages}/pytube/cipher.py')
                     printnlog("The program is restarting!!!")
                     sleep(1)
                     os.system('cls')
@@ -1154,8 +1140,7 @@ try:  # type: ignore
         print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
         verzia = open('version', 'r')
-        os.system('color ' + config.get('basic info',
-                  'enviroment').split(' ')[0])
+        os.system('color ' + config['basic info']['enviroment'])
         os.system('Title ' + 'ZnámE')
         user32 = ctypes.windll.user32
         screensize: tuple[int, int] = user32.GetSystemMetrics(
@@ -1372,8 +1357,7 @@ try:  # type: ignore
 
         logger.stay(printnlog("Defining functions", toprint=False))
 
-    updateapp: str = str(
-        'import argparse, shutil, os, subprocess, configparser, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = configparser.RawConfigParser()\nconfig.read(\'config.ini\')\nargs.language = config.get(\'basic info\', \'lang\').split(\' \')[0]\nif args.input != "":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
+    updateapp: str = str('import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
 
     if __name__ == '__main__':
         if args.log is None:
@@ -1469,14 +1453,14 @@ try:  # type: ignore
                     shutil.move('LICENSE', 'old/LICENSE')
                     shutil.move('README.md', 'old/README.md')
                     shutil.move('version', 'old/version')
-                    shutil.copyfile('config.ini', 'config_old.ini')
+                    shutil.copyfile('config.yml', 'config_old.yml')
                     sleep(0.5)
                     shutil.move(directory + "/data.xp2", 'data.xp2')
                     shutil.move(directory + "/help.txt", 'help.txt')
                     shutil.move(directory + "/LICENSE", 'LICENSE')
                     shutil.move(directory + "/README.md", 'README.md')
                     shutil.move(directory + "/version", 'version')
-                    shutil.move(directory + "/config.ini", 'config.ini')
+                    shutil.move(directory + "/config.yml", 'config.yml')
                     crupdate = open("update.py", "w")
                     crupdate.write(updateapp)
                     crupdate.close()
@@ -1694,8 +1678,7 @@ try:  # type: ignore
         :return: The value of the timer
         """
         global timer
-        time_got: int = int(config.get(
-            'basic info', 'inactivelimit').split(' ')[0])
+        time_got: int = int(config['basic info']['inactivelimit'])
         timer = time_got
         filesize: int = os.path.getsize(hist)
         sizehist: int = filesize
@@ -2257,7 +2240,7 @@ try:  # type: ignore
         """
         if args.nointro is None or args.nointrof is None:
             args.nointrof = object()
-            if args.test is None and config.get('basic info', 'intro').split(' ')[0] == 'True':
+            if args.test is None and config['basic info']['intro'] == True:
                 if args.language == 'SK':
                     webbrowser.open(htmlFile + '_sk.html', 1)
                 elif args.language == 'EN':
@@ -2273,7 +2256,7 @@ try:  # type: ignore
             else:
                 pass
         else:
-            if config.get('basic info', 'intro').split(' ')[0] == 'True':
+            if config['basic info']['intro'] == True:
                 if args.language == 'SK':
                     webbrowser.open(htmlFile + '_sk.html', 1)
                 elif args.language == 'EN':
@@ -2495,7 +2478,7 @@ try:  # type: ignore
         open('SPOTDL_QUIT', 'x')
         open("INSTALL_DONE", 'x')
         music: list[str] = list(
-            set(config.get('basic info', 'musiclist').split(',')[0:]))
+            set(config['basic info']['musiclist'].split(',')[0:]))
         if music[0] == '':
             music = []
         else:
@@ -2505,6 +2488,7 @@ try:  # type: ignore
         musiclistnewstring: str = ''
         for i in range(len(music)):
             musiclistnewstring += str(music[i]) + ','
+        
         try:
             for line, content in enumerate(open('MUSIC', 'r').readlines()):
                 musiclistnewstring += content + ','
@@ -2529,6 +2513,7 @@ try:  # type: ignore
         logger.stay(printnlog('Function: spotMusicDow', toprint=False))
 
     def main() -> None:
+        global config
         try:
             """
             The main function. This is where the program starts. It is the first function called.
@@ -2595,7 +2580,6 @@ try:  # type: ignore
             musiclistnew: list = []
             for i in range(len(music)):
                 music_name = music[i]
-                print(str(music_name[1]))
                 if not os.path.exists('assets/' + str(music_name) + '.mp3'):
                     musiclistnew.append(DownloadMusic(str(music_name)))
                 else:
@@ -2704,7 +2688,7 @@ try:  # type: ignore
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
             exit: bool = getWindow()
-            if args.nointro is None or config.get('basic info', 'intro').split(' ')[0] == 'False':
+            if args.nointro is None or config['basic info']['intro'] == False:
                 pass
             else:
                 window = pygetwindow.getWindowsWithTitle('frame2')[0]
@@ -2742,9 +2726,9 @@ try:  # type: ignore
                 typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
             verzia.close()
             from completer import SimpleCompleter  # type: ignore
-            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko',
+            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko','setup', 'settings',
                                   'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
-            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
+            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko','setup','settings',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
             bq_completer = ['back', 'quit']
             if args.debug == None:
@@ -3044,7 +3028,7 @@ try:  # type: ignore
                     if vstup in ['settings', 'setup']:
                         import settings  # type: ignore
                         settings.main(logged=logged)
-                        config.read('config.ini')
+                        config = yaml.safe_load(open('config.yml', 'r'))
                     if vstup == 'restarted':
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
@@ -3123,9 +3107,9 @@ try:  # type: ignore
                             os.remove(
                                 'assets/' + musiclistnew[musicvstup-1] + '.mp3')
                             musiclistnew.remove(musiclistnew[musicvstup-1])
-                            while len(musiclistnew) < int(config.get('basic info', 'musicnumber')):
+                            while len(musiclistnew) + 1 < int(config['basic info']['musicnumber']):
                                 set_config('basic info', 'musicnumber',
-                                           str(int(args.music)-1))
+                                           int(args.music)-1)
                                 continue
                             pg.write('music\n')
                         if not musicnone:
@@ -3264,7 +3248,7 @@ try:  # type: ignore
                         elif args.language == 'JP':
                             typewriter('待つ', ttime=0.01)
                         if args.neko is not None:
-                            if config.get('neko settings', 'server').split(' ')[0] == 'nekos.best':
+                            if config['neko settings']['server'] == 'nekos.best':
                                 if args.language == 'SK':
                                     typewriter(
                                         'Získavanie obrazu zo servera nekos.best', ttime=0.01)
@@ -3279,7 +3263,7 @@ try:  # type: ignore
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(
                                     data["results"][0]["url"], stream=True)  # type: ignore
-                            elif config.get('neko settings', 'server').split(' ')[0] == 'waifu.pics':
+                            elif config['neko settings']['server'] == 'waifu.pics':
                                 if args.language == 'SK':
                                     typewriter(
                                         'Získavanie obrazu zo servera waifu.pics', ttime=0.01)
@@ -3293,7 +3277,7 @@ try:  # type: ignore
                                     "https://api.waifu.pics/sfw/neko")
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(data["url"], stream=True)
-                            elif config.get('neko settings', 'server').split(' ')[0] == 'kyoko':
+                            elif config['neko settings']['server'] == 'kyoko':
                                 if args.language == 'SK':
                                     typewriter(
                                         'Získavanie obrazu zo servera kyoko', ttime=0.01)
@@ -3308,7 +3292,7 @@ try:  # type: ignore
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(
                                     data["apiResult"]["url"][0], stream=True)
-                            elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
+                            elif config['neko settings']['server'] == 'nekos_api':
                                 if args.language == 'SK':
                                     typewriter(
                                         'Získavanie obrazu zo servera nekos_api', ttime=0.01)
@@ -3335,15 +3319,15 @@ try:  # type: ignore
                                 continue
                             typewriter('Downloading image', ttime=0.01)
                             if res.status_code == 200:
-                                if config.get('neko settings', 'server').split(' ')[0] == 'nekos.best':
+                                if config['neko settings']['server'] == 'nekos.best':
                                     download(data["results"][0]
                                              ["url"], 'assets/neko.png')
-                                elif config.get('neko settings', 'server').split(' ')[0] == 'waifu.pics':
+                                elif config['neko settings']['server'] == 'waifu.pics':
                                     download(data['url'], 'assets/neko.png')
-                                elif config.get('neko settings', 'server').split(' ')[0] == 'kyoko':
+                                elif config['neko settings']['server'] == 'kyoko':
                                     download(data["apiResult"]
                                              ["url"][0], 'assets/neko.png')
-                                elif config.get('neko settings', 'server').split(' ')[0] == 'nekos_api':
+                                elif config['neko settings']['server'] == 'nekos_api':
                                     download(data["data"][0]
                                              ["url"], 'assets/neko.png')
                         else:
@@ -3454,8 +3438,7 @@ try:  # type: ignore
                             elif args.language == 'JP':
                                 typewriter(
                                     'waifu.pics サーバーから画像を取得する', ttime=0.01)
-                            resp = requests.get("https://api.waifu.pics/" + config.get('waifu settings', 'type').split(
-                                ' ')[0] + "/" + config.get('waifu settings', 'category').split(' ')[0])
+                            resp = requests.get("https://api.waifu.pics/" + config['waifu settings']['type'] + "/" + config['waifu settings']['category'])
                             data: dict[str, str] = resp.json()
                             img_data = requests.get(data["url"]).content
                             typewriter('Downloading image', ttime=0.01)
@@ -3719,7 +3702,7 @@ try:  # type: ignore
                         @param args - the command line arguments
                         """
                         if vstup == 'history':
-                            historylist = config.items('user history')
+                            historylist = config['user history']
                             for i in historylist:
                                 if args.language == 'SK':
                                     print(
@@ -4028,7 +4011,7 @@ try:  # type: ignore
                     musiclistnewstring: str = ''
                     for i in range(len(musiclistnew)):
                         musiclistnewstring += str(musiclistnew[i]) + ','
-                    set_config('user history', historyname, str(
+                    set_config('user history', str(historyname), str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
                     set_config('basic info', 'musiclist',
                                str(musiclistnewstring[0:-1]))
@@ -4046,11 +4029,11 @@ try:  # type: ignore
                     elif args.language == "JP":
                         logger.prev('終わり\n')
                     pg.screenshot().save('bg.png')
-                    shutil.move('assets/green.mp4', 'green.mp4')
+                    shutil.copy('assets/green.mp4', 'green.mp4')
                     os.system(
                         "ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
                     os.remove('bg.png')
-                    shutil.move('green.mp4', 'assets/green.mp4')
+                    os.remove('green.mp4')
                     player = vlc.Instance('--fullscreen')
                     media_list = player.media_list_new()  # type: ignore
                     media_player = player.media_list_player_new()  # type: ignore
