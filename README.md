@@ -32,31 +32,32 @@ Without it download music function from yml file won't work
 
 ## **Config options**
 
+```yaml
+basic info:
+  enviroment: [0-f][0-f]
+  inactivelimit: [Any number]
+  intro: [True/False]
+  lang: ['SK', 'EN', 'JP']
+  music: [disable/enable]
+  musiclist: [Any Youtube video title, divided by comma]
+  musicnumber: [Any number; Max is number of items in musiclist]
+game settings:
+  computer_power: [Any number; Lower the powerfull]
+  goal_score: [Any number]
+neko settings:
+  server: ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
+user history:
+waifu settings:
+  category (sfw): ['waifu', 'neko', 'shinobu', 'megumin', 'bully', 'cuddle', 'cry', 'hug', 'awoo', 'kiss', 'lick', 'pat', 'smug', 'bonk', 'yeet', 'blush', 'smile', 'wave', 'highfive', 'handhold', 'nom', 'bite', 'glomp', 'slap', 'kill', 'kick', 'happy', 'wink', 'poke', 'dance', 'cringe']
+  category (nsfw): ['waifu', 'neko', 'trap', 'blowjob']
+  type: [sfw/nsfw]
 ```
-[BASIC INFO]
-lang = ['SK', 'EN', 'JP']
-enviroment = [0-f][0-f]
-intro = [True/False]
-inactivelimit = [Any number]
-music = [disable/enable]
-musiclist = [Any Youtube video title, divided by comma]
-musicnumber = [Any number; Max is number of items in musiclist]
-[WAIFU SETTINGS]
-type = [sfw/nsfw]
-category (sfw) = ['waifu', 'neko', 'shinobu', 'megumin', 'bully', 'cuddle', 'cry', 'hug', 'awoo', 'kiss', 'lick', 'pat', 'smug', 'bonk', 'yeet', 'blush', 'smile', 'wave', 'highfive', 'handhold', 'nom', 'bite', 'glomp', 'slap', 'kill', 'kick', 'happy', 'wink', 'poke', 'dance', 'cringe']
-category (nsfw) = ['waifu', 'neko', 'trap', 'blowjob']
-[NEKO SETTINGS]
-server = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
-[GAME SETTINGS]
-goal_score = [Any number]
-computer_power = [Any number; Lower the powerfull]
 
-```
 ---
 
 CLI Arguments
 
-```
+```plain
 -lang --language {EN, SK, JP} # Select language of the aplication defaut to config option
 -v --version {} # Show version of the app
 -ef --endf {} # Will not automatically end program
