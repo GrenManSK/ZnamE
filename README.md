@@ -44,6 +44,7 @@ basic info:
 game settings:
   computer_power: [Any number; Lower the powerfull]
   goal_score: [Any number]
+  offline_game: [True/False]
 neko settings:
   server: ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
 user history:

@@ -257,18 +257,15 @@ try:  # type: ignore
         quit()
         printnlog('\nDone\n')
 
-    def set_config(section: str, name: str, info: str) -> None:
+    def set_config(section: str, name: str, info: any) -> any:
         """
         The set_config function is used to set a value in the config.yml file.
-            It takes three arguments: section, name, and info. The section argument
-            specifies which part of the config file you want to change (e.g., 'general' or 'database'). 
-            The name argument specifies which key within that section you want to change (e.g., 'hostname' or 
-            'username'). Finally, the info argument is what you want that key's value changed to.
-
-        :param section: str: Specify the section of the config file that you want to change
-        :param name: str: Set the name of the config option
-        :param info: str: Set the value of a config option
-        :return: None
+            It takes three arguments: section, name, and info. Section is the section of the config file you want to edit (e.g., 'user history'). Name is what you want to change (e.g., 'username'), and info is what you want it changed to.
+        
+        :param section: str: Specify which section of the config
+        :param name: str: Specify the name of the key in the yaml file
+        :param info: any: Store the value that is being set
+        :return: The info that you pass to it
         """
         config = yaml.safe_load(open('config.yml', 'r'))
         if not isinstance(config['user history'], dict):
@@ -277,6 +274,7 @@ try:  # type: ignore
         os.remove('config.yml')
         with open('config.yml', 'w') as configfile:
             yaml.dump(config, configfile)
+        return info
 
     if __name__ == '__main__':
         global parser
@@ -477,6 +475,7 @@ try:  # type: ignore
                 file.write(
                     f'  computer_power: [Any number; Lower the powerfull]\n')
                 file.write(f'  goal_score: [Any number]\n')
+                file.write(f'  offline_game: [true/false]\n')
                 file.write(f'neko settings:\n')
                 file.write(f'  server: {server}\n')
                 file.write(f'user history:\n')
@@ -1627,7 +1626,7 @@ try:  # type: ignore
         'import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
     addapp: str = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
     restartapp: str = str('import argparse, time, pygetwindow\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwindow = pygetwindow.getWindowsWithTitle(\'ZnámE\')[0]\nwindow.activate()\nif args.autol == None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
-    gameapp: str = str('from edupage import game\ngame()')
+    gameapp: str = str('from game_assets_offline import game\ngame()')
 
     if __name__ == '__main__':
         logger.stay('codeapp')
@@ -2670,7 +2669,7 @@ try:  # type: ignore
             waifuvid: bool = False
             musicplay: bool = False
             savefilemode: bool = False
-            offline_game: bool = False
+            offline_game: bool = config['game settings']['offline_game']
             maxlogins: int = 1
             """
             If the user has not disabled the intro, play it. Otherwise, do nothing.
@@ -3179,7 +3178,9 @@ try:  # type: ignore
                             elif args.language == 'JP':
                                 typewriter('保存する画像がありません', ttime=0.01)
                     if vstup == 'offlinegame':
-                        offline_game: bool = True
+                        set_config('game settings', 'offline_game', True)
+                        offline_game = True
+                        shutil.copy('game_assets.py', 'game_assets_offline.py')
                         import game_assets  # type: ignore
                         game_assets.create_gamefiles()
                     if vstup == 'restart':
@@ -3967,6 +3968,10 @@ try:  # type: ignore
                             pass
                         try:
                             os.remove('game.py')
+                        except Exception:
+                            pass
+                        try:
+                            os.remove('game_assets_offline.py')
                         except Exception:
                             pass
                     try:

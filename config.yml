@@ -9,6 +9,7 @@ basic info:
 game settings:
   computer_power: 0.5
   goal_score: 2000
+  offline_game: false
 neko settings:
   server: nekos.best
 user history:
