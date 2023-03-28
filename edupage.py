@@ -4290,32 +4290,32 @@ try:  # type: ignore
                                     if waifuvid:
                                         sleep(0.5)
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof --waifu --waifuvid -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                            'start edupage.py --restart --autologin --nointrof --waifu --waifuvid -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                                     elif neko:
                                         sleep(0.5)
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                            'start edupage.py --restart --autologin --nointrof --neko -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                                     elif waifu:
                                         sleep(0.5)
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                            'start edupage.py --restart --autologin --nointrof --waifu -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                                     else:
                                         sleep(0.5)
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                            'start edupage.py --restart --autologin --nointrof -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                                     os.remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
                             sys.stdout.flush()
                             if neko:
                                 subprocess.check_output(
-                                    'start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                    'start edupage.py --restart --nointrof --neko -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                             elif waifu:
                                 subprocess.check_output(
-                                    'start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                    'start edupage.py --restart --nointrof --waifu -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                             else:
                                 subprocess.check_output(
-                                    'start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + args.music, shell=True)
+                                    'start edupage.py --restart --nointrof -lang ' + args.language + ' --music ' + str(args.music), shell=True)
                             os.remove('crash_dump-' + datelog + '.txt')
                             return 0
                     elif not restart:
