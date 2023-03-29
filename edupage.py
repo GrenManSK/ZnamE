@@ -972,7 +972,7 @@ try:  # type: ignore
                 "Downloading dependencies using chocolatey"
 
                 choco_packages: list[str] = [
-                    'ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201 -y']
+                    'ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201', 'grep --version 3.7']
 
                 "inst_number is number of installed packages; alinst_number is number of already installed"
 
