@@ -126,6 +126,8 @@ try:  # type: ignore
     print_module()
     import traceback
     print_module()
+    import random
+    print_module()
     if __name__ == '__main__':
         logger.stay(printnlog('DONE', toprint=False))
 
@@ -592,132 +594,141 @@ try:  # type: ignore
                         "インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
                 sleep(2)
                 quit()
+                
+    def get_id(long: int = 10) -> int:
+        id = ''
+        for i in range(long):
+            id += str(random.randint(0, 9))
+        return id   
+    
+    class installing_carousel:
+        def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
+            self.package = package
+            self.comment = comment
+            self.bar = bar
+            self.move_by_command = move_by_command
+            self._move = 0
+            self.id = get_id()
 
-    def installing_carousel(package: str, comment: str = 'Installing', bar=False):
-        """
-        The installing_carousel function is a function that will print out the string 'Installing' and then
-        the package name, in an animated fashion. It will do this until it reaches the INSTALL_DONE file, which
-        is created by another function. This is to prevent multiple instances of installing_carousel from running at once.
+        def start(self):
+            """
+            The start function is the main function of the class. It starts a thread that runs init()
 
-        :param package: str: Specify the package that is being installed
-        :param comment: str: Tell the user what is happening during the installation process
-        :return: :
-        """
-        error = False
-        alinst = False
-        while True:
-            if os.path.isfile('INSTALL_DONE'):
-                break
-            if os.path.isfile('INSTALL_ERROR'):
-                error = True
-                break
-            if os.path.isfile('INSTALL_ALINST'):
-                alinst = True
-                break
-            if os.path.isfile('INSTALL_PAUSE'):
-                if not bar:
-                    print('                                            ', end='\r')
-                if bar:
+            :param self: Represent the instance of the class
+            :return: Nothing, so the return statement is never reached
+            """
+
+            Thread(target=self.init).start()
+
+        def pause(self):
+            """
+            The pause function is used to pause the installation of a package.
+
+            :param self: Represent the instance of the class
+            :return: Nothing, it just creates a file
+            """
+            open(f"INSTALL_PAUSE{self.id}", 'x')
+
+        def unpause(self):
+            open(f"INSTALL_UNPAUSE{self.id}", 'x')
+
+        def stop(self, mode='s'):
+            """
+            The stop function is called when the user wants to stop the installation.
+
+            :param self: Represent the instance of the class
+            :param mode: Determine what file is created
+            :return: The name of the file that is created
+            """
+            if mode == 's':
+                open(f"INSTALL_DONE{self.id}", 'x')
+            if mode == 'e':
+                open(f"INSTALL_ERROR{self.id}", 'x')
+            if mode == 'ali':
+                open(f"INSTALL_ALINST{self.id}", 'x')
+
+        def move(self):
+            self._move += 1
+
+        def init(self):
+            """
+            The init function is used to initialize the package installation.
+            It will print a loading bar until it finds an INSTALL_DONE, INSTALL_ERROR or 
+            INSTALL_ALINST file in the current directory. If it finds an INSTALL_DONE file, 
+            it will print DONE after the package name and if it finds an INSTALL_ERROR file, 
+            it will print ERROR after the package name. If it finds an INSTALL_ALINST file, 
+            it will print ALREADY INSTALLED after the package name.
+
+            :param self: Represent the instance of the class
+            :return: Nothing, so the return statement is not needed
+            """
+            error = False
+            alinst = False
+            number = 0
+            char = ['|', '/', '-', '\\']
+            while True:
+                if os.path.isfile(f'INSTALL_DONE{self.id}'):
+                    break
+                if os.path.isfile(f'INSTALL_ERROR{self.id}'):
+                    error = True
+                    break
+                if os.path.isfile(f'INSTALL_ALINST{self.id}'):
+                    alinst = True
+                    break
+                if os.path.isfile(f'INSTALL_PAUSE{self.id}'):
+                    if not self.bar:
+                        print(
+                            '                                            ', end='\r')
+                    if self.bar:
+                        tqdm.write(
+                            '                                            ')
+                    os.remove(f'INSTALL_PAUSE{self.id}')
+                    while not os.path.isfile(f'INSTALL_UNPAUSE{self.id}'):
+                        sleep(0.1)
+                    os.remove(f'INSTALL_UNPAUSE{self.id}')
+                if not self.bar:
+                    print(
+                        f'{self.comment} {self.package} {char[number]}               ', end='\r')
+                if self.bar:
                     tqdm.write(
-                        '                                            ', end='\r')
-                sleep(0.4)
-                os.remove('INSTALL_PAUSE')
-            if not bar:
-                print(f'{comment} {package} /               ', end='\r')
-            if bar:
-                tqdm.write(f'{comment} {package} /               ', end='\r')
-            sleep(0.25)
-            if os.path.isfile('INSTALL_DONE'):
-                break
-            if os.path.isfile('INSTALL_ERROR'):
-                error = True
-                break
-            if os.path.isfile('INSTALL_ALINST'):
-                alinst = True
-                break
-            if os.path.isfile('INSTALL_PAUSE'):
-                if not bar:
-                    print('                                            ', end='\r')
-                if bar:
+                        f'{self.comment} {self.package} {char[number]}               ')
+                if not self.move_by_command or self._move != 0 and self.move_by_command:
+                    number += 1
+                    if self.move_by_command:
+                        self._move -= 1
+                if number >= len(char):
+                    number = 0
+                sleep(0.1)
+            if error:
+                if not self.bar:
+                    print(f'{self.comment} {self.package} ERROR             ')
+                if self.bar:
+                    tqdm.write(f'{self.comment} {self.package} ERROR             ')
+            elif alinst:
+                if not self.bar:
+                    print(
+                        f'{self.comment} {self.package} ALREADY INSTALLED             ')
+                if self.bar:
                     tqdm.write(
-                        '                                            ', end='\r')
-                sleep(0.4)
-                os.remove('INSTALL_PAUSE')
-            if not bar:
-                print(f'{comment} {package} -               ', end='\r')
-            if bar:
-                tqdm.write(f'{comment} {package} -               ', end='\r')
-            sleep(0.25)
-            if os.path.isfile('INSTALL_DONE'):
-                break
-            if os.path.isfile('INSTALL_ERROR'):
-                error = True
-                break
-            if os.path.isfile('INSTALL_ALINST'):
-                alinst = True
-                break
-            if os.path.isfile('INSTALL_PAUSE'):
-                if not bar:
-                    print('                                            ', end='\r')
-                if bar:
-                    tqdm.write(
-                        '                                            ', end='\r')
-                sleep(0.4)
-                os.remove('INSTALL_PAUSE')
-            if not bar:
-                print(f'{comment} {package} \\              ', end='\r')
-            if bar:
-                tqdm.write(f'{comment} {package} \\              ', end='\r')
-            sleep(0.25)
-            if os.path.isfile('INSTALL_DONE'):
-                break
-            if os.path.isfile('INSTALL_ERROR'):
-                error = True
-                break
-            if os.path.isfile('INSTALL_ALINST'):
-                alinst = True
-                break
-            if os.path.isfile('INSTALL_PAUSE'):
-                if not bar:
-                    print('                                            ', end='\r')
-                if bar:
-                    tqdm.write(
-                        '                                            ', end='\r')
-                sleep(0.4)
-                os.remove('INSTALL_PAUSE')
-            if not bar:
-                print(f'{comment} {package} |               ', end='\r')
-            if bar:
-                tqdm.write(f'{comment} {package} |               ', end='\r')
-            sleep(0.25)
-        if error:
-            if not bar:
-                print(f'{comment} {package} ERROR             ')
-            if bar:
-                tqdm.write(f'{comment} {package} ERROR             ')
-        elif alinst:
-            if not bar:
-                print(f'{comment} {package} ALREADY INSTALLED             ')
-            if bar:
-                tqdm.write(
-                    f'{comment} {package} ALREADY INSTALLED             ')
-        else:
-            if not bar:
-                print(f'{comment} {package} DONE             ')
-            if bar:
-                tqdm.write(f'{comment} {package} DONE             ')
-        try:
-            os.remove('INSTALL_DONE')
-        except Exception:
-            pass
-        try:
-            os.remove('INSTALL_ERROR')
-        except Exception:
-            pass
-        try:
-            os.remove('INSTALL_ALINST')
-        except Exception:
-            pass
+                        f'{self.comment} {self.package} ALREADY INSTALLED             ')
+            else:
+                if not self.bar:
+                    print(f'{self.comment} {self.package} DONE             ')
+                if self.bar:
+                    tqdm.write(f'{self.comment} {self.package} DONE             ')
+            try:
+                os.remove(f'INSTALL_DONE{self.id}')
+            except Exception:
+                pass
+            try:
+                os.remove(f'INSTALL_ERROR{self.id}')
+            except Exception:
+                pass
+            try:
+                os.remove(f'INSTALL_ALINST{self.id}')
+            except Exception:
+                pass
+
 
     def choco_install(*packages: str):
         """
@@ -736,15 +747,16 @@ try:  # type: ignore
                 version = pack[1]
                 package = pack[0]
             with open('choco_output', 'w') as file:
-                Thread(target=installing_carousel, args=(package,)).start()
-                Thread(target=choco_check, args=(package,)).start()
+                carousel = installing_carousel(package)
+                Thread(target=carousel.start()).start()
+                Thread(target=choco_check, args=(package, carousel)).start()
                 subprocess.run(['choco', 'install', package,
                                version, '-y'], stdout=file, text=True)
             with open('choco_output', 'r') as file:
                 alinst = False
                 for line, content in enumerate(file.readlines()):
                     if 'already installed.' in content and package in content:
-                        open('INSTALL_ALINST', 'x')
+                        carousel.stop('ali')
                         alinst = True
                         alinst_number += 1
                         break
@@ -753,12 +765,12 @@ try:  # type: ignore
             except Exception:
                 pass
             if not alinst:
-                open('INSTALL_DONE', 'x')
+                carousel.stop()
                 inst_number += 1
             sleep(2)
         return (inst_number, alinst_number)
 
-    def choco_check(module: str) -> None:
+    def choco_check(module: str, carousel: installing_carousel) -> None:
         """
         The choco_check function checks if chocolatey is installed and prompts the user to continue.
         It also checks if the user is an admin, and confirms that they want to run as non-admin.
@@ -806,8 +818,9 @@ try:  # type: ignore
                         cont = True
                         ffmpeg_confline = line
             if not admin or ffmpeg_conf or cont:
-                open('INSTALL_PAUSE', 'x')
+                carousel.pause()
                 sleep(0.25)
+                carousel.unpause()
             if not admin:
                 pg.press('y')
                 admin = True
@@ -846,9 +859,9 @@ try:  # type: ignore
                     file.write('$InstallDir=\'C:\ProgramData\chocoportable\'\n$env:ChocolateyInstall="$InstallDir"\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\'https://community.chocolatey.org/install.ps1\'))')
                 logger.next(
                     "Checking if chocolatey is installed if not downloading\n")
-                Thread(target=installing_carousel,
-                       args=('chocolatey',)).start()
-                Thread(target=choco_check, args=('chocolatey',)).start()
+                carousel = installing_carousel('chocolatey')
+                Thread(target=carousel.start()).start()
+                Thread(target=choco_check, args=('chocolatey', carousel)).start()
                 with open('choco_output', 'w') as file:
                     choco = subprocess.run(
                         ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
@@ -858,7 +871,7 @@ try:  # type: ignore
                         "If system don\'t allow running powershell scripts navigate user to allow it"
 
                         if 'cannot be loaded because running scripts is disabled on this system' in line:
-                            open('INSTALL_ERROR', 'x')
+                            carousel.stop('e')
                             logger.stay(
                                 'Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'')
                             with open('set_permissions.txt', 'w') as file:
@@ -871,7 +884,7 @@ try:  # type: ignore
                                 choco = subprocess.run(
                                     ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
                 open('choco_end', 'x')
-                open('INSTALL_DONE', 'x')
+                carousel.stop()
                 logger.prev('')
                 sleep(1)
 
@@ -2478,12 +2491,12 @@ try:  # type: ignore
             subprocess.run(['python', '-m', 'spotdl', 'web'],
                            stdout=file, text=True)
         sleep(1)
-        Thread(target=installing_carousel, args=('',), kwargs={
-               'comment': 'Waiting for synchronization'}).start()
+        carousel = installing_carousel(comment='Waiting for synchronization')
+        Thread(target=carousel.start()).start()
         while os.path.isfile('SPOTDL_QUEUE'):
             sleep(1)
         open('SPOTDL_QUIT', 'x')
-        open("INSTALL_DONE", 'x')
+        carousel.stop()
         music: list[str] = list(
             set(config['basic info']['musiclist'].split(',')[0:]))
         if music[0] == '':
