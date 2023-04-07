@@ -16,6 +16,7 @@ completer.log
 .mypy_cache/
 Doxyfile
 download/
+.vscode/
 signatures.py
 edupage_old.py
 patch.py
