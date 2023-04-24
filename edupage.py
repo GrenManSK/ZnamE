@@ -1,13 +1,17 @@
 try:  # type: ignore
     import cProfile
     import pstats
-    import verbose
     from datetime import datetime
     from time import sleep
     import sys
     import os
     if os.path.isfile('INSTALL_RESTART'):
         sleep(1)
+    try:
+        import verbose
+    except ModuleNotFoundError:
+        os.system('pip install git+https://github.com/GrenManSK/verbose.git')
+        quit()
     logger = verbose.get_logger()
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
@@ -494,7 +498,7 @@ try:  # type: ignore
 
         "Set of all dependencies using chocolatey"
 
-        potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager',
+        potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose',
                               'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3'}
         printnlog('Libraries needed: ', end='')
         potrebne1: list[str] = list(potrebne)
