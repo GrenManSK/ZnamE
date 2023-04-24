@@ -92,35 +92,43 @@ $(document).ready(function(){initNavTree('d3/dcc/md__r_e_a_d_m_e.html','../../')
   <div class="headertitle"><div class="title"><b>ZnamE</b> </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Using <a href="https://github.com/awaken1ng/krkr-xp3">https://github.com/awaken1ng/krkr-xp3</a> as extraction tool</p>
+<div class="textblock"><p>Using <a href="https://github.com/awaken1ng/krkr-xp3" target="_blank">krkr-xp3</a> as extraction tool</p>
 <p>Rewritten to python3 and added some functions to work with ZnámE</p>
-<p>Using <a href="https://github.com/RocktimSaikia/anime-chan">https://github.com/RocktimSaikia/anime-chan</a> for motivation function</p>
-<p>Using <a href="https://github.com/nekos-best">https://github.com/nekos-best</a> for NEKO photos</p>
-<p>Using <a href="https://github.com/Waifu-pics/waifu-api">https://github.com/Waifu-pics/waifu-api</a> for WAIFU photos</p>
+<p>Using <a href="https://github.com/RocktimSaikia/anime-chan" target="_blank">anime-chan</a> for motivation function</p>
+<p>Using <a href="https://github.com/nekos-best" target="_blank">nekos-best</a> for NEKO photos</p>
+<p>Using <a href="https://github.com/Waifu-pics/waifu-api" target="_blank">waifu-api</a> for WAIFU photos</p>
 <hr  />
 <p><b>Test login credentials:</b> PID: 426738 Password: 123456</p>
 <p>Program will make backup files and credentials saves in 'C:/Users/your_name/AppData/Local/ZnámE'</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md106"></a>
+Installation</h1>
+<p>If you have already installed pytube go to the pytube directory and cipher.py file ({your_python}/site-packages/pytube/cipher.py)</p>
+<p>On line 411 remove all content of the line and change it to 'transform_plan_raw = js'</p>
+<p>Without it download music function from yml file won't work</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md108"></a>
 &lt;strong&gt;Config options&lt;/strong&gt;</h1>
-<div class="fragment"><div class="line">[BASIC INFO]</div>
-<div class="line">lang = [&#39;SK&#39;, &#39;EN&#39;, &#39;JP&#39;]</div>
-<div class="line">enviroment = [0-f][0-f]</div>
-<div class="line">intro = [True/False]</div>
-<div class="line">inactivelimit = [Any number]</div>
-<div class="line">music = [disable/enable]</div>
-<div class="line">musiclist = [Any Youtube video title, divided by comma]</div>
-<div class="line">musicnumber = [Any number; Max is number of items in musiclist]</div>
-<div class="line">[WAIFU SETTINGS]</div>
-<div class="line">type = [sfw/nsfw]</div>
-<div class="line">category (sfw) = [&#39;waifu&#39;, &#39;neko&#39;, &#39;shinobu&#39;, &#39;megumin&#39;, &#39;bully&#39;, &#39;cuddle&#39;, &#39;cry&#39;, &#39;hug&#39;, &#39;awoo&#39;, &#39;kiss&#39;, &#39;lick&#39;, &#39;pat&#39;, &#39;smug&#39;, &#39;bonk&#39;, &#39;yeet&#39;, &#39;blush&#39;, &#39;smile&#39;, &#39;wave&#39;, &#39;highfive&#39;, &#39;handhold&#39;, &#39;nom&#39;, &#39;bite&#39;, &#39;glomp&#39;, &#39;slap&#39;, &#39;kill&#39;, &#39;kick&#39;, &#39;happy&#39;, &#39;wink&#39;, &#39;poke&#39;, &#39;dance&#39;, &#39;cringe&#39;]</div>
-<div class="line">category (nsfw) = [&#39;waifu&#39;, &#39;neko&#39;, &#39;trap&#39;, &#39;blowjob&#39;]</div>
-<div class="line">[NEKO SETTINGS]</div>
-<div class="line">server = [&#39;nekos.best&#39;, &#39;waifu.pics&#39;, &#39;kyoko&#39;, &#39;nekos_api&#39;]</div>
-<div class="line">[GAME SETTINGS]</div>
-<div class="line">goal_score = [Any number]</div>
-<div class="line">computer_power = [Any number; Lower the powerfull]</div>
-</div><!-- fragment --> <hr  />
+<div class="fragment"><div class="line">basic info:</div>
+<div class="line">  enviroment: [0-f][0-f]</div>
+<div class="line">  inactivelimit: [Any number]</div>
+<div class="line">  intro: [True/False]</div>
+<div class="line">  lang: [&#39;SK&#39;, &#39;EN&#39;, &#39;JP&#39;]</div>
+<div class="line">  music: [disable/enable]</div>
+<div class="line">  musiclist: [Any Youtube video title, divided by comma]</div>
+<div class="line">  musicnumber: [Any number; Max is number of items in musiclist]</div>
+<div class="line">game settings:</div>
+<div class="line">  computer_power: [Any number; Lower the powerfull]</div>
+<div class="line">  goal_score: [Any number]</div>
+<div class="line">  offline_game: [True/False]</div>
+<div class="line">neko settings:</div>
+<div class="line">  server: [&#39;nekos.best&#39;, &#39;waifu.pics&#39;, &#39;kyoko&#39;, &#39;nekos_api&#39;]</div>
+<div class="line">user history:</div>
+<div class="line">waifu settings:</div>
+<div class="line">  category (sfw): [&#39;waifu&#39;, &#39;neko&#39;, &#39;shinobu&#39;, &#39;megumin&#39;, &#39;bully&#39;, &#39;cuddle&#39;, &#39;cry&#39;, &#39;hug&#39;, &#39;awoo&#39;, &#39;kiss&#39;, &#39;lick&#39;, &#39;pat&#39;, &#39;smug&#39;, &#39;bonk&#39;, &#39;yeet&#39;, &#39;blush&#39;, &#39;smile&#39;, &#39;wave&#39;, &#39;highfive&#39;, &#39;handhold&#39;, &#39;nom&#39;, &#39;bite&#39;, &#39;glomp&#39;, &#39;slap&#39;, &#39;kill&#39;, &#39;kick&#39;, &#39;happy&#39;, &#39;wink&#39;, &#39;poke&#39;, &#39;dance&#39;, &#39;cringe&#39;]</div>
+<div class="line">  category (nsfw): [&#39;waifu&#39;, &#39;neko&#39;, &#39;trap&#39;, &#39;blowjob&#39;]</div>
+<div class="line">  type: [sfw/nsfw]</div>
+</div><!-- fragment --><hr  />
 <p>CLI Arguments</p>
 <div class="fragment"><div class="line">-lang --language {EN, SK, JP} # Select language of the aplication defaut to config option</div>
 <div class="line">-v --version {} # Show version of the app</div>
@@ -134,7 +142,7 @@ $(document).ready(function(){initNavTree('d3/dcc/md__r_e_a_d_m_e.html','../../')
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 15 2023 16:52:15 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Apr 24 2023 18:40:22 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -92,6 +92,15 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>edupage::installing_carousel</Name>
+      <APILanguage>python</APILanguage>
+      <Type>cl</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>edupage</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -121,6 +130,143 @@
       <APILanguage>markdown</APILanguage>
     </TokenIdentifier>
     <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>__init__</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>ae7edd4276405b5e5d7725e39746efcd5</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>_move</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a2d49a2fda28650328dc15ac8a315c9bb</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bar</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>aedd643e252526e1521f19cbe601d3413</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>comment</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a355993711c4c54f7c635fb92eda01b06</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>id</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>ad543af9809d6c3e5873cd08e7802eef4</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>init</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a58a975e8c7240202ae143daa2944613b</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>move</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a4ee34465ac6e692e7d46c2d1774bad6b</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>move_by_command</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a525faed7695f386e51d359cdd25d85e2</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>package</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a777d39e2639af9410e7d94d7367a3a72</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pause</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a1c5d8a5ddb65f550be8cede78936132a</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>start</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>aa3c2f6b99b1156be189ff77d954da381</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stop</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a4808a8eecb724b50e9e3f7ab6ba5b35b</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>unpause</Name>
+      <APILanguage>python</APILanguage>
+      <Type>instm</Type>
+      <Scope>edupage.installing_carousel</Scope>
+    </TokenIdentifier>
+    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Anchor>a9f02481a9e10433361dbe165628b4ea7</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -212,6 +358,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>carousel</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>a3dabbe69f4c347e88a0e3b0c699a602f</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>category</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -262,7 +419,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
+    <Anchor>a5af10b36312bbda15f46734e936f3cad</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -273,7 +430,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a72c1065498cc76b5923e8893086a455f</Anchor>
+    <Anchor>a03dbe3a6be69e84c239ca0dc0d5f97af</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -350,7 +507,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a8c381118815e87de8bbb4aac97778838</Anchor>
+    <Anchor>a77cd6f866d38b46933c0b4511d706bb8</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -597,6 +754,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>get_id</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>ae6f79ced0881307de7d601a010b94643</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>get_line_number</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -813,17 +981,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>installing_carousel</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1428,7 +1585,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
+    <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1451,6 +1608,17 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>site_packages</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>afffa275d44b92d259565032d241f556d</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>

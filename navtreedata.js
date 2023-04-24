@@ -40,7 +40,8 @@ var NAVTREE =
       [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
     ] ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md106", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md106", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md108", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -53,7 +54,12 @@ var NAVTREE =
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
@@ -64,7 +70,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#a7bccf1571776076585677c0edaa8f4b7"
+"df/dd7/edupage_8py.html#a3a83b5040c381cdaee537ef1c78398ef"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

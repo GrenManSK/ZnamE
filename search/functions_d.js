@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall']]],
-  ['unpack_1',['unpack',['../d0/d52/namespaceedupage.html#a17d25ec04c8180522deae8449911dcb6',1,'edupage']]]
+  ['to_5finfo_0',['to_info',['../d0/d52/namespaceedupage.html#af42cb60f429fbe9cb11f585512cd2c4c',1,'edupage']]],
+  ['typewriter_1',['typewriter',['../d0/d52/namespaceedupage.html#a7faa24d24074c579901eff9ea313b508',1,'edupage']]]
 ];

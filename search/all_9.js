@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['if_5faddrs_0',['if_addrs',['../d0/d52/namespaceedupage.html#ab38a6c38ecc136ff4c5c4b3425201a92',1,'edupage']]],
-  ['inactive_1',['inactive',['../d0/d52/namespaceedupage.html#a341571d7a41b53af5510ed61722c2847',1,'edupage']]],
-  ['inst_5fnumber_2',['inst_number',['../d0/d52/namespaceedupage.html#a9a9e8ca119e50ffa3a0e037bc062f0fd',1,'edupage']]],
-  ['installing_5fcarousel_3',['installing_carousel',['../d0/d52/namespaceedupage.html#ae4daabd33ec43e883f3b5260cd0d70aa',1,'edupage']]],
-  ['internet_4',['internet',['../d0/d52/namespaceedupage.html#a24008aa497ff16992e765fb4c470bb7b',1,'edupage']]],
-  ['internet_5fcheck_5',['internet_check',['../d0/d52/namespaceedupage.html#acfd9e8f73e3eb2e829ac13cec7ad3898',1,'edupage']]],
-  ['isuseradmin_6',['isUserAdmin',['../d0/d52/namespaceedupage.html#a13c25255a4a60c10799fdb24feed36a3',1,'edupage']]],
-  ['iterable_7',['iterable',['../d0/d52/namespaceedupage.html#a6d814da27f3b2b7c5efb9a90cd5a15be',1,'edupage']]]
+  ['help_0',['help',['../d0/d52/namespaceedupage.html#a08a7b70b9f407ce0bd61e0c6c9e58ac4',1,'edupage']]],
+  ['hexnumber_1',['hexnumber',['../d0/d52/namespaceedupage.html#a4dfbc2105aef0c7859144bcb757f4b13',1,'edupage']]]
 ];

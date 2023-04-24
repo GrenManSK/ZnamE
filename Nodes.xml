@@ -73,9 +73,14 @@
         <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
       <Subnodes>
          <Node>
-          <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
+          <Name>Installation</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
           <Anchor>autotoc_md106</Anchor>
+         </Node>
+         <Node>
+          <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
+          <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
+          <Anchor>autotoc_md108</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -132,6 +137,77 @@
               <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
              </Node>
              <Node>
+              <Name>installing_carousel</Name>
+              <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ae7edd4276405b5e5d7725e39746efcd5</Anchor>
+               </Node>
+               <Node>
+                <Name>init</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a58a975e8c7240202ae143daa2944613b</Anchor>
+               </Node>
+               <Node>
+                <Name>move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4ee34465ac6e692e7d46c2d1774bad6b</Anchor>
+               </Node>
+               <Node>
+                <Name>pause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a1c5d8a5ddb65f550be8cede78936132a</Anchor>
+               </Node>
+               <Node>
+                <Name>start</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aa3c2f6b99b1156be189ff77d954da381</Anchor>
+               </Node>
+               <Node>
+                <Name>stop</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4808a8eecb724b50e9e3f7ab6ba5b35b</Anchor>
+               </Node>
+               <Node>
+                <Name>unpause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a9f02481a9e10433361dbe165628b4ea7</Anchor>
+               </Node>
+               <Node>
+                <Name>_move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a2d49a2fda28650328dc15ac8a315c9bb</Anchor>
+               </Node>
+               <Node>
+                <Name>bar</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aedd643e252526e1521f19cbe601d3413</Anchor>
+               </Node>
+               <Node>
+                <Name>comment</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a355993711c4c54f7c635fb92eda01b06</Anchor>
+               </Node>
+               <Node>
+                <Name>id</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ad543af9809d6c3e5873cd08e7802eef4</Anchor>
+               </Node>
+               <Node>
+                <Name>move_by_command</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a525faed7695f386e51d359cdd25d85e2</Anchor>
+               </Node>
+               <Node>
+                <Name>package</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a777d39e2639af9410e7d94d7367a3a72</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
               <Name>add</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>af8155c1c90674d76615b11b6d0c5c8ba</Anchor>
@@ -149,12 +225,12 @@
              <Node>
               <Name>choco_check</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
+              <Anchor>a5af10b36312bbda15f46734e936f3cad</Anchor>
              </Node>
              <Node>
               <Name>choco_install</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a72c1065498cc76b5923e8893086a455f</Anchor>
+              <Anchor>a03dbe3a6be69e84c239ca0dc0d5f97af</Anchor>
              </Node>
              <Node>
               <Name>code</Name>
@@ -197,6 +273,11 @@
               <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
              </Node>
              <Node>
+              <Name>get_id</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ae6f79ced0881307de7d601a010b94643</Anchor>
+             </Node>
+             <Node>
               <Name>get_line_number</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a812e6a75d3ee97e0f71e7d0d90b4a355</Anchor>
@@ -225,11 +306,6 @@
               <Name>inactive</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a341571d7a41b53af5510ed61722c2847</Anchor>
-             </Node>
-             <Node>
-              <Name>installing_carousel</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
               <Name>internet</Name>
@@ -299,7 +375,7 @@
              <Node>
               <Name>set_config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
+              <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
              </Node>
              <Node>
               <Name>show_marks</Name>
@@ -362,6 +438,11 @@
               <Anchor>a8b6221abde00c001bc8657d2f90b1230</Anchor>
              </Node>
              <Node>
+              <Name>carousel</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a3dabbe69f4c347e88a0e3b0c699a602f</Anchor>
+             </Node>
+             <Node>
               <Name>category</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>aa6596cad660e35814989e6faf831d515</Anchor>
@@ -404,7 +485,7 @@
              <Node>
               <Name>config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a8c381118815e87de8bbb4aac97778838</Anchor>
+              <Anchor>a77cd6f866d38b46933c0b4511d706bb8</Anchor>
              </Node>
              <Node>
               <Name>cpufreq</Name>
@@ -760,6 +841,11 @@
               <Name>shell</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
+             </Node>
+             <Node>
+              <Name>site_packages</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>afffa275d44b92d259565032d241f556d</Anchor>
              </Node>
              <Node>
               <Name>stats</Name>
@@ -928,6 +1014,77 @@
               <Name>configNoOption</Name>
               <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
              </Node>
+             <Node>
+              <Name>installing_carousel</Name>
+              <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ae7edd4276405b5e5d7725e39746efcd5</Anchor>
+               </Node>
+               <Node>
+                <Name>init</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a58a975e8c7240202ae143daa2944613b</Anchor>
+               </Node>
+               <Node>
+                <Name>move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4ee34465ac6e692e7d46c2d1774bad6b</Anchor>
+               </Node>
+               <Node>
+                <Name>pause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a1c5d8a5ddb65f550be8cede78936132a</Anchor>
+               </Node>
+               <Node>
+                <Name>start</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aa3c2f6b99b1156be189ff77d954da381</Anchor>
+               </Node>
+               <Node>
+                <Name>stop</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4808a8eecb724b50e9e3f7ab6ba5b35b</Anchor>
+               </Node>
+               <Node>
+                <Name>unpause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a9f02481a9e10433361dbe165628b4ea7</Anchor>
+               </Node>
+               <Node>
+                <Name>_move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a2d49a2fda28650328dc15ac8a315c9bb</Anchor>
+               </Node>
+               <Node>
+                <Name>bar</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aedd643e252526e1521f19cbe601d3413</Anchor>
+               </Node>
+               <Node>
+                <Name>comment</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a355993711c4c54f7c635fb92eda01b06</Anchor>
+               </Node>
+               <Node>
+                <Name>id</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ad543af9809d6c3e5873cd08e7802eef4</Anchor>
+               </Node>
+               <Node>
+                <Name>move_by_command</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a525faed7695f386e51d359cdd25d85e2</Anchor>
+               </Node>
+               <Node>
+                <Name>package</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a777d39e2639af9410e7d94d7367a3a72</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
             </Subnodes>
            </Node>
           </Subnodes>
@@ -986,6 +1143,28 @@
              </Node>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>edupage.installing_carousel</Name>
+            <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>Class Members</Name>
+          <Path>functions.html</Path>
+        <Subnodes>
+           <Node>
+            <Name>All</Name>
+            <Path>functions.html</Path>
+           </Node>
+           <Node>
+            <Name>Functions</Name>
+            <Path>functions_func.html</Path>
+           </Node>
+           <Node>
+            <Name>Variables</Name>
+            <Path>functions_vars.html</Path>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -1043,6 +1222,77 @@
               <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
              </Node>
              <Node>
+              <Name>edupage.installing_carousel</Name>
+              <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ae7edd4276405b5e5d7725e39746efcd5</Anchor>
+               </Node>
+               <Node>
+                <Name>init</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a58a975e8c7240202ae143daa2944613b</Anchor>
+               </Node>
+               <Node>
+                <Name>move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4ee34465ac6e692e7d46c2d1774bad6b</Anchor>
+               </Node>
+               <Node>
+                <Name>pause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a1c5d8a5ddb65f550be8cede78936132a</Anchor>
+               </Node>
+               <Node>
+                <Name>start</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aa3c2f6b99b1156be189ff77d954da381</Anchor>
+               </Node>
+               <Node>
+                <Name>stop</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a4808a8eecb724b50e9e3f7ab6ba5b35b</Anchor>
+               </Node>
+               <Node>
+                <Name>unpause</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a9f02481a9e10433361dbe165628b4ea7</Anchor>
+               </Node>
+               <Node>
+                <Name>_move</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a2d49a2fda28650328dc15ac8a315c9bb</Anchor>
+               </Node>
+               <Node>
+                <Name>bar</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>aedd643e252526e1521f19cbe601d3413</Anchor>
+               </Node>
+               <Node>
+                <Name>comment</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a355993711c4c54f7c635fb92eda01b06</Anchor>
+               </Node>
+               <Node>
+                <Name>id</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>ad543af9809d6c3e5873cd08e7802eef4</Anchor>
+               </Node>
+               <Node>
+                <Name>move_by_command</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a525faed7695f386e51d359cdd25d85e2</Anchor>
+               </Node>
+               <Node>
+                <Name>package</Name>
+                <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+                <Anchor>a777d39e2639af9410e7d94d7367a3a72</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
               <Name>add</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>af8155c1c90674d76615b11b6d0c5c8ba</Anchor>
@@ -1060,12 +1310,12 @@
              <Node>
               <Name>choco_check</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a836208f7b35a1d7c15727ed75a5f997f</Anchor>
+              <Anchor>a5af10b36312bbda15f46734e936f3cad</Anchor>
              </Node>
              <Node>
               <Name>choco_install</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a72c1065498cc76b5923e8893086a455f</Anchor>
+              <Anchor>a03dbe3a6be69e84c239ca0dc0d5f97af</Anchor>
              </Node>
              <Node>
               <Name>code</Name>
@@ -1108,6 +1358,11 @@
               <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
              </Node>
              <Node>
+              <Name>get_id</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ae6f79ced0881307de7d601a010b94643</Anchor>
+             </Node>
+             <Node>
               <Name>get_line_number</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a812e6a75d3ee97e0f71e7d0d90b4a355</Anchor>
@@ -1136,11 +1391,6 @@
               <Name>inactive</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a341571d7a41b53af5510ed61722c2847</Anchor>
-             </Node>
-             <Node>
-              <Name>installing_carousel</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ae4daabd33ec43e883f3b5260cd0d70aa</Anchor>
              </Node>
              <Node>
               <Name>internet</Name>
@@ -1210,7 +1460,7 @@
              <Node>
               <Name>set_config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a165cb5daaa47f244a58647a6b6a7eedf</Anchor>
+              <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
              </Node>
              <Node>
               <Name>show_marks</Name>
@@ -1273,6 +1523,11 @@
               <Anchor>a8b6221abde00c001bc8657d2f90b1230</Anchor>
              </Node>
              <Node>
+              <Name>carousel</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a3dabbe69f4c347e88a0e3b0c699a602f</Anchor>
+             </Node>
+             <Node>
               <Name>category</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>aa6596cad660e35814989e6faf831d515</Anchor>
@@ -1315,7 +1570,7 @@
              <Node>
               <Name>config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a8c381118815e87de8bbb4aac97778838</Anchor>
+              <Anchor>a77cd6f866d38b46933c0b4511d706bb8</Anchor>
              </Node>
              <Node>
               <Name>cpufreq</Name>
@@ -1671,6 +1926,11 @@
               <Name>shell</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
+             </Node>
+             <Node>
+              <Name>site_packages</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>afffa275d44b92d259565032d241f556d</Anchor>
              </Node>
              <Node>
               <Name>stats</Name>

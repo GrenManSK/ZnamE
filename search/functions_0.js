@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['add_0',['add',['../d0/d52/namespaceedupage.html#af8155c1c90674d76615b11b6d0c5c8ba',1,'edupage']]],
-  ['add_5fmarks_1',['add_marks',['../d0/d52/namespaceedupage.html#a21f2f303ad4d1e33a43bd2b8207130a4',1,'edupage']]]
+  ['_5f_5finit_5f_5f_0',['__init__',['../d3/d42/classedupage_1_1installing__carousel.html#ae7edd4276405b5e5d7725e39746efcd5',1,'edupage::installing_carousel']]]
 ];

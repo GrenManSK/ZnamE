@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['main_0',['main',['../d0/d52/namespaceedupage.html#a119d208fce33ca55d6b605c22dbcd534',1,'edupage']]],
-  ['mode_1',['mode',['../d0/d52/namespaceedupage.html#a7ee3f3010bc04cf901b7fb1ffb7c6ae1',1,'edupage']]],
-  ['moduleminus_2',['moduleminus',['../d0/d52/namespaceedupage.html#a1db685fa6e5ce93bc5c43d824b2b9887',1,'edupage']]],
-  ['modulenames_3',['modulenames',['../d0/d52/namespaceedupage.html#a91f0519898034c0c5414a393b98265a7',1,'edupage']]],
-  ['modulenames1_4',['modulenames1',['../d0/d52/namespaceedupage.html#af4b2846b12a3c50e3a183081f75c33fe',1,'edupage']]],
-  ['mouseclick_5',['mouseclick',['../d0/d52/namespaceedupage.html#a0eee3180683567b64fe264addfa697aa',1,'edupage']]],
-  ['move_6',['move',['../d0/d52/namespaceedupage.html#a6811c8f4821bef2794d3b744d5135ef7',1,'edupage']]],
-  ['music_7',['music',['../d0/d52/namespaceedupage.html#a51b1f199e7ce8fb616041e68b537a716',1,'edupage']]],
-  ['musicchoices_8',['musicchoices',['../d0/d52/namespaceedupage.html#a0848aada976e511dd6a17fcd76aa464b',1,'edupage']]],
-  ['musiclimittext_9',['musiclimittext',['../d0/d52/namespaceedupage.html#a22431e8c242fecf371c1f7ee9c6e6950',1,'edupage']]],
-  ['my_5fcpuinfo_10',['my_cpuinfo',['../d0/d52/namespaceedupage.html#a3f6aa81ed62dcd4868290e51456030ec',1,'edupage']]],
-  ['my_5fsystem_11',['my_system',['../d0/d52/namespaceedupage.html#a9754f44f48ac68f306ce3af667f1de01',1,'edupage']]]
+  ['language_0',['language',['../d0/d52/namespaceedupage.html#a8db05b61d06312002141c30965b17bf0',1,'edupage']]],
+  ['level_1',['level',['../d0/d52/namespaceedupage.html#af6159be7d7eb7e3aa9f1f5f7965f7597',1,'edupage']]],
+  ['line_5fnumber_2',['line_number',['../d0/d52/namespaceedupage.html#aa7a9bd72eae19a249a9272e40108467e',1,'edupage']]],
+  ['line_5fnumbers_3',['line_numbers',['../d0/d52/namespaceedupage.html#aba5c5a586247c852a96ac46b09ea9d82',1,'edupage']]],
+  ['list_5fgpus_4',['list_gpus',['../d0/d52/namespaceedupage.html#af26fb9d80ec307320cff81139ef78492',1,'edupage']]],
+  ['log_5',['log',['../d0/d52/namespaceedupage.html#a10259ad5462902f5310a72e6a45b915b',1,'edupage']]],
+  ['log_5ffilename_6',['LOG_FILENAME',['../d0/d52/namespaceedupage.html#a3997a332918ddb9b4c50cf3e147213a3',1,'edupage']]],
+  ['logger_7',['logger',['../d0/d52/namespaceedupage.html#a81bb76bbaeee9abec4243fc8bc9f976c',1,'edupage']]],
+  ['loginvstupuser_8',['loginvstupuser',['../d0/d52/namespaceedupage.html#a6cf5972c8016553dd17350ae6dd6ac2a',1,'edupage']]]
 ];

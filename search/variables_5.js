@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['filename_0',['filename',['../d0/d52/namespaceedupage.html#aab1c4147f93d7f19b5c262c7bd622be5',1,'edupage']]],
-  ['findapp_1',['findapp',['../d0/d52/namespaceedupage.html#a868ffdec31d482e23a1055d7edfa67ac',1,'edupage']]],
-  ['format_2',['format',['../d0/d52/namespaceedupage.html#a4a5f10c3d0f57a6104ba8e97ea78c7fa',1,'edupage']]]
+  ['else_0',['else',['../d0/d52/namespaceedupage.html#aa8acb043f9701042328564500900df57',1,'edupage']]],
+  ['end_1',['end',['../d0/d52/namespaceedupage.html#a01919618bff9e4585c0398bb84b30b08',1,'edupage']]]
 ];

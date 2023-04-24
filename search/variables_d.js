@@ -1,14 +1,6 @@
 var searchData=
 [
-  ['page_0',['page',['../d0/d52/namespaceedupage.html#a5348831706cbc53d3a4f097ca5105977',1,'edupage']]],
-  ['parser_1',['parser',['../d0/d52/namespaceedupage.html#aa19b6488bc864582c9c4813a4c94a109',1,'edupage']]],
-  ['partition_5fusage_2',['partition_usage',['../d0/d52/namespaceedupage.html#a6443ccfd2a0759ccaaff10a8e4d79230',1,'edupage']]],
-  ['partitions_3',['partitions',['../d0/d52/namespaceedupage.html#a02fdbfc4f2d8b0de4eb478f3d5adad77',1,'edupage']]],
-  ['passwordapp_4',['passwordapp',['../d0/d52/namespaceedupage.html#a32c8c765f79935fea0ee6ea757266ed2',1,'edupage']]],
-  ['pc_5',['pc',['../d0/d52/namespaceedupage.html#a1d47745c698515a47e70fd774cc4d2c8',1,'edupage']]],
-  ['potrebne_6',['potrebne',['../d0/d52/namespaceedupage.html#a718899dfb9d330b6841a70728f6ee5ee',1,'edupage']]],
-  ['potrebne1_7',['potrebne1',['../d0/d52/namespaceedupage.html#aea0beb716cd2637d7365ae357e6a5d7f',1,'edupage']]],
-  ['proc_5finfo_8',['proc_info',['../d0/d52/namespaceedupage.html#aeaed450da9e150755d626fd3d3b4f668',1,'edupage']]],
-  ['progress_5fbar_5fcheck_9',['progress_bar_check',['../d0/d52/namespaceedupage.html#ab13f3f3e6aa299c7782fc3b7a40054f4',1,'edupage']]],
-  ['progress_5fbar_5fend_10',['progress_bar_end',['../d0/d52/namespaceedupage.html#acfe4725af96a79f8ba263c824358ac0a',1,'edupage']]]
+  ['os_5finfo_0',['os_info',['../d0/d52/namespaceedupage.html#a72ca10ab58e2a0048df257d25e0cda02',1,'edupage']]],
+  ['os_5fname_1',['os_name',['../d0/d52/namespaceedupage.html#aef1ff32ee046f94c09170b7675654775',1,'edupage']]],
+  ['os_5fversion_2',['os_version',['../d0/d52/namespaceedupage.html#af4332400203db3e23be3c91b28e8b799',1,'edupage']]]
 ];

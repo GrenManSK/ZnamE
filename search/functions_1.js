@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['checkadmin_0',['checkAdmin',['../d0/d52/namespaceedupage.html#a048ca9963d67feb89282ab12b5f70a49',1,'edupage']]],
-  ['choco_5fcheck_1',['choco_check',['../d0/d52/namespaceedupage.html#a836208f7b35a1d7c15727ed75a5f997f',1,'edupage']]],
-  ['choco_5finstall_2',['choco_install',['../d0/d52/namespaceedupage.html#a72c1065498cc76b5923e8893086a455f',1,'edupage']]],
-  ['code_3',['code',['../d0/d52/namespaceedupage.html#a0ac684340ab80b572e1871d02551129b',1,'edupage']]]
+  ['add_0',['add',['../d0/d52/namespaceedupage.html#af8155c1c90674d76615b11b6d0c5c8ba',1,'edupage']]],
+  ['add_5fmarks_1',['add_marks',['../d0/d52/namespaceedupage.html#a21f2f303ad4d1e33a43bd2b8207130a4',1,'edupage']]]
 ];
