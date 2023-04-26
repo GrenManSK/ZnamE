@@ -19,5 +19,5 @@ download/
 .vscode/
 signatures.py
 edupage_old.py
-patch.py
+patch_edupage.py
 Website/
