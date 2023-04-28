@@ -10,8 +10,16 @@ try:  # type: ignore
     try:
         import verbose
     except ModuleNotFoundError:
-        os.system('pip install git+https://github.com/GrenManSK/verbose.git')
-        quit()
+        print(f'Verbose not found\nUse this command to install it {sys.executable} -m pip install git+https://github.com/GrenManSK/verbose.git')
+        input()
+        sys.exit(1) 
+    try:
+        import final
+        from final import mathematical
+    except ModuleNotFoundError:
+        print(f'final not found\nUse this command to install it {sys.executable} -m pip install git+https://github.com/GrenManSK/final.git')
+        input()
+        sys.exit(1) 
     logger = verbose.get_logger()
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
@@ -129,8 +137,6 @@ try:  # type: ignore
     from time import sleep
     print_module()
     import traceback
-    print_module()
-    import random
     print_module()
     if __name__ == '__main__':
         logger.stay(printnlog('DONE', toprint=False))
@@ -260,7 +266,7 @@ try:  # type: ignore
         error_get(configNoOption(
             'Corruption of config file => option missing'), [line_number],)
         input("Press 'enter' to quit")
-        quit()
+        sys.exit(1)
         printnlog('\nDone\n')
 
     def set_config(section: str, name: str, info: any) -> any:
@@ -345,11 +351,11 @@ try:  # type: ignore
         if not config['basic info']['enviroment'].split(' ')[0][0] in hexnumber:
             error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(
                 f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         elif not config['basic info']['enviroment'].split(' ')[0][1] in hexnumber:
             error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(
                 f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         else:
             printnlog('basic info => enviroment')
         try:
@@ -358,11 +364,11 @@ try:  # type: ignore
         except ValueError:
             error_get(ExceptionGroup('', [argInactiveLimitError(
                 'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         if not config['basic info']['intro'] in [True, False]:
             error_get(ExceptionGroup('', [argIntroError('Wrong choice in \'basic info\' => intro'), ValueError(
                 'Only \'True\' or \'False\'')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         else:
             printnlog('basic info => intro')
         if config['basic info']['music'].split(' ')[0] == 'enable':
@@ -374,11 +380,11 @@ try:  # type: ignore
         else:
             error_get(ExceptionGroup('', [argMusicError('Wrong choice in \'basic info\' => music'), ValueError(
                 'Only \'enable\' or \'disable\'')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         if not config['waifu settings']['type'].split(' ')[0] in ['sfw', 'nsfw']:
             error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError(
                 'Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         else:
             printnlog('waifu settings => type')
         if config['waifu settings']['type'] == 'sfw':
@@ -387,7 +393,7 @@ try:  # type: ignore
             if not config['waifu settings']['category'].split(' ')[0] in category:
                 error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
                     'Use \'waifu\' and see option in setup function')]), [get_line_number()])
-                quit()
+                sys.exit(1)
             else:
                 printnlog('waifu settings => category')
         elif config['waifu settings']['type'] == 'nsfw':
@@ -395,14 +401,14 @@ try:  # type: ignore
             if not config['waifu settings']['category'].split(' ')[0] in category:
                 error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
                     'Use \'waifu\' and see option in setup function')]), [get_line_number()])
-                quit()
+                sys.exit(1)
             else:
                 printnlog('waifu settings => category')
         server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
         if not config['neko settings']['server'] in server:
             error_get(ExceptionGroup('', [argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(
                 f'Only take {str(server)}')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         else:
             printnlog('neko settings => server')
         try:
@@ -410,7 +416,7 @@ try:  # type: ignore
         except ValueError:
             error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError(
                 'take only numbers')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         try:
             if 10 <= int(config['game settings']['goal_score']):
                 printnlog('game settings => goal_score')
@@ -419,14 +425,14 @@ try:  # type: ignore
         except ValueError:
             error_get(ExceptionGroup('', [argGameError(
                 'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         try:
             float(config['game settings']['computer_power'])
             printnlog('game settings => computer_power')
         except ValueError:
             error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError(
                 'take only numbers')]), [get_line_number()])
-            quit()
+            sys.exit(1)
         if config['basic info']['music'] == 'enable':
             musiclimittext: bool = False
             while len(music) < int(config['basic info']['musicnumber']):
@@ -447,7 +453,7 @@ try:  # type: ignore
             else:
                 error_get(ExceptionGroup('', [argLanguageError('Wrong choice in \'basic info\' => lang'), ValueError(
                     'Language doesn\'t exist')]), [get_line_number()])
-                quit()
+                sys.exit(1)
 
         """
         If the program has specified that we should update the rotation dictionary, remove the old update.py file.
@@ -466,33 +472,33 @@ try:  # type: ignore
 
             "configoptions argument functionality"
 
-            with open('CONFIG_OPTIONS.txt', 'w') as file:
-                file.write('basic info:\n')
-                file.write(f'  enviroment: [0-f][0-f]\n')
-                file.write(f'  inactivelimit: [Any number]\n')
-                file.write(f'  intro: [True/False]\n')
-                file.write(f'  lang: {language}\n')
-                file.write(f'  music: [disable/enable]\n')
-                file.write(
+            with open('CONFIG_OPTIONS.txt', 'w') as config_file:
+                config_file.write('basic info:\n')
+                config_file.write(f'  enviroment: [0-f][0-f]\n')
+                config_file.write(f'  inactivelimit: [Any number]\n')
+                config_file.write(f'  intro: [True/False]\n')
+                config_file.write(f'  lang: {language}\n')
+                config_file.write(f'  music: [disable/enable]\n')
+                config_file.write(
                     f'  st: [Any Youtube video title, divided by comma]\n')
-                file.write(
+                config_file.write(
                     f'  [Any number; Max is number of items in musiclist]\n')
-                file.write('game settings:\n')
-                file.write(
+                config_file.write('game settings:\n')
+                config_file.write(
                     f'  computer_power: [Any number; Lower the powerfull]\n')
-                file.write(f'  goal_score: [Any number]\n')
-                file.write(f'  offline_game: [true/false]\n')
-                file.write(f'neko settings:\n')
-                file.write(f'  server: {server}\n')
-                file.write(f'user history:\n')
+                config_file.write(f'  goal_score: [Any number]\n')
+                config_file.write(f'  offline_game: [true/false]\n')
+                config_file.write(f'neko settings:\n')
+                config_file.write(f'  server: {server}\n')
+                config_file.write(f'user history:\n')
                 category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
                                        "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-                file.write(f'category (sfw) = {category}\n')
+                config_file.write(f'category (sfw) = {category}\n')
                 category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
-                file.write(f'category (nsfw) = {category}\n')
-                file.write('  type: [sfw/nsfw]\n')
+                config_file.write(f'category (nsfw) = {category}\n')
+                config_file.write('  type: [sfw/nsfw]\n')
             os.remove(f'crash_dump-{datelog}.txt')
-            quit()
+            sys.exit(1)
 
     if __name__ == '__main__':
 
@@ -523,7 +529,7 @@ try:  # type: ignore
                 elif args.language == "JP":
                     print('アップデートが利用可能です： ', *nenajdene)
             os.remove('crash_dump-' + datelog + '.txt')
-            quit()
+            sys.exit(1)
         if __name__ == '__main__':
 
             "Downloading dependencies using chocolatey"
@@ -548,9 +554,9 @@ try:  # type: ignore
                     os.remove('crash_dump-' + datelog + '.txt')
                     subprocess.call(
                         [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
-                    quit()
+                    sys.exit(0)
                 else:
-                    quit()
+                    sys.exit(0)
             printnlog('DONE\n')
 
     def internet():
@@ -597,13 +603,7 @@ try:  # type: ignore
                     printnlog(
                         "インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
                 sleep(2)
-                quit()
-                
-    def get_id(long: int = 10) -> int:
-        id = ''
-        for i in range(long):
-            id += str(random.randint(0, 9))
-        return id   
+                sys.exit(1)
     
     class installing_carousel:
         def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
@@ -612,7 +612,7 @@ try:  # type: ignore
             self.bar = bar
             self.move_by_command = move_by_command
             self._move = 0
-            self.id = get_id()
+            self.id = final.mathematical.get_id()
 
         def start(self):
             """
@@ -982,7 +982,7 @@ try:  # type: ignore
                 os.remove('choco_output')
                 sleep(1)
                 checkAdmin()
-                quit()
+                sys.exit(0)
             if os.path.isfile('INSTALL'):
                 os.remove('INSTALL')
 
@@ -1008,7 +1008,7 @@ try:  # type: ignore
                 except Exception:
                     pass
                 if inst_number != 0:
-                    quit()
+                    sys.exit(0)
             sleep(1)
             os.remove('INSTALL_RESTART')
             typewriter('Trying ffmpeg ...')
@@ -1028,9 +1028,6 @@ try:  # type: ignore
     from pathlib import Path
     if __name__ == '__main__':
         print_module('Path from pathlib')
-    import pathlib
-    if __name__ == '__main__':
-        print_module()
     from uninstall import uninstall
     if __name__ == '__main__':
         print_module()
@@ -1038,9 +1035,6 @@ try:  # type: ignore
     if __name__ == '__main__':
         print_module()
     import zipfile
-    if __name__ == '__main__':
-        print_module()
-    import hashlib
     if __name__ == '__main__':
         print_module()
     import GPUtil
@@ -1088,9 +1082,6 @@ try:  # type: ignore
     import wmi
     if __name__ == '__main__':
         print_module()
-    from showinfm import show_in_file_manager
-    if __name__ == '__main__':
-        print_module('show_in_file_manager from showinfm')
     import platform
     if __name__ == '__main__':
         print_module()
@@ -1381,7 +1372,7 @@ try:  # type: ignore
         logger.stay(printnlog("Defining functions", toprint=False))
 
     updateapp: str = str(
-        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    quit()')
+        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    sys.exit(0)')
 
     if __name__ == '__main__':
         if args.log is None:
@@ -1470,7 +1461,7 @@ try:  # type: ignore
                                 "ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
                         sleep(2)
                         input()
-                        quit()
+                        sys.exit(1)
                     os.mkdir('old')
                     shutil.move('data.xp2', 'old/data.xp2')
                     shutil.move('help.txt', 'old/help.txt')
@@ -1508,7 +1499,7 @@ try:  # type: ignore
                         os.remove('INSTALL_RESTART')
                     except Exception:
                         pass
-                    quit()
+                    sys.exit(0)
             except requests.ConnectionError:  # type: ignore
                 line_number: int = get_line_number()
                 pass
@@ -1733,7 +1724,6 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: delcache', toprint=False))
 
-    loginvstupuser = ''
     global progress_bar_check
     progress_bar_check = 0
     global progress_bar_end
@@ -2100,6 +2090,7 @@ try:  # type: ignore
         if args.language == "SK":
             subject: str = input(
                 str(linenumber) + ' Predmet > ')
+            historyfile = open(historyname, 'a')
             historyfile.write(
                 '[' + str(linenumber) + ', ' + subject + ']\n')
             subject.lower()
@@ -2116,9 +2107,10 @@ try:  # type: ignore
         elif args.language == "EN":
             subject: str = input(
                 str(linenumber) + ' Subject > ')
+            historyfile = open(historyname, 'a')
             historyfile.write(
                 '[' + str(linenumber) + ', ' + subject + ']\n')
-            vstup.lower()
+            subject.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
             if subject == 'quit' or subject == 'back':
@@ -2126,14 +2118,15 @@ try:  # type: ignore
             mark: str = input(str(linenumber) + ' Mark > ')
             historyfile.write(
                 '[' + str(linenumber) + ', ' + (mark) + ']\n')
-            vstup.lower()
+            mark.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
         elif args.language == "JP":
             subject: str = input(str(linenumber) + ' 主題 > ')
+            historyfile = open(historyname, 'a')
             historyfile.write(
                 '[' + str(linenumber) + ', ' + subject + ']\n')
-            vstup.lower()
+            subject.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
             if subject == 'quit' or subject == 'back':
@@ -2141,7 +2134,7 @@ try:  # type: ignore
             mark: str = input(str(linenumber) + ' マーク > ')
             historyfile.write(
                 '[' + str(linenumber) + ', ' + mark + ']\n')
-            vstup.lower()
+            mark.lower()
             historyfile.close()
             historyfile = open(historyname, 'a')
         else:
@@ -2535,9 +2528,176 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: spotMusicDow', toprint=False))
+        
+    def extract():
+        if args.language == "SK":
+            typewriter(printnlog('\nZačínam rozbaľovať\n', toprint=False))
+        elif args.language == "EN":
+            typewriter(printnlog('\nStarting to extract\n', toprint=False))
+        elif args.language == "JP":
+            typewriter(printnlog("\n抽出開始\n", toprint=False))
+        try:
+            datafiles: list = []
+            for file in os.listdir("./"):
+                if file.startswith("data"):
+                    if file.endswith('.xp2'):
+                        datafiles.append(file)
+            for i in range(1, len(datafiles)+1):
+                unpack(datafiles[-i])
+            shutil.copy('data', 'data_backup')
+            if args.language == "SK":
+                printnlog('\nHotovo\n')
+            elif args.language == "EN":
+                printnlog('\nDone\n')
+            elif args.language == "JP":
+                printnlog('\n完了\n')
+            check = open('data', 'r')
+            check_new = open('data_dummy', 'w')
+            for i in check.read():
+                if i == "G":
+                    check_new.write("[")
+                else:
+                    check_new.write(i)
+            check.close()
+            check_new.close()
+            os.mkdir("temp")
+            shutil.move("data_dummy", 'temp/')
+            os.remove('data')
+            shutil.move("temp/data_dummy", 'data')
+            shutil.rmtree('temp')
+            os.rename('data_dummy', 'data')
+        except FileNotFoundError:
+            pass
+        
+    def vlc_init():
+        if args.language == 'SK':
+            typewriter(printnlog('Inicializácia VLC\n', toprint=False))
+        elif args.language == 'EN':
+            typewriter(printnlog('Initialization VLC\n', toprint=False))
+        elif args.language == 'JP':
+            typewriter(printnlog('初期化 VLC\n', toprint=False))
+        media_player = vlc.MediaPlayer()
+        if args.language == 'SK':
+            typewriter(printnlog('KONIEC\n', toprint=False))
+        elif args.language == 'EN':
+            typewriter(printnlog('END\n', toprint=False))
+        elif args.language == 'JP':
+            typewriter(printnlog('終わり\n', toprint=False))
+        return media_player
+    
+    def intro():
+        exit = False
+        move('ZnámE', -10, -10, screensize[0], screensize[1])
+        if args.test is not None:
+            try:
+                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                window.maximize()
+            except IndexError:
+                exit: bool = True
+                error_get(IndexError(
+                    'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+        if args.restart is not None:
+            player = vlc.Instance('--fullscreen')
+            media_list = player.media_list_new()  # type: ignore
+            media_player = player.media_list_player_new()  # type: ignore
+            media = player.media_new(
+                "assets/transition.mp4")  # type: ignore
+            media_list.add_media(media)
+            media_player.set_media_list(media_list)
+            media_player.play()
+        return exit
+    
+    
+    def was_updated():
+        try:
+            for root, dirs, files in os.walk('..\\'):
+                for i in files:
+                    if i == 'INACTIVE':
+                        inactive1: bool = True
+                        os.remove('INACTIVE')
+                        sleep(0.25)
+                        if args.language == "SK":
+                            printnlog(
+                                'Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
+                        elif args.language == "EN":
+                            printnlog(
+                                'You were inactive, you were logged out and the program restarted!!!\n')
+                        elif args.language == "JP":
+                            printnlog(
+                                '非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
+            if args.update is None:
+                sleep(0.25)
+                if args.language == "SK":
+                    printnlog('Program bol aktualizovaný!!!\n')
+                elif args.language == "EN":
+                    printnlog('Program was updated!!!\n')
+                elif args.language == "JP":
+                    printnlog('プログラムが更新されました!!!\n')
+            return inactive1
+        except Exception:
+            pass
+        
+    def show_html(media_player):
+        if args.restart is not None:
+            try:
+                sleep(0.1)
+                window = pygetwindow.getWindowsWithTitle(
+                    'VLC (Direct3D11 output)')[0]
+                window.activate()
+                window.maximize()
+            except Exception:
+                pass
+            sleep(2.5)
+            mixer.init()
+            mixer.music.load('assets/greeting.mp3')
+            mixer.music.play()
+            sleep(2.5)
+            media_player.stop()
+        
+    def show_version():
+        verzia = open('version', 'r')
+        if args.language == "SK":
+            typewriter('Používate ZnámE ' + verzia.read() + "\n")
+        elif args.language == "EN":
+            typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
+        elif args.language == "JP":
+            typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
+        verzia.close()
+        
+    def save_credentials(savefilemode, linenumber):
+            if savefilemode:   # type: ignore
+                flvstup: str = ''
+                linenumber -= 1
+            elif args.language == "SK":
+                flvstup: str = input(
+                    str(linenumber) + ") Chcete si uložiť svoje prihlasovacie údaje? (y/N) > ")
+            elif args.language == "EN":
+                flvstup: str = input(
+                    str(linenumber) + ") Do you want to save your login credentials? (y/N) > ")
+            elif args.language == "JP":
+                flvstup: str = input(
+                    str(linenumber) + ") ログイン資格情報を保存しますか? (y/N) > ")
+            else:
+                flvstup: str = input(
+                    "Do you want to save your login credentials? (y/N) > ")
+            flvstup.lower()
+            if flvstup == "y":
+                if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/"):
+                    os.makedirs(
+                        "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
+                savelog = open(
+                    "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved", "w")
+                tolog: str = str(code(str(loginvstupuser), str(
+                    passwordp[0]), mode=1))  # type: ignore
+                tolog: str = tolog[2:len(tolog)-2]
+                savelog.write(tolog)
+                savelog.close()
+            return linenumber
 
     def main() -> None:
         global config
+        global loginvstupuser
+        global historyfile
         try:
             """
             The main function. This is where the program starts. It is the first function called.
@@ -2547,57 +2707,8 @@ try:  # type: ignore
             if args.nointrof is None:
                 historyfile.write('[*restarted]\n')
             global passwordp
-            if args.language == "SK":
-                typewriter(printnlog('\nZačínam rozbaľovať\n', toprint=False))
-            elif args.language == "EN":
-                typewriter(printnlog('\nStarting to extract\n', toprint=False))
-            elif args.language == "JP":
-                typewriter(printnlog("\n抽出開始\n", toprint=False))
-            try:
-                datafiles: list = []
-                for file in os.listdir("./"):
-                    if file.startswith("data"):
-                        if file.endswith('.xp2'):
-                            datafiles.append(file)
-                for i in range(1, len(datafiles)+1):
-                    unpack(datafiles[-i])
-                shutil.copy('data', 'data_backup')
-                if args.language == "SK":
-                    printnlog('\nHotovo\n')
-                elif args.language == "EN":
-                    printnlog('\nDone\n')
-                elif args.language == "JP":
-                    printnlog('\n完了\n')
-                check = open('data', 'r')
-                check_new = open('data_dummy', 'w')
-                for i in check.read():
-                    if i == "G":
-                        check_new.write("[")
-                    else:
-                        check_new.write(i)
-                check.close()
-                check_new.close()
-                os.mkdir("temp")
-                shutil.move("data_dummy", 'temp/')
-                os.remove('data')
-                shutil.move("temp/data_dummy", 'data')
-                shutil.rmtree('temp')
-                os.rename('data_dummy', 'data')
-            except FileNotFoundError:
-                pass
-            if args.language == 'SK':
-                typewriter(printnlog('Inicializácia VLC\n', toprint=False))
-            elif args.language == 'EN':
-                typewriter(printnlog('Initialization VLC\n', toprint=False))
-            elif args.language == 'JP':
-                typewriter(printnlog('初期化 VLC\n', toprint=False))
-            media_player = vlc.MediaPlayer()
-            if args.language == 'SK':
-                typewriter(printnlog('KONIEC\n', toprint=False))
-            elif args.language == 'EN':
-                typewriter(printnlog('END\n', toprint=False))
-            elif args.language == 'JP':
-                typewriter(printnlog('終わり\n', toprint=False))
+            extract()
+            media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
             print_module('DownloadMusic from downloadmusic')
             from media import PlayVideo, DownloadVideo  # type: ignore
@@ -2608,24 +2719,7 @@ try:  # type: ignore
                     musiclistnew.append(DownloadMusic(str(music_name)))
                 else:
                     musiclistnew.append(music_name)
-            move('ZnámE', -10, -10, screensize[0], screensize[1])
-            if args.test is not None:
-                try:
-                    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                    window.maximize()
-                except IndexError:
-                    exit: bool = True
-                    error_get(IndexError(
-                        'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
-            if args.restart is not None:
-                player = vlc.Instance('--fullscreen')
-                media_list = player.media_list_new()  # type: ignore
-                media_player = player.media_list_player_new()  # type: ignore
-                media = player.media_new(
-                    "assets/transition.mp4")  # type: ignore
-                media_list.add_media(media)
-                media_player.set_media_list(media_list)
-                media_player.play()
+            intro()
             inactive1: bool = False
             """
             If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
@@ -2634,32 +2728,7 @@ try:  # type: ignore
             @param files - the files in the root directory
             @returns nothing
             """
-            try:
-                for root, dirs, files in os.walk('..\\'):
-                    for i in files:
-                        if i == 'INACTIVE':
-                            inactive1: bool = True
-                            os.remove('INACTIVE')
-                            sleep(0.25)
-                            if args.language == "SK":
-                                printnlog(
-                                    'Bol si neaktívny, bol si odhlásený a program sa reštartoval!!!\n')
-                            elif args.language == "EN":
-                                printnlog(
-                                    'You were inactive, you were logged out and the program restarted!!!\n')
-                            elif args.language == "JP":
-                                printnlog(
-                                    '非アクティブでした。ログアウトし、プログラムを再起動しました!!!\n')
-                if args.update is None:
-                    sleep(0.25)
-                    if args.language == "SK":
-                        printnlog('Program bol aktualizovaný!!!\n')
-                    elif args.language == "EN":
-                        printnlog('Program was updated!!!\n')
-                    elif args.language == "JP":
-                        printnlog('プログラムが更新されました!!!\n')
-            except Exception:
-                pass
+            inactive1 = was_updated()
             """
             If the language is Japanese, print a message that tells the user to watch the help file.
             @param args - the command line arguments
@@ -2676,6 +2745,7 @@ try:  # type: ignore
             loggedhelp: bool = False
             firstlogin: bool = True
             vstup: str = ''
+            loginvstupuser = ''
             logins: int = 0
             help: list[str] = ['help', 'pomoc', '-h', '-help', '?', '-?']
             advhelp: list[str] = ['advanced help',
@@ -2693,22 +2763,7 @@ try:  # type: ignore
             @param None
             @return None
             """
-            if args.restart is not None:
-                try:
-                    sleep(0.1)
-                    window = pygetwindow.getWindowsWithTitle(
-                        'VLC (Direct3D11 output)')[0]
-                    window.activate()
-                    window.maximize()
-                except Exception:
-                    pass
-                sleep(2.5)
-                mixer.init()
-                mixer.music.load('assets/greeting.mp3')
-                mixer.music.play()
-                sleep(2.5)
-                media_player.stop()
-
+            show_html(media_player)
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
             exit: bool = getWindow()
@@ -2741,14 +2796,7 @@ try:  # type: ignore
             """
                 this function prints the version of the program 
             """
-            verzia = open('version', 'r')
-            if args.language == "SK":
-                typewriter('Používate ZnámE ' + verzia.read() + "\n")
-            elif args.language == "EN":
-                typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
-            elif args.language == "JP":
-                typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
-            verzia.close()
+            show_version()
             from completer import SimpleCompleter  # type: ignore
             unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko', 'setup', 'settings',
                                   'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
@@ -2764,7 +2812,6 @@ try:  # type: ignore
                 readline.parse_and_bind('tab: complete')
                 internet_check()
                 if not exit:
-                    global loginvstupuser
                     if logged:
                         readline.set_completer(
                             SimpleCompleter(logged_completer).complete)
@@ -2779,33 +2826,7 @@ try:  # type: ignore
                             @param password - the password for the login credentials
                             @param savefilemode - whether or not we are saving the file or not
                             """
-                            if savefilemode:   # type: ignore
-                                flvstup: str = ''
-                                linenumber -= 1
-                            elif args.language == "SK":
-                                flvstup: str = input(
-                                    str(linenumber) + ") Chcete si uložiť svoje prihlasovacie údaje? (y/N) > ")
-                            elif args.language == "EN":
-                                flvstup: str = input(
-                                    str(linenumber) + ") Do you want to save your login credentials? (y/N) > ")
-                            elif args.language == "JP":
-                                flvstup: str = input(
-                                    str(linenumber) + ") ログイン資格情報を保存しますか? (y/N) > ")
-                            else:
-                                flvstup: str = input(
-                                    "Do you want to save your login credentials? (y/N) > ")
-                            flvstup.lower()
-                            if flvstup == "y":
-                                if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/"):
-                                    os.makedirs(
-                                        "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
-                                savelog = open(
-                                    "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved", "w")
-                                tolog: str = str(code(str(loginvstupuser), str(
-                                    passwordp[0]), mode=1))  # type: ignore
-                                tolog: str = tolog[2:len(tolog)-2]
-                                savelog.write(tolog)
-                                savelog.close()
+                            linenumber = save_credentials(savefilemode, linenumber)
                         """
                         Prints the help menu for the program.
                         @param loggedhelp - whether or not the help menu has been printed already.
@@ -4092,7 +4113,7 @@ try:  # type: ignore
                     try:
                         shutil.move('data', 'datafolder/')
                     except Exception:
-                        quit()
+                        sys.exit(0)
                     source_dir: str = 'assets/'
                     os.mkdir('datafolder/' + source_dir)
                     for file_name in os.listdir(source_dir):
@@ -4368,7 +4389,7 @@ try:  # type: ignore
             error_get(e, line_numbers)
             printnlog('End')
             input("Enter to quit")
-            quit()
+            sys.exit(0)
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: main\n', toprint=False))
@@ -4404,4 +4425,4 @@ except *Exception as e:
     error_get(e, line_numbers)
     printnlog('End')
     input("Enter to quit")
-    quit()
+    sys.exit(0)
