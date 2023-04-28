@@ -1,6 +1,21 @@
 var searchData=
 [
-  ['os_5finfo_0',['os_info',['../d0/d52/namespaceedupage.html#a72ca10ab58e2a0048df257d25e0cda02',1,'edupage']]],
-  ['os_5fname_1',['os_name',['../d0/d52/namespaceedupage.html#aef1ff32ee046f94c09170b7675654775',1,'edupage']]],
-  ['os_5fversion_2',['os_version',['../d0/d52/namespaceedupage.html#af4332400203db3e23be3c91b28e8b799',1,'edupage']]]
+  ['package_0',['package',['../d3/d42/classedupage_1_1installing__carousel.html#a777d39e2639af9410e7d94d7367a3a72',1,'edupage::installing_carousel']]],
+  ['page_1',['page',['../d0/d52/namespaceedupage.html#a5348831706cbc53d3a4f097ca5105977',1,'edupage']]],
+  ['parser_2',['parser',['../d0/d52/namespaceedupage.html#a2d5d660ba0d864e3c255021852b4a19a',1,'edupage']]],
+  ['password_3',['password',['../d0/d52/namespaceedupage.html#a2b1f190fe22c994a649d237a35cd53fb',1,'edupage']]],
+  ['passwordapp_4',['passwordapp',['../d0/d52/namespaceedupage.html#a32c8c765f79935fea0ee6ea757266ed2',1,'edupage']]],
+  ['patch_5',['patch',['../de/dac/md_patch.html',1,'']]],
+  ['patch_2emd_6',['patch.md',['../d1/d76/patch_8md.html',1,'']]],
+  ['patch_5fedupage_7',['patch_edupage',['../d9/d81/namespacepatch__edupage.html',1,'']]],
+  ['patch_5fedupage_2epy_8',['patch_edupage.py',['../d4/dfa/patch__edupage_8py.html',1,'']]],
+  ['pause_9',['pause',['../d3/d42/classedupage_1_1installing__carousel.html#a1c5d8a5ddb65f550be8cede78936132a',1,'edupage::installing_carousel']]],
+  ['playhtml_10',['playhtml',['../d0/d52/namespaceedupage.html#a33f41efcd3eb007421b3e63b542940ba',1,'edupage']]],
+  ['potrebne_11',['potrebne',['../d0/d52/namespaceedupage.html#a718899dfb9d330b6841a70728f6ee5ee',1,'edupage']]],
+  ['potrebne1_12',['potrebne1',['../d0/d52/namespaceedupage.html#aea0beb716cd2637d7365ae357e6a5d7f',1,'edupage']]],
+  ['print_5fmodule_13',['print_module',['../d0/d52/namespaceedupage.html#a87e4619e345ef843fdc09d1a602c3ce3',1,'edupage']]],
+  ['printnlog_14',['printnlog',['../d0/d52/namespaceedupage.html#a2adafa3eaf38d32da372310443e999f3',1,'edupage.printnlog()'],['../d8/df3/namespacewriting.html#a734ad64963943f2c116b1fa79a2260da',1,'writing.printnlog()']]],
+  ['progress_5fbar_15',['progress_bar',['../d0/d52/namespaceedupage.html#a4f9d80b1580d4e61d23dc4cf947f6e4c',1,'edupage']]],
+  ['progress_5fbar_5fcheck_16',['progress_bar_check',['../d0/d52/namespaceedupage.html#ab13f3f3e6aa299c7782fc3b7a40054f4',1,'edupage']]],
+  ['progress_5fbar_5fend_17',['progress_bar_end',['../d0/d52/namespaceedupage.html#acfe4725af96a79f8ba263c824358ac0a',1,'edupage']]]
 ];

@@ -26,23 +26,40 @@ var NAVTREE =
 [
   [ "ZnamE", "index.html", [
     [ "Contributor Covenant Code of Conduct", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html", [
-      [ "Our Pledge", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md1", null ],
-      [ "Our Standards", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md2", null ],
-      [ "Enforcement Responsibilities", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md3", null ],
-      [ "Scope", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md4", null ],
-      [ "Enforcement", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md5", null ],
-      [ "Enforcement Guidelines", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md6", [
-        [ "1. Correction", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md7", null ],
-        [ "2. Warning", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md8", null ],
-        [ "3. Temporary Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md9", null ],
-        [ "4. Permanent Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md10", null ]
+      [ "Our Pledge", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md92", null ],
+      [ "Our Standards", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md93", null ],
+      [ "Enforcement Responsibilities", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md94", null ],
+      [ "Scope", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md95", null ],
+      [ "Enforcement", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md96", null ],
+      [ "Enforcement Guidelines", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md97", [
+        [ "1. Correction", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md98", null ],
+        [ "2. Warning", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md99", null ],
+        [ "3. Temporary Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md100", null ],
+        [ "4. Permanent Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md101", null ]
       ] ],
-      [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
+      [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md102", null ]
     ] ],
     [ "patch", "de/dac/md_patch.html", null ],
+    [ "v1.0.4-alpha+build.20230214.223759", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html", [
+      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md197", null ],
+      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md198", null ],
+      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md199", null ]
+    ] ],
+    [ "v1.0.4-alpha+build.20230216.161608", "d0/d28/md_patch_notes_v1_0_4_alpha_build_20230216_161608.html", null ],
+    [ "v1.0.5-alpha+build.20230216.162308", "d3/d03/md_patch_notes_v1_0_5_alpha_build_20230216_162308.html", null ],
+    [ "v1.0.5-alpha+build.20230220.151027", "df/d52/md_patch_notes_v1_0_5_alpha_build_20230220_151027.html", null ],
+    [ "v1.0.5-alpha+build.20230304.140155", "d4/d37/md_patch_notes_v1_0_5_alpha_build_20230304_140155.html", null ],
+    [ "v1.0.5-alpha+build.20230315.161335", "d4/d05/md_patch_notes_v1_0_5_alpha_build_20230315_161335.html", null ],
+    [ "v1.0.5-alpha+build.20230317.100818", "d6/d2c/md_patch_notes_v1_0_5_alpha_build_20230317_100818.html", null ],
+    [ "v1.1.0-alpha+build.20230320.145926", "d3/d37/md_patch_notes_v1_1_0_alpha_build_20230320_145926.html", null ],
+    [ "v1.1.0-alpha+build.20230327.122543", "d5/dcf/md_patch_notes_v1_1_0_alpha_build_20230327_122543.html", null ],
+    [ "v1.1.0-alpha+build.20230328.210246", "d0/d5c/md_patch_notes_v1_1_0_alpha_build_20230328_210246.html", null ],
+    [ "v1.1.0-alpha+build.20230329.224720", "de/d89/md_patch_notes_v1_1_0_alpha_build_20230329_224720.html", null ],
+    [ "v1.1.0-alpha+build.20230407.113203", "d7/dcd/md_patch_notes_v1_1_0_alpha_build_20230407_113203.html", null ],
+    [ "v1.1.0-alpha+build.20230428.095526", "d4/da8/md_patch_notes_v1_1_0_alpha_build_20230428_095526.html", null ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md108", null ],
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md110", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md215", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md217", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -71,7 +88,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#a276bd7233a67d90596bde46c3102bfb4"
+"df/dd7/edupage_8py.html#a21f2f303ad4d1e33a43bd2b8207130a4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

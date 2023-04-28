@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_2epy_0',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]]
+  ['internet_2epy_0',['internet.py',['../d6/da3/internet_8py.html',1,'']]]
 ];

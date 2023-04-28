@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.1.0-alpha+build.20230428.095526</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.1.1-alpha+build.20230428.172227</span>
    </div>
   </td>
  </tr>
@@ -135,7 +135,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00608">608</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00509">509</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae7edd4276405b5e5d7725e39746efcd5" name="ae7edd4276405b5e5d7725e39746efcd5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7edd4276405b5e5d7725e39746efcd5">&#9670;&#160;</a></span>__init__()</h2>
@@ -181,15 +181,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00609">609</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  609</span>        <span class="keyword">def </span>__init__(self, package: str, comment: str = <span class="stringliteral">&#39;Installing&#39;</span>, bar: bool = <span class="keyword">False</span>, move_by_command: bool = <span class="keyword">False</span>):</div>
-<div class="line"><span class="lineno">  610</span>            self.package = package</div>
-<div class="line"><span class="lineno">  611</span>            self.comment = comment</div>
-<div class="line"><span class="lineno">  612</span>            self.bar = bar</div>
-<div class="line"><span class="lineno">  613</span>            self.move_by_command = move_by_command</div>
-<div class="line"><span class="lineno">  614</span>            self._move = 0</div>
-<div class="line"><span class="lineno">  615</span>            self.id = final.mathematical.get_id()</div>
-<div class="line"><span class="lineno">  616</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00510">510</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  510</span>        <span class="keyword">def </span>__init__(self, package: str, comment: str = <span class="stringliteral">&#39;Installing&#39;</span>, bar: bool = <span class="keyword">False</span>, move_by_command: bool = <span class="keyword">False</span>):</div>
+<div class="line"><span class="lineno">  511</span>            self.package = package</div>
+<div class="line"><span class="lineno">  512</span>            self.comment = comment</div>
+<div class="line"><span class="lineno">  513</span>            self.bar = bar</div>
+<div class="line"><span class="lineno">  514</span>            self.move_by_command = move_by_command</div>
+<div class="line"><span class="lineno">  515</span>            self._move = 0</div>
+<div class="line"><span class="lineno">  516</span>            self.id = mathematical.get_id()</div>
+<div class="line"><span class="lineno">  517</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -219,88 +219,88 @@ it will print ALREADY INSTALLED after the package name.
 :param self: Represent the instance of the class
 :return: Nothing, so the return statement is not needed
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00657">657</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  657</span>        <span class="keyword">def </span>init(self):</div>
-<div class="line"><span class="lineno">  658</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  659</span><span class="stringliteral">            The init function </span><span class="keywordflow">is</span> used to initialize the package installation.</div>
-<div class="line"><span class="lineno">  660</span>            It will <span class="keywordflow">print</span> a loading bar until it finds an INSTALL_DONE, INSTALL_ERROR <span class="keywordflow">or</span> </div>
-<div class="line"><span class="lineno">  661</span>            INSTALL_ALINST file <span class="keywordflow">in</span> the current directory. If it finds an INSTALL_DONE file, </div>
-<div class="line"><span class="lineno">  662</span>            it will <span class="keywordflow">print</span> DONE after the package name <span class="keywordflow">and</span> <span class="keywordflow">if</span> it finds an INSTALL_ERROR file, </div>
-<div class="line"><span class="lineno">  663</span>            it will <span class="keywordflow">print</span> ERROR after the package name. If it finds an INSTALL_ALINST file, </div>
-<div class="line"><span class="lineno">  664</span>            it will <span class="keywordflow">print</span> ALREADY INSTALLED after the package name.</div>
-<div class="line"><span class="lineno">  665</span> </div>
-<div class="line"><span class="lineno">  666</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
-<div class="line"><span class="lineno">  667</span>            :<span class="keywordflow">return</span>: Nothing, so the <span class="keywordflow">return</span> statement <span class="keywordflow">is</span> <span class="keywordflow">not</span> needed</div>
-<div class="line"><span class="lineno">  668</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  669</span><span class="stringliteral">            error = </span><span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  670</span>            alinst = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  671</span>            number = 0</div>
-<div class="line"><span class="lineno">  672</span>            char = [<span class="stringliteral">&#39;|&#39;</span>, <span class="stringliteral">&#39;/&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>, <span class="stringliteral">&#39;\\&#39;</span>]</div>
-<div class="line"><span class="lineno">  673</span>            <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
-<div class="line"><span class="lineno">  674</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_DONE{self.id}&#39;</span>):</div>
-<div class="line"><span class="lineno">  675</span>                    <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  676</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_ERROR{self.id}&#39;</span>):</div>
-<div class="line"><span class="lineno">  677</span>                    error = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  678</span>                    <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  679</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_ALINST{self.id}&#39;</span>):</div>
-<div class="line"><span class="lineno">  680</span>                    alinst = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  681</span>                    <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  682</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_PAUSE{self.id}&#39;</span>):</div>
-<div class="line"><span class="lineno">  683</span>                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
-<div class="line"><span class="lineno">  684</span>                        print(</div>
-<div class="line"><span class="lineno">  685</span>                            <span class="stringliteral">&#39;                                            &#39;</span>, end=<span class="stringliteral">&#39;\r&#39;</span>)</div>
-<div class="line"><span class="lineno">  686</span>                    <span class="keywordflow">if</span> self.bar:</div>
-<div class="line"><span class="lineno">  687</span>                        tqdm.write(</div>
-<div class="line"><span class="lineno">  688</span>                            <span class="stringliteral">&#39;                                            &#39;</span>)</div>
-<div class="line"><span class="lineno">  689</span>                    os.remove(f<span class="stringliteral">&#39;INSTALL_PAUSE{self.id}&#39;</span>)</div>
-<div class="line"><span class="lineno">  690</span>                    <span class="keywordflow">while</span> <span class="keywordflow">not</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_UNPAUSE{self.id}&#39;</span>):</div>
-<div class="line"><span class="lineno">  691</span>                        sleep(0.1)</div>
-<div class="line"><span class="lineno">  692</span>                    os.remove(f<span class="stringliteral">&#39;INSTALL_UNPAUSE{self.id}&#39;</span>)</div>
-<div class="line"><span class="lineno">  693</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
-<div class="line"><span class="lineno">  694</span>                    print(</div>
-<div class="line"><span class="lineno">  695</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} {char[number]}               &#39;</span>, end=<span class="stringliteral">&#39;\r&#39;</span>)</div>
-<div class="line"><span class="lineno">  696</span>                <span class="keywordflow">if</span> self.bar:</div>
-<div class="line"><span class="lineno">  697</span>                    tqdm.write(</div>
-<div class="line"><span class="lineno">  698</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} {char[number]}               &#39;</span>)</div>
-<div class="line"><span class="lineno">  699</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.move_by_command <span class="keywordflow">or</span> self._move != 0 <span class="keywordflow">and</span> self.move_by_command:</div>
-<div class="line"><span class="lineno">  700</span>                    number += 1</div>
-<div class="line"><span class="lineno">  701</span>                    <span class="keywordflow">if</span> self.move_by_command:</div>
-<div class="line"><span class="lineno">  702</span>                        self._move -= 1</div>
-<div class="line"><span class="lineno">  703</span>                <span class="keywordflow">if</span> number &gt;= len(char):</div>
-<div class="line"><span class="lineno">  704</span>                    number = 0</div>
-<div class="line"><span class="lineno">  705</span>                sleep(0.1)</div>
-<div class="line"><span class="lineno">  706</span>            <span class="keywordflow">if</span> error:</div>
-<div class="line"><span class="lineno">  707</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
-<div class="line"><span class="lineno">  708</span>                    print(f<span class="stringliteral">&#39;{self.comment} {self.package} ERROR             &#39;</span>)</div>
-<div class="line"><span class="lineno">  709</span>                <span class="keywordflow">if</span> self.bar:</div>
-<div class="line"><span class="lineno">  710</span>                    tqdm.write(f<span class="stringliteral">&#39;{self.comment} {self.package} ERROR             &#39;</span>)</div>
-<div class="line"><span class="lineno">  711</span>            <span class="keywordflow">elif</span> alinst:</div>
-<div class="line"><span class="lineno">  712</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
-<div class="line"><span class="lineno">  713</span>                    print(</div>
-<div class="line"><span class="lineno">  714</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} ALREADY INSTALLED             &#39;</span>)</div>
-<div class="line"><span class="lineno">  715</span>                <span class="keywordflow">if</span> self.bar:</div>
-<div class="line"><span class="lineno">  716</span>                    tqdm.write(</div>
-<div class="line"><span class="lineno">  717</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} ALREADY INSTALLED             &#39;</span>)</div>
-<div class="line"><span class="lineno">  718</span>            <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  719</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
-<div class="line"><span class="lineno">  720</span>                    print(f<span class="stringliteral">&#39;{self.comment} {self.package} DONE             &#39;</span>)</div>
-<div class="line"><span class="lineno">  721</span>                <span class="keywordflow">if</span> self.bar:</div>
-<div class="line"><span class="lineno">  722</span>                    tqdm.write(f<span class="stringliteral">&#39;{self.comment} {self.package} DONE             &#39;</span>)</div>
-<div class="line"><span class="lineno">  723</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  724</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_DONE{self.id}&#39;</span>)</div>
-<div class="line"><span class="lineno">  725</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  726</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  727</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  728</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_ERROR{self.id}&#39;</span>)</div>
-<div class="line"><span class="lineno">  729</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  730</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  731</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  732</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_ALINST{self.id}&#39;</span>)</div>
-<div class="line"><span class="lineno">  733</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  734</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  735</span> </div>
-<div class="line"><span class="lineno">  736</span> </div>
-<div class="line"><span class="lineno">  737</span>    <span class="keyword">def </span>choco_install(*packages: str):</div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00558">558</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  558</span>        <span class="keyword">def </span>init(self):</div>
+<div class="line"><span class="lineno">  559</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  560</span><span class="stringliteral">            The init function </span><span class="keywordflow">is</span> used to initialize the package installation.</div>
+<div class="line"><span class="lineno">  561</span>            It will <span class="keywordflow">print</span> a loading bar until it finds an INSTALL_DONE, INSTALL_ERROR <span class="keywordflow">or</span> </div>
+<div class="line"><span class="lineno">  562</span>            INSTALL_ALINST file <span class="keywordflow">in</span> the current directory. If it finds an INSTALL_DONE file, </div>
+<div class="line"><span class="lineno">  563</span>            it will <span class="keywordflow">print</span> DONE after the package name <span class="keywordflow">and</span> <span class="keywordflow">if</span> it finds an INSTALL_ERROR file, </div>
+<div class="line"><span class="lineno">  564</span>            it will <span class="keywordflow">print</span> ERROR after the package name. If it finds an INSTALL_ALINST file, </div>
+<div class="line"><span class="lineno">  565</span>            it will <span class="keywordflow">print</span> ALREADY INSTALLED after the package name.</div>
+<div class="line"><span class="lineno">  566</span> </div>
+<div class="line"><span class="lineno">  567</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
+<div class="line"><span class="lineno">  568</span>            :<span class="keywordflow">return</span>: Nothing, so the <span class="keywordflow">return</span> statement <span class="keywordflow">is</span> <span class="keywordflow">not</span> needed</div>
+<div class="line"><span class="lineno">  569</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  570</span><span class="stringliteral">            error = </span><span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  571</span>            alinst = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  572</span>            number = 0</div>
+<div class="line"><span class="lineno">  573</span>            char = [<span class="stringliteral">&#39;|&#39;</span>, <span class="stringliteral">&#39;/&#39;</span>, <span class="stringliteral">&#39;-&#39;</span>, <span class="stringliteral">&#39;\\&#39;</span>]</div>
+<div class="line"><span class="lineno">  574</span>            <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><span class="lineno">  575</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_DONE{self.id}&#39;</span>):</div>
+<div class="line"><span class="lineno">  576</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  577</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_ERROR{self.id}&#39;</span>):</div>
+<div class="line"><span class="lineno">  578</span>                    error = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  579</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  580</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_ALINST{self.id}&#39;</span>):</div>
+<div class="line"><span class="lineno">  581</span>                    alinst = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  582</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  583</span>                <span class="keywordflow">if</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_PAUSE{self.id}&#39;</span>):</div>
+<div class="line"><span class="lineno">  584</span>                    <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
+<div class="line"><span class="lineno">  585</span>                        print(</div>
+<div class="line"><span class="lineno">  586</span>                            <span class="stringliteral">&#39;                                            &#39;</span>, end=<span class="stringliteral">&#39;\r&#39;</span>)</div>
+<div class="line"><span class="lineno">  587</span>                    <span class="keywordflow">if</span> self.bar:</div>
+<div class="line"><span class="lineno">  588</span>                        tqdm.write(</div>
+<div class="line"><span class="lineno">  589</span>                            <span class="stringliteral">&#39;                                            &#39;</span>)</div>
+<div class="line"><span class="lineno">  590</span>                    os.remove(f<span class="stringliteral">&#39;INSTALL_PAUSE{self.id}&#39;</span>)</div>
+<div class="line"><span class="lineno">  591</span>                    <span class="keywordflow">while</span> <span class="keywordflow">not</span> os.path.isfile(f<span class="stringliteral">&#39;INSTALL_UNPAUSE{self.id}&#39;</span>):</div>
+<div class="line"><span class="lineno">  592</span>                        sleep(0.1)</div>
+<div class="line"><span class="lineno">  593</span>                    os.remove(f<span class="stringliteral">&#39;INSTALL_UNPAUSE{self.id}&#39;</span>)</div>
+<div class="line"><span class="lineno">  594</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
+<div class="line"><span class="lineno">  595</span>                    print(</div>
+<div class="line"><span class="lineno">  596</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} {char[number]}               &#39;</span>, end=<span class="stringliteral">&#39;\r&#39;</span>)</div>
+<div class="line"><span class="lineno">  597</span>                <span class="keywordflow">if</span> self.bar:</div>
+<div class="line"><span class="lineno">  598</span>                    tqdm.write(</div>
+<div class="line"><span class="lineno">  599</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} {char[number]}               &#39;</span>)</div>
+<div class="line"><span class="lineno">  600</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.move_by_command <span class="keywordflow">or</span> self._move != 0 <span class="keywordflow">and</span> self.move_by_command:</div>
+<div class="line"><span class="lineno">  601</span>                    number += 1</div>
+<div class="line"><span class="lineno">  602</span>                    <span class="keywordflow">if</span> self.move_by_command:</div>
+<div class="line"><span class="lineno">  603</span>                        self._move -= 1</div>
+<div class="line"><span class="lineno">  604</span>                <span class="keywordflow">if</span> number &gt;= len(char):</div>
+<div class="line"><span class="lineno">  605</span>                    number = 0</div>
+<div class="line"><span class="lineno">  606</span>                sleep(0.1)</div>
+<div class="line"><span class="lineno">  607</span>            <span class="keywordflow">if</span> error:</div>
+<div class="line"><span class="lineno">  608</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
+<div class="line"><span class="lineno">  609</span>                    print(f<span class="stringliteral">&#39;{self.comment} {self.package} ERROR             &#39;</span>)</div>
+<div class="line"><span class="lineno">  610</span>                <span class="keywordflow">if</span> self.bar:</div>
+<div class="line"><span class="lineno">  611</span>                    tqdm.write(f<span class="stringliteral">&#39;{self.comment} {self.package} ERROR             &#39;</span>)</div>
+<div class="line"><span class="lineno">  612</span>            <span class="keywordflow">elif</span> alinst:</div>
+<div class="line"><span class="lineno">  613</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
+<div class="line"><span class="lineno">  614</span>                    print(</div>
+<div class="line"><span class="lineno">  615</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} ALREADY INSTALLED             &#39;</span>)</div>
+<div class="line"><span class="lineno">  616</span>                <span class="keywordflow">if</span> self.bar:</div>
+<div class="line"><span class="lineno">  617</span>                    tqdm.write(</div>
+<div class="line"><span class="lineno">  618</span>                        f<span class="stringliteral">&#39;{self.comment} {self.package} ALREADY INSTALLED             &#39;</span>)</div>
+<div class="line"><span class="lineno">  619</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  620</span>                <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.bar:</div>
+<div class="line"><span class="lineno">  621</span>                    print(f<span class="stringliteral">&#39;{self.comment} {self.package} DONE             &#39;</span>)</div>
+<div class="line"><span class="lineno">  622</span>                <span class="keywordflow">if</span> self.bar:</div>
+<div class="line"><span class="lineno">  623</span>                    tqdm.write(f<span class="stringliteral">&#39;{self.comment} {self.package} DONE             &#39;</span>)</div>
+<div class="line"><span class="lineno">  624</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  625</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_DONE{self.id}&#39;</span>)</div>
+<div class="line"><span class="lineno">  626</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  627</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  628</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  629</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_ERROR{self.id}&#39;</span>)</div>
+<div class="line"><span class="lineno">  630</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  631</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  632</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  633</span>                os.remove(f<span class="stringliteral">&#39;INSTALL_ALINST{self.id}&#39;</span>)</div>
+<div class="line"><span class="lineno">  634</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  635</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  636</span> </div>
+<div class="line"><span class="lineno">  637</span> </div>
+<div class="line"><span class="lineno">  638</span>    <span class="keyword">def </span>choco_install(*packages: str):</div>
 </div><!-- fragment --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -327,10 +327,10 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00654">654</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  654</span>        <span class="keyword">def </span>move(self):</div>
-<div class="line"><span class="lineno">  655</span>            self._move += 1</div>
-<div class="line"><span class="lineno">  656</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00555">555</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  555</span>        <span class="keyword">def </span>move(self):</div>
+<div class="line"><span class="lineno">  556</span>            self._move += 1</div>
+<div class="line"><span class="lineno">  557</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -354,16 +354,16 @@ it will print ALREADY INSTALLED after the package name.
 :param self: Represent the instance of the class
 :return: Nothing, it just creates a file
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00627">627</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  627</span>        <span class="keyword">def </span>pause(self):</div>
-<div class="line"><span class="lineno">  628</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  629</span><span class="stringliteral">            The pause function </span><span class="keywordflow">is</span> used to pause the installation of a package.</div>
-<div class="line"><span class="lineno">  630</span> </div>
-<div class="line"><span class="lineno">  631</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
-<div class="line"><span class="lineno">  632</span>            :<span class="keywordflow">return</span>: Nothing, it just creates a file</div>
-<div class="line"><span class="lineno">  633</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  634</span><span class="stringliteral">            open(f&quot;INSTALL_PAUSE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  635</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00528">528</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  528</span>        <span class="keyword">def </span>pause(self):</div>
+<div class="line"><span class="lineno">  529</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  530</span><span class="stringliteral">            The pause function </span><span class="keywordflow">is</span> used to pause the installation of a package.</div>
+<div class="line"><span class="lineno">  531</span> </div>
+<div class="line"><span class="lineno">  532</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
+<div class="line"><span class="lineno">  533</span>            :<span class="keywordflow">return</span>: Nothing, it just creates a file</div>
+<div class="line"><span class="lineno">  534</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  535</span><span class="stringliteral">            open(f&quot;INSTALL_PAUSE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  536</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -387,17 +387,17 @@ it will print ALREADY INSTALLED after the package name.
 :param self: Represent the instance of the class
 :return: Nothing, so the return statement is never reached
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00617">617</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  617</span>        <span class="keyword">def </span>start(self):</div>
-<div class="line"><span class="lineno">  618</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  619</span><span class="stringliteral">            The start function </span><span class="keywordflow">is</span> the main function of the <span class="keyword">class</span>. It starts a thread that runs init()</div>
-<div class="line"><span class="lineno">  620</span> </div>
-<div class="line"><span class="lineno">  621</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
-<div class="line"><span class="lineno">  622</span>            :<span class="keywordflow">return</span>: Nothing, so the <span class="keywordflow">return</span> statement <span class="keywordflow">is</span> never reached</div>
-<div class="line"><span class="lineno">  623</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  624</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  625</span><span class="stringliteral">            Thread(target=self.init).start()</span></div>
-<div class="line"><span class="lineno">  626</span><span class="stringliteral"></span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00518">518</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  518</span>        <span class="keyword">def </span>start(self):</div>
+<div class="line"><span class="lineno">  519</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  520</span><span class="stringliteral">            The start function </span><span class="keywordflow">is</span> the main function of the <span class="keyword">class</span>. It starts a thread that runs init()</div>
+<div class="line"><span class="lineno">  521</span> </div>
+<div class="line"><span class="lineno">  522</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
+<div class="line"><span class="lineno">  523</span>            :<span class="keywordflow">return</span>: Nothing, so the <span class="keywordflow">return</span> statement <span class="keywordflow">is</span> never reached</div>
+<div class="line"><span class="lineno">  524</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  525</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  526</span><span class="stringliteral">            Thread(target=self.init).start()</span></div>
+<div class="line"><span class="lineno">  527</span><span class="stringliteral"></span> </div>
 </div><!-- fragment --><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -446,22 +446,22 @@ it will print ALREADY INSTALLED after the package name.
 :param mode: Determine what file is created
 :return: The name of the file that is created
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00639">639</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  639</span>        <span class="keyword">def </span>stop(self, mode=&#39;s&#39;):</div>
-<div class="line"><span class="lineno">  640</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  641</span><span class="stringliteral">            The stop function </span><span class="keywordflow">is</span> called when the user wants to stop the installation.</div>
-<div class="line"><span class="lineno">  642</span> </div>
-<div class="line"><span class="lineno">  643</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
-<div class="line"><span class="lineno">  644</span>            :param mode: Determine what file <span class="keywordflow">is</span> created</div>
-<div class="line"><span class="lineno">  645</span>            :<span class="keywordflow">return</span>: The name of the file that <span class="keywordflow">is</span> created</div>
-<div class="line"><span class="lineno">  646</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  647</span><span class="stringliteral">            </span><span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;s&#39;</span>:</div>
-<div class="line"><span class="lineno">  648</span>                open(f<span class="stringliteral">&quot;INSTALL_DONE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  649</span>            <span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;e&#39;</span>:</div>
-<div class="line"><span class="lineno">  650</span>                open(f<span class="stringliteral">&quot;INSTALL_ERROR{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  651</span>            <span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;ali&#39;</span>:</div>
-<div class="line"><span class="lineno">  652</span>                open(f<span class="stringliteral">&quot;INSTALL_ALINST{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  653</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00540">540</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  540</span>        <span class="keyword">def </span>stop(self, mode=&#39;s&#39;):</div>
+<div class="line"><span class="lineno">  541</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  542</span><span class="stringliteral">            The stop function </span><span class="keywordflow">is</span> called when the user wants to stop the installation.</div>
+<div class="line"><span class="lineno">  543</span> </div>
+<div class="line"><span class="lineno">  544</span>            :param self: Represent the instance of the <span class="keyword">class</span></div>
+<div class="line"><span class="lineno">  545</span>            :param mode: Determine what file <span class="keywordflow">is</span> created</div>
+<div class="line"><span class="lineno">  546</span>            :<span class="keywordflow">return</span>: The name of the file that <span class="keywordflow">is</span> created</div>
+<div class="line"><span class="lineno">  547</span>            <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  548</span><span class="stringliteral">            </span><span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;s&#39;</span>:</div>
+<div class="line"><span class="lineno">  549</span>                open(f<span class="stringliteral">&quot;INSTALL_DONE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  550</span>            <span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;e&#39;</span>:</div>
+<div class="line"><span class="lineno">  551</span>                open(f<span class="stringliteral">&quot;INSTALL_ERROR{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  552</span>            <span class="keywordflow">if</span> mode == <span class="stringliteral">&#39;ali&#39;</span>:</div>
+<div class="line"><span class="lineno">  553</span>                open(f<span class="stringliteral">&quot;INSTALL_ALINST{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  554</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -481,10 +481,10 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00636">636</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  636</span>        <span class="keyword">def </span>unpause(self):</div>
-<div class="line"><span class="lineno">  637</span>            open(f<span class="stringliteral">&quot;INSTALL_UNPAUSE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  638</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00537">537</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  537</span>        <span class="keyword">def </span>unpause(self):</div>
+<div class="line"><span class="lineno">  538</span>            open(f<span class="stringliteral">&quot;INSTALL_UNPAUSE{self.id}&quot;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  539</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -509,7 +509,7 @@ it will print ALREADY INSTALLED after the package name.
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00614">614</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00515">515</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -525,7 +525,7 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00612">612</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00513">513</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00611">611</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00512">512</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -557,7 +557,7 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00615">615</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00516">516</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -573,7 +573,7 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00613">613</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00514">514</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -589,7 +589,7 @@ it will print ALREADY INSTALLED after the package name.
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00610">610</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../df/dd7/edupage_8py_source.html#l00511">511</a> of file <a class="el" href="../../df/dd7/edupage_8py_source.html">edupage.py</a>.</p>
 
 </div>
 </div>
@@ -602,7 +602,7 @@ it will print ALREADY INSTALLED after the package name.
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d0/d52/namespaceedupage.html">edupage</a></li><li class="navelem"><a class="el" href="../../d3/d42/classedupage_1_1installing__carousel.html">installing_carousel</a></li>
-    <li class="footer">Generated on Fri Apr 28 2023 09:56:37 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Apr 28 2023 20:16:45 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

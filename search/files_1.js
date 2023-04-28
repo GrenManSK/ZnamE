@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['edupage_2emd_0',['edupage.md',['../da/d42/edupage_8md.html',1,'']]],
-  ['edupage_2epy_1',['edupage.py',['../df/dd7/edupage_8py.html',1,'']]]
+  ['code_5fof_5fconduct_2emd_0',['CODE_OF_CONDUCT.md',['../d7/de1/_c_o_d_e___o_f___c_o_n_d_u_c_t_8md.html',1,'']]]
 ];

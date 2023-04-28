@@ -7,6 +7,4 @@ digraph "edupage.get_size"
   rankdir="LR";
   Node1 [label="edupage.get_size",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node1 [color="steelblue1",style="solid"];
-  Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="edupage.printnlog",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a2adafa3eaf38d32da372310443e999f3",tooltip=" "];
 }

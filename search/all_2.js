@@ -14,5 +14,7 @@ var searchData=
   ['argmusiclisterror_11',['argMusicListError',['../d4/d54/classedupage_1_1arg_music_list_error.html',1,'edupage']]],
   ['argnekoerror_12',['argNekoError',['../d4/db7/classedupage_1_1arg_neko_error.html',1,'edupage']]],
   ['args_13',['args',['../d0/d52/namespaceedupage.html#ac8064107eac90ec58fd7651be1bb2016',1,'edupage']]],
-  ['argwaifuerror_14',['argWaifuError',['../d2/d19/classedupage_1_1arg_waifu_error.html',1,'edupage']]]
+  ['arguments_14',['arguments',['../d2/d33/namespacearguments.html',1,'arguments'],['../d2/d33/namespacearguments.html#a1fbdde8a504f62b1e1885c204392c4f0',1,'arguments.arguments()']]],
+  ['arguments_2epy_15',['arguments.py',['../d9/d81/arguments_8py.html',1,'']]],
+  ['argwaifuerror_16',['argWaifuError',['../d2/d19/classedupage_1_1arg_waifu_error.html',1,'edupage']]]
 ];

@@ -8,16 +8,10 @@ digraph "edupage.add_marks"
   Node1 [label="edupage.add_marks",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
   Node2 [label="edupage.add",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#af8155c1c90674d76615b11b6d0c5c8ba",tooltip=" "];
-  Node2 -> Node3 [color="steelblue1",style="solid"];
-  Node3 [label="edupage.printnlog",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a2adafa3eaf38d32da372310443e999f3",tooltip=" "];
-  Node1 -> Node4 [color="steelblue1",style="solid"];
-  Node4 [label="edupage.code",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a0ac684340ab80b572e1871d02551129b",tooltip=" "];
-  Node4 -> Node3 [color="steelblue1",style="solid"];
-  Node1 -> Node5 [color="steelblue1",style="solid"];
-  Node5 [label="edupage.decode",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#aa92a47e21588e2d0650510eb9f359d9b",tooltip=" "];
-  Node5 -> Node3 [color="steelblue1",style="solid"];
-  Node1 -> Node6 [color="steelblue1",style="solid"];
-  Node6 [label="edupage.getImg",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#ac2af202d51ecd2e5f8759016912b4d4c",tooltip=" "];
-  Node6 -> Node3 [color="steelblue1",style="solid"];
   Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="edupage.code",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a0ac684340ab80b572e1871d02551129b",tooltip=" "];
+  Node1 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="edupage.decode",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#aa92a47e21588e2d0650510eb9f359d9b",tooltip=" "];
+  Node1 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="edupage.getImg",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#ac2af202d51ecd2e5f8759016912b4d4c",tooltip=" "];
 }

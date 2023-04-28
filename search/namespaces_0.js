@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['edupage_0',['edupage',['../d0/d52/namespaceedupage.html',1,'']]]
+  ['arguments_0',['arguments',['../d2/d33/namespacearguments.html',1,'']]]
 ];

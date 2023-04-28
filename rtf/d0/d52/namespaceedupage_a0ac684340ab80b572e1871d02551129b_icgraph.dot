@@ -12,7 +12,4 @@ digraph "edupage.code"
   Node3 [label="edupage.main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a119d208fce33ca55d6b605c22dbcd534",tooltip=" "];
   Node3 -> Node3 [dir="back",color="steelblue1",style="solid"];
   Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
-  Node1 -> Node4 [dir="back",color="steelblue1",style="solid"];
-  Node4 [label="edupage.save_credentials",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a384366ccdfd5546dbf027f68532f293e",tooltip=" "];
-  Node4 -> Node3 [dir="back",color="steelblue1",style="solid"];
 }
