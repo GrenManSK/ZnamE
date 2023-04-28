@@ -7,6 +7,5 @@ var searchData=
   ['list_5fgpus_4',['list_gpus',['../d0/d52/namespaceedupage.html#af26fb9d80ec307320cff81139ef78492',1,'edupage']]],
   ['log_5',['log',['../d0/d52/namespaceedupage.html#a10259ad5462902f5310a72e6a45b915b',1,'edupage']]],
   ['log_5ffilename_6',['LOG_FILENAME',['../d0/d52/namespaceedupage.html#a3997a332918ddb9b4c50cf3e147213a3',1,'edupage']]],
-  ['logger_7',['logger',['../d0/d52/namespaceedupage.html#a81bb76bbaeee9abec4243fc8bc9f976c',1,'edupage']]],
-  ['loginvstupuser_8',['loginvstupuser',['../d0/d52/namespaceedupage.html#a6cf5972c8016553dd17350ae6dd6ac2a',1,'edupage']]]
+  ['logger_7',['logger',['../d0/d52/namespaceedupage.html#a81bb76bbaeee9abec4243fc8bc9f976c',1,'edupage']]]
 ];

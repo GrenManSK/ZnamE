@@ -69,18 +69,22 @@
         </Subnodes>
        </Node>
        <Node>
+        <Name>patch</Name>
+        <Path>de/dac/md_patch.html</Path>
+       </Node>
+       <Node>
         <Name>&lt;strong&gt;ZnamE&lt;/strong&gt;</Name>
         <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
       <Subnodes>
          <Node>
           <Name>Installation</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md106</Anchor>
+          <Anchor>autotoc_md108</Anchor>
          </Node>
          <Node>
           <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md108</Anchor>
+          <Anchor>autotoc_md110</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -263,6 +267,11 @@
               <Anchor>a5f8fea0428e088bff636f0c3d29a05bc</Anchor>
              </Node>
              <Node>
+              <Name>extract</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a293d892915acc25b924a8a1250cbade8</Anchor>
+             </Node>
+             <Node>
               <Name>find</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
@@ -271,11 +280,6 @@
               <Name>get_download_path</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
-             </Node>
-             <Node>
-              <Name>get_id</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ae6f79ced0881307de7d601a010b94643</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -316,6 +320,11 @@
               <Name>internet_check</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>acfd9e8f73e3eb2e829ac13cec7ad3898</Anchor>
+             </Node>
+             <Node>
+              <Name>intro</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a316dc71e49505324d14deee19eccd566</Anchor>
              </Node>
              <Node>
               <Name>isUserAdmin</Name>
@@ -373,14 +382,29 @@
               <Anchor>ac91b642ed43535490d0de48ebab52497</Anchor>
              </Node>
              <Node>
+              <Name>save_credentials</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a384366ccdfd5546dbf027f68532f293e</Anchor>
+             </Node>
+             <Node>
               <Name>set_config</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
              </Node>
              <Node>
+              <Name>show_html</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ae24340bf9520352076c174cc34e36fe8</Anchor>
+             </Node>
+             <Node>
               <Name>show_marks</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
+              <Name>show_version</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a706e5d95945f9be1581343427d94cab3</Anchor>
              </Node>
              <Node>
               <Name>spotdl_get</Name>
@@ -406,6 +430,16 @@
               <Name>unpack</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a17d25ec04c8180522deae8449911dcb6</Anchor>
+             </Node>
+             <Node>
+              <Name>vlc_init</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a9f3e602dd8410da6eab7cf9b0758c6f8</Anchor>
+             </Node>
+             <Node>
+              <Name>was_updated</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
              </Node>
              <Node>
               <Name>addapp</Name>
@@ -673,11 +707,6 @@
               <Anchor>a81bb76bbaeee9abec4243fc8bc9f976c</Anchor>
              </Node>
              <Node>
-              <Name>loginvstupuser</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a6cf5972c8016553dd17350ae6dd6ac2a</Anchor>
-             </Node>
-             <Node>
               <Name>mode</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7ee3f3010bc04cf901b7fb1ffb7c6ae1</Anchor>
@@ -926,6 +955,17 @@
               <Name>x</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>abc68998c4f2148515ea5dba942ee0efe</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>patch_edupage</Name>
+            <Path>d9/d81/namespacepatch__edupage.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>version</Name>
+              <Path>d9/d81/namespacepatch__edupage.html</Path>
+              <Anchor>a7289e1d265b80996677da87314f0c791</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -1348,6 +1388,11 @@
               <Anchor>a5f8fea0428e088bff636f0c3d29a05bc</Anchor>
              </Node>
              <Node>
+              <Name>extract</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a293d892915acc25b924a8a1250cbade8</Anchor>
+             </Node>
+             <Node>
               <Name>find</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
@@ -1356,11 +1401,6 @@
               <Name>get_download_path</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a173db098c25feb8bec8766cce059e4f0</Anchor>
-             </Node>
-             <Node>
-              <Name>get_id</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ae6f79ced0881307de7d601a010b94643</Anchor>
              </Node>
              <Node>
               <Name>get_line_number</Name>
@@ -1401,6 +1441,11 @@
               <Name>internet_check</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>acfd9e8f73e3eb2e829ac13cec7ad3898</Anchor>
+             </Node>
+             <Node>
+              <Name>intro</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a316dc71e49505324d14deee19eccd566</Anchor>
              </Node>
              <Node>
               <Name>isUserAdmin</Name>
@@ -1458,14 +1503,29 @@
               <Anchor>ac91b642ed43535490d0de48ebab52497</Anchor>
              </Node>
              <Node>
+              <Name>save_credentials</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a384366ccdfd5546dbf027f68532f293e</Anchor>
+             </Node>
+             <Node>
               <Name>set_config</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
              </Node>
              <Node>
+              <Name>show_html</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ae24340bf9520352076c174cc34e36fe8</Anchor>
+             </Node>
+             <Node>
               <Name>show_marks</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+             </Node>
+             <Node>
+              <Name>show_version</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a706e5d95945f9be1581343427d94cab3</Anchor>
              </Node>
              <Node>
               <Name>spotdl_get</Name>
@@ -1491,6 +1551,16 @@
               <Name>unpack</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a17d25ec04c8180522deae8449911dcb6</Anchor>
+             </Node>
+             <Node>
+              <Name>vlc_init</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a9f3e602dd8410da6eab7cf9b0758c6f8</Anchor>
+             </Node>
+             <Node>
+              <Name>was_updated</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
              </Node>
              <Node>
               <Name>addapp</Name>
@@ -1758,11 +1828,6 @@
               <Anchor>a81bb76bbaeee9abec4243fc8bc9f976c</Anchor>
              </Node>
              <Node>
-              <Name>loginvstupuser</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a6cf5972c8016553dd17350ae6dd6ac2a</Anchor>
-             </Node>
-             <Node>
               <Name>mode</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7ee3f3010bc04cf901b7fb1ffb7c6ae1</Anchor>
@@ -2011,6 +2076,17 @@
               <Name>x</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>abc68998c4f2148515ea5dba942ee0efe</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>patch_edupage.py</Name>
+            <Path>d4/dfa/patch__edupage_8py.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>version</Name>
+              <Path>d4/dfa/patch__edupage_8py.html</Path>
+              <Anchor>a7289e1d265b80996677da87314f0c791</Anchor>
              </Node>
             </Subnodes>
            </Node>

@@ -1,0 +1,20 @@
+digraph "edupage.extract"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="edupage.extract",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="edupage.printnlog",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a2adafa3eaf38d32da372310443e999f3",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="edupage.typewriter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a7faa24d24074c579901eff9ea313b508",tooltip=" "];
+  Node3 -> Node2 [color="steelblue1",style="solid"];
+  Node1 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="edupage.unpack",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a17d25ec04c8180522deae8449911dcb6",tooltip=" "];
+  Node4 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="edupage.log",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a10259ad5462902f5310a72e6a45b915b",tooltip=" "];
+  Node4 -> Node2 [color="steelblue1",style="solid"];
+  Node4 -> Node3 [color="steelblue1",style="solid"];
+}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'']]]
+  ['patch_5fedupage_0',['patch_edupage',['../d9/d81/namespacepatch__edupage.html',1,'']]]
 ];

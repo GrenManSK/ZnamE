@@ -21,3 +21,5 @@ signatures.py
 edupage_old.py
 patch.py
 Website/
+patch.md
+patch_edupage.py
