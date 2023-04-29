@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['patch_5fedupage_0',['patch_edupage',['../d9/d81/namespacepatch__edupage.html',1,'']]]
+  ['system_5finfo_0',['system_info',['../d5/df5/namespacesystem__info.html',1,'']]],
+  ['system_5foperations_1',['system_operations',['../de/d05/namespacesystem__operations.html',1,'']]]
 ];

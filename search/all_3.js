@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bar_0',['bar',['../d3/d42/classedupage_1_1installing__carousel.html#aedd643e252526e1521f19cbe601d3413',1,'edupage::installing_carousel']]]
+  ['bar_0',['bar',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a2b28638d268f7674f1ee2bd536988d83',1,'app_alternations::installing_carousel']]]
 ];

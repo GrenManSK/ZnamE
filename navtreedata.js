@@ -26,24 +26,24 @@ var NAVTREE =
 [
   [ "ZnamE", "index.html", [
     [ "Contributor Covenant Code of Conduct", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html", [
-      [ "Our Pledge", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md92", null ],
-      [ "Our Standards", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md93", null ],
-      [ "Enforcement Responsibilities", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md94", null ],
-      [ "Scope", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md95", null ],
-      [ "Enforcement", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md96", null ],
-      [ "Enforcement Guidelines", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md97", [
-        [ "1. Correction", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md98", null ],
-        [ "2. Warning", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md99", null ],
-        [ "3. Temporary Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md100", null ],
-        [ "4. Permanent Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md101", null ]
+      [ "Our Pledge", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md1", null ],
+      [ "Our Standards", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md2", null ],
+      [ "Enforcement Responsibilities", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md3", null ],
+      [ "Scope", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md4", null ],
+      [ "Enforcement", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md5", null ],
+      [ "Enforcement Guidelines", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md6", [
+        [ "1. Correction", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md7", null ],
+        [ "2. Warning", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md8", null ],
+        [ "3. Temporary Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md9", null ],
+        [ "4. Permanent Ban", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md10", null ]
       ] ],
-      [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md102", null ]
+      [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
     ] ],
     [ "patch", "de/dac/md_patch.html", null ],
     [ "v1.0.4-alpha+build.20230214.223759", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html", [
-      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md197", null ],
-      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md198", null ],
-      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md199", null ]
+      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md106", null ],
+      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md107", null ],
+      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md108", null ]
     ] ],
     [ "v1.0.4-alpha+build.20230216.161608", "d0/d28/md_patch_notes_v1_0_4_alpha_build_20230216_161608.html", null ],
     [ "v1.0.5-alpha+build.20230216.162308", "d3/d03/md_patch_notes_v1_0_5_alpha_build_20230216_162308.html", null ],
@@ -57,9 +57,11 @@ var NAVTREE =
     [ "v1.1.0-alpha+build.20230329.224720", "de/d89/md_patch_notes_v1_1_0_alpha_build_20230329_224720.html", null ],
     [ "v1.1.0-alpha+build.20230407.113203", "d7/dcd/md_patch_notes_v1_1_0_alpha_build_20230407_113203.html", null ],
     [ "v1.1.0-alpha+build.20230428.095526", "d4/da8/md_patch_notes_v1_1_0_alpha_build_20230428_095526.html", null ],
+    [ "v1.1.1-alpha+build.20230428.172227", "d5/dc8/md_patch_notes_v1_1_1_alpha_build_20230428_172227.html", null ],
+    [ "v1.2.0-alpha+build.20230429.122048", "d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html", null ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md215", null ],
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md217", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md126", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md128", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -88,7 +90,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#a21f2f303ad4d1e33a43bd2b8207130a4"
+"df/dd7/edupage_8py.html#a2b1f190fe22c994a649d237a35cd53fb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

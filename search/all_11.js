@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['target_0',['target',['../d0/d52/namespaceedupage.html#af67a89d4998ce9e5f27f8161e842951a',1,'edupage']]],
-  ['to_5finfo_1',['to_info',['../d0/d52/namespaceedupage.html#af42cb60f429fbe9cb11f585512cd2c4c',1,'edupage.to_info()'],['../d8/df3/namespacewriting.html#a8c0248c0cae542de1b8e744f4d529ccd',1,'writing.to_info()']]],
-  ['toprint_2',['toprint',['../d0/d52/namespaceedupage.html#a581047f676f7385cb101b2f5e2829e75',1,'edupage']]],
-  ['total_3',['total',['../d0/d52/namespaceedupage.html#acc265ae5355756db29acc12bc617cd79',1,'edupage']]],
-  ['try_4',['try',['../d0/d52/namespaceedupage.html#a3b833a872a582269c7dd26729086ec6b',1,'edupage']]],
-  ['typewriter_5',['typewriter',['../d0/d52/namespaceedupage.html#a7faa24d24074c579901eff9ea313b508',1,'edupage.typewriter()'],['../d8/df3/namespacewriting.html#a46cc8d471e5fbadc94bb501b222cb4b9',1,'writing.typewriter()']]]
+  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'uninstall'],['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall.uninstall()']]],
+  ['uninstall_2epy_1',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]],
+  ['unpack_2',['unpack',['../d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc',1,'file_operations']]],
+  ['unpause_3',['unpause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a72c099261f8e502be3049875a139a591',1,'app_alternations::installing_carousel']]],
+  ['unspecified_4',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
+  ['update_5',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
+  ['update_5fapp_6',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]],
+  ['updateapp_7',['updateapp',['../d0/d52/namespaceedupage.html#a755f001a3a51f0d7de4d516cae34bb38',1,'edupage.updateapp()'],['../d3/dc0/namespaceapp__alternations.html#aa1afd604590fd0588c3e83354f0f4a85',1,'app_alternations.updateapp()']]],
+  ['user32_8',['user32',['../d0/d52/namespaceedupage.html#a7776a9481e741b60486c766350d8ee7a',1,'edupage']]]
 ];

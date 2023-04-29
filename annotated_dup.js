@@ -1,16 +1,18 @@
 var annotated_dup =
 [
-    [ "edupage", "d0/d52/namespaceedupage.html", [
-      [ "argEnviromentError", "db/d4d/classedupage_1_1arg_enviroment_error.html", null ],
-      [ "argGameError", "dc/d03/classedupage_1_1arg_game_error.html", null ],
-      [ "argInactiveLimitError", "d6/d7c/classedupage_1_1arg_inactive_limit_error.html", null ],
-      [ "argIntroError", "da/d01/classedupage_1_1arg_intro_error.html", null ],
-      [ "argLanguageError", "df/dc6/classedupage_1_1arg_language_error.html", null ],
-      [ "argMusicError", "db/d25/classedupage_1_1arg_music_error.html", null ],
-      [ "argMusicListError", "d4/d54/classedupage_1_1arg_music_list_error.html", null ],
-      [ "argNekoError", "d4/db7/classedupage_1_1arg_neko_error.html", null ],
-      [ "argWaifuError", "d2/d19/classedupage_1_1arg_waifu_error.html", null ],
-      [ "configNoOption", "d7/d7c/classedupage_1_1config_no_option.html", null ],
-      [ "installing_carousel", "d3/d42/classedupage_1_1installing__carousel.html", "d3/d42/classedupage_1_1installing__carousel" ]
+    [ "app_alternations", "d3/dc0/namespaceapp__alternations.html", [
+      [ "installing_carousel", "d5/d77/classapp__alternations_1_1installing__carousel.html", "d5/d77/classapp__alternations_1_1installing__carousel" ]
+    ] ],
+    [ "exceptions", "d0/d6e/namespaceexceptions.html", [
+      [ "argEnviromentError", "dd/dbe/classexceptions_1_1arg_enviroment_error.html", null ],
+      [ "argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],
+      [ "argInactiveLimitError", "df/deb/classexceptions_1_1arg_inactive_limit_error.html", null ],
+      [ "argIntroError", "d6/d2b/classexceptions_1_1arg_intro_error.html", null ],
+      [ "argLanguageError", "d7/d77/classexceptions_1_1arg_language_error.html", null ],
+      [ "argMusicError", "d5/d36/classexceptions_1_1arg_music_error.html", null ],
+      [ "argMusicListError", "df/de6/classexceptions_1_1arg_music_list_error.html", null ],
+      [ "argNekoError", "d1/d60/classexceptions_1_1arg_neko_error.html", null ],
+      [ "argWaifuError", "da/dcb/classexceptions_1_1arg_waifu_error.html", null ],
+      [ "configNoOption", "dd/d3d/classexceptions_1_1config_no_option.html", null ]
     ] ]
 ];

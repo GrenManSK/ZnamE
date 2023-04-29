@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['runasadmin_0',['runAsAdmin',['../d0/d52/namespaceedupage.html#ac91b642ed43535490d0de48ebab52497',1,'edupage']]]
+  ['runasadmin_0',['runAsAdmin',['../de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb',1,'system_operations']]]
 ];

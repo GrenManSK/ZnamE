@@ -1,6 +1,6 @@
 var internet_8py =
 [
-    [ "get_line_number", "d6/da3/internet_8py.html#a11e6e374dd8a5f1ba3cd1289f08437fe", null ],
-    [ "internet", "d6/da3/internet_8py.html#aa73c783f0a5a3e950cfd12f5f2d97f16", null ],
-    [ "internet_check", "d6/da3/internet_8py.html#aa7d8370960bf356818fc13f34cc99ee4", null ]
+    [ "download", "d6/da3/internet_8py.html#aeb2f9868381f66da42a5e39bbe1114f3", null ],
+    [ "internet", "d6/da3/internet_8py.html#a5afa8639d2262b7d8f8299aaab30d9e0", null ],
+    [ "internet_check", "d6/da3/internet_8py.html#adddc8d04d1313e597e4365c3011de6f4", null ]
 ];

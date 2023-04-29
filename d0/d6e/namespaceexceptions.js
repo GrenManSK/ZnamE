@@ -1,0 +1,15 @@
+var namespaceexceptions =
+[
+    [ "argEnviromentError", "dd/dbe/classexceptions_1_1arg_enviroment_error.html", null ],
+    [ "argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],
+    [ "argInactiveLimitError", "df/deb/classexceptions_1_1arg_inactive_limit_error.html", null ],
+    [ "argIntroError", "d6/d2b/classexceptions_1_1arg_intro_error.html", null ],
+    [ "argLanguageError", "d7/d77/classexceptions_1_1arg_language_error.html", null ],
+    [ "argMusicError", "d5/d36/classexceptions_1_1arg_music_error.html", null ],
+    [ "argMusicListError", "df/de6/classexceptions_1_1arg_music_list_error.html", null ],
+    [ "argNekoError", "d1/d60/classexceptions_1_1arg_neko_error.html", null ],
+    [ "argWaifuError", "da/dcb/classexceptions_1_1arg_waifu_error.html", null ],
+    [ "configNoOption", "dd/d3d/classexceptions_1_1config_no_option.html", null ],
+    [ "error_get", "d0/d6e/namespaceexceptions.html#ace1e278771edd49755f7a35227e8d52d", null ],
+    [ "error_log", "d0/d6e/namespaceexceptions.html#a751a3e821b8ea542b3085265af86fb6d", null ]
+];

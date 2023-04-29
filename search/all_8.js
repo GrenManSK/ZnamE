@@ -1,8 +1,8 @@
 var searchData=
 [
   ['gameapp_0',['gameapp',['../d0/d52/namespaceedupage.html#ada42755d650dffc15c02c7e2f79a741b',1,'edupage']]],
-  ['get_5fline_5fnumber_1',['get_line_number',['../d0/d52/namespaceedupage.html#a812e6a75d3ee97e0f71e7d0d90b4a355',1,'edupage.get_line_number()'],['../d1/d22/namespaceinternet.html#a11e6e374dd8a5f1ba3cd1289f08437fe',1,'internet.get_line_number()']]],
+  ['get_5fline_5fnumber_1',['get_line_number',['../d5/df5/namespacesystem__info.html#a0f69d44535db5c0aff95a677e1380133',1,'system_info']]],
   ['get_5fsize_2',['get_size',['../d0/d52/namespaceedupage.html#a354083c63893b814752b84ce1d2260d4',1,'edupage']]],
-  ['getimg_3',['getImg',['../d0/d52/namespaceedupage.html#ac2af202d51ecd2e5f8759016912b4d4c',1,'edupage']]],
-  ['getwindow_4',['getWindow',['../d0/d52/namespaceedupage.html#a89cc38c9c6a0b37169c24032c8efa1b2',1,'edupage']]]
+  ['getimg_3',['getImg',['../de/d05/namespacesystem__operations.html#ab7f6f1490c9ace89a495ec832aba1be5',1,'system_operations']]],
+  ['getwindow_4',['getWindow',['../de/d05/namespacesystem__operations.html#ae1c540b83755223d324045f0383ce68d',1,'system_operations']]]
 ];

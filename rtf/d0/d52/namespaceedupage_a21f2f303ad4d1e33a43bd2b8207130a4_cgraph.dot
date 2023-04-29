@@ -12,6 +12,4 @@ digraph "edupage.add_marks"
   Node3 [label="edupage.code",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a0ac684340ab80b572e1871d02551129b",tooltip=" "];
   Node1 -> Node4 [color="steelblue1",style="solid"];
   Node4 [label="edupage.decode",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#aa92a47e21588e2d0650510eb9f359d9b",tooltip=" "];
-  Node1 -> Node5 [color="steelblue1",style="solid"];
-  Node5 [label="edupage.getImg",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#ac2af202d51ecd2e5f8759016912b4d4c",tooltip=" "];
 }

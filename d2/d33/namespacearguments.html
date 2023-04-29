@@ -99,6 +99,8 @@ $(document).ready(function(){initNavTree('d2/d33/namespacearguments.html','../..
 Functions</h2></td></tr>
 <tr class="memitem:a1fbdde8a504f62b1e1885c204392c4f0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d33/namespacearguments.html#a1fbdde8a504f62b1e1885c204392c4f0">arguments</a> (config)</td></tr>
 <tr class="separator:a1fbdde8a504f62b1e1885c204392c4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94794798220695e9c6e5476a3184a0e5"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d33/namespacearguments.html#a94794798220695e9c6e5476a3184a0e5">check_correctness</a> (args, config, logger, music, set_config)</td></tr>
+<tr class="separator:a94794798220695e9c6e5476a3184a0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a1fbdde8a504f62b1e1885c204392c4f0" name="a1fbdde8a504f62b1e1885c204392c4f0"></a>
@@ -117,64 +119,215 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d81/arguments_8py_source.html#l00003">3</a> of file <a class="el" href="../../d9/d81/arguments_8py_source.html">arguments.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    3</span><span class="keyword">def </span><a class="code hl_namespace" href="../../d2/d33/namespacearguments.html">arguments</a>(config):</div>
-<div class="line"><span class="lineno">    4</span>    parser = argparse.ArgumentParser()</div>
-<div class="line"><span class="lineno">    5</span>    UNSPECIFIED = object()</div>
-<div class="line"><span class="lineno">    6</span>    language: list[str] = [<span class="stringliteral">&#39;SK&#39;</span>, <span class="stringliteral">&#39;EN&#39;</span>, <span class="stringliteral">&#39;JP&#39;</span>]  <span class="comment"># Supported languages</span></div>
-<div class="line"><span class="lineno">    7</span> </div>
-<div class="line"><span class="lineno">    8</span>    <span class="stringliteral">&quot;Setting up music if none leaving empty list&quot;</span></div>
-<div class="line"><span class="lineno">    9</span> </div>
-<div class="line"><span class="lineno">   10</span>    music: list[str] = list(</div>
-<div class="line"><span class="lineno">   11</span>        set(str(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musiclist&#39;</span>]).split(<span class="stringliteral">&#39;,&#39;</span>)[0:]))</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">if</span> music[0] == <span class="stringliteral">&#39;None&#39;</span>:</div>
-<div class="line"><span class="lineno">   13</span>        music = []</div>
-<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> music:</div>
-<div class="line"><span class="lineno">   16</span>            <span class="keywordflow">if</span> i == <span class="stringliteral">&#39;&#39;</span>:</div>
-<div class="line"><span class="lineno">   17</span>                music.remove(<span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><span class="lineno">   18</span>    musicchoices: list[str] = [<span class="stringliteral">&#39;0&#39;</span>]</div>
-<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1, len(music) + 1):</div>
-<div class="line"><span class="lineno">   20</span>        musicchoices.append(str(i))</div>
-<div class="line"><span class="lineno">   21</span>    parser.add_argument(<span class="stringliteral">&#39;-lang&#39;</span>, <span class="stringliteral">&#39;--language&#39;</span>, choices=language,</div>
-<div class="line"><span class="lineno">   22</span>                        help=<span class="stringliteral">&#39;Language selection&#39;</span>, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   23</span>    parser.add_argument(<span class="stringliteral">&#39;-v&#39;</span>, <span class="stringliteral">&#39;--version&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   24</span>                        help=<span class="stringliteral">&#39;Show version of this program&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   25</span>    parser.add_argument(<span class="stringliteral">&#39;-ef&#39;</span>, <span class="stringliteral">&#39;--endf&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   26</span>                        help=<span class="stringliteral">&#39;Will not automatically end program&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   27</span>    parser.add_argument(<span class="stringliteral">&#39;-ni&#39;</span>, <span class="stringliteral">&#39;--nointro&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   28</span>                        help=<span class="stringliteral">&#39;Will not start intro&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   29</span>    parser.add_argument(<span class="stringliteral">&#39;-nif&#39;</span>, <span class="stringliteral">&#39;--nointrof&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   30</span>                        help=<span class="stringliteral">&#39;Will not start intro&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   31</span>    parser.add_argument(<span class="stringliteral">&#39;-co&#39;</span>, <span class="stringliteral">&#39;--configoptions&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   32</span>                        help=<span class="stringliteral">&#39;Make a file with all config options&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   33</span>    parser.add_argument(<span class="stringliteral">&#39;-log&#39;</span>, <span class="stringliteral">&#39;--log&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   34</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   35</span>    parser.add_argument(<span class="stringliteral">&#39;-music&#39;</span>, <span class="stringliteral">&#39;--music&#39;</span>, choices=musicchoices,</div>
-<div class="line"><span class="lineno">   36</span>                        help=<span class="stringliteral">&#39;Starts music; you can select from: &#39;</span> + str(i <span class="keywordflow">for</span> i <span class="keywordflow">in</span> music), default=0, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    <span class="stringliteral">&quot;These are arguments for program to use&quot;</span></div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>    parser.add_argument(<span class="stringliteral">&#39;-neko&#39;</span>, <span class="stringliteral">&#39;--neko&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   41</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   42</span>    parser.add_argument(<span class="stringliteral">&#39;-waifu&#39;</span>, <span class="stringliteral">&#39;--waifu&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   43</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   44</span>    parser.add_argument(<span class="stringliteral">&#39;-waifuvid&#39;</span>, <span class="stringliteral">&#39;--waifuvid&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   45</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   46</span>    parser.add_argument(<span class="stringliteral">&#39;-inactive&#39;</span>, <span class="stringliteral">&#39;--inactive&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   47</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   48</span>    parser.add_argument(<span class="stringliteral">&#39;-restart&#39;</span>, <span class="stringliteral">&#39;--restart&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   49</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   50</span>    parser.add_argument(<span class="stringliteral">&#39;-update&#39;</span>, <span class="stringliteral">&#39;--update&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   51</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use (this command won\&#39;t update this program, it does it automatically)&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   52</span>    parser.add_argument(<span class="stringliteral">&#39;-autol&#39;</span>, <span class="stringliteral">&#39;--autologin&#39;</span>, choices=[],</div>
+<p class="definition">Definition at line <a class="el" href="../../d9/d81/arguments_8py_source.html#l00009">9</a> of file <a class="el" href="../../d9/d81/arguments_8py_source.html">arguments.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    9</span><span class="keyword">def </span><a class="code hl_namespace" href="../../d2/d33/namespacearguments.html">arguments</a>(config):</div>
+<div class="line"><span class="lineno">   10</span>    parser = argparse.ArgumentParser()</div>
+<div class="line"><span class="lineno">   11</span>    UNSPECIFIED = object()</div>
+<div class="line"><span class="lineno">   12</span>    language: list[str] = [<span class="stringliteral">&#39;SK&#39;</span>, <span class="stringliteral">&#39;EN&#39;</span>, <span class="stringliteral">&#39;JP&#39;</span>]  <span class="comment"># Supported languages</span></div>
+<div class="line"><span class="lineno">   13</span> </div>
+<div class="line"><span class="lineno">   14</span>    <span class="stringliteral">&quot;Setting up music if none leaving empty list&quot;</span></div>
+<div class="line"><span class="lineno">   15</span> </div>
+<div class="line"><span class="lineno">   16</span>    music: list[str] = list(</div>
+<div class="line"><span class="lineno">   17</span>        set(str(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musiclist&#39;</span>]).split(<span class="stringliteral">&#39;,&#39;</span>)[0:]))</div>
+<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">if</span> music[0] == <span class="stringliteral">&#39;None&#39;</span>:</div>
+<div class="line"><span class="lineno">   19</span>        music = []</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> music:</div>
+<div class="line"><span class="lineno">   22</span>            <span class="keywordflow">if</span> i == <span class="stringliteral">&#39;&#39;</span>:</div>
+<div class="line"><span class="lineno">   23</span>                music.remove(<span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><span class="lineno">   24</span>    musicchoices: list[str] = [<span class="stringliteral">&#39;0&#39;</span>]</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1, len(music) + 1):</div>
+<div class="line"><span class="lineno">   26</span>        musicchoices.append(str(i))</div>
+<div class="line"><span class="lineno">   27</span>    parser.add_argument(<span class="stringliteral">&#39;-lang&#39;</span>, <span class="stringliteral">&#39;--language&#39;</span>, choices=language,</div>
+<div class="line"><span class="lineno">   28</span>                        help=<span class="stringliteral">&#39;Language selection&#39;</span>, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   29</span>    parser.add_argument(<span class="stringliteral">&#39;-v&#39;</span>, <span class="stringliteral">&#39;--version&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   30</span>                        help=<span class="stringliteral">&#39;Show version of this program&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   31</span>    parser.add_argument(<span class="stringliteral">&#39;-ef&#39;</span>, <span class="stringliteral">&#39;--endf&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   32</span>                        help=<span class="stringliteral">&#39;Will not automatically end program&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   33</span>    parser.add_argument(<span class="stringliteral">&#39;-ni&#39;</span>, <span class="stringliteral">&#39;--nointro&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   34</span>                        help=<span class="stringliteral">&#39;Will not start intro&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   35</span>    parser.add_argument(<span class="stringliteral">&#39;-nif&#39;</span>, <span class="stringliteral">&#39;--nointrof&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   36</span>                        help=<span class="stringliteral">&#39;Will not start intro&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   37</span>    parser.add_argument(<span class="stringliteral">&#39;-co&#39;</span>, <span class="stringliteral">&#39;--configoptions&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   38</span>                        help=<span class="stringliteral">&#39;Make a file with all config options&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   39</span>    parser.add_argument(<span class="stringliteral">&#39;-log&#39;</span>, <span class="stringliteral">&#39;--log&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   40</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   41</span>    parser.add_argument(<span class="stringliteral">&#39;-music&#39;</span>, <span class="stringliteral">&#39;--music&#39;</span>, choices=musicchoices,</div>
+<div class="line"><span class="lineno">   42</span>                        help=<span class="stringliteral">&#39;Starts music; you can select from: &#39;</span> + str(i <span class="keywordflow">for</span> i <span class="keywordflow">in</span> music), default=0, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="stringliteral">&quot;These are arguments for program to use&quot;</span></div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    parser.add_argument(<span class="stringliteral">&#39;-neko&#39;</span>, <span class="stringliteral">&#39;--neko&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   47</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   48</span>    parser.add_argument(<span class="stringliteral">&#39;-waifu&#39;</span>, <span class="stringliteral">&#39;--waifu&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   49</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   50</span>    parser.add_argument(<span class="stringliteral">&#39;-waifuvid&#39;</span>, <span class="stringliteral">&#39;--waifuvid&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   51</span>                        help=<span class="stringliteral">&#39;Easter egg was activated&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   52</span>    parser.add_argument(<span class="stringliteral">&#39;-inactive&#39;</span>, <span class="stringliteral">&#39;--inactive&#39;</span>, choices=[],</div>
 <div class="line"><span class="lineno">   53</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   54</span>    parser.add_argument(<span class="stringliteral">&#39;-test&#39;</span>, <span class="stringliteral">&#39;--test&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   54</span>    parser.add_argument(<span class="stringliteral">&#39;-restart&#39;</span>, <span class="stringliteral">&#39;--restart&#39;</span>, choices=[],</div>
 <div class="line"><span class="lineno">   55</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   56</span>    parser.add_argument(<span class="stringliteral">&#39;-debug&#39;</span>, <span class="stringliteral">&#39;--debug&#39;</span>, choices=[],</div>
-<div class="line"><span class="lineno">   57</span>                        help=<span class="stringliteral">&#39;Debugging enabled&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">return</span> parser, music, language, UNSPECIFIED</div>
+<div class="line"><span class="lineno">   56</span>    parser.add_argument(<span class="stringliteral">&#39;-update&#39;</span>, <span class="stringliteral">&#39;--update&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   57</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use (this command won\&#39;t update this program, it does it automatically)&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   58</span>    parser.add_argument(<span class="stringliteral">&#39;-autol&#39;</span>, <span class="stringliteral">&#39;--autologin&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   59</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   60</span>    parser.add_argument(<span class="stringliteral">&#39;-test&#39;</span>, <span class="stringliteral">&#39;--test&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   61</span>                        help=<span class="stringliteral">&#39;!!! Argument for program to use&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   62</span>    parser.add_argument(<span class="stringliteral">&#39;-debug&#39;</span>, <span class="stringliteral">&#39;--debug&#39;</span>, choices=[],</div>
+<div class="line"><span class="lineno">   63</span>                        help=<span class="stringliteral">&#39;Debugging enabled&#39;</span>, default=UNSPECIFIED, nargs=<span class="stringliteral">&#39;?&#39;</span>)</div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">return</span> parser, music, language, UNSPECIFIED</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span> </div>
 <div class="ttc" id="anamespacearguments_html"><div class="ttname"><a href="../../d2/d33/namespacearguments.html">arguments</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d81/arguments_8py_source.html#l00001">arguments.py:1</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a94794798220695e9c6e5476a3184a0e5" name="a94794798220695e9c6e5476a3184a0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94794798220695e9c6e5476a3184a0e5">&#9670;&#160;</a></span>check_correctness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def arguments.check_correctness </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>logger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>music</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>set_config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d81/arguments_8py_source.html#l00067">67</a> of file <a class="el" href="../../d9/d81/arguments_8py_source.html">arguments.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span><span class="keyword">def </span>check_correctness(args, config, logger, music, set_config):</div>
+<div class="line"><span class="lineno">   68</span>    hexnumber: list[str] = [<span class="stringliteral">&#39;0&#39;</span>, <span class="stringliteral">&#39;1&#39;</span>, <span class="stringliteral">&#39;2&#39;</span>, <span class="stringliteral">&#39;3&#39;</span>, <span class="stringliteral">&#39;4&#39;</span>, <span class="stringliteral">&#39;5&#39;</span>, <span class="stringliteral">&#39;6&#39;</span>,</div>
+<div class="line"><span class="lineno">   69</span>                            <span class="stringliteral">&#39;7&#39;</span>, <span class="stringliteral">&#39;8&#39;</span>, <span class="stringliteral">&#39;9&#39;</span>, <span class="stringliteral">&#39;a&#39;</span>, <span class="stringliteral">&#39;b&#39;</span>, <span class="stringliteral">&#39;c&#39;</span>, <span class="stringliteral">&#39;d&#39;</span>, <span class="stringliteral">&#39;e&#39;</span>, <span class="stringliteral">&#39;f&#39;</span>]</div>
+<div class="line"><span class="lineno">   70</span>    logger.stay(printnlog(<span class="stringliteral">&quot;Checking config correctness&quot;</span>, toprint=<span class="keyword">False</span>))</div>
+<div class="line"><span class="lineno">   71</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;enviroment&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0][0] <span class="keywordflow">in</span> hexnumber:</div>
+<div class="line"><span class="lineno">   72</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argEnviromentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; enviroment first character&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   73</span>            f<span class="stringliteral">&#39;Not allowed character | Allowed: {hexnumber}&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   74</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">elif</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;enviroment&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0][1] <span class="keywordflow">in</span> hexnumber:</div>
+<div class="line"><span class="lineno">   76</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argEnviromentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; enviroment second character&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   77</span>            f<span class="stringliteral">&#39;Not allowed character | Allowed: {hexnumber}&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   78</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   80</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; enviroment&#39;</span>)</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   82</span>        int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;inactivelimit&#39;</span>])</div>
+<div class="line"><span class="lineno">   83</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; inactivelimit&#39;</span>)</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">   85</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argInactiveLimitError(</div>
+<div class="line"><span class="lineno">   86</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; inactivelimit&#39;</span>), ValueError(<span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   87</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;intro&#39;</span>] <span class="keywordflow">in</span> [<span class="keyword">True</span>, <span class="keyword">False</span>]:</div>
+<div class="line"><span class="lineno">   89</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argIntroError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; intro&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   90</span>            <span class="stringliteral">&#39;Only \&#39;True\&#39; or \&#39;False\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   91</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   93</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; intro&#39;</span>)</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
+<div class="line"><span class="lineno">   95</span>        args.music = config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]</div>
+<div class="line"><span class="lineno">   96</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; music&#39;</span>)</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;disable&#39;</span>:</div>
+<div class="line"><span class="lineno">   98</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; music&#39;</span>)</div>
+<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  101</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argMusicError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; music&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  102</span>            <span class="stringliteral">&#39;Only \&#39;enable\&#39; or \&#39;disable\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  103</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;sfw&#39;</span>, <span class="stringliteral">&#39;nsfw&#39;</span>]:</div>
+<div class="line"><span class="lineno">  105</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; type&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  106</span>            <span class="stringliteral">&#39;Only \&#39;sfw\&#39; or \&#39;nsfw\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  107</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  109</span>        printnlog(<span class="stringliteral">&#39;waifu settings =&gt; type&#39;</span>)</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;sfw&#39;</span>:</div>
+<div class="line"><span class="lineno">  111</span>        category: list[str] = [<span class="stringliteral">&quot;waifu&quot;</span>, <span class="stringliteral">&quot;neko&quot;</span>, <span class="stringliteral">&quot;shinobu&quot;</span>, <span class="stringliteral">&quot;megumin&quot;</span>, <span class="stringliteral">&quot;bully&quot;</span>, <span class="stringliteral">&quot;cuddle&quot;</span>, <span class="stringliteral">&quot;cry&quot;</span>, <span class="stringliteral">&quot;hug&quot;</span>, <span class="stringliteral">&quot;awoo&quot;</span>, <span class="stringliteral">&quot;kiss&quot;</span>, <span class="stringliteral">&quot;lick&quot;</span>, <span class="stringliteral">&quot;pat&quot;</span>, <span class="stringliteral">&quot;smug&quot;</span>, <span class="stringliteral">&quot;bonk&quot;</span>, <span class="stringliteral">&quot;yeet&quot;</span>,</div>
+<div class="line"><span class="lineno">  112</span>                               <span class="stringliteral">&quot;blush&quot;</span>, <span class="stringliteral">&quot;smile&quot;</span>, <span class="stringliteral">&quot;wave&quot;</span>, <span class="stringliteral">&quot;highfive&quot;</span>, <span class="stringliteral">&quot;handhold&quot;</span>, <span class="stringliteral">&quot;nom&quot;</span>, <span class="stringliteral">&quot;bite&quot;</span>, <span class="stringliteral">&quot;glomp&quot;</span>, <span class="stringliteral">&quot;slap&quot;</span>, <span class="stringliteral">&quot;kill&quot;</span>, <span class="stringliteral">&quot;kick&quot;</span>, <span class="stringliteral">&quot;happy&quot;</span>, <span class="stringliteral">&quot;wink&quot;</span>, <span class="stringliteral">&quot;poke&quot;</span>, <span class="stringliteral">&quot;dance&quot;</span>, <span class="stringliteral">&quot;cringe&quot;</span>]</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
+<div class="line"><span class="lineno">  114</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  115</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  116</span>            sys.exit(1)</div>
+<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  118</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;nsfw&#39;</span>:</div>
+<div class="line"><span class="lineno">  120</span>        category: list[str] = [<span class="stringliteral">&#39;waifu&#39;</span>, <span class="stringliteral">&#39;neko&#39;</span>, <span class="stringliteral">&#39;trap&#39;</span>, <span class="stringliteral">&#39;blowjob&#39;</span>]</div>
+<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
+<div class="line"><span class="lineno">  122</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  123</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  124</span>            sys.exit(1)</div>
+<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  126</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
+<div class="line"><span class="lineno">  127</span>    server: list[str] = [<span class="stringliteral">&#39;nekos.best&#39;</span>, <span class="stringliteral">&#39;waifu.pics&#39;</span>, <span class="stringliteral">&#39;kyoko&#39;</span>, <span class="stringliteral">&#39;nekos_api&#39;</span>]</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;neko settings&#39;</span>][<span class="stringliteral">&#39;server&#39;</span>] <span class="keywordflow">in</span> server:</div>
+<div class="line"><span class="lineno">  129</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argNekoError(<span class="stringliteral">&#39;Wrong choice in \&#39;neko settings\&#39; =&gt; server&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  130</span>            f<span class="stringliteral">&#39;Only take {str(server)}&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  131</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  133</span>        printnlog(<span class="stringliteral">&#39;neko settings =&gt; server&#39;</span>)</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  135</span>        int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>])</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  137</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  138</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  139</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  140</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">if</span> 10 &lt;= int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>]):</div>
+<div class="line"><span class="lineno">  142</span>            printnlog(<span class="stringliteral">&#39;game settings =&gt; goal_score&#39;</span>)</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">raise</span> ValueError</div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  146</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(</div>
+<div class="line"><span class="lineno">  147</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(<span class="stringliteral">&#39;minimum is 10&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  148</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  150</span>        float(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;computer_power&#39;</span>])</div>
+<div class="line"><span class="lineno">  151</span>        printnlog(<span class="stringliteral">&#39;game settings =&gt; computer_power&#39;</span>)</div>
+<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  153</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; computer_power&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  154</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  155</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
+<div class="line"><span class="lineno">  157</span>        musiclimittext: bool = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  158</span>        lenmusic = len(music)</div>
+<div class="line"><span class="lineno">  159</span>        configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">while</span> lenmusic &lt; configlenmusic:</div>
+<div class="line"><span class="lineno">  161</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> musiclimittext:</div>
+<div class="line"><span class="lineno">  162</span>                typewriter(printnlog(<span class="stringliteral">&#39;basic info =&gt; musicnumber; you have exceeded the limit by &#39;</span> +</div>
+<div class="line"><span class="lineno">  163</span>                                     str(int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]) - len(music)), toprint=<span class="keyword">False</span>))</div>
+<div class="line"><span class="lineno">  164</span>                musiclimittext: bool = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  165</span>            set_config(<span class="stringliteral">&#39;basic info&#39;</span>, <span class="stringliteral">&#39;musicnumber&#39;</span>, int(args.music)-1)</div>
+<div class="line"><span class="lineno">  166</span>            configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
+<div class="line"><span class="lineno">  167</span>            args.music = int(args.music) - 1</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -184,7 +337,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d2/d33/namespacearguments.html">arguments</a></li>
-    <li class="footer">Generated on Fri Apr 28 2023 20:16:44 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Sat Apr 29 2023 13:35:04 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

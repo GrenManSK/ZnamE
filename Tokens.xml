@@ -2,102 +2,111 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argEnviromentError</Name>
+      <Name>exceptions::argEnviromentError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argEnviromentError</Scope>
+      <Scope>exceptions.argEnviromentError</Scope>
     </TokenIdentifier>
-    <Path>db/d4d/classedupage_1_1arg_enviroment_error.html</Path>
+    <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argGameError</Name>
+      <Name>exceptions::argGameError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argGameError</Scope>
+      <Scope>exceptions.argGameError</Scope>
     </TokenIdentifier>
-    <Path>dc/d03/classedupage_1_1arg_game_error.html</Path>
+    <Path>dc/d31/classexceptions_1_1arg_game_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argInactiveLimitError</Name>
+      <Name>exceptions::argInactiveLimitError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argInactiveLimitError</Scope>
+      <Scope>exceptions.argInactiveLimitError</Scope>
     </TokenIdentifier>
-    <Path>d6/d7c/classedupage_1_1arg_inactive_limit_error.html</Path>
+    <Path>df/deb/classexceptions_1_1arg_inactive_limit_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argIntroError</Name>
+      <Name>exceptions::argIntroError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argIntroError</Scope>
+      <Scope>exceptions.argIntroError</Scope>
     </TokenIdentifier>
-    <Path>da/d01/classedupage_1_1arg_intro_error.html</Path>
+    <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argLanguageError</Name>
+      <Name>exceptions::argLanguageError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argLanguageError</Scope>
+      <Scope>exceptions.argLanguageError</Scope>
     </TokenIdentifier>
-    <Path>df/dc6/classedupage_1_1arg_language_error.html</Path>
+    <Path>d7/d77/classexceptions_1_1arg_language_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argMusicError</Name>
+      <Name>exceptions::argMusicError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argMusicError</Scope>
+      <Scope>exceptions.argMusicError</Scope>
     </TokenIdentifier>
-    <Path>db/d25/classedupage_1_1arg_music_error.html</Path>
+    <Path>d5/d36/classexceptions_1_1arg_music_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argMusicListError</Name>
+      <Name>exceptions::argMusicListError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argMusicListError</Scope>
+      <Scope>exceptions.argMusicListError</Scope>
     </TokenIdentifier>
-    <Path>d4/d54/classedupage_1_1arg_music_list_error.html</Path>
+    <Path>df/de6/classexceptions_1_1arg_music_list_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argNekoError</Name>
+      <Name>exceptions::argNekoError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argNekoError</Scope>
+      <Scope>exceptions.argNekoError</Scope>
     </TokenIdentifier>
-    <Path>d4/db7/classedupage_1_1arg_neko_error.html</Path>
+    <Path>d1/d60/classexceptions_1_1arg_neko_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::argWaifuError</Name>
+      <Name>exceptions::argWaifuError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.argWaifuError</Scope>
+      <Scope>exceptions.argWaifuError</Scope>
     </TokenIdentifier>
-    <Path>d2/d19/classedupage_1_1arg_waifu_error.html</Path>
+    <Path>da/dcb/classexceptions_1_1arg_waifu_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::configNoOption</Name>
+      <Name>exceptions::configNoOption</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.configNoOption</Scope>
+      <Scope>exceptions.configNoOption</Scope>
     </TokenIdentifier>
-    <Path>d7/d7c/classedupage_1_1config_no_option.html</Path>
+    <Path>dd/d3d/classexceptions_1_1config_no_option.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>edupage::installing_carousel</Name>
+      <Name>app_alternations::installing_carousel</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>app_alternations</Name>
+      <APILanguage>python</APILanguage>
+      <Type>ns</Type>
+      <Scope>app_alternations</Scope>
+    </TokenIdentifier>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -119,6 +128,15 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>exceptions</Name>
+      <APILanguage>python</APILanguage>
+      <Type>ns</Type>
+      <Scope>exceptions</Scope>
+    </TokenIdentifier>
+    <Path>d0/d6e/namespaceexceptions.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>file_operations</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -137,21 +155,21 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>patch_edupage</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>patch_edupage</Scope>
-    </TokenIdentifier>
-    <Path>d9/d81/namespacepatch__edupage.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>system_info</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
       <Scope>system_info</Scope>
     </TokenIdentifier>
     <Path>d5/df5/namespacesystem__info.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>system_operations</Name>
+      <APILanguage>python</APILanguage>
+      <Type>ns</Type>
+      <Scope>system_operations</Scope>
+    </TokenIdentifier>
+    <Path>de/d05/namespacesystem__operations.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -278,6 +296,20 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>md_patch_notes_v1_1_1_alpha_build_20230428_172227</Name>
+      <APILanguage>markdown</APILanguage>
+    </TokenIdentifier>
+    <Path>d5/dc8/md_patch_notes_v1_1_1_alpha_build_20230428_172227.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md_patch_notes_v1_2_0_alpha_build_20230429_122048</Name>
+      <APILanguage>markdown</APILanguage>
+    </TokenIdentifier>
+    <Path>d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>md_README</Name>
       <APILanguage>markdown</APILanguage>
     </TokenIdentifier>
@@ -288,137 +320,137 @@
       <Name>__init__</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>ae7edd4276405b5e5d7725e39746efcd5</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>afd19bb587cf206e5720e4ca1ec1d45f3</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>_move</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a2d49a2fda28650328dc15ac8a315c9bb</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a4a64e24c9622e6e5ee6c217de21e9c6f</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>bar</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>aedd643e252526e1521f19cbe601d3413</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a2b28638d268f7674f1ee2bd536988d83</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>comment</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a355993711c4c54f7c635fb92eda01b06</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a0204bf1a59f9a42b329e1832f6ceab8f</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>id</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>ad543af9809d6c3e5873cd08e7802eef4</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a050c5c615218d6d9b26b2aa7bc48b434</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>init</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a58a975e8c7240202ae143daa2944613b</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>af4623bada2affb56db8208c0d2333e33</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>move</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a4ee34465ac6e692e7d46c2d1774bad6b</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a4975f3dd0cb9d16f40f4b9352e4e5011</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>move_by_command</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a525faed7695f386e51d359cdd25d85e2</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a085abbe27e8bdf091b65ac8071fd1202</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>package</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a777d39e2639af9410e7d94d7367a3a72</Anchor>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a3ccb82632ddb0002c78fc4bf9503a3df</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>pause</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a1c5d8a5ddb65f550be8cede78936132a</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a5987356057063952d028a07b75349f80</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>start</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>aa3c2f6b99b1156be189ff77d954da381</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>ae8cd3900207ec4cf58d8026e35f3aeec</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>stop</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a4808a8eecb724b50e9e3f7ab6ba5b35b</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a19750b216959060b64504aa901202203</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>unpause</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
-      <Scope>edupage.installing_carousel</Scope>
+      <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
-    <Path>d3/d42/classedupage_1_1installing__carousel.html</Path>
-    <Anchor>a9f02481a9e10433361dbe165628b4ea7</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
+    <Anchor>a72c099261f8e502be3049875a139a591</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -455,24 +487,13 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>alinst_number</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>af3d335a1f083bc59f4c926095d94e416</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>allerror</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a3fd41c6f44d6133b03b697b4c82931a0</Anchor>
+    <Anchor>a7d5036f27c338a2167bfd7cc6e6c8ec2</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -483,7 +504,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ac8064107eac90ec58fd7651be1bb2016</Anchor>
+    <Anchor>acba63c33bc68f8f8ab85c006c5bc8c2c</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -510,17 +531,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>carousel</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a3dabbe69f4c347e88a0e3b0c699a602f</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>category</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -532,69 +542,47 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>check_correctness</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>arguments</Scope>
+    </TokenIdentifier>
+    <Path>d2/d33/namespacearguments.html</Path>
+    <Anchor>a94794798220695e9c6e5476a3184a0e5</Anchor>
+    <DeclaredIn>arguments.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>checkAdmin</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_operations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a048ca9963d67feb89282ab12b5f70a49</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>choco</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a8b91022f851a0ee27b9e5bfcd884a709</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>choco_check</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a6b969c5ba9549a783c8591d8d58a8b89</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>de/d05/namespacesystem__operations.html</Path>
+    <Anchor>a2d29427becb76cd67d51fe071b7aa721</Anchor>
+    <DeclaredIn>system_operations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>choco_check</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>app_alternations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a5af10b36312bbda15f46734e936f3cad</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>ab30b2c0e4ea33f3329a6940cc873d241</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>choco_install</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>app_alternations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a03dbe3a6be69e84c239ca0dc0d5f97af</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>choco_packages</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a135bc6594b49f722e80506fe410f799a</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>aba2d947f1502e4a272b4c11754fd567d</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -627,17 +615,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a77cd6f866d38b46933c0b4511d706bb8</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>crupdate</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a0a2ff19a486bfed6c7080fec59716870</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -697,36 +674,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>desc</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a546f0ee6c73f7059564c777e42aa1713</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>directory</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a69dde72ef234ba83672973e2514cf766</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>download</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>internet</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a4528534caaf20f4dcead5a6737a89488</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d1/d22/namespaceinternet.html</Path>
+    <Anchor>aeb2f9868381f66da42a5e39bbe1114f3</Anchor>
+    <DeclaredIn>internet.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -755,22 +710,22 @@
       <Name>error_get</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>exceptions</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a2d3bf06c02e8320cef7de37eb0de675c</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d0/d6e/namespaceexceptions.html</Path>
+    <Anchor>ace1e278771edd49755f7a35227e8d52d</Anchor>
+    <DeclaredIn>exceptions.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>error_log</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>exceptions</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a5f8fea0428e088bff636f0c3d29a05bc</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d0/d6e/namespaceexceptions.html</Path>
+    <Anchor>a751a3e821b8ea542b3085265af86fb6d</Anchor>
+    <DeclaredIn>exceptions.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -791,7 +746,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>aab1c4147f93d7f19b5c262c7bd622be5</Anchor>
+    <Anchor>a27591067896ebdad41069f6ea7e66476</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -843,22 +798,11 @@
       <Name>get_line_number</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_info</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a812e6a75d3ee97e0f71e7d0d90b4a355</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>get_line_number</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>internet</Scope>
-    </TokenIdentifier>
-    <Path>d1/d22/namespaceinternet.html</Path>
-    <Anchor>a11e6e374dd8a5f1ba3cd1289f08437fe</Anchor>
-    <DeclaredIn>internet.py</DeclaredIn>
+    <Path>d5/df5/namespacesystem__info.html</Path>
+    <Anchor>a0f69d44535db5c0aff95a677e1380133</Anchor>
+    <DeclaredIn>system_info.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -876,33 +820,22 @@
       <Name>getImg</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_operations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ac2af202d51ecd2e5f8759016912b4d4c</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>de/d05/namespacesystem__operations.html</Path>
+    <Anchor>ab7f6f1490c9ace89a495ec832aba1be5</Anchor>
+    <DeclaredIn>system_operations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>getWindow</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_operations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a89cc38c9c6a0b37169c24032c8efa1b2</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>hexnumber</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a4dfbc2105aef0c7859144bcb757f4b13</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>de/d05/namespacesystem__operations.html</Path>
+    <Anchor>ae1c540b83755223d324045f0383ce68d</Anchor>
+    <DeclaredIn>system_operations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -917,14 +850,25 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>inst_number</Name>
+      <Name>install_choco</Name>
       <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
+      <Type>func</Type>
+      <Scope>app_alternations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a9a9e8ca119e50ffa3a0e037bc062f0fd</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>a9da6ea45a2df1e252ebae0caffbc602d</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>install_packages</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>app_alternations</Scope>
+    </TokenIdentifier>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>ad26ac0da1ded6d594b1798cfbfc10a88</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -934,7 +878,7 @@
       <Scope>internet</Scope>
     </TokenIdentifier>
     <Path>d1/d22/namespaceinternet.html</Path>
-    <Anchor>aa73c783f0a5a3e950cfd12f5f2d97f16</Anchor>
+    <Anchor>a5afa8639d2262b7d8f8299aaab30d9e0</Anchor>
     <DeclaredIn>internet.py</DeclaredIn>
   </Token>
   <Token>
@@ -945,7 +889,7 @@
       <Scope>internet</Scope>
     </TokenIdentifier>
     <Path>d1/d22/namespaceinternet.html</Path>
-    <Anchor>aa7d8370960bf356818fc13f34cc99ee4</Anchor>
+    <Anchor>adddc8d04d1313e597e4365c3011de6f4</Anchor>
     <DeclaredIn>internet.py</DeclaredIn>
   </Token>
   <Token>
@@ -964,22 +908,11 @@
       <Name>isUserAdmin</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_operations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a13c25255a4a60c10799fdb24feed36a3</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>iterable</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a6d814da27f3b2b7c5efb9a90cd5a15be</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>de/d05/namespacesystem__operations.html</Path>
+    <Anchor>aa3fb45e81ca75b65dfa7ad1c6819300c</Anchor>
+    <DeclaredIn>system_operations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1044,7 +977,7 @@
       <Scope>writing</Scope>
     </TokenIdentifier>
     <Path>d8/df3/namespacewriting.html</Path>
-    <Anchor>abd6cd17db153d7fe2188c99528e5612e</Anchor>
+    <Anchor>a40096cfdd9f146dad0aa6f40e4c0871b</Anchor>
     <DeclaredIn>writing.py</DeclaredIn>
   </Token>
   <Token>
@@ -1078,17 +1011,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a119d208fce33ca55d6b605c22dbcd534</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>mode</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a7ee3f3010bc04cf901b7fb1ffb7c6ae1</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1148,17 +1070,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>musiclimittext</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a22431e8c242fecf371c1f7ee9c6e6950</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>nainstalovane</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1177,17 +1088,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a0730a0464e322a851f079a3fb5a6871f</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>page</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a5348831706cbc53d3a4f097ca5105977</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1286,7 +1186,7 @@
       <Scope>writing</Scope>
     </TokenIdentifier>
     <Path>d8/df3/namespacewriting.html</Path>
-    <Anchor>a734ad64963943f2c116b1fa79a2260da</Anchor>
+    <Anchor>a636f8148c7ab1181c2ac3a1d15a626d4</Anchor>
     <DeclaredIn>writing.py</DeclaredIn>
   </Token>
   <Token>
@@ -1324,17 +1224,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>r</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a005a242b3d35792e1bf973dea0844126</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>restartapp</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1349,11 +1238,11 @@
       <Name>runAsAdmin</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
-      <Scope>edupage</Scope>
+      <Scope>system_operations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ac91b642ed43535490d0de48ebab52497</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>de/d05/namespacesystem__operations.html</Path>
+    <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
+    <DeclaredIn>system_operations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1397,17 +1286,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>shell</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a7a4b0a4e523eb4440e9830818d283044</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1484,19 +1362,8 @@
       <Scope>system_info</Scope>
     </TokenIdentifier>
     <Path>d5/df5/namespacesystem__info.html</Path>
-    <Anchor>acbc1baa118d81add683b6fc99ca7d87a</Anchor>
+    <Anchor>ad88602e3f4e223298fe307c59e31bd83</Anchor>
     <DeclaredIn>system_info.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>target</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>af67a89d4998ce9e5f27f8161e842951a</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1517,7 +1384,7 @@
       <Scope>writing</Scope>
     </TokenIdentifier>
     <Path>d8/df3/namespacewriting.html</Path>
-    <Anchor>a8c0248c0cae542de1b8e744f4d529ccd</Anchor>
+    <Anchor>a4e5821765c2a0833fa642cd6559b003c</Anchor>
     <DeclaredIn>writing.py</DeclaredIn>
   </Token>
   <Token>
@@ -1529,17 +1396,6 @@
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a581047f676f7385cb101b2f5e2829e75</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>total</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>acc265ae5355756db29acc12bc617cd79</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1621,6 +1477,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>update_app</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>app_alternations</Scope>
+    </TokenIdentifier>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>a4f421098632d5f7e3a4094accbb0176a</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>updateapp</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1632,14 +1499,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>url</Name>
+      <Name>updateapp</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
-      <Scope>edupage</Scope>
+      <Scope>app_alternations</Scope>
     </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>ac234e0d6b950c626330c97ab4f446aaf</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
+    <Path>d3/dc0/namespaceapp__alternations.html</Path>
+    <Anchor>aa1afd604590fd0588c3e83354f0f4a85</Anchor>
+    <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1651,17 +1518,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a7776a9481e741b60486c766350d8ee7a</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>version</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>patch_edupage</Scope>
-    </TokenIdentifier>
-    <Path>d9/d81/namespacepatch__edupage.html</Path>
-    <Anchor>a7289e1d265b80996677da87314f0c791</Anchor>
-    <DeclaredIn>patch_edupage.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>

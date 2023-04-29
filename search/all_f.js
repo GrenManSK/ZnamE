@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['r_0',['r',['../d0/d52/namespaceedupage.html#a005a242b3d35792e1bf973dea0844126',1,'edupage']]],
-  ['readme_2emd_1',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]],
-  ['restartapp_2',['restartapp',['../d0/d52/namespaceedupage.html#a3a83b5040c381cdaee537ef1c78398ef',1,'edupage']]],
-  ['runasadmin_3',['runAsAdmin',['../d0/d52/namespaceedupage.html#ac91b642ed43535490d0de48ebab52497',1,'edupage']]]
+  ['screensize_0',['screensize',['../d0/d52/namespaceedupage.html#aa7813765489d01bba0d031fc7d81351f',1,'edupage']]],
+  ['screensizepercentage_1',['screensizepercentage',['../d0/d52/namespaceedupage.html#a8ae9ea1b4fa0e2abd37556d1cc3787a2',1,'edupage']]],
+  ['server_2',['server',['../d0/d52/namespaceedupage.html#af46e517a54e8917a6351ae61c92bb955',1,'edupage']]],
+  ['set_5fconfig_3',['set_config',['../d0/d52/namespaceedupage.html#ad133bcb047e8d06b5c85e97d087bc3c5',1,'edupage']]],
+  ['show_5fhtml_4',['show_html',['../d0/d52/namespaceedupage.html#ae24340bf9520352076c174cc34e36fe8',1,'edupage']]],
+  ['show_5fmarks_5',['show_marks',['../d0/d52/namespaceedupage.html#a12e03073ead2aa68c686d435b8b1e3b8',1,'edupage']]],
+  ['show_5fversion_6',['show_version',['../d8/df3/namespacewriting.html#ac24ddd309c179428c04f8887827008c2',1,'writing']]],
+  ['site_5fpackages_7',['site_packages',['../d0/d52/namespaceedupage.html#afffa275d44b92d259565032d241f556d',1,'edupage']]],
+  ['spotmusicdow_8',['spotMusicDow',['../d0/d52/namespaceedupage.html#a454714ea6e0c4835b3d5d99f545c37e8',1,'edupage']]],
+  ['start_9',['start',['../d5/d77/classapp__alternations_1_1installing__carousel.html#ae8cd3900207ec4cf58d8026e35f3aeec',1,'app_alternations::installing_carousel']]],
+  ['stats_10',['stats',['../d0/d52/namespaceedupage.html#aa88697bc43db8a73108dc34f5d9661a2',1,'edupage']]],
+  ['stop_11',['stop',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a19750b216959060b64504aa901202203',1,'app_alternations::installing_carousel']]],
+  ['system_5finfo_12',['system_info',['../d5/df5/namespacesystem__info.html',1,'system_info'],['../d5/df5/namespacesystem__info.html#ad88602e3f4e223298fe307c59e31bd83',1,'system_info.system_info()']]],
+  ['system_5finfo_2epy_13',['system_info.py',['../de/d3c/system__info_8py.html',1,'']]],
+  ['system_5foperations_14',['system_operations',['../de/d05/namespacesystem__operations.html',1,'']]],
+  ['system_5foperations_2epy_15',['system_operations.py',['../dd/d18/system__operations_8py.html',1,'']]]
 ];

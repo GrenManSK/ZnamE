@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['language_0',['language',['../d0/d52/namespaceedupage.html#a8db05b61d06312002141c30965b17bf0',1,'edupage']]],
-  ['level_1',['level',['../d0/d52/namespaceedupage.html#af6159be7d7eb7e3aa9f1f5f7965f7597',1,'edupage']]],
-  ['line_5fnumber_2',['line_number',['../d0/d52/namespaceedupage.html#aa7a9bd72eae19a249a9272e40108467e',1,'edupage']]],
-  ['line_5fnumbers_3',['line_numbers',['../d0/d52/namespaceedupage.html#aba5c5a586247c852a96ac46b09ea9d82',1,'edupage']]],
-  ['log_4',['log',['../d0/d52/namespaceedupage.html#a10259ad5462902f5310a72e6a45b915b',1,'edupage.log()'],['../d8/df3/namespacewriting.html#abd6cd17db153d7fe2188c99528e5612e',1,'writing.log()']]],
-  ['log_5ffilename_5',['LOG_FILENAME',['../d0/d52/namespaceedupage.html#a3997a332918ddb9b4c50cf3e147213a3',1,'edupage']]],
-  ['logger_6',['logger',['../d0/d52/namespaceedupage.html#a81bb76bbaeee9abec4243fc8bc9f976c',1,'edupage']]]
+  ['main_0',['main',['../d0/d52/namespaceedupage.html#a119d208fce33ca55d6b605c22dbcd534',1,'edupage']]],
+  ['moduleminus_1',['moduleminus',['../d0/d52/namespaceedupage.html#a1db685fa6e5ce93bc5c43d824b2b9887',1,'edupage']]],
+  ['modulenames_2',['modulenames',['../d0/d52/namespaceedupage.html#a91f0519898034c0c5414a393b98265a7',1,'edupage']]],
+  ['modulenames1_3',['modulenames1',['../d0/d52/namespaceedupage.html#af4b2846b12a3c50e3a183081f75c33fe',1,'edupage']]],
+  ['move_4',['move',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a4975f3dd0cb9d16f40f4b9352e4e5011',1,'app_alternations.installing_carousel.move()'],['../d0/d52/namespaceedupage.html#a6811c8f4821bef2794d3b744d5135ef7',1,'edupage.move()']]],
+  ['move_5fby_5fcommand_5',['move_by_command',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a085abbe27e8bdf091b65ac8071fd1202',1,'app_alternations::installing_carousel']]],
+  ['music_6',['music',['../d0/d52/namespaceedupage.html#a8a36a115bd8539c865d33dc6a11c7589',1,'edupage']]]
 ];
