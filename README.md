@@ -1,5 +1,15 @@
 # **ZnamE**
 
+![Commit activity](https://img.shields.io/github/commit-activity/m/GrenManSK/ZnamE)
+![Lines of code](https://img.shields.io/tokei/lines/github/GrenManSK/ZnamE?label=lines%20of%20code)
+![License](https://img.shields.io/github/license/GrenManSK/ZnamE)
+![Contributors](https://img.shields.io/github/contributors/GrenManSK/ZnamE)
+![Issues](https://img.shields.io/github/issues/GrenManSK/ZnamE)
+![Language](https://img.shields.io/github/languages/top/GrenManSK/ZnamE)
+![Code Size](https://img.shields.io/github/languages/code-size/GrenManSK/ZnamE)
+![Star](https://img.shields.io/github/stars/GrenManSK/ZnamE?style=social)
+![Last Commit](https://img.shields.io/github/last-commit/GrenManSK/ZnamE)
+
 Using [krkr-xp3](https://github.com/awaken1ng/krkr-xp3) as extraction tool
 
 Rewritten to python3 and added some functions to work with ZnámE
