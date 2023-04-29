@@ -29,7 +29,7 @@ class argMusicError(Exception):
     pass
 
 
-class argEnviromentError(Exception):
+class argenvironmentError(Exception):
     pass
 
 

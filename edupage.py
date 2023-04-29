@@ -142,7 +142,7 @@ try:  # type: ignore
 
     "Defining custom exceptions"
 
-    from essentials.exceptions import argGameError, argEnviromentError, argInactiveLimitError, argIntroError, argLanguageError, argMusicError, argMusicListError, argNekoError, argWaifuError, configNoOption
+    from essentials.exceptions import argGameError, argenvironmentError, argInactiveLimitError, argIntroError, argLanguageError, argMusicError, argMusicListError, argNekoError, argWaifuError, configNoOption
     from essentials.exceptions import error_get
     from essentials.system_info import get_line_number
     allerror = []
@@ -170,7 +170,7 @@ try:  # type: ignore
             logger.next(printnlog(
                 'Language: ' + config['basic info']['lang'].split(' ')[0], toprint=False))
             logger.stay(printnlog(
-                'Enviroment: ' + config['basic info']['enviroment'].split(' ')[0], toprint=False))
+                'environment: ' + str(config['basic info']['environment']).split(' ')[0], toprint=False))
             logger.stay(printnlog(
                 'Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
             logger.stay(printnlog(
@@ -250,7 +250,7 @@ try:  # type: ignore
 
             with open('CONFIG_OPTIONS.txt', 'w') as config_file:
                 config_file.write('basic info:\n')
-                config_file.write(f'  enviroment: [0-f][0-f]\n')
+                config_file.write(f'  environment: [0-f][0-f]\n')
                 config_file.write(f'  inactivelimit: [Any number]\n')
                 config_file.write(f'  intro: [True/False]\n')
                 config_file.write(f'  lang: {language}\n')
@@ -430,7 +430,7 @@ try:  # type: ignore
         print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
         verzia = open('version', 'r')
-        os.system('color ' + config['basic info']['enviroment'])
+        os.system('color ' + config['basic info']['environment'])
         os.system('Title ' + 'ZnámE')
         user32 = ctypes.windll.user32
         screensize: tuple[int, int] = user32.GetSystemMetrics(

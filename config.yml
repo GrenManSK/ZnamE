@@ -1,5 +1,5 @@
 basic info:
-  enviroment: 0f
+  environment: '0f'
   inactivelimit: 300
   intro: false
   lang: EN

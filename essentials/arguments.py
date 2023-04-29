@@ -2,7 +2,7 @@ import argparse
 import sys
 from .internet import get_line_number
 from .writing import printnlog, typewriter
-from .exceptions import argEnviromentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
+from .exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
 from .exceptions import error_get
 
 
@@ -68,16 +68,16 @@ def check_correctness(args, config, logger, music, set_config):
     hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                             '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
     logger.stay(printnlog("Checking config correctness", toprint=False))
-    if not config['basic info']['enviroment'].split(' ')[0][0] in hexnumber:
-        error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(
+    if not str(config['basic info']['environment']).split(' ')[0][0] in hexnumber:
+        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environment first character'), ValueError(
             f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
         sys.exit(1)
-    elif not config['basic info']['enviroment'].split(' ')[0][1] in hexnumber:
-        error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(
+    elif not str(config['basic info']['environment']).split(' ')[0][1] in hexnumber:
+        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environment second character'), ValueError(
             f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
         sys.exit(1)
     else:
-        printnlog('basic info => enviroment')
+        printnlog('basic info => environment')
     try:
         int(config['basic info']['inactivelimit'])
         printnlog('basic info => inactivelimit')

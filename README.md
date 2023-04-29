@@ -44,7 +44,7 @@ Without it download music function from yml file won't work
 
 ```yaml
 basic info:
-  enviroment: [0-f][0-f]
+  environment: [0-f][0-f]
   inactivelimit: [Any number]
   intro: [True/False]
   lang: ['SK', 'EN', 'JP']
