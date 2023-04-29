@@ -33,7 +33,7 @@ def unpack(datelog, args, cachename: str) -> None:
                     zip.extract(member)
                     tqdm.write(
                         f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                    log(datelog, f"{os.path.basename(member)}(" +
+                    log(f"{os.path.basename(member)}(" +
                         str(os.path.getsize(member)) + "B)")
                 except zipfile.error as e:
                     pass
