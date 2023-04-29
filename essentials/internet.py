@@ -4,24 +4,12 @@ import os
 from .writing import printnlog
 import sys
 from threading import Thread
-import inspect
+from tqdm import tqdm
+import logging
+from .system_info import get_line_number
 
 
-def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
-    """
-    The get_line_number function returns the line number of the caller.
-
-        The get_line_number function is a helper function that returns the line number of 
-        where it was called from. This can be useful for debugging purposes, or to help 
-        identify where an error occurred in your code. It also allows you to go back a few lines if needed, which can be helpful when using this function inside loops and other functions that may have multiple calls on one line (such as list comprehensions).
-
-    :param goback: int: Go back a certain number of lines in the stackconfig.
-    :param relative_frame: int: Specify the frame in the stack to get the line number from
-    :return: The line number of the function call
-    """
-    return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
-
-def internet(args, datelog):
+def internet(args):
     number = 0
     while True:
         sleep(1)
@@ -43,12 +31,13 @@ def internet(args, datelog):
         if number >= 10:
             break
 
-def internet_check(args, datelog) -> None:
+
+def internet_check(args) -> None:
     try:
         global requests
         import requests
         timeout: int = 10
-        Thread(target=internet, args=(args, datelog)).start()
+        Thread(target=internet, args=(args,)).start()
         requests.head("http://www.google.com/", timeout=timeout)
         try:
             open('INTERNET_CHECK_CORRECT', 'x')
@@ -66,3 +55,35 @@ def internet_check(args, datelog) -> None:
                     "インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
             sleep(2)
             sys.exit(1)
+
+
+def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
+    """
+    "Download a file from a URL to a local file."
+
+    The first line is the function's signature. It's a single line of code that tells you everything
+    you need to know about the function
+
+    :param url: The URL of the file to download
+    :type url: str
+    :param fname: The name of the file to be downloaded
+    :type fname: str
+    :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
+    """
+    try:
+        resp = requests.get(url, stream=True)
+        total: int = int(resp.headers.get('content-length', 0))
+        with open(fname, 'wb') as file, tqdm(
+            desc=fname,
+            total=total,
+            unit='iB',
+            unit_scale=True,
+            unit_divisor=1024,
+        ) as bar:
+            for data in resp.iter_content(chunk_size=chunk_size):
+                size = file.write(data)
+                bar.update(size)
+    except ConnectionError:
+        logging.warning("Connection error")
+        return False
+    return True

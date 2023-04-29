@@ -12,15 +12,17 @@ try:  # type: ignore
     except ModuleNotFoundError:
         print(f'Verbose not found\nUse this command to install it {sys.executable} -m pip install git+https://github.com/GrenManSK/verbose.git')
         input()
-        sys.exit(1) 
+        sys.exit(1)
     try:
         from final import mathematical
     except ModuleNotFoundError:
         print(f'final not found\nUse this command to install it {sys.executable} -m pip install git+https://github.com/GrenManSK/final.git')
         input()
-        sys.exit(1) 
+        sys.exit(1)
     logger = verbose.get_logger()
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
+    with open('.env', 'w') as dotenv:
+        dotenv.write(f'DATELOG={datelog}\n')
 
     def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
         """
@@ -115,8 +117,6 @@ try:  # type: ignore
             if addto != '':
                 logger.stay(printnlog(addto, toprint=False))
 
-    "Printing the unlisted modules + importing others dependencies using chocolatey"
-
     print_module('datetime')
     print_module('sleep from time')
     print_module('cProfile')
@@ -142,36 +142,9 @@ try:  # type: ignore
 
     "Defining custom exceptions"
 
-    class configNoOption(Exception):
-        pass
-
-    class argLanguageError(Exception):
-        pass
-
-    class argIntroError(Exception):
-        pass
-
-    class argInactiveLimitError(Exception):
-        pass
-
-    class argMusicListError(Exception):
-        pass
-
-    class argMusicError(Exception):
-        pass
-
-    class argEnviromentError(Exception):
-        pass
-
-    class argWaifuError(Exception):
-        pass
-
-    class argNekoError(Exception):
-        pass
-
-    class argGameError(Exception):
-        pass
-
+    from essentials.exceptions import argGameError, argEnviromentError, argInactiveLimitError, argIntroError, argLanguageError, argMusicError, argMusicListError, argNekoError, argWaifuError, configNoOption
+    from essentials.exceptions import error_get
+    from essentials.system_info import get_line_number
     allerror = []
     for name, obj in inspect.getmembers(sys.modules[__name__]):
         if inspect.isclass(obj):
@@ -181,57 +154,6 @@ try:  # type: ignore
         for i in range(0, len(allerror)-1):
             printnlog(allerror[i], end=', ')
         printnlog(allerror[len(allerror)-1])
-
-    def error_log(line: int) -> None:
-        """
-        It writes the error to a file and prints it to the console
-
-        :param line: The line number of the error
-        """
-        with open('error.log', 'a', encoding='utf-8') as errorfile:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            exc_type = exc_type.__qualname__
-            fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            errorfile.write(
-                f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n')
-        printnlog(
-            f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}')
-
-    def error_get(errors, line: list) -> None:
-        """
-        The error_get function is used to raise the errors that are found in the error_log function.
-            The error_get function takes two arguments:
-                1) errors - a list of exceptions that were raised by the code being tested.
-                2) line - a list of strings containing information about each exception raised.
-
-        :param errors: Store the errors that are raised by the function
-        :param line: list: Store the line numbers of the errors
-        :return: The error code and the line number of the error
-        """
-
-        for times, error in enumerate(errors.exceptions):
-            try:
-                raise eval(
-                    error.with_traceback.__qualname__.split('.')[0])(error)
-            except eval(error.with_traceback.__qualname__.split('.')[0]):
-                if len(line) == 1 and times > 0:
-                    error_log(line[0])
-                else:
-                    error_log(line[times])
-
-    def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
-        """
-        The get_line_number function returns the line number of the caller.
-
-            The get_line_number function is a helper function that returns the line number of 
-            where it was called from. This can be useful for debugging purposes, or to help 
-            identify where an error occurred in your code. It also allows you to go back a few lines if needed, which can be helpful when using this function inside loops and other functions that may have multiple calls on one line (such as list comprehensions).
-
-        :param goback: int: Go back a certain number of lines in the stackconfig.
-        :param relative_frame: int: Specify the frame in the stack to get the line number from
-        :return: The line number of the function call
-        """
-        return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
 
     "Checking if config file is in correct state"
 
@@ -266,18 +188,20 @@ try:  # type: ignore
             'Corruption of config file => option missing'), [line_number],)
         input("Press 'enter' to quit")
         sys.exit(1)
-        printnlog('\nDone\n')
+
+    logger.stay(printnlog('\nDone\n', toprint=False))
 
     def set_config(section: str, name: str, info: any) -> any:
         """
         The set_config function is used to set a value in the config.yml file.
             It takes three arguments: section, name, and info. Section is the section of the config file you want to edit (e.g., 'user history'). Name is what you want to change (e.g., 'username'), and info is what you want it changed to.
-        
+
         :param section: str: Specify which section of the config
         :param name: str: Specify the name of the key in the yaml file
         :param info: any: Store the value that is being set
         :return: The info that you pass to it
         """
+        global config
         config = yaml.safe_load(open('config.yml', 'r'))
         if not isinstance(config['user history'], dict):
             config['user history'] = {}
@@ -285,109 +209,15 @@ try:  # type: ignore
         os.remove('config.yml')
         with open('config.yml', 'w') as configfile:
             yaml.dump(config, configfile)
+        config = yaml.safe_load(open('config.yml', 'r'))
         return info
 
     if __name__ == '__main__':
-        from essentials.arguments import arguments
+        from essentials.arguments import arguments, check_correctness
+        server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
         parser, music, language, UNSPECIFIED = arguments(config)
         args = parser.parse_args()
-        hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
-                                '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
-        logger.stay(printnlog("Checking config correctness", toprint=False))
-        if not config['basic info']['enviroment'].split(' ')[0][0] in hexnumber:
-            error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment first character'), ValueError(
-                f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
-            sys.exit(1)
-        elif not config['basic info']['enviroment'].split(' ')[0][1] in hexnumber:
-            error_get(ExceptionGroup('', [argEnviromentError('Wrong choice \'basic info\' => enviroment second character'), ValueError(
-                f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
-            sys.exit(1)
-        else:
-            printnlog('basic info => enviroment')
-        try:
-            int(config['basic info']['inactivelimit'])
-            printnlog('basic info => inactivelimit')
-        except ValueError:
-            error_get(ExceptionGroup('', [argInactiveLimitError(
-                'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
-            sys.exit(1)
-        if not config['basic info']['intro'] in [True, False]:
-            error_get(ExceptionGroup('', [argIntroError('Wrong choice in \'basic info\' => intro'), ValueError(
-                'Only \'True\' or \'False\'')]), [get_line_number()])
-            sys.exit(1)
-        else:
-            printnlog('basic info => intro')
-        if config['basic info']['music'].split(' ')[0] == 'enable':
-            args.music = config['basic info']['musicnumber']
-            printnlog('basic info => music')
-        elif config['basic info']['music'].split(' ')[0] == 'disable':
-            printnlog('basic info => music')
-            pass
-        else:
-            error_get(ExceptionGroup('', [argMusicError('Wrong choice in \'basic info\' => music'), ValueError(
-                'Only \'enable\' or \'disable\'')]), [get_line_number()])
-            sys.exit(1)
-        if not config['waifu settings']['type'].split(' ')[0] in ['sfw', 'nsfw']:
-            error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError(
-                'Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
-            sys.exit(1)
-        else:
-            printnlog('waifu settings => type')
-        if config['waifu settings']['type'] == 'sfw':
-            category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
-                                   "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-            if not config['waifu settings']['category'].split(' ')[0] in category:
-                error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
-                    'Use \'waifu\' and see option in setup function')]), [get_line_number()])
-                sys.exit(1)
-            else:
-                printnlog('waifu settings => category')
-        elif config['waifu settings']['type'] == 'nsfw':
-            category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
-            if not config['waifu settings']['category'].split(' ')[0] in category:
-                error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
-                    'Use \'waifu\' and see option in setup function')]), [get_line_number()])
-                sys.exit(1)
-            else:
-                printnlog('waifu settings => category')
-        server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
-        if not config['neko settings']['server'] in server:
-            error_get(ExceptionGroup('', [argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(
-                f'Only take {str(server)}')]), [get_line_number()])
-            sys.exit(1)
-        else:
-            printnlog('neko settings => server')
-        try:
-            int(config['game settings']['goal_score'])
-        except ValueError:
-            error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError(
-                'take only numbers')]), [get_line_number()])
-            sys.exit(1)
-        try:
-            if 10 <= int(config['game settings']['goal_score']):
-                printnlog('game settings => goal_score')
-            else:
-                raise ValueError
-        except ValueError:
-            error_get(ExceptionGroup('', [argGameError(
-                'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
-            sys.exit(1)
-        try:
-            float(config['game settings']['computer_power'])
-            printnlog('game settings => computer_power')
-        except ValueError:
-            error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError(
-                'take only numbers')]), [get_line_number()])
-            sys.exit(1)
-        if config['basic info']['music'] == 'enable':
-            musiclimittext: bool = False
-            while len(music) < int(config['basic info']['musicnumber']):
-                if not musiclimittext:
-                    typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' +
-                                         str(int(config['basic info']['musicnumber']) - len(music)), toprint=False))
-                    musiclimittext: bool = True
-                set_config('basic info', 'musicnumber', int(args.music)-1)
-                args.music = str(int(args.music)-1)
+        check_correctness(args, config, logger, music, set_config)
 
         """
         If the language is not specified, use the default language from the config file.
@@ -451,7 +281,7 @@ try:  # type: ignore
         "Set of all dependencies using chocolatey"
 
         potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose',
-                              'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3'}
+                              'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv'}
         printnlog('Libraries needed: ', end='')
         potrebne1: list[str] = list(potrebne)
         for i in range(0, len(potrebne1)):
@@ -505,241 +335,6 @@ try:  # type: ignore
                     sys.exit(0)
             printnlog('DONE\n')
 
-    
-    class installing_carousel:
-        def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
-            self.package = package
-            self.comment = comment
-            self.bar = bar
-            self.move_by_command = move_by_command
-            self._move = 0
-            self.id = mathematical.get_id()
-
-        def start(self):
-            """
-            The start function is the main function of the class. It starts a thread that runs init()
-
-            :param self: Represent the instance of the class
-            :return: Nothing, so the return statement is never reached
-            """
-
-            Thread(target=self.init).start()
-
-        def pause(self):
-            """
-            The pause function is used to pause the installation of a package.
-
-            :param self: Represent the instance of the class
-            :return: Nothing, it just creates a file
-            """
-            open(f"INSTALL_PAUSE{self.id}", 'x')
-
-        def unpause(self):
-            open(f"INSTALL_UNPAUSE{self.id}", 'x')
-
-        def stop(self, mode='s'):
-            """
-            The stop function is called when the user wants to stop the installation.
-
-            :param self: Represent the instance of the class
-            :param mode: Determine what file is created
-            :return: The name of the file that is created
-            """
-            if mode == 's':
-                open(f"INSTALL_DONE{self.id}", 'x')
-            if mode == 'e':
-                open(f"INSTALL_ERROR{self.id}", 'x')
-            if mode == 'ali':
-                open(f"INSTALL_ALINST{self.id}", 'x')
-
-        def move(self):
-            self._move += 1
-
-        def init(self):
-            """
-            The init function is used to initialize the package installation.
-            It will print a loading bar until it finds an INSTALL_DONE, INSTALL_ERROR or 
-            INSTALL_ALINST file in the current directory. If it finds an INSTALL_DONE file, 
-            it will print DONE after the package name and if it finds an INSTALL_ERROR file, 
-            it will print ERROR after the package name. If it finds an INSTALL_ALINST file, 
-            it will print ALREADY INSTALLED after the package name.
-
-            :param self: Represent the instance of the class
-            :return: Nothing, so the return statement is not needed
-            """
-            error = False
-            alinst = False
-            number = 0
-            char = ['|', '/', '-', '\\']
-            while True:
-                if os.path.isfile(f'INSTALL_DONE{self.id}'):
-                    break
-                if os.path.isfile(f'INSTALL_ERROR{self.id}'):
-                    error = True
-                    break
-                if os.path.isfile(f'INSTALL_ALINST{self.id}'):
-                    alinst = True
-                    break
-                if os.path.isfile(f'INSTALL_PAUSE{self.id}'):
-                    if not self.bar:
-                        print(
-                            '                                            ', end='\r')
-                    if self.bar:
-                        tqdm.write(
-                            '                                            ')
-                    os.remove(f'INSTALL_PAUSE{self.id}')
-                    while not os.path.isfile(f'INSTALL_UNPAUSE{self.id}'):
-                        sleep(0.1)
-                    os.remove(f'INSTALL_UNPAUSE{self.id}')
-                if not self.bar:
-                    print(
-                        f'{self.comment} {self.package} {char[number]}               ', end='\r')
-                if self.bar:
-                    tqdm.write(
-                        f'{self.comment} {self.package} {char[number]}               ')
-                if not self.move_by_command or self._move != 0 and self.move_by_command:
-                    number += 1
-                    if self.move_by_command:
-                        self._move -= 1
-                if number >= len(char):
-                    number = 0
-                sleep(0.1)
-            if error:
-                if not self.bar:
-                    print(f'{self.comment} {self.package} ERROR             ')
-                if self.bar:
-                    tqdm.write(f'{self.comment} {self.package} ERROR             ')
-            elif alinst:
-                if not self.bar:
-                    print(
-                        f'{self.comment} {self.package} ALREADY INSTALLED             ')
-                if self.bar:
-                    tqdm.write(
-                        f'{self.comment} {self.package} ALREADY INSTALLED             ')
-            else:
-                if not self.bar:
-                    print(f'{self.comment} {self.package} DONE             ')
-                if self.bar:
-                    tqdm.write(f'{self.comment} {self.package} DONE             ')
-            try:
-                os.remove(f'INSTALL_DONE{self.id}')
-            except Exception:
-                pass
-            try:
-                os.remove(f'INSTALL_ERROR{self.id}')
-            except Exception:
-                pass
-            try:
-                os.remove(f'INSTALL_ALINST{self.id}')
-            except Exception:
-                pass
-
-
-    def choco_install(*packages: str):
-        """
-        The choco_install function installs a list of packages using Chocolatey.
-        It returns the number of packages successfully installed and the number that were already installed.
-
-        :param *packages: str: Pass a variable number of arguments to the function
-        :return: A tuple of two integers
-        """
-
-        alinst_number = 0
-        inst_number = 0
-        for package in packages:
-            version = ''
-            if len(pack := package.split(' --version ')) > 1:
-                version = pack[1]
-                package = pack[0]
-            with open('choco_output', 'w') as file:
-                carousel = installing_carousel(package)
-                Thread(target=carousel.start()).start()
-                Thread(target=choco_check, args=(package, carousel)).start()
-                subprocess.run(['choco', 'install', package,
-                               version, '-y'], stdout=file, text=True)
-            with open('choco_output', 'r') as file:
-                alinst = False
-                for line, content in enumerate(file.readlines()):
-                    if 'already installed.' in content and package in content:
-                        carousel.stop('ali')
-                        alinst = True
-                        alinst_number += 1
-                        break
-            try:
-                open('choco_end', 'x')
-            except Exception:
-                pass
-            if not alinst:
-                carousel.stop()
-                inst_number += 1
-            sleep(2)
-        return (inst_number, alinst_number)
-
-    def choco_check(module: str, carousel: installing_carousel) -> None:
-        """
-        The choco_check function checks if chocolatey is installed and prompts the user to continue.
-        It also checks if the user is an admin, and confirms that they want to run as non-admin.
-
-        :param module: str: Determine which module is being checked for
-        :return: True when chocolatey is installed, and false when it is not
-        """
-        admin: bool = True
-        adminline = -1
-        cont = False
-        contline = -1
-        ffmpeg_conf = False
-        ffmpegline = -1
-        ffmpeg_confline = -1
-        sleep(2)
-        while os.path.isfile('choco_output'):
-            sleep(0.1)
-            for line, content in enumerate(open('choco_output', 'r').readlines()):
-                if 'WARNING: \'choco\' was found at' in content and module == 'chocolatey':
-                    return True
-                if 'Ensuring chocolatey.nupkg is in the lib folder' in content and module == 'chocolatey':
-                    return False
-                if 'Chocolatey detected you are not running' in content and admin:
-                    if adminline == line:
-                        pass
-                    else:
-                        admin = False
-                        adminline = line
-                if 'Do you want to continue' in content and not admin:
-                    if contline == line:
-                        pass
-                    else:
-                        cont = True
-                        contline = line
-                if 'ffmpeg package files install completed. Performing other installation steps.' in content and module == 'ffmpeg':
-                    if ffmpegline == line:
-                        pass
-                    else:
-                        ffmpeg_conf = True
-                        ffmpegline = line
-                if 'Do you want to run the script' in content and module == 'ffmpeg':
-                    if ffmpeg_confline == line:
-                        pass
-                    else:
-                        cont = True
-                        ffmpeg_confline = line
-            if not admin or ffmpeg_conf or cont:
-                carousel.pause()
-                sleep(0.25)
-                carousel.unpause()
-            if not admin:
-                pg.press('y')
-                admin = True
-            if ffmpeg_conf:
-                pg.press('a')
-                ffmpeg_conf = False
-            if cont or ffmpeg_conf:
-                pg.press('enter')
-                cont = False
-                ffmpeg_conf = False
-            if os.path.isfile('choco_end'):
-                os.remove('choco_end')
-                break
-
     from threading import Thread
     if __name__ == '__main__':
         print_module('Thread from threading')
@@ -760,173 +355,25 @@ try:  # type: ignore
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             logger.stay(printnlog('First time setup', toprint=False))
             if not os.path.isfile('INSTALL_RESTART'):
-                with open('choco.ps1', 'w') as file:
-                    file.write('$InstallDir=\'C:\ProgramData\chocoportable\'\n$env:ChocolateyInstall="$InstallDir"\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\'https://community.chocolatey.org/install.ps1\'))')
-                logger.next(
-                    "Checking if chocolatey is installed if not downloading\n")
-                carousel = installing_carousel('chocolatey')
-                Thread(target=carousel.start()).start()
-                Thread(target=choco_check, args=('chocolatey', carousel)).start()
-                with open('choco_output', 'w') as file:
-                    choco = subprocess.run(
-                        ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
-                with open('choco_output', 'r') as file:
-                    for line in file.readlines():
-
-                        "If system don\'t allow running powershell scripts navigate user to allow it"
-
-                        if 'cannot be loaded because running scripts is disabled on this system' in line:
-                            carousel.stop('e')
-                            logger.stay(
-                                'Run Powershell as administrator and type \'Set-ExecutionPolicy RemoteSigned\' type Y and press \'enter\'')
-                            with open('set_permissions.txt', 'w') as file:
-                                file.write(
-                                    'Run Powershell as administrator and type following code press \'enter\' type Y and press \'enter\'\n\nSet-ExecutionPolicy RemoteSigned')
-                            os.system("notepad.exe set_permissions.txt")
-                            input('Enter to continue ...')
-                            os.remove('set_permissions.txt')
-                            with open('choco_output', 'w') as file:
-                                choco = subprocess.run(
-                                    ['powershell.exe', '-file', 'choco.ps1', '--quiet', '--no-verbose'], stdout=file, text=True)
-                open('choco_end', 'x')
-                carousel.stop()
-                logger.prev('')
-                sleep(1)
-
-                def isUserAdmin():
-                    """
-                    The isUserAdmin function checks to see if the user running this script is an admin.
-                    This is for Windows only.
-                    :return: A boolean value
-                    """
-                    if os.name == 'nt':
-                        import ctypes
-                        # WARNING: requires Windows XP SP2 or higher!
-                        try:
-                            return ctypes.windll.shell32.IsUserAnAdmin()
-                        except:
-                            traceback.print_exc()
-                            print("Admin check failed, assuming not an admin.")
-                            return False
-                    elif os.name == 'posix':
-                        # Check for root on Posix
-                        return os.getuid() == 0
-                    else:
-                        raise RuntimeError(
-                            "Unsupported operating system for this module: %s" % (os.name,))
-
-                def runAsAdmin(cmdLine=None, wait=True):
-                    """
-                    The runAsAdmin function is a simple function that will run your python script as the Administrator.
-                    This function will attempt to do the following:
-                    :param cmdLine: Pass arguments to the executable
-                    :param wait: Determine whether the function should wait for the process to finish or not
-                    :return: The process handle of the elevated process
-                    """
-                    if os.name != 'nt':
-                        raise RuntimeError(
-                            "This function is only implemented on Windows.")
-
-                    import win32api
-                    import win32con
-                    import win32event
-                    import win32process
-                    from win32com.shell.shell import ShellExecuteEx  # type: ignore
-                    from win32com.shell import shellcon  # type: ignore
-
-                    python_exe = sys.executable
-
-                    if cmdLine is None:
-                        cmdLine = [python_exe] + sys.argv
-                    elif type(cmdLine) not in (ctypes.TupleType, ctypes.ListType):
-                        raise ValueError("cmdLine is not a sequence.")
-                    cmd = '"%s"' % (cmdLine[0],)
-                    params = " ".join(['"%s"' % (x,) for x in cmdLine[1:]])
-                    cmdDir = ''
-                    showCmd = win32con.SW_SHOWNORMAL
-                    lpVerb = 'runas'
-                    procInfo = ShellExecuteEx(nShow=showCmd,
-                                              fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,
-                                              lpVerb=lpVerb,
-                                              lpFile=cmd,
-                                              lpParameters=params)
-                    if wait:
-                        procHandle = procInfo['hProcess']
-                        obj = win32event.WaitForSingleObject(
-                            procHandle, win32event.INFINITE)
-                        rc = win32process.GetExitCodeProcess(procHandle)
-                    else:
-                        rc = None
-                    return rc
-
-                def checkAdmin():
-                    """
-                    The checkAdmin function checks if the user is an admin. If not, it will run the program as an admin.
-                    :return: 0 if the user is an admin, and returns 1 if the user is not an admin
-                    :doc-author: Trelent
-                    """
-                    rc = 0
-                    if not isUserAdmin():
-                        print("You're not an admin.",
-                              os.getpid(), "params: ", sys.argv)
-                        rc = runAsAdmin()
-                    else:
-                        print("You are an admin!", os.getpid(),
-                              "params: ", sys.argv)
-                        rc = 0
-                    return rc
-
-                os.remove(f"crash_dump-{datelog}.txt")
-                open('INSTALL', 'x')
-                open('INSTALL_RESTART', 'x')
-                os.remove('choco.ps1')
-                os.remove('choco_output')
-                sleep(1)
-                checkAdmin()
-                sys.exit(0)
+                from essentials.app_alternations import install_choco
+                install_choco(logger)
             if os.path.isfile('INSTALL'):
-                os.remove('INSTALL')
-
-                "Downloading dependencies using chocolatey"
-
-                choco_packages: list[str] = [
-                    'ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201', 'grep --version 3.7']
-
-                "inst_number is number of installed packages; alinst_number is number of already installed"
-
-                inst_number, alinst_number = choco_install(*choco_packages)
-                if inst_number == 0:
-                    pass
-                else:
-                    logger.stay("Restarting program ...")
-                    sleep(1)
-                    subprocess.check_output(
-                        'start edupage.py --language ' + args.language, shell=True)
-                    os.remove(f"crash_dump-{datelog}.txt")
-                os.remove('choco_output')
-                try:
-                    os.remove('choco_end')
-                except Exception:
-                    pass
-                if inst_number != 0:
-                    sys.exit(0)
+                from essentials.app_alternations import install_packages
+                install_packages()
             sleep(1)
             os.remove('INSTALL_RESTART')
             typewriter('Trying ffmpeg ...')
             os.system('ffmpeg')
 
-    from essentials.internet import internet_check
+    from essentials.internet import internet_check, download
     if __name__ == '__main__':
-        internet_check(args, datelog)
+        internet_check(args)
         logger.stay(printnlog('DONE', toprint=False))
         logger.stay(printnlog('Importing libraries', toprint=False))
         logger.next('')
     from tqdm import tqdm
     if __name__ == '__main__':
         print_module()
-    from pathlib import Path
-    if __name__ == '__main__':
-        print_module('Path from pathlib')
     from uninstall import uninstall
     if __name__ == '__main__':
         print_module()
@@ -934,9 +381,6 @@ try:  # type: ignore
     if __name__ == '__main__':
         print_module()
     import zipfile
-    if __name__ == '__main__':
-        print_module()
-    import semantic_version
     if __name__ == '__main__':
         print_module()
     import win32gui
@@ -951,9 +395,6 @@ try:  # type: ignore
     import cv2
     if __name__ == '__main__':
         print_module()
-    import glob
-    if __name__ == '__main__':
-        print_module()
     import webbrowser
     if __name__ == '__main__':
         print_module()
@@ -961,9 +402,6 @@ try:  # type: ignore
     if __name__ == '__main__':
         print_module()
     import pygetwindow
-    if __name__ == '__main__':
-        print_module()
-    import re
     if __name__ == '__main__':
         print_module()
     from PIL import Image
@@ -988,37 +426,6 @@ try:  # type: ignore
                         format="%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s",
                         datefmt='%Y-%m-%d:%H:%M:%S')
 
-    def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
-        """
-        "Download a file from a URL to a local file."
-
-        The first line is the function's signature. It's a single line of code that tells you everything
-        you need to know about the function
-
-        :param url: The URL of the file to download
-        :type url: str
-        :param fname: The name of the file to be downloaded
-        :type fname: str
-        :param chunk_size: The size of the chunks to download, defaults to 1024 (optional)
-        """
-        try:
-            resp = requests.get(url, stream=True)
-            total: int = int(resp.headers.get('content-length', 0))
-            with open(fname, 'wb') as file, tqdm(
-                desc=fname,
-                total=total,
-                unit='iB',
-                unit_scale=True,
-                unit_divisor=1024,
-            ) as bar:
-                for data in resp.iter_content(chunk_size=chunk_size):
-                    size = file.write(data)
-                    bar.update(size)
-        except ConnectionError:
-            logging.warning("Connection error")
-            return False
-        return True
-
     if __name__ == '__main__':
         print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
@@ -1030,6 +437,8 @@ try:  # type: ignore
             0), user32.GetSystemMetrics(1)
         screensizepercentage: tuple[float, float] = float(
             (1/1920)*screensize[0]), float((1/1080)*screensize[1])
+        with open('.env', 'a') as dotenv:
+            dotenv.write(f'SCREENSIZE={str(screensize)}')
 
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             from essentials.system_info import system_info
@@ -1071,203 +480,10 @@ try:  # type: ignore
         if args.test is not None:
             logger.stay(
                 printnlog('Checking for newer version of ZnámE', toprint=False))
-            try:
-                url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
-                page = requests.get(url)
-                verzia = open('version', 'r')
-                if semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
-                    logger.next(
-                        printnlog('You have the latest version', toprint=False))
-                    logger.prev('')
-                else:
-                    if args.language == "SK":
-                        printnlog(
-                            "Bola nájdená nová aktualizacia: " + page.text)
-                    elif args.language == "EN":
-                        printnlog("Newer version was found: " + page.text)
-                    elif args.language == "JP":
-                        printnlog("新しいバージョンが見つかりました: " + page.text)
-                    verzia.close()
-                    sleep(0.5)
-                    url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
-                    r = requests.get(url)
-                    filename = "new.zip"
-                    with open(filename, 'wb') as output_file:
-                        download(url, 'new.zip')
-                    with zipfile.ZipFile("new.zip", mode='r') as zip:
-                        if args.language == "SK":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                except zipfile.error as e:
-                                    pass
-                        elif args.language == "EN":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                except zipfile.error as e:
-                                    pass
-                        elif args.language == "JP":
-                            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                                try:
-                                    zip.extract(member)
-                                    tqdm.write(
-                                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                                except zipfile.error as e:
-                                    pass
-                        zip.close()
-                    os.remove("new.zip")
-                    directory = None
-                    for path, currentDirectory, files in os.walk(Path.cwd()):
-                        for directory1 in currentDirectory:
-                            if directory1.startswith("GrenManSK-ZnamE-"):
-                                printnlog(directory1)
-                                directory = directory1
-                    if directory is None:
+            from essentials.app_alternations import update_app
+            update_app(args, logger)
 
-                        "If program fails to download update refer user to website"
-
-                        if args.language == "SK":
-                            printnlog(
-                                "CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
-                        elif args.language == "EN":
-                            printnlog(
-                                "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-                        elif args.language == "JP":
-                            printnlog(
-                                "ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
-                        sleep(2)
-                        input()
-                        sys.exit(1)
-                    os.mkdir('old')
-                    shutil.move('data.xp2', 'old/data.xp2')
-                    shutil.move('help.txt', 'old/help.txt')
-                    shutil.move('LICENSE', 'old/LICENSE')
-                    shutil.move('README.md', 'old/README.md')
-                    shutil.move('version', 'old/version')
-                    shutil.copyfile('config.yml', 'config_old.yml')
-                    sleep(0.5)
-                    shutil.move(directory + "/data.xp2", 'data.xp2')
-                    shutil.move(directory + "/help.txt", 'help.txt')
-                    shutil.move(directory + "/LICENSE", 'LICENSE')
-                    shutil.move(directory + "/README.md", 'README.md')
-                    shutil.move(directory + "/version", 'version')
-                    shutil.move(directory + "/config.yml", 'config.yml')
-                    crupdate = open("update.py", "w")
-                    crupdate.write(updateapp)
-                    crupdate.close()
-                    if args.endf is None:
-                        subprocess.call(sys.executable + ' update.py ' + directory +
-                                        ' -lang ' + args.language + ' -endf', shell=True)
-                    else:
-                        subprocess.call(sys.executable + ' update.py ' +
-                                        directory + ' -lang ' + args.language, shell=True)
-                    sleep(0.1)
-                    os.remove('crash_dump-' + datelog + '.txt')
-                    try:
-                        os.remove('choco_end')
-                    except Exception:
-                        pass
-                    try:
-                        os.remove('INSTALL')
-                    except Exception:
-                        pass
-                    try:
-                        os.remove('INSTALL_RESTART')
-                    except Exception:
-                        pass
-                    sys.exit(0)
-            except requests.ConnectionError:  # type: ignore
-                line_number: int = get_line_number()
-                pass
-
-        verzia.close()
-
-    def getWindow() -> bool:
-        """
-        The getWindow function is used to find the window of Známý (the game) and activate it.
-        It also checks if the file 'banner.png' exists in the assets folder.
-
-        :return: If error occured
-        """
-        global exit
-        dummy = None
-        cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
-        cv2.setWindowProperty(
-            'frame2', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-        test: str = "assets/banner.png"
-        for file in glob.glob(test):
-            dummy = cv2.imread(file)
-        try:
-            cv2.imshow("Image", dummy)
-        except cv2.error:
-            error_get(cv2.error('File is corrupt (probably \'banner.png\')'), [
-                      get_line_number()])
-            return True
-        cv2.waitKey(1)
-        sleep(0.1)
-        cv2.destroyWindow("Image")
-        if args.test is not None:
-            try:
-                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                window.activate()
-                return False
-            except IndexError:
-                error_get(IndexError(
-                    'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
-                return True
-        return False
-
-    if __name__ == '__main__':
-        logger.next(printnlog('Function: getWindow', toprint=False))
-
-    def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> None:
-        """
-        The getImg function displays an image from the source. If x, y, width, and length are specified, then the image will be displayed at those coordinates with the specified width and length. Otherwise, the image will be displayed at the default coordinates and default width and length.
-
-        :param imgSrc: str: Specify the source of the image
-        :param name: str: Name the window
-        :param x: Set the x coordinate of the window
-        :param y: Specify the y coordinate of the window
-        :param width: Set the width of the window
-        :param length: Set the length of the window
-        :return: The image that is displayed
-        """
-        path: str = imgSrc
-        for file in glob.glob(path):
-            global dummy
-            dummy = cv2.imread(file)
-            cv2.imshow(name, dummy)
-            if x is not None and y is not None and width is not None and length is not None:
-                appname: str = name
-                xpos: int = x
-                ypos: int = y
-                if width is None:
-                    width = int((screensize[0]/10)*9)
-                if length is None:
-                    length = int((screensize[1]/10)*9)
-
-                def enumHandler(hwnd, lParam):
-                    if win32gui.IsWindowVisible(hwnd):  # type: ignore
-                        # type: ignore
-                        if appname in win32gui.GetWindowText(hwnd):
-                            win32gui.MoveWindow(
-                                hwnd, xpos, ypos, width, length, True)  # type: ignore
-                win32gui.EnumWindows(enumHandler, None)  # type: ignore
-            k = cv2.waitKey(33)
-            cv2.setWindowProperty(
-                name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-            if k == 27:
-                break
-            elif k == -1:
-                continue
-            else:
-                print(k)
-                cv2.destroyAllWindows()
+    from essentials.system_operations import getWindow, getImg
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: getImg', toprint=False))
@@ -1348,6 +564,7 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('DONE', toprint=False))
+        logger.next(printnlog('Defining functions', toprint=False))
 
     def get_size(bytes):
         """
@@ -1912,7 +1129,7 @@ try:  # type: ignore
         :param time: int: Specify how long the mouseclick function should wait before clicking
         :return: Nothing
         """
-        from mouse import mouseclick # type: ignore
+        from mouse import mouseclick  # type: ignore
         if args.nointro is None or args.nointrof is None:
             args.nointrof = object()
             if args.test is None and config['basic info']['intro'] == True:
@@ -1960,7 +1177,8 @@ try:  # type: ignore
 
         :return: A string
         """
-        import downloadmusic # type: ignore
+        import downloadmusic  # type: ignore
+        from essentials.app_alternations import installing_carousel
         typewriter('Starting web player', ttime=0.01)
         spotdl = Thread(target=downloadmusic.spotdl_get)
         spotdl.start()
@@ -1968,7 +1186,8 @@ try:  # type: ignore
             subprocess.run(['python', '-m', 'spotdl', 'web'],
                            stdout=file, text=True)
         sleep(1)
-        carousel = installing_carousel('', comment='Waiting for synchronization')
+        carousel = installing_carousel(
+            '', comment='Waiting for synchronization')
         Thread(target=carousel.start()).start()
         while os.path.isfile('SPOTDL_QUEUE'):
             sleep(1)
@@ -2008,8 +1227,7 @@ try:  # type: ignore
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: spotMusicDow', toprint=False))
-        
-        
+
     def vlc_init():
         if args.language == 'SK':
             typewriter(printnlog('Inicializácia VLC\n', toprint=False))
@@ -2025,7 +1243,7 @@ try:  # type: ignore
         elif args.language == 'JP':
             typewriter(printnlog('終わり\n', toprint=False))
         return media_player
-    
+
     def intro():
         exit = False
         move('ZnámE', -10, -10, screensize[0], screensize[1])
@@ -2047,8 +1265,7 @@ try:  # type: ignore
             media_player.set_media_list(media_list)
             media_player.play()
         return exit
-    
-    
+
     def was_updated():
         try:
             for root, dirs, files in os.walk('..\\'):
@@ -2077,7 +1294,7 @@ try:  # type: ignore
             return inactive1
         except Exception:
             pass
-        
+
     def show_html(media_player):
         if args.restart is not None:
             try:
@@ -2094,7 +1311,6 @@ try:  # type: ignore
             mixer.music.play()
             sleep(2.5)
             media_player.stop()
-        
 
     def main() -> None:
         global config
@@ -2126,7 +1342,7 @@ try:  # type: ignore
                     musiclistnew.append(music_name)
             intro()
             inactive1: bool = False
-            
+
             """
             If the INACTIVE file is present, delete it and print a message to the user indicating that they have been logged out.
             @param root - the root directory of the file system
@@ -2172,7 +1388,7 @@ try:  # type: ignore
             show_html(media_player)
             if not inactive1:
                 playhtml('apphtml\\start', 1, 3,)
-            exit: bool = getWindow()
+            exit: bool = getWindow(args)
             if args.nointro is None or config['basic info']['intro'] == False:
                 pass
             else:
@@ -2216,7 +1432,7 @@ try:  # type: ignore
                 readline.set_completer(
                     SimpleCompleter(unlogged_completer).complete)
                 readline.parse_and_bind('tab: complete')
-                internet_check(args, datelog)
+                internet_check(args)
                 if not exit:
                     if logged:
                         readline.set_completer(
@@ -2232,7 +1448,8 @@ try:  # type: ignore
                             @param password - the password for the login credentials
                             @param savefilemode - whether or not we are saving the file or not
                             """
-                            linenumber = save_credentials(args, loginvstupuser, passwordp, code, savefilemode, linenumber)
+                            linenumber = save_credentials(
+                                args, loginvstupuser, passwordp, code, savefilemode, linenumber)
                         """
                         Prints the help menu for the program.
                         @param loggedhelp - whether or not the help menu has been printed already.
@@ -2355,7 +1572,7 @@ try:  # type: ignore
                         passwordp = password(
                             decode(loginvstupuser + 'crypted', True))
                         cv2.destroyAllWindows()
-                        getWindow()
+                        getWindow(args)
                         pg.press('win')
                         sleep(0.1)
                         pg.press('win')
@@ -2401,7 +1618,7 @@ try:  # type: ignore
                             if os.path.exists("restart.py"):
                                 os.remove('restart.py')
                                 cv2.destroyAllWindows()
-                                getWindow()
+                                getWindow(args)
                                 pg.press('win')
                                 sleep(0.1)
                                 pg.press('win')
@@ -3288,9 +2505,10 @@ try:  # type: ignore
                                 elif args.language == "JP":
                                     Thread(target=progress_bar, args=(
                                         'チェック中', 3,), daemon=True).start()
-                                icofind = code(find(decode(True, False)), False)
+                                icofind = code(
+                                    find(decode(True, False)), False)
                                 cv2.destroyAllWindows()
-                                getWindow()
+                                getWindow(args)
                                 pg.press('win')
                                 sleep(0.1)
                                 pg.press('win')
@@ -3465,7 +2683,7 @@ try:  # type: ignore
                     for file_name in os.listdir(source_dir):
                         shutil.move(os.path.join(source_dir, file_name),
                                     'datafolder/' + source_dir)
-                    files: list = ['downloadmusic.py', 'anime_search.py','mouse.py', 'path.py', 'endscreen.py','login.py',
+                    files: list = ['downloadmusic.py', 'anime_search.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
                                    'playvideo.py', 'settings.py', 'media.py', 'game_assets.py', 'completer.py']
                     for i in files:
                         shutil.move(i, f'datafolder/{i}')
@@ -3619,6 +2837,10 @@ try:  # type: ignore
                         crrestart.write(restartapp)
                         crrestart.close()
                         os.remove('END')
+                        try:
+                            os.remove('.env')
+                        except Exception:
+                            pass
                         if not inactivelogout and os.path.isfile(r"C:/Users/" + os.getlogin() + r"/AppData/Local/ZnámE/saved"):
                             if args.language == "SK":
                                 typewriter(
@@ -3699,6 +2921,10 @@ try:  # type: ignore
                             return 0
                     elif not restart:
                         os.remove('END')
+                        try:
+                            os.remove('.env')
+                        except Exception:
+                            pass
                         if args.endf is None:
                             if args.language == "SK":
                                 input("'ENTER' NA KONIEC")
