@@ -1,7 +1,8 @@
 import os
 import shutil
 if __name__ == '__main__':
-    from edupage import get_line_number, error_log, error_get
+    from essentials.exceptions import error_get
+    from essentials.system_info import get_line_number
 
 
 def uninstall():

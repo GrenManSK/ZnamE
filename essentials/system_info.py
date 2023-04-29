@@ -6,13 +6,14 @@ import platform
 import cpuinfo
 import socket
 import sys
-import tabulate
+from tabulate import tabulate
 import re
 import uuid
 from .writing import to_info, printnlog
+import inspect
 
 
-def system_info(logger, screensize, verzia, datelog):
+def system_info(logger, screensize, verzia):
     try:
         os.makedirs("C:/Users/" + os.getlogin() +
                     "/AppData/Local/ZnámE/")
@@ -20,10 +21,10 @@ def system_info(logger, screensize, verzia, datelog):
         pass
     open("C:/Users/" + os.getlogin() +
          "/AppData/Local/ZnámE/info.txt", "x")
-    logger.stay(to_info(datelog, verzia.read(), end='',
+    logger.stay(to_info(verzia.read(), end='',
                 file='version', mode='w', toprint=False))
-    logger.stay(printnlog(datelog, 'Getting system information', toprint=False))
-    logger.next(to_info(datelog, 'Resolution: ' +
+    logger.stay(printnlog('Getting system information', toprint=False))
+    logger.next(to_info('Resolution: ' +
                         str(screensize[0]) + 'x' + str(screensize[1]) + '\n', toprint=False))
     computer1 = wmi.WMI()
     computer_info: list[str] = computer1.Win32_ComputerSystem()[0]
@@ -67,62 +68,62 @@ def system_info(logger, screensize, verzia, datelog):
     os_name = os_info.Name.encode('utf-8').split(b'|')[0]
     cpufreq = psutil.cpu_freq()
     os_version: str = ' '.join([os_info.Version, os_info.BuildNumber])
-    logger.stay(to_info(datelog, os_info, toprint=False))
+    logger.stay(to_info(os_info, toprint=False))
     system_ram = float(os_info.TotalVisibleMemorySize) / \
         1048576  # KB to GB
-    logger.stay(to_info(datelog, 'OS Name: {0}'.format(os_name), toprint=False))
+    logger.stay(to_info('OS Name: {0}'.format(os_name), toprint=False))
     logger.stay(
-        to_info(datelog, f"Device Name: {my_system.node}", toprint=False))
+        to_info(f"Device Name: {my_system.node}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Architecture: {my_system.machine}", toprint=False))
+        to_info(f"Architecture: {my_system.machine}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Processor: {my_system.processor}", toprint=False))
-    logger.stay(to_info(datelog, 'CPU: {0}'.format(
+        to_info(f"Processor: {my_system.processor}", toprint=False))
+    logger.stay(to_info('CPU: {0}'.format(
         proc_info.Name), toprint=False))
-    logger.stay(to_info(datelog, "="*40 + "CPU Info" + "="*40, toprint=False))
+    logger.stay(to_info("="*40 + "CPU Info" + "="*40, toprint=False))
     logger.stay(
-        to_info(datelog, f"CPU architecture: {my_cpuinfo['arch']}", toprint=False))
-    logger.stay(to_info(datelog, "Physical cores:" +
+        to_info(f"CPU architecture: {my_cpuinfo['arch']}", toprint=False))
+    logger.stay(to_info("Physical cores:" +
                 str(psutil.cpu_count(logical=False)), toprint=False))
-    logger.stay(to_info(datelog, "Total cores:" +
+    logger.stay(to_info("Total cores:" +
                 str(psutil.cpu_count(logical=True)), toprint=False))
     logger.stay(
-        to_info(datelog, f"Max Frequency: {cpufreq.max:.2f}Mhz", toprint=False))
+        to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz", toprint=False))
     logger.stay(
-        to_info(datelog, f"Min Frequency: {cpufreq.min:.2f}Mhz", toprint=False))
+        to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz", toprint=False))
     logger.stay(
-        to_info(datelog, f"Current Frequency: {cpufreq.current:.2f}Mhz", toprint=False))
-    logger.stay(to_info(datelog, "CPU Usage Per Core:", toprint=False))
+        to_info(f"Current Frequency: {cpufreq.current:.2f}Mhz", toprint=False))
+    logger.stay(to_info("CPU Usage Per Core:", toprint=False))
     logger.next('')
     for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
-        to_info(datelog, f"Core {i}: {percentage}%")
-    logger.prev(to_info(datelog, pc.Win32_Processor()[0], toprint=False))
+        to_info(f"Core {i}: {percentage}%")
+    logger.prev(to_info(pc.Win32_Processor()[0], toprint=False))
     logger.stay(
-        to_info(datelog, f"Total CPU Usage: {psutil.cpu_percent()}%", toprint=False))
+        to_info(f"Total CPU Usage: {psutil.cpu_percent()}%", toprint=False))
     logger.stay(
-        to_info(datelog, 'RAM: {0} GB'.format(system_ram), toprint=False))
+        to_info('RAM: {0} GB'.format(system_ram), toprint=False))
     logger.stay(
-        to_info(datelog, "="*40 + "Memory Information" + "="*40, toprint=False))
+        to_info("="*40 + "Memory Information" + "="*40, toprint=False))
     logger.stay(
-        to_info(datelog, f"Total: {get_size1(svmem.total)}", toprint=False))
+        to_info(f"Total: {get_size1(svmem.total)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Available: {get_size1(svmem.available)}", toprint=False))
+        to_info(f"Available: {get_size1(svmem.available)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Used: {get_size1(svmem.used)}", toprint=False))
+        to_info(f"Used: {get_size1(svmem.used)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Percentage: {svmem.percent}%", toprint=False))
-    logger.stay(to_info(datelog, "="*20 + "SWAP" + "="*20, toprint=False))
+        to_info(f"Percentage: {svmem.percent}%", toprint=False))
+    logger.stay(to_info("="*20 + "SWAP" + "="*20, toprint=False))
     logger.stay(
-        to_info(datelog, f"Total: {get_size1(swap.total)}", toprint=False))
+        to_info(f"Total: {get_size1(swap.total)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Free: {get_size1(swap.free)}", toprint=False))
+        to_info(f"Free: {get_size1(swap.free)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Used: {get_size1(swap.used)}", toprint=False))
-    logger.stay(to_info(datelog, f"Percentage: {swap.percent}%", toprint=False))
-    logger.stay(to_info(datelog, 'Graphics Card: {0}'.format(
+        to_info(f"Used: {get_size1(swap.used)}", toprint=False))
+    logger.stay(to_info(f"Percentage: {swap.percent}%", toprint=False))
+    logger.stay(to_info('Graphics Card: {0}'.format(
         gpu_info.Name), toprint=False))
     logger.stay(
-        to_info(datelog, "="*40 + "GPU Details" + "="*40, toprint=False))
+        to_info("="*40 + "GPU Details" + "="*40, toprint=False))
     list_gpus: list = []
     for gpu in gpus:
         gpu_id = gpu.id
@@ -137,67 +138,81 @@ def system_info(logger, screensize, verzia, datelog):
             gpu_id, gpu_name, gpu_load, gpu_free_memory, gpu_used_memory,
             gpu_total_memory, gpu_temperature, gpu_uuid
         ))
-
-    logger.stay(to_info(datelog, tabulate(list_gpus, headers=("id", "name", "load", "free memory", "used memory", "total memory",
-                                                     "temperature", "uuid")), toprint=False))
-    logger.stay(to_info(datelog, 
+    logger.stay(to_info(tabulate(list_gpus, headers=("id", "name", "load", "free memory",
+                "used memory", "total memory", "temperature", "uuid")), toprint=False))
+    logger.stay(to_info(
         f'IP Adress: {socket.gethostbyname(socket.gethostname())}', toprint=False))
-    logger.stay(to_info(datelog, 
+    logger.stay(to_info(
         f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}, toprint=False"))
     logger.stay(
-        to_info(datelog, "="*40 + "Disk Information" + "="*40, toprint=False))
-    logger.stay(to_info(datelog, "Partitions and Usage:", toprint=False))
+        to_info("="*40 + "Disk Information" + "="*40, toprint=False))
+    logger.stay(to_info("Partitions and Usage:", toprint=False))
     logger.next('')
     for partition in partitions:
         logger.stay(
-            to_info(datelog, f"=== Device: {partition.device} ===", toprint=False))
+            to_info(f"=== Device: {partition.device} ===", toprint=False))
         logger.stay(
-            to_info(datelog, f"  Mountpoint: {partition.mountpoint}", toprint=False))
+            to_info(f"  Mountpoint: {partition.mountpoint}", toprint=False))
         logger.stay(
-            to_info(datelog, f"  File system type: {partition.fstype}", toprint=False))
+            to_info(f"  File system type: {partition.fstype}", toprint=False))
         try:
             partition_usage = psutil.disk_usage(partition.mountpoint)
         except PermissionError:
             continue
         logger.stay(
-            to_info(datelog, f"  Total Size: {get_size1(partition_usage.total)}", toprint=False))
+            to_info(f"  Total Size: {get_size1(partition_usage.total)}", toprint=False))
         logger.stay(
-            to_info(datelog, f"  Used: {get_size1(partition_usage.used)}", toprint=False))
+            to_info(f"  Used: {get_size1(partition_usage.used)}", toprint=False))
         logger.stay(
-            to_info(datelog, f"  Free: {get_size1(partition_usage.free)}", toprint=False))
+            to_info(f"  Free: {get_size1(partition_usage.free)}", toprint=False))
         logger.stay(
-            to_info(datelog, f"  Percentage: {partition_usage.percent}%", toprint=False))
+            to_info(f"  Percentage: {partition_usage.percent}%", toprint=False))
     logger.prev(
-        to_info(datelog, f"Total read: {get_size1(disk_io.read_bytes)}", toprint=False))
+        to_info(f"Total read: {get_size1(disk_io.read_bytes)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Total write: {get_size1(disk_io.write_bytes)}", toprint=False))
+        to_info(f"Total write: {get_size1(disk_io.write_bytes)}", toprint=False))
     logger.stay(
-        to_info(datelog, "="*40 + "Network Information" + "="*40, toprint=False))
+        to_info("="*40 + "Network Information" + "="*40, toprint=False))
     for interface_name, interface_addresses in if_addrs.items():
         for address in interface_addresses:
             logger.next(
-                to_info(datelog, f"=== Interface: {interface_name} ===", toprint=False))
+                to_info(f"=== Interface: {interface_name} ===", toprint=False))
             if str(address.family) == 'AddressFamily.AF_INET':
                 logger.next(
-                    to_info(datelog, f"  IP Address: {address.address}", toprint=False))
+                    to_info(f"  IP Address: {address.address}", toprint=False))
                 logger.stay(
-                    to_info(datelog, f"  Netmask: {address.netmask}", toprint=False))
+                    to_info(f"  Netmask: {address.netmask}", toprint=False))
                 logger.stay(
-                    to_info(datelog, f"  Broadcast IP: {address.broadcast}", toprint=False))
+                    to_info(f"  Broadcast IP: {address.broadcast}", toprint=False))
             elif str(address.family) == 'AddressFamily.AF_PACKET':
                 logger.next(
-                    to_info(datelog, f"  MAC Address: {address.address}", toprint=False))
+                    to_info(f"  MAC Address: {address.address}", toprint=False))
                 logger.stay(
-                    to_info(datelog, f"  Netmask: {address.netmask}", toprint=False))
+                    to_info(f"  Netmask: {address.netmask}", toprint=False))
                 logger.stay(
-                    to_info(datelog, f"  Broadcast MAC: {address.broadcast}", toprint=False))
+                    to_info(f"  Broadcast MAC: {address.broadcast}", toprint=False))
             logger.prev('', by=1)
     logger.prev('')
     logger.stay(
-        to_info(datelog, f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}", toprint=False))
+        to_info(f"Total Bytes Sent: {get_size1(net_io.bytes_sent)}", toprint=False))
     logger.stay(
-        to_info(datelog, f"Total Bytes Received: {get_size1(net_io.bytes_recv)}", toprint=False))
-    logger.stay(to_info(datelog, pc.Win32_VideoController()[0], toprint=False))
-    logger.stay(to_info(datelog, "User Current Version:-" +
+        to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}", toprint=False))
+    logger.stay(to_info(pc.Win32_VideoController()[0], toprint=False))
+    logger.stay(to_info("User Current Version:-" +
                 str(sys.version), toprint=False))
-    logger.stay(printnlog(datelog, '\nDONE\n', toprint=False))
+    logger.stay(printnlog('\nDONE\n', toprint=False))
+
+
+def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
+    """
+    The get_line_number function returns the line number of the caller.
+
+        The get_line_number function is a helper function that returns the line number of 
+        where it was called from. This can be useful for debugging purposes, or to help 
+        identify where an error occurred in your code. It also allows you to go back a few lines if needed, which can be helpful when using this function inside loops and other functions that may have multiple calls on one line (such as list comprehensions).
+
+    :param goback: int: Go back a certain number of lines in the stackconfig.
+    :param relative_frame: int: Specify the frame in the stack to get the line number from
+    :return: The line number of the function call
+    """
+    return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
