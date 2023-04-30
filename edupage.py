@@ -250,7 +250,7 @@ try:  # type: ignore
 
             with open('CONFIG_OPTIONS.txt', 'w') as config_file:
                 config_file.write('basic info:\n')
-                config_file.write(f'  environment: [0-f][0-f]\n')
+                config_file.write(f'  environment: \'[0-f][0-f]\'\n')
                 config_file.write(f'  inactivelimit: [Any number]\n')
                 config_file.write(f'  intro: [True/False]\n')
                 config_file.write(f'  lang: {language}\n')
