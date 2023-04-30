@@ -4,7 +4,7 @@ var annotated_dup =
       [ "installing_carousel", "d5/d77/classapp__alternations_1_1installing__carousel.html", "d5/d77/classapp__alternations_1_1installing__carousel" ]
     ] ],
     [ "exceptions", "d0/d6e/namespaceexceptions.html", [
-      [ "argEnviromentError", "dd/dbe/classexceptions_1_1arg_enviroment_error.html", null ],
+      [ "argenvironmentError", "d2/d37/classexceptions_1_1argenvironment_error.html", null ],
       [ "argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],
       [ "argInactiveLimitError", "df/deb/classexceptions_1_1arg_inactive_limit_error.html", null ],
       [ "argIntroError", "d6/d2b/classexceptions_1_1arg_intro_error.html", null ],

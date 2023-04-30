@@ -150,18 +150,22 @@
         <Path>d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html</Path>
        </Node>
        <Node>
+        <Name>v1.3.0-alpha+build.20230430.155859</Name>
+        <Path>da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html</Path>
+       </Node>
+       <Node>
         <Name>&lt;strong&gt;ZnamE&lt;/strong&gt;</Name>
         <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
       <Subnodes>
          <Node>
           <Name>Installation</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md126</Anchor>
+          <Anchor>autotoc_md127</Anchor>
          </Node>
          <Node>
           <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md128</Anchor>
+          <Anchor>autotoc_md129</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -677,8 +681,8 @@
             <Path>d0/d6e/namespaceexceptions.html</Path>
           <Subnodes>
              <Node>
-              <Name>argEnviromentError</Name>
-              <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
+              <Name>argenvironmentError</Name>
+              <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
              </Node>
              <Node>
               <Name>argGameError</Name>
@@ -966,8 +970,8 @@
             <Path>d0/d6e/namespaceexceptions.html</Path>
           <Subnodes>
              <Node>
-              <Name>argEnviromentError</Name>
-              <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
+              <Name>argenvironmentError</Name>
+              <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
              </Node>
              <Node>
               <Name>argGameError</Name>
@@ -1022,10 +1026,6 @@
             <Path></Path>
           <Subnodes>
              <Node>
-              <Name>exceptions.argEnviromentError</Name>
-              <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
-             </Node>
-             <Node>
               <Name>exceptions.argGameError</Name>
               <Path>dc/d31/classexceptions_1_1arg_game_error.html</Path>
              </Node>
@@ -1056,6 +1056,10 @@
              <Node>
               <Name>exceptions.argWaifuError</Name>
               <Path>da/dcb/classexceptions_1_1arg_waifu_error.html</Path>
+             </Node>
+             <Node>
+              <Name>exceptions.argenvironmentError</Name>
+              <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
              </Node>
              <Node>
               <Name>exceptions.configNoOption</Name>
@@ -1253,8 +1257,8 @@
                 <Path>d5/d36/classexceptions_1_1arg_music_error.html</Path>
                </Node>
                <Node>
-                <Name>exceptions.argEnviromentError</Name>
-                <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
+                <Name>exceptions.argenvironmentError</Name>
+                <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
                </Node>
                <Node>
                 <Name>exceptions.argWaifuError</Name>

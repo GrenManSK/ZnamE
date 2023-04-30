@@ -6,7 +6,7 @@ var searchData=
   ['allerror_3',['allerror',['../d0/d52/namespaceedupage.html#a7d5036f27c338a2167bfd7cc6e6c8ec2',1,'edupage']]],
   ['app_5falternations_4',['app_alternations',['../d3/dc0/namespaceapp__alternations.html',1,'']]],
   ['app_5falternations_2epy_5',['app_alternations.py',['../dd/d31/app__alternations_8py.html',1,'']]],
-  ['argenviromenterror_6',['argEnviromentError',['../dd/dbe/classexceptions_1_1arg_enviroment_error.html',1,'exceptions']]],
+  ['argenvironmenterror_6',['argenvironmentError',['../d2/d37/classexceptions_1_1argenvironment_error.html',1,'exceptions']]],
   ['arggameerror_7',['argGameError',['../dc/d31/classexceptions_1_1arg_game_error.html',1,'exceptions']]],
   ['arginactivelimiterror_8',['argInactiveLimitError',['../df/deb/classexceptions_1_1arg_inactive_limit_error.html',1,'exceptions']]],
   ['argintroerror_9',['argIntroError',['../d6/d2b/classexceptions_1_1arg_intro_error.html',1,'exceptions']]],

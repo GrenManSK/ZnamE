@@ -14,5 +14,6 @@ var searchData=
   ['v1_2e1_2e0_2dalpha_2bbuild_2e20230407_2e113203_11',['v1.1.0-alpha+build.20230407.113203',['../d7/dcd/md_patch_notes_v1_1_0_alpha_build_20230407_113203.html',1,'']]],
   ['v1_2e1_2e0_2dalpha_2bbuild_2e20230428_2e095526_12',['v1.1.0-alpha+build.20230428.095526',['../d4/da8/md_patch_notes_v1_1_0_alpha_build_20230428_095526.html',1,'']]],
   ['v1_2e1_2e1_2dalpha_2bbuild_2e20230428_2e172227_13',['v1.1.1-alpha+build.20230428.172227',['../d5/dc8/md_patch_notes_v1_1_1_alpha_build_20230428_172227.html',1,'']]],
-  ['v1_2e2_2e0_2dalpha_2bbuild_2e20230429_2e122048_14',['v1.2.0-alpha+build.20230429.122048',['../d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html',1,'']]]
+  ['v1_2e2_2e0_2dalpha_2bbuild_2e20230429_2e122048_14',['v1.2.0-alpha+build.20230429.122048',['../d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html',1,'']]],
+  ['v1_2e3_2e0_2dalpha_2bbuild_2e20230430_2e155859_15',['v1.3.0-alpha+build.20230430.155859',['../da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html',1,'']]]
 ];

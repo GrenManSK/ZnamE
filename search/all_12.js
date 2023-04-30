@@ -30,7 +30,9 @@ var searchData=
   ['v1_2e1_2e1_2dalpha_2bbuild_2e20230428_2e172227_2emd_27',['v1.1.1-alpha+build.20230428.172227.md',['../d8/d73/v1_81_81-alpha_09build_820230428_8172227_8md.html',1,'']]],
   ['v1_2e2_2e0_2dalpha_2bbuild_2e20230429_2e122048_28',['v1.2.0-alpha+build.20230429.122048',['../d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html',1,'']]],
   ['v1_2e2_2e0_2dalpha_2bbuild_2e20230429_2e122048_2emd_29',['v1.2.0-alpha+build.20230429.122048.md',['../d2/d01/v1_82_80-alpha_09build_820230429_8122048_8md.html',1,'']]],
-  ['verzia_30',['verzia',['../d0/d52/namespaceedupage.html#a8144c5888ceedd6e676b9952a3a69583',1,'edupage']]],
-  ['vlc_5finit_31',['vlc_init',['../d0/d52/namespaceedupage.html#a9f3e602dd8410da6eab7cf9b0758c6f8',1,'edupage']]],
-  ['vstup_32',['vstup',['../d0/d52/namespaceedupage.html#afff40405f017dc99ee20303a0e14e856',1,'edupage']]]
+  ['v1_2e3_2e0_2dalpha_2bbuild_2e20230430_2e155859_30',['v1.3.0-alpha+build.20230430.155859',['../da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html',1,'']]],
+  ['v1_2e3_2e0_2dalpha_2bbuild_2e20230430_2e155859_2emd_31',['v1.3.0-alpha+build.20230430.155859.md',['../da/dbb/v1_83_80-alpha_09build_820230430_8155859_8md.html',1,'']]],
+  ['verzia_32',['verzia',['../d0/d52/namespaceedupage.html#a8144c5888ceedd6e676b9952a3a69583',1,'edupage']]],
+  ['vlc_5finit_33',['vlc_init',['../d0/d52/namespaceedupage.html#a9f3e602dd8410da6eab7cf9b0758c6f8',1,'edupage']]],
+  ['vstup_34',['vstup',['../d0/d52/namespaceedupage.html#afff40405f017dc99ee20303a0e14e856',1,'edupage']]]
 ];

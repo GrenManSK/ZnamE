@@ -2,12 +2,12 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
-      <Name>exceptions::argEnviromentError</Name>
+      <Name>exceptions::argenvironmentError</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
-      <Scope>exceptions.argEnviromentError</Scope>
+      <Scope>exceptions.argenvironmentError</Scope>
     </TokenIdentifier>
-    <Path>dd/dbe/classexceptions_1_1arg_enviroment_error.html</Path>
+    <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -307,6 +307,13 @@
       <APILanguage>markdown</APILanguage>
     </TokenIdentifier>
     <Path>d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md_patch_notes_v1_3_0_alpha_build_20230430_155859</Name>
+      <APILanguage>markdown</APILanguage>
+    </TokenIdentifier>
+    <Path>da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>

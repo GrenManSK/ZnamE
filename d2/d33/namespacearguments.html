@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.1.1-alpha+build.20230428.172227</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.3.0-alpha+build.20230430.155859</span>
    </div>
   </td>
  </tr>
@@ -231,103 +231,105 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   68</span>    hexnumber: list[str] = [<span class="stringliteral">&#39;0&#39;</span>, <span class="stringliteral">&#39;1&#39;</span>, <span class="stringliteral">&#39;2&#39;</span>, <span class="stringliteral">&#39;3&#39;</span>, <span class="stringliteral">&#39;4&#39;</span>, <span class="stringliteral">&#39;5&#39;</span>, <span class="stringliteral">&#39;6&#39;</span>,</div>
 <div class="line"><span class="lineno">   69</span>                            <span class="stringliteral">&#39;7&#39;</span>, <span class="stringliteral">&#39;8&#39;</span>, <span class="stringliteral">&#39;9&#39;</span>, <span class="stringliteral">&#39;a&#39;</span>, <span class="stringliteral">&#39;b&#39;</span>, <span class="stringliteral">&#39;c&#39;</span>, <span class="stringliteral">&#39;d&#39;</span>, <span class="stringliteral">&#39;e&#39;</span>, <span class="stringliteral">&#39;f&#39;</span>]</div>
 <div class="line"><span class="lineno">   70</span>    logger.stay(printnlog(<span class="stringliteral">&quot;Checking config correctness&quot;</span>, toprint=<span class="keyword">False</span>))</div>
-<div class="line"><span class="lineno">   71</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;enviroment&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0][0] <span class="keywordflow">in</span> hexnumber:</div>
-<div class="line"><span class="lineno">   72</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argEnviromentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; enviroment first character&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   71</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> str(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;environmentA&#39;</span>]).split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> hexnumber:</div>
+<div class="line"><span class="lineno">   72</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argenvironmentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; environmentA character&#39;</span>), ValueError(</div>
 <div class="line"><span class="lineno">   73</span>            f<span class="stringliteral">&#39;Not allowed character | Allowed: {hexnumber}&#39;</span>)]), [get_line_number()])</div>
 <div class="line"><span class="lineno">   74</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">elif</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;enviroment&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0][1] <span class="keywordflow">in</span> hexnumber:</div>
-<div class="line"><span class="lineno">   76</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argEnviromentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; enviroment second character&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">   77</span>            f<span class="stringliteral">&#39;Not allowed character | Allowed: {hexnumber}&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">   78</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   80</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; enviroment&#39;</span>)</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   82</span>        int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;inactivelimit&#39;</span>])</div>
-<div class="line"><span class="lineno">   83</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; inactivelimit&#39;</span>)</div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">except</span> ValueError:</div>
-<div class="line"><span class="lineno">   85</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argInactiveLimitError(</div>
-<div class="line"><span class="lineno">   86</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; inactivelimit&#39;</span>), ValueError(<span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">   87</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;intro&#39;</span>] <span class="keywordflow">in</span> [<span class="keyword">True</span>, <span class="keyword">False</span>]:</div>
-<div class="line"><span class="lineno">   89</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argIntroError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; intro&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">   90</span>            <span class="stringliteral">&#39;Only \&#39;True\&#39; or \&#39;False\&#39;&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">   91</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   93</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; intro&#39;</span>)</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
-<div class="line"><span class="lineno">   95</span>        args.music = config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]</div>
-<div class="line"><span class="lineno">   96</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; music&#39;</span>)</div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;disable&#39;</span>:</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   76</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; environmentA&#39;</span>)</div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> str(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;environmentB&#39;</span>]).split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> hexnumber:</div>
+<div class="line"><span class="lineno">   78</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argenvironmentError(<span class="stringliteral">&#39;Wrong choice \&#39;basic info\&#39; =&gt; environmentB character&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   79</span>            f<span class="stringliteral">&#39;Not allowed character | Allowed: {hexnumber}&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   80</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   82</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; environmentB&#39;</span>)</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   84</span>        int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;inactivelimit&#39;</span>])</div>
+<div class="line"><span class="lineno">   85</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; inactivelimit&#39;</span>)</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">   87</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argInactiveLimitError(</div>
+<div class="line"><span class="lineno">   88</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; inactivelimit&#39;</span>), ValueError(<span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   89</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;intro&#39;</span>] <span class="keywordflow">in</span> [<span class="keyword">True</span>, <span class="keyword">False</span>]:</div>
+<div class="line"><span class="lineno">   91</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argIntroError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; intro&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">   92</span>            <span class="stringliteral">&#39;Only \&#39;True\&#39; or \&#39;False\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">   93</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   95</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; intro&#39;</span>)</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
+<div class="line"><span class="lineno">   97</span>        args.music = config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]</div>
 <div class="line"><span class="lineno">   98</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; music&#39;</span>)</div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  101</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argMusicError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; music&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  102</span>            <span class="stringliteral">&#39;Only \&#39;enable\&#39; or \&#39;disable\&#39;&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  103</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;sfw&#39;</span>, <span class="stringliteral">&#39;nsfw&#39;</span>]:</div>
-<div class="line"><span class="lineno">  105</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; type&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  106</span>            <span class="stringliteral">&#39;Only \&#39;sfw\&#39; or \&#39;nsfw\&#39;&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  107</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  109</span>        printnlog(<span class="stringliteral">&#39;waifu settings =&gt; type&#39;</span>)</div>
-<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;sfw&#39;</span>:</div>
-<div class="line"><span class="lineno">  111</span>        category: list[str] = [<span class="stringliteral">&quot;waifu&quot;</span>, <span class="stringliteral">&quot;neko&quot;</span>, <span class="stringliteral">&quot;shinobu&quot;</span>, <span class="stringliteral">&quot;megumin&quot;</span>, <span class="stringliteral">&quot;bully&quot;</span>, <span class="stringliteral">&quot;cuddle&quot;</span>, <span class="stringliteral">&quot;cry&quot;</span>, <span class="stringliteral">&quot;hug&quot;</span>, <span class="stringliteral">&quot;awoo&quot;</span>, <span class="stringliteral">&quot;kiss&quot;</span>, <span class="stringliteral">&quot;lick&quot;</span>, <span class="stringliteral">&quot;pat&quot;</span>, <span class="stringliteral">&quot;smug&quot;</span>, <span class="stringliteral">&quot;bonk&quot;</span>, <span class="stringliteral">&quot;yeet&quot;</span>,</div>
-<div class="line"><span class="lineno">  112</span>                               <span class="stringliteral">&quot;blush&quot;</span>, <span class="stringliteral">&quot;smile&quot;</span>, <span class="stringliteral">&quot;wave&quot;</span>, <span class="stringliteral">&quot;highfive&quot;</span>, <span class="stringliteral">&quot;handhold&quot;</span>, <span class="stringliteral">&quot;nom&quot;</span>, <span class="stringliteral">&quot;bite&quot;</span>, <span class="stringliteral">&quot;glomp&quot;</span>, <span class="stringliteral">&quot;slap&quot;</span>, <span class="stringliteral">&quot;kill&quot;</span>, <span class="stringliteral">&quot;kick&quot;</span>, <span class="stringliteral">&quot;happy&quot;</span>, <span class="stringliteral">&quot;wink&quot;</span>, <span class="stringliteral">&quot;poke&quot;</span>, <span class="stringliteral">&quot;dance&quot;</span>, <span class="stringliteral">&quot;cringe&quot;</span>]</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
-<div class="line"><span class="lineno">  114</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  115</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  116</span>            sys.exit(1)</div>
-<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  118</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
-<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;nsfw&#39;</span>:</div>
-<div class="line"><span class="lineno">  120</span>        category: list[str] = [<span class="stringliteral">&#39;waifu&#39;</span>, <span class="stringliteral">&#39;neko&#39;</span>, <span class="stringliteral">&#39;trap&#39;</span>, <span class="stringliteral">&#39;blowjob&#39;</span>]</div>
-<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
-<div class="line"><span class="lineno">  122</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  123</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  124</span>            sys.exit(1)</div>
-<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  126</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
-<div class="line"><span class="lineno">  127</span>    server: list[str] = [<span class="stringliteral">&#39;nekos.best&#39;</span>, <span class="stringliteral">&#39;waifu.pics&#39;</span>, <span class="stringliteral">&#39;kyoko&#39;</span>, <span class="stringliteral">&#39;nekos_api&#39;</span>]</div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;neko settings&#39;</span>][<span class="stringliteral">&#39;server&#39;</span>] <span class="keywordflow">in</span> server:</div>
-<div class="line"><span class="lineno">  129</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argNekoError(<span class="stringliteral">&#39;Wrong choice in \&#39;neko settings\&#39; =&gt; server&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  130</span>            f<span class="stringliteral">&#39;Only take {str(server)}&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  131</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  133</span>        printnlog(<span class="stringliteral">&#39;neko settings =&gt; server&#39;</span>)</div>
-<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  135</span>        int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>])</div>
-<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">except</span> ValueError:</div>
-<div class="line"><span class="lineno">  137</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  138</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  139</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  140</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">if</span> 10 &lt;= int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>]):</div>
-<div class="line"><span class="lineno">  142</span>            printnlog(<span class="stringliteral">&#39;game settings =&gt; goal_score&#39;</span>)</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">raise</span> ValueError</div>
-<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">except</span> ValueError:</div>
-<div class="line"><span class="lineno">  146</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(</div>
-<div class="line"><span class="lineno">  147</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(<span class="stringliteral">&#39;minimum is 10&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  148</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  150</span>        float(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;computer_power&#39;</span>])</div>
-<div class="line"><span class="lineno">  151</span>        printnlog(<span class="stringliteral">&#39;game settings =&gt; computer_power&#39;</span>)</div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">except</span> ValueError:</div>
-<div class="line"><span class="lineno">  153</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; computer_power&#39;</span>), ValueError(</div>
-<div class="line"><span class="lineno">  154</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
-<div class="line"><span class="lineno">  155</span>        sys.exit(1)</div>
-<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
-<div class="line"><span class="lineno">  157</span>        musiclimittext: bool = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  158</span>        lenmusic = len(music)</div>
-<div class="line"><span class="lineno">  159</span>        configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">while</span> lenmusic &lt; configlenmusic:</div>
-<div class="line"><span class="lineno">  161</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> musiclimittext:</div>
-<div class="line"><span class="lineno">  162</span>                typewriter(printnlog(<span class="stringliteral">&#39;basic info =&gt; musicnumber; you have exceeded the limit by &#39;</span> +</div>
-<div class="line"><span class="lineno">  163</span>                                     str(int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]) - len(music)), toprint=<span class="keyword">False</span>))</div>
-<div class="line"><span class="lineno">  164</span>                musiclimittext: bool = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  165</span>            set_config(<span class="stringliteral">&#39;basic info&#39;</span>, <span class="stringliteral">&#39;musicnumber&#39;</span>, int(args.music)-1)</div>
-<div class="line"><span class="lineno">  166</span>            configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
-<div class="line"><span class="lineno">  167</span>            args.music = int(args.music) - 1</div>
+<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] == <span class="stringliteral">&#39;disable&#39;</span>:</div>
+<div class="line"><span class="lineno">  100</span>        printnlog(<span class="stringliteral">&#39;basic info =&gt; music&#39;</span>)</div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  103</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argMusicError(<span class="stringliteral">&#39;Wrong choice in \&#39;basic info\&#39; =&gt; music&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  104</span>            <span class="stringliteral">&#39;Only \&#39;enable\&#39; or \&#39;disable\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  105</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> [<span class="stringliteral">&#39;sfw&#39;</span>, <span class="stringliteral">&#39;nsfw&#39;</span>]:</div>
+<div class="line"><span class="lineno">  107</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; type&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  108</span>            <span class="stringliteral">&#39;Only \&#39;sfw\&#39; or \&#39;nsfw\&#39;&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  109</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  111</span>        printnlog(<span class="stringliteral">&#39;waifu settings =&gt; type&#39;</span>)</div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;sfw&#39;</span>:</div>
+<div class="line"><span class="lineno">  113</span>        category: list[str] = [<span class="stringliteral">&quot;waifu&quot;</span>, <span class="stringliteral">&quot;neko&quot;</span>, <span class="stringliteral">&quot;shinobu&quot;</span>, <span class="stringliteral">&quot;megumin&quot;</span>, <span class="stringliteral">&quot;bully&quot;</span>, <span class="stringliteral">&quot;cuddle&quot;</span>, <span class="stringliteral">&quot;cry&quot;</span>, <span class="stringliteral">&quot;hug&quot;</span>, <span class="stringliteral">&quot;awoo&quot;</span>, <span class="stringliteral">&quot;kiss&quot;</span>, <span class="stringliteral">&quot;lick&quot;</span>, <span class="stringliteral">&quot;pat&quot;</span>, <span class="stringliteral">&quot;smug&quot;</span>, <span class="stringliteral">&quot;bonk&quot;</span>, <span class="stringliteral">&quot;yeet&quot;</span>,</div>
+<div class="line"><span class="lineno">  114</span>                               <span class="stringliteral">&quot;blush&quot;</span>, <span class="stringliteral">&quot;smile&quot;</span>, <span class="stringliteral">&quot;wave&quot;</span>, <span class="stringliteral">&quot;highfive&quot;</span>, <span class="stringliteral">&quot;handhold&quot;</span>, <span class="stringliteral">&quot;nom&quot;</span>, <span class="stringliteral">&quot;bite&quot;</span>, <span class="stringliteral">&quot;glomp&quot;</span>, <span class="stringliteral">&quot;slap&quot;</span>, <span class="stringliteral">&quot;kill&quot;</span>, <span class="stringliteral">&quot;kick&quot;</span>, <span class="stringliteral">&quot;happy&quot;</span>, <span class="stringliteral">&quot;wink&quot;</span>, <span class="stringliteral">&quot;poke&quot;</span>, <span class="stringliteral">&quot;dance&quot;</span>, <span class="stringliteral">&quot;cringe&quot;</span>]</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
+<div class="line"><span class="lineno">  116</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  117</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  118</span>            sys.exit(1)</div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  120</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">elif</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>] == <span class="stringliteral">&#39;nsfw&#39;</span>:</div>
+<div class="line"><span class="lineno">  122</span>        category: list[str] = [<span class="stringliteral">&#39;waifu&#39;</span>, <span class="stringliteral">&#39;neko&#39;</span>, <span class="stringliteral">&#39;trap&#39;</span>, <span class="stringliteral">&#39;blowjob&#39;</span>]</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;waifu settings&#39;</span>][<span class="stringliteral">&#39;category&#39;</span>].split(<span class="stringliteral">&#39; &#39;</span>)[0] <span class="keywordflow">in</span> category:</div>
+<div class="line"><span class="lineno">  124</span>            error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argWaifuError(<span class="stringliteral">&#39;Wrong choice in \&#39;waifu settings\&#39; =&gt; category&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  125</span>                <span class="stringliteral">&#39;Use \&#39;waifu\&#39; and see option in setup function&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  126</span>            sys.exit(1)</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  128</span>            printnlog(<span class="stringliteral">&#39;waifu settings =&gt; category&#39;</span>)</div>
+<div class="line"><span class="lineno">  129</span>    server: list[str] = [<span class="stringliteral">&#39;nekos.best&#39;</span>, <span class="stringliteral">&#39;waifu.pics&#39;</span>, <span class="stringliteral">&#39;kyoko&#39;</span>, <span class="stringliteral">&#39;nekos_api&#39;</span>]</div>
+<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> config[<span class="stringliteral">&#39;neko settings&#39;</span>][<span class="stringliteral">&#39;server&#39;</span>] <span class="keywordflow">in</span> server:</div>
+<div class="line"><span class="lineno">  131</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argNekoError(<span class="stringliteral">&#39;Wrong choice in \&#39;neko settings\&#39; =&gt; server&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  132</span>            f<span class="stringliteral">&#39;Only take {str(server)}&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  133</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  135</span>        printnlog(<span class="stringliteral">&#39;neko settings =&gt; server&#39;</span>)</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  137</span>        int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>])</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  139</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  140</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  141</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> 10 &lt;= int(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;goal_score&#39;</span>]):</div>
+<div class="line"><span class="lineno">  144</span>            printnlog(<span class="stringliteral">&#39;game settings =&gt; goal_score&#39;</span>)</div>
+<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">raise</span> ValueError</div>
+<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  148</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(</div>
+<div class="line"><span class="lineno">  149</span>            <span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; goal_score&#39;</span>), ValueError(<span class="stringliteral">&#39;minimum is 10&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  150</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  152</span>        float(config[<span class="stringliteral">&#39;game settings&#39;</span>][<span class="stringliteral">&#39;computer_power&#39;</span>])</div>
+<div class="line"><span class="lineno">  153</span>        printnlog(<span class="stringliteral">&#39;game settings =&gt; computer_power&#39;</span>)</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">except</span> ValueError:</div>
+<div class="line"><span class="lineno">  155</span>        error_get(ExceptionGroup(<span class="stringliteral">&#39;&#39;</span>, [argGameError(<span class="stringliteral">&#39;Wrong choice in \&#39;game settings\&#39; =&gt; computer_power&#39;</span>), ValueError(</div>
+<div class="line"><span class="lineno">  156</span>            <span class="stringliteral">&#39;take only numbers&#39;</span>)]), [get_line_number()])</div>
+<div class="line"><span class="lineno">  157</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">if</span> config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;music&#39;</span>] == <span class="stringliteral">&#39;enable&#39;</span>:</div>
+<div class="line"><span class="lineno">  159</span>        musiclimittext: bool = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  160</span>        lenmusic = len(music)</div>
+<div class="line"><span class="lineno">  161</span>        configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
+<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">while</span> lenmusic &lt; configlenmusic:</div>
+<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> musiclimittext:</div>
+<div class="line"><span class="lineno">  164</span>                typewriter(printnlog(<span class="stringliteral">&#39;basic info =&gt; musicnumber; you have exceeded the limit by &#39;</span> +</div>
+<div class="line"><span class="lineno">  165</span>                                     str(int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>]) - len(music)), toprint=<span class="keyword">False</span>))</div>
+<div class="line"><span class="lineno">  166</span>                musiclimittext: bool = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  167</span>            config = set_config(<span class="stringliteral">&#39;basic info&#39;</span>, <span class="stringliteral">&#39;musicnumber&#39;</span>, int(args.music)-1)</div>
+<div class="line"><span class="lineno">  168</span>            configlenmusic = int(config[<span class="stringliteral">&#39;basic info&#39;</span>][<span class="stringliteral">&#39;musicnumber&#39;</span>])</div>
+<div class="line"><span class="lineno">  169</span>            args.music = int(args.music) - 1</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -337,7 +339,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d2/d33/namespacearguments.html">arguments</a></li>
-    <li class="footer">Generated on Sat Apr 29 2023 13:35:04 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Sun Apr 30 2023 16:09:14 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

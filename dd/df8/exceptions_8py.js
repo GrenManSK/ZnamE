@@ -6,7 +6,7 @@ var exceptions_8py =
     [ "exceptions.argInactiveLimitError", "df/deb/classexceptions_1_1arg_inactive_limit_error.html", null ],
     [ "exceptions.argMusicListError", "df/de6/classexceptions_1_1arg_music_list_error.html", null ],
     [ "exceptions.argMusicError", "d5/d36/classexceptions_1_1arg_music_error.html", null ],
-    [ "exceptions.argEnviromentError", "dd/dbe/classexceptions_1_1arg_enviroment_error.html", null ],
+    [ "exceptions.argenvironmentError", "d2/d37/classexceptions_1_1argenvironment_error.html", null ],
     [ "exceptions.argWaifuError", "da/dcb/classexceptions_1_1arg_waifu_error.html", null ],
     [ "exceptions.argNekoError", "d1/d60/classexceptions_1_1arg_neko_error.html", null ],
     [ "exceptions.argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],
