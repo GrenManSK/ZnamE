@@ -50,7 +50,6 @@ basic info:
   environmentB: [0-f]
   inactivelimit: [Any number]
   intro: [True/False]
-  lang: ['SK', 'EN', 'JP']
   music: [disable/enable]
   musiclist: [Any Youtube video title, divided by comma]
   musicnumber: [Any number; Max is number of items in musiclist]
@@ -72,7 +71,6 @@ waifu settings:
 CLI Arguments
 
 ```plain
--lang --language {EN, SK, JP} # Select language of the aplication defaut to config option
 -v --version {} # Show version of the app
 -ef --endf {} # Will not automatically end program
 -ni --nointro {} # Will not start intro

@@ -8,11 +8,6 @@ load_dotenv('.env')
 class configNoOption(Exception):
     pass
 
-
-class argLanguageError(Exception):
-    pass
-
-
 class argIntroError(Exception):
     pass
 

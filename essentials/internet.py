@@ -18,15 +18,7 @@ def internet(args):
             break
         number += 1
         if 10 >= number >= 5:
-            if args.language == "SK":
-                printnlog(
-                    "Zdá sa, že máme problém s internetovým pripojením")
-            elif args.language == "EN":
-                printnlog(
-                    "Seems like we're having trouble with internet connection")
-            elif args.language == "JP":
-                printnlog(
-                    "インターネット接続に問題があるようです\nIf you don't see any of characters watch 'help.txt'")
+            printnlog("Seems like we're having trouble with internet connection")
             break
         if number >= 10:
             break
@@ -46,13 +38,7 @@ def internet_check(args) -> None:
     except requests.ConnectionError:  # type: ignore
         line_number: int = get_line_number()
         if __name__ == '__main__':
-            if args.language == "SK":
-                printnlog("Vaše internetové pripojenie nefunguje")
-            elif args.language == "EN":
-                printnlog("The internet connection is down")
-            elif args.language == "JP":
-                printnlog(
-                    "インターネット接続がダウンしています\nIf you don't see any of characters watch 'help.txt'")
+            printnlog("The internet connection is down")
             sleep(2)
             sys.exit(1)
 
