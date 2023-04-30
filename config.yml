@@ -1,5 +1,6 @@
 basic info:
-  environment: '0f'
+  environmentA: 0
+  environmentB: f
   inactivelimit: 300
   intro: false
   lang: EN

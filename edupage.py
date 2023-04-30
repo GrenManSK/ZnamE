@@ -170,7 +170,9 @@ try:  # type: ignore
             logger.next(printnlog(
                 'Language: ' + config['basic info']['lang'].split(' ')[0], toprint=False))
             logger.stay(printnlog(
-                'environment: ' + str(config['basic info']['environment']).split(' ')[0], toprint=False))
+                'environmentA: ' + str(config['basic info']['environmentA']).split(' ')[0], toprint=False))
+            logger.stay(printnlog(
+                'environmentB: ' + str(config['basic info']['environmentB']).split(' ')[0], toprint=False))
             logger.stay(printnlog(
                 'Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
             logger.stay(printnlog(
@@ -210,7 +212,7 @@ try:  # type: ignore
         with open('config.yml', 'w') as configfile:
             yaml.dump(config, configfile)
         config = yaml.safe_load(open('config.yml', 'r'))
-        return info
+        return config
 
     if __name__ == '__main__':
         from essentials.arguments import arguments, check_correctness
@@ -250,7 +252,8 @@ try:  # type: ignore
 
             with open('CONFIG_OPTIONS.txt', 'w') as config_file:
                 config_file.write('basic info:\n')
-                config_file.write(f'  environment: \'[0-f][0-f]\'\n')
+                config_file.write(f'  environmentA: \'[0-f]\'\n')
+                config_file.write(f'  environmentB: \'[0-f]\'\n')
                 config_file.write(f'  inactivelimit: [Any number]\n')
                 config_file.write(f'  intro: [True/False]\n')
                 config_file.write(f'  lang: {language}\n')
@@ -359,7 +362,7 @@ try:  # type: ignore
                 install_choco(logger)
             if os.path.isfile('INSTALL'):
                 from essentials.app_alternations import install_packages
-                install_packages()
+                install_packages(args, logger)
             sleep(1)
             os.remove('INSTALL_RESTART')
             typewriter('Trying ffmpeg ...')
@@ -430,7 +433,7 @@ try:  # type: ignore
         print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
         verzia = open('version', 'r')
-        os.system('color ' + config['basic info']['environment'])
+        os.system('color ' + str(config['basic info']['environmentA']) + str(config['basic info']['environmentA']))
         os.system('Title ' + 'ZnámE')
         user32 = ctypes.windll.user32
         screensize: tuple[int, int] = user32.GetSystemMetrics(
@@ -1180,8 +1183,7 @@ try:  # type: ignore
         import downloadmusic  # type: ignore
         from essentials.app_alternations import installing_carousel
         typewriter('Starting web player', ttime=0.01)
-        spotdl = Thread(target=downloadmusic.spotdl_get)
-        spotdl.start()
+        Thread(target=downloadmusic.spotdl_get).start()
         with open('SPOTDL_OUTPUT', 'w', encoding='utf-8') as file:
             subprocess.run(['python', '-m', 'spotdl', 'web'],
                            stdout=file, text=True)
@@ -1223,6 +1225,7 @@ try:  # type: ignore
         except Exception:
             pass
         sleep(1)
+        pg.write('music\n')
         return musiclistnewstring
 
     if __name__ == '__main__':
@@ -1316,6 +1319,7 @@ try:  # type: ignore
         global config
         global loginvstupuser
         global historyfile
+        global music
         try:
             """
             The main function. This is where the program starts. It is the first function called.
@@ -1336,10 +1340,16 @@ try:  # type: ignore
             musiclistnew: list = []
             for i in range(len(music)):
                 music_name = music[i]
+                music.remove(music_name)
                 if not os.path.exists('assets/' + str(music_name) + '.mp3'):
                     musiclistnew.append(DownloadMusic(str(music_name)))
                 else:
                     musiclistnew.append(music_name)
+            music = []
+            musiclistnewstring: str = ''
+            for i in range(len(musiclistnew)):
+                musiclistnewstring += str(musiclistnew[i]) + ','
+            set_config('basic info', 'musiclist', str(musiclistnewstring[0:-1]))
             intro()
             inactive1: bool = False
 
@@ -1749,6 +1759,11 @@ try:  # type: ignore
                             to_append = spotMusicDow().split(',')
                             for item in to_append:
                                 musiclistnew.append(item)
+                            musiclistnewstring: str = ''
+                            for i in range(len(musiclistnew)):
+                                musiclistnewstring += str(musiclistnew[i]) + ','
+                            set_config('basic info', 'musiclist',
+                                    str(musiclistnewstring[0:-1]))
                             try:
                                 os.remove('MUSIC')
                             except Exception:
@@ -1774,10 +1789,18 @@ try:  # type: ignore
                             os.remove(
                                 'assets/' + musiclistnew[musicvstup-1] + '.mp3')
                             musiclistnew.remove(musiclistnew[musicvstup-1])
-                            while len(musiclistnew) + 1 < int(config['basic info']['musicnumber']):
+                            lenmusic = len(musiclistnew) + 1
+                            intconfig = int(config['basic info']['musicnumber'])
+                            while lenmusic < intconfig:
                                 set_config('basic info', 'musicnumber',
                                            int(args.music)-1)
+                                intconfig = int(config['basic info']['musicnumber'])
                                 continue
+                            musiclistnewstring: str = ''
+                            for i in range(len(musiclistnew)):
+                                musiclistnewstring += str(musiclistnew[i]) + ','
+                            set_config('basic info', 'musiclist',
+                                    str(musiclistnewstring[0:-1]))
                             pg.write('music\n')
                         if not musicnone:
                             if musicvstup == len(musiclistnew) + 3:  # back
@@ -2683,6 +2706,11 @@ try:  # type: ignore
                     for file_name in os.listdir(source_dir):
                         shutil.move(os.path.join(source_dir, file_name),
                                     'datafolder/' + source_dir)
+                    source_dir: str = 'yt_dl/'
+                    os.mkdir('datafolder/' + source_dir)
+                    for file_name in os.listdir(source_dir):
+                        shutil.move(os.path.join(source_dir, file_name),
+                                    'datafolder/' + source_dir)
                     files: list = ['downloadmusic.py', 'anime_search.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
                                    'playvideo.py', 'settings.py', 'media.py', 'game_assets.py', 'completer.py']
                     for i in files:
@@ -2701,6 +2729,7 @@ try:  # type: ignore
                                         '-mode', 'repack', '-e', 'neko_vol0_steam', '-lang', 'JP'])
                     shutil.rmtree('datafolder')
                     shutil.rmtree('apphtml')
+                    shutil.rmtree('yt_dl')
                     shutil.rmtree('assets')
                     if args.language == "SK":
                         logger.stay("HOTOVO")
