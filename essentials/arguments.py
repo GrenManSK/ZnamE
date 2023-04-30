@@ -68,16 +68,18 @@ def check_correctness(args, config, logger, music, set_config):
     hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                             '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
     logger.stay(printnlog("Checking config correctness", toprint=False))
-    if not str(config['basic info']['environment']).split(' ')[0][0] in hexnumber:
-        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environment first character'), ValueError(
-            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
-        sys.exit(1)
-    elif not str(config['basic info']['environment']).split(' ')[0][1] in hexnumber:
-        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environment second character'), ValueError(
+    if not str(config['basic info']['environmentA']).split(' ')[0] in hexnumber:
+        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environmentA character'), ValueError(
             f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
         sys.exit(1)
     else:
-        printnlog('basic info => environment')
+        printnlog('basic info => environmentA')
+    if not str(config['basic info']['environmentB']).split(' ')[0] in hexnumber:
+        error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environmentB character'), ValueError(
+            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
+        sys.exit(1)
+    else:
+        printnlog('basic info => environmentB')
     try:
         int(config['basic info']['inactivelimit'])
         printnlog('basic info => inactivelimit')
@@ -162,6 +164,6 @@ def check_correctness(args, config, logger, music, set_config):
                 typewriter(printnlog('basic info => musicnumber; you have exceeded the limit by ' +
                                      str(int(config['basic info']['musicnumber']) - len(music)), toprint=False))
                 musiclimittext: bool = True
-            set_config('basic info', 'musicnumber', int(args.music)-1)
+            config = set_config('basic info', 'musicnumber', int(args.music)-1)
             configlenmusic = int(config['basic info']['musicnumber'])
             args.music = int(args.music) - 1

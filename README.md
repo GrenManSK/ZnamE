@@ -20,6 +20,8 @@ Using [nekos-best](https://github.com/nekos-best) for NEKO photos
 
 Using [waifu-api](https://github.com/Waifu-pics/waifu-api) for WAIFU photos
 
+Using [ytdownload](https://github.com/KalebSchmidlkofer/ytdownload) for music from config
+
 ---
 
 **Test login credentials:**
@@ -44,7 +46,8 @@ Without it download music function from yml file won't work
 
 ```yaml
 basic info:
-  environment: '[0-f][0-f]'
+  environmentA: [0-f]
+  environmentB: [0-f]
   inactivelimit: [Any number]
   intro: [True/False]
   lang: ['SK', 'EN', 'JP']
