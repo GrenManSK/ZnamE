@@ -18,64 +18,25 @@ def unpack(datelog, args, cachename: str) -> None:
     :return: :
     """
     with zipfile.ZipFile(cachename, mode='r') as zip:
-        if args.language == "SK":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                    log(f"{os.path.basename(member)}(" +
-                        str(os.path.getsize(member)) + "B)")
-                except zipfile.error as e:
-                    pass
-        elif args.language == "EN":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                    log(f"{os.path.basename(member)}(" +
-                        str(os.path.getsize(member)) + "B)")
-                except zipfile.error as e:
-                    pass
-        elif args.language == "JP":
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                    log(f"{os.path.basename(member)}(" +
-                        str(os.path.getsize(member)) + "B)")
-                except zipfile.error as e:
-                    pass
+        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+            try:
+                zip.extract(member)
+                tqdm.write(
+                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                log(f"{os.path.basename(member)}(" +
+                    str(os.path.getsize(member)) + "B)")
+            except zipfile.error as e:
+                pass
         zip.close()
-    if args.language == "SK":
-        typewriter(printnlog('Hotovo\n', toprint=False))
-        typewriter(
-            printnlog("Rozbaľujem druhu časť...\n", toprint=False))
-    elif args.language == "EN":
-        typewriter(printnlog('Done\n', toprint=False))
-        typewriter(
-            printnlog("Unpacking second part...\n", toprint=False))
-    elif args.language == "JP":
-        typewriter(printnlog('終わり\n', toprint=False))
-        typewriter(printnlog("2 番目の部分を解凍しています...\n", toprint=False))
+    typewriter(printnlog('Done\n', toprint=False))
+    typewriter(printnlog("Unpacking second part...\n", toprint=False))
     """
     Extract the data from the xp3 file.
     @param xp3_file - the xp3 file to extract from
     @param output_folder - the folder to extract to
     @param extract_name - the name of the file to extract
-    @param language - the language to extract
     """
-    if args.language == "SK":
-        subprocess.call(
-            [sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
-    elif args.language == "EN":
-        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                        'data1', '-e', 'neko_vol0_steam', '-lang', 'EN'])
-    elif args.language == "JP":
-        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                        'data1', '-e', 'neko_vol0_steam', '-lang', 'JP'])
+    subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
     try:
         shutil.move('data1/data', 'data')
     except Exception:
@@ -110,12 +71,7 @@ def unpack(datelog, args, cachename: str) -> None:
 
 
 def extract(args, datelog):
-    if args.language == "SK":
-        typewriter(printnlog('\nZačínam rozbaľovať\n', toprint=False))
-    elif args.language == "EN":
-        typewriter(printnlog('\nStarting to extract\n', toprint=False))
-    elif args.language == "JP":
-        typewriter(printnlog("\n抽出開始\n", toprint=False))
+    typewriter(printnlog('\nStarting to extract\n', toprint=False))
     try:
         datafiles: list = []
         for file in os.listdir("./"):
@@ -125,12 +81,7 @@ def extract(args, datelog):
         for i in range(1, len(datafiles)+1):
             unpack(datelog, args, datafiles[-i])
         shutil.copy('data', 'data_backup')
-        if args.language == "SK":
-            printnlog('\nHotovo\n')
-        elif args.language == "EN":
-            printnlog('\nDone\n')
-        elif args.language == "JP":
-            printnlog('\n完了\n')
+        printnlog('\nDone\n')
         check = open('data', 'r')
         check_new = open('data_dummy', 'w')
         for i in check.read():

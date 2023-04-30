@@ -9,8 +9,7 @@ from .exceptions import error_get
 def arguments(config):
     parser = argparse.ArgumentParser()
     UNSPECIFIED = object()
-    language: list[str] = ['SK', 'EN', 'JP']  # Supported languages
-
+    
     "Setting up music if none leaving empty list"
 
     music: list[str] = list(
@@ -24,8 +23,6 @@ def arguments(config):
     musicchoices: list[str] = ['0']
     for i in range(1, len(music) + 1):
         musicchoices.append(str(i))
-    parser.add_argument('-lang', '--language', choices=language,
-                        help='Language selection', nargs='?')
     parser.add_argument('-v', '--version', choices=[],
                         help='Show version of this program', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-ef', '--endf', choices=[],
@@ -61,7 +58,7 @@ def arguments(config):
                         help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-debug', '--debug', choices=[],
                         help='Debugging enabled', default=UNSPECIFIED, nargs='?')
-    return parser, music, language, UNSPECIFIED
+    return parser, music, UNSPECIFIED
 
 
 def check_correctness(args, config, logger, music, set_config):

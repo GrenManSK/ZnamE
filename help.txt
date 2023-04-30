@@ -1,54 +1,9 @@
-SK
-
-Ak kód okamžite zlyhá, skúste prejsť na terminál (CMD) a zadajte 'py.exe -m pip install request' alebo 'py.exe pip install requests'
-
-Pre pomoc s argumentmi použite terminal(CMD) zvyčajne 'py.exe edupage.py -h'
-Keď chcete zmeniť jazyk programu do terminalu(CMD) vložte zvyčajne 'py.exe edupage.py -lang {language}'
-Podporované jazyky: SK = Slovak
-                    EN = English
-                    JP = Japanese
-
-Má časti ktoré sú naschvál spomalené
-
-Ak chcete japonský jazyk, zmeňte písmo Pythonu na jedno z nasledujúcich: NSimSun, NSimSun-ExtB, MS Mincho, MS Gothic
-
-Ak ste tu, pretože nevidíte japonské znaky, urobte zmeny ako vyššie uvedený problém
-
-Aby ste to urobili, musíte kliknúť na ikonu terminálu (CMD) Python > Vlastnosti > Písmo a zmeniť písmo podľa vlastného výberu
-
-EN
-
 If code crash immediately try going to terminal(CMD) and type 'py.exe -m pip install requests' or 'py.exe pip install requests'
 
 For help with arguments use terminal(CMD) usually 'py.exe edupage.py -h'
-When you want to change the language of the program in the terminal (CMD) usually enter 'py.exe edupage.py -lang {language}'
-Supported languages: SK = Slovak
-                     EN = English
-                     JP = Japanese
 
 It has parts that are slowed down on purpose
-
-If you want Japanese language change Python font to one of the following: NSimSun, NSimSun-ExtB, MS Mincho, MS Gothic
 
 If you here because you can't see Japanese characters make change as aforementioned problem
 
 For you to do it you need to click in terminal (CMD) Python icon > Properties > Font and change to font of your choice
-
-
-JP
-
-コードがすぐにクラッシュする場合は、ターミナル (CMD) に移動して、「py.exe -m pip install requests」または「py.exe pip install requests」と入力してみてください。
-
-引数のヘルプについては、通常は「py.exe edupage.py -h」を使用して端末 (CMD) を使用します。
-端末 (CMD) でプログラムの言語を変更する場合は、通常、「py.exe edupage.py -lang {language}」と入力します。
-サポートされている言語: SK = スロバキア語
-                      EN = 英語
-                      JP = 日本語
-
-わざと遅くしている部分がある
-
-日本語に変更する場合は、Python フォントを次のいずれかに変更します: NSimSun、NSimSun-ExtB、MS 明朝、MS ゴシック
-
-日本語の文字が表示されないのでここにいる場合は、前述の問題のように変更します
-
-そのためには、ターミナル (CMD) の Python アイコン > [プロパティ] > [フォント] をクリックして、選択したフォントに変更する必要があります。

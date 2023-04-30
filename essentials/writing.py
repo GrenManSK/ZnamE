@@ -77,10 +77,5 @@ def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
 
 def show_version(args):
     verzia = open('version', 'r')
-    if args.language == "SK":
-        typewriter('Používate ZnámE ' + verzia.read() + "\n")
-    elif args.language == "EN":
-        typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
-    elif args.language == "JP":
-        typewriter('ZnámE を使用しています ' + verzia.read() + "\n")
+    typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
     verzia.close()

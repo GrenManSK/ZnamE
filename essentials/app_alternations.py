@@ -19,7 +19,7 @@ from final.mathematical import get_id
 load_dotenv('.env')
 
 updateapp: str = str(
-    'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'-lang\', \'--language\', choices=[\'SK\',\'EN\',\'JP\'], help=\'Language selection\', nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nargs.language = config[\'basic info\'][\'lang\']\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -lang \' + args.language + \' -update\', shell=True)\n    sys.exit(0)')
+        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
 
 
 def update_app(args, logger):
@@ -33,13 +33,7 @@ def update_app(args, logger):
                 printnlog('You have the latest version', toprint=False))
             logger.prev('')
         else:
-            if args.language == "SK":
-                printnlog(
-                    "Bola nájdená nová aktualizacia: " + page.text)
-            elif args.language == "EN":
-                printnlog("Newer version was found: " + page.text)
-            elif args.language == "JP":
-                printnlog("新しいバージョンが見つかりました: " + page.text)
+            printnlog("Newer version was found: " + page.text)
             verzia.close()
             sleep(0.5)
             url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
@@ -48,30 +42,13 @@ def update_app(args, logger):
             with open(filename, 'wb') as output_file:
                 download(url, 'new.zip')
             with zipfile.ZipFile("new.zip", mode='r') as zip:
-                if args.language == "SK":
-                    for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Rozbaľujem '):
-                        try:
-                            zip.extract(member)
-                            tqdm.write(
-                                f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                        except zipfile.error as e:
-                            pass
-                elif args.language == "EN":
-                    for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                        try:
-                            zip.extract(member)
-                            tqdm.write(
-                                f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                        except zipfile.error as e:
-                            pass
-                elif args.language == "JP":
-                    for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='抽出中 '):
-                        try:
-                            zip.extract(member)
-                            tqdm.write(
-                                f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                        except zipfile.error as e:
-                            pass
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                    except zipfile.error as e:
+                        pass
                 zip.close()
             os.remove("new.zip")
             directory = None
@@ -84,15 +61,7 @@ def update_app(args, logger):
 
                 "If program fails to download update refer user to website"
 
-                if args.language == "SK":
-                    printnlog(
-                        "CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n'https://github.com/GrenManSK/ZnamE'")
-                elif args.language == "EN":
-                    printnlog(
-                        "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-                elif args.language == "JP":
-                    printnlog(
-                        "ダウンロード エラー\n'https://github.com/GrenManSK/ZnamE' から新しいバージョンを手動でダウンロードしてください")
+                printnlog("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
                 sleep(2)
                 input()
                 sys.exit(1)
@@ -115,10 +84,10 @@ def update_app(args, logger):
             crupdate.close()
             if args.endf is None:
                 subprocess.call(sys.executable + ' update.py ' + directory +
-                                ' -lang ' + args.language + ' -endf', shell=True)
+                                ' -endf', shell=True)
             else:
                 subprocess.call(sys.executable + ' update.py ' +
-                                directory + ' -lang ' + args.language, shell=True)
+                                directory, shell=True)
             sleep(0.1)
             os.remove('crash_dump-' + datelog + '.txt')
             try:
@@ -440,7 +409,7 @@ def install_packages(args, logger):
         logger.stay("Restarting program ...")
         sleep(1)
         subprocess.check_output(
-            'start edupage.py --language ' + args.language, shell=True)
+            'start edupage.py ', shell=True)
         os.remove(f"crash_dump-{datelog}.txt")
     os.remove('choco_output')
     try:
