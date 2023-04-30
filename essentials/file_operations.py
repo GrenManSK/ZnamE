@@ -5,6 +5,7 @@ from .writing import log, typewriter, printnlog
 import subprocess
 import sys
 import shutil
+import stat
 
 
 def unpack(datelog, args, cachename: str) -> None:
@@ -147,3 +148,14 @@ def extract(args, datelog):
         os.rename('data_dummy', 'data')
     except FileNotFoundError:
         pass
+
+
+def delete(file):
+    try:
+        shutil.rmtree(file, onerror=on_rm_error)
+    except:
+        pass
+    
+def on_rm_error(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)
+    os.unlink(path)
