@@ -267,8 +267,8 @@ try:  # type: ignore
 
         "Set of all dependencies using chocolatey"
 
-        potrebne: set[str] = {'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose',
-                              'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv'}
+        potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc','pywinauto',
+                            'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
         printnlog('Libraries needed: ', end='')
         potrebne1: list[str] = list(potrebne)
         for i in range(0, len(potrebne1)):
@@ -1253,25 +1253,21 @@ try:  # type: ignore
                 this function prints the version of the program 
             """
             show_version(args)
-            from completer import SimpleCompleter  # type: ignore
-            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko', 'setup', 'settings',
+            from completer import SimpleCompleter, completer  # type: ignore
+            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko', 'setup', 'settings', 'anotherwaifu', 'anotherneko',
                                   'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
-            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko', 'setup', 'settings',
+            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko', 'setup', 'settings', 'anotherwaifu', 'anotherneko',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help', 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah', '-advanced help']
             bq_completer = ['back', 'quit']
             if args.debug == None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
             while True:
-                readline.set_completer(
-                    SimpleCompleter(unlogged_completer).complete)
-                readline.parse_and_bind('tab: complete')
+                completer(unlogged_completer)
                 internet_check(args)
                 if not exit:
                     if logged:
-                        readline.set_completer(
-                            SimpleCompleter(logged_completer).complete)
-                        readline.parse_and_bind('tab: complete')
+                        completer(logged_completer)
                         if firstlogin:
                             logins += 1
                             firstlogin: bool = False
@@ -1319,13 +1315,12 @@ try:  # type: ignore
                             add_marks(
                                 linenumber=linenumber, historyname=historyname, neko=neko, waifu=waifu)
                     if topassword:
-                        readline.set_completer(
-                            SimpleCompleter(bq_completer).complete)
-                        readline.parse_and_bind('tab: complete')
+                        completer(bq_completer)
                         if savefilemode:   # type: ignore
                             vstup: str = savefile[9:15]   # type: ignore
                             linenumber -= 1
-                        vstup = input(str(linenumber) + ' Password > ')
+                        else:
+                            vstup = input(str(linenumber) + ' Password > ')
                         linenumber += 1
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + len(vstup)*'*' + ']\n')   # type: ignore
@@ -1970,9 +1965,7 @@ try:  # type: ignore
                             if len(historylist) == 0:
                                 print('History is empty')
                         if vstup == 'login' and not logged or tologin and not logged:
-                            readline.set_completer(
-                                SimpleCompleter(bq_completer).complete)
-                            readline.parse_and_bind('tab: complete')
+                            completer(bq_completer)
                             loginvstupuserL: str = ''
                             tologin: bool = False
                             savefilemode: bool = False
@@ -2010,8 +2003,9 @@ try:  # type: ignore
                                     savefilemode: bool = True
                             if savefilemode:
                                 loginvstupuser = savefile[0:6]   # type: ignore
-                            loginvstupuser = input(
-                                str(linenumber) + " Login Number (PID) > ")
+                            else:
+                                loginvstupuser = input(
+                                    str(linenumber) + " Login Number (PID) > ")
                             historyfile.write(
                                 '[' + str(linenumber) + ', ' + loginvstupuser + "]\n")
                             historyfile.close()
