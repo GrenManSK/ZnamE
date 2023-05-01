@@ -23,7 +23,7 @@ python-dotenv>=1.0.0
 pycryptodomex==3.16.02
 py_cpuinfo==9.0.0
 python-dotenv==1.0.0
-Pygments==2.13.0
+Pygments==2.15.1
 requests>=2.29.0
 rich==12.6.0
 semantic_version>=2.10.0
