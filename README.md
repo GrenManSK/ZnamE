@@ -32,16 +32,6 @@ Program will make backup files and credentials saves in 'C:/Users/your_name/AppD
 
 ---
 
-## Installation
-
-If you have already installed pytube go to the pytube directory and cipher.py file ({your_python}/site-packages/pytube/cipher.py)
-
-On line 411 remove all content of the line and change it to 'transform_plan_raw = js'
-
-Without it download music function from yml file won't work
-
----
-
 ## **Config options**
 
 ```yaml
