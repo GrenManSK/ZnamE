@@ -411,7 +411,6 @@ try:  # type: ignore
     if __name__ == '__main__':
         print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
-        verzia = open('version', 'r')
         os.system('color ' + str(config['basic info']['environmentA']) + str(config['basic info']['environmentA']))
         os.system('Title ' + 'ZnámE')
         user32 = ctypes.windll.user32
@@ -424,7 +423,7 @@ try:  # type: ignore
 
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
             from essentials.system_info import system_info
-            system_info(logger, screensize, verzia)
+            system_info(logger, screensize)
         if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
 
             "Creating backup files of data.xp2"
@@ -444,8 +443,7 @@ try:  # type: ignore
         logger.stay(printnlog("Defining functions", toprint=False))
 
     updateapp: str = str(
-        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
-
+        'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
     if __name__ == '__main__':
         if args.log is None:
             x = open('log_update.py', 'w')
