@@ -16,10 +16,12 @@ from dotenv import load_dotenv
 from pathlib import Path
 from threading import Thread
 from final.mathematical import get_id
+import glob
+import stat
 load_dotenv('.env')
 
 updateapp: str = str(
-        'import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    sleep(0.5)\n    shutil.move(\'edupage.py\', \'old/edupage.py\')\n    shutil.move(args.input + \'/edupage.py\', \'edupage.py\')\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
+        'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
 
 
 def update_app(args, logger):
@@ -28,41 +30,27 @@ def update_app(args, logger):
         url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
         page = requests.get(url)
         verzia = open('version', 'r')
-        if semantic_version.Version(page.text[1:]) <= semantic_version.Version(verzia.read()[1:]):
+        version = verzia.read()[1:]
+        verzia.close()
+        if semantic_version.Version(page.text[1:]) <= semantic_version.Version(version):
             logger.next(
                 printnlog('You have the latest version', toprint=False))
             logger.prev('')
         else:
             printnlog("Newer version was found: " + page.text)
-            verzia.close()
-            sleep(0.5)
-            url = 'https://api.github.com/repos/GrenManSK/ZnamE/zipball/main'
-            r = requests.get(url)
-            filename = "new.zip"
-            with open(filename, 'wb') as output_file:
-                download(url, 'new.zip')
-            with zipfile.ZipFile("new.zip", mode='r') as zip:
-                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                    try:
-                        zip.extract(member)
-                        tqdm.write(
-                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                    except zipfile.error as e:
-                        pass
-                zip.close()
-            os.remove("new.zip")
+            os.system(f"git clone https://github.com/GrenManSK/ZnamE.git")
             directory = None
             for path, currentDirectory, files in os.walk(Path.cwd()):
                 for directory1 in currentDirectory:
-                    if directory1.startswith("GrenManSK-ZnamE-"):
+                    if directory1.startswith("ZnamE"):
                         printnlog(directory1)
                         directory = directory1
+                        break
             if directory is None:
 
                 "If program fails to download update refer user to website"
 
                 printnlog("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
-                sleep(2)
                 input()
                 sys.exit(1)
             os.mkdir('old')
@@ -71,25 +59,32 @@ def update_app(args, logger):
             shutil.move('LICENSE', 'old/LICENSE')
             shutil.move('README.md', 'old/README.md')
             shutil.move('version', 'old/version')
-            shutil.copyfile('config.yml', 'config_old.yml')
-            sleep(0.5)
-            shutil.move(directory + "/data.xp2", 'data.xp2')
-            shutil.move(directory + "/help.txt", 'help.txt')
-            shutil.move(directory + "/LICENSE", 'LICENSE')
-            shutil.move(directory + "/README.md", 'README.md')
-            shutil.move(directory + "/version", 'version')
-            shutil.move(directory + "/config.yml", 'config.yml')
+            shutil.move('config.yml', 'config_old.yml')
+            for file_name in glob.glob('./ZnamE/**/**/*', recursive=True):
+                if os.path.isdir(file_name):
+                    continue
+                print(file_name)
+                print(file_name.replace('ZnamE\\', ''))
+                try:
+                    shutil.move(file_name, file_name.replace('ZnamE\\', ''))
+                except FileNotFoundError:
+                    break
             crupdate = open("update.py", "w")
             crupdate.write(updateapp)
             crupdate.close()
-            if args.endf is None:
-                subprocess.call(sys.executable + ' update.py ' + directory +
-                                ' -endf', shell=True)
-            else:
-                subprocess.call(sys.executable + ' update.py ' +
-                                directory, shell=True)
-            sleep(0.1)
+            print('Waiting 2 seconds to clear Access Denied Error')
+            sleep(2)
+            for i in os.listdir('ZnamE'):
+                if i.endswith('git'):
+                    tmp = os.path.join('ZnamE', i)
+                    while True:
+                        subprocess.call(['attrib', '-H', tmp])
+                        break
+                    shutil.rmtree(tmp, onerror=on_rm_error)
+            print('Waiting 2 seconds to clear Access Denied Error')
+            sleep(2)
             os.remove('crash_dump-' + datelog + '.txt')
+            shutil.rmtree('ZnamE', onerror=on_rm_error)
             try:
                 os.remove('choco_end')
             except Exception:
@@ -102,6 +97,12 @@ def update_app(args, logger):
                 os.remove('INSTALL_RESTART')
             except Exception:
                 pass
+            if args.endf is None:
+                subprocess.call(sys.executable + ' update.py ' + directory +
+                                ' -endf', shell=True)
+            else:
+                subprocess.call(sys.executable + ' update.py ' +
+                                directory, shell=True)
             sys.exit(0)
     except requests.ConnectionError:  # type: ignore
         line_number: int = get_line_number()
@@ -418,3 +419,7 @@ def install_packages(args, logger):
         pass
     if inst_number != 0:
         sys.exit(0)
+
+def on_rm_error(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)
+    os.unlink(path)
