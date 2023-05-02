@@ -2073,11 +2073,6 @@ try:  # type: ignore
                         elif logged and vstup == 'login':
                             print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
-                    media_player = vlc.MediaPlayer()
-                    media_player.set_fullscreen(True)
-                    media = vlc.Media("assets/end.mp4")
-                    media_player.set_media(media)
-                    media_player.play()
                     sleep(1.4)
                     from endscreen import not_restart, vlc_stop, not_offline_game  # type: ignore
                     if neko or waifu:
@@ -2094,6 +2089,11 @@ try:  # type: ignore
                                 pass
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
+                    media_player = vlc.MediaPlayer()
+                    media_player.set_fullscreen(True)
+                    media = vlc.Media("assets/end.mp4")
+                    media_player.set_media(media)
+                    media_player.play()
                     vlc_stop(media_player)
                     if not restart:
                         not_restart()
