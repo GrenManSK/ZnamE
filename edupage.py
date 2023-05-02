@@ -334,7 +334,7 @@ try:  # type: ignore
         pg.press('up')
         pg.keyUp('win')
     if __name__ == '__main__':
-        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
+        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             logger.stay(printnlog('First time setup', toprint=False))
             if not os.path.isfile('INSTALL_RESTART'):
                 from essentials.app_alternations import install_choco
