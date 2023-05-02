@@ -2093,6 +2093,12 @@ try:  # type: ignore
                     media_player.set_media(media)
                     media_player.play()
                     video_start = int(time.time())
+                    try:
+                        window = pygetwindow.getWindowsWithTitle(
+                            'VLC (Direct3D11 output)')[0]
+                        window.activate()
+                        window.maximize()
+                    except Exception: pass
                     mixer_stop()
                     if not restart:
                         not_restart()
@@ -2163,11 +2169,11 @@ try:  # type: ignore
                     # media_list.add_media(media)
                     # media_player.set_media_list(media_list)
                     # media_player.play()
-                    if args.test != None:
-                        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                        window.activate()
-                        window.maximize()
-                    sleep(5)
+                    # if args.test != None:
+                    #     window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                    #     window.activate()
+                    #     window.maximize()
+                    # sleep(5)
                     # media_player.stop()
                     # os.remove('output.mp4')
                     playhtml('apphtml\\end', 1, 3)
