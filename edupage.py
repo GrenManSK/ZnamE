@@ -421,7 +421,7 @@ try:  # type: ignore
         with open('.env', 'a') as dotenv:
             dotenv.write(f'SCREENSIZE={str(screensize)}')
 
-        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt") or args.update is None:
+        if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             from essentials.system_info import system_info
             system_info(logger, screensize)
         if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):
