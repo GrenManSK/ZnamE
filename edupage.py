@@ -2071,7 +2071,7 @@ try:  # type: ignore
                         elif logged and vstup == 'login':
                             print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
-                    from endscreen import not_restart, vlc_stop, not_offline_game  # type: ignore
+                    from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
                     if neko or waifu:
                         if not waifuvid:
                             pg.keyDown('alt')
@@ -2086,13 +2086,14 @@ try:  # type: ignore
                                 pass
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
+                    shutil.copy('assets/end.mp4', 'end.mp4')
                     media_player = vlc.MediaPlayer()
                     media_player.set_fullscreen(True)
-                    media = vlc.Media("assets/end.mp4")
+                    media = vlc.Media("end.mp4")
                     media_player.set_media(media)
                     media_player.play()
-                    sleep(1.4)
-                    vlc_stop(media_player)
+                    video_start = int(time.time())
+                    mixer_stop()
                     if not restart:
                         not_restart()
                     if not offline_game:
@@ -2149,27 +2150,26 @@ try:  # type: ignore
                     except Exception:
                         pass
                     logger.prev("Done\n")
-                    pg.screenshot().save('bg.png')
-                    shutil.copy('assets/green.mp4', 'green.mp4')
-                    os.system(
-                        "ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
-                    os.remove('bg.png')
-                    os.remove('green.mp4')
-                    player = vlc.Instance('--fullscreen')
-                    media_list = player.media_list_new()  # type: ignore
-                    media_player = player.media_list_player_new()  # type: ignore
-                    media = player.media_new("output.mp4")  # type: ignore
-                    media_list.add_media(media)
-                    media_player.set_media_list(media_list)
-                    media_player.play()
-                    sleep(0.5)
+                    # pg.screenshot().save('bg.png')
+                    # shutil.copy('assets/green.mp4', 'green.mp4')
+                    # os.system(
+                    #     "ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
+                    # os.remove('bg.png')
+                    # os.remove('green.mp4')
+                    # player = vlc.Instance('--fullscreen')
+                    # media_list = player.media_list_new()  # type: ignore
+                    # media_player = player.media_list_player_new()  # type: ignore
+                    # media = player.media_new("output.mp4")  # type: ignore
+                    # media_list.add_media(media)
+                    # media_player.set_media_list(media_list)
+                    # media_player.play()
                     if args.test != None:
                         window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                         window.activate()
                         window.maximize()
                     sleep(5)
-                    media_player.stop()
-                    os.remove('output.mp4')
+                    # media_player.stop()
+                    # os.remove('output.mp4')
                     playhtml('apphtml\\end', 1, 3)
                     try:
                         os.remove('data_backup')
@@ -2278,6 +2278,12 @@ try:  # type: ignore
                             datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
                     if args.endf is not None and not restart:
                         sleep(2.5)
+                    video_end = int(time.time())
+                    while video_end - video_start < 25:
+                        sleep(0.1)
+                        video_end = int(time.time())
+                    media_player.stop()
+                    os.remove('end.mp4')
                     if restart:
                         crrestart = open("restart.py", "w", encoding='utf-8')
                         crrestart.write(restartapp)
