@@ -1,15 +1,18 @@
 import argparse
 import sys
+import os
 from .internet import get_line_number
 from .writing import printnlog, typewriter
 from .exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
 from .exceptions import error_get
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def arguments(config):
     parser = argparse.ArgumentParser()
     UNSPECIFIED = object()
-    
+
     "Setting up music if none leaving empty list"
 
     music: list[str] = list(
@@ -164,3 +167,53 @@ def check_correctness(args, config, logger, music, set_config):
             config = set_config('basic info', 'musicnumber', int(args.music)-1)
             configlenmusic = int(config['basic info']['musicnumber'])
             args.music = int(args.music) - 1
+
+
+def print_config(logger, config):
+    logger.next(printnlog(
+        'environmentA: ' + str(config['basic info']['environmentA']).split(' ')[0], toprint=False))
+    logger.stay(printnlog(
+        'environmentB: ' + str(config['basic info']['environmentB']).split(' ')[0], toprint=False))
+    logger.stay(printnlog(
+        'Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
+    logger.stay(printnlog(
+        'Inactivelimit: ' + str(config['basic info']['inactivelimit']).split(' ')[0], toprint=False))
+    logger.stay(printnlog(
+        'Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
+    logger.stay(printnlog(
+        'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
+    logger.stay(printnlog('User history: ' +
+                str(config['user history']), toprint=False))
+    logger.prev('')
+
+
+
+def write_config_options(server):
+    datelog = os.getenv('DATELOG')
+    with open('CONFIG_OPTIONS.txt', 'w') as config_file:
+        config_file.write('basic info:\n')
+        config_file.write(f'  environmentA: \'[0-f]\'\n')
+        config_file.write(f'  environmentB: \'[0-f]\'\n')
+        config_file.write(f'  inactivelimit: [Any number]\n')
+        config_file.write(f'  intro: [True/False]\n')
+        config_file.write(f'  music: [disable/enable]\n')
+        config_file.write(
+            f'  st: [Any Youtube video title, divided by comma]\n')
+        config_file.write(
+            f'  [Any number; Max is number of items in musiclist]\n')
+        config_file.write('game settings:\n')
+        config_file.write(
+            f'  computer_power: [Any number; Lower the powerfull]\n')
+        config_file.write(f'  goal_score: [Any number]\n')
+        config_file.write(f'  offline_game: [true/false]\n')
+        config_file.write(f'neko settings:\n')
+        config_file.write(f'  server: {server}\n')
+        config_file.write(f'user history:\n')
+        category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
+                                "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+        config_file.write(f'category (sfw) = {category}\n')
+        category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
+        config_file.write(f'category (nsfw) = {category}\n')
+        config_file.write('  type: [sfw/nsfw]\n')
+    os.remove(f'crash_dump-{datelog}.txt')
+    sys.exit(1)

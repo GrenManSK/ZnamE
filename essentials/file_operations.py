@@ -188,11 +188,18 @@ def del_wn():
     remove('assets/video.mp4')
 
 
-def remove(file):
-    try:
-        return os.remove(file)
-    except Exception:
-        pass
+def remove(file: str|list[str]):
+    if isinstance(file, str):
+        try:
+            return os.remove(file)
+        except Exception:
+            pass
+    elif isinstance(file, list):
+        for filepath in file:
+            try:
+                return os.remove(filepath)
+            except Exception:
+                pass
 
 
 def mkdir(path):

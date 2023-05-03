@@ -23,74 +23,8 @@ try:  # type: ignore
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
     with open('.env', 'w') as dotenv:
         dotenv.write(f'DATELOG={datelog}\n')
-
-    def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
-        """
-        It takes a message and an end character, and prints the message to the console and to a file
-
-        :param msg: The message to be printed and logged
-        :param end: The character that will be printed at the end of the message, defaults to \n
-        (optional)
-        """
-        with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:
-            if toprint:
-                print(str(msg), end=str(end))
-            crashfile.write(str(msg) + str(end))
-        return msg
-
-    def to_info(msg: str, end: str = '\n', file: str = 'info.txt', mode: str = 'a', toprint: bool = True) -> str:
-        """
-        The to_info function takes a message and an end character, and prints the message to the console 
-        and to a file. It is used for logging purposes.
-
-        :param msg: Print the message to the console and log file
-        :param end: Determine what character will be printed at the end of the message
-        :param file: Specify the file to which the message will be printed
-        :param mode: Determine whether the file is being read or written to
-        :return: The message that was passed to it
-        """
-        with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:
-            if toprint:
-                print(str(msg), end=str(end))
-            crashfile.write(str(msg) + str(end))
-            crashfile.close()
-            crashfile1 = open(
-                f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/{file}", mode, encoding='utf-8')
-            crashfile1.write(str(msg) + str(end))
-        return msg
-
-    def log(msg: str, end: str = '\n') -> str:
-        """
-        It opens a file, writes a message to it, and closes the file
-
-        :param msg: The message to be logged
-        :param end: The character that will be used to end the line, defaults to \n (optional)
-        """
-        with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:
-            crashfile.write(str(msg) + str(end))
-        return msg
-
-    def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
-        """
-        The typewriter function prints each character in a word with a delay.
-        The default time between characters is 0.01 seconds, but the user can specify
-        their own value for the time.
-
-        :param word: Pass the word that needs to be printed
-        :param time=0.01: Set the time between each character printed out
-        :param end='\n': Print the output on a new line
-        :return: A string
-        """
-        for char in word:
-            sleep(ttime)
-            sys.stdout.write(char)
-            sys.stdout.flush()
-        sys.stdout.write(end)
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Importing initial libraries', toprint=False))
-
-    "List of all imported modules and globals"
+    from essentials.writing import printnlog, log, to_info, typewriter
+    from essentials.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))
     modulenames1: list = list(set(sys.modules) & set(globals()))
@@ -122,8 +56,6 @@ try:  # type: ignore
     print_module('cProfile')
     print_module('pstats')
     print_module('sys')
-    print_module()
-    import pkg_resources
     print_module()
     import subprocess
     print_module()
@@ -167,21 +99,8 @@ try:  # type: ignore
 
     try:
         if __name__ == '__main__':
-            logger.next(printnlog(
-                'environmentA: ' + str(config['basic info']['environmentA']).split(' ')[0], toprint=False))
-            logger.stay(printnlog(
-                'environmentB: ' + str(config['basic info']['environmentB']).split(' ')[0], toprint=False))
-            logger.stay(printnlog(
-                'Intro: ' + str(config['basic info']['intro']).split(' ')[0], toprint=False))
-            logger.stay(printnlog(
-                'Inactivelimit: ' + str(config['basic info']['inactivelimit']).split(' ')[0], toprint=False))
-            logger.stay(printnlog(
-                'Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
-            logger.stay(printnlog(
-                'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
-            logger.stay(printnlog('User history: ' +
-                        str(config['user history']), toprint=False))
-            logger.prev('')
+            from essentials.arguments import print_config
+            print_config(logger, config)
     except AttributeError:
         printnlog("'config.ini' file is corrupt -> option missing")
         error_get(configNoOption(
@@ -232,90 +151,12 @@ try:  # type: ignore
         logger.stay(printnlog('DONE', toprint=False))
 
         if args.configoptions == None:
-
-            "configoptions argument functionality"
-
-            with open('CONFIG_OPTIONS.txt', 'w') as config_file:
-                config_file.write('basic info:\n')
-                config_file.write(f'  environmentA: \'[0-f]\'\n')
-                config_file.write(f'  environmentB: \'[0-f]\'\n')
-                config_file.write(f'  inactivelimit: [Any number]\n')
-                config_file.write(f'  intro: [True/False]\n')
-                config_file.write(f'  music: [disable/enable]\n')
-                config_file.write(
-                    f'  st: [Any Youtube video title, divided by comma]\n')
-                config_file.write(
-                    f'  [Any number; Max is number of items in musiclist]\n')
-                config_file.write('game settings:\n')
-                config_file.write(
-                    f'  computer_power: [Any number; Lower the powerfull]\n')
-                config_file.write(f'  goal_score: [Any number]\n')
-                config_file.write(f'  offline_game: [true/false]\n')
-                config_file.write(f'neko settings:\n')
-                config_file.write(f'  server: {server}\n')
-                config_file.write(f'user history:\n')
-                category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
-                                       "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-                config_file.write(f'category (sfw) = {category}\n')
-                category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
-                config_file.write(f'category (nsfw) = {category}\n')
-                config_file.write('  type: [sfw/nsfw]\n')
-            os.remove(f'crash_dump-{datelog}.txt')
-            sys.exit(1)
+            from essentials.arguments import write_config_options
+            write_config_options(server)
 
     if __name__ == '__main__':
-
-        "Set of all dependencies using chocolatey"
-
-        potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc','pywinauto',
-                            'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
-        printnlog('Libraries needed: ', end='')
-        potrebne1: list[str] = list(potrebne)
-        for i in range(0, len(potrebne1)):
-            printnlog(potrebne1[i], end=' ')
-        printnlog("\n\nChecking for updates\n")
-        nainstalovane: set[str] = {
-            pkg.key for pkg in pkg_resources.working_set}
-        nenajdene: set[str] = potrebne - nainstalovane
-        if args.version is None:
-
-            "Printing out version and possible updates"
-
-            verzia = open('version', 'r')
-            logger.stay(printnlog(verzia.read(), toprint=False))
-            verzia.close()
-            if nenajdene:
-                print('Update is available: ', *nenajdene)
-            os.remove('crash_dump-' + datelog + '.txt')
-            sys.exit(1)
-        if __name__ == '__main__':
-
-            "Downloading dependencies using chocolatey"
-
-            if nenajdene:
-                printnlog('\nUpdate is available: ' + str(nenajdene))
-                vstup: str = input(
-                    f'Do you want to install following modules? {nenajdene} (Y/n)> ').lower()
-                if vstup in ['', 'y']:
-                    printnlog("\nDownloading updates")
-                    subprocess.check_call(
-                        ['python', '-m', 'pip', 'install', *nenajdene])
-                    if 'pytube' in nenajdene:
-                        import site
-                        site_packages = site.getsitepackages()[1]
-                        input('Now you will be transferred to the script file in which you need to change code in line 411\nto \'transform_plan_raw = js\'\n!!! This is important without it downloading music won\'t work')
-                        os.system(
-                            f'notepad.exe {site_packages}/pytube/cipher.py')
-                    printnlog("The program is restarting!!!")
-                    sleep(1)
-                    os.system('cls')
-                    os.remove('crash_dump-' + datelog + '.txt')
-                    subprocess.call(
-                        [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
-                    sys.exit(0)
-                else:
-                    sys.exit(0)
-            printnlog('DONE\n')
+        from essentials.app_alternations import python_update
+        python_update(args, logger)
 
     from threading import Thread
     if __name__ == '__main__':
@@ -361,16 +202,7 @@ try:  # type: ignore
     import shutil
     if __name__ == '__main__':
         print_module()
-    import zipfile
-    if __name__ == '__main__':
-        print_module()
-    import win32gui
-    if __name__ == '__main__':
-        print_module()
     import requests
-    if __name__ == '__main__':
-        print_module()
-    import ctypes
     if __name__ == '__main__':
         print_module()
     import cv2
@@ -391,35 +223,17 @@ try:  # type: ignore
     from pygame import mixer
     if __name__ == '__main__':
         print_module('mixer from pygame')
-    import readline
-    if __name__ == '__main__':
-        print_module('readline')
     import logging
     if __name__ == '__main__':
         print_module()
     import moviepy.editor as mp
     if __name__ == '__main__':
         print_module('moviepy.editor')
-
-    LOG_FILENAME = 'completer.log'
-    logging.basicConfig(filename=LOG_FILENAME,
-                        level=logging.DEBUG,
-                        format="%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s",
-                        datefmt='%Y-%m-%d:%H:%M:%S')
-
-    if __name__ == '__main__':
-        print_module('mixer from pygame')
         logger.prev(printnlog('DONE', toprint=False))
         os.system('color ' + str(config['basic info']['environmentA']) + str(config['basic info']['environmentA']))
         os.system('Title ' + 'ZnámE')
-        user32 = ctypes.windll.user32
-        screensize: tuple[int, int] = user32.GetSystemMetrics(
-            0), user32.GetSystemMetrics(1)
-        screensizepercentage: tuple[float, float] = float(
-            (1/1920)*screensize[0]), float((1/1080)*screensize[1])
-        with open('.env', 'a') as dotenv:
-            dotenv.write(f'SCREENSIZE={str(screensize)}')
-
+        from essentials.system_info import get_screensize
+        screensize, screensizepercentage = get_screensize()
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             from essentials.system_info import system_info
             system_info(logger, screensize)
@@ -441,18 +255,14 @@ try:  # type: ignore
 
         logger.stay(printnlog("Defining functions", toprint=False))
 
+    LOG_FILENAME = 'completer.log'
+    logging.basicConfig(filename=LOG_FILENAME,
+                        level=logging.DEBUG,
+                        format="%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s",
+                        datefmt='%Y-%m-%d:%H:%M:%S')
+    
     updateapp: str = str(
         'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
-    if __name__ == '__main__':
-        if args.log is None:
-            x = open('log_update.py', 'w')
-            x.write(updateapp)
-            x.close()
-
-    """
-    Update the program to the newest version.
-    @param directory - the directory of the new version
-    """
 
     if __name__ == '__main__':
         if args.test is not None:
@@ -461,43 +271,12 @@ try:  # type: ignore
             from essentials.app_alternations import update_app
             update_app(args, logger)
 
-    from essentials.system_operations import getWindow, getImg
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: getImg', toprint=False))
-
-    def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
-        """
-        The move function moves the specified window to a specified location.
-        The move function takes four arguments:
-            1) The name of the window as a string. This is case sensitive and should be enclosed in quotation marks if it contains spaces or special characters (e.g., &quot;Microsoft Word&quot;). 
-            2) The x-coordinate of the desired location on your screen, measured in pixels from the left edge of your screen to where you want your window located (e.g., 100). 
-            3) The y-coordinate of the desired location on your screen, measured in pixels from the top edge of your screen
-
-        :param window: str: Specify the name of the window
-        :param x: int: Set the x position of the window, y is used to set the y position
-        :param y: int: Set the y position of the window, measured in pixels from the top edge of your screen
-        :param width: Set the width of the window
-        :param length: Set the height of the window
-        :return: None
-        """
-        appname: str = window
-        xpos: int = x
-        ypos: int = y
-        if width is None:
-            width: int = int((screensize[0]/10)*9)
-        if length is None:
-            length: int = int((screensize[1]/10)*9)
-
-        def enumHandler(hwnd, lParam):  # type: ignore
-            if win32gui.IsWindowVisible(hwnd):  # type: ignore
-                if appname in win32gui.GetWindowText(hwnd):  # type: ignore
-                    win32gui.MoveWindow(
-                        hwnd, xpos, ypos, width, length, True)  # type: ignore
-        win32gui.EnumWindows(enumHandler, None)  # type: ignore
+    from essentials.system_operations import getWindow, getImg, move
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: move', toprint=False))
+        logger.stay(printnlog('Function: getImg', toprint=False))
+        logger.stay(printnlog('Function: getWindow', toprint=False))
         logger.next(printnlog('\nDefining apps', toprint=False))
 
     codeapp: str = str(
@@ -521,44 +300,10 @@ try:  # type: ignore
         logger.stay('gameapp')
         logger.prev('')
         if args.log is None:
-            x = open('log_codeapp.py', 'w')
-            x.write(codeapp)
-            x.close()
-            x = open('log_decodeapp.py', 'w')
-            x.write(decodeapp)
-            x.close()
-            x = open('log_findapp.py', 'w')
-            x.write(findapp)
-            x.close()
-            x = open('log_passwordapp.py', 'w')
-            x.write(passwordapp)
-            x.close()
-            x = open('log_addapp.py', 'w')
-            x.write(addapp)
-            x.close()
-            x = open('log_restartapp.py', 'w')
-            x.write(restartapp)
-            x.close()
-
-    if __name__ == '__main__':
+            from essentials.system_info import get_log_info
+            get_log_info(codeapp, decodeapp, findapp, passwordapp, addapp, restartapp, updateapp)
         logger.stay(printnlog('DONE', toprint=False))
         logger.next(printnlog('Defining functions', toprint=False))
-
-    def get_size(bytes):
-        """
-        The get_size function accepts a number of bytes and returns a human-readable string representation of the size.
-        For example, calling get_size(1024) will return '0.98KiB'.
-
-        :param bytes: Store the value of bytes
-        :return: The size of the bytes in human readable format
-        """
-        for unit in ['', 'K', 'M', 'G', 'T', 'P']:
-            if bytes < 1024:
-                return f"{bytes:.2f}{unit}B"
-            bytes /= 1024
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: get_size', toprint=False))
 
     def delcache(name: str, hist: str) -> None:
         """
@@ -602,8 +347,6 @@ try:  # type: ignore
 
     global progress_bar_check
     progress_bar_check = 0
-    global progress_bar_end
-    progress_bar_end = False
 
     cachename = 'data.xp2'
 
@@ -618,16 +361,12 @@ try:  # type: ignore
         for i in os.listdir():
             if i == 'INACTIVE':
                 leave = True
-                try:
-                    os.remove(passwordp[1])  # type: ignore
-                except Exception:
-                    pass
+                remove(passwordp[1])
                 break
         if leave:
             sleep(0.05)
             return True
-        else:
-            return False
+        else: return False
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: inactive', toprint=False))
@@ -647,14 +386,12 @@ try:  # type: ignore
         progress_bar_check_old: int = 0
         end: bool = False
         for i in tqdm(range(0, number), desc=name + ' '):
-            if end:
-                break
+            if end: break
             while True:
                 if progress_bar_check >= 100:
                     end: bool = True
                     break
-                if progress_bar_check == progress_bar_check_old:
-                    continue
+                if progress_bar_check == progress_bar_check_old: continue
                 elif progress_bar_check != progress_bar_check_old:
                     progress_bar_check_old: int = progress_bar_check
                     break
@@ -719,22 +456,16 @@ try:  # type: ignore
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = 'decode'
         decodename2: str = 'False'
-        if password:
-            decodename2: str = name
-        if name:
-            decodename1: str = decodename
-        elif isinstance(name, str):
-            decodename1: str = name
-        else:
-            decodename1: str = "None"
+        if password: decodename2: str = name
+        if name: decodename1: str = decodename
+        elif isinstance(name, str): decodename1: str = name
+        else: decodename1: str = "None"
         crdecode = open(decodename + ".py", "w")
         crdecode.write(decodeapp)
         crdecode.close()
-        if mode == 1:
-            subprocess.check_output(
+        if mode == 1: subprocess.check_output(
                 'start ' + decodename + '.py ' + str(name) + ' ' + str(password), shell=True)
-        elif mode == 0:
-            subprocess.check_output(
+        elif mode == 0: subprocess.check_output(
                 'start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
         tqdm.write('Encrypting ...', end='\r')
         while True:
@@ -831,14 +562,12 @@ try:  # type: ignore
         test = open(loginvstupuser, 'r')
         end: bool = False
         pocitadlo: int = 0
-        for i in test.read():
-            pocitadlo += 1
+        for i in test.read(): pocitadlo += 1
         if 0 <= pocitadlo <= 5:
             test.close()
             tqdm.write('Finding ERROR')
             end: bool = True
-        if end:
-            return [loginvstupuser, end]
+        if end: return [loginvstupuser, end]
         test.close()
         tqdm.write('Finding Complete')
         progress_bar_check += 1
@@ -871,8 +600,7 @@ try:  # type: ignore
             file.write(str(name) + ' = ' + str(new))
             file.close()
             subprocess.check_output('start ' + codename + '.py 1', shell=True)
-        if mode == 0:
-            subprocess.check_output(
+        if mode == 0: subprocess.check_output(
                 'start ' + codename + '.py ' + str(name[0]), shell=True)
         while True:
             leave = False
@@ -885,14 +613,12 @@ try:  # type: ignore
                 break
         tqdm.write('Coding Complete')
         os.remove(codename + '.py')
-        if mode == 0 and new == 'justcode':
-            pass
+        if mode == 0 and new == 'justcode': pass
         elif mode == 0 and new:
             os.remove(loginvstupuser + 'crypted')
             shutil.move(loginvstupuser + 'cryptedcrypted',
                         loginvstupuser + 'crypted')
-        elif mode == 0:
-            os.remove(loginvstupuser)
+        elif mode == 0: os.remove(loginvstupuser)
         progress_bar_check += 1
         os.remove('DONE')
         if mode == 1:
@@ -914,8 +640,7 @@ try:  # type: ignore
         subject.lower()
         historyfile.close()
         historyfile = open(historyname, 'a')
-        if subject == 'quit' or subject == 'back':
-            return
+        if subject == 'quit' or subject == 'back': return
         mark: str = input(str(linenumber) + ' Mark > ')
         historyfile.write(
             '[' + str(linenumber) + ', ' + (mark) + ']\n')
@@ -925,8 +650,7 @@ try:  # type: ignore
         if subject == 'quit' or mark == 'quit':
             exit: bool = True
             return
-        if subject == 'back' or mark == 'back':
-            return
+        if subject == 'back' or mark == 'back': return
         Thread(target=progress_bar, args=(
             'Checking', 3,), daemon=True).start()
         code(add(decode(True, False), loginvstupuser,
@@ -969,13 +693,11 @@ try:  # type: ignore
                     else:
                         typewriter(','+i, end="")
                 except Exception:
-                    if countersubject > 2:
-                        countersubject: int = 0
+                    if countersubject > 2: countersubject: int = 0
                     counterfirst: bool = True
                     countersubject += 1
                     print(i, end="")
-                    if countersubject > 2:
-                        typewriter(" | ", end="")
+                    if countersubject > 2: typewriter(" | ", end="")
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: show_marks', toprint=False))
@@ -1000,26 +722,20 @@ try:  # type: ignore
                 webbrowser.open(htmlFile + '.html', 1)
                 sleep(1)
                 pg.press('f11')
-                if mode == 0:
-                    mouseclick()
-                elif mode == 1:
-                    mouseclick(time=time)
-            else:
-                pass
+                if mode == 0:  mouseclick()
+                elif mode == 1: mouseclick(time=time)
+            else: pass
         else:
             if config['basic info']['intro'] == True:
                 webbrowser.open(htmlFile + '.html', 1)
                 sleep(1.5)
                 pg.press('f11')
-                if mode == 0:
-                    mouseclick()
-                elif mode == 1:
-                    mouseclick(time=time)
+                if mode == 0: mouseclick()
+                elif mode == 1: mouseclick(time=time)
                 if args.test is not None:
                     window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                     window.activate()
-            else:
-                pass
+            else: pass
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: playhtml', toprint=False))
@@ -1042,39 +758,26 @@ try:  # type: ignore
         carousel = installing_carousel(
             '', comment='Waiting for synchronization')
         Thread(target=carousel.start()).start()
-        while os.path.isfile('SPOTDL_QUEUE'):
-            sleep(1)
+        while os.path.isfile('SPOTDL_QUEUE'): sleep(1)
         open('SPOTDL_QUIT', 'x')
         carousel.stop()
         music: list[str] = list(
             set(config['basic info']['musiclist'].split(',')[0:]))
-        if music[0] == '':
-            music = []
+        if music[0] == '':  music = []
         else:
             for i in music:
                 if i == '':
                     music.remove('')
         musiclistnewstring: str = ''
-        for i in range(len(music)):
-            musiclistnewstring += str(music[i]) + ','
+        for i in range(len(music)): musiclistnewstring += str(music[i]) + ','
 
         try:
             for line, content in enumerate(open('MUSIC', 'r', encoding='utf-8').readlines()):
                 musiclistnewstring += content + ','
-        except Exception:
-            pass
-        try:
-            os.remove('MUSIC')
-        except Exception:
-            pass
-        try:
-            os.remove('SPOTDL_QUIT')
-        except Exception:
-            pass
-        try:
-            os.remove('SPOTDL_OUTPUT')
-        except Exception:
-            pass
+        except Exception: pass
+        remove('MUSIC')
+        remove('SPOTDL_QUIT')
+        remove('SPOTDL_OUTPUT')
         sleep(1)
         pg.write('music\n')
         return musiclistnewstring
@@ -1123,8 +826,7 @@ try:  # type: ignore
                 sleep(0.25)
                 printnlog('Program was updated!!!\n')
             return inactive1
-        except Exception:
-            pass
+        except Exception: pass
 
     def show_html(media_player):
         if args.restart is not None:
@@ -1134,8 +836,7 @@ try:  # type: ignore
                     'VLC (Direct3D11 output)')[0]
                 window.activate()
                 window.maximize()
-            except Exception:
-                pass
+            except Exception: pass
             sleep(2.5)
             mixer.init()
             mixer.music.load('assets/greeting.mp3')
@@ -1154,8 +855,7 @@ try:  # type: ignore
             """
             historyname: str = str(datetime.now().strftime("%H-%M-%S"))
             historyfile = open(historyname, 'w')
-            if args.nointrof is None:
-                historyfile.write('[*restarted]\n')
+            if args.nointrof is None: historyfile.write('[*restarted]\n')
             global passwordp
             from essentials.file_operations import extract
             extract(args, datelog)
@@ -1171,8 +871,7 @@ try:  # type: ignore
                 music.remove(music_name)
                 if not os.path.exists('assets/' + str(music_name) + '.mp3'):
                     musiclistnew.append(DownloadMusic(str(music_name)))
-                else:
-                    musiclistnew.append(music_name)
+                else: musiclistnew.append(music_name)
             music = []
             musiclistnewstring: str = ''
             for i in range(len(musiclistnew)):
@@ -1217,11 +916,9 @@ try:  # type: ignore
             @return None
             """
             show_html(media_player)
-            if not inactive1:
-                playhtml('apphtml\\start', 1, 3,)
+            if not inactive1: playhtml('apphtml\\start', 1, 3,)
             exit: bool = getWindow(args)
-            if args.nointro is None or config['basic info']['intro'] == False:
-                pass
+            if args.nointro is None or config['basic info']['intro'] == False: pass
             else:
                 window = pygetwindow.getWindowsWithTitle('frame2')[0]
                 window.activate()
@@ -1246,9 +943,6 @@ try:  # type: ignore
                 mixer.music.load(
                     'assets/' + musiclistnew[int(args.music)-1] + '.mp3')
                 mixer.music.play()
-            """
-                this function prints the version of the program 
-            """
             show_version(args)
             from completer import SimpleCompleter, completer  # type: ignore
             unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog', 'waifu', 'neko', 'setup', 'settings', 'anotherwaifu', 'anotherneko',
@@ -1287,10 +981,8 @@ try:  # type: ignore
                             loggedhelp: bool = False
                         vstup: str = input(str(linenumber) + ' > ')
                         if args.debug == None:
-                            try:
-                                print(str(eval(vstup)))
-                            except Exception:
-                                pass
+                            try: print(str(eval(vstup)))
+                            except Exception: pass
                         linenumber += 1
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + vstup + ']\n')
@@ -1300,24 +992,17 @@ try:  # type: ignore
                         help: list[str] = ['help', 'pomoc',
                                            '-h', '-help', '?', '-?']
                         for i in range(len(help)):
-                            if vstup == help[i]:
-                                loggedhelp: bool = True
-                        if loggedhelp:
-                            continue
-                        if vstup == 'delsavlog':
-                            uninstall()
-                        if vstup == "zz":
-                            show_marks(passwordp=passwordp)
-                        if vstup == "pz":
-                            add_marks(
-                                linenumber=linenumber, historyname=historyname, neko=neko, waifu=waifu)
+                            if vstup == help[i]: loggedhelp: bool = True
+                        if loggedhelp: continue
+                        if vstup == 'delsavlog': uninstall()
+                        if vstup == "zz": show_marks(passwordp=passwordp)
+                        if vstup == "pz": add_marks(linenumber=linenumber, historyname=historyname, neko=neko, waifu=waifu)
                     if topassword:
                         completer(bq_completer)
                         if savefilemode:   # type: ignore
                             vstup: str = savefile[9:15]   # type: ignore
                             linenumber -= 1
-                        else:
-                            vstup = input(str(linenumber) + ' Password > ')
+                        else: vstup = input(str(linenumber) + ' Password > ')
                         linenumber += 1
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + len(vstup)*'*' + ']\n')   # type: ignore
@@ -1327,8 +1012,7 @@ try:  # type: ignore
                         help: list[str] = ['help', 'pomoc',
                                            '-h', '-help', '?', '-?']
                         for i in range(len(help)):
-                            if vstup == help[i]:
-                                topasswordhelp: bool = True
+                            if vstup == help[i]: topasswordhelp: bool = True
                         """
                         If the user has requested help, print the appropriate help message.
                         @param topasswordhelp - the boolean value for requesting help.
@@ -1451,10 +1135,8 @@ try:  # type: ignore
                     if not tologin and not logged:
                         vstup: str = input(str(linenumber) + ' > ')
                         if args.debug == None:
-                            try:
-                                print(str(eval(vstup)))
-                            except Exception:
-                                pass
+                            try: print(str(eval(vstup)))
+                            except Exception: pass
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + vstup + ']\n')
                         vstup.lower()
@@ -1466,9 +1148,7 @@ try:  # type: ignore
                         import settings  # type: ignore
                         settings.main(logged=logged)
                         config = yaml.safe_load(open('config.yml', 'r'))
-                    if vstup == 'restarted':
-                        subprocess.check_output(
-                            'start restart.py --autol', shell=True)
+                    if vstup == 'restarted': subprocess.check_output('start restart.py --autol', shell=True)
                     if vstup == 'playvideo':
                         import playvideo  # type: ignore
                         playvideo.main()
@@ -1483,16 +1163,11 @@ try:  # type: ignore
                             if musicvstup == '1':
                                 to_append = spotMusicDow().split(',')
                                 for item in to_append:
-                                    if item == '':
-                                        continue
+                                    if item == '': continue
                                     musiclistnew.append(item)
-                                try:
-                                    os.remove('MUSIC')
-                                except Exception:
-                                    pass
+                                remove('MUSIC')
                                 continue
-                            elif musicvstup == '2':
-                                continue
+                            elif musicvstup == '2': continue
                         if not musicnone:
                             for i in range(0, len(musiclistnew)):
                                 typewriter(str(i + 1) + ') ' + musiclistnew[i])
@@ -1503,22 +1178,16 @@ try:  # type: ignore
                                 try:
                                     musicvstup: int = int(input('> '))
                                     break
-                                except ValueError:
-                                    continue
+                                except ValueError: continue
                         if musicnone or musicvstup == i+3:
                             to_append = spotMusicDow().split(',')
-                            for item in to_append:
-                                musiclistnew.append(item)
+                            for item in to_append: musiclistnew.append(item)
                             musiclistnewstring: str = ''
                             for i in range(len(musiclistnew)):
                                 musiclistnewstring += str(musiclistnew[i]) + ','
                             set_config('basic info', 'musiclist',
                                     str(musiclistnewstring[0:-1]))
-                            try:
-                                os.remove('MUSIC')
-                            except Exception:
-                                pass
-                        # remove audio
+                            remove('MUSIC')
                         elif musicvstup == len(musiclistnew) + 1 and not musicnone:
                             typewriter('Vymaž audio')
                             for i in range(0, len(musiclistnew)):
@@ -1527,8 +1196,7 @@ try:  # type: ignore
                                 try:
                                     musicvstup: int = int(input('> '))
                                     break
-                                except ValueError:
-                                    continue
+                                except ValueError: continue
                             mixer.music.stop()
                             mixer.music.unload()
                             os.remove(
@@ -1552,23 +1220,19 @@ try:  # type: ignore
                                 continue
                             args.music = str(musicvstup)
                             try:
-                                if musicvstup == len(music)+1:
-                                    continue
+                                if musicvstup == len(music)+1: continue
                                 mixer.music.load(
                                     'assets/' + musiclistnew[musicvstup-1] + '.mp3')
-                            except IndexError:
-                                pass
+                            except IndexError: pass
                             try:
                                 mixer.music.play()
                                 musicplay: bool = True
-                            except Exception:
-                                pass
+                            except Exception: pass
                     if vstup == 'quitmusic':
                         try:
                             mixer.music.stop()
                             musicplay: bool = False
-                        except Exception:
-                            pass
+                        except Exception: pass
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime: str = str(
@@ -1577,8 +1241,7 @@ try:  # type: ignore
                                 os.mkdir('download/')
                                 typewriter(
                                     'Making directory \'download\'', end='\r', ttime=0.01)
-                            except Exception:
-                                pass
+                            except Exception: pass
                             if neko:
                                 typewriter(
                                     'Copying neko to download folder', end='\r', ttime=0.01)
@@ -1596,8 +1259,7 @@ try:  # type: ignore
                                     'assets/waifu.png', 'download/waifu-' + imagetime + '.png')
                             typewriter(
                                 'Done                                            ', ttime=0.01)
-                        else:
-                            typewriter("You don't have image to save", ttime=0.01)
+                        else: typewriter("You don't have image to save", ttime=0.01)
                     if vstup == 'offlinegame':
                         set_config('game settings', 'offline_game', True)
                         offline_game = True
@@ -1684,8 +1346,7 @@ try:  # type: ignore
                                 elif config['neko settings']['server'] == 'nekos_api':
                                     download(data["data"][0]
                                              ["url"], 'assets/neko.png')
-                        else:
-                            args.neko = object()
+                        else: args.neko = object()
                         typewriter('Setting image          ',
                                    end='\r', ttime=0.01)
                         img = Image.open('assets/neko.png')
@@ -1727,10 +1388,8 @@ try:  # type: ignore
                         pg.keyDown('alt')
                         pg.press('f4')
                         pg.keyUp('alt')
-                        try:
-                            img.close()  # type: ignore
-                        except UnboundLocalError:
-                            pass
+                        try: img.close()  # type: ignore
+                        except UnboundLocalError: pass
                         typewriter('Done             ', end='\r', ttime=0.01)
                         sleep(0.1)
                         typewriter('Removeing image', end='\r', ttime=0.01)
@@ -1856,25 +1515,21 @@ try:  # type: ignore
                             pg.keyDown('alt')
                             pg.press('f4')
                             pg.keyUp('alt')
-                            try:
-                                img.close()  # type: ignore
-                            except UnboundLocalError:
-                                pass
+                            try: img.close()  # type: ignore
+                            except UnboundLocalError: pass
                         typewriter('Resizing cli      ', end='\r', ttime=0.01)
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
                         try:
                             typewriter('Removing image', end='\r', ttime=0.01)
                             os.remove('assets/waifu.png')
-                        except Exception:
-                            pass
+                        except Exception: pass
                         waifu: bool = False
                         typewriter('Done               ', ttime=0.01)
                     if vstup == 'animesearch':
                         import anime_search  # type: ignore
                         anime_search.main()
-                    if vstup == 'delsavlog':
-                        uninstall()
+                    if vstup == 'delsavlog': uninstall()
                     """
                     Clear the screen.
                     @param vstup - the input from the user.
@@ -1998,10 +1653,8 @@ try:  # type: ignore
                                 loginvstupuser.lower()
                                 if loginvstupuser == "" or loginvstupuser == "y":
                                     savefilemode: bool = True
-                            if savefilemode:
-                                loginvstupuser = savefile[0:6]   # type: ignore
-                            else:
-                                loginvstupuser = input(
+                            if savefilemode: loginvstupuser = savefile[0:6]   # type: ignore
+                            else: loginvstupuser = input(
                                     str(linenumber) + " Login Number (PID) > ")
                             historyfile.write(
                                 '[' + str(linenumber) + ', ' + loginvstupuser + "]\n")
@@ -2067,11 +1720,10 @@ try:  # type: ignore
                             else:
                                 print('The PID should be 6 numbers long!!!')
                                 tologin: bool = True
-                        elif logged and vstup == 'login':
-                            print('You are already logged in!!!')
+                        elif logged and vstup == 'login': print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
-                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip, remove, mkdir
+                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip
                     if neko or waifu:
                         if not waifuvid:
                             pg.keyDown('alt')
@@ -2144,8 +1796,7 @@ try:  # type: ignore
                     logger.next(historyname + ' ' + str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist) + '\n')
                     historyfile.close()
-                    try: os.remove(historyname)
-                    except Exception: pass
+                    remove(historyname)
                     logger.prev("Done\n")
                     # pg.screenshot().save('bg.png')
                     # shutil.copy('assets/green.mp4', 'green.mp4')
@@ -2223,8 +1874,7 @@ try:  # type: ignore
                             vstup = input("Do you understand (Y/n) > ")
                             vstup.lower()
                             if not vstup in ['', 'y']:
-                                if os.path.isfile("restart.py"):
-                                    os.remove("restart.py")
+                                if os.path.isfile("restart.py"): os.remove("restart.py")
                                 if neko or waifu or waifuvid:
                                     from essentials.file_operations import del_wn
                                     del_wn()
@@ -2235,30 +1885,23 @@ try:  # type: ignore
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
                                     sleep(0.5)
-                                    if waifuvid:
-                                        subprocess.check_output(
+                                    if waifuvid: subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --waifu --waifuvid --music ' + str(args.music), shell=True)
-                                    elif neko:
-                                        subprocess.check_output(
+                                    elif neko: subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --neko --music ' + str(args.music), shell=True)
-                                    elif waifu:
-                                        subprocess.check_output(
+                                    elif waifu: subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --waifu --music ' + str(args.music), shell=True)
-                                    else:
-                                        subprocess.check_output(
+                                    else: subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --music ' + str(args.music), shell=True)
                                     os.remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
                             sys.stdout.flush()
-                            if neko:
-                                subprocess.check_output(
+                            if neko: subprocess.check_output(
                                     'start edupage.py --restart --nointrof --neko --music ' + str(args.music), shell=True)
-                            elif waifu:
-                                subprocess.check_output(
+                            elif waifu: subprocess.check_output(
                                     'start edupage.py --restart --nointrof --waifu --music ' + str(args.music), shell=True)
-                            else:
-                                subprocess.check_output(
+                            else: subprocess.check_output(
                                     'start edupage.py --restart --nointrof --music ' + str(args.music), shell=True)
                             os.remove('crash_dump-' + datelog + '.txt')
                             return 0
@@ -2267,19 +1910,12 @@ try:  # type: ignore
                         remove('.env')
                         if args.endf is None:
                             input("'ENTER' TO END")
-                            if os.path.exists('restart.py'):
-                                os.remove('restart.py')
-                            os.remove('crash_dump-' + datelog + '.txt')
-                            return 0
-                        else:
-                            if os.path.exists('restart.py'):
-                                os.remove('restart.py')
-                            os.remove('crash_dump-' + datelog + '.txt')
-                            return 0
+                        if os.path.exists('restart.py'): os.remove('restart.py')
+                        os.remove('crash_dump-' + datelog + '.txt')
+                        return 0
         except *Exception as e:
             printnlog('Writing an error to \'error.log\'!!!')
-            for error in e.exceptions:
-                printnlog(traceback.format_exc())
+            for error in e.exceptions: printnlog(traceback.format_exc())
             line_numbers: list = []
             for error in range(0, len(e.exceptions)):
                 if (line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__) is None:
@@ -2310,8 +1946,7 @@ except *Exception as e:
     import sys
     import traceback
     printnlog('Writing an error to \'error.log\'!!!')
-    for error in e.exceptions:
-        printnlog(traceback.format_exc())
+    for error in e.exceptions: printnlog(traceback.format_exc())
     line_numbers: list = []
     for error in range(0, len(e.exceptions)):
         if (line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__) is None:

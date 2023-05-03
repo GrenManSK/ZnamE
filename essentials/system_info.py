@@ -11,6 +11,7 @@ import re
 import uuid
 from .writing import to_info, printnlog
 import inspect
+import ctypes
 
 
 def system_info(logger, screensize, verzia):
@@ -216,3 +217,36 @@ def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
     :return: The line number of the function call
     """
     return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
+
+def get_screensize():
+    user32 = ctypes.windll.user32
+    screensize: tuple[int, int] = user32.GetSystemMetrics(
+        0), user32.GetSystemMetrics(1)
+    screensizepercentage: tuple[float, float] = float(
+        (1/1920)*screensize[0]), float((1/1080)*screensize[1])
+    with open('.env', 'a') as dotenv:
+        dotenv.write(f'SCREENSIZE={str(screensize)}')
+    return screensize, screensizepercentage
+
+def get_log_info(codeapp, decodeapp, findapp, passwordapp, addapp, restartapp, updateapp):
+    x = open('log_codeapp.py', 'w')
+    x.write(codeapp)
+    x.close()
+    x = open('log_decodeapp.py', 'w')
+    x.write(decodeapp)
+    x.close()
+    x = open('log_findapp.py', 'w')
+    x.write(findapp)
+    x.close()
+    x = open('log_passwordapp.py', 'w')
+    x.write(passwordapp)
+    x.close()
+    x = open('log_addapp.py', 'w')
+    x.write(addapp)
+    x.close()
+    x = open('log_restartapp.py', 'w')
+    x.write(restartapp)
+    x.close()
+    x = open('log_update.py', 'w')
+    x.write(updateapp)
+    x.close()
