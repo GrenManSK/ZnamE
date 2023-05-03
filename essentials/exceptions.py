@@ -67,19 +67,23 @@ def error_get(errors, line: list) -> None:
     :return: The error code and the line number of the error
     """
 
-    exc_type, exc_obj, exc_tb = sys.exc_info()
-    fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+    try:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+    except AttributeError:
+        pass
     try:
         for times, error in enumerate(errors.exceptions):
             try:
+                fname = os.path.basename(error.__traceback__.tb_frame.f_locals['__file__'])
                 try:
                     raise eval(
                         error.with_traceback.__qualname__.split('.')[0])(error)
                 except eval(error.with_traceback.__qualname__.split('.')[0]):
                     if len(line) == 1 and times > 0:
-                        error_log(line[0])
+                        error_log(line[0], fname)
                     else:
-                        error_log(line[times])
+                        error_log(line[times], fname)
             except NameError:
                 try:
                     raise SystemError(error.with_traceback.__qualname__.split('.')[
