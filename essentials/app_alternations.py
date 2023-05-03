@@ -5,7 +5,6 @@ from .writing import typewriter
 import requests
 import semantic_version
 from time import sleep
-import zipfile
 from tqdm import tqdm
 import os
 import sys
@@ -19,6 +18,7 @@ from final.mathematical import get_id
 import glob
 import stat
 import json
+import pkg_resources
 load_dotenv('.env')
 
 updateapp: str = str(
@@ -430,3 +430,53 @@ def install_packages(args, logger):
 def on_rm_error(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
+
+
+def python_update(args, logger):
+    datelog = os.getenv('DATELOG')
+    potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc','pywinauto',
+                        'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
+    printnlog('Libraries needed: ', end='')
+    potrebne1: list[str] = list(potrebne)
+    for i in range(0, len(potrebne1)):
+        printnlog(potrebne1[i], end=' ')
+    printnlog("\n\nChecking for updates\n")
+    nainstalovane: set[str] = {
+        pkg.key for pkg in pkg_resources.working_set}
+    nenajdene: set[str] = potrebne - nainstalovane
+    if args.version is None:
+
+        "Printing out version and possible updates"
+
+        verzia = open('version', 'r')
+        logger.stay(printnlog(verzia.read(), toprint=False))
+        verzia.close()
+        if nenajdene:
+            print('Update is available: ', *nenajdene)
+        os.remove('crash_dump-' + datelog + '.txt')
+        sys.exit(1)
+    if __name__ == '__main__':
+        if nenajdene:
+            printnlog('\nUpdate is available: ' + str(nenajdene))
+            vstup: str = input(
+                f'Do you want to install following modules? {nenajdene} (Y/n)> ').lower()
+            if vstup in ['', 'y']:
+                printnlog("\nDownloading updates")
+                subprocess.check_call(
+                    ['python', '-m', 'pip', 'install', *nenajdene])
+                if 'pytube' in nenajdene:
+                    import site
+                    site_packages = site.getsitepackages()[1]
+                    input('Now you will be transferred to the script file in which you need to change code in line 411\nto \'transform_plan_raw = js\'\n!!! This is important without it downloading music won\'t work')
+                    os.system(
+                        f'notepad.exe {site_packages}/pytube/cipher.py')
+                printnlog("The program is restarting!!!")
+                sleep(1)
+                os.system('cls')
+                os.remove('crash_dump-' + datelog + '.txt')
+                subprocess.call(
+                    [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
+                sys.exit(0)
+            else:
+                sys.exit(0)
+        printnlog('DONE\n')
