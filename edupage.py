@@ -2206,7 +2206,7 @@ try:  # type: ignore
                     if args.endf is not None and not restart: sleep(2.5)
                     if not restart:
                         video_end = int(time.time())
-                        while video_end - video_start < 25:
+                        while video_end - video_start < 27:
                             sleep(0.1)
                             video_end = int(time.time())
                         media_player.stop()
