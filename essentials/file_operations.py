@@ -43,14 +43,8 @@ def unpack(datelog, args, cachename: str) -> None:
         shutil.move('data1/data', 'data')
     except Exception:
         pass
-    try:
-        os.mkdir('apphtml')
-    except Exception:
-        pass
-    try:
-        os.mkdir('assets')
-    except Exception:
-        pass
+    mkdir('apphtml')
+    mkdir('assets')
     if cachename == 'data.xp2':
         for r, d, f in os.walk('data1/apphtml/'):
             for file in f:
@@ -68,8 +62,8 @@ def unpack(datelog, args, cachename: str) -> None:
             printnlog(i)
             shutil.move(f'data1/{i}', i)
         shutil.rmtree('data1')
-    os.remove(cachename)
-    os.remove('data.xp3')
+    remove(cachename)
+    remove('data.xp3')
 
 
 def extract(args, datelog):
@@ -187,23 +181,19 @@ def to_zip(logger, cachename, start):
 
 
 def del_wn():
+    remove('assets/neko.png')
+    remove('assets/waifu.png')
+    remove('assets/waifu.gif')
+    remove('assets/waifu.mp4')
+    remove('assets/video.mp4')
+
+
+def remove(file):
     try:
-        os.remove('assets/neko.png')
+        return os.remove(file)
     except Exception:
         pass
-    try:
-        os.remove('assets/waifu.png')
-    except Exception:
-        pass
-    try:
-        os.remove('assets/waifu.gif')
-    except Exception:
-        pass
-    try:
-        os.remove('assets/waifu.mp4')
-    except Exception:
-        pass
-    try:
-        os.remove('assets/video.mp4')
-    except Exception:
-        pass
+
+
+def mkdir(path):
+    os.makedirs(path, exist_ok=True)

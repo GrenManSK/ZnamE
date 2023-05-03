@@ -2071,6 +2071,7 @@ try:  # type: ignore
                             print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
+                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip, remove, mkdir
                     if neko or waifu:
                         if not waifuvid:
                             pg.keyDown('alt')
@@ -2085,35 +2086,31 @@ try:  # type: ignore
                                 pass
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
-                    shutil.copy('assets/end.mp4', 'end.mp4')
-                    media_player = vlc.MediaPlayer()
-                    media_player.set_fullscreen(True)
-                    media = vlc.Media("end.mp4")
-                    media_player.set_media(media)
-                    media_player.play()
-                    video_start = int(time.time())
-                    try:
-                        window = pygetwindow.getWindowsWithTitle(
-                            'VLC (Direct3D11 output)')[0]
-                        window.activate()
-                        window.maximize()
-                    except Exception: pass
-                    mixer_stop()
                     if not restart:
-                        not_restart()
-                    if not offline_game:
-                        not_offline_game()
-                    try:
-                        open('END', 'x')
-                    except Exception:
-                        pass
+                        shutil.copy('assets/end.mp4', 'end.mp4')
+                        media_player = vlc.MediaPlayer()
+                        media_player.set_fullscreen(True)
+                        media = vlc.Media("end.mp4")
+                        media_player.set_media(media)
+                        media_player.play()
+                        video_start = int(time.time())
+                        try:
+                            window = pygetwindow.getWindowsWithTitle(
+                                'VLC (Direct3D11 output)')[0]
+                            window.activate()
+                            window.maximize()
+                        except Exception: pass
+                    mixer_stop()
+                    if not restart: not_restart()
+                    if not offline_game: not_offline_game()
+                    try:open('END', 'x')
+                    except Exception:pass
                     if logged:
                         try:
                             sleep(0.25)
                             os.remove(loginvstupuser)
                             os.remove(passwordp[1])  # type: ignore
-                        except Exception:
-                            pass
+                        except Exception:pass
                         typewriter('\nYou are logged out\n')
                         historyfile.write(
                             '[' + str(linenumber) + ', ' + '*logout]\n')
@@ -2136,13 +2133,10 @@ try:  # type: ignore
                     historylist: list = []
                     try:
                         historyfile = open(historyname, 'r')
-                        for i in historyfile.readlines():
-                            historylist.append(i.strip('\n'))
-                    except Exception:
-                        pass
+                        for i in historyfile.readlines(): historylist.append(i.strip('\n'))
+                    except Exception:pass
                     musiclistnewstring: str = ''
-                    for i in range(len(musiclistnew)):
-                        musiclistnewstring += str(musiclistnew[i]) + ','
+                    for i in range(len(musiclistnew)): musiclistnewstring += str(musiclistnew[i]) + ','
                     set_config('user history', str(historyname), str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
                     set_config('basic info', 'musiclist',
@@ -2150,10 +2144,8 @@ try:  # type: ignore
                     logger.next(historyname + ' ' + str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist) + '\n')
                     historyfile.close()
-                    try:
-                        os.remove(historyname)
-                    except Exception:
-                        pass
+                    try: os.remove(historyname)
+                    except Exception: pass
                     logger.prev("Done\n")
                     # pg.screenshot().save('bg.png')
                     # shutil.copy('assets/green.mp4', 'green.mp4')
@@ -2176,19 +2168,10 @@ try:  # type: ignore
                     # media_player.stop()
                     # os.remove('output.mp4')
                     playhtml('apphtml\\end', 1, 3)
-                    try:
-                        os.remove('data_backup')
-                    except Exception:
-                        pass
-                    try:
-                        os.mkdir('datafolder')
-                    except FileExistsError:
-                        pass
-                    try:
-                        shutil.move('data', 'datafolder/')
-                    except Exception:
-                        sys.exit(0)
-                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip
+                    remove('data_backup')
+                    mkdir('datafolder')
+                    try: shutil.move('data', 'datafolder/')
+                    except Exception: sys.exit(0)
                     file_to_datafolder()
                     logger.stay("PACKING DATA\n")
                     xp3_finalization()
@@ -2196,13 +2179,10 @@ try:  # type: ignore
                     cv2.destroyAllWindows()
                     logger.stay("PACKING SECOND PART OF DATA")
                     to_zip(logger, cachename, start)
-                    if restart:
-                        logger.stay('The program will restart automatically.')
+                    if restart: logger.stay('The program will restart automatically.')
                     elif not restart:
-                        if args.endf is None:
-                            pass
-                        else:
-                            logger.stay('The program will automatically shut down.')
+                        if args.endf is None: pass
+                        else: logger.stay('The program will automatically shut down.')
                     count: int = 0
                     for root_dir, cur_dir, files in os.walk(r"C:/Users/" + os.getlogin() + r"/AppData/Local/ZnámE/backup/"):
                         count += len(files)
@@ -2223,23 +2203,20 @@ try:  # type: ignore
                                           r"/AppData/Local/ZnámE/backup/" + files[0])
                         shutil.copy('data.xp2', r"C:/Users/" + os.getlogin() + r"/AppData/Local/ZnámE/backup/backup-" + str(
                             datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
-                    if args.endf is not None and not restart:
-                        sleep(2.5)
-                    video_end = int(time.time())
-                    while video_end - video_start < 25:
-                        sleep(0.1)
+                    if args.endf is not None and not restart: sleep(2.5)
+                    if not restart:
                         video_end = int(time.time())
-                    media_player.stop()
-                    os.remove('end.mp4')
+                        while video_end - video_start < 25:
+                            sleep(0.1)
+                            video_end = int(time.time())
+                        media_player.stop()
+                        os.remove('end.mp4')
                     if restart:
                         crrestart = open("restart.py", "w", encoding='utf-8')
                         crrestart.write(restartapp)
                         crrestart.close()
                         os.remove('END')
-                        try:
-                            os.remove('.env')
-                        except Exception:
-                            pass
+                        remove('.env')
                         if not inactivelogout and os.path.isfile(r"C:/Users/" + os.getlogin() + r"/AppData/Local/ZnámE/saved"):
                             typewriter(
                                 "!\n!!\n!!!\nWARNING\nWAIT UNTIL PROGRAM SAYS YOU CAN\n!!!\n!!\n!\n", ttime=0.01)
@@ -2286,11 +2263,8 @@ try:  # type: ignore
                             os.remove('crash_dump-' + datelog + '.txt')
                             return 0
                     elif not restart:
-                        os.remove('END')
-                        try:
-                            os.remove('.env')
-                        except Exception:
-                            pass
+                        remove('END')
+                        remove('.env')
                         if args.endf is None:
                             input("'ENTER' TO END")
                             if os.path.exists('restart.py'):
@@ -2323,18 +2297,14 @@ try:  # type: ignore
         logger.stay(printnlog('Function: main\n', toprint=False))
         logger.prev(printnlog('Done defining functions\n', toprint=False))
         if args.debug == None:
-            with cProfile.Profile() as pr:
-                main()
+            with cProfile.Profile() as pr: main()
             stats = pstats.Stats(pr)
             stats.sort_stats(pstats.SortKey.TIME)
             stats.dump_stats(filename='PROFILING.prof')
-        else:
-            main()
+        else: main()
     else:
-        try:
-            os.remove('crash_dump-' + datelog + '.txt')
-        except FileNotFoundError:
-            pass
+        try: os.remove('crash_dump-' + datelog + '.txt')
+        except FileNotFoundError: pass
 except *Exception as e:
     import os
     import sys
