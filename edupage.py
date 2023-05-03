@@ -1881,7 +1881,7 @@ try:  # type: ignore
                     """
                     if vstup == 'clear' or vstup == 'cls':
                         os.system('cls')
-                        show_version()
+                        show_version(args)
                     if inactivelogout:
                         restart: bool = True
                         exit: bool = True
