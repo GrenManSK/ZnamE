@@ -40,7 +40,7 @@ class argGameError(Exception):
     pass
 
 
-def error_log(line: int) -> None:
+def error_log(line: int, fname) -> None:
     """
     It writes the error to a file and prints it to the console
 
@@ -49,7 +49,6 @@ def error_log(line: int) -> None:
     with open('error.log', 'a', encoding='utf-8') as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exc_type = exc_type.__qualname__
-        fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         errorfile.write(
             f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n')
     printnlog(
@@ -68,22 +67,35 @@ def error_get(errors, line: list) -> None:
     :return: The error code and the line number of the error
     """
 
-    for times, error in enumerate(errors.exceptions):
+    exc_type, exc_obj, exc_tb = sys.exc_info()
+    fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+    try:
+        for times, error in enumerate(errors.exceptions):
+            try:
+                try:
+                    raise eval(
+                        error.with_traceback.__qualname__.split('.')[0])(error)
+                except eval(error.with_traceback.__qualname__.split('.')[0]):
+                    if len(line) == 1 and times > 0:
+                        error_log(line[0])
+                    else:
+                        error_log(line[times])
+            except NameError:
+                try:
+                    raise SystemError(error.with_traceback.__qualname__.split('.')[
+                                    0] + ': ' + str(error))
+                except SystemError:
+                    if len(line) == 1 and times > 0:
+                        error_log(line[0], fname)
+                    else:
+                        error_log(line[times], fname)
+    except Exception:
+        times = 0
         try:
-            try:
-                raise eval(
-                    error.with_traceback.__qualname__.split('.')[0])(error)
-            except eval(error.with_traceback.__qualname__.split('.')[0]):
-                if len(line) == 1 and times > 0:
-                    error_log(line[0])
-                else:
-                    error_log(line[times])
-        except NameError:
-            try:
-                raise SystemError(error.with_traceback.__qualname__.split('.')[
-                                  0] + ': ' + str(error))
-            except SystemError:
-                if len(line) == 1 and times > 0:
-                    error_log(line[0])
-                else:
-                    error_log(line[times])
+            error_name = errors.with_traceback.__qualname__.split('.')[0]
+            raise eval(error_name)(errors)
+        except eval(error_name):
+            if len(line) == 1 and times > 0:
+                error_log(line[0], fname)
+            else:
+                error_log(line[times], fname)

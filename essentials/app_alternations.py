@@ -18,6 +18,7 @@ from threading import Thread
 from final.mathematical import get_id
 import glob
 import stat
+import json
 load_dotenv('.env')
 
 updateapp: str = str(
@@ -391,6 +392,13 @@ def install_choco(logger):
     checkAdmin()
     sys.exit(0)
 
+def get_packages() -> list[str]:
+    with open('choco_packages.json') as json_file:
+        data = json.load(json_file)
+        return_data = []
+        for package in data.values():
+            return_data.append(f"{package['command']} {package['package']} {package['version']} {package['additional-command']}")
+    return return_data
 
 def install_packages(args, logger):
     datelog = os.getenv('DATELOG')
@@ -398,8 +406,7 @@ def install_packages(args, logger):
 
     "Downloading dependencies using chocolatey"
 
-    choco_packages: list[str] = [
-        'ffmpeg --version 5.1.2', 'vlc --version 3.0.18', 'vcredist2015 --version 14.0.24215.20170201', 'grep --version 3.7']
+    choco_packages: list[str] = get_packages()
 
     "inst_number is number of installed packages; alinst_number is number of already installed"
 
