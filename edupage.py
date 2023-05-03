@@ -336,11 +336,10 @@ try:  # type: ignore
     if __name__ == '__main__':
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             logger.stay(printnlog('First time setup', toprint=False))
+            from essentials.app_alternations import install_choco, install_packages
             if not os.path.isfile('INSTALL_RESTART'):
-                from essentials.app_alternations import install_choco
                 install_choco(logger)
             if os.path.isfile('INSTALL'):
-                from essentials.app_alternations import install_packages
                 install_packages(args, logger)
             sleep(1)
             os.remove('INSTALL_RESTART')
@@ -2189,72 +2188,14 @@ try:  # type: ignore
                         shutil.move('data', 'datafolder/')
                     except Exception:
                         sys.exit(0)
-                    source_dir: str = 'assets/'
-                    os.mkdir('datafolder/' + source_dir)
-                    for file_name in os.listdir(source_dir):
-                        shutil.move(os.path.join(source_dir, file_name),
-                                    'datafolder/' + source_dir)
-                    source_dir: str = 'apphtml/'
-                    os.mkdir('datafolder/' + source_dir)
-                    for file_name in os.listdir(source_dir):
-                        shutil.move(os.path.join(source_dir, file_name),
-                                    'datafolder/' + source_dir)
-                    source_dir: str = 'yt_dl/'
-                    os.mkdir('datafolder/' + source_dir)
-                    for file_name in os.listdir(source_dir):
-                        shutil.move(os.path.join(source_dir, file_name),
-                                    'datafolder/' + source_dir)
-                    files: list = ['downloadmusic.py', 'anime_search.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
-                                   'playvideo.py', 'settings.py', 'media.py', 'game_assets.py', 'completer.py']
-                    for i in files:
-                        shutil.move(i, f'datafolder/{i}')
+                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip
+                    file_to_datafolder()
                     logger.stay("PACKING DATA\n")
-                    subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3',
-                                    '-mode', 'repack', '-e', 'neko_vol0_steam'])
-                    shutil.rmtree('datafolder')
-                    shutil.rmtree('apphtml')
-                    shutil.rmtree('yt_dl')
-                    shutil.rmtree('assets')
+                    xp3_finalization()
                     logger.stay("COMPLETE")
                     cv2.destroyAllWindows()
                     logger.stay("PACKING SECOND PART OF DATA")
-                    zipfiles: list[str] = ['tests.py', 'xp3.py',
-                                           'xp3reader.py', 'xp3writer.py', 'data.xp3']
-                    zipfileswopath: list[str] = ['tests.py', 'xp3.py',
-                                                 'xp3reader.py', 'xp3writer.py', 'data.xp3']
-                    folders: list[str] = ['structs']
-                    for i in range(0, len(folders)):
-                        for path, directories, files in os.walk(folders[i]):
-                            for file in files:
-                                file_name: str = os.path.join(path, file)
-                                zipfiles.append(file_name)
-                                zipfileswopath.append(file)
-                    logger.next('')
-                    with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
-                        zip_kb_old: int = 0
-                        zipfilesnumber: int = len(zipfiles)
-                        bar = tqdm(range(0, len(zipfiles)),
-                                    desc="Packing ")
-                        for i in bar:
-                            zip.write(zipfiles[i])
-                            filesizeen: int = sum(
-                                [zinfo.file_size for zinfo in zip.filelist])
-                            tqdm.write(logger.stay(zipfileswopath[i] + "(" + str(os.path.getsize(
-                                zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
-                            zip_kb_old: int = filesizeen
-                            os.remove(zipfiles[i])
-                            if i == len(zipfiles)-1:
-                                tqdm.write("\n")
-                        filesizeenend: int = sum(
-                            [zinfo.file_size for zinfo in zip.filelist])
-                        logger.prev("\nPacked data have > " +
-                                    str(filesizeenend) + " KB")
-                        zip.close()
-                    for i in range(0, len(folders)):
-                        shutil.rmtree(folders[i])
-                    end = time.time()
-                    logger.stay('Elapsed time of packing: ' +
-                                str(end-start) + '\n')
+                    to_zip(logger, cachename, start)
                     if restart:
                         logger.stay('The program will restart automatically.')
                     elif not restart:
@@ -2307,47 +2248,26 @@ try:  # type: ignore
                             if not vstup in ['', 'y']:
                                 if os.path.isfile("restart.py"):
                                     os.remove("restart.py")
-                                if neko:
-                                    try:
-                                        os.remove('assets/neko.png')
-                                    except Exception:
-                                        pass
-                                    try:
-                                        os.remove('assets/waifu.png')
-                                    except Exception:
-                                        pass
-                                    try:
-                                        os.remove('assets/waifu.gif')
-                                    except Exception:
-                                        pass
-                                    try:
-                                        os.remove('assets/waifu.mp4')
-                                    except Exception:
-                                        pass
-                                    try:
-                                        os.remove('assets/video.mp4')
-                                    except Exception:
-                                        pass
+                                if neko or waifu or waifuvid:
+                                    from essentials.file_operations import del_wn
+                                    del_wn()
                                 os.remove('crash_dump-' + datelog + '.txt')
                                 return 0
                             elif vstup in ['', 'y']:
                                 os.system('cls')
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+                                    sleep(0.5)
                                     if waifuvid:
-                                        sleep(0.5)
                                         subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --waifu --waifuvid --music ' + str(args.music), shell=True)
                                     elif neko:
-                                        sleep(0.5)
                                         subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --neko --music ' + str(args.music), shell=True)
                                     elif waifu:
-                                        sleep(0.5)
                                         subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --waifu --music ' + str(args.music), shell=True)
                                     else:
-                                        sleep(0.5)
                                         subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --music ' + str(args.music), shell=True)
                                     os.remove('crash_dump-' + datelog + '.txt')

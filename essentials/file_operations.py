@@ -6,6 +6,7 @@ import subprocess
 import sys
 import shutil
 import stat
+import time
 
 
 def unpack(datelog, args, cachename: str) -> None:
@@ -36,7 +37,8 @@ def unpack(datelog, args, cachename: str) -> None:
     @param output_folder - the folder to extract to
     @param extract_name - the name of the file to extract
     """
-    subprocess.call([sys.executable, 'xp3.py', 'data.xp3', 'data1', '-e', 'neko_vol0_steam'])
+    subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                    'data1', '-e', 'neko_vol0_steam'])
     try:
         shutil.move('data1/data', 'data')
     except Exception:
@@ -106,7 +108,102 @@ def delete(file):
         shutil.rmtree(file, onerror=on_rm_error)
     except:
         pass
-    
+
+
 def on_rm_error(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
+
+
+def file_to_datafolder():
+    source_dir: str = 'assets/'
+    os.mkdir('datafolder/' + source_dir)
+    for file_name in os.listdir(source_dir):
+        shutil.move(os.path.join(source_dir, file_name),
+                    'datafolder/' + source_dir)
+    source_dir: str = 'apphtml/'
+    os.mkdir('datafolder/' + source_dir)
+    for file_name in os.listdir(source_dir):
+        shutil.move(os.path.join(source_dir, file_name),
+                    'datafolder/' + source_dir)
+    source_dir: str = 'yt_dl/'
+    os.mkdir('datafolder/' + source_dir)
+    for file_name in os.listdir(source_dir):
+        shutil.move(os.path.join(source_dir, file_name),
+                    'datafolder/' + source_dir)
+    files: list = ['downloadmusic.py', 'anime_search.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
+                   'playvideo.py', 'settings.py', 'media.py', 'game_assets.py', 'completer.py']
+    for i in files:
+        shutil.move(i, f'datafolder/{i}')
+
+
+def xp3_finalization():
+    subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3',
+                    '-mode', 'repack', '-e', 'neko_vol0_steam'])
+    shutil.rmtree('datafolder')
+    shutil.rmtree('apphtml')
+    shutil.rmtree('yt_dl')
+    shutil.rmtree('assets')
+
+
+def to_zip(logger, cachename, start):
+    zipfiles: list[str] = ['tests.py', 'xp3.py',
+                           'xp3reader.py', 'xp3writer.py', 'data.xp3']
+    zipfileswopath: list[str] = ['tests.py', 'xp3.py',
+                                 'xp3reader.py', 'xp3writer.py', 'data.xp3']
+    folders: list[str] = ['structs']
+    for i in range(0, len(folders)):
+        for path, directories, files in os.walk(folders[i]):
+            for file in files:
+                file_name: str = os.path.join(path, file)
+                zipfiles.append(file_name)
+                zipfileswopath.append(file)
+    logger.next('')
+    with zipfile.ZipFile(cachename, mode='w', compresslevel=5) as zip:
+        zip_kb_old: int = 0
+        zipfilesnumber: int = len(zipfiles)
+        bar = tqdm(range(0, len(zipfiles)),
+                   desc="Packing ")
+        for i in bar:
+            zip.write(zipfiles[i])
+            filesizeen: int = sum(
+                [zinfo.file_size for zinfo in zip.filelist])
+            tqdm.write(logger.stay(zipfileswopath[i] + "(" + str(os.path.getsize(
+                zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
+            zip_kb_old: int = filesizeen
+            os.remove(zipfiles[i])
+            if i == len(zipfiles)-1:
+                tqdm.write("\n")
+        filesizeenend: int = sum(
+            [zinfo.file_size for zinfo in zip.filelist])
+        logger.prev("\nPacked data have > " +
+                    str(filesizeenend) + " KB")
+        zip.close()
+    for i in range(0, len(folders)):
+        shutil.rmtree(folders[i])
+    end = time.time()
+    logger.stay('Elapsed time of packing: ' +
+                str(end-start) + '\n')
+
+
+def del_wn():
+    try:
+        os.remove('assets/neko.png')
+    except Exception:
+        pass
+    try:
+        os.remove('assets/waifu.png')
+    except Exception:
+        pass
+    try:
+        os.remove('assets/waifu.gif')
+    except Exception:
+        pass
+    try:
+        os.remove('assets/waifu.mp4')
+    except Exception:
+        pass
+    try:
+        os.remove('assets/video.mp4')
+    except Exception:
+        pass
