@@ -3,6 +3,7 @@ import glob
 from .exceptions import error_get
 from .system_info import get_line_number
 from time import sleep
+import pyautogui as pg
 import pygetwindow
 import os
 import traceback
@@ -176,3 +177,12 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
         else:
             print(k)
             cv2.destroyAllWindows()
+
+def pg_comb(operations: dict[str, str]):
+    for oper, key in operations.items():
+        if oper == 'p':
+            pg.press(key)
+        elif oper == 'ku':
+            pg.keyUp(key)
+        elif oper == 'kd':
+            pg.keyDown(key)
