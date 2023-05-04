@@ -256,12 +256,13 @@ def choco_install(*packages: str):
         version = ''
         if len(pack := package.split(' --version ')) > 1:
             version = pack[1]
-            package = pack[0]
+            package = pack[0].split(' ')[2]
+            command = pack[0].split(' ')[1]
         with open('choco_output', 'w') as file:
             carousel = installing_carousel(package)
             Thread(target=carousel.start()).start()
             Thread(target=choco_check, args=(package, carousel)).start()
-            subprocess.run(['choco', 'install', package,
+            subprocess.run(['choco', command, package,
                             version, '-y'], stdout=file, text=True)
         with open('choco_output', 'r') as file:
             alinst = False
@@ -400,7 +401,7 @@ def get_packages() -> list[str]:
         return_data = []
         for package in data.values():
             return_data.append(
-                f"{package['command']} {package['package']} {package['version']} {package['additional-command']}")
+                f"{package['command']} {package['package']} --version {package['version']} {package['additional-command']}")
     return return_data
 
 
@@ -415,9 +416,7 @@ def install_packages(args, logger):
     "inst_number is number of installed packages; alinst_number is number of already installed"
 
     inst_number, alinst_number = choco_install(*choco_packages)
-    if inst_number == 0:
-        pass
-    else:
+    if inst_number != 0:
         logger.stay("Restarting program ...")
         sleep(1)
         subprocess.check_output(
