@@ -14,7 +14,7 @@ import inspect
 import ctypes
 
 
-def system_info(logger, screensize, verzia):
+def system_info(logger, screensize):
     try:
         os.makedirs("C:/Users/" + os.getlogin() +
                     "/AppData/Local/ZnámE/")
@@ -22,6 +22,7 @@ def system_info(logger, screensize, verzia):
         pass
     open("C:/Users/" + os.getlogin() +
          "/AppData/Local/ZnámE/info.txt", "x")
+    verzia = open('version', 'r', encoding='utf-8')
     logger.stay(to_info(verzia.read(), end='',
                 file='version', mode='w', toprint=False))
     logger.stay(printnlog('Getting system information', toprint=False))
