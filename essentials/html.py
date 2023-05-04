@@ -3,6 +3,7 @@ import pyautogui as pg
 from time import sleep
 import pygetwindow
 
+
 def playhtml(args, config, htmlFile: str, mode: int = 0, time: int = 0):
     """
     The playhtml function is used to open the html file containing the game's intro.
@@ -23,17 +24,23 @@ def playhtml(args, config, htmlFile: str, mode: int = 0, time: int = 0):
             webbrowser.open(htmlFile + '.html', 1)
             sleep(1)
             pg.press('f11')
-            if mode == 0:  mouseclick()
-            elif mode == 1: mouseclick(time=time)
-        else: pass
+            if mode == 0:
+                mouseclick()
+            elif mode == 1:
+                mouseclick(time=time)
+        else:
+            pass
     else:
         if config['basic info']['intro'] == True:
             webbrowser.open(htmlFile + '.html', 1)
             sleep(1.5)
             pg.press('f11')
-            if mode == 0: mouseclick()
-            elif mode == 1: mouseclick(time=time)
+            if mode == 0:
+                mouseclick()
+            elif mode == 1:
+                mouseclick(time=time)
             if args.test is not None:
                 window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                 window.activate()
-        else: pass
+        else:
+            pass

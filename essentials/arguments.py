@@ -1,6 +1,7 @@
 import argparse
 import sys
 import os
+import yaml
 from .internet import get_line_number
 from .writing import printnlog, typewriter
 from .exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
@@ -64,7 +65,7 @@ def arguments(config):
     return parser, music, UNSPECIFIED
 
 
-def check_correctness(args, config, logger, music, set_config):
+def check_correctness(args, config, logger, music):
     hexnumber: list[str] = ['0', '1', '2', '3', '4', '5', '6',
                             '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
     logger.stay(printnlog("Checking config correctness", toprint=False))
@@ -217,3 +218,32 @@ def write_config_options(server):
         config_file.write('  type: [sfw/nsfw]\n')
     os.remove(f'crash_dump-{datelog}.txt')
     sys.exit(1)
+    
+def set_config(section: str, name: str, info: any) -> any:
+    """
+    The set_config function is used to set a value in the config.yml file.
+        It takes three arguments: section, name, and info. Section is the section of the config file you want to edit (e.g., 'user history'). Name is what you want to change (e.g., 'username'), and info is what you want it changed to.
+
+    :param section: str: Specify which section of the config
+    :param name: str: Specify the name of the key in the yaml file
+    :param info: any: Store the value that is being set
+    :return: The info that you pass to it
+    """
+    global config
+    config = yaml.safe_load(open('config.yml', 'r'))
+    if not isinstance(config['user history'], dict):
+        config['user history'] = {}
+    config[section][name] = info
+    os.remove('config.yml')
+    with open('config.yml', 'w') as configfile:
+        yaml.dump(config, configfile)
+    config = yaml.safe_load(open('config.yml', 'r'))
+    return config
+
+
+def music2str(musiclistnew):
+    musiclistnewstring: str = ''
+    for i in range(len(musiclistnew)):
+        musiclistnewstring += str(musiclistnew[i]) + ','
+    config = set_config('basic info', 'musiclist', str(musiclistnewstring[0:-1]))
+    return config

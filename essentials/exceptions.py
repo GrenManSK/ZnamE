@@ -8,6 +8,7 @@ load_dotenv('.env')
 class configNoOption(Exception):
     pass
 
+
 class argIntroError(Exception):
     pass
 
@@ -75,7 +76,8 @@ def error_get(errors, line: list) -> None:
     try:
         for times, error in enumerate(errors.exceptions):
             try:
-                fname = os.path.basename(error.__traceback__.tb_frame.f_locals['__file__'])
+                fname = os.path.basename(
+                    error.__traceback__.tb_frame.f_locals['__file__'])
                 try:
                     raise eval(
                         error.with_traceback.__qualname__.split('.')[0])(error)
@@ -87,7 +89,7 @@ def error_get(errors, line: list) -> None:
             except NameError:
                 try:
                     raise SystemError(error.with_traceback.__qualname__.split('.')[
-                                    0] + ': ' + str(error))
+                        0] + ': ' + str(error))
                 except SystemError:
                     if len(line) == 1 and times > 0:
                         error_log(line[0], fname)

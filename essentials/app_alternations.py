@@ -22,7 +22,7 @@ import pkg_resources
 load_dotenv('.env')
 
 updateapp: str = str(
-        'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
+    'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
 
 
 def update_app(args, logger):
@@ -51,7 +51,8 @@ def update_app(args, logger):
 
                 "If program fails to download update refer user to website"
 
-                printnlog("DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
+                printnlog(
+                    "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'")
                 input()
                 sys.exit(1)
             os.mkdir('old')
@@ -392,13 +393,16 @@ def install_choco(logger):
     checkAdmin()
     sys.exit(0)
 
+
 def get_packages() -> list[str]:
     with open('choco_packages.json') as json_file:
         data = json.load(json_file)
         return_data = []
         for package in data.values():
-            return_data.append(f"{package['command']} {package['package']} {package['version']} {package['additional-command']}")
+            return_data.append(
+                f"{package['command']} {package['package']} {package['version']} {package['additional-command']}")
     return return_data
+
 
 def install_packages(args, logger):
     datelog = os.getenv('DATELOG')
@@ -427,6 +431,7 @@ def install_packages(args, logger):
     if inst_number != 0:
         sys.exit(0)
 
+
 def on_rm_error(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
@@ -434,8 +439,8 @@ def on_rm_error(func, path, exc_info):
 
 def python_update(args, logger):
     datelog = os.getenv('DATELOG')
-    potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc','pywinauto',
-                        'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
+    potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc', 'pywinauto',
+                          'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
     printnlog('Libraries needed: ', end='')
     potrebne1: list[str] = list(potrebne)
     for i in range(0, len(potrebne1)):
