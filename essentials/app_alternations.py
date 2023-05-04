@@ -22,7 +22,7 @@ import pkg_resources
 load_dotenv('.env')
 
 updateapp: str = str(
-    'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf == None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
+    'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf is None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
 
 
 def update_app(args, logger):
