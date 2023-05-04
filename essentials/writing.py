@@ -76,6 +76,5 @@ def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
 
 
 def show_version(args):
-    verzia = open('version', 'r')
-    typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
-    verzia.close()
+    with open('version', 'r') as verzia:
+        typewriter('You\'re using ZnámE ' + verzia.read() + "\n")

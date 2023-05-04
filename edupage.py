@@ -1050,7 +1050,7 @@ try:  # type: ignore
                             'start restart.py --autol', shell=True)
                     if vstup == 'voicevox':
                         try:
-                            run_voicevox(env_menu())
+                            run_voicevox(env_menu(info=True))
                         except KeyboardInterrupt:
                             print('\n')
                             continue
