@@ -111,33 +111,14 @@ try:  # type: ignore
 
     logger.stay(printnlog('\nDone\n', toprint=False))
 
-    def set_config(section: str, name: str, info: any) -> any:
-        """
-        The set_config function is used to set a value in the config.yml file.
-            It takes three arguments: section, name, and info. Section is the section of the config file you want to edit (e.g., 'user history'). Name is what you want to change (e.g., 'username'), and info is what you want it changed to.
-
-        :param section: str: Specify which section of the config
-        :param name: str: Specify the name of the key in the yaml file
-        :param info: any: Store the value that is being set
-        :return: The info that you pass to it
-        """
-        global config
-        config = yaml.safe_load(open('config.yml', 'r'))
-        if not isinstance(config['user history'], dict):
-            config['user history'] = {}
-        config[section][name] = info
-        os.remove('config.yml')
-        with open('config.yml', 'w') as configfile:
-            yaml.dump(config, configfile)
-        config = yaml.safe_load(open('config.yml', 'r'))
-        return config
+    from essentials.arguments import set_config
 
     if __name__ == '__main__':
         from essentials.arguments import arguments, check_correctness
         server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
         parser, music, UNSPECIFIED = arguments(config)
         args = parser.parse_args()
-        check_correctness(args, config, logger, music, set_config)
+        check_correctness(args, config, logger, music)
         """
         If the program has specified that we should update the rotation dictionary, remove the old update.py file.
         """
@@ -268,7 +249,7 @@ try:  # type: ignore
             from essentials.app_alternations import update_app
             update_app(args, logger)
 
-    from essentials.system_operations import getWindow, getImg, move
+    from essentials.system_operations import getWindow, getImg, move, show_cmd, wait_for_file
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: move', toprint=False))
@@ -415,15 +396,7 @@ try:  # type: ignore
         subprocess.check_output('start ' + decodename + '.py ' + str(name1) +
                                 ' ' + str(ico) + ' ' + str(subject) + ' ' + str(mark), shell=True)
         tqdm.write('Adding ...', end='\r')
-        while True:
-            leave: bool = False
-            for i in os.listdir():
-                if i == 'DONE':
-                    leave: bool = True
-                    break
-            if leave:
-                sleep(0.05)
-                break
+        wait_for_file('DONE')
         tqdm.write('Adding Complete')
         os.remove(decodename + '.py')
         os.remove(name1)
@@ -461,15 +434,7 @@ try:  # type: ignore
         elif mode == 0: subprocess.check_output(
                 'start ' + decodename + '.py ' + str(decodename1) + ' ' + str(decodename2), shell=True)
         tqdm.write('Encrypting ...', end='\r')
-        while True:
-            leave: bool = False
-            for i in os.listdir():
-                if i == 'DONE':
-                    leave: bool = True
-                    break
-            if leave:
-                sleep(0.05)
-                break
+        wait_for_file('DONE')
         tqdm.write('Encrypting Complete')
         os.remove(decodename + '.py')
         os.remove('DONE')
@@ -500,15 +465,7 @@ try:  # type: ignore
         tqdm.write('Controling ...', end='\r')
         subprocess.check_output(
             'start ' + passwordname + '.py ' + str(name), shell=True)
-        while True:
-            leave: bool = False
-            for i in os.listdir():
-                if i == 'DONE':
-                    leave: bool = True
-                    break
-            if leave:
-                sleep(0.05)
-                break
+        wait_for_file('DONE')
         os.remove(passwordname + '.py')
         password: str = ''
         for i in open('DONE', 'r').read():
@@ -540,15 +497,7 @@ try:  # type: ignore
         tqdm.write('Finding ...', end='\r')
         subprocess.check_output(
             'start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
-        while True:
-            leave: bool = False
-            for i in os.listdir():
-                if i == 'DONE':
-                    leave: bool = True
-                    break
-            if leave:
-                sleep(0.05)
-                break
+        wait_for_file('DONE')
         os.remove(findname + '.py')
         os.remove(name)
         os.remove('DONE')
@@ -595,15 +544,7 @@ try:  # type: ignore
             subprocess.check_output('start ' + codename + '.py 1', shell=True)
         if mode == 0: subprocess.check_output(
                 'start ' + codename + '.py ' + str(name[0]), shell=True)
-        while True:
-            leave = False
-            for i in os.listdir():
-                if i == 'DONE':
-                    leave = True
-                    break
-            if leave:
-                sleep(0.05)
-                break
+        wait_for_file('DONE')
         tqdm.write('Coding Complete')
         os.remove(codename + '.py')
         if mode == 0 and new == 'justcode': pass
@@ -728,7 +669,6 @@ try:  # type: ignore
                     music.remove('')
         musiclistnewstring: str = ''
         for i in range(len(music)): musiclistnewstring += str(music[i]) + ','
-
         try:
             for line, content in enumerate(open('MUSIC', 'r', encoding='utf-8').readlines()):
                 musiclistnewstring += content + ','
@@ -750,25 +690,18 @@ try:  # type: ignore
         return media_player
 
     def intro():
+        from essentials.system_operations import intro_video
         exit = False
         move('ZnámE', -10, -10, screensize[0], screensize[1])
         if args.test is not None:
-            try:
-                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                window.maximize()
-            except IndexError:
-                exit: bool = True
-                error_get(IndexError(
-                    'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                show_cmd()
         if args.restart is not None:
-            player = vlc.Instance('--fullscreen')
-            media_list = player.media_list_new()  # type: ignore
-            media_player = player.media_list_player_new()  # type: ignore
-            media = player.media_new(
-                "assets/transition.mp4")  # type: ignore
-            media_list.add_media(media)
-            media_player.set_media_list(media_list)
+            media_player = vlc.MediaPlayer()
+            media_player.set_fullscreen(True)
+            media = vlc.Media("assets/transition.mp4")
+            media_player.set_media(media)
             media_player.play()
+        intro_video(args, media_player)
         return exit
 
     def was_updated():
@@ -785,22 +718,6 @@ try:  # type: ignore
                 printnlog('Program was updated!!!\n')
             return inactive1
         except Exception: pass
-
-    def show_html(media_player):
-        if args.restart is not None:
-            try:
-                sleep(0.1)
-                window = pygetwindow.getWindowsWithTitle(
-                    'VLC (Direct3D11 output)')[0]
-                window.activate()
-                window.maximize()
-            except Exception: pass
-            sleep(2.5)
-            mixer.init()
-            mixer.music.load('assets/greeting.mp3')
-            mixer.music.play()
-            sleep(2.5)
-            media_player.stop()
 
     def main() -> None:
         global config
@@ -820,9 +737,10 @@ try:  # type: ignore
             media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
             print_module('DownloadMusic from downloadmusic')
-            from media import PlayVideo, DownloadVideo  # type: ignore
+            from media import PlayVideo, DownloadVideo, play_loop  # type: ignore
             from login import save_credentials  # type: ignore
             from essentials.writing import show_version
+            from essentials.arguments import music2str
             
             musiclistnew: list = []
             for i in range(len(music)):
@@ -832,10 +750,7 @@ try:  # type: ignore
                     musiclistnew.append(DownloadMusic(str(music_name)))
                 else: musiclistnew.append(music_name)
             music = []
-            musiclistnewstring: str = ''
-            for i in range(len(musiclistnew)):
-                musiclistnewstring += str(musiclistnew[i]) + ','
-            set_config('basic info', 'musiclist', str(musiclistnewstring[0:-1]))
+            config = music2str(musiclistnew)
             intro()
             inactive1: bool = False
 
@@ -874,7 +789,6 @@ try:  # type: ignore
             @param None
             @return None
             """
-            show_html(media_player)
             if not inactive1: playhtml(args, config, 'apphtml\\start', 1, 3,)
             exit: bool = getWindow(args)
             if args.nointro is None or config['basic info']['intro'] == False: pass
@@ -886,13 +800,7 @@ try:  # type: ignore
             move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                 (round((322/1736)*screensize[0], 0))))
             if args.test is not None:
-                try:
-                    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                    window.activate()
-                except IndexError:
-                    exit = True
-                    error_get(IndexError(
-                        'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                    show_cmd()
             pg.press('win')
             sleep(0.1)
             pg.press('win')
@@ -1142,10 +1050,7 @@ try:  # type: ignore
                             to_append = spotMusicDow().split(',')
                             for item in to_append: musiclistnew.append(item)
                             musiclistnewstring: str = ''
-                            for i in range(len(musiclistnew)):
-                                musiclistnewstring += str(musiclistnew[i]) + ','
-                            set_config('basic info', 'musiclist',
-                                    str(musiclistnewstring[0:-1]))
+                            config = music2str(musiclistnew)
                             remove('MUSIC')
                         elif musicvstup == len(musiclistnew) + 1 and not musicnone:
                             typewriter('Vymaž audio')
@@ -1164,15 +1069,12 @@ try:  # type: ignore
                             lenmusic = len(musiclistnew) + 1
                             intconfig = int(config['basic info']['musicnumber'])
                             while lenmusic < intconfig:
-                                set_config('basic info', 'musicnumber',
+                                config = set_config('basic info', 'musicnumber',
                                            int(args.music)-1)
                                 intconfig = int(config['basic info']['musicnumber'])
                                 continue
                             musiclistnewstring: str = ''
-                            for i in range(len(musiclistnew)):
-                                musiclistnewstring += str(musiclistnew[i]) + ','
-                            set_config('basic info', 'musiclist',
-                                    str(musiclistnewstring[0:-1]))
+                            config = music2str(musiclistnew)
                             pg.write('music\n')
                         if not musicnone:
                             if musicvstup == len(musiclistnew) + 3:  # back
@@ -1220,7 +1122,7 @@ try:  # type: ignore
                                 'Done                                            ', ttime=0.01)
                         else: typewriter("You don't have image to save", ttime=0.01)
                     if vstup == 'offlinegame':
-                        set_config('game settings', 'offline_game', True)
+                        config = set_config('game settings', 'offline_game', True)
                         offline_game = True
                         shutil.copy('game_assets.py', 'game_assets_offline.py')
                         import game_assets  # type: ignore
@@ -1382,17 +1284,8 @@ try:  # type: ignore
                                 clip = mp.VideoFileClip("assets/waifu.gif")
                                 clip.write_videofile("assets/waifu.mp4")
                                 sleep(0.5)
-                                player = vlc.Instance('--input-repeat=999999')
-                                media_list = player.media_list_new()  # type: ignore
-                                media_player = player.media_list_player_new()  # type: ignore
-                                media = player.media_new(
-                                    "assets/waifu.mp4")  # type: ignore
-                                media_list.add_media(media)
-                                media_player.set_media_list(media_list)
-                                player.vlm_set_loop(
-                                    "waifu", True)  # type: ignore
-                                media_player.play()
                                 waifuvid: bool = True
+                                media_player = play_loop()
                                 sleep(1)
                             elif data["url"].split('.')[-1] != 'gif':
                                 res = requests.get(data["url"], stream=True)
@@ -1402,15 +1295,7 @@ try:  # type: ignore
                             data: dict[str, str] = {
                                 'url': 'https://api.waifu.pics/waifu.mp4'}
                             waifuvid: bool = True
-                            player = vlc.Instance('--input-repeat=999999')
-                            media_list = player.media_list_new()  # type: ignore
-                            media_player = player.media_list_player_new()  # type: ignore
-                            media = player.media_new(
-                                "assets/waifu.mp4")  # type: ignore
-                            media_list.add_media(media)
-                            media_player.set_media_list(media_list)
-                            player.vlm_set_loop("waifu", True)  # type: ignore
-                            media_player.play()
+                            media_player = play_loop()
                             args.waifu = UNSPECIFIED
                             sleep(1)
                         elif args.waifu is None:
@@ -1695,9 +1580,11 @@ try:  # type: ignore
                                 img.close()  # type: ignore
                             except UnboundLocalError:
                                 pass
+                        else:
+                            media_player.stop()
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35), screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
-                    if not restart:
+                    if not restart: 
                         shutil.copy('assets/end.mp4', 'end.mp4')
                         media_player = vlc.MediaPlayer()
                         media_player.set_fullscreen(True)
@@ -1710,7 +1597,8 @@ try:  # type: ignore
                                 'VLC (Direct3D11 output)')[0]
                             window.activate()
                             window.maximize()
-                        except Exception: pass
+                        except Exception:
+                            pass
                     mixer_stop()
                     if not restart: not_restart()
                     if not offline_game: not_offline_game()
@@ -1747,36 +1635,14 @@ try:  # type: ignore
                         for i in historyfile.readlines(): historylist.append(i.strip('\n'))
                     except Exception:pass
                     musiclistnewstring: str = ''
-                    for i in range(len(musiclistnew)): musiclistnewstring += str(musiclistnew[i]) + ','
-                    set_config('user history', str(historyname), str(
+                    config = music2str(musiclistnew)
+                    config = set_config('user history', str(historyname), str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist))
-                    set_config('basic info', 'musiclist',
-                               str(musiclistnewstring[0:-1]))
                     logger.next(historyname + ' ' + str(
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S")) + str(historylist) + '\n')
                     historyfile.close()
                     remove(historyname)
                     logger.prev("Done\n")
-                    # pg.screenshot().save('bg.png')
-                    # shutil.copy('assets/green.mp4', 'green.mp4')
-                    # os.system(
-                    #     "ffmpeg -i bg.png -i green.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x000000:0.01:0.7[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
-                    # os.remove('bg.png')
-                    # os.remove('green.mp4')
-                    # player = vlc.Instance('--fullscreen')
-                    # media_list = player.media_list_new()  # type: ignore
-                    # media_player = player.media_list_player_new()  # type: ignore
-                    # media = player.media_new("output.mp4")  # type: ignore
-                    # media_list.add_media(media)
-                    # media_player.set_media_list(media_list)
-                    # media_player.play()
-                    # if args.test != None:
-                    #     window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                    #     window.activate()
-                    #     window.maximize()
-                    # sleep(5)
-                    # media_player.stop()
-                    # os.remove('output.mp4')
                     playhtml(args, config, 'apphtml\\end', 1, 3)
                     remove('data_backup')
                     mkdir('datafolder')
@@ -1815,10 +1681,13 @@ try:  # type: ignore
                             datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
                     if args.endf is not None and not restart: sleep(2.5)
                     if not restart:
+                        import keyboard
                         video_end = int(time.time())
                         while video_end - video_start < 27:
-                            sleep(0.1)
+                            time.sleep(0.1)
                             video_end = int(time.time())
+                            if keyboard.is_pressed('q'):
+                                break
                         media_player.stop()
                         os.remove('end.mp4')
                     if restart:

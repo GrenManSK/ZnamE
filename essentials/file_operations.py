@@ -188,7 +188,7 @@ def del_wn():
     remove('assets/video.mp4')
 
 
-def remove(file: str|list[str]):
+def remove(file: str | list[str]):
     if isinstance(file, str):
         try:
             return os.remove(file)

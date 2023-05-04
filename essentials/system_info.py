@@ -218,6 +218,7 @@ def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
     """
     return int(inspect.stack()[relative_frame][0].f_lineno)-int(goback)
 
+
 def get_screensize():
     user32 = ctypes.windll.user32
     screensize: tuple[int, int] = user32.GetSystemMetrics(
@@ -227,6 +228,7 @@ def get_screensize():
     with open('.env', 'a') as dotenv:
         dotenv.write(f'SCREENSIZE={str(screensize)}')
     return screensize, screensizepercentage
+
 
 def get_log_info(codeapp, decodeapp, findapp, passwordapp, addapp, restartapp, updateapp):
     x = open('log_codeapp.py', 'w')
