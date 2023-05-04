@@ -745,7 +745,7 @@ try:  # type: ignore
             media = vlc.Media("assets/transition.mp4")
             media_player.set_media(media)
             media_player.play()
-        intro_video(args, media_player)
+            intro_video(args, media_player)
         return exit
 
     def was_updated():
@@ -1758,7 +1758,7 @@ try:  # type: ignore
                                 if neko or waifu or waifuvid:
                                     from essentials.file_operations import del_wn
                                     del_wn()
-                                os.remove('crash_dump-' + datelog + '.txt')
+                                remove('crash_dump-' + datelog + '.txt')
                                 return 0
                             if vstup in ['', 'y']:
                                 os.system('cls')
@@ -1785,7 +1785,7 @@ try:  # type: ignore
                                         subprocess.check_output(
                                             'start edupage.py --restart --autologin --nointrof --music '
                                             + str(args.music), shell=True)
-                                    os.remove('crash_dump-' + datelog + '.txt')
+                                    remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
                             sys.stdout.flush()
@@ -1801,7 +1801,7 @@ try:  # type: ignore
                                 subprocess.check_output(
                                     'start edupage.py --restart --nointrof --music '
                                     + str(args.music), shell=True)
-                            os.remove('crash_dump-' + datelog + '.txt')
+                            remove('crash_dump-' + datelog + '.txt')
                             return 0
                     elif not restart:
                         remove('END')
@@ -1810,7 +1810,7 @@ try:  # type: ignore
                             input("'ENTER' TO END")
                         if os.path.exists('restart.py'):
                             os.remove('restart.py')
-                        os.remove('crash_dump-' + datelog + '.txt')
+                        remove('crash_dump-' + datelog + '.txt')
                         return 0
         except *Exception as returned_error:
             printnlog('Writing an error to \'error.log\'!!!')
@@ -1842,7 +1842,7 @@ try:  # type: ignore
             main()
     else:
         try:
-            os.remove('crash_dump-' + datelog + '.txt')
+            remove('crash_dump-' + datelog + '.txt')
         except FileNotFoundError:
             pass
 except *Exception as e:
