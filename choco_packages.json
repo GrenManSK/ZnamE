@@ -22,5 +22,11 @@
         "package": "grep",
         "version": "3.7",
         "additional-command": "-y"
+    },
+    "vb-cable": {
+        "command": "choco install",
+        "package": "vb-cable",
+        "version": "43.0",
+        "additional-command": "-y"
     }
 }
