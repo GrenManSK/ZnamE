@@ -1,13 +1,18 @@
 import subprocess
 import os
 import sys
+from .writing import printnlog, typewriter
 
 
-def get_envs() -> dict:
+def get_envs(info: bool = False) -> dict:
     with open('condaEnvList', 'w') as file:
         try:
+            if info:
+                typewriter(printnlog('Running command: conda env list', toprint=False), ttime=0.01)
             subprocess.check_call(['conda', 'env', 'list'], stdout=file)
         except FileNotFoundError:
+            if info:
+                typewriter(printnlog('Command not found; Returning emtpy dict', toprint=False))
             return dict()
     with open('condaEnvList', 'r') as file:
         fr = file.readlines()[2:-1]
@@ -20,8 +25,8 @@ def get_envs() -> dict:
     return conda
 
 
-def env_menu():
-    conda = get_envs()
+def env_menu(info: bool = False):
+    conda = get_envs(info)
     times = -1
     for times, env in enumerate(conda):
         print(times + 1, env)

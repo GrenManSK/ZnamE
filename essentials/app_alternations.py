@@ -30,9 +30,8 @@ def update_app(args, logger):
     try:
         url = 'https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version'
         page = requests.get(url)
-        verzia = open('version', 'r')
-        version = verzia.read()[1:]
-        verzia.close()
+        with open('version', 'r') as verzia:
+            version = verzia.read()[1:]
         if semantic_version.Version(page.text[1:]) <= semantic_version.Version(version):
             logger.next(
                 printnlog('You have the latest version', toprint=False))
@@ -109,7 +108,6 @@ def update_app(args, logger):
     except requests.ConnectionError:  # type: ignore
         line_number: int = get_line_number()
         pass
-    verzia.close()
 
 
 class installing_carousel:
@@ -452,9 +450,8 @@ def python_update(args, logger):
 
         "Printing out version and possible updates"
 
-        verzia = open('version', 'r')
-        logger.stay(printnlog(verzia.read(), toprint=False))
-        verzia.close()
+        with open('version', 'r') as verzia:
+            logger.stay(printnlog(verzia.read(), toprint=False))
         if nenajdene:
             print('Update is available: ', *nenajdene)
         os.remove('crash_dump-' + datelog + '.txt')
