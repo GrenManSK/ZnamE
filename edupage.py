@@ -794,6 +794,8 @@ try:  # type: ignore
             from login import save_credentials  # type: ignore
             from essentials.writing import show_version
             from essentials.arguments import music2str
+            from essentials.voicevox import run_voicevox
+            from essentials.conda import env_menu
 
             musiclistnew: list = []
             for music_name in music:
@@ -859,10 +861,10 @@ try:  # type: ignore
                                   'waifu', 'neko', 'setup', 'settings', 'anotherwaifu',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
                                   'history', 'help', 'pomoc', '-h', '-help', '?', '-?',
-                                  'advanced help', 'ah', '-ah', '-advanced help']
+                                  'advanced help', 'ah', '-ah', '-advanced help', 'voicevox']
             logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko',
                                 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
-                                'setup', 'settings', 'anotherwaifu', 'anotherneko',
+                                'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
                                 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
                                 '-advanced help']
@@ -1046,6 +1048,12 @@ try:  # type: ignore
                     if vstup == 'restarted':
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
+                    if vstup == 'voicevox':
+                        try:
+                            run_voicevox(env_menu())
+                        except KeyboardInterrupt:
+                            print('\n')
+                            continue
                     if vstup == 'playvideo':
                         import playvideo  # type: ignore
                         playvideo.main()
