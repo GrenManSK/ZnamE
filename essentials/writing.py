@@ -7,11 +7,12 @@ load_dotenv('.env')
 
 def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
     """
-    It takes a message and an end character, and prints the message to the console and to a file
-
-    :param msg: The message to be printed and logged
-    :param end: The character that will be printed at the end of the message, defaults to \n
-    (optional)
+    The printnlog function is a wrapper for the print function that also writes to a log file.
+    
+    :param msg: str: Specify the message that will be printed and logged
+    :param end: str: Specify the end of the line
+    :param toprint: bool: Determine whether or not to print the message
+    :return: The message that was printed
     """
     datelog = os.getenv('DATELOG')
     with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:

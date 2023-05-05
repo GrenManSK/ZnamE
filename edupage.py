@@ -1,3 +1,6 @@
+"""_summary_
+Main program execution
+"""
 try:  # type: ignore
     import cProfile
     import pstats
@@ -48,13 +51,13 @@ try:  # type: ignore
         """
         global modulenames1
         modulenames1 = list(set(sys.modules) & set(globals()))
-        for i in range(len(modulenames) - moduleminus):
-            modulenames1.remove(modulenames[i])
+        for module_number in range(len(modulenames) - moduleminus):
+            modulenames1.remove(modulenames[module_number])
         for module in modulenames1:
             modulenames.append(module)
         if __name__ == '__main__':
-            for i in modulenames1:
-                logger.stay(printnlog(i, toprint=False))
+            for module_number1 in modulenames1:
+                logger.stay(printnlog(module_number1, toprint=False))
             if addto != '':
                 logger.stay(printnlog(addto, toprint=False))
 
@@ -129,7 +132,8 @@ try:  # type: ignore
             write_config_options(server)
 
     if __name__ == '__main__':
-        from essentials.app_alternations import python_update, install_choco, install_packages, update_app
+        from essentials.app_alternations import python_update, install_choco,\
+                                                install_packages, update_app
         python_update(args, logger)
 
     from threading import Thread
@@ -187,12 +191,18 @@ try:  # type: ignore
     import pygetwindow
     if __name__ == '__main__':
         print_module()
+    import keyboard
+    if __name__ == '__main__':
+        print_module()
     from PIL import Image
     if __name__ == '__main__':
         print_module('Image from PIL')
     from pygame import mixer
     if __name__ == '__main__':
         print_module('mixer from pygame')
+    import pygame
+    if __name__ == '__main__':
+        print_module()
     import logging
     if __name__ == '__main__':
         print_module()
@@ -231,9 +241,6 @@ try:  # type: ignore
                         "[%(filename)s:%(lineno)d] - %(message)s",
                         datefmt='%Y-%m-%d:%H:%M:%S')
 
-    updateapp: str = str(
-        'import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-ef\', \'--endf\', help=\'Will not automatically end program\', default=UNSPECIFIED, nargs=\'?\')\nparser.add_argument(\'input\', help=\'Input folder\', nargs=\'?\')\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\'config.yml\', \'r\'))\nif args.input != \"\":\n    shutil.rmtree(\'old\')\n    if args.endf is None:\n        subprocess.call(sys.executable + \' edupage.py -endf -update\', shell=True)\n    else:\n        subprocess.call(sys.executable + \' edupage.py -update\', shell=True)\n    sys.exit(0)')
-
     if __name__ == '__main__':
         if args.test is not None:
             logger.stay(
@@ -241,23 +248,14 @@ try:  # type: ignore
             update_app(args, logger)
 
     from essentials.system_operations import getWindow, getImg, move, show_cmd, wait_for_file
+    from essentials.app import updateapp, codeapp, decodeapp, findapp, passwordapp, addapp,\
+                               gameapp, restartapp
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: move', toprint=False))
         logger.stay(printnlog('Function: getImg', toprint=False))
         logger.stay(printnlog('Function: getWindow', toprint=False))
         logger.next(printnlog('\nDefining apps', toprint=False))
-
-    codeapp: str = str(
-        'import sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'\"\', \"`\"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah = \"\"\n        obsah += i\n        for i in obsah:\n            i.lower()\n            obsah_list.append(i)\n    return obsah_list\ndef encode(obsah):\n    sifra = []\n    for i in obsah:\n        riadok = 0\n        stlpec = 0\n        while True:\n            if riadok == 19 and stlpec == 0:\n                break\n            if i == PLOCHA[riadok][stlpec]:\n                sifra.append(str(riadok) + \" \" + str(stlpec))\n                break\n            if stlpec == 4:\n                riadok += 1\n                stlpec = 0\n            else:\n                stlpec += 1\n    return sifra\ndef output_file(file, name):\n    y = []\n    x = open(name + \"crypted\", \"w\")\n    for i in file:\n        y.append(i)\n    x.write(str(y))\n    x.close\n    return\ndef main():\n    name = sys.argv[1]\n    open_file = open(name, \"r\")\n    open_file.close\n    output_file(encode(read_file(open_file)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
-    decodeapp: str = str(
-        'import os\nos.system(\'Title \' + \'code\')\nimport sys\nPLOCHA = [[\"a\", \"b\", \"c\", \"d\", \"e\"], [\"f\", \"g\", \"h\", \"i\", \"j\"], [\n    \"k\", \"l\", \"m\", \"n\", \"o\", ], [\"p\", \"q\", \"r\", \"s\", \"t\"], [\n    \"u\", \"v\", \"w\", \"x\", \"y\"], [\"A\", \"B\", \"C\", \"D\", \"E\"], [\n    \"F\", \"G\", \"H\", \"I\", \"J\"], [\"K\", \"L\", \"M\", \"N\", \"O\", ], [\n    \"P\", \"Q\", \"R\", \"S\", \"T\"], [\"U\", \"V\", \"W\", \"X\", \"y\"], [\n    \"z\", \" \", \",\", \".\", \":\"], [\"!\", \"?\", \"\'\", \'"\', \"`"], [\n    \"1\", \"2\", \"3\", \"4\", \"5\"], [\"6\", \"7\", \"8\", \"9\", \"0\"], [\n    \"\\n\", \"<\", \">\", \";\", \"/\"], [\"\\\\", \"{\", \"}\", \"(\", \")\"],[\n    \"[\",\"]\",\"|\",\"-\",\"_\"],[\"=\",\"+\",\"@\",\"#\",\"$\"],[\"%\",\"^\",\"&\",\"*\",\"~\"]]\ndef read_file(file):\n    obsah = \"\"\n    obsah_list = []\n    for i in file:\n        obsah += i\n        for i in obsah:\n            obsah_list.append(i)\n    return obsah_list\ndef decode(obsah):\n    done = \"\"\n    sifra = []\n    for i in obsah:\n        done += str(i)\n        if i == \"[\" or i == \"\'\" or i == \",\" or i == \"]\":\n            done = \"\"\n            continue\n        if i == \" \":\n            sifra.append(i)\n        else:\n            sifra.append(i)\n    return sifra\ndef real_decode(obsah):\n    cislo = 0\n    pokracovanie = False\n    done = \"\"\n    vysledok = []\n    for i in obsah:\n        done += str(i)\n        cislo = 0\n        for i in done:\n            cislo += 1\n        if i == \" \":\n            done = \"\"\n            continue\n        if pokracovanie and done.isnumeric() and cislo == 1:\n            stlpec = int(done)\n            vysledok.append(PLOCHA[riadok][stlpec])\n            pokracovanie = False\n            done = \"\"\n            continue\n        if not pokracovanie or cislo == 2:\n            pokracovanie = True\n            riadok = int(done)\n            continue\n    return vysledok\ndef to_text(obsah):\n    text = \"\"\n    for i in obsah:\n        if i == \".\":\n            text += i + \"\\n\"\n            continue\n        text += i\n    return text\ndef create_file(obsah, name):\n    x = open(sys.argv[1], \"w\")\n    x.write(obsah)\n    x.close\n    return\ndef main():\n    if sys.argv[2] == \'False\':\n        name = \'data\'\n    else:\n        name = sys.argv[2]\n    open_file = open(name, \"r\")\n    code = list(decode(read_file(open_file)))\n    create_file(to_text(real_decode(code)), name)\nmain()\nx=open(\'DONE\',\'x\')\nx.close()')
-    findapp: str = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nfor i in dnr:\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if passend:\n            user.write(password+\'\\n\')\n            passend=False\n        if ik:\n            if i!="," and bracket==4 and brackethist==4:\n                user.write(i)\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n                user.write(\"\\n\")\n        if rniiend:\n            user.write(subject)\n            ik=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n            user=open(str(ico[0]),\'w\')\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n        if bracket<2 and brackethist<2:\n            break\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    passwordapp: str = str(
-        'import sys\ndecodename=str(sys.argv[1])\ndn=open(decodename,\'r\')\ndnr=dn.readlines()\ntry:\n    number=int(dnr[0])\n    number=str(dnr[0])\n    number=dnr[0][:6]\nexcept Exception:\n    number=None\nx=open(\'DONE\',\'w\')\nx.write(number)\nx.close()')
-    addapp: str = str('import sys\ndecodename=str(sys.argv[1])\nicofind=int(sys.argv[2])\nsubjectfind = sys.argv[3]\nmarkadd = sys.argv[4]\ndn=open(decodename,\'r\')\ndnr=dn.read()\nbracket,brackethist=0,0\nico=[]\nicocurrent=\'\'\nicoend=False\nrnii=False\nrniiend=False\nsubject=\'\'\nik=False\nuserdef=False\nwh=False\npassword=\'\'\npassend=False\nik2=False\nadd=False\nuser=open(\'data1\',\'w\', newline=\'\')\nfor i in dnr:\n    user.write(i)\n    if rnii:\n        wh=True\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if add and subject==subjectfind and bracket==4 and brackethist==4:\n            subjectfind=None\n            user.write(str(markadd) + \',\')\n            add=False\n        if passend:\n            passend=False\n        if ik:\n            if ik2:\n                ik2=False\n                add=True\n            if bracket==3:\n                subject=\'\'\n                ik=False\n                rniiend=False\n        if rniiend:\n            ik=True\n            ik2=True\n            rniiend=False\n            brackethist=bracket\n            continue\n        if userdef:\n            userdef=False\n        if bracket==3 and brackethist==3 and i!=\"\'\":\n            if i ==\',\':\n                rniiend=True\n                continue\n            subject+=str(i)\n        elif bracket==5 and brackethist==5 and i!=\"\'\":\n            if i ==\',\':\n                passend=True\n                continue\n            password+=str(i)\n        brackethist=bracket\n    else:\n        if i==\'[\':\n            bracket+=1\n        elif i==\']\':\n            bracket-=1\n        if icoend:\n            if icocurrent!=\'\':\n                if int(icocurrent)==icofind:\n                    ico.append(icocurrent)\n                    rnii=True\n                    continue\n                icocurrent=\'\'\n                icoend=False\n        if bracket==2 and brackethist==2:\n            if i ==\',\':\n                icoend=True\n                userdef=True\n                continue\n            icocurrent+=i\n        brackethist=bracket\nif not wh:\n    user=open(sys.argv[2], \'x\')\nuser.close()\nx=open(\'DONE\',\'x\')\nx.close()')
-    restartapp: str = str('import argparse, time, pygetwindow\nimport pyautogui as pg\nUNSPECIFIED = object()\nparser = argparse.ArgumentParser()\nparser.add_argument(\'-al\',\'--autol\', choices=[], default=UNSPECIFIED, nargs=\'?\')\nargs = parser.parse_args()\nwindow = pygetwindow.getWindowsWithTitle(\'ZnámE\')[0]\nwindow.activate()\nif args.autol is None:\n    time.sleep(1)\n    pg.write("login\\n")\n    time.sleep(1)\n    pg.write("y\\n")')
-    gameapp: str = str('from game_assets_offline import game\ngame()')
 
     if __name__ == '__main__':
         logger.stay('codeapp')
@@ -275,11 +273,11 @@ try:  # type: ignore
         logger.stay(printnlog('DONE', toprint=False))
         logger.next(printnlog('Defining functions', toprint=False))
 
-    def delcache(name: str, hist: str) -> None:
+    def delcache(cache_name: str, hist: str) -> None:
         """
         The delcache function deletes the cache file if it is empty.
 
-        :param name: Name the file that is used to store the time
+        :param cache_name: cache_Name the file that is used to store the time
         :param hist: Check if the history file has changed
         :return: The value of the timer
         """
@@ -290,11 +288,11 @@ try:  # type: ignore
         sizehist: int = filesize
         while True:
             try:
-                for i in os.listdir():
-                    if i == "END":
+                for end_file in os.listdir():
+                    if end_file == "END":
                         raise SystemError
                 if timer <= 0:
-                    os.remove(name)
+                    os.remove(cache_name)
                     open("INACTIVE", 'x', encoding='utf-8')
                     os.system('cls')
                     pg.write('\n')
@@ -328,8 +326,8 @@ try:  # type: ignore
         """
         global passwordp
         leave: bool = False
-        for i in os.listdir():
-            if i == 'INACTIVE':
+        for in_file in os.listdir():
+            if in_file == 'INACTIVE':
                 leave = True
                 remove(passwordp[1])
                 break
@@ -341,15 +339,15 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: inactive', toprint=False))
 
-    def progress_bar(name: str, number: int) -> None:
+    def progress_bar(bar_name: str, number: int) -> None:
         """
-        The progress_bar function is a function that takes in two parameters: name and number.
-        The progress_bar function will print out the name of the task being executed,
+        The progress_bar function is a function that takes in two parameters: bar_name and number.
+        The progress_bar function will print out the bar_name of the task being executed,
         and then display a progress bar for how 
         far along it is to completion. The progress bar will be displayed as 100%
         if number = 1,000,000 or more.
 
-        :param name: Give the progress bar a name
+        :param bar_name: Give the progress bar a bar_name
         :param number: Determine the number of iterations
         :return: The progress bar
         """
@@ -357,7 +355,7 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK = 0
         progress_bar_check_old: int = 0
         end: bool = False
-        for i in tqdm(range(0, number), desc=name + ' '):
+        for bar_temp in tqdm(range(0, number), desc=bar_name + ' '):
             if end:
                 break
             while True:
@@ -383,7 +381,7 @@ try:  # type: ignore
         &quot;predmet&quot; column in our database (e.g.: &quot;Matematika&quot;).
         The mark argument should be an integer between 1 and 5 inclusive.
 
-        :param name: Name the file
+        :param name1: Name the file
         :param ico: Check if the student already exists in the database
         :param subject: Specify the subject of the student
         :param mark: Specify the mark of the student
@@ -403,44 +401,44 @@ try:  # type: ignore
         os.remove(name1)
         os.remove('DONE')
         PROGRESS_BAR_CHECK += 1
-        name: tuple[str, None] = ('data1', None)
-        return name
+        result: tuple[str, None] = ('data1', None)
+        return result
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: add', toprint=False))
 
-    def decode(name: str, password, mode: int = 0) -> str:  # type: ignore
+    def decode(_file: str, _password, mode: int = 0) -> str:  # type: ignore
         """
-        The decode function takes two arguments, name and password. If the name
+        The decode function takes two arguments, _file and _password. If the _file
         argument is not provided it will default to None.
-        If the password argument is not provided it will default to None as well.
-        The function then creates a file with the current time in its name and
+        If the _password argument is not provided it will default to None as well.
+        The function then creates a file with the current time in its _file and
         writes a python script into that file which decrypts all files in this 
-        directory (except for itself) using pyAesCrypt library with given password
+        directory (except for itself) using pyAesCrypt library with given _password
         or generated one if none was given.
 
-        :param name: Specify the name of the file to be decoded
-        :param password: Encrypt the file with a password
+        :param _file: Specify the _file of the file to be decoded
+        :param _password: Encrypt the file with a _password
         :param mode=0: Encode the file, mode=0 is used to decode the file
-        :return: The value of the name variable, if it is not none
+        :return: The value of the _file variable, if it is not none
         """
         global PROGRESS_BAR_CHECK
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = 'decode'
         decodename2: str = 'False'
-        if password:
-            decodename2: str = name
-        if name:
+        if _password:
+            decodename2: str = _file
+        if _file:
             decodename1: str = decodename
-        elif isinstance(name, str):
-            decodename1: str = name
+        elif isinstance(_file, str):
+            decodename1: str = _file
         else:
             decodename1: str = "None"
         with open(decodename + ".py", "w", encoding='utf-8') as crdecode:
             crdecode.write(decodeapp)
         if mode == 1:
             subprocess.check_output(
-                'start ' + decodename + '.py ' + str(name) + ' ' + str(password), shell=True)
+                'start ' + decodename + '.py ' + str(_file) + ' ' + str(_password), shell=True)
         elif mode == 0:
             subprocess.check_output(
                 'start ' + decodename + '.py ' + str(decodename1)
@@ -462,10 +460,10 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: decode', toprint=False))
 
-    def password(name: str) -> list[str]:
+    def password(file_name: str) -> list[str]:
         """
         Create a password file for the current session.
-        @param name - the name of the file to be created.
+        @param file_name - the file_name of the file to be created.
         """
         global PROGRESS_BAR_CHECK
         passwordname: str = str(datetime.now().strftime("%H-%M-%S"))
@@ -473,29 +471,29 @@ try:  # type: ignore
             crfind.write(passwordapp)
         tqdm.write('Controling ...', end='\r')
         subprocess.check_output(
-            'start ' + passwordname + '.py ' + str(name), shell=True)
+            'start ' + passwordname + '.py ' + str(file_name), shell=True)
         wait_for_file('DONE')
         os.remove(passwordname + '.py')
-        password: str = ''
-        for i in open('DONE', 'r', encoding='utf-8').read():
-            password += str(i)
+        password_chars: str = ''
+        for pass_chars in open('DONE', 'r', encoding='utf-8').read():
+            password_chars += str(pass_chars)
         tqdm.write('Controling Complete')
         os.remove('DONE')
         PROGRESS_BAR_CHECK += 1
-        return [password, name]
+        return [password_chars, name]
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: password', toprint=False))
 
-    def find(name: str) -> list:  # type: ignore
+    def find(find_file: str) -> list:  # type: ignore
         """
         The find function is used to find the password of a user. It takes in two arguments, 
-        the first being the name of the file that contains all usernames and passwords, and 
+        the first being the find_file of the file that contains all usernames and passwords, and 
         the second being a string containing what you are looking for. The function then creates 
         a new file with an extension .py which it runs through cmd to find your password.
 
-        :param name: Find the name of the file that is being searched for
-        :return: The name of the file that was found
+        :param find_file: Find the find_file of the file that is being searched for
+        :return: The find_file of the file that was found
         """
         global PROGRESS_BAR_CHECK
         findname: str = str(datetime.now().strftime("%H-%M-%S"))
@@ -504,23 +502,19 @@ try:  # type: ignore
             crfind.write(findapp)
         tqdm.write('Finding ...', end='\r')
         subprocess.check_output(
-            'start ' + findname + '.py ' + str(name) + ' ' + str(loginvstupuser), shell=True)
+            'start ' + findname + '.py ' + str(find_file) + ' ' + str(loginvstupuser), shell=True)
         wait_for_file('DONE')
         os.remove(findname + '.py')
-        os.remove(name)
+        os.remove(find_file)
         os.remove('DONE')
-        test = open(loginvstupuser, 'r', encoding='utf-8')
-        end: bool = False
-        pocitadlo: int = 0
-        for i in test.read():
-            pocitadlo += 1
-        if 0 <= pocitadlo <= 5:
-            test.close()
-            tqdm.write('Finding ERROR')
-            end: bool = True
+        with open(loginvstupuser, 'r', encoding='utf-8') as test:
+            end: bool = False
+            pocitadlo: int = len(test.read())
+            if 0 <= pocitadlo <= 5:
+                tqdm.write('Finding ERROR')
+                end: bool = True
         if end:
             return [loginvstupuser, end]
-        test.close()
         tqdm.write('Finding Complete')
         PROGRESS_BAR_CHECK += 1
         return [loginvstupuser, end]
@@ -528,17 +522,17 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: find', toprint=False))
 
-    def code(name: str, new: str, mode: int = 0) -> list[str]:
+    def code(code_name: str, new: str, mode: int = 0) -> list[str]:
         """
         The code function is used to encrypt files.
-        It takes two arguments: name, new.
-        name is the file that will be encrypted.
+        It takes two arguments: code_name, new.
+        code_name is the file that will be encrypted.
         new is the password for encryption.
 
-        :param name: str: Get the name of the file to be encrypted
+        :param code_name: str: Get the code_name of the file to be encrypted
         :param new: str: Save the password for encryption
         :param mode: int: Determine the mode of operation
-        :return: The name and new value of the file
+        :return: The code_name and new value of the file
         """
         global PROGRESS_BAR_CHECK
         codename = str(datetime.now().strftime("%H-%M-%S"))
@@ -548,11 +542,11 @@ try:  # type: ignore
         tqdm.write('Coding ...', end='\r')
         if mode == 1:
             with open('1', 'w', encoding='utf-8') as file:
-                file.write(str(name) + ' = ' + str(new))
+                file.write(str(code_name) + ' = ' + str(new))
             subprocess.check_output('start ' + codename + '.py 1', shell=True)
         if mode == 0:
             subprocess.check_output(
-                'start ' + codename + '.py ' + str(name[0]), shell=True)
+                'start ' + codename + '.py ' + str(code_name[0]), shell=True)
         wait_for_file('DONE')
         tqdm.write('Coding Complete')
         os.remove(codename + '.py')
@@ -582,7 +576,9 @@ try:  # type: ignore
         The add_marks function is used to add marks to the user's account.
         It takes in three arguments: linenumber, historyname and neko.
         The linenumber argument is used for the line number of the mark being added.
-        The historyname argument is used for the name of a file that stores all commands entered by a user during their session with this program (for debugging purposes). The neko argument determines whether or not Neko Mode should be enabled.
+        The historyname argument is used for the name of a file that stores all commands
+        entered by a user during their session with this program (for debugging purposes).
+        The neko argument determines whether or not Neko Mode should be enabled.
         
         :param linenumber: Keep track of the line number in the history file
         :param historyname: Store the history of the user's input
@@ -591,14 +587,14 @@ try:  # type: ignore
         :return: Nothing
         """
         subject: str = input(str(linenumber) + ' Subject > ')
-        with open(historyname, 'a', encoding='utf-8') as historyfile:
-            historyfile.write('[' + str(linenumber) + ', ' + subject + ']\n')
+        with open(historyname, 'a', encoding='utf-8') as _historyfile:
+            _historyfile.write('[' + str(linenumber) + ', ' + subject + ']\n')
         subject.lower()
         if subject in ['quit', 'back']:
             return
         mark: str = input(str(linenumber) + ' Mark > ')
-        with open(historyname, 'a', encoding='utf-8') as historyfile:
-            historyfile.write(
+        with open(historyname, 'a', encoding='utf-8') as _historyfile:
+            _historyfile.write(
                 '[' + str(linenumber) + ', ' + (mark) + ']\n')
         mark.lower()
         if subject == 'back' or mark == 'back':
@@ -626,16 +622,17 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: add_marks', toprint=False))
 
-    def show_marks(passwordp):
+    def show_marks(pass_list):
         """
         The show_marks function is used to display the marks of a student.
             It takes in a list as an argument, which contains the name of the file and its path.
-            The function then opens that file and reads it line by line, printing out each mark on a newline.
+            The function then opens that file and reads it line by line, printing
+            out each mark on a newline.
         
-        :param passwordp: Get the password file
+        :param pass_list: Get the password file
         :return: The marks of the student
         """
-        with open(passwordp[1], 'r', encoding='utf-8') as passwordfile:
+        with open(pass_list[1], 'r', encoding='utf-8') as passwordfile:
             countersubject: int = 0
             counter: int = 6
             counterfirst: bool = True
@@ -689,16 +686,16 @@ try:  # type: ignore
             sleep(1)
         open('SPOTDL_QUIT', 'x')
         carousel.stop()
-        music: list[str] = list(
+        _music: list[str] = list(
             set(config['basic info']['musiclist'].split(',')[0:]))
-        if music[0] == '':
-            music = []
+        if _music[0] == '':
+            _music = []
         else:
-            for music_name in music:
+            for music_name in _music:
                 if music_name == '':
-                    music.remove('')
+                    _music.remove('')
         musiclistnewstring: str = ''
-        for music_n in music:
+        for music_n in _music:
             musiclistnewstring += str(music_n) + ','
         try:
             for content in open('MUSIC', 'r', encoding='utf-8').readlines():
@@ -735,7 +732,7 @@ try:  # type: ignore
         :return: The variable exit
         """
         from essentials.system_operations import intro_video
-        exit = False
+        _exit = False
         move('ZnámE', -10, -10, screensize[0], screensize[1])
         if args.test is not None:
             show_cmd()
@@ -746,7 +743,7 @@ try:  # type: ignore
             media_player.set_media(media)
             media_player.play()
             intro_video(args, media_player)
-        return exit
+        return _exit
 
     def was_updated():
         """
@@ -809,7 +806,7 @@ try:  # type: ignore
             intro()
             inactive1 = was_updated()
             logged: bool = False
-            exit: bool = False
+            _exit: bool = False
             tologin: bool = False
             restart: bool = False
             topassword: bool = False
@@ -832,7 +829,7 @@ try:  # type: ignore
             maxlogins: int = 1
             if not inactive1:
                 playhtml(args, config, 'apphtml\\start', 1, 3,)
-            exit: bool = getWindow(args)
+            _exit: bool = getWindow(args)
             if args.nointro is None or not config['basic info']['intro']:
                 pass
             else:
@@ -875,7 +872,7 @@ try:  # type: ignore
             while True:
                 completer(unlogged_completer)
                 internet_check(args)
-                if not exit:
+                if not _exit:
                     if logged:
                         completer(logged_completer)
                         if firstlogin:
@@ -909,7 +906,7 @@ try:  # type: ignore
                         if vstup == 'delsavlog':
                             uninstall()
                         if vstup == "zz":
-                            show_marks(passwordp=passwordp)
+                            show_marks(passwordp)
                         if vstup == "pz":
                             add_marks(
                                 linenumber=linenumber,
@@ -948,7 +945,7 @@ try:  # type: ignore
                             typewriter("Going back and ending program.")
                             sleep(0.5)
                             os.remove(loginvstupuser + 'crypted')
-                            exit: bool = True
+                            _exit: bool = True
                         Thread(target=progress_bar, args=(
                             'Checking', 2,), daemon=True).start()
                         passwordp = password(
@@ -1134,9 +1131,9 @@ try:  # type: ignore
                                 pass
                             try:
                                 mixer.music.play()
-                                musicplay: bool = True
-                            except Exception:
+                            except pygame.error:
                                 pass
+                            musicplay: bool = True
                     if vstup == 'quitmusic':
                         try:
                             mixer.music.stop()
@@ -1182,7 +1179,7 @@ try:  # type: ignore
                         game_assets.create_gamefiles()
                     if vstup == 'restart':
                         restart: bool = True
-                        exit: bool = True
+                        _exit: bool = True
                         continue
                     if vstup == 'game':
                         if waifu or waifuvid or neko:
@@ -1226,7 +1223,8 @@ try:  # type: ignore
                                     "https://nekos.best/api/v2/neko", timeout=5)
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(
-                                    data["results"][0]["url"], stream=True, timeout=5)  # type: ignore
+                                    data["results"][0]["url"], stream=True,\
+                                        timeout=5)  # type: ignore
                             elif config['neko settings']['server'] == 'waifu.pics':
                                 typewriter(
                                     'Getting image from waifu.pics server', ttime=0.01)
@@ -1440,11 +1438,8 @@ try:  # type: ignore
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35),
                              screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
-                        try:
-                            typewriter('Removing image', end='\r', ttime=0.01)
-                            os.remove('assets/waifu.png')
-                        except Exception:
-                            pass
+                        typewriter('Removing image', end='\r', ttime=0.01)
+                        remove('assets/waifu.png')
                         waifu: bool = False
                         typewriter('Done               ', ttime=0.01)
                     if vstup == 'animesearch':
@@ -1457,7 +1452,7 @@ try:  # type: ignore
                         show_version(args)
                     if inactivelogout:
                         restart: bool = True
-                        exit: bool = True
+                        _exit: bool = True
                     if logged and vstup == "logout" and not restart:
                         logged: bool = False
                         os.remove(loginvstupuser)
@@ -1481,7 +1476,7 @@ try:  # type: ignore
                         print("You\'re not logged in!!!")
                         continue
                     if vstup in ['quit', 'koniec', 'end']:
-                        exit: bool = True
+                        _exit: bool = True
                         continue
                     if vstup != "" and not restart:
                         for advhelp_name in advhelp:
@@ -1503,7 +1498,7 @@ try:  # type: ignore
                                 continue
                         if vstup == 'history':
                             historylist = config['user history']
-                            for i in historylist:
+                            for history_temp in historylist:
                                 print(
                                     'Start time = ' + i[0] + ', End time = '
                                     + i[1][0:26] + ', Input = ' + i[1][26:])
@@ -1522,7 +1517,7 @@ try:  # type: ignore
                                     continue
                                 if vstup in ["y", ""]:
                                     restart: bool = True
-                                    exit: bool = True
+                                    _exit: bool = True
                                     args.nointro = None
                                     continue
                             if os.path.isfile("C:/Users/" + os.getlogin() +
@@ -1553,7 +1548,7 @@ try:  # type: ignore
                             if loginvstupuser in ["quit","koniec"]:
                                 print("Going back and exiting the program.")
                                 sleep(0.5)
-                                exit: bool = True
+                                _exit: bool = True
                                 continue
                             help: list[str] = ['help', 'pomoc',
                                                '-h', '-help', '?', '-?']
@@ -1570,7 +1565,7 @@ try:  # type: ignore
                                 tologin: bool = True
                                 continue
                             if len(str(loginvstupuser)) == 6:
-                                exit: bool = False
+                                _exit: bool = False
                                 Thread(target=progress_bar, args=(
                                     'Checking', 3,), daemon=True).start()
                                 icofind = code(
@@ -1603,9 +1598,10 @@ try:  # type: ignore
                                 tologin: bool = True
                         elif logged and vstup == 'login':
                             print('You are already logged in!!!')
-                elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or exit:
+                elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or _exit:
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
-                    from essentials.file_operations import file_to_datafolder, xp3_finalization, to_zip
+                    from essentials.file_operations import file_to_datafolder, xp3_finalization,\
+                                                                                        to_zip
                     if neko or waifu:
                         if not waifuvid:
                             pg.keyDown('alt')
@@ -1674,7 +1670,7 @@ try:  # type: ignore
                     historylist: list = []
                     try:
                         with open(historyname, 'r', encoding='utf-8') as historyfile:
-                            for i in historyfile.readlines():
+                            for history_char in historyfile.readlines():
                                 historylist.append(i.strip('\n'))
                     except Exception:
                         historyfile.close()
@@ -1739,7 +1735,6 @@ try:  # type: ignore
                     if args.endf is not None and not restart:
                         sleep(2.5)
                     if not restart:
-                        import keyboard
                         video_end = int(time.time())
                         while video_end - video_start < 27:
                             time.sleep(0.1)
@@ -1776,8 +1771,8 @@ try:  # type: ignore
                                     sleep(0.5)
                                     if waifuvid:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof --waifu' +
-                                            ' --waifuvid --music '
+                                            'start edupage.py --restart --autologin --nointrof'+ 
+                                            ' --waifu --waifuvid --music '
                                             + str(args.music), shell=True)
                                     elif neko:
                                         subprocess.check_output(
@@ -1791,8 +1786,8 @@ try:  # type: ignore
                                             + str(args.music), shell=True)
                                     else:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof --music '
-                                            + str(args.music), shell=True)
+                                            'start edupage.py --restart --autologin --nointrof' +
+                                            ' --music ' + str(args.music), shell=True)
                                     remove('crash_dump-' + datelog + '.txt')
                         else:
                             os.system('cls')
@@ -1822,17 +1817,18 @@ try:  # type: ignore
                         return 0
         except *Exception as returned_error:
             printnlog('Writing an error to \'error.log\'!!!')
-            for error in returned_error.exceptions:
+            for error_dump in returned_error.exceptions:
                 printnlog(traceback.format_exc())
-            line_numbers: list = []
+            error_line_numbers: list = []
             for error in range(0, len(returned_error.exceptions)):
-                if (error_line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__) is None:
+                if (error_line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__)\
+                                                                                    is None:
                     error_line_number = sys.exc_info()[-2].__traceback__.tb_lineno
-                    line_numbers.append(error_line_number)
+                    error_line_numbers.append(error_line_number)
                 else:
                     error_line_number = error_line_number.tb_lineno
-                    line_numbers.append(error_line_number)
-            error_get(returned_error, line_numbers)
+                    error_line_numbers.append(error_line_number)
+            error_get(returned_error, error_line_numbers)
             printnlog('End')
             input("Enter to quit")
             sys.exit(0)
