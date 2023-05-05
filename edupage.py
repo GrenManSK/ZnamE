@@ -853,13 +853,13 @@ try:  # type: ignore
                 mixer.music.play()
             show_version(args)
             from completer import completer  # type: ignore
-            unlogged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit',
+            unlogged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit',
                                   'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog',
                                   'waifu', 'neko', 'setup', 'settings', 'anotherwaifu',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
                                   'history', 'help', 'pomoc', '-h', '-help', '?', '-?',
                                   'advanced help', 'ah', '-ah', '-advanced help', 'voicevox']
-            logged_completer = ['ffmpeg', 'animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko',
+            logged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko',
                                 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
                                 'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
