@@ -566,7 +566,6 @@ try:  # type: ignore
             os.remove('1')
             os.remove('1crypted')
             return savelog
-        return [name[1], new]
         return [code_name[1], new]
 
     if __name__ == '__main__':
