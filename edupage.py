@@ -567,6 +567,7 @@ try:  # type: ignore
             os.remove('1crypted')
             return savelog
         return [name[1], new]
+        return [code_name[1], new]
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: code', toprint=False))
