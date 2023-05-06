@@ -1,7 +1,6 @@
-from .writing import printnlog
-from .system_info import get_line_number
+from .functions.writing import printnlog, typewriter
+from .system.system_info import get_line_number
 from .internet import download
-from .writing import typewriter
 import requests
 import semantic_version
 from time import sleep
@@ -388,7 +387,7 @@ def install_choco(logger):
     os.remove('choco.ps1')
     os.remove('choco_output')
     sleep(1)
-    from .system_operations import checkAdmin
+    from .system.system_operations import checkAdmin
     checkAdmin()
     sys.exit(0)
 

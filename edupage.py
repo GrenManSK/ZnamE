@@ -33,8 +33,8 @@ try:  # type: ignore
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
     with open('.env', 'w', encoding='utf-8') as dotenv:
         dotenv.write(f'DATELOG={datelog}\n')
-    from essentials.writing import printnlog, typewriter
-    from essentials.file_operations import mkdir, remove
+    from essentials.functions.writing import printnlog, typewriter
+    from essentials.system.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))
     modulenames1: list = list(set(sys.modules) & set(globals()))
@@ -77,8 +77,8 @@ try:  # type: ignore
     print_module()
     if __name__ == '__main__':
         logger.stay(printnlog('DONE', toprint=False))
-    from essentials.exceptions import configNoOption, error_get
-    from essentials.system_info import get_line_number
+    from essentials.system.exceptions import configNoOption, error_get
+    from essentials.system.system_info import get_line_number
     allerror = []
     for name, obj in inspect.getmembers(sys.modules[__name__]):
         if inspect.isclass(obj):
@@ -213,7 +213,7 @@ try:  # type: ignore
         os.system('color ' + str(config['basic info']['environmentA']
                                  ) + str(config['basic info']['environmentA']))
         os.system('Title ' + 'ZnámE')
-        from essentials.system_info import get_screensize, system_info
+        from essentials.system.system_info import get_screensize, system_info
         screensize, screensizepercentage = get_screensize()
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             system_info(logger, screensize)
@@ -247,8 +247,8 @@ try:  # type: ignore
                 printnlog('Checking for newer version of ZnámE', toprint=False))
             update_app(args, logger)
 
-    from essentials.system_operations import getWindow, getImg, move, show_cmd, wait_for_file
-    from essentials.app import updateapp, codeapp, decodeapp, findapp, passwordapp, addapp,\
+    from essentials.system.system_operations import getWindow, getImg, move, show_cmd, wait_for_file
+    from essentials.data.app import updateapp, codeapp, decodeapp, findapp, passwordapp, addapp,\
                                gameapp, restartapp
 
     if __name__ == '__main__':
@@ -267,9 +267,8 @@ try:  # type: ignore
         logger.stay('gameapp')
         logger.prev('')
         if args.log is None:
-            from essentials.system_info import get_log_info
-            get_log_info(codeapp, decodeapp, findapp, passwordapp,
-                         addapp, restartapp, updateapp)
+            from essentials.system.system_info import get_log_info
+            get_log_info()
         logger.stay(printnlog('DONE', toprint=False))
         logger.next(printnlog('Defining functions', toprint=False))
 
@@ -661,7 +660,7 @@ try:  # type: ignore
     if __name__ == '__main__':
         logger.stay(printnlog('Function: show_marks', toprint=False))
 
-    from essentials.html import playhtml
+    from essentials.functions.html import playhtml
 
     def spot_music_dow():
         """
@@ -731,7 +730,7 @@ try:  # type: ignore
         
         :return: The variable exit
         """
-        from essentials.system_operations import intro_video
+        from essentials.system.system_operations import intro_video
         _exit = False
         move('ZnámE', -10, -10, screensize[0], screensize[1])
         if args.test is not None:
@@ -782,17 +781,17 @@ try:  # type: ignore
                 if args.nointrof is None:
                     historyfile.write('[*restarted]\n')
             global passwordp
-            from essentials.file_operations import extract
+            from essentials.system.file_operations import extract
             extract(args, datelog)
             media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
             print_module('DownloadMusic from downloadmusic')
             from media import play_loop  # type: ignore
             from login import save_credentials  # type: ignore
-            from essentials.writing import show_version
+            from essentials.functions.writing import show_version
             from essentials.arguments import music2str
-            from essentials.voicevox import run_voicevox
-            from essentials.conda import env_menu
+            from essentials.functions.voicevox import run_voicevox
+            from essentials.system.conda import env_menu
 
             musiclistnew: list = []
             for music_name in music:
@@ -1600,7 +1599,7 @@ try:  # type: ignore
                             print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or _exit:
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
-                    from essentials.file_operations import file_to_datafolder, xp3_finalization,\
+                    from essentials.system.file_operations import file_to_datafolder, xp3_finalization,\
                                                                                         to_zip
                     if neko or waifu:
                         if not waifuvid:
@@ -1760,7 +1759,7 @@ try:  # type: ignore
                                 if os.path.isfile("restart.py"):
                                     os.remove("restart.py")
                                 if neko or waifu or waifuvid:
-                                    from essentials.file_operations import del_wn
+                                    from essentials.system.file_operations import del_wn
                                     del_wn()
                                 remove('crash_dump-' + datelog + '.txt')
                                 return 0

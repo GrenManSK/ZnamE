@@ -1,4 +1,4 @@
-from .writing import printnlog
+from ..functions.writing import printnlog
 import sys
 import os
 from dotenv import load_dotenv

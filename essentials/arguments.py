@@ -3,9 +3,9 @@ import sys
 import os
 import yaml
 from .internet import get_line_number
-from .writing import printnlog, typewriter
-from .exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
-from .exceptions import error_get
+from .functions.writing import printnlog, typewriter
+from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
+from .system.exceptions import error_get
 from dotenv import load_dotenv
 load_dotenv()
 

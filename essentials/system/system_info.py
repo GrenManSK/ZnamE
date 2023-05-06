@@ -9,9 +9,11 @@ import sys
 from tabulate import tabulate
 import re
 import uuid
-from .writing import to_info, printnlog
+from ..functions.writing import to_info, printnlog
 import inspect
 import ctypes
+from ..data.app import updateapp, codeapp, decodeapp, findapp, passwordapp, addapp,\
+    gameapp, restartapp
 
 
 def system_info(logger, screensize):
@@ -231,7 +233,7 @@ def get_screensize():
     return screensize, screensizepercentage
 
 
-def get_log_info(codeapp, decodeapp, findapp, passwordapp, addapp, restartapp, updateapp):
+def get_log_info():
     x = open('log_codeapp.py', 'w')
     x.write(codeapp)
     x.close()
@@ -252,4 +254,7 @@ def get_log_info(codeapp, decodeapp, findapp, passwordapp, addapp, restartapp, u
     x.close()
     x = open('log_update.py', 'w')
     x.write(updateapp)
+    x.close()
+    x = open('log_game.py', 'w')
+    x.write(gameapp)
     x.close()
