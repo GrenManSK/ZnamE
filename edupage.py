@@ -1683,6 +1683,7 @@ try:  # type: ignore
                         datetime.today().strftime("%d-%m-%Y__time__%H-%M-%S"))
                         + str(historylist) + '\n')
                     remove(historyname)
+                    remove('decode')
                     logger.prev("Done\n")
                     playhtml(args, config, 'apphtml\\end', 1, 3)
                     remove('data_backup')
