@@ -1671,7 +1671,7 @@ try:  # type: ignore
                     try:
                         with open(historyname, 'r', encoding='utf-8') as historyfile:
                             for history_char in historyfile.readlines():
-                                historylist.append(i.strip('\n'))
+                                historylist.append(history_char.strip('\n'))
                     except Exception:
                         historyfile.close()
                     musiclistnewstring: str = ''

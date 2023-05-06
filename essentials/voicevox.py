@@ -26,13 +26,13 @@ def run_voicevox(env):
             damaged = True
     if os.path.exists('VOICEVOX') and not damaged:
         typewriter(printnlog(
-            f'Running VOICEVOX\nRunning command: {env} -m VOICEVOX\n', toprint=False), ttime=0.01)
+            f'\nRunning VOICEVOX\nRunning command: {env} -m VOICEVOX\n', toprint=False), ttime=0.01)
         sleep(1)
         subprocess.call([env, '-m', 'VOICEVOX'])
     else:
         if os.path.exists('VOICEVOX'):
-            typewriter(printnlog(f'Found damaged VOICEVOX\nDeleting ...', toprint=False), ttime=0.01)
-            print('Waiting 2 seconds to clear Access Denied Error')
+            typewriter(printnlog(f'\nFound damaged VOICEVOX\nDeleting ...\n', toprint=False), ttime=0.01)
+            print('\nWaiting 2 seconds to clear Access Denied Error\n')
             sleep(2)
             for i in os.listdir('VOICEVOX'):
                 if i.endswith('git'):
@@ -41,14 +41,14 @@ def run_voicevox(env):
                         subprocess.call(['attrib', '-H', tmp])
                         break
                     shutil.rmtree(tmp, onerror=on_rm_error)
-            print('Waiting 2 seconds to clear Access Denied Error')
+            print('\nWaiting 2 seconds to clear Access Denied Error\n')
             sleep(2)
-            shutil.rmtree('VOICEVOXq', onerror=on_rm_error)
+            shutil.rmtree('VOICEVOX', onerror=on_rm_error)
         else:
             printnlog('VOICEVOX not found')
         while True:
             vstup = input(printnlog(
-                "To install VOICEVOX run this command \'git clone https://github.com/GrenManSK/VOICEVOX.git\'\n Do you want to complete this action automatically (Y/n) > ", toprint=False)).lower()
+                "\nTo install VOICEVOX run this command \'git clone https://github.com/GrenManSK/VOICEVOX.git\'\n Do you want to complete this action automatically (Y/n) > ", toprint=False)).lower()
             if vstup in ['', 'y']:
                 break
             elif vstup == 'n':
@@ -59,7 +59,10 @@ def run_voicevox(env):
                    toprint=False), ttime=0.01)
         os.system('git clone https://github.com/GrenManSK/VOICEVOX.git')
         typewriter(printnlog(
-            f'Downloading pip requirements\nRunning command: {env} -m pip install -r VOICEVOX/requirements.txt\n', toprint=False), ttime=0.01)
+            f'\nDownloading pip requirements\nRunning command: {env} -m pip install -r VOICEVOX/requirements.txt\n', toprint=False), ttime=0.01)
         sleep(1)
         os.system(env + ' -m pip install -r VOICEVOX/requirements.txt')
-        subprocess.call([env, '-m', 'VOICEVOX'])
+        typewriter(printnlog(
+            f'\nRunning VOICEVOX\nRunning command: {env} -m VOICEVOX --force-reinstall\n', toprint=False), ttime=0.01)
+        sleep(1)
+        subprocess.call([env, '-m', 'VOICEVOX', '--force-reinstall'])
