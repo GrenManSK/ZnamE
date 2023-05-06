@@ -1,8 +1,8 @@
 import os
 import shutil
 if __name__ == '__main__':
-    from essentials.exceptions import error_get
-    from essentials.system_info import get_line_number
+    from essentials.system.exceptions import error_get
+    from essentials.system.system_info import get_line_number
 
 
 def uninstall():

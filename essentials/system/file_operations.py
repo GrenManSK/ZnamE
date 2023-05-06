@@ -1,7 +1,7 @@
 import zipfile
 from tqdm import tqdm
 import os
-from .writing import log, typewriter, printnlog
+from ..functions.writing import log, typewriter, printnlog
 import subprocess
 import sys
 import shutil

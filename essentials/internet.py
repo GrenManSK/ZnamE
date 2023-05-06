@@ -1,12 +1,12 @@
 import requests
 from time import sleep
 import os
-from .writing import printnlog
+from .functions.writing import printnlog
 import sys
 from threading import Thread
 from tqdm import tqdm
 import logging
-from .system_info import get_line_number
+from .system.system_info import get_line_number
 
 
 def internet(args):

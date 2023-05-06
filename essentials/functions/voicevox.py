@@ -1,8 +1,8 @@
 import subprocess
 import os
 from time import sleep
-from .writing import printnlog, typewriter
-from .app_alternations import on_rm_error
+from ..functions.writing import printnlog, typewriter
+from ..app_alternations import on_rm_error
 import shutil
 
 

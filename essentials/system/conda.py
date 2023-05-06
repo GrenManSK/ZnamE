@@ -1,7 +1,7 @@
 import subprocess
 import os
 import sys
-from .writing import printnlog, typewriter
+from ..functions.writing import printnlog, typewriter
 
 
 def get_envs(info: bool = False) -> dict:
