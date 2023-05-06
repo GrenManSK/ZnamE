@@ -1,7 +1,7 @@
 import subprocess
 import os
 from time import sleep
-from ..functions.writing import printnlog, typewriter
+from .writing import printnlog, typewriter
 from ..app_alternations import on_rm_error
 import shutil
 
