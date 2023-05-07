@@ -793,6 +793,7 @@ try:  # type: ignore
             from essentials.functions.voicevox import run_voicevox
             from essentials.functions.cbzprintable import run_cbz
             from essentials.functions.kayopy import run_kayopy
+            from essentials.functions.manga_translator import run_manga_image_translator
             from essentials.system.conda import env_menu
 
             musiclistnew: list = []
@@ -854,6 +855,7 @@ try:  # type: ignore
                 mixer.music.play()
             show_version(args)
             from completer import completer  # type: ignore
+            unlogged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit','manga_translator',
                                   'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog',
                                   'waifu', 'neko', 'setup', 'settings', 'anotherwaifu','kayopy',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
@@ -864,7 +866,7 @@ try:  # type: ignore
                                 'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
                                 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
-                                '-advanced help','cbzprintable', 'kayopy']
+                                '-advanced help','cbzprintable', 'kayopy', 'manga_translator']
             bq_completer = ['back', 'quit']
             if args.debug is None:
                 unlogged_completer.extend(dir())
@@ -1045,6 +1047,13 @@ try:  # type: ignore
                     if vstup == 'restarted':
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
+                    if vstup == 'manga_translator':
+                        try:
+                            run_manga_image_translator(env_menu())
+                            print('\n')
+                        except KeyboardInterrupt:
+                            print('\n')
+                            continue
                     if vstup == 'cbzprintable':
                         try:
                             run_cbz()
