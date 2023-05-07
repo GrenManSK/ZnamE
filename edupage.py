@@ -791,6 +791,7 @@ try:  # type: ignore
             from essentials.functions.writing import show_version
             from essentials.arguments import music2str
             from essentials.functions.voicevox import run_voicevox
+            from essentials.functions.cbzprintable import run_cbz
             from essentials.system.conda import env_menu
 
             musiclistnew: list = []
@@ -856,14 +857,14 @@ try:  # type: ignore
                                   'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog',
                                   'waifu', 'neko', 'setup', 'settings', 'anotherwaifu',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
-                                  'history', 'help', 'pomoc', '-h', '-help', '?', '-?',
+                                  'history', 'help', 'pomoc', '-h', '-help', '?', '-?','cbzprintable',
                                   'advanced help', 'ah', '-ah', '-advanced help', 'voicevox']
             logged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko',
                                 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
                                 'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
                                 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
-                                '-advanced help']
+                                '-advanced help','cbzprintable']
             bq_completer = ['back', 'quit']
             if args.debug is None:
                 unlogged_completer.extend(dir())
@@ -1044,6 +1045,12 @@ try:  # type: ignore
                     if vstup == 'restarted':
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
+                    if vstup == 'cbzprintable':
+                        try:
+                            run_cbz()
+                        except KeyboardInterrupt:
+                            print('\n')
+                            continue
                     if vstup == 'voicevox':
                         try:
                             run_voicevox(env_menu(info=True))
