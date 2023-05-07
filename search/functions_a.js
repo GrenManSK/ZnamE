@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['password_0',['password',['../d0/d52/namespaceedupage.html#a2b1f190fe22c994a649d237a35cd53fb',1,'edupage']]],
-  ['pause_1',['pause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a5987356057063952d028a07b75349f80',1,'app_alternations::installing_carousel']]],
-  ['playhtml_2',['playhtml',['../d0/d52/namespaceedupage.html#a33f41efcd3eb007421b3e63b542940ba',1,'edupage']]],
-  ['print_5fmodule_3',['print_module',['../d0/d52/namespaceedupage.html#a87e4619e345ef843fdc09d1a602c3ce3',1,'edupage']]],
-  ['printnlog_4',['printnlog',['../d0/d52/namespaceedupage.html#a2adafa3eaf38d32da372310443e999f3',1,'edupage.printnlog()'],['../d8/df3/namespacewriting.html#a636f8148c7ab1181c2ac3a1d15a626d4',1,'writing.printnlog()']]],
-  ['progress_5fbar_5',['progress_bar',['../d0/d52/namespaceedupage.html#a4f9d80b1580d4e61d23dc4cf947f6e4c',1,'edupage']]]
+  ['main_0',['main',['../d0/d52/namespaceedupage.html#a119d208fce33ca55d6b605c22dbcd534',1,'edupage']]],
+  ['manga_5fimage_5ftranslator_1',['manga_image_translator',['../de/d7e/namespacemanga__translator.html#a019b0983a68679c07f664c968712b8f8',1,'manga_translator']]],
+  ['manga_5fimage_5ftranslator_5fcommand_2',['manga_image_translator_command',['../de/d7e/namespacemanga__translator.html#a1d72b571e167348486881cd5fa19427c',1,'manga_translator']]],
+  ['mkdir_3',['mkdir',['../d9/d8d/namespacefile__operations.html#afde8e7251d2381b19725536ab73d2e14',1,'file_operations']]],
+  ['move_4',['move',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a4975f3dd0cb9d16f40f4b9352e4e5011',1,'app_alternations.installing_carousel.move()'],['../de/d05/namespacesystem__operations.html#a13881264d5df0e98e40b449a051592fd',1,'system_operations.move()']]],
+  ['music2str_5',['music2str',['../d2/d33/namespacearguments.html#a26f02fde9f253e28577702348429fa85',1,'arguments']]]
 ];

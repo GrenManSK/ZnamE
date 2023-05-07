@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_2epy_0',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]]
+  ['patch_2emd_0',['patch.md',['../d1/d76/patch_8md.html',1,'']]]
 ];

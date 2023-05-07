@@ -8,4 +8,6 @@ digraph "app_alternations.install_packages"
   Node1 [label="app_alternations.install\l_packages",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
   Node2 [label="app_alternations.choco\l_install",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/dc0/namespaceapp__alternations.html#aba2d947f1502e4a272b4c11754fd567d",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="app_alternations.get\l_packages",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/dc0/namespaceapp__alternations.html#aae358fb985b5d678bd85f4042eb5e062",tooltip=" "];
 }

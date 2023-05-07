@@ -41,9 +41,9 @@ var NAVTREE =
     ] ],
     [ "patch", "de/dac/md_patch.html", null ],
     [ "v1.0.4-alpha+build.20230214.223759", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html", [
-      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md106", null ],
-      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md107", null ],
-      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md108", null ]
+      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md136", null ],
+      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md137", null ],
+      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md138", null ]
     ] ],
     [ "v1.0.4-alpha+build.20230216.161608", "d0/d28/md_patch_notes_v1_0_4_alpha_build_20230216_161608.html", null ],
     [ "v1.0.5-alpha+build.20230216.162308", "d3/d03/md_patch_notes_v1_0_5_alpha_build_20230216_162308.html", null ],
@@ -61,8 +61,8 @@ var NAVTREE =
     [ "v1.2.0-alpha+build.20230429.122048", "d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html", null ],
     [ "v1.3.0-alpha+build.20230430.155859", "da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html", null ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md127", null ],
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md129", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md157", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md159", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -91,7 +91,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"df/dd7/edupage_8py.html#a2adafa3eaf38d32da372310443e999f3"
+"dd/d18/system__operations_8py.html#a99b95316ff9feb1492b98309cfd7007e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -79,17 +79,17 @@
          <Node>
           <Name>.gitignore</Name>
           <Path>d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html</Path>
-          <Anchor>autotoc_md106</Anchor>
+          <Anchor>autotoc_md136</Anchor>
          </Node>
          <Node>
           <Name>verbose folder</Name>
           <Path>d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html</Path>
-          <Anchor>autotoc_md107</Anchor>
+          <Anchor>autotoc_md137</Anchor>
          </Node>
          <Node>
           <Name>edupage.py</Name>
           <Path>d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html</Path>
-          <Anchor>autotoc_md108</Anchor>
+          <Anchor>autotoc_md138</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -160,12 +160,12 @@
          <Node>
           <Name>Installation</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md127</Anchor>
+          <Anchor>autotoc_md157</Anchor>
          </Node>
          <Node>
           <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md129</Anchor>
+          <Anchor>autotoc_md159</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -177,6 +177,52 @@
           <Name>Package List</Name>
           <Path>namespaces.html</Path>
         <Subnodes>
+           <Node>
+            <Name>app</Name>
+            <Path>d8/d01/namespaceapp.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>addapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>a239fd1213ffe4c86eb64b5c05b3b38b4</Anchor>
+             </Node>
+             <Node>
+              <Name>codeapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>a07ec09a1844c1521a853f9f936aa4b2d</Anchor>
+             </Node>
+             <Node>
+              <Name>decodeapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>af550924df35e0d75043e8bec6d625686</Anchor>
+             </Node>
+             <Node>
+              <Name>findapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>a7b2e96c138a7a4addd5ce548df26da05</Anchor>
+             </Node>
+             <Node>
+              <Name>gameapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>a638329e2476f0a9e814fcc9c46af355a</Anchor>
+             </Node>
+             <Node>
+              <Name>passwordapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>af40b61b8bfc8b8a65714b5a40803a3fc</Anchor>
+             </Node>
+             <Node>
+              <Name>restartapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>ae35893d3008cac9575721f869d92e47b</Anchor>
+             </Node>
+             <Node>
+              <Name>updateapp</Name>
+              <Path>d8/d01/namespaceapp.html</Path>
+              <Anchor>a50333b18cd1fce382937e7857f2ca034</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
            <Node>
             <Name>app_alternations</Name>
             <Path>d3/dc0/namespaceapp__alternations.html</Path>
@@ -263,6 +309,11 @@
               <Anchor>aba2d947f1502e4a272b4c11754fd567d</Anchor>
              </Node>
              <Node>
+              <Name>get_packages</Name>
+              <Path>d3/dc0/namespaceapp__alternations.html</Path>
+              <Anchor>aae358fb985b5d678bd85f4042eb5e062</Anchor>
+             </Node>
+             <Node>
               <Name>install_choco</Name>
               <Path>d3/dc0/namespaceapp__alternations.html</Path>
               <Anchor>a9da6ea45a2df1e252ebae0caffbc602d</Anchor>
@@ -271,6 +322,16 @@
               <Name>install_packages</Name>
               <Path>d3/dc0/namespaceapp__alternations.html</Path>
               <Anchor>ad26ac0da1ded6d594b1798cfbfc10a88</Anchor>
+             </Node>
+             <Node>
+              <Name>on_rm_error</Name>
+              <Path>d3/dc0/namespaceapp__alternations.html</Path>
+              <Anchor>a14e5948489d716cccf71366983e95116</Anchor>
+             </Node>
+             <Node>
+              <Name>python_update</Name>
+              <Path>d3/dc0/namespaceapp__alternations.html</Path>
+              <Anchor>a633dfb0c70b064d9e50a4dcd354500f4</Anchor>
              </Node>
              <Node>
               <Name>update_app</Name>
@@ -296,7 +357,79 @@
              <Node>
               <Name>check_correctness</Name>
               <Path>d2/d33/namespacearguments.html</Path>
-              <Anchor>a94794798220695e9c6e5476a3184a0e5</Anchor>
+              <Anchor>a04966bc0bcbfd34d4572c5b88c083f0d</Anchor>
+             </Node>
+             <Node>
+              <Name>music2str</Name>
+              <Path>d2/d33/namespacearguments.html</Path>
+              <Anchor>a26f02fde9f253e28577702348429fa85</Anchor>
+             </Node>
+             <Node>
+              <Name>print_config</Name>
+              <Path>d2/d33/namespacearguments.html</Path>
+              <Anchor>a7c7aa2bd01354fbdd61ef861fd29eedc</Anchor>
+             </Node>
+             <Node>
+              <Name>set_config</Name>
+              <Path>d2/d33/namespacearguments.html</Path>
+              <Anchor>abfc7d5c598b350eab1e4270247acb231</Anchor>
+             </Node>
+             <Node>
+              <Name>write_config_options</Name>
+              <Path>d2/d33/namespacearguments.html</Path>
+              <Anchor>a8306eef1955be6471a2781e555a24c1f</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>cbzprintable</Name>
+            <Path>d2/d06/namespacecbzprintable.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>cbz</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>a99aea94c3a2ca08a87d9cfd77c3e40fb</Anchor>
+             </Node>
+             <Node>
+              <Name>cbz_cli</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>ae430ad7955c1bc72da505143f3cb6177</Anchor>
+             </Node>
+             <Node>
+              <Name>cbz_gui</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>a942c6e89ca2df2515a87f6cbeb5efd09</Anchor>
+             </Node>
+             <Node>
+              <Name>parse_cbz_command</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>af15d54219ad947c010ef6e7d31fa6619</Anchor>
+             </Node>
+             <Node>
+              <Name>run_cbz</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>ae16a934c330a0b490905d28d2f531051</Anchor>
+             </Node>
+             <Node>
+              <Name>run_cbz_command</Name>
+              <Path>d2/d06/namespacecbzprintable.html</Path>
+              <Anchor>a534e74f01301c1ddc92fff0b4d48c1ff</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>conda</Name>
+            <Path>d7/d3c/namespaceconda.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>env_menu</Name>
+              <Path>d7/d3c/namespaceconda.html</Path>
+              <Anchor>a8db2c180e8eded5298bb8116e5de49cf</Anchor>
+             </Node>
+             <Node>
+              <Name>get_envs</Name>
+              <Path>d7/d3c/namespaceconda.html</Path>
+              <Anchor>a5b003fd914d12da26b90c1f1df8899dc</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -317,27 +450,22 @@
              <Node>
               <Name>code</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a0ac684340ab80b572e1871d02551129b</Anchor>
+              <Anchor>a8cda85c4ec08c9ac94a9f7b99dd13168</Anchor>
              </Node>
              <Node>
               <Name>decode</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aa92a47e21588e2d0650510eb9f359d9b</Anchor>
+              <Anchor>a516061cb476f02c697dc730085faaf33</Anchor>
              </Node>
              <Node>
               <Name>delcache</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>af3edba33bdd8d0c84716b44bce6cfcd6</Anchor>
+              <Anchor>af75decea9147d76d11415b1af4593513</Anchor>
              </Node>
              <Node>
               <Name>find</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
-             </Node>
-             <Node>
-              <Name>get_size</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a354083c63893b814752b84ce1d2260d4</Anchor>
+              <Anchor>a026d51b7cff5026af09d0dd68c5e66fb</Anchor>
              </Node>
              <Node>
               <Name>inactive</Name>
@@ -350,29 +478,14 @@
               <Anchor>a316dc71e49505324d14deee19eccd566</Anchor>
              </Node>
              <Node>
-              <Name>log</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a10259ad5462902f5310a72e6a45b915b</Anchor>
-             </Node>
-             <Node>
               <Name>main</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a119d208fce33ca55d6b605c22dbcd534</Anchor>
              </Node>
              <Node>
-              <Name>move</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a6811c8f4821bef2794d3b744d5135ef7</Anchor>
-             </Node>
-             <Node>
               <Name>password</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a2b1f190fe22c994a649d237a35cd53fb</Anchor>
-             </Node>
-             <Node>
-              <Name>playhtml</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a33f41efcd3eb007421b3e63b542940ba</Anchor>
+              <Anchor>ab6bc445b1d72dc317235f930a3c3865f</Anchor>
              </Node>
              <Node>
               <Name>print_module</Name>
@@ -380,44 +493,19 @@
               <Anchor>a87e4619e345ef843fdc09d1a602c3ce3</Anchor>
              </Node>
              <Node>
-              <Name>printnlog</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a2adafa3eaf38d32da372310443e999f3</Anchor>
-             </Node>
-             <Node>
               <Name>progress_bar</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a4f9d80b1580d4e61d23dc4cf947f6e4c</Anchor>
-             </Node>
-             <Node>
-              <Name>set_config</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
-             </Node>
-             <Node>
-              <Name>show_html</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ae24340bf9520352076c174cc34e36fe8</Anchor>
+              <Anchor>a7775a0617be38287f322386389fe89ab</Anchor>
              </Node>
              <Node>
               <Name>show_marks</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+              <Anchor>a78d356f449887b742d23a2f1c98ce4ac</Anchor>
              </Node>
              <Node>
-              <Name>spotMusicDow</Name>
+              <Name>spot_music_dow</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a454714ea6e0c4835b3d5d99f545c37e8</Anchor>
-             </Node>
-             <Node>
-              <Name>to_info</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>af42cb60f429fbe9cb11f585512cd2c4c</Anchor>
-             </Node>
-             <Node>
-              <Name>typewriter</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a7faa24d24074c579901eff9ea313b508</Anchor>
+              <Anchor>ad9fa425db620b18457fe2d13d776a532</Anchor>
              </Node>
              <Node>
               <Name>vlc_init</Name>
@@ -430,11 +518,6 @@
               <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
              </Node>
              <Node>
-              <Name>addapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>abf75a8ec20198a06d40d5872ec8c179c</Anchor>
-             </Node>
-             <Node>
               <Name>allerror</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a7d5036f27c338a2167bfd7cc6e6c8ec2</Anchor>
@@ -445,19 +528,9 @@
               <Anchor>acba63c33bc68f8f8ab85c006c5bc8c2c</Anchor>
              </Node>
              <Node>
-              <Name>cachename</Name>
+              <Name>CACHENAME</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a8b6221abde00c001bc8657d2f90b1230</Anchor>
-             </Node>
-             <Node>
-              <Name>category</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aa6596cad660e35814989e6faf831d515</Anchor>
-             </Node>
-             <Node>
-              <Name>codeapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aac554719ac3aef7570067c03085b64b8</Anchor>
+              <Anchor>a8d21b6ebaf7cdd6f6d5900a5bdda4f27</Anchor>
              </Node>
              <Node>
               <Name>config</Name>
@@ -475,14 +548,14 @@
               <Anchor>a92955d9826137108df5894d62b8f6d42</Anchor>
              </Node>
              <Node>
-              <Name>decodeapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>afdf1345ed57aa3f0732c7b72e0589681</Anchor>
-             </Node>
-             <Node>
               <Name>else</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>aa8acb043f9701042328564500900df57</Anchor>
+             </Node>
+             <Node>
+              <Name>encoding</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>aa29f5882f581637528eb78b2435a94f1</Anchor>
              </Node>
              <Node>
               <Name>end</Name>
@@ -490,29 +563,19 @@
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
+              <Name>error_line_number</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a02548ef811f8d04abf50a37b8d6e683e</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a27591067896ebdad41069f6ea7e66476</Anchor>
              </Node>
              <Node>
-              <Name>findapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a868ffdec31d482e23a1055d7edfa67ac</Anchor>
-             </Node>
-             <Node>
               <Name>format</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
-             </Node>
-             <Node>
-              <Name>gameapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ada42755d650dffc15c02c7e2f79a741b</Anchor>
-             </Node>
-             <Node>
-              <Name>language</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a8db05b61d06312002141c30965b17bf0</Anchor>
              </Node>
              <Node>
               <Name>level</Name>
@@ -522,7 +585,7 @@
              <Node>
               <Name>line_number</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aa7a9bd72eae19a249a9272e40108467e</Anchor>
+              <Anchor>aa3c7cc4c23e7f5ae3b1a5a2c2bbfe842</Anchor>
              </Node>
              <Node>
               <Name>line_numbers</Name>
@@ -560,59 +623,24 @@
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
              </Node>
              <Node>
-              <Name>nainstalovane</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a276bd7233a67d90596bde46c3102bfb4</Anchor>
-             </Node>
-             <Node>
-              <Name>nenajdene</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a0730a0464e322a851f079a3fb5a6871f</Anchor>
-             </Node>
-             <Node>
               <Name>parser</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>a2d5d660ba0d864e3c255021852b4a19a</Anchor>
              </Node>
              <Node>
-              <Name>passwordapp</Name>
+              <Name>PROGRESS_BAR_CHECK</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a32c8c765f79935fea0ee6ea757266ed2</Anchor>
-             </Node>
-             <Node>
-              <Name>potrebne</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a718899dfb9d330b6841a70728f6ee5ee</Anchor>
-             </Node>
-             <Node>
-              <Name>potrebne1</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aea0beb716cd2637d7365ae357e6a5d7f</Anchor>
-             </Node>
-             <Node>
-              <Name>progress_bar_check</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ab13f3f3e6aa299c7782fc3b7a40054f4</Anchor>
-             </Node>
-             <Node>
-              <Name>progress_bar_end</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>acfe4725af96a79f8ba263c824358ac0a</Anchor>
-             </Node>
-             <Node>
-              <Name>restartapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a3a83b5040c381cdaee537ef1c78398ef</Anchor>
+              <Anchor>a9731dc71206a322f6a1fb095305de964</Anchor>
              </Node>
              <Node>
               <Name>screensize</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>aa7813765489d01bba0d031fc7d81351f</Anchor>
+              <Anchor>a7b26d1c4d02cd9dc1060abd9bbf338b7</Anchor>
              </Node>
              <Node>
               <Name>screensizepercentage</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a8ae9ea1b4fa0e2abd37556d1cc3787a2</Anchor>
+              <Anchor>ac388ff14fbe6c03871027bfa64fa0ee3</Anchor>
              </Node>
              <Node>
               <Name>server</Name>
@@ -620,19 +648,9 @@
               <Anchor>af46e517a54e8917a6351ae61c92bb955</Anchor>
              </Node>
              <Node>
-              <Name>site_packages</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>afffa275d44b92d259565032d241f556d</Anchor>
-             </Node>
-             <Node>
               <Name>stats</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>aa88697bc43db8a73108dc34f5d9661a2</Anchor>
-             </Node>
-             <Node>
-              <Name>toprint</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a581047f676f7385cb101b2f5e2829e75</Anchor>
              </Node>
              <Node>
               <Name>try</Name>
@@ -648,31 +666,6 @@
               <Name>update</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
               <Anchor>abe116cd210f52b2928aec345f836e80b</Anchor>
-             </Node>
-             <Node>
-              <Name>updateapp</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a755f001a3a51f0d7de4d516cae34bb38</Anchor>
-             </Node>
-             <Node>
-              <Name>user32</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a7776a9481e741b60486c766350d8ee7a</Anchor>
-             </Node>
-             <Node>
-              <Name>verzia</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a8144c5888ceedd6e676b9952a3a69583</Anchor>
-             </Node>
-             <Node>
-              <Name>vstup</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>afff40405f017dc99ee20303a0e14e856</Anchor>
-             </Node>
-             <Node>
-              <Name>x</Name>
-              <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>abc68998c4f2148515ea5dba942ee0efe</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -695,10 +688,6 @@
              <Node>
               <Name>argIntroError</Name>
               <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
-             </Node>
-             <Node>
-              <Name>argLanguageError</Name>
-              <Path>d7/d77/classexceptions_1_1arg_language_error.html</Path>
              </Node>
              <Node>
               <Name>argMusicError</Name>
@@ -728,7 +717,7 @@
              <Node>
               <Name>error_log</Name>
               <Path>d0/d6e/namespaceexceptions.html</Path>
-              <Anchor>a751a3e821b8ea542b3085265af86fb6d</Anchor>
+              <Anchor>a8677ed67fcabc85261d12556f7ff0be7</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -737,14 +726,65 @@
             <Path>d9/d8d/namespacefile__operations.html</Path>
           <Subnodes>
              <Node>
+              <Name>del_wn</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>a810d50705543b2353bc68d306dcfb3ac</Anchor>
+             </Node>
+             <Node>
+              <Name>delete</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>a78d5532d023d2c621b3bfc84d85576ac</Anchor>
+             </Node>
+             <Node>
               <Name>extract</Name>
               <Path>d9/d8d/namespacefile__operations.html</Path>
               <Anchor>a211c0228f3db84c882c25b71f8ec5698</Anchor>
              </Node>
              <Node>
+              <Name>file_to_datafolder</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>a02651cafb70e7611fca5a8780e4b79ea</Anchor>
+             </Node>
+             <Node>
+              <Name>mkdir</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>afde8e7251d2381b19725536ab73d2e14</Anchor>
+             </Node>
+             <Node>
+              <Name>on_rm_error</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>aaa0e67b24c1ac905e67d777aee2498d0</Anchor>
+             </Node>
+             <Node>
+              <Name>remove</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>a68250ea9331116e0bfd78d654bb99b45</Anchor>
+             </Node>
+             <Node>
+              <Name>to_zip</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>ad1e190f470ae5f50defc77c65e0479ab</Anchor>
+             </Node>
+             <Node>
               <Name>unpack</Name>
               <Path>d9/d8d/namespacefile__operations.html</Path>
               <Anchor>aa0282ee2aa6f3008a170c6b1d32409bc</Anchor>
+             </Node>
+             <Node>
+              <Name>xp3_finalization</Name>
+              <Path>d9/d8d/namespacefile__operations.html</Path>
+              <Anchor>a92e42a7313938f27c8d2368279f095d8</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>html</Name>
+            <Path>da/d9d/namespacehtml.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>playhtml</Name>
+              <Path>da/d9d/namespacehtml.html</Path>
+              <Anchor>ae0cfc9a12b0b1ffed23c27bf6fb7fb5e</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -770,6 +810,43 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>kayopy</Name>
+            <Path>d6/d36/namespacekayopy.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>kayopy</Name>
+              <Path>d6/d36/namespacekayopy.html</Path>
+              <Anchor>a65e3d3e15c8498c9a01acae662b952b7</Anchor>
+             </Node>
+             <Node>
+              <Name>run_kayopy</Name>
+              <Path>d6/d36/namespacekayopy.html</Path>
+              <Anchor>affd5de59d9a82abb99c8df343d8ce4e7</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>manga_translator</Name>
+            <Path>de/d7e/namespacemanga__translator.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>manga_image_translator</Name>
+              <Path>de/d7e/namespacemanga__translator.html</Path>
+              <Anchor>a019b0983a68679c07f664c968712b8f8</Anchor>
+             </Node>
+             <Node>
+              <Name>manga_image_translator_command</Name>
+              <Path>de/d7e/namespacemanga__translator.html</Path>
+              <Anchor>a1d72b571e167348486881cd5fa19427c</Anchor>
+             </Node>
+             <Node>
+              <Name>run_manga_image_translator</Name>
+              <Path>de/d7e/namespacemanga__translator.html</Path>
+              <Anchor>a168a8dbba24c93797e71833c54675975</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>system_info</Name>
             <Path>d5/df5/namespacesystem__info.html</Path>
           <Subnodes>
@@ -779,9 +856,19 @@
               <Anchor>a0f69d44535db5c0aff95a677e1380133</Anchor>
              </Node>
              <Node>
+              <Name>get_log_info</Name>
+              <Path>d5/df5/namespacesystem__info.html</Path>
+              <Anchor>a8e3f2cfac3035ffac20259dd877f294c</Anchor>
+             </Node>
+             <Node>
+              <Name>get_screensize</Name>
+              <Path>d5/df5/namespacesystem__info.html</Path>
+              <Anchor>ade39fb3bb4d66856e5b1747ebaa3dd35</Anchor>
+             </Node>
+             <Node>
               <Name>system_info</Name>
               <Path>d5/df5/namespacesystem__info.html</Path>
-              <Anchor>ad88602e3f4e223298fe307c59e31bd83</Anchor>
+              <Anchor>a92c091405f05267c225d0925fc422937</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -805,14 +892,39 @@
               <Anchor>ae1c540b83755223d324045f0383ce68d</Anchor>
              </Node>
              <Node>
+              <Name>intro_video</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>ac0306634f5a32966c3cd07a86d5bf0fc</Anchor>
+             </Node>
+             <Node>
               <Name>isUserAdmin</Name>
               <Path>de/d05/namespacesystem__operations.html</Path>
               <Anchor>aa3fb45e81ca75b65dfa7ad1c6819300c</Anchor>
              </Node>
              <Node>
+              <Name>move</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>a13881264d5df0e98e40b449a051592fd</Anchor>
+             </Node>
+             <Node>
+              <Name>pg_comb</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>a27f29c99e700b61a8b3e3d43d86bbcdc</Anchor>
+             </Node>
+             <Node>
               <Name>runAsAdmin</Name>
               <Path>de/d05/namespacesystem__operations.html</Path>
               <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
+             </Node>
+             <Node>
+              <Name>show_cmd</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>a6ab686f93d4b08d56d8c14a3e11cb949</Anchor>
+             </Node>
+             <Node>
+              <Name>wait_for_file</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>a99b95316ff9feb1492b98309cfd7007e</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -824,6 +936,22 @@
               <Name>uninstall</Name>
               <Path>dd/de8/namespaceuninstall.html</Path>
               <Anchor>a9c4fc960681931cdc878bae58b9ce6dd</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>voicevox</Name>
+            <Path>d0/da7/namespacevoicevox.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>get_size</Name>
+              <Path>d0/da7/namespacevoicevox.html</Path>
+              <Anchor>a594748a27a8637d666f9c36a5050cb73</Anchor>
+             </Node>
+             <Node>
+              <Name>run_voicevox</Name>
+              <Path>d0/da7/namespacevoicevox.html</Path>
+              <Anchor>afa37262df773484b9ff8784b2743e6e1</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -986,10 +1114,6 @@
               <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
              </Node>
              <Node>
-              <Name>argLanguageError</Name>
-              <Path>d7/d77/classexceptions_1_1arg_language_error.html</Path>
-             </Node>
-             <Node>
               <Name>argMusicError</Name>
               <Path>d5/d36/classexceptions_1_1arg_music_error.html</Path>
              </Node>
@@ -1036,10 +1160,6 @@
              <Node>
               <Name>exceptions.argIntroError</Name>
               <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
-             </Node>
-             <Node>
-              <Name>exceptions.argLanguageError</Name>
-              <Path>d7/d77/classexceptions_1_1arg_language_error.html</Path>
              </Node>
              <Node>
               <Name>exceptions.argMusicError</Name>
@@ -1105,6 +1225,407 @@
             <Name>essentials</Name>
             <Path>dir_d5b1ed787a0439ef5e70cb4862ae5db0.html</Path>
           <Subnodes>
+             <Node>
+              <Name>data</Name>
+              <Path>dir_194e32921a2a7c157352ff1149975529.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>app.py</Name>
+                <Path>de/d0e/app_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>addapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>a239fd1213ffe4c86eb64b5c05b3b38b4</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>codeapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>a07ec09a1844c1521a853f9f936aa4b2d</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>decodeapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>af550924df35e0d75043e8bec6d625686</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>findapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>a7b2e96c138a7a4addd5ce548df26da05</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>gameapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>a638329e2476f0a9e814fcc9c46af355a</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>passwordapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>af40b61b8bfc8b8a65714b5a40803a3fc</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>restartapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>ae35893d3008cac9575721f869d92e47b</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>updateapp</Name>
+                  <Path>de/d0e/app_8py.html</Path>
+                  <Anchor>a50333b18cd1fce382937e7857f2ca034</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>functions</Name>
+              <Path>dir_643e18308e1fb8943d3adb3f912126b6.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>cbzprintable.py</Name>
+                <Path>de/d59/cbzprintable_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>cbz</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>a99aea94c3a2ca08a87d9cfd77c3e40fb</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>cbz_cli</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>ae430ad7955c1bc72da505143f3cb6177</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>cbz_gui</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>a942c6e89ca2df2515a87f6cbeb5efd09</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>parse_cbz_command</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>af15d54219ad947c010ef6e7d31fa6619</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>run_cbz</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>ae16a934c330a0b490905d28d2f531051</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>run_cbz_command</Name>
+                  <Path>de/d59/cbzprintable_8py.html</Path>
+                  <Anchor>a534e74f01301c1ddc92fff0b4d48c1ff</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>html.py</Name>
+                <Path>d3/d2a/html_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>playhtml</Name>
+                  <Path>d3/d2a/html_8py.html</Path>
+                  <Anchor>ae0cfc9a12b0b1ffed23c27bf6fb7fb5e</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>kayopy.py</Name>
+                <Path>da/db2/kayopy_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>kayopy</Name>
+                  <Path>da/db2/kayopy_8py.html</Path>
+                  <Anchor>a65e3d3e15c8498c9a01acae662b952b7</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>run_kayopy</Name>
+                  <Path>da/db2/kayopy_8py.html</Path>
+                  <Anchor>affd5de59d9a82abb99c8df343d8ce4e7</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>manga_translator.py</Name>
+                <Path>d9/d71/manga__translator_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>manga_image_translator</Name>
+                  <Path>d9/d71/manga__translator_8py.html</Path>
+                  <Anchor>a019b0983a68679c07f664c968712b8f8</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>manga_image_translator_command</Name>
+                  <Path>d9/d71/manga__translator_8py.html</Path>
+                  <Anchor>a1d72b571e167348486881cd5fa19427c</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>run_manga_image_translator</Name>
+                  <Path>d9/d71/manga__translator_8py.html</Path>
+                  <Anchor>a168a8dbba24c93797e71833c54675975</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>voicevox.py</Name>
+                <Path>de/d74/voicevox_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>get_size</Name>
+                  <Path>de/d74/voicevox_8py.html</Path>
+                  <Anchor>a594748a27a8637d666f9c36a5050cb73</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>run_voicevox</Name>
+                  <Path>de/d74/voicevox_8py.html</Path>
+                  <Anchor>afa37262df773484b9ff8784b2743e6e1</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>writing.py</Name>
+                <Path>db/d2a/writing_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>log</Name>
+                  <Path>db/d2a/writing_8py.html</Path>
+                  <Anchor>a40096cfdd9f146dad0aa6f40e4c0871b</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>printnlog</Name>
+                  <Path>db/d2a/writing_8py.html</Path>
+                  <Anchor>a636f8148c7ab1181c2ac3a1d15a626d4</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>show_version</Name>
+                  <Path>db/d2a/writing_8py.html</Path>
+                  <Anchor>ac24ddd309c179428c04f8887827008c2</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>to_info</Name>
+                  <Path>db/d2a/writing_8py.html</Path>
+                  <Anchor>a4e5821765c2a0833fa642cd6559b003c</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>typewriter</Name>
+                  <Path>db/d2a/writing_8py.html</Path>
+                  <Anchor>a46cc8d471e5fbadc94bb501b222cb4b9</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>system</Name>
+              <Path>dir_8fef2c341c2c9d5faf344d4e8f638ccf.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>conda.py</Name>
+                <Path>dc/dc6/conda_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>env_menu</Name>
+                  <Path>dc/dc6/conda_8py.html</Path>
+                  <Anchor>a8db2c180e8eded5298bb8116e5de49cf</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>get_envs</Name>
+                  <Path>dc/dc6/conda_8py.html</Path>
+                  <Anchor>a5b003fd914d12da26b90c1f1df8899dc</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>exceptions.py</Name>
+                <Path>dd/df8/exceptions_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>exceptions.configNoOption</Name>
+                  <Path>dd/d3d/classexceptions_1_1config_no_option.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argIntroError</Name>
+                  <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argInactiveLimitError</Name>
+                  <Path>df/deb/classexceptions_1_1arg_inactive_limit_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argMusicListError</Name>
+                  <Path>df/de6/classexceptions_1_1arg_music_list_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argMusicError</Name>
+                  <Path>d5/d36/classexceptions_1_1arg_music_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argenvironmentError</Name>
+                  <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argWaifuError</Name>
+                  <Path>da/dcb/classexceptions_1_1arg_waifu_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argNekoError</Name>
+                  <Path>d1/d60/classexceptions_1_1arg_neko_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>exceptions.argGameError</Name>
+                  <Path>dc/d31/classexceptions_1_1arg_game_error.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>error_get</Name>
+                  <Path>dd/df8/exceptions_8py.html</Path>
+                  <Anchor>ace1e278771edd49755f7a35227e8d52d</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>error_log</Name>
+                  <Path>dd/df8/exceptions_8py.html</Path>
+                  <Anchor>a8677ed67fcabc85261d12556f7ff0be7</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>file_operations.py</Name>
+                <Path>d3/d1c/file__operations_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>del_wn</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a810d50705543b2353bc68d306dcfb3ac</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>delete</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a78d5532d023d2c621b3bfc84d85576ac</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>extract</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a211c0228f3db84c882c25b71f8ec5698</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>file_to_datafolder</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a02651cafb70e7611fca5a8780e4b79ea</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>mkdir</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>afde8e7251d2381b19725536ab73d2e14</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>on_rm_error</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>aaa0e67b24c1ac905e67d777aee2498d0</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>remove</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a68250ea9331116e0bfd78d654bb99b45</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>to_zip</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>ad1e190f470ae5f50defc77c65e0479ab</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>unpack</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>aa0282ee2aa6f3008a170c6b1d32409bc</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>xp3_finalization</Name>
+                  <Path>d3/d1c/file__operations_8py.html</Path>
+                  <Anchor>a92e42a7313938f27c8d2368279f095d8</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>system_info.py</Name>
+                <Path>de/d3c/system__info_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>get_line_number</Name>
+                  <Path>de/d3c/system__info_8py.html</Path>
+                  <Anchor>a0f69d44535db5c0aff95a677e1380133</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>get_log_info</Name>
+                  <Path>de/d3c/system__info_8py.html</Path>
+                  <Anchor>a8e3f2cfac3035ffac20259dd877f294c</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>get_screensize</Name>
+                  <Path>de/d3c/system__info_8py.html</Path>
+                  <Anchor>ade39fb3bb4d66856e5b1747ebaa3dd35</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>system_info</Name>
+                  <Path>de/d3c/system__info_8py.html</Path>
+                  <Anchor>a92c091405f05267c225d0925fc422937</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>system_operations.py</Name>
+                <Path>dd/d18/system__operations_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>checkAdmin</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>a2d29427becb76cd67d51fe071b7aa721</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>getImg</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>ab7f6f1490c9ace89a495ec832aba1be5</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>getWindow</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>ae1c540b83755223d324045f0383ce68d</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>intro_video</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>ac0306634f5a32966c3cd07a86d5bf0fc</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>isUserAdmin</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>aa3fb45e81ca75b65dfa7ad1c6819300c</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>move</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>a13881264d5df0e98e40b449a051592fd</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>pg_comb</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>a27f29c99e700b61a8b3e3d43d86bbcdc</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>runAsAdmin</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>show_cmd</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>a6ab686f93d4b08d56d8c14a3e11cb949</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>wait_for_file</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>a99b95316ff9feb1492b98309cfd7007e</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+              </Subnodes>
+             </Node>
              <Node>
               <Name>app_alternations.py</Name>
               <Path>dd/d31/app__alternations_8py.html</Path>
@@ -1191,6 +1712,11 @@
                 <Anchor>aba2d947f1502e4a272b4c11754fd567d</Anchor>
                </Node>
                <Node>
+                <Name>get_packages</Name>
+                <Path>dd/d31/app__alternations_8py.html</Path>
+                <Anchor>aae358fb985b5d678bd85f4042eb5e062</Anchor>
+               </Node>
+               <Node>
                 <Name>install_choco</Name>
                 <Path>dd/d31/app__alternations_8py.html</Path>
                 <Anchor>a9da6ea45a2df1e252ebae0caffbc602d</Anchor>
@@ -1199,6 +1725,16 @@
                 <Name>install_packages</Name>
                 <Path>dd/d31/app__alternations_8py.html</Path>
                 <Anchor>ad26ac0da1ded6d594b1798cfbfc10a88</Anchor>
+               </Node>
+               <Node>
+                <Name>on_rm_error</Name>
+                <Path>dd/d31/app__alternations_8py.html</Path>
+                <Anchor>a14e5948489d716cccf71366983e95116</Anchor>
+               </Node>
+               <Node>
+                <Name>python_update</Name>
+                <Path>dd/d31/app__alternations_8py.html</Path>
+                <Anchor>a633dfb0c70b064d9e50a4dcd354500f4</Anchor>
                </Node>
                <Node>
                 <Name>update_app</Name>
@@ -1224,79 +1760,27 @@
                <Node>
                 <Name>check_correctness</Name>
                 <Path>d9/d81/arguments_8py.html</Path>
-                <Anchor>a94794798220695e9c6e5476a3184a0e5</Anchor>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>exceptions.py</Name>
-              <Path>dd/df8/exceptions_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>exceptions.configNoOption</Name>
-                <Path>dd/d3d/classexceptions_1_1config_no_option.html</Path>
+                <Anchor>a04966bc0bcbfd34d4572c5b88c083f0d</Anchor>
                </Node>
                <Node>
-                <Name>exceptions.argLanguageError</Name>
-                <Path>d7/d77/classexceptions_1_1arg_language_error.html</Path>
+                <Name>music2str</Name>
+                <Path>d9/d81/arguments_8py.html</Path>
+                <Anchor>a26f02fde9f253e28577702348429fa85</Anchor>
                </Node>
                <Node>
-                <Name>exceptions.argIntroError</Name>
-                <Path>d6/d2b/classexceptions_1_1arg_intro_error.html</Path>
+                <Name>print_config</Name>
+                <Path>d9/d81/arguments_8py.html</Path>
+                <Anchor>a7c7aa2bd01354fbdd61ef861fd29eedc</Anchor>
                </Node>
                <Node>
-                <Name>exceptions.argInactiveLimitError</Name>
-                <Path>df/deb/classexceptions_1_1arg_inactive_limit_error.html</Path>
+                <Name>set_config</Name>
+                <Path>d9/d81/arguments_8py.html</Path>
+                <Anchor>abfc7d5c598b350eab1e4270247acb231</Anchor>
                </Node>
                <Node>
-                <Name>exceptions.argMusicListError</Name>
-                <Path>df/de6/classexceptions_1_1arg_music_list_error.html</Path>
-               </Node>
-               <Node>
-                <Name>exceptions.argMusicError</Name>
-                <Path>d5/d36/classexceptions_1_1arg_music_error.html</Path>
-               </Node>
-               <Node>
-                <Name>exceptions.argenvironmentError</Name>
-                <Path>d2/d37/classexceptions_1_1argenvironment_error.html</Path>
-               </Node>
-               <Node>
-                <Name>exceptions.argWaifuError</Name>
-                <Path>da/dcb/classexceptions_1_1arg_waifu_error.html</Path>
-               </Node>
-               <Node>
-                <Name>exceptions.argNekoError</Name>
-                <Path>d1/d60/classexceptions_1_1arg_neko_error.html</Path>
-               </Node>
-               <Node>
-                <Name>exceptions.argGameError</Name>
-                <Path>dc/d31/classexceptions_1_1arg_game_error.html</Path>
-               </Node>
-               <Node>
-                <Name>error_get</Name>
-                <Path>dd/df8/exceptions_8py.html</Path>
-                <Anchor>ace1e278771edd49755f7a35227e8d52d</Anchor>
-               </Node>
-               <Node>
-                <Name>error_log</Name>
-                <Path>dd/df8/exceptions_8py.html</Path>
-                <Anchor>a751a3e821b8ea542b3085265af86fb6d</Anchor>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>file_operations.py</Name>
-              <Path>d3/d1c/file__operations_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>extract</Name>
-                <Path>d3/d1c/file__operations_8py.html</Path>
-                <Anchor>a211c0228f3db84c882c25b71f8ec5698</Anchor>
-               </Node>
-               <Node>
-                <Name>unpack</Name>
-                <Path>d3/d1c/file__operations_8py.html</Path>
-                <Anchor>aa0282ee2aa6f3008a170c6b1d32409bc</Anchor>
+                <Name>write_config_options</Name>
+                <Path>d9/d81/arguments_8py.html</Path>
+                <Anchor>a8306eef1955be6471a2781e555a24c1f</Anchor>
                </Node>
               </Subnodes>
              </Node>
@@ -1318,84 +1802,6 @@
                 <Name>internet_check</Name>
                 <Path>d6/da3/internet_8py.html</Path>
                 <Anchor>adddc8d04d1313e597e4365c3011de6f4</Anchor>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>system_info.py</Name>
-              <Path>de/d3c/system__info_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>get_line_number</Name>
-                <Path>de/d3c/system__info_8py.html</Path>
-                <Anchor>a0f69d44535db5c0aff95a677e1380133</Anchor>
-               </Node>
-               <Node>
-                <Name>system_info</Name>
-                <Path>de/d3c/system__info_8py.html</Path>
-                <Anchor>ad88602e3f4e223298fe307c59e31bd83</Anchor>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>system_operations.py</Name>
-              <Path>dd/d18/system__operations_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>checkAdmin</Name>
-                <Path>dd/d18/system__operations_8py.html</Path>
-                <Anchor>a2d29427becb76cd67d51fe071b7aa721</Anchor>
-               </Node>
-               <Node>
-                <Name>getImg</Name>
-                <Path>dd/d18/system__operations_8py.html</Path>
-                <Anchor>ab7f6f1490c9ace89a495ec832aba1be5</Anchor>
-               </Node>
-               <Node>
-                <Name>getWindow</Name>
-                <Path>dd/d18/system__operations_8py.html</Path>
-                <Anchor>ae1c540b83755223d324045f0383ce68d</Anchor>
-               </Node>
-               <Node>
-                <Name>isUserAdmin</Name>
-                <Path>dd/d18/system__operations_8py.html</Path>
-                <Anchor>aa3fb45e81ca75b65dfa7ad1c6819300c</Anchor>
-               </Node>
-               <Node>
-                <Name>runAsAdmin</Name>
-                <Path>dd/d18/system__operations_8py.html</Path>
-                <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>writing.py</Name>
-              <Path>db/d2a/writing_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>log</Name>
-                <Path>db/d2a/writing_8py.html</Path>
-                <Anchor>a40096cfdd9f146dad0aa6f40e4c0871b</Anchor>
-               </Node>
-               <Node>
-                <Name>printnlog</Name>
-                <Path>db/d2a/writing_8py.html</Path>
-                <Anchor>a636f8148c7ab1181c2ac3a1d15a626d4</Anchor>
-               </Node>
-               <Node>
-                <Name>show_version</Name>
-                <Path>db/d2a/writing_8py.html</Path>
-                <Anchor>ac24ddd309c179428c04f8887827008c2</Anchor>
-               </Node>
-               <Node>
-                <Name>to_info</Name>
-                <Path>db/d2a/writing_8py.html</Path>
-                <Anchor>a4e5821765c2a0833fa642cd6559b003c</Anchor>
-               </Node>
-               <Node>
-                <Name>typewriter</Name>
-                <Path>db/d2a/writing_8py.html</Path>
-                <Anchor>a46cc8d471e5fbadc94bb501b222cb4b9</Anchor>
                </Node>
               </Subnodes>
              </Node>
@@ -1424,27 +1830,22 @@
              <Node>
               <Name>code</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a0ac684340ab80b572e1871d02551129b</Anchor>
+              <Anchor>a8cda85c4ec08c9ac94a9f7b99dd13168</Anchor>
              </Node>
              <Node>
               <Name>decode</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aa92a47e21588e2d0650510eb9f359d9b</Anchor>
+              <Anchor>a516061cb476f02c697dc730085faaf33</Anchor>
              </Node>
              <Node>
               <Name>delcache</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>af3edba33bdd8d0c84716b44bce6cfcd6</Anchor>
+              <Anchor>af75decea9147d76d11415b1af4593513</Anchor>
              </Node>
              <Node>
               <Name>find</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ab1dd4f4e3c6e977625585c13c4c23ed8</Anchor>
-             </Node>
-             <Node>
-              <Name>get_size</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a354083c63893b814752b84ce1d2260d4</Anchor>
+              <Anchor>a026d51b7cff5026af09d0dd68c5e66fb</Anchor>
              </Node>
              <Node>
               <Name>inactive</Name>
@@ -1457,29 +1858,14 @@
               <Anchor>a316dc71e49505324d14deee19eccd566</Anchor>
              </Node>
              <Node>
-              <Name>log</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a10259ad5462902f5310a72e6a45b915b</Anchor>
-             </Node>
-             <Node>
               <Name>main</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a119d208fce33ca55d6b605c22dbcd534</Anchor>
              </Node>
              <Node>
-              <Name>move</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a6811c8f4821bef2794d3b744d5135ef7</Anchor>
-             </Node>
-             <Node>
               <Name>password</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a2b1f190fe22c994a649d237a35cd53fb</Anchor>
-             </Node>
-             <Node>
-              <Name>playhtml</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a33f41efcd3eb007421b3e63b542940ba</Anchor>
+              <Anchor>ab6bc445b1d72dc317235f930a3c3865f</Anchor>
              </Node>
              <Node>
               <Name>print_module</Name>
@@ -1487,44 +1873,19 @@
               <Anchor>a87e4619e345ef843fdc09d1a602c3ce3</Anchor>
              </Node>
              <Node>
-              <Name>printnlog</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a2adafa3eaf38d32da372310443e999f3</Anchor>
-             </Node>
-             <Node>
               <Name>progress_bar</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a4f9d80b1580d4e61d23dc4cf947f6e4c</Anchor>
-             </Node>
-             <Node>
-              <Name>set_config</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ad133bcb047e8d06b5c85e97d087bc3c5</Anchor>
-             </Node>
-             <Node>
-              <Name>show_html</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ae24340bf9520352076c174cc34e36fe8</Anchor>
+              <Anchor>a7775a0617be38287f322386389fe89ab</Anchor>
              </Node>
              <Node>
               <Name>show_marks</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a12e03073ead2aa68c686d435b8b1e3b8</Anchor>
+              <Anchor>a78d356f449887b742d23a2f1c98ce4ac</Anchor>
              </Node>
              <Node>
-              <Name>spotMusicDow</Name>
+              <Name>spot_music_dow</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a454714ea6e0c4835b3d5d99f545c37e8</Anchor>
-             </Node>
-             <Node>
-              <Name>to_info</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>af42cb60f429fbe9cb11f585512cd2c4c</Anchor>
-             </Node>
-             <Node>
-              <Name>typewriter</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a7faa24d24074c579901eff9ea313b508</Anchor>
+              <Anchor>ad9fa425db620b18457fe2d13d776a532</Anchor>
              </Node>
              <Node>
               <Name>vlc_init</Name>
@@ -1537,11 +1898,6 @@
               <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
              </Node>
              <Node>
-              <Name>addapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>abf75a8ec20198a06d40d5872ec8c179c</Anchor>
-             </Node>
-             <Node>
               <Name>allerror</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a7d5036f27c338a2167bfd7cc6e6c8ec2</Anchor>
@@ -1552,19 +1908,9 @@
               <Anchor>acba63c33bc68f8f8ab85c006c5bc8c2c</Anchor>
              </Node>
              <Node>
-              <Name>cachename</Name>
+              <Name>CACHENAME</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a8b6221abde00c001bc8657d2f90b1230</Anchor>
-             </Node>
-             <Node>
-              <Name>category</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aa6596cad660e35814989e6faf831d515</Anchor>
-             </Node>
-             <Node>
-              <Name>codeapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aac554719ac3aef7570067c03085b64b8</Anchor>
+              <Anchor>a8d21b6ebaf7cdd6f6d5900a5bdda4f27</Anchor>
              </Node>
              <Node>
               <Name>config</Name>
@@ -1582,14 +1928,14 @@
               <Anchor>a92955d9826137108df5894d62b8f6d42</Anchor>
              </Node>
              <Node>
-              <Name>decodeapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>afdf1345ed57aa3f0732c7b72e0589681</Anchor>
-             </Node>
-             <Node>
               <Name>else</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>aa8acb043f9701042328564500900df57</Anchor>
+             </Node>
+             <Node>
+              <Name>encoding</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>aa29f5882f581637528eb78b2435a94f1</Anchor>
              </Node>
              <Node>
               <Name>end</Name>
@@ -1597,29 +1943,19 @@
               <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
              </Node>
              <Node>
+              <Name>error_line_number</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a02548ef811f8d04abf50a37b8d6e683e</Anchor>
+             </Node>
+             <Node>
               <Name>filename</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a27591067896ebdad41069f6ea7e66476</Anchor>
              </Node>
              <Node>
-              <Name>findapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a868ffdec31d482e23a1055d7edfa67ac</Anchor>
-             </Node>
-             <Node>
               <Name>format</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a4a5f10c3d0f57a6104ba8e97ea78c7fa</Anchor>
-             </Node>
-             <Node>
-              <Name>gameapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ada42755d650dffc15c02c7e2f79a741b</Anchor>
-             </Node>
-             <Node>
-              <Name>language</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a8db05b61d06312002141c30965b17bf0</Anchor>
              </Node>
              <Node>
               <Name>level</Name>
@@ -1629,7 +1965,7 @@
              <Node>
               <Name>line_number</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aa7a9bd72eae19a249a9272e40108467e</Anchor>
+              <Anchor>aa3c7cc4c23e7f5ae3b1a5a2c2bbfe842</Anchor>
              </Node>
              <Node>
               <Name>line_numbers</Name>
@@ -1667,59 +2003,24 @@
               <Anchor>a8a36a115bd8539c865d33dc6a11c7589</Anchor>
              </Node>
              <Node>
-              <Name>nainstalovane</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a276bd7233a67d90596bde46c3102bfb4</Anchor>
-             </Node>
-             <Node>
-              <Name>nenajdene</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a0730a0464e322a851f079a3fb5a6871f</Anchor>
-             </Node>
-             <Node>
               <Name>parser</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>a2d5d660ba0d864e3c255021852b4a19a</Anchor>
              </Node>
              <Node>
-              <Name>passwordapp</Name>
+              <Name>PROGRESS_BAR_CHECK</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a32c8c765f79935fea0ee6ea757266ed2</Anchor>
-             </Node>
-             <Node>
-              <Name>potrebne</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a718899dfb9d330b6841a70728f6ee5ee</Anchor>
-             </Node>
-             <Node>
-              <Name>potrebne1</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aea0beb716cd2637d7365ae357e6a5d7f</Anchor>
-             </Node>
-             <Node>
-              <Name>progress_bar_check</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ab13f3f3e6aa299c7782fc3b7a40054f4</Anchor>
-             </Node>
-             <Node>
-              <Name>progress_bar_end</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>acfe4725af96a79f8ba263c824358ac0a</Anchor>
-             </Node>
-             <Node>
-              <Name>restartapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a3a83b5040c381cdaee537ef1c78398ef</Anchor>
+              <Anchor>a9731dc71206a322f6a1fb095305de964</Anchor>
              </Node>
              <Node>
               <Name>screensize</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>aa7813765489d01bba0d031fc7d81351f</Anchor>
+              <Anchor>a7b26d1c4d02cd9dc1060abd9bbf338b7</Anchor>
              </Node>
              <Node>
               <Name>screensizepercentage</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a8ae9ea1b4fa0e2abd37556d1cc3787a2</Anchor>
+              <Anchor>ac388ff14fbe6c03871027bfa64fa0ee3</Anchor>
              </Node>
              <Node>
               <Name>server</Name>
@@ -1727,19 +2028,9 @@
               <Anchor>af46e517a54e8917a6351ae61c92bb955</Anchor>
              </Node>
              <Node>
-              <Name>site_packages</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>afffa275d44b92d259565032d241f556d</Anchor>
-             </Node>
-             <Node>
               <Name>stats</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>aa88697bc43db8a73108dc34f5d9661a2</Anchor>
-             </Node>
-             <Node>
-              <Name>toprint</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a581047f676f7385cb101b2f5e2829e75</Anchor>
              </Node>
              <Node>
               <Name>try</Name>
@@ -1755,31 +2046,6 @@
               <Name>update</Name>
               <Path>df/dd7/edupage_8py.html</Path>
               <Anchor>abe116cd210f52b2928aec345f836e80b</Anchor>
-             </Node>
-             <Node>
-              <Name>updateapp</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a755f001a3a51f0d7de4d516cae34bb38</Anchor>
-             </Node>
-             <Node>
-              <Name>user32</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a7776a9481e741b60486c766350d8ee7a</Anchor>
-             </Node>
-             <Node>
-              <Name>verzia</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a8144c5888ceedd6e676b9952a3a69583</Anchor>
-             </Node>
-             <Node>
-              <Name>vstup</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>afff40405f017dc99ee20303a0e14e856</Anchor>
-             </Node>
-             <Node>
-              <Name>x</Name>
-              <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>abc68998c4f2148515ea5dba942ee0efe</Anchor>
              </Node>
             </Subnodes>
            </Node>

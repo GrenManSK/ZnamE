@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]],
-  ['restartapp_1',['restartapp',['../d0/d52/namespaceedupage.html#a3a83b5040c381cdaee537ef1c78398ef',1,'edupage']]],
-  ['runasadmin_2',['runAsAdmin',['../de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb',1,'system_operations']]]
+  ['on_5frm_5ferror_0',['on_rm_error',['../d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116',1,'app_alternations.on_rm_error()'],['../d9/d8d/namespacefile__operations.html#aaa0e67b24c1ac905e67d777aee2498d0',1,'file_operations.on_rm_error()']]]
 ];

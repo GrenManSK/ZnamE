@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['to_5finfo_0',['to_info',['../d0/d52/namespaceedupage.html#af42cb60f429fbe9cb11f585512cd2c4c',1,'edupage.to_info()'],['../d8/df3/namespacewriting.html#a4e5821765c2a0833fa642cd6559b003c',1,'writing.to_info()']]],
-  ['toprint_1',['toprint',['../d0/d52/namespaceedupage.html#a581047f676f7385cb101b2f5e2829e75',1,'edupage']]],
-  ['try_2',['try',['../d0/d52/namespaceedupage.html#a3b833a872a582269c7dd26729086ec6b',1,'edupage']]],
-  ['typewriter_3',['typewriter',['../d0/d52/namespaceedupage.html#a7faa24d24074c579901eff9ea313b508',1,'edupage.typewriter()'],['../d8/df3/namespacewriting.html#a46cc8d471e5fbadc94bb501b222cb4b9',1,'writing.typewriter()']]]
+  ['readme_2emd_0',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]],
+  ['remove_1',['remove',['../d9/d8d/namespacefile__operations.html#a68250ea9331116e0bfd78d654bb99b45',1,'file_operations']]],
+  ['restartapp_2',['restartapp',['../d8/d01/namespaceapp.html#ae35893d3008cac9575721f869d92e47b',1,'app']]],
+  ['run_5fcbz_3',['run_cbz',['../d2/d06/namespacecbzprintable.html#ae16a934c330a0b490905d28d2f531051',1,'cbzprintable']]],
+  ['run_5fcbz_5fcommand_4',['run_cbz_command',['../d2/d06/namespacecbzprintable.html#a534e74f01301c1ddc92fff0b4d48c1ff',1,'cbzprintable']]],
+  ['run_5fkayopy_5',['run_kayopy',['../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7',1,'kayopy']]],
+  ['run_5fmanga_5fimage_5ftranslator_6',['run_manga_image_translator',['../de/d7e/namespacemanga__translator.html#a168a8dbba24c93797e71833c54675975',1,'manga_translator']]],
+  ['run_5fvoicevox_7',['run_voicevox',['../d0/da7/namespacevoicevox.html#afa37262df773484b9ff8784b2743e6e1',1,'voicevox']]],
+  ['runasadmin_8',['runAsAdmin',['../de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb',1,'system_operations']]]
 ];

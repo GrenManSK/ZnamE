@@ -1,0 +1,11 @@
+digraph "conda.env_menu"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="conda.env_menu",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="conda.get_envs",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/d3c/namespaceconda.html#a5b003fd914d12da26b90c1f1df8899dc",tooltip=" "];
+}

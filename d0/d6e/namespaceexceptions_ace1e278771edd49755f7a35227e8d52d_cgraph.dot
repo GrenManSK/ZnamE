@@ -7,5 +7,5 @@ digraph "exceptions.error_get"
   rankdir="LR";
   Node1 [label="exceptions.error_get",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="exceptions.error_log",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d6e/namespaceexceptions.html#a751a3e821b8ea542b3085265af86fb6d",tooltip=" "];
+  Node2 [label="exceptions.error_log",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d6e/namespaceexceptions.html#a8677ed67fcabc85261d12556f7ff0be7",tooltip=" "];
 }

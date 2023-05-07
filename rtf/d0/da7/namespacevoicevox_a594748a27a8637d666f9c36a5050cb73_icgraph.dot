@@ -1,0 +1,11 @@
+digraph "voicevox.get_size"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="voicevox.get_size",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="voicevox.run_voicevox",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/da7/namespacevoicevox.html#afa37262df773484b9ff8784b2743e6e1",tooltip=" "];
+}

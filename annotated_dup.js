@@ -8,7 +8,6 @@ var annotated_dup =
       [ "argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],
       [ "argInactiveLimitError", "df/deb/classexceptions_1_1arg_inactive_limit_error.html", null ],
       [ "argIntroError", "d6/d2b/classexceptions_1_1arg_intro_error.html", null ],
-      [ "argLanguageError", "d7/d77/classexceptions_1_1arg_language_error.html", null ],
       [ "argMusicError", "d5/d36/classexceptions_1_1arg_music_error.html", null ],
       [ "argMusicListError", "df/de6/classexceptions_1_1arg_music_list_error.html", null ],
       [ "argNekoError", "d1/d60/classexceptions_1_1arg_neko_error.html", null ],

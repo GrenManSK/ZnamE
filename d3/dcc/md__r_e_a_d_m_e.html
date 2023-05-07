@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.3.0-alpha+build.20230430.155859</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.1.0-alpha+build.20230507.232036</span>
    </div>
   </td>
  </tr>
@@ -95,28 +95,29 @@ $(document).ready(function(){initNavTree('d3/dcc/md__r_e_a_d_m_e.html','../../')
 <div class="textblock"><p><img src="https://img.shields.io/github/commit-activity/m/GrenManSK/ZnamE" alt="Commit activity" class="inline"/> <img src="https://img.shields.io/tokei/lines/github/GrenManSK/ZnamE?label=lines%20of%20code" alt="Lines of code" class="inline"/> <img src="https://img.shields.io/github/license/GrenManSK/ZnamE" alt="License" class="inline"/> <img src="https://img.shields.io/github/contributors/GrenManSK/ZnamE" alt="Contributors" class="inline"/> <img src="https://img.shields.io/github/issues/GrenManSK/ZnamE" alt="Issues" class="inline"/> <img src="https://img.shields.io/github/languages/top/GrenManSK/ZnamE" alt="Language" class="inline"/> <img src="https://img.shields.io/github/languages/code-size/GrenManSK/ZnamE" alt="Code Size" class="inline"/> <img src="https://img.shields.io/github/stars/GrenManSK/ZnamE?style=social" alt="Star" class="inline"/> <img src="https://img.shields.io/github/last-commit/GrenManSK/ZnamE" alt="Last Commit" class="inline"/></p>
 <p>Using <a href="https://github.com/awaken1ng/krkr-xp3" target="_blank">krkr-xp3</a> as extraction tool</p>
 <p>Rewritten to python3 and added some functions to work with ZnámE</p>
+<p>Using <a href="https://github.com/spotDL/spotify-downloader" target="_blank">spotDL</a> for music function</p>
 <p>Using <a href="https://github.com/RocktimSaikia/anime-chan" target="_blank">anime-chan</a> for motivation function</p>
 <p>Using <a href="https://github.com/nekos-best" target="_blank">nekos-best</a> for NEKO photos</p>
 <p>Using <a href="https://github.com/Waifu-pics/waifu-api" target="_blank">waifu-api</a> for WAIFU photos</p>
 <p>Using <a href="https://github.com/KalebSchmidlkofer/ytdownload" target="_blank">ytdownload</a> for music from config</p>
+<p>Using <a href="https://github.com/zyddnys/manga-image-translator" target="_blank">manga-image-translator</a> for <a class="el" href="../../de/d7e/namespacemanga__translator.html">manga_translator</a> function</p>
 <hr  />
 <p><b>Test login credentials:</b> PID: 426738 Password: 123456</p>
 <p>Program will make backup files and credentials saves in 'C:/Users/your_name/AppData/Local/ZnámE'</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md127"></a>
+<h1><a class="anchor" id="autotoc_md157"></a>
 Installation</h1>
-<p>If you have already installed pytube go to the pytube directory and cipher.py file ({your_python}/site-packages/pytube/cipher.py)</p>
-<p>On line 411 remove all content of the line and change it to 'transform_plan_raw = js'</p>
-<p>Without it download music function from yml file won't work</p>
+<p>Firstly use the following command <code>pip install -r requirements.txt</code></p>
+<p>If in requirements.txt are some missing dependencies program will automatically install them</p>
+<p>In file <code>choco_packages.json</code>, you can see the list of other dependencies which will be installed as part of first time installation</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md129"></a>
+<h1><a class="anchor" id="autotoc_md159"></a>
 &lt;strong&gt;Config options&lt;/strong&gt;</h1>
 <div class="fragment"><div class="line">basic info:</div>
 <div class="line">  environmentA: [0-f]</div>
 <div class="line">  environmentB: [0-f]</div>
 <div class="line">  inactivelimit: [Any number]</div>
 <div class="line">  intro: [True/False]</div>
-<div class="line">  lang: [&#39;SK&#39;, &#39;EN&#39;, &#39;JP&#39;]</div>
 <div class="line">  music: [disable/enable]</div>
 <div class="line">  musiclist: [Any Youtube video title, divided by comma]</div>
 <div class="line">  musicnumber: [Any number; Max is number of items in musiclist]</div>
@@ -133,8 +134,7 @@ Installation</h1>
 <div class="line">  type: [sfw/nsfw]</div>
 </div><!-- fragment --><hr  />
 <p>CLI Arguments</p>
-<div class="fragment"><div class="line">-lang --language {EN, SK, JP} # Select language of the aplication defaut to config option</div>
-<div class="line">-v --version {} # Show version of the app</div>
+<div class="fragment"><div class="line">-v --version {} # Show version of the app</div>
 <div class="line">-ef --endf {} # Will not automatically end program</div>
 <div class="line">-ni --nointro {} # Will not start intro</div>
 <div class="line">-co --configoptions {} # Will make a file with all config options, frankly speaking it will put previous text to file</div>
@@ -145,7 +145,7 @@ Installation</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Apr 30 2023 16:09:14 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Sun May 7 2023 23:31:13 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v1.3.0-alpha+build.20230430.155859</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.1.0-alpha+build.20230507.232036</span>
    </div>
   </td>
  </tr>
@@ -112,8 +112,14 @@ Functions</h2></td></tr>
 <tr class="separator:ab30b2c0e4ea33f3329a6940cc873d241"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9da6ea45a2df1e252ebae0caffbc602d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html#a9da6ea45a2df1e252ebae0caffbc602d">install_choco</a> (logger)</td></tr>
 <tr class="separator:a9da6ea45a2df1e252ebae0caffbc602d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae358fb985b5d678bd85f4042eb5e062"><td class="memItemLeft" align="right" valign="top">list[str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html#aae358fb985b5d678bd85f4042eb5e062">get_packages</a> ()</td></tr>
+<tr class="separator:aae358fb985b5d678bd85f4042eb5e062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad26ac0da1ded6d594b1798cfbfc10a88"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html#ad26ac0da1ded6d594b1798cfbfc10a88">install_packages</a> (args, logger)</td></tr>
 <tr class="separator:ad26ac0da1ded6d594b1798cfbfc10a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e5948489d716cccf71366983e95116"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116">on_rm_error</a> (func, path, exc_info)</td></tr>
+<tr class="separator:a14e5948489d716cccf71366983e95116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a633dfb0c70b064d9e50a4dcd354500f4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html#a633dfb0c70b064d9e50a4dcd354500f4">python_update</a> (args, logger)</td></tr>
+<tr class="separator:a633dfb0c70b064d9e50a4dcd354500f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -152,73 +158,73 @@ It also checks if the user is an admin, and confirms that they want to run as no
 :param module: str: Determine which module is being checked for
 :return: True when chocolatey is installed, and false when it is not
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00313">313</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  313</span><span class="keyword">def </span>choco_check(module: str, carousel: installing_carousel) -&gt; <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  314</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  315</span><span class="stringliteral">    The choco_check function checks </span><span class="keywordflow">if</span> chocolatey <span class="keywordflow">is</span> installed <span class="keywordflow">and</span> prompts the user to <span class="keywordflow">continue</span>.</div>
-<div class="line"><span class="lineno">  316</span>    It also checks <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin, <span class="keywordflow">and</span> confirms that they want to run <span class="keyword">as</span> non-admin.</div>
-<div class="line"><span class="lineno">  317</span> </div>
-<div class="line"><span class="lineno">  318</span>    :param module: str: Determine which module <span class="keywordflow">is</span> being checked <span class="keywordflow">for</span></div>
-<div class="line"><span class="lineno">  319</span>    :<span class="keywordflow">return</span>: <span class="keyword">True</span> when chocolatey <span class="keywordflow">is</span> installed, <span class="keywordflow">and</span> false when it <span class="keywordflow">is</span> <span class="keywordflow">not</span></div>
-<div class="line"><span class="lineno">  320</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  321</span><span class="stringliteral">    admin: bool = </span><span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  322</span>    adminline = -1</div>
-<div class="line"><span class="lineno">  323</span>    cont = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  324</span>    contline = -1</div>
-<div class="line"><span class="lineno">  325</span>    ffmpeg_conf = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  326</span>    ffmpegline = -1</div>
-<div class="line"><span class="lineno">  327</span>    ffmpeg_confline = -1</div>
-<div class="line"><span class="lineno">  328</span>    sleep(2)</div>
-<div class="line"><span class="lineno">  329</span>    <span class="keywordflow">while</span> os.path.isfile(<span class="stringliteral">&#39;choco_output&#39;</span>):</div>
-<div class="line"><span class="lineno">  330</span>        sleep(0.1)</div>
-<div class="line"><span class="lineno">  331</span>        <span class="keywordflow">for</span> line, content <span class="keywordflow">in</span> enumerate(open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>).readlines()):</div>
-<div class="line"><span class="lineno">  332</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;WARNING: \&#39;choco\&#39; was found at&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;chocolatey&#39;</span>:</div>
-<div class="line"><span class="lineno">  333</span>                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  334</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Ensuring chocolatey.nupkg is in the lib folder&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;chocolatey&#39;</span>:</div>
-<div class="line"><span class="lineno">  335</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  336</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Chocolatey detected you are not running&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> admin:</div>
-<div class="line"><span class="lineno">  337</span>                <span class="keywordflow">if</span> adminline == line:</div>
-<div class="line"><span class="lineno">  338</span>                    <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  339</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  340</span>                    admin = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  341</span>                    adminline = line</div>
-<div class="line"><span class="lineno">  342</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Do you want to continue&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> <span class="keywordflow">not</span> admin:</div>
-<div class="line"><span class="lineno">  343</span>                <span class="keywordflow">if</span> contline == line:</div>
-<div class="line"><span class="lineno">  344</span>                    <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  345</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  346</span>                    cont = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  347</span>                    contline = line</div>
-<div class="line"><span class="lineno">  348</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;ffmpeg package files install completed. Performing other installation steps.&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;ffmpeg&#39;</span>:</div>
-<div class="line"><span class="lineno">  349</span>                <span class="keywordflow">if</span> ffmpegline == line:</div>
-<div class="line"><span class="lineno">  350</span>                    <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  351</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  352</span>                    ffmpeg_conf = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  353</span>                    ffmpegline = line</div>
-<div class="line"><span class="lineno">  354</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Do you want to run the script&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;ffmpeg&#39;</span>:</div>
-<div class="line"><span class="lineno">  355</span>                <span class="keywordflow">if</span> ffmpeg_confline == line:</div>
-<div class="line"><span class="lineno">  356</span>                    <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  357</span>                <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  358</span>                    cont = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  359</span>                    ffmpeg_confline = line</div>
-<div class="line"><span class="lineno">  360</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> admin <span class="keywordflow">or</span> ffmpeg_conf <span class="keywordflow">or</span> cont:</div>
-<div class="line"><span class="lineno">  361</span>            carousel.pause()</div>
-<div class="line"><span class="lineno">  362</span>            sleep(0.25)</div>
-<div class="line"><span class="lineno">  363</span>            carousel.unpause()</div>
-<div class="line"><span class="lineno">  364</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> admin:</div>
-<div class="line"><span class="lineno">  365</span>            pg.press(<span class="stringliteral">&#39;y&#39;</span>)</div>
-<div class="line"><span class="lineno">  366</span>            admin = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  367</span>        <span class="keywordflow">if</span> ffmpeg_conf:</div>
-<div class="line"><span class="lineno">  368</span>            pg.press(<span class="stringliteral">&#39;a&#39;</span>)</div>
-<div class="line"><span class="lineno">  369</span>            ffmpeg_conf = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  370</span>        <span class="keywordflow">if</span> cont <span class="keywordflow">or</span> ffmpeg_conf:</div>
-<div class="line"><span class="lineno">  371</span>            pg.press(<span class="stringliteral">&#39;enter&#39;</span>)</div>
-<div class="line"><span class="lineno">  372</span>            cont = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  373</span>            ffmpeg_conf = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  374</span>        <span class="keywordflow">if</span> os.path.isfile(<span class="stringliteral">&#39;choco_end&#39;</span>):</div>
-<div class="line"><span class="lineno">  375</span>            os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
-<div class="line"><span class="lineno">  376</span>            <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  377</span> </div>
-<div class="line"><span class="lineno">  378</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00283">283</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  283</span><span class="keyword">def </span>choco_check(module: str, carousel: installing_carousel) -&gt; <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  284</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  285</span><span class="stringliteral">    The choco_check function checks </span><span class="keywordflow">if</span> chocolatey <span class="keywordflow">is</span> installed <span class="keywordflow">and</span> prompts the user to <span class="keywordflow">continue</span>.</div>
+<div class="line"><span class="lineno">  286</span>    It also checks <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin, <span class="keywordflow">and</span> confirms that they want to run <span class="keyword">as</span> non-admin.</div>
+<div class="line"><span class="lineno">  287</span> </div>
+<div class="line"><span class="lineno">  288</span>    :param module: str: Determine which module <span class="keywordflow">is</span> being checked <span class="keywordflow">for</span></div>
+<div class="line"><span class="lineno">  289</span>    :<span class="keywordflow">return</span>: <span class="keyword">True</span> when chocolatey <span class="keywordflow">is</span> installed, <span class="keywordflow">and</span> false when it <span class="keywordflow">is</span> <span class="keywordflow">not</span></div>
+<div class="line"><span class="lineno">  290</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  291</span><span class="stringliteral">    admin: bool = </span><span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  292</span>    adminline = -1</div>
+<div class="line"><span class="lineno">  293</span>    cont = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  294</span>    contline = -1</div>
+<div class="line"><span class="lineno">  295</span>    ffmpeg_conf = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  296</span>    ffmpegline = -1</div>
+<div class="line"><span class="lineno">  297</span>    ffmpeg_confline = -1</div>
+<div class="line"><span class="lineno">  298</span>    sleep(2)</div>
+<div class="line"><span class="lineno">  299</span>    <span class="keywordflow">while</span> os.path.isfile(<span class="stringliteral">&#39;choco_output&#39;</span>):</div>
+<div class="line"><span class="lineno">  300</span>        sleep(0.1)</div>
+<div class="line"><span class="lineno">  301</span>        <span class="keywordflow">for</span> line, content <span class="keywordflow">in</span> enumerate(open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>).readlines()):</div>
+<div class="line"><span class="lineno">  302</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;WARNING: \&#39;choco\&#39; was found at&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;chocolatey&#39;</span>:</div>
+<div class="line"><span class="lineno">  303</span>                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  304</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Ensuring chocolatey.nupkg is in the lib folder&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;chocolatey&#39;</span>:</div>
+<div class="line"><span class="lineno">  305</span>                <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  306</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Chocolatey detected you are not running&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> admin:</div>
+<div class="line"><span class="lineno">  307</span>                <span class="keywordflow">if</span> adminline == line:</div>
+<div class="line"><span class="lineno">  308</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  309</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  310</span>                    admin = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  311</span>                    adminline = line</div>
+<div class="line"><span class="lineno">  312</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Do you want to continue&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> <span class="keywordflow">not</span> admin:</div>
+<div class="line"><span class="lineno">  313</span>                <span class="keywordflow">if</span> contline == line:</div>
+<div class="line"><span class="lineno">  314</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  315</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  316</span>                    cont = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  317</span>                    contline = line</div>
+<div class="line"><span class="lineno">  318</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;ffmpeg package files install completed. Performing other installation steps.&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;ffmpeg&#39;</span>:</div>
+<div class="line"><span class="lineno">  319</span>                <span class="keywordflow">if</span> ffmpegline == line:</div>
+<div class="line"><span class="lineno">  320</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  321</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  322</span>                    ffmpeg_conf = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  323</span>                    ffmpegline = line</div>
+<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;Do you want to run the script&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> module == <span class="stringliteral">&#39;ffmpeg&#39;</span>:</div>
+<div class="line"><span class="lineno">  325</span>                <span class="keywordflow">if</span> ffmpeg_confline == line:</div>
+<div class="line"><span class="lineno">  326</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  327</span>                <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  328</span>                    cont = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  329</span>                    ffmpeg_confline = line</div>
+<div class="line"><span class="lineno">  330</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> admin <span class="keywordflow">or</span> ffmpeg_conf <span class="keywordflow">or</span> cont:</div>
+<div class="line"><span class="lineno">  331</span>            carousel.pause()</div>
+<div class="line"><span class="lineno">  332</span>            sleep(0.25)</div>
+<div class="line"><span class="lineno">  333</span>            carousel.unpause()</div>
+<div class="line"><span class="lineno">  334</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> admin:</div>
+<div class="line"><span class="lineno">  335</span>            pg.press(<span class="stringliteral">&#39;y&#39;</span>)</div>
+<div class="line"><span class="lineno">  336</span>            admin = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  337</span>        <span class="keywordflow">if</span> ffmpeg_conf:</div>
+<div class="line"><span class="lineno">  338</span>            pg.press(<span class="stringliteral">&#39;a&#39;</span>)</div>
+<div class="line"><span class="lineno">  339</span>            ffmpeg_conf = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  340</span>        <span class="keywordflow">if</span> cont <span class="keywordflow">or</span> ffmpeg_conf:</div>
+<div class="line"><span class="lineno">  341</span>            pg.press(<span class="stringliteral">&#39;enter&#39;</span>)</div>
+<div class="line"><span class="lineno">  342</span>            cont = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  343</span>            ffmpeg_conf = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  344</span>        <span class="keywordflow">if</span> os.path.isfile(<span class="stringliteral">&#39;choco_end&#39;</span>):</div>
+<div class="line"><span class="lineno">  345</span>            os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
+<div class="line"><span class="lineno">  346</span>            <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  347</span> </div>
+<div class="line"><span class="lineno">  348</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -243,54 +249,91 @@ It returns the number of packages successfully installed and the number that wer
 :param *packages: str: Pass a variable number of arguments to the function
 :return: A tuple of two integers
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00272">272</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  272</span><span class="keyword">def </span>choco_install(*packages: str):</div>
-<div class="line"><span class="lineno">  273</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  274</span><span class="stringliteral">    The choco_install function installs a list of packages using Chocolatey.</span></div>
-<div class="line"><span class="lineno">  275</span><span class="stringliteral">    It returns the number of packages successfully installed </span><span class="keywordflow">and</span> the number that were already installed.</div>
-<div class="line"><span class="lineno">  276</span> </div>
-<div class="line"><span class="lineno">  277</span>    :param *packages: str: Pass a variable number of arguments to the function</div>
-<div class="line"><span class="lineno">  278</span>    :<span class="keywordflow">return</span>: A tuple of two integers</div>
-<div class="line"><span class="lineno">  279</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  280</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  281</span><span class="stringliteral">    alinst_number = 0</span></div>
-<div class="line"><span class="lineno">  282</span><span class="stringliteral">    inst_number = 0</span></div>
-<div class="line"><span class="lineno">  283</span><span class="stringliteral">    </span><span class="keywordflow">for</span> package <span class="keywordflow">in</span> packages:</div>
-<div class="line"><span class="lineno">  284</span>        version = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">if</span> len(pack := package.split(<span class="stringliteral">&#39; --version &#39;</span>)) &gt; 1:</div>
-<div class="line"><span class="lineno">  286</span>            version = pack[1]</div>
-<div class="line"><span class="lineno">  287</span>            package = pack[0]</div>
-<div class="line"><span class="lineno">  288</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  289</span>            carousel = installing_carousel(package)</div>
-<div class="line"><span class="lineno">  290</span>            Thread(target=carousel.start()).start()</div>
-<div class="line"><span class="lineno">  291</span>            Thread(target=choco_check, args=(package, carousel)).start()</div>
-<div class="line"><span class="lineno">  292</span>            subprocess.run([<span class="stringliteral">&#39;choco&#39;</span>, <span class="stringliteral">&#39;install&#39;</span>, package,</div>
-<div class="line"><span class="lineno">  293</span>                            version, <span class="stringliteral">&#39;-y&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  294</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  295</span>            alinst = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  296</span>            <span class="keywordflow">for</span> line, content <span class="keywordflow">in</span> enumerate(file.readlines()):</div>
-<div class="line"><span class="lineno">  297</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;already installed.&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> package <span class="keywordflow">in</span> content:</div>
-<div class="line"><span class="lineno">  298</span>                    carousel.stop(<span class="stringliteral">&#39;ali&#39;</span>)</div>
-<div class="line"><span class="lineno">  299</span>                    alinst = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  300</span>                    alinst_number += 1</div>
-<div class="line"><span class="lineno">  301</span>                    <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  302</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  303</span>            open(<span class="stringliteral">&#39;choco_end&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  304</span>        <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  305</span>            <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  306</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> alinst:</div>
-<div class="line"><span class="lineno">  307</span>            carousel.stop()</div>
-<div class="line"><span class="lineno">  308</span>            inst_number += 1</div>
-<div class="line"><span class="lineno">  309</span>        sleep(2)</div>
-<div class="line"><span class="lineno">  310</span>    <span class="keywordflow">return</span> (inst_number, alinst_number)</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00241">241</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  241</span><span class="keyword">def </span>choco_install(*packages: str):</div>
+<div class="line"><span class="lineno">  242</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  243</span><span class="stringliteral">    The choco_install function installs a list of packages using Chocolatey.</span></div>
+<div class="line"><span class="lineno">  244</span><span class="stringliteral">    It returns the number of packages successfully installed </span><span class="keywordflow">and</span> the number that were already installed.</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>    :param *packages: str: Pass a variable number of arguments to the function</div>
+<div class="line"><span class="lineno">  247</span>    :<span class="keywordflow">return</span>: A tuple of two integers</div>
+<div class="line"><span class="lineno">  248</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  249</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  250</span><span class="stringliteral">    alinst_number = 0</span></div>
+<div class="line"><span class="lineno">  251</span><span class="stringliteral">    inst_number = 0</span></div>
+<div class="line"><span class="lineno">  252</span><span class="stringliteral">    </span><span class="keywordflow">for</span> package <span class="keywordflow">in</span> packages:</div>
+<div class="line"><span class="lineno">  253</span>        version = <span class="stringliteral">&#39;&#39;</span></div>
+<div class="line"><span class="lineno">  254</span>        <span class="keywordflow">if</span> len(pack := package.split(<span class="stringliteral">&#39; --version &#39;</span>)) &gt; 1:</div>
+<div class="line"><span class="lineno">  255</span>            version = pack[1]</div>
+<div class="line"><span class="lineno">  256</span>            package = pack[0].split(<span class="stringliteral">&#39; &#39;</span>)[2]</div>
+<div class="line"><span class="lineno">  257</span>            command = pack[0].split(<span class="stringliteral">&#39; &#39;</span>)[1]</div>
+<div class="line"><span class="lineno">  258</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  259</span>            carousel = installing_carousel(package)</div>
+<div class="line"><span class="lineno">  260</span>            Thread(target=carousel.start()).start()</div>
+<div class="line"><span class="lineno">  261</span>            Thread(target=choco_check, args=(package, carousel)).start()</div>
+<div class="line"><span class="lineno">  262</span>            subprocess.run([<span class="stringliteral">&#39;choco&#39;</span>, command, package,</div>
+<div class="line"><span class="lineno">  263</span>                            version, <span class="stringliteral">&#39;-y&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  264</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  265</span>            alinst = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  266</span>            <span class="keywordflow">for</span> line, content <span class="keywordflow">in</span> enumerate(file.readlines()):</div>
+<div class="line"><span class="lineno">  267</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;already installed.&#39;</span> <span class="keywordflow">in</span> content <span class="keywordflow">and</span> package <span class="keywordflow">in</span> content:</div>
+<div class="line"><span class="lineno">  268</span>                    carousel.stop(<span class="stringliteral">&#39;ali&#39;</span>)</div>
+<div class="line"><span class="lineno">  269</span>                    alinst = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  270</span>                    alinst_number += 1</div>
+<div class="line"><span class="lineno">  271</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  272</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  273</span>            open(<span class="stringliteral">&#39;choco_end&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  275</span>            <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  276</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> alinst:</div>
+<div class="line"><span class="lineno">  277</span>            carousel.stop()</div>
+<div class="line"><span class="lineno">  278</span>            inst_number += 1</div>
+<div class="line"><span class="lineno">  279</span>        sleep(2)</div>
+<div class="line"><span class="lineno">  280</span>    <span class="keywordflow">return</span> (inst_number, alinst_number)</div>
+<div class="line"><span class="lineno">  281</span> </div>
+<div class="line"><span class="lineno">  282</span> </div>
 </div><!-- fragment --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../d3/dc0/namespaceapp__alternations_aba2d947f1502e4a272b4c11754fd567d_icgraph.png" border="0" usemap="#ad3/dc0/namespaceapp__alternations_aba2d947f1502e4a272b4c11754fd567d_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aae358fb985b5d678bd85f4042eb5e062" name="aae358fb985b5d678bd85f4042eb5e062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae358fb985b5d678bd85f4042eb5e062">&#9670;&#160;</a></span>get_packages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[str] app_alternations.get_packages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00395">395</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  395</span><span class="keyword">def </span>get_packages() -&gt; list[str]:</div>
+<div class="line"><span class="lineno">  396</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_packages.json&#39;</span>) <span class="keyword">as</span> json_file:</div>
+<div class="line"><span class="lineno">  397</span>        data = json.load(json_file)</div>
+<div class="line"><span class="lineno">  398</span>        return_data = []</div>
+<div class="line"><span class="lineno">  399</span>        <span class="keywordflow">for</span> package <span class="keywordflow">in</span> data.values():</div>
+<div class="line"><span class="lineno">  400</span>            return_data.append(</div>
+<div class="line"><span class="lineno">  401</span>                f<span class="stringliteral">&quot;{package[&#39;command&#39;]} {package[&#39;package&#39;]} --version {package[&#39;version&#39;]} {package[&#39;additional-command&#39;]}&quot;</span>)</div>
+<div class="line"><span class="lineno">  402</span>    <span class="keywordflow">return</span> return_data</div>
+<div class="line"><span class="lineno">  403</span> </div>
+<div class="line"><span class="lineno">  404</span> </div>
+</div><!-- fragment --><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../d3/dc0/namespaceapp__alternations_aae358fb985b5d678bd85f4042eb5e062_icgraph.png" border="0" usemap="#ad3/dc0/namespaceapp__alternations_aae358fb985b5d678bd85f4042eb5e062_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -311,53 +354,53 @@ It returns the number of packages successfully installed and the number that wer
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00379">379</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  379</span><span class="keyword">def </span>install_choco(logger):</div>
-<div class="line"><span class="lineno">  380</span> </div>
-<div class="line"><span class="lineno">  381</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
-<div class="line"><span class="lineno">  382</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  383</span>        file.write(<span class="stringliteral">&#39;$InstallDir=\&#39;C:\ProgramData\chocoportable\&#39;\n$env:ChocolateyInstall=&quot;$InstallDir&quot;\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\&#39;https://community.chocolatey.org/install.ps1\&#39;))&#39;</span>)</div>
-<div class="line"><span class="lineno">  384</span>    logger.next(</div>
-<div class="line"><span class="lineno">  385</span>        <span class="stringliteral">&quot;Checking if chocolatey is installed if not downloading\n&quot;</span>)</div>
-<div class="line"><span class="lineno">  386</span>    carousel = installing_carousel(<span class="stringliteral">&#39;chocolatey&#39;</span>)</div>
-<div class="line"><span class="lineno">  387</span>    Thread(target=carousel.start()).start()</div>
-<div class="line"><span class="lineno">  388</span>    Thread(target=choco_check, args=(<span class="stringliteral">&#39;chocolatey&#39;</span>, carousel)).start()</div>
-<div class="line"><span class="lineno">  389</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  390</span>        choco = subprocess.run(</div>
-<div class="line"><span class="lineno">  391</span>            [<span class="stringliteral">&#39;powershell.exe&#39;</span>, <span class="stringliteral">&#39;-file&#39;</span>, <span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;--quiet&#39;</span>, <span class="stringliteral">&#39;--no-verbose&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  392</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  393</span>        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> file.readlines():</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00349">349</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  349</span><span class="keyword">def </span>install_choco(logger):</div>
+<div class="line"><span class="lineno">  350</span> </div>
+<div class="line"><span class="lineno">  351</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
+<div class="line"><span class="lineno">  352</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  353</span>        file.write(<span class="stringliteral">&#39;$InstallDir=\&#39;C:\ProgramData\chocoportable\&#39;\n$env:ChocolateyInstall=&quot;$InstallDir&quot;\nSet-ExecutionPolicy Bypass -Scope Process -Force;\niex ((New-Object System.Net.WebClient).DownloadString(\&#39;https://community.chocolatey.org/install.ps1\&#39;))&#39;</span>)</div>
+<div class="line"><span class="lineno">  354</span>    logger.next(</div>
+<div class="line"><span class="lineno">  355</span>        <span class="stringliteral">&quot;Checking if chocolatey is installed if not downloading\n&quot;</span>)</div>
+<div class="line"><span class="lineno">  356</span>    carousel = installing_carousel(<span class="stringliteral">&#39;chocolatey&#39;</span>)</div>
+<div class="line"><span class="lineno">  357</span>    Thread(target=carousel.start()).start()</div>
+<div class="line"><span class="lineno">  358</span>    Thread(target=choco_check, args=(<span class="stringliteral">&#39;chocolatey&#39;</span>, carousel)).start()</div>
+<div class="line"><span class="lineno">  359</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  360</span>        choco = subprocess.run(</div>
+<div class="line"><span class="lineno">  361</span>            [<span class="stringliteral">&#39;powershell.exe&#39;</span>, <span class="stringliteral">&#39;-file&#39;</span>, <span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;--quiet&#39;</span>, <span class="stringliteral">&#39;--no-verbose&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  362</span>    <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  363</span>        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> file.readlines():</div>
+<div class="line"><span class="lineno">  364</span> </div>
+<div class="line"><span class="lineno">  365</span>            <span class="stringliteral">&quot;If system don\&#39;t allow running powershell scripts navigate user to allow it&quot;</span></div>
+<div class="line"><span class="lineno">  366</span> </div>
+<div class="line"><span class="lineno">  367</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;cannot be loaded because running scripts is disabled on this system&#39;</span> <span class="keywordflow">in</span> line:</div>
+<div class="line"><span class="lineno">  368</span>                carousel.stop(<span class="stringliteral">&#39;e&#39;</span>)</div>
+<div class="line"><span class="lineno">  369</span>                logger.stay(</div>
+<div class="line"><span class="lineno">  370</span>                    <span class="stringliteral">&#39;Run Powershell as administrator and type \&#39;Set-ExecutionPolicy RemoteSigned\&#39; type Y and press \&#39;enter\&#39;&#39;</span>)</div>
+<div class="line"><span class="lineno">  371</span>                <span class="keyword">with</span> open(<span class="stringliteral">&#39;set_permissions.txt&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  372</span>                    file.write(</div>
+<div class="line"><span class="lineno">  373</span>                        <span class="stringliteral">&#39;Run Powershell as administrator and type following code press \&#39;enter\&#39; type Y and press \&#39;enter\&#39;\n\nSet-ExecutionPolicy RemoteSigned&#39;</span>)</div>
+<div class="line"><span class="lineno">  374</span>                os.system(<span class="stringliteral">&quot;notepad.exe set_permissions.txt&quot;</span>)</div>
+<div class="line"><span class="lineno">  375</span>                input(<span class="stringliteral">&#39;Enter to continue ...&#39;</span>)</div>
+<div class="line"><span class="lineno">  376</span>                os.remove(<span class="stringliteral">&#39;set_permissions.txt&#39;</span>)</div>
+<div class="line"><span class="lineno">  377</span>                <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><span class="lineno">  378</span>                    choco = subprocess.run(</div>
+<div class="line"><span class="lineno">  379</span>                        [<span class="stringliteral">&#39;powershell.exe&#39;</span>, <span class="stringliteral">&#39;-file&#39;</span>, <span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;--quiet&#39;</span>, <span class="stringliteral">&#39;--no-verbose&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  380</span>    open(<span class="stringliteral">&#39;choco_end&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  381</span>    carousel.stop()</div>
+<div class="line"><span class="lineno">  382</span>    logger.prev(<span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><span class="lineno">  383</span>    sleep(1)</div>
+<div class="line"><span class="lineno">  384</span>    os.remove(f<span class="stringliteral">&quot;crash_dump-{datelog}.txt&quot;</span>)</div>
+<div class="line"><span class="lineno">  385</span>    open(<span class="stringliteral">&#39;INSTALL&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  386</span>    open(<span class="stringliteral">&#39;INSTALL_RESTART&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><span class="lineno">  387</span>    os.remove(<span class="stringliteral">&#39;choco.ps1&#39;</span>)</div>
+<div class="line"><span class="lineno">  388</span>    os.remove(<span class="stringliteral">&#39;choco_output&#39;</span>)</div>
+<div class="line"><span class="lineno">  389</span>    sleep(1)</div>
+<div class="line"><span class="lineno">  390</span>    <span class="keyword">from</span> .system.system_operations <span class="keyword">import</span> checkAdmin</div>
+<div class="line"><span class="lineno">  391</span>    checkAdmin()</div>
+<div class="line"><span class="lineno">  392</span>    sys.exit(0)</div>
+<div class="line"><span class="lineno">  393</span> </div>
 <div class="line"><span class="lineno">  394</span> </div>
-<div class="line"><span class="lineno">  395</span>            <span class="stringliteral">&quot;If system don\&#39;t allow running powershell scripts navigate user to allow it&quot;</span></div>
-<div class="line"><span class="lineno">  396</span> </div>
-<div class="line"><span class="lineno">  397</span>            <span class="keywordflow">if</span> <span class="stringliteral">&#39;cannot be loaded because running scripts is disabled on this system&#39;</span> <span class="keywordflow">in</span> line:</div>
-<div class="line"><span class="lineno">  398</span>                carousel.stop(<span class="stringliteral">&#39;e&#39;</span>)</div>
-<div class="line"><span class="lineno">  399</span>                logger.stay(</div>
-<div class="line"><span class="lineno">  400</span>                    <span class="stringliteral">&#39;Run Powershell as administrator and type \&#39;Set-ExecutionPolicy RemoteSigned\&#39; type Y and press \&#39;enter\&#39;&#39;</span>)</div>
-<div class="line"><span class="lineno">  401</span>                <span class="keyword">with</span> open(<span class="stringliteral">&#39;set_permissions.txt&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  402</span>                    file.write(</div>
-<div class="line"><span class="lineno">  403</span>                        <span class="stringliteral">&#39;Run Powershell as administrator and type following code press \&#39;enter\&#39; type Y and press \&#39;enter\&#39;\n\nSet-ExecutionPolicy RemoteSigned&#39;</span>)</div>
-<div class="line"><span class="lineno">  404</span>                os.system(<span class="stringliteral">&quot;notepad.exe set_permissions.txt&quot;</span>)</div>
-<div class="line"><span class="lineno">  405</span>                input(<span class="stringliteral">&#39;Enter to continue ...&#39;</span>)</div>
-<div class="line"><span class="lineno">  406</span>                os.remove(<span class="stringliteral">&#39;set_permissions.txt&#39;</span>)</div>
-<div class="line"><span class="lineno">  407</span>                <span class="keyword">with</span> open(<span class="stringliteral">&#39;choco_output&#39;</span>, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> file:</div>
-<div class="line"><span class="lineno">  408</span>                    choco = subprocess.run(</div>
-<div class="line"><span class="lineno">  409</span>                        [<span class="stringliteral">&#39;powershell.exe&#39;</span>, <span class="stringliteral">&#39;-file&#39;</span>, <span class="stringliteral">&#39;choco.ps1&#39;</span>, <span class="stringliteral">&#39;--quiet&#39;</span>, <span class="stringliteral">&#39;--no-verbose&#39;</span>], stdout=file, text=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  410</span>    open(<span class="stringliteral">&#39;choco_end&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  411</span>    carousel.stop()</div>
-<div class="line"><span class="lineno">  412</span>    logger.prev(<span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><span class="lineno">  413</span>    sleep(1)</div>
-<div class="line"><span class="lineno">  414</span>    os.remove(f<span class="stringliteral">&quot;crash_dump-{datelog}.txt&quot;</span>)</div>
-<div class="line"><span class="lineno">  415</span>    open(<span class="stringliteral">&#39;INSTALL&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  416</span>    open(<span class="stringliteral">&#39;INSTALL_RESTART&#39;</span>, <span class="stringliteral">&#39;x&#39;</span>)</div>
-<div class="line"><span class="lineno">  417</span>    os.remove(<span class="stringliteral">&#39;choco.ps1&#39;</span>)</div>
-<div class="line"><span class="lineno">  418</span>    os.remove(<span class="stringliteral">&#39;choco_output&#39;</span>)</div>
-<div class="line"><span class="lineno">  419</span>    sleep(1)</div>
-<div class="line"><span class="lineno">  420</span>    <span class="keyword">from</span> .system_operations <span class="keyword">import</span> checkAdmin</div>
-<div class="line"><span class="lineno">  421</span>    checkAdmin()</div>
-<div class="line"><span class="lineno">  422</span>    sys.exit(0)</div>
-<div class="line"><span class="lineno">  423</span> </div>
-<div class="line"><span class="lineno">  424</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -387,42 +430,159 @@ It returns the number of packages successfully installed and the number that wer
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00425">425</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  425</span><span class="keyword">def </span>install_packages(args, logger):</div>
-<div class="line"><span class="lineno">  426</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
-<div class="line"><span class="lineno">  427</span>    os.remove(<span class="stringliteral">&#39;INSTALL&#39;</span>)</div>
-<div class="line"><span class="lineno">  428</span> </div>
-<div class="line"><span class="lineno">  429</span>    <span class="stringliteral">&quot;Downloading dependencies using chocolatey&quot;</span></div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00405">405</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  405</span><span class="keyword">def </span>install_packages(args, logger):</div>
+<div class="line"><span class="lineno">  406</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
+<div class="line"><span class="lineno">  407</span>    os.remove(<span class="stringliteral">&#39;INSTALL&#39;</span>)</div>
+<div class="line"><span class="lineno">  408</span> </div>
+<div class="line"><span class="lineno">  409</span>    <span class="stringliteral">&quot;Downloading dependencies using chocolatey&quot;</span></div>
+<div class="line"><span class="lineno">  410</span> </div>
+<div class="line"><span class="lineno">  411</span>    choco_packages: list[str] = get_packages()</div>
+<div class="line"><span class="lineno">  412</span> </div>
+<div class="line"><span class="lineno">  413</span>    <span class="stringliteral">&quot;inst_number is number of installed packages; alinst_number is number of already installed&quot;</span></div>
+<div class="line"><span class="lineno">  414</span> </div>
+<div class="line"><span class="lineno">  415</span>    inst_number, alinst_number = choco_install(*choco_packages)</div>
+<div class="line"><span class="lineno">  416</span>    <span class="keywordflow">if</span> inst_number != 0:</div>
+<div class="line"><span class="lineno">  417</span>        logger.stay(<span class="stringliteral">&quot;Restarting program ...&quot;</span>)</div>
+<div class="line"><span class="lineno">  418</span>        sleep(1)</div>
+<div class="line"><span class="lineno">  419</span>        subprocess.check_output(</div>
+<div class="line"><span class="lineno">  420</span>            <span class="stringliteral">&#39;start edupage.py &#39;</span>, shell=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  421</span>        os.remove(f<span class="stringliteral">&quot;crash_dump-{datelog}.txt&quot;</span>)</div>
+<div class="line"><span class="lineno">  422</span>    os.remove(<span class="stringliteral">&#39;choco_output&#39;</span>)</div>
+<div class="line"><span class="lineno">  423</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  424</span>        os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
+<div class="line"><span class="lineno">  425</span>    <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  427</span>    <span class="keywordflow">if</span> inst_number != 0:</div>
+<div class="line"><span class="lineno">  428</span>        sys.exit(0)</div>
+<div class="line"><span class="lineno">  429</span> </div>
 <div class="line"><span class="lineno">  430</span> </div>
-<div class="line"><span class="lineno">  431</span>    choco_packages: list[str] = [</div>
-<div class="line"><span class="lineno">  432</span>        <span class="stringliteral">&#39;ffmpeg --version 5.1.2&#39;</span>, <span class="stringliteral">&#39;vlc --version 3.0.18&#39;</span>, <span class="stringliteral">&#39;vcredist2015 --version 14.0.24215.20170201&#39;</span>, <span class="stringliteral">&#39;grep --version 3.7&#39;</span>]</div>
-<div class="line"><span class="lineno">  433</span> </div>
-<div class="line"><span class="lineno">  434</span>    <span class="stringliteral">&quot;inst_number is number of installed packages; alinst_number is number of already installed&quot;</span></div>
-<div class="line"><span class="lineno">  435</span> </div>
-<div class="line"><span class="lineno">  436</span>    inst_number, alinst_number = choco_install(*choco_packages)</div>
-<div class="line"><span class="lineno">  437</span>    <span class="keywordflow">if</span> inst_number == 0:</div>
-<div class="line"><span class="lineno">  438</span>        <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  439</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  440</span>        logger.stay(<span class="stringliteral">&quot;Restarting program ...&quot;</span>)</div>
-<div class="line"><span class="lineno">  441</span>        sleep(1)</div>
-<div class="line"><span class="lineno">  442</span>        subprocess.check_output(</div>
-<div class="line"><span class="lineno">  443</span>            <span class="stringliteral">&#39;start edupage.py --language &#39;</span> + args.language, shell=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  444</span>        os.remove(f<span class="stringliteral">&quot;crash_dump-{datelog}.txt&quot;</span>)</div>
-<div class="line"><span class="lineno">  445</span>    os.remove(<span class="stringliteral">&#39;choco_output&#39;</span>)</div>
-<div class="line"><span class="lineno">  446</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  447</span>        os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
-<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  449</span>        <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  450</span>    <span class="keywordflow">if</span> inst_number != 0:</div>
-<div class="line"><span class="lineno">  451</span>        sys.exit(0)</div>
-</div><!-- fragment --><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div><!-- fragment --><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../d3/dc0/namespaceapp__alternations_ad26ac0da1ded6d594b1798cfbfc10a88_cgraph.png" border="0" usemap="#ad3/dc0/namespaceapp__alternations_ad26ac0da1ded6d594b1798cfbfc10a88_cgraph" alt=""/></div>
 </div>
 
+</div>
+</div>
+<a id="a14e5948489d716cccf71366983e95116" name="a14e5948489d716cccf71366983e95116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e5948489d716cccf71366983e95116">&#9670;&#160;</a></span>on_rm_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def app_alternations.on_rm_error </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>exc_info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00431">431</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  431</span><span class="keyword">def </span>on_rm_error(func, path, exc_info):</div>
+<div class="line"><span class="lineno">  432</span>    os.chmod(path, stat.S_IWRITE)</div>
+<div class="line"><span class="lineno">  433</span>    os.unlink(path)</div>
+<div class="line"><span class="lineno">  434</span> </div>
+<div class="line"><span class="lineno">  435</span> </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a633dfb0c70b064d9e50a4dcd354500f4" name="a633dfb0c70b064d9e50a4dcd354500f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a633dfb0c70b064d9e50a4dcd354500f4">&#9670;&#160;</a></span>python_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def app_alternations.python_update </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00436">436</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  436</span><span class="keyword">def </span>python_update(args, logger):</div>
+<div class="line"><span class="lineno">  437</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
+<div class="line"><span class="lineno">  438</span>    potrebne: set[str] = {<span class="stringliteral">&#39;idna&#39;</span>, <span class="stringliteral">&#39;commonmark&#39;</span>, <span class="stringliteral">&#39;click&#39;</span>, <span class="stringliteral">&#39;charset-normalizer&#39;</span>, <span class="stringliteral">&#39;certifi&#39;</span>, <span class="stringliteral">&#39;brotli&#39;</span>, <span class="stringliteral">&#39;psutil&#39;</span>, <span class="stringliteral">&#39;tqdm&#39;</span>, <span class="stringliteral">&#39;spotdl&#39;</span>, <span class="stringliteral">&#39;pyunpack&#39;</span>, <span class="stringliteral">&#39;semantic-version&#39;</span>, <span class="stringliteral">&#39;patool&#39;</span>, <span class="stringliteral">&#39;gputil&#39;</span>, <span class="stringliteral">&#39;py-cpuinfo&#39;</span>, <span class="stringliteral">&#39;tabulate&#39;</span>, <span class="stringliteral">&#39;opencv-python&#39;</span>, <span class="stringliteral">&#39;glob2&#39;</span>, <span class="stringliteral">&#39;wmi&#39;</span>, <span class="stringliteral">&#39;translate&#39;</span>, <span class="stringliteral">&#39;show-in-file-manager&#39;</span>, <span class="stringliteral">&#39;verbose&#39;</span>, <span class="stringliteral">&#39;numpy&#39;</span>, <span class="stringliteral">&#39;opencv-python&#39;</span>, <span class="stringliteral">&#39;pillow&#39;</span>, <span class="stringliteral">&#39;python-vlc&#39;</span>, <span class="stringliteral">&#39;pywinauto&#39;</span>,</div>
+<div class="line"><span class="lineno">  439</span>                          <span class="stringliteral">&#39;keyboard&#39;</span>, <span class="stringliteral">&#39;cpufreq&#39;</span>, <span class="stringliteral">&#39;pywin32&#39;</span>, <span class="stringliteral">&#39;pypiwin32&#39;</span>, <span class="stringliteral">&#39;pyautogui&#39;</span>, <span class="stringliteral">&#39;moviepy&#39;</span>, <span class="stringliteral">&#39;playsound&#39;</span>, <span class="stringliteral">&#39;python-vlc&#39;</span>, <span class="stringliteral">&#39;pygetwindow&#39;</span>, <span class="stringliteral">&#39;pygame&#39;</span>, <span class="stringliteral">&#39;pytube&#39;</span>, <span class="stringliteral">&#39;bs4&#39;</span>, <span class="stringliteral">&#39;uuid&#39;</span>, <span class="stringliteral">&#39;pyreadline3&#39;</span>, <span class="stringliteral">&#39;python-dotenv&#39;</span>, <span class="stringliteral">&#39;lxml&#39;</span>, <span class="stringliteral">&#39;mutagen&#39;</span>, <span class="stringliteral">&#39;pyyaml&#39;</span>, <span class="stringliteral">&#39;pycryptodomex&#39;</span>, <span class="stringliteral">&#39;py-cpuinfo&#39;</span>, <span class="stringliteral">&#39;pygments&#39;</span>, <span class="stringliteral">&#39;requests&#39;</span>, <span class="stringliteral">&#39;rich&#39;</span>, <span class="stringliteral">&#39;setuptools&#39;</span>, <span class="stringliteral">&#39;shellingham&#39;</span>, <span class="stringliteral">&#39;typer&#39;</span>, <span class="stringliteral">&#39;typing&#39;</span>, <span class="stringliteral">&#39;yt-dlp&#39;</span>}</div>
+<div class="line"><span class="lineno">  440</span>    printnlog(<span class="stringliteral">&#39;Libraries needed: &#39;</span>, end=<span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><span class="lineno">  441</span>    potrebne1: list[str] = list(potrebne)</div>
+<div class="line"><span class="lineno">  442</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, len(potrebne1)):</div>
+<div class="line"><span class="lineno">  443</span>        printnlog(potrebne1[i], end=<span class="stringliteral">&#39; &#39;</span>)</div>
+<div class="line"><span class="lineno">  444</span>    printnlog(<span class="stringliteral">&quot;\n\nChecking for updates\n&quot;</span>)</div>
+<div class="line"><span class="lineno">  445</span>    nainstalovane: set[str] = {</div>
+<div class="line"><span class="lineno">  446</span>        pkg.key <span class="keywordflow">for</span> pkg <span class="keywordflow">in</span> pkg_resources.working_set}</div>
+<div class="line"><span class="lineno">  447</span>    nenajdene: set[str] = potrebne - nainstalovane</div>
+<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">if</span> args.version <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  449</span> </div>
+<div class="line"><span class="lineno">  450</span>        <span class="stringliteral">&quot;Printing out version and possible updates&quot;</span></div>
+<div class="line"><span class="lineno">  451</span> </div>
+<div class="line"><span class="lineno">  452</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;version&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> verzia:</div>
+<div class="line"><span class="lineno">  453</span>            logger.stay(printnlog(verzia.read(), toprint=<span class="keyword">False</span>))</div>
+<div class="line"><span class="lineno">  454</span>        <span class="keywordflow">if</span> nenajdene:</div>
+<div class="line"><span class="lineno">  455</span>            print(<span class="stringliteral">&#39;Update is available: &#39;</span>, *nenajdene)</div>
+<div class="line"><span class="lineno">  456</span>        os.remove(<span class="stringliteral">&#39;crash_dump-&#39;</span> + datelog + <span class="stringliteral">&#39;.txt&#39;</span>)</div>
+<div class="line"><span class="lineno">  457</span>        sys.exit(1)</div>
+<div class="line"><span class="lineno">  458</span>    <span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
+<div class="line"><span class="lineno">  459</span>        <span class="keywordflow">if</span> nenajdene:</div>
+<div class="line"><span class="lineno">  460</span>            printnlog(<span class="stringliteral">&#39;\nUpdate is available: &#39;</span> + str(nenajdene))</div>
+<div class="line"><span class="lineno">  461</span>            vstup: str = input(</div>
+<div class="line"><span class="lineno">  462</span>                f<span class="stringliteral">&#39;Do you want to install following modules? {nenajdene} (Y/n)&gt; &#39;</span>).lower()</div>
+<div class="line"><span class="lineno">  463</span>            <span class="keywordflow">if</span> vstup <span class="keywordflow">in</span> [<span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;y&#39;</span>]:</div>
+<div class="line"><span class="lineno">  464</span>                printnlog(<span class="stringliteral">&quot;\nDownloading updates&quot;</span>)</div>
+<div class="line"><span class="lineno">  465</span>                subprocess.check_call(</div>
+<div class="line"><span class="lineno">  466</span>                    [<span class="stringliteral">&#39;python&#39;</span>, <span class="stringliteral">&#39;-m&#39;</span>, <span class="stringliteral">&#39;pip&#39;</span>, <span class="stringliteral">&#39;install&#39;</span>, *nenajdene])</div>
+<div class="line"><span class="lineno">  467</span>                <span class="keywordflow">if</span> <span class="stringliteral">&#39;pytube&#39;</span> <span class="keywordflow">in</span> nenajdene:</div>
+<div class="line"><span class="lineno">  468</span>                    <span class="keyword">import</span> site</div>
+<div class="line"><span class="lineno">  469</span>                    site_packages = site.getsitepackages()[1]</div>
+<div class="line"><span class="lineno">  470</span>                    input(<span class="stringliteral">&#39;Now you will be transferred to the script file in which you need to change code in line 411\nto \&#39;transform_plan_raw = js\&#39;\n!!! This is important without it downloading music won\&#39;t work&#39;</span>)</div>
+<div class="line"><span class="lineno">  471</span>                    os.system(</div>
+<div class="line"><span class="lineno">  472</span>                        f<span class="stringliteral">&#39;notepad.exe {site_packages}/pytube/cipher.py&#39;</span>)</div>
+<div class="line"><span class="lineno">  473</span>                printnlog(<span class="stringliteral">&quot;The program is restarting!!!&quot;</span>)</div>
+<div class="line"><span class="lineno">  474</span>                sleep(1)</div>
+<div class="line"><span class="lineno">  475</span>                os.system(<span class="stringliteral">&#39;cls&#39;</span>)</div>
+<div class="line"><span class="lineno">  476</span>                os.remove(<span class="stringliteral">&#39;crash_dump-&#39;</span> + datelog + <span class="stringliteral">&#39;.txt&#39;</span>)</div>
+<div class="line"><span class="lineno">  477</span>                subprocess.call(</div>
+<div class="line"><span class="lineno">  478</span>                    [sys.executable, os.path.realpath(__file__)] + sys.argv[1:])</div>
+<div class="line"><span class="lineno">  479</span>                sys.exit(0)</div>
+<div class="line"><span class="lineno">  480</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  481</span>                sys.exit(0)</div>
+<div class="line"><span class="lineno">  482</span>        printnlog(<span class="stringliteral">&#39;DONE\n&#39;</span>)</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4f421098632d5f7e3a4094accbb0176a" name="a4f421098632d5f7e3a4094accbb0176a"></a>
@@ -451,125 +611,92 @@ It returns the number of packages successfully installed and the number that wer
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00025">25</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span><span class="keyword">def </span>update_app(args, logger):</div>
-<div class="line"><span class="lineno">   26</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
-<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   28</span>        url = <span class="stringliteral">&#39;https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version&#39;</span></div>
-<div class="line"><span class="lineno">   29</span>        page = requests.get(url)</div>
-<div class="line"><span class="lineno">   30</span>        verzia = open(<span class="stringliteral">&#39;version&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>)</div>
-<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">if</span> semantic_version.Version(page.text[1:]) &lt;= semantic_version.Version(verzia.read()[1:]):</div>
-<div class="line"><span class="lineno">   32</span>            logger.next(</div>
-<div class="line"><span class="lineno">   33</span>                printnlog(<span class="stringliteral">&#39;You have the latest version&#39;</span>, toprint=<span class="keyword">False</span>))</div>
-<div class="line"><span class="lineno">   34</span>            logger.prev(<span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   36</span>            <span class="keywordflow">if</span> args.language == <span class="stringliteral">&quot;SK&quot;</span>:</div>
-<div class="line"><span class="lineno">   37</span>                printnlog(</div>
-<div class="line"><span class="lineno">   38</span>                    <span class="stringliteral">&quot;Bola nájdená nová aktualizacia: &quot;</span> + page.text)</div>
-<div class="line"><span class="lineno">   39</span>            <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;EN&quot;</span>:</div>
-<div class="line"><span class="lineno">   40</span>                printnlog(<span class="stringliteral">&quot;Newer version was found: &quot;</span> + page.text)</div>
-<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;JP&quot;</span>:</div>
-<div class="line"><span class="lineno">   42</span>                printnlog(<span class="stringliteral">&quot;新しいバージョンが見つかりました: &quot;</span> + page.text)</div>
-<div class="line"><span class="lineno">   43</span>            verzia.close()</div>
-<div class="line"><span class="lineno">   44</span>            sleep(0.5)</div>
-<div class="line"><span class="lineno">   45</span>            url = <span class="stringliteral">&#39;https://api.github.com/repos/GrenManSK/ZnamE/zipball/main&#39;</span></div>
-<div class="line"><span class="lineno">   46</span>            r = requests.get(url)</div>
-<div class="line"><span class="lineno">   47</span>            filename = <span class="stringliteral">&quot;new.zip&quot;</span></div>
-<div class="line"><span class="lineno">   48</span>            <span class="keyword">with</span> open(filename, <span class="stringliteral">&#39;wb&#39;</span>) <span class="keyword">as</span> output_file:</div>
-<div class="line"><span class="lineno">   49</span>                download(url, <span class="stringliteral">&#39;new.zip&#39;</span>)</div>
-<div class="line"><span class="lineno">   50</span>            <span class="keyword">with</span> zipfile.ZipFile(<span class="stringliteral">&quot;new.zip&quot;</span>, mode=<span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> zip:</div>
-<div class="line"><span class="lineno">   51</span>                <span class="keywordflow">if</span> args.language == <span class="stringliteral">&quot;SK&quot;</span>:</div>
-<div class="line"><span class="lineno">   52</span>                    <span class="keywordflow">for</span> member <span class="keywordflow">in</span> tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc=<span class="stringliteral">&#39;Rozbaľujem &#39;</span>):</div>
-<div class="line"><span class="lineno">   53</span>                        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   54</span>                            zip.extract(member)</div>
-<div class="line"><span class="lineno">   55</span>                            tqdm.write(</div>
-<div class="line"><span class="lineno">   56</span>                                f<span class="stringliteral">&quot;{os.path.basename(member)}(&quot;</span> + str(os.path.getsize(member)) + <span class="stringliteral">&quot;KB)&quot;</span>)</div>
-<div class="line"><span class="lineno">   57</span>                        <span class="keywordflow">except</span> zipfile.error <span class="keyword">as</span> e:</div>
-<div class="line"><span class="lineno">   58</span>                            <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">   59</span>                <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;EN&quot;</span>:</div>
-<div class="line"><span class="lineno">   60</span>                    <span class="keywordflow">for</span> member <span class="keywordflow">in</span> tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc=<span class="stringliteral">&#39;Extracting &#39;</span>):</div>
-<div class="line"><span class="lineno">   61</span>                        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   62</span>                            zip.extract(member)</div>
-<div class="line"><span class="lineno">   63</span>                            tqdm.write(</div>
-<div class="line"><span class="lineno">   64</span>                                f<span class="stringliteral">&quot;{os.path.basename(member)}(&quot;</span> + str(os.path.getsize(member)) + <span class="stringliteral">&quot;KB)&quot;</span>)</div>
-<div class="line"><span class="lineno">   65</span>                        <span class="keywordflow">except</span> zipfile.error <span class="keyword">as</span> e:</div>
-<div class="line"><span class="lineno">   66</span>                            <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">   67</span>                <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;JP&quot;</span>:</div>
-<div class="line"><span class="lineno">   68</span>                    <span class="keywordflow">for</span> member <span class="keywordflow">in</span> tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc=<span class="stringliteral">&#39;抽出中 &#39;</span>):</div>
-<div class="line"><span class="lineno">   69</span>                        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   70</span>                            zip.extract(member)</div>
-<div class="line"><span class="lineno">   71</span>                            tqdm.write(</div>
-<div class="line"><span class="lineno">   72</span>                                f<span class="stringliteral">&quot;{os.path.basename(member)}(&quot;</span> + str(os.path.getsize(member)) + <span class="stringliteral">&quot;KB)&quot;</span>)</div>
-<div class="line"><span class="lineno">   73</span>                        <span class="keywordflow">except</span> zipfile.error <span class="keyword">as</span> e:</div>
-<div class="line"><span class="lineno">   74</span>                            <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">   75</span>                zip.close()</div>
-<div class="line"><span class="lineno">   76</span>            os.remove(<span class="stringliteral">&quot;new.zip&quot;</span>)</div>
-<div class="line"><span class="lineno">   77</span>            directory = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">   78</span>            <span class="keywordflow">for</span> path, currentDirectory, files <span class="keywordflow">in</span> os.walk(Path.cwd()):</div>
-<div class="line"><span class="lineno">   79</span>                <span class="keywordflow">for</span> directory1 <span class="keywordflow">in</span> currentDirectory:</div>
-<div class="line"><span class="lineno">   80</span>                    <span class="keywordflow">if</span> directory1.startswith(<span class="stringliteral">&quot;GrenManSK-ZnamE-&quot;</span>):</div>
-<div class="line"><span class="lineno">   81</span>                        printnlog(directory1)</div>
-<div class="line"><span class="lineno">   82</span>                        directory = directory1</div>
-<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">if</span> directory <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>                <span class="stringliteral">&quot;If program fails to download update refer user to website&quot;</span></div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>                <span class="keywordflow">if</span> args.language == <span class="stringliteral">&quot;SK&quot;</span>:</div>
-<div class="line"><span class="lineno">   88</span>                    printnlog(</div>
-<div class="line"><span class="lineno">   89</span>                        <span class="stringliteral">&quot;CHYBA STAHOVANIA\nStiahnete manuálne novšiu verziu z\n&#39;https://github.com/GrenManSK/ZnamE&#39;&quot;</span>)</div>
-<div class="line"><span class="lineno">   90</span>                <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;EN&quot;</span>:</div>
-<div class="line"><span class="lineno">   91</span>                    printnlog(</div>
-<div class="line"><span class="lineno">   92</span>                        <span class="stringliteral">&quot;DOWNLOADING ERROR\nManually download newer version from\n&#39;https://github.com/GrenManSK/ZnamE&#39;&quot;</span>)</div>
-<div class="line"><span class="lineno">   93</span>                <span class="keywordflow">elif</span> args.language == <span class="stringliteral">&quot;JP&quot;</span>:</div>
-<div class="line"><span class="lineno">   94</span>                    printnlog(</div>
-<div class="line"><span class="lineno">   95</span>                        <span class="stringliteral">&quot;ダウンロード エラー\n&#39;https://github.com/GrenManSK/ZnamE&#39; から新しいバージョンを手動でダウンロードしてください&quot;</span>)</div>
-<div class="line"><span class="lineno">   96</span>                sleep(2)</div>
-<div class="line"><span class="lineno">   97</span>                input()</div>
-<div class="line"><span class="lineno">   98</span>                sys.exit(1)</div>
-<div class="line"><span class="lineno">   99</span>            os.mkdir(<span class="stringliteral">&#39;old&#39;</span>)</div>
-<div class="line"><span class="lineno">  100</span>            shutil.move(<span class="stringliteral">&#39;data.xp2&#39;</span>, <span class="stringliteral">&#39;old/data.xp2&#39;</span>)</div>
-<div class="line"><span class="lineno">  101</span>            shutil.move(<span class="stringliteral">&#39;help.txt&#39;</span>, <span class="stringliteral">&#39;old/help.txt&#39;</span>)</div>
-<div class="line"><span class="lineno">  102</span>            shutil.move(<span class="stringliteral">&#39;LICENSE&#39;</span>, <span class="stringliteral">&#39;old/LICENSE&#39;</span>)</div>
-<div class="line"><span class="lineno">  103</span>            shutil.move(<span class="stringliteral">&#39;README.md&#39;</span>, <span class="stringliteral">&#39;old/README.md&#39;</span>)</div>
-<div class="line"><span class="lineno">  104</span>            shutil.move(<span class="stringliteral">&#39;version&#39;</span>, <span class="stringliteral">&#39;old/version&#39;</span>)</div>
-<div class="line"><span class="lineno">  105</span>            shutil.copyfile(<span class="stringliteral">&#39;config.yml&#39;</span>, <span class="stringliteral">&#39;config_old.yml&#39;</span>)</div>
-<div class="line"><span class="lineno">  106</span>            sleep(0.5)</div>
-<div class="line"><span class="lineno">  107</span>            shutil.move(directory + <span class="stringliteral">&quot;/data.xp2&quot;</span>, <span class="stringliteral">&#39;data.xp2&#39;</span>)</div>
-<div class="line"><span class="lineno">  108</span>            shutil.move(directory + <span class="stringliteral">&quot;/help.txt&quot;</span>, <span class="stringliteral">&#39;help.txt&#39;</span>)</div>
-<div class="line"><span class="lineno">  109</span>            shutil.move(directory + <span class="stringliteral">&quot;/LICENSE&quot;</span>, <span class="stringliteral">&#39;LICENSE&#39;</span>)</div>
-<div class="line"><span class="lineno">  110</span>            shutil.move(directory + <span class="stringliteral">&quot;/README.md&quot;</span>, <span class="stringliteral">&#39;README.md&#39;</span>)</div>
-<div class="line"><span class="lineno">  111</span>            shutil.move(directory + <span class="stringliteral">&quot;/version&quot;</span>, <span class="stringliteral">&#39;version&#39;</span>)</div>
-<div class="line"><span class="lineno">  112</span>            shutil.move(directory + <span class="stringliteral">&quot;/config.yml&quot;</span>, <span class="stringliteral">&#39;config.yml&#39;</span>)</div>
-<div class="line"><span class="lineno">  113</span>            crupdate = open(<span class="stringliteral">&quot;update.py&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>)</div>
-<div class="line"><span class="lineno">  114</span>            crupdate.write(updateapp)</div>
-<div class="line"><span class="lineno">  115</span>            crupdate.close()</div>
-<div class="line"><span class="lineno">  116</span>            <span class="keywordflow">if</span> args.endf <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  117</span>                subprocess.call(sys.executable + <span class="stringliteral">&#39; update.py &#39;</span> + directory +</div>
-<div class="line"><span class="lineno">  118</span>                                <span class="stringliteral">&#39; -lang &#39;</span> + args.language + <span class="stringliteral">&#39; -endf&#39;</span>, shell=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  119</span>            <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  120</span>                subprocess.call(sys.executable + <span class="stringliteral">&#39; update.py &#39;</span> +</div>
-<div class="line"><span class="lineno">  121</span>                                directory + <span class="stringliteral">&#39; -lang &#39;</span> + args.language, shell=<span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  122</span>            sleep(0.1)</div>
-<div class="line"><span class="lineno">  123</span>            os.remove(<span class="stringliteral">&#39;crash_dump-&#39;</span> + datelog + <span class="stringliteral">&#39;.txt&#39;</span>)</div>
-<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  125</span>                os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
-<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  127</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  128</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  129</span>                os.remove(<span class="stringliteral">&#39;INSTALL&#39;</span>)</div>
-<div class="line"><span class="lineno">  130</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  131</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  132</span>            <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  133</span>                os.remove(<span class="stringliteral">&#39;INSTALL_RESTART&#39;</span>)</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  135</span>                <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  136</span>            sys.exit(0)</div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">except</span> requests.ConnectionError:  <span class="comment"># type: ignore</span></div>
-<div class="line"><span class="lineno">  138</span>        line_number: int = get_line_number()</div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  140</span>    verzia.close()</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00027">27</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span><span class="keyword">def </span>update_app(args, logger):</div>
+<div class="line"><span class="lineno">   28</span>    datelog = os.getenv(<span class="stringliteral">&#39;DATELOG&#39;</span>)</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   30</span>        url = <span class="stringliteral">&#39;https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version&#39;</span></div>
+<div class="line"><span class="lineno">   31</span>        page = requests.get(url)</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keyword">with</span> open(<span class="stringliteral">&#39;version&#39;</span>, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> verzia:</div>
+<div class="line"><span class="lineno">   33</span>            version = verzia.read()[1:]</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">if</span> semantic_version.Version(page.text[1:]) &lt;= semantic_version.Version(version):</div>
+<div class="line"><span class="lineno">   35</span>            logger.next(</div>
+<div class="line"><span class="lineno">   36</span>                printnlog(<span class="stringliteral">&#39;You have the latest version&#39;</span>, toprint=<span class="keyword">False</span>))</div>
+<div class="line"><span class="lineno">   37</span>            logger.prev(<span class="stringliteral">&#39;&#39;</span>)</div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   39</span>            printnlog(<span class="stringliteral">&quot;Newer version was found: &quot;</span> + page.text)</div>
+<div class="line"><span class="lineno">   40</span>            os.system(f<span class="stringliteral">&quot;git clone https://github.com/GrenManSK/ZnamE.git&quot;</span>)</div>
+<div class="line"><span class="lineno">   41</span>            directory = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   42</span>            <span class="keywordflow">for</span> path, currentDirectory, files <span class="keywordflow">in</span> os.walk(Path.cwd()):</div>
+<div class="line"><span class="lineno">   43</span>                <span class="keywordflow">for</span> directory1 <span class="keywordflow">in</span> currentDirectory:</div>
+<div class="line"><span class="lineno">   44</span>                    <span class="keywordflow">if</span> directory1.startswith(<span class="stringliteral">&quot;ZnamE&quot;</span>):</div>
+<div class="line"><span class="lineno">   45</span>                        printnlog(directory1)</div>
+<div class="line"><span class="lineno">   46</span>                        directory = directory1</div>
+<div class="line"><span class="lineno">   47</span>                        <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">   48</span>            <span class="keywordflow">if</span> directory <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>                <span class="stringliteral">&quot;If program fails to download update refer user to website&quot;</span></div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>                printnlog(</div>
+<div class="line"><span class="lineno">   53</span>                    <span class="stringliteral">&quot;DOWNLOADING ERROR\nManually download newer version from\n&#39;https://github.com/GrenManSK/ZnamE&#39;&quot;</span>)</div>
+<div class="line"><span class="lineno">   54</span>                input()</div>
+<div class="line"><span class="lineno">   55</span>                sys.exit(1)</div>
+<div class="line"><span class="lineno">   56</span>            os.mkdir(<span class="stringliteral">&#39;old&#39;</span>)</div>
+<div class="line"><span class="lineno">   57</span>            shutil.move(<span class="stringliteral">&#39;data.xp2&#39;</span>, <span class="stringliteral">&#39;old/data.xp2&#39;</span>)</div>
+<div class="line"><span class="lineno">   58</span>            shutil.move(<span class="stringliteral">&#39;help.txt&#39;</span>, <span class="stringliteral">&#39;old/help.txt&#39;</span>)</div>
+<div class="line"><span class="lineno">   59</span>            shutil.move(<span class="stringliteral">&#39;LICENSE&#39;</span>, <span class="stringliteral">&#39;old/LICENSE&#39;</span>)</div>
+<div class="line"><span class="lineno">   60</span>            shutil.move(<span class="stringliteral">&#39;README.md&#39;</span>, <span class="stringliteral">&#39;old/README.md&#39;</span>)</div>
+<div class="line"><span class="lineno">   61</span>            shutil.move(<span class="stringliteral">&#39;version&#39;</span>, <span class="stringliteral">&#39;old/version&#39;</span>)</div>
+<div class="line"><span class="lineno">   62</span>            shutil.move(<span class="stringliteral">&#39;config.yml&#39;</span>, <span class="stringliteral">&#39;config_old.yml&#39;</span>)</div>
+<div class="line"><span class="lineno">   63</span>            <span class="keywordflow">for</span> file_name <span class="keywordflow">in</span> glob.glob(<span class="stringliteral">&#39;./ZnamE/**/**/*&#39;</span>, recursive=<span class="keyword">True</span>):</div>
+<div class="line"><span class="lineno">   64</span>                <span class="keywordflow">if</span> os.path.isdir(file_name):</div>
+<div class="line"><span class="lineno">   65</span>                    <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">   66</span>                print(file_name)</div>
+<div class="line"><span class="lineno">   67</span>                print(file_name.replace(<span class="stringliteral">&#39;ZnamE\\&#39;</span>, <span class="stringliteral">&#39;&#39;</span>))</div>
+<div class="line"><span class="lineno">   68</span>                <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   69</span>                    shutil.move(file_name, file_name.replace(<span class="stringliteral">&#39;ZnamE\\&#39;</span>, <span class="stringliteral">&#39;&#39;</span>))</div>
+<div class="line"><span class="lineno">   70</span>                <span class="keywordflow">except</span> FileNotFoundError:</div>
+<div class="line"><span class="lineno">   71</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">   72</span>            crupdate = open(<span class="stringliteral">&quot;update.py&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>)</div>
+<div class="line"><span class="lineno">   73</span>            crupdate.write(updateapp)</div>
+<div class="line"><span class="lineno">   74</span>            crupdate.close()</div>
+<div class="line"><span class="lineno">   75</span>            print(<span class="stringliteral">&#39;Waiting 2 seconds to clear Access Denied Error&#39;</span>)</div>
+<div class="line"><span class="lineno">   76</span>            sleep(2)</div>
+<div class="line"><span class="lineno">   77</span>            <span class="keywordflow">for</span> i <span class="keywordflow">in</span> os.listdir(<span class="stringliteral">&#39;ZnamE&#39;</span>):</div>
+<div class="line"><span class="lineno">   78</span>                <span class="keywordflow">if</span> i.endswith(<span class="stringliteral">&#39;git&#39;</span>):</div>
+<div class="line"><span class="lineno">   79</span>                    tmp = os.path.join(<span class="stringliteral">&#39;ZnamE&#39;</span>, i)</div>
+<div class="line"><span class="lineno">   80</span>                    <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><span class="lineno">   81</span>                        subprocess.call([<span class="stringliteral">&#39;attrib&#39;</span>, <span class="stringliteral">&#39;-H&#39;</span>, tmp])</div>
+<div class="line"><span class="lineno">   82</span>                        <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">   83</span>                    shutil.rmtree(tmp, onerror=on_rm_error)</div>
+<div class="line"><span class="lineno">   84</span>            print(<span class="stringliteral">&#39;Waiting 2 seconds to clear Access Denied Error&#39;</span>)</div>
+<div class="line"><span class="lineno">   85</span>            sleep(2)</div>
+<div class="line"><span class="lineno">   86</span>            os.remove(<span class="stringliteral">&#39;crash_dump-&#39;</span> + datelog + <span class="stringliteral">&#39;.txt&#39;</span>)</div>
+<div class="line"><span class="lineno">   87</span>            shutil.rmtree(<span class="stringliteral">&#39;ZnamE&#39;</span>, onerror=on_rm_error)</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   89</span>                os.remove(<span class="stringliteral">&#39;choco_end&#39;</span>)</div>
+<div class="line"><span class="lineno">   90</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">   91</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   93</span>                os.remove(<span class="stringliteral">&#39;INSTALL&#39;</span>)</div>
+<div class="line"><span class="lineno">   94</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">   95</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   97</span>                os.remove(<span class="stringliteral">&#39;INSTALL_RESTART&#39;</span>)</div>
+<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">   99</span>                <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  100</span>            <span class="keywordflow">if</span> args.endf <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  101</span>                subprocess.call(sys.executable + <span class="stringliteral">&#39; update.py &#39;</span> + directory +</div>
+<div class="line"><span class="lineno">  102</span>                                <span class="stringliteral">&#39; -endf&#39;</span>, shell=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  104</span>                subprocess.call(sys.executable + <span class="stringliteral">&#39; update.py &#39;</span> +</div>
+<div class="line"><span class="lineno">  105</span>                                directory, shell=<span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  106</span>            sys.exit(0)</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">except</span> requests.ConnectionError:  <span class="comment"># type: ignore</span></div>
+<div class="line"><span class="lineno">  108</span>        line_number: int = get_line_number()</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  110</span> </div>
+<div class="line"><span class="lineno">  111</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -586,9 +713,9 @@ It returns the number of packages successfully installed and the number that wer
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line"><span class="lineno">    1</span>=  str(</div>
-<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&#39;import argparse, shutil, os, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\&#39;-ef\&#39;, \&#39;--endf\&#39;, help=\&#39;Will not automatically end program\&#39;, default=UNSPECIFIED, nargs=\&#39;?\&#39;)\nparser.add_argument(\&#39;-lang\&#39;, \&#39;--language\&#39;, choices=[\&#39;SK\&#39;,\&#39;EN\&#39;,\&#39;JP\&#39;], help=\&#39;Language selection\&#39;, nargs=\&#39;?\&#39;)\nparser.add_argument(\&#39;input\&#39;, help=\&#39;Input folder\&#39;, nargs=\&#39;?\&#39;)\nargs = parser.parse_args()\nconfig = yaml.safe_dump(open(\&#39;config.yml\&#39;, \&#39;r\&#39;))\nargs.language = config[\&#39;basic info\&#39;][\&#39;lang\&#39;]\nif args.input != \&quot;\&quot;:\n    sleep(0.5)\n    shutil.move(\&#39;edupage.py\&#39;, \&#39;old/edupage.py\&#39;)\n    shutil.move(args.input + \&#39;/edupage.py\&#39;, \&#39;edupage.py\&#39;)\n    sleep(0.2)\n    shutil.rmtree(args.input)\n    shutil.rmtree(\&#39;old\&#39;)\n    if args.endf == None:\n        subprocess.call(sys.executable + \&#39; edupage.py -lang \&#39; + args.language + \&#39; -endf -update\&#39;, shell=True)\n    else:\n        subprocess.call(sys.executable + \&#39; edupage.py -lang \&#39; + args.language + \&#39; -update\&#39;, shell=True)\n    sys.exit(0)&#39;</span>)</div>
+<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&#39;import argparse, shutil, subprocess, yaml, sys\nfrom time import sleep\nUNSPECIFIED = object()\nglobal parser\nparser = argparse.ArgumentParser()\nparser.add_argument(\&#39;-ef\&#39;, \&#39;--endf\&#39;, help=\&#39;Will not automatically end program\&#39;, default=UNSPECIFIED, nargs=\&#39;?\&#39;)\nparser.add_argument(\&#39;input\&#39;, help=\&#39;Input folder\&#39;, nargs=\&#39;?\&#39;)\nargs = parser.parse_args()\nconfig = yaml.safe_load(open(\&#39;config.yml\&#39;, \&#39;r\&#39;))\nif args.input != \&quot;\&quot;:\n    shutil.rmtree(\&#39;old\&#39;)\n    if args.endf is None:\n        subprocess.call(sys.executable + \&#39; edupage.py -endf -update\&#39;, shell=True)\n    else:\n        subprocess.call(sys.executable + \&#39; edupage.py -update\&#39;, shell=True)\n    sys.exit(0)&#39;</span>)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00021">21</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d31/app__alternations_8py_source.html#l00023">23</a> of file <a class="el" href="../../dd/d31/app__alternations_8py_source.html">app_alternations.py</a>.</p>
 
 </div>
 </div>
@@ -598,7 +725,7 @@ It returns the number of packages successfully installed and the number that wer
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d3/dc0/namespaceapp__alternations.html">app_alternations</a></li>
-    <li class="footer">Generated on Sun Apr 30 2023 16:09:14 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Sun May 7 2023 23:31:13 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
