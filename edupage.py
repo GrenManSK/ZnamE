@@ -792,6 +792,7 @@ try:  # type: ignore
             from essentials.arguments import music2str
             from essentials.functions.voicevox import run_voicevox
             from essentials.functions.cbzprintable import run_cbz
+            from essentials.functions.kayopy import run_kayopy
             from essentials.system.conda import env_menu
 
             musiclistnew: list = []
@@ -853,9 +854,8 @@ try:  # type: ignore
                 mixer.music.play()
             show_version(args)
             from completer import completer  # type: ignore
-            unlogged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit',
                                   'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog',
-                                  'waifu', 'neko', 'setup', 'settings', 'anotherwaifu',
+                                  'waifu', 'neko', 'setup', 'settings', 'anotherwaifu','kayopy',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
                                   'history', 'help', 'pomoc', '-h', '-help', '?', '-?','cbzprintable',
                                   'advanced help', 'ah', '-ah', '-advanced help', 'voicevox']
@@ -864,7 +864,7 @@ try:  # type: ignore
                                 'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
                                 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
-                                '-advanced help','cbzprintable']
+                                '-advanced help','cbzprintable', 'kayopy']
             bq_completer = ['back', 'quit']
             if args.debug is None:
                 unlogged_completer.extend(dir())
@@ -1048,12 +1048,21 @@ try:  # type: ignore
                     if vstup == 'cbzprintable':
                         try:
                             run_cbz()
+                            print('\n')
+                        except KeyboardInterrupt:
+                            print('\n')
+                            continue
+                    if vstup == 'kayopy':
+                        try:
+                            run_kayopy()
+                            print('\n')
                         except KeyboardInterrupt:
                             print('\n')
                             continue
                     if vstup == 'voicevox':
                         try:
                             run_voicevox(env_menu(info=True))
+                            print('\n')
                         except KeyboardInterrupt:
                             print('\n')
                             continue
