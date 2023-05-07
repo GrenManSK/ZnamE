@@ -52,7 +52,7 @@ def run_voicevox(env):
             printnlog('VOICEVOX not found')
         while True:
             vstup = input(printnlog(
-                "\nTo install VOICEVOX run this command \'git clone https://github.com/GrenManSK/VOICEVOX.git\'\n Do you want to complete this action automatically (Y/n) > ", toprint=False)).lower()
+                "\nTo install VOICEVOX run this command \'git clone https://github.com/GrenManSK/VOICEVOX.git\'\nDo you want to complete this action automatically (Y/n) > ", toprint=False)).lower()
             if vstup in ['', 'y']:
                 break
             elif vstup == 'n':
