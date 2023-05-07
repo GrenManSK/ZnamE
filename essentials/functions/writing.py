@@ -65,7 +65,7 @@ def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
     their own value for the time.
 
     :param word: Pass the word that needs to be printed
-    :param time=0.01: Set the time between each character printed out
+    :param time=0.001: Set the time between each character printed out
     :param end='\n': Print the output on a new line
     :return: A string
     """
