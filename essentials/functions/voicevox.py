@@ -26,12 +26,16 @@ def run_voicevox(env):
             damaged = True
     if os.path.exists('VOICEVOX') and not damaged:
         typewriter(printnlog(
+            f'\nChecking for updates\nRunning command\nRunning command: git -C VOICEVOX pull\n', toprint=False), ttime=0.01)
+        subprocess.call(['git', '-C', 'VOICEVOX', 'pull'])
+        typewriter(printnlog(
             f'\nRunning VOICEVOX\nRunning command: {env} -m VOICEVOX\n', toprint=False), ttime=0.01)
         sleep(1)
         subprocess.call([env, '-m', 'VOICEVOX'])
     else:
         if os.path.exists('VOICEVOX'):
-            typewriter(printnlog(f'\nFound damaged VOICEVOX\nDeleting ...\n', toprint=False), ttime=0.01)
+            typewriter(printnlog(
+                f'\nFound damaged VOICEVOX\nDeleting ...\n', toprint=False), ttime=0.01)
             print('\nWaiting 2 seconds to clear Access Denied Error\n')
             sleep(2)
             for i in os.listdir('VOICEVOX'):
