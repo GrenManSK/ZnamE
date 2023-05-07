@@ -24,6 +24,8 @@ Using [waifu-api](https://github.com/Waifu-pics/waifu-api) for WAIFU photos
 
 Using [ytdownload](https://github.com/KalebSchmidlkofer/ytdownload) for music from config
 
+Using [manga-image-translator](https://github.com/zyddnys/manga-image-translator) for manga_translator function
+
 ---
 
 **Test login credentials:**
