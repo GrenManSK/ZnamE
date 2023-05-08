@@ -46,6 +46,107 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 
 ---
 
+## Main functions
+
+- waifu | neko
+- VOICEVOX
+- login
+- music
+
+---
+
+### `config.yml` hereinafter as config or config file
+
+---
+
+## Important notice
+
+### Works only on Windows
+
+---
+
+## waifu | neko
+
+- Download and opens it from API server
+- neko - as title says, it will return cat-themed images
+- waifu - returns image on theme which is configured in config file
+  - If image is gif then program convert it to video and opens it
+
+---
+
+## VOICEVOX
+
+- Choose from conda environments or classic interpreter
+- Downloads repository [VOICEVOX](https://github.com/GrenManSK/VOICEVOX), installs pip requirements and run VOICEVOX
+- From microphone gets an input, AI process the audio file, get text from it, convert it to AI voice, play it through VB-Audio Virtual Cable as input device and current output device
+
+---
+
+## login
+
+- From encrypted file check if user inputed username and password are correct
+- if yes then proceed to login
+- else print error message and retry
+
+---
+
+## Music
+
+### Config file
+
+- `basic info => music` - change to `enable` to enable music
+- `basic info => musiclist` - From YouTube converts to mp3 file
+- `basic info => musicnumber` - Define index of which music file to play
+
+### Function
+
+- Can select from existing music list which is configured in `basic info => musiclist`
+- Else can download music through `spot-dl`
+- Also updates `basic info => musiclist` in config
+
+---
+
+## Manga_translator
+
+- Choose from conda environments or classic interpreter
+- Using [manga-image-translator](https://github.com/zyddnys/manga-image-translator) for this function
+- Translate manga images
+
+---
+
+## Motivational
+
+- Returns quote from anime
+
+---
+
+## KayoPy
+
+- Downloads repository [KayoPy](https://github.com/GrenManSK/KayoPy), installs pip requirements and run KayoPy
+- Parser of [kayoanime](https://kayoanime.com/) site for anime download
+
+---
+
+## cbzPrintable
+
+- Downloads repository [cbzPrintable](https://github.com/GrenManSK/cbzPrintable), installs pip requirements and run KayoPy
+- From cbz files return pdf of multiple cbz files with some formatting so it could be printed like a book (Duplex printing)
+
+---
+
+## PlayVideo
+
+- Searches for video on YouTube and downloads it, then plays it
+
+---
+
+## Anime_search
+
+- Upload image or url to search for episode which image is from
+- Works on trace.moe API
+
+---
+
 ## **Config options**
 
 ```yaml
