@@ -995,7 +995,7 @@ try:  # type: ignore
                                     "All is set!!!\nYou can use progam\n")
                             with open(historyname, 'a', encoding='utf-8') as historyfile:
                                 historyfile.write(
-                                    '[' + str(linenumber) + ', ' + '*logged]\n')
+                                    '[' + str(linenumber) + ', *logged]\n')
                             Thread(target=delcache, args=(
                                 loginvstupuser, historyname,), daemon=True).start()
                             continue
@@ -1475,7 +1475,7 @@ try:  # type: ignore
                         print("You\'re logged out")
                         with open(historyname, 'a', encoding='utf-8') as historyfile:
                             historyfile.write(
-                                '[' + str(linenumber) + ', ' + '*logout]\n')
+                                '[' + str(linenumber) + ', *logout]\n')
                         mixer.music.pause()
                         mixer.Channel(1).play(mixer.Sound(
                             'assets\\horror.mp3'), fade_ms=10)
