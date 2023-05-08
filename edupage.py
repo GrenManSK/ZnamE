@@ -79,16 +79,7 @@ try:  # type: ignore
         logger.stay(printnlog('DONE', toprint=False))
     from essentials.system.exceptions import configNoOption, error_get
     from essentials.system.system_info import get_line_number
-    allerror = []
-    for name, obj in inspect.getmembers(sys.modules[__name__]):
-        if inspect.isclass(obj):
-            allerror.append(obj.__name__)
-
-    if __name__ == '__main__':
-        for i in range(0, len(allerror)-1):
-            printnlog(allerror[i], end=', ')
-        printnlog(allerror[len(allerror)-1])
-
+    
     if __name__ == '__main__':
         logger.stay(printnlog('Reading config file (ini)', toprint=False))
         config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
@@ -479,7 +470,7 @@ try:  # type: ignore
         tqdm.write('Controling Complete')
         os.remove('DONE')
         PROGRESS_BAR_CHECK += 1
-        return [password_chars, name]
+        return [password_chars, file_name]
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: password', toprint=False))
