@@ -1515,8 +1515,8 @@ try:  # type: ignore
                             historylist = config['user history']
                             for history_temp in historylist:
                                 print(
-                                    'Start time = ' + i[0] + ', End time = '
-                                    + i[1][0:26] + ', Input = ' + i[1][26:])
+                                    'Start time = ' + history_temp[0] + ', End time = '
+                                    + history_temp[1][0:26] + ', Input = ' + history_temp[1][26:])
                             if len(historylist) == 0:
                                 print('History is empty')
                         if vstup == 'login' and not logged or tologin and not logged:
