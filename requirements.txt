@@ -32,7 +32,7 @@ setuptools>=49.2.1
 shellingham==1.5.0.post1
 tabulate==0.9.0
 tqdm>=4.64.1
-typer==0.3.2
+typer==0.9.0
 typing==3.7.4.3
 yt-dlp==2023.3.4
 WMI>=1.5.1
