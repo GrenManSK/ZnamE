@@ -1620,6 +1620,27 @@ try:  # type: ignore
                         elif logged and vstup == 'login':
                             print('You are already logged in!!!')
                 elif vstup == 'quit' or vstup == 'koniec' or vstup == 'end' or _exit:
+                    if not restart:
+                        def play_end():
+                            shutil.copy('assets/green1.mp4', 'green1.mp4')
+                            media_player1 = vlc.MediaPlayer()
+                            media_player1.set_fullscreen(True)
+                            media = vlc.Media("green1.mp4")
+                            media_player1.set_media(media)
+                            media_player1.play()
+                            sleep(4)
+                            media_player1.stop()
+                            os.remove('green1.mp4')
+                            
+                        Thread(target=play_end, daemon=True).start()
+                        try:
+                            sleep(0.1)
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window.activate()
+                            window.minimize()
+                        except Exception:
+                            pass
+                        
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
                     from essentials.system.file_operations import file_to_datafolder, xp3_finalization,\
                                                                                         to_zip
@@ -1640,21 +1661,6 @@ try:  # type: ignore
                         move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35),
                              screensize[0], screensize[1]-int(
                             (round((322/1736)*screensize[0], 0))))
-                    if not restart:
-                        shutil.copy('assets/end.mp4', 'end.mp4')
-                        media_player = vlc.MediaPlayer()
-                        media_player.set_fullscreen(True)
-                        media = vlc.Media("end.mp4")
-                        media_player.set_media(media)
-                        media_player.play()
-                        video_start = int(time.time())
-                        try:
-                            window = pygetwindow.getWindowsWithTitle(
-                                'VLC (Direct3D11 output)')[0]
-                            window.activate()
-                            window.maximize()
-                        except IndexError:
-                            pass
                     mixer_stop()
                     if not restart:
                         not_restart()
@@ -1709,7 +1715,6 @@ try:  # type: ignore
                     playhtml(args, config, 'apphtml\\end', 1, 3)
                     remove('data_backup')
                     mkdir('datafolder')
-                    shutil.copy('assets/green1.mp4', 'green1.mp4')
                     try:
                         shutil.move('data', 'datafolder/')
                     except FileNotFoundError:
@@ -1757,29 +1762,6 @@ try:  # type: ignore
                             datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
                     if args.endf is not None and not restart:
                         sleep(2.5)
-                    if not restart:
-                        video_end = int(time.time())
-                        while video_end - video_start < 22:
-                            time.sleep(0.1)
-                            video_end = int(time.time())
-                            if keyboard.is_pressed('q'):
-                                break
-                        pg.screenshot().save('bg.png')
-                        os.system(
-                            "ffmpeg -i bg.png -i green1.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x00FF00:0.01:0.5[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
-                        os.remove('bg.png')
-                        os.remove('green1.mp4')
-                        media_player1 = vlc.MediaPlayer()
-                        media_player1.set_fullscreen(True)
-                        media = vlc.Media("output.mp4")
-                        media_player1.set_media(media)
-                        media_player1.play()
-                        sleep(0.5)
-                        media_player.stop()
-                        os.remove('end.mp4')
-                        sleep(3.5)
-                        media_player1.stop()
-                        os.remove('output.mp4')
                     if restart:
                         with open("restart.py", "w", encoding='utf-8') as crrestart:
                             crrestart.write(restartapp)
