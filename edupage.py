@@ -1646,12 +1646,14 @@ try:  # type: ignore
                             media = vlc.Media("green1.mp4")
                             media_player1.set_media(media)
                             media_player1.play()
-                            sleep(3.5)
-                            media_player1.stop()
-                            os.remove('green1.mp4')
+                            sleep(4.5)
                             window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                             window.activate()
                             window.minimize()
+                            while os.path.exists('END'):
+                                pass
+                            media_player1.stop()
+                            os.remove('green1.mp4')
                             
                         Thread(target=play_end, daemon=True).start()
                     mixer_stop()
