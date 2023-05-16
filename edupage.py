@@ -1775,9 +1775,6 @@ try:  # type: ignore
                                 if neko or waifu or waifuvid:
                                     from essentials.system.file_operations import del_wn
                                     del_wn()
-                                sleep(3.5)
-                                media_player1.stop()
-                                os.remove('output.mp4')
                                 remove('crash_dump-' + datelog + '.txt')
                                 return 0
                             if vstup in ['', 'y']:
