@@ -181,4 +181,5 @@ CLI Arguments
 -ni --nointro {} # Will not start intro
 -co --configoptions {} # Will make a file with all config options, frankly speaking it will put previous text to file
 -music --music {Any number} # Max is number of items in 'basic info' => 'musiclist' in config file
+--quiet => Won't print any unnecessary logging
 ```

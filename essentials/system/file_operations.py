@@ -7,7 +7,9 @@ import sys
 import shutil
 import stat
 import time
-
+from dotenv import load_dotenv
+load_dotenv('.env')
+quiet = eval(os.getenv('QUIET'))
 
 def unpack(datelog, args, cachename: str) -> None:
     """
@@ -22,8 +24,9 @@ def unpack(datelog, args, cachename: str) -> None:
         for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
             try:
                 zip.extract(member)
-                tqdm.write(
-                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                if not quiet:
+                    tqdm.write(
+                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
                 log(f"{os.path.basename(member)}(" +
                     str(os.path.getsize(member)) + "B)")
             except zipfile.error as e:
@@ -37,8 +40,12 @@ def unpack(datelog, args, cachename: str) -> None:
     @param output_folder - the folder to extract to
     @param extract_name - the name of the file to extract
     """
-    subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
-                    'data1', '-e', 'neko_vol0_steam'])
+    if not quiet:
+        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                        'data1', '-e', 'neko_vol0_steam'])
+    if quiet:
+        subprocess.call([sys.executable, 'xp3.py', 'data.xp3',
+                        'data1', '-e', 'neko_vol0_steam', '-silent'])
     try:
         shutil.move('data1/data', 'data')
     except Exception:
@@ -132,8 +139,12 @@ def file_to_datafolder():
 
 
 def xp3_finalization():
-    subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3',
-                    '-mode', 'repack', '-e', 'neko_vol0_steam'])
+    if not quiet:
+        subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3',
+                        '-mode', 'repack', '-e', 'neko_vol0_steam'])
+    if quiet:
+        subprocess.call([sys.executable, 'xp3.py', 'datafolder', 'data.xp3',
+                        '-mode', 'repack', '-e', 'neko_vol0_steam', '-silent'])
     shutil.rmtree('datafolder')
     shutil.rmtree('apphtml')
     shutil.rmtree('yt_dl')
@@ -162,12 +173,14 @@ def to_zip(logger, cachename, start):
             zip.write(zipfiles[i])
             filesizeen: int = sum(
                 [zinfo.file_size for zinfo in zip.filelist])
-            tqdm.write(logger.stay(zipfileswopath[i] + "(" + str(os.path.getsize(
-                zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
+            if not quiet:
+                tqdm.write(logger.stay(zipfileswopath[i] + "(" + str(os.path.getsize(
+            zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
             zip_kb_old: int = filesizeen
             os.remove(zipfiles[i])
             if i == len(zipfiles)-1:
-                tqdm.write("\n")
+                if not quiet:
+                    tqdm.write("\n")
         filesizeenend: int = sum(
             [zinfo.file_size for zinfo in zip.filelist])
         logger.prev("\nPacked data have > " +

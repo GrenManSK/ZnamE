@@ -10,6 +10,8 @@ try:  # type: ignore
     import os
     import traceback
 
+    quiet = True if '--quiet'in sys.argv[1:] or '-quiet' in sys.argv[1:] else False
+    
     if os.path.isfile('INSTALL_RESTART'):
         sleep(1)
     try:
@@ -29,10 +31,14 @@ try:  # type: ignore
             ' pip install git+https://github.com/GrenManSK/final.git')
         input()
         sys.exit(1)
-    logger = verbose.get_logger()
+    if not quiet:
+        logger = verbose.get_logger()
+    if quiet:
+        logger = verbose.get_logger(quiet=True)
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
     with open('.env', 'w', encoding='utf-8') as dotenv:
         dotenv.write(f'DATELOG={datelog}\n')
+        dotenv.write(f'QUIET={quiet}\n')
     from essentials.functions.writing import printnlog, typewriter
     from essentials.system.file_operations import mkdir, remove
 
@@ -81,7 +87,7 @@ try:  # type: ignore
     from essentials.system.system_info import get_line_number
     
     if __name__ == '__main__':
-        logger.stay(printnlog('Reading config file (ini)', toprint=False))
+        logger.stay(printnlog('Reading config file (yml)', toprint=False))
         config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
         config['user history'] = {}
         line_number: int = get_line_number(-1)
@@ -1703,6 +1709,7 @@ try:  # type: ignore
                     playhtml(args, config, 'apphtml\\end', 1, 3)
                     remove('data_backup')
                     mkdir('datafolder')
+                    shutil.copy('assets/green1.mp4', 'green1.mp4')
                     try:
                         shutil.move('data', 'datafolder/')
                     except FileNotFoundError:
@@ -1752,13 +1759,27 @@ try:  # type: ignore
                         sleep(2.5)
                     if not restart:
                         video_end = int(time.time())
-                        while video_end - video_start < 27:
+                        while video_end - video_start < 22:
                             time.sleep(0.1)
                             video_end = int(time.time())
                             if keyboard.is_pressed('q'):
                                 break
+                        pg.screenshot().save('bg.png')
+                        os.system(
+                            "ffmpeg -i bg.png -i green1.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x00FF00:0.01:0.5[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
+                        os.remove('bg.png')
+                        os.remove('green1.mp4')
+                        media_player1 = vlc.MediaPlayer()
+                        media_player1.set_fullscreen(True)
+                        media = vlc.Media("output.mp4")
+                        media_player1.set_media(media)
+                        media_player1.play()
+                        sleep(0.5)
                         media_player.stop()
                         os.remove('end.mp4')
+                        sleep(3.5)
+                        media_player1.stop()
+                        os.remove('output.mp4')
                     if restart:
                         with open("restart.py", "w", encoding='utf-8') as crrestart:
                             crrestart.write(restartapp)
@@ -1771,12 +1792,26 @@ try:  # type: ignore
                                 "YOU CAN\n!!!\n!!\n!\n", ttime=0.01)
                             vstup = input("Do you understand (Y/n) > ")
                             vstup.lower()
+                            
+                            pg.screenshot().save('bg.png')
+                            os.system(
+                                "ffmpeg -i bg.png -i green1.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x00FF00:0.05:0.5[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
+                            os.remove('bg.png')
+                            os.remove('green1.mp4')
+                            media_player1 = vlc.MediaPlayer()
+                            media_player1.set_fullscreen(True)
+                            media = vlc.Media("output.mp4")
+                            media_player1.set_media(media)
+                            media_player1.play()
                             if not vstup in ['', 'y']:
                                 if os.path.isfile("restart.py"):
                                     os.remove("restart.py")
                                 if neko or waifu or waifuvid:
                                     from essentials.system.file_operations import del_wn
                                     del_wn()
+                                sleep(3.5)
+                                media_player1.stop()
+                                os.remove('output.mp4')
                                 remove('crash_dump-' + datelog + '.txt')
                                 return 0
                             if vstup in ['', 'y']:
@@ -1805,6 +1840,10 @@ try:  # type: ignore
                                             'start edupage.py --restart --autologin --nointrof' +
                                             ' --music ' + str(args.music), shell=True)
                                     remove('crash_dump-' + datelog + '.txt')
+                                sleep(3.5)
+                                media_player1.stop()
+                                os.remove('output.mp4')
+                                return 0
                         else:
                             os.system('cls')
                             sys.stdout.flush()
