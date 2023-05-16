@@ -41,6 +41,8 @@ def arguments(config):
                         help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-music', '--music', choices=musicchoices,
                         help='Starts music; you can select from: ' + str(i for i in music), default=0, nargs='?')
+    parser.add_argument('-quiet', '--quiet', choices=[],
+                        help='', default=UNSPECIFIED, nargs='?')
 
     "These are arguments for program to use"
 

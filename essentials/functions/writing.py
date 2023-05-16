@@ -4,6 +4,7 @@ from time import sleep
 from dotenv import load_dotenv
 load_dotenv('.env')
 
+quiet = eval(os.getenv('QUIET'))
 
 def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
     """
@@ -16,7 +17,7 @@ def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
     """
     datelog = os.getenv('DATELOG')
     with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:
-        if toprint:
+        if toprint and not quiet:
             print(str(msg), end=str(end))
         crashfile.write(str(msg) + str(end))
     return msg
@@ -35,7 +36,7 @@ def to_info(msg: str, end: str = '\n', file: str = 'info.txt', mode: str = 'a', 
     """
     datelog = os.getenv('DATELOG')
     with open(f"crash_dump-{datelog}.txt", 'a', encoding='utf-8') as crashfile:
-        if toprint:
+        if toprint and not quiet:
             print(str(msg), end=str(end))
         crashfile.write(str(msg) + str(end))
         crashfile.close()
@@ -69,11 +70,12 @@ def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
     :param end='\n': Print the output on a new line
     :return: A string
     """
-    for char in word:
-        sleep(ttime)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-    sys.stdout.write(end)
+    if not quiet:
+        for char in word:
+            sleep(ttime)
+            sys.stdout.write(char)
+            sys.stdout.flush()
+        sys.stdout.write(end)
 
 
 def show_version(args):
