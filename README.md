@@ -26,6 +26,8 @@ Using [ytdownload](https://github.com/KalebSchmidlkofer/ytdownload) for music fr
 
 Using [manga-image-translator](https://github.com/zyddnys/manga-image-translator) for manga_translator function
 
+Using [textractor](https://github.com/Artikash/Textractor) for translate function
+
 ---
 
 **Test login credentials:**
