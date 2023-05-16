@@ -790,6 +790,7 @@ try:  # type: ignore
             from essentials.functions.kayopy import run_kayopy
             from essentials.functions.manga_translator import run_manga_image_translator
             from essentials.system.conda import env_menu
+            from essentials.functions.textractor import textractor
 
             musiclistnew: list = []
             for music_name in music:
@@ -855,13 +856,13 @@ try:  # type: ignore
                                   'waifu', 'neko', 'setup', 'settings', 'anotherwaifu','kayopy',
                                   'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
                                   'history', 'help', 'pomoc', '-h', '-help', '?', '-?','cbzprintable',
-                                  'advanced help', 'ah', '-ah', '-advanced help', 'voicevox']
+                                  'advanced help', 'ah', '-ah', '-advanced help', 'voicevox', 'translate']
             logged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko','playvideo',
                                 'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
                                 'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
                                 'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
                                 'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
-                                '-advanced help','cbzprintable', 'kayopy', 'manga_translator']
+                                '-advanced help','cbzprintable', 'kayopy', 'manga_translator', 'translate']
             bq_completer = ['back', 'quit']
             if args.debug is None:
                 unlogged_completer.extend(dir())
@@ -1159,6 +1160,14 @@ try:  # type: ignore
                             musicplay: bool = False
                         except Exception:
                             pass
+                    if vstup == 'translate':
+                        
+                        textractor(input('Select language *must be in google translate (e.g. slovak)> '))
+
+                        while not os.path.exists('textractor_done'):
+                            sleep(0.5)
+                        os.remove('textractor_done')
+                        move('Textractor', 0, 0, int(screensize[0]/2), int((round((322/1736)*screensize[0], 0))-35))
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime: str = str(
@@ -1651,7 +1660,7 @@ try:  # type: ignore
                             window.activate()
                             window.minimize()
                             while os.path.exists('END'):
-                                pass
+                                sleep(0.1)
                             media_player1.stop()
                             os.remove('green1.mp4')
                             
