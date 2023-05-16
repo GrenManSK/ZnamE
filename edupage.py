@@ -728,7 +728,6 @@ try:  # type: ignore
         :return: The variable exit
         """
         from essentials.system.system_operations import intro_video
-        _exit = False
         move('ZnámE', -10, -10, screensize[0], screensize[1])
         if args.test is not None:
             show_cmd()
@@ -739,7 +738,6 @@ try:  # type: ignore
             media_player.set_media(media)
             media_player.play()
             intro_video(args, media_player)
-        return _exit
 
     def was_updated():
         """
