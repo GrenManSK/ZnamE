@@ -1767,17 +1767,6 @@ try:  # type: ignore
                                 "YOU CAN\n!!!\n!!\n!\n", ttime=0.01)
                             vstup = input("Do you understand (Y/n) > ")
                             vstup.lower()
-                            
-                            pg.screenshot().save('bg.png')
-                            os.system(
-                                "ffmpeg -i bg.png -i green1.mp4 -map 1:a -c:a copy -filter_complex [1:v]colorkey=0x00FF00:0.05:0.5[ckout];[0:v][ckout]overlay[out] -map [out] output.mp4")
-                            os.remove('bg.png')
-                            os.remove('green1.mp4')
-                            media_player1 = vlc.MediaPlayer()
-                            media_player1.set_fullscreen(True)
-                            media = vlc.Media("output.mp4")
-                            media_player1.set_media(media)
-                            media_player1.play()
                             if not vstup in ['', 'y']:
                                 if os.path.isfile("restart.py"):
                                     os.remove("restart.py")
@@ -1815,9 +1804,6 @@ try:  # type: ignore
                                             'start edupage.py --restart --autologin --nointrof' +
                                             ' --music ' + str(args.music), shell=True)
                                     remove('crash_dump-' + datelog + '.txt')
-                                sleep(3.5)
-                                media_player1.stop()
-                                os.remove('output.mp4')
                                 return 0
                         else:
                             os.system('cls')
