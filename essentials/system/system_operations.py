@@ -148,7 +148,8 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
     :param length: Set the length of the window
     :return: The image that is displayed
     """
-    screensize = os.getenv('SCREENSIZE')
+    screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
+    screensize = [int(i) for i in screensize]
     path: str = imgSrc
     for file in glob.glob(path):
         global dummy
@@ -215,7 +216,8 @@ def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
     :param length: Set the height of the window
     :return: None
     """
-    screensize = os.getenv('SCREENSIZE')
+    screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
+    screensize = [int(i) for i in screensize]
     appname: str = window
     xpos: int = x
     ypos: int = y
