@@ -1649,6 +1649,9 @@ try:  # type: ignore
                             sleep(3.5)
                             media_player1.stop()
                             os.remove('green1.mp4')
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window.activate()
+                            window.minimize()
                             
                         Thread(target=play_end, daemon=True).start()
                     mixer_stop()
