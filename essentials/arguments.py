@@ -185,7 +185,7 @@ def check_correctness(args, config, logger, music):
             config = set_config('basic info', 'musicnumber', int(args.music)-1)
             configlenmusic = int(config['basic info']['musicnumber'])
             args.music = int(args.music) - 1
-    if not str(config['basic info']['translate']).split(' ')[0] in t_languages:
+    if not str(config['basic info']['translate']).split(' ')[0] in t_languages + ['']:
         error_get(ExceptionGroup('', [argTranslateError('Wrong choice \'basic info\' => translate character'), ValueError(
             f'Not allowed language | Allowed: {t_languages}')]), [get_line_number()], fname='arguments.py')
         input('Enter to exit')
