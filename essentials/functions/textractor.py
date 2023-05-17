@@ -39,7 +39,7 @@ def textractor(lang):
         os.system('INSTALL_THIS_UNICODE_FONT.ttf')
         os.remove('INSTALL_THIS_UNICODE_FONT.ttf')
     os.system('start Textractor/x64/Textractor.exe')
-    sleep(2)
+    sleep(5)
 
     window = pygetwindow.getWindowsWithTitle('Textractor')[1]
     window.activate()
@@ -53,7 +53,7 @@ def textractor(lang):
     pg.press('tab')
     pg.press('tab')
     pg.keyUp('shift')
-    sleep(2)
+    sleep(3)
     print('Hello, world')
     print('This is test')
     pg.press('down')
