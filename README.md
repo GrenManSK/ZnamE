@@ -79,8 +79,8 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 ## VOICEVOX
 
 - Ability to choose from conda environments or classic interpreter
-- Downloads repository <https://github.com/GrenManSK/VOICEVOX>, installs pip requirements, downloads engine <https://github.com/VOICEVOX/voicevox_engine/releases/tag/0.14.4> (986mb) and run VOICEVOX
-- First time install will also download medium.en and base.en model from <https://github.com/openai/whisper#available-models-and-languages> (Around 1.5gb)
+- Downloads repository [VOICEVOX](https://github.com/GrenManSK/VOICEVOX), installs pip requirements, downloads engine [VOICEVOX_engine](https://github.com/VOICEVOX/voicevox_engine/releases/tag/0.14.4) (986mb) and run VOICEVOX
+- First time install will also download medium.en and base.en model from [whisper](https://github.com/openai/whisper#available-models-and-languages) (Around 1.5gb)
 - From microphone gets an input, AI process the audio file, get text from it, convert it to AI voice, play it through VB-Audio Virtual Cable as input device and current output device
 
 ---
