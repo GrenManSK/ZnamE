@@ -191,8 +191,10 @@ def run_textractor(args, lang, translator):
     while not os.path.exists('textractor_done'):
         sleep(0.5)
     os.remove('textractor_done')
+    sleep(0.1)
     move('Textractor', 0, 0, int(
         screensize[0]/2), int((round((322/1736)*screensize[0], 0))-35))
+    sleep(0.1)
 
 
 def change_quiet_textractor(to):

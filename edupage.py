@@ -831,6 +831,7 @@ try:  # type: ignore
             musicplay: bool = False
             savefilemode: bool = False
             translator: bool = False
+            translator_language: None|str = None
             offline_game: bool = config['game settings']['offline_game']
             maxlogins: int = 1
             if not inactive1:
@@ -878,10 +879,12 @@ try:  # type: ignore
             if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
+                translator_language = args.translate
                 pg.write('cls\n')
             if config['basic info']['translate'] != '':
                 run_textractor(args, config['basic info']['translate'], config['basic info']['translator'])
                 translator = True
+                translator_language = config['basic info']['translate']
                 pg.write('cls\n')
             while True:
                 completer(unlogged_completer)
@@ -1185,6 +1188,7 @@ try:  # type: ignore
                             continue
                         run_textractor(args, translator_vstup, config['basic info']['translator'])
                         translator = True
+                        translator_langauge = translator_vstup
                         if waifu or neko or waifuvid:
                             window = pygetwindow.getWindowsWithTitle('tmp')[0]
                             window.activate()
@@ -1772,7 +1776,8 @@ try:  # type: ignore
                     cv2.destroyAllWindows()
                     logger.stay("PACKING SECOND PART OF DATA")
                     to_zip(logger, CACHENAME, start)
-                    open('VIDEO_END', 'x')
+                    if not restart:
+                        open('VIDEO_END', 'x')
                     if restart:
                         logger.stay('The program will restart automatically.')
                     elif not restart:
@@ -1830,6 +1835,9 @@ try:  # type: ignore
                                 remove('crash_dump-' + datelog + '.txt')
                                 return 0
                             if vstup in ['', 'y']:
+                                translator_restart = ''
+                                if translator:
+                                    translator_restart = f' --translate {translator_langauge} ' 
                                 os.system('cls')
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin()
@@ -1837,22 +1845,22 @@ try:  # type: ignore
                                     sleep(0.5)
                                     if waifuvid:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof'+ 
+                                            'start edupage.py --restart --autologin --nointrof'+ translator_restart +
                                             ' --waifu --waifuvid --music '
                                             + str(args.music), shell=True)
                                     elif neko:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof' +
+                                            'start edupage.py --restart --autologin --nointrof' + translator_restart +
                                             ' --neko --music '
                                             + str(args.music), shell=True)
                                     elif waifu:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof ' +
+                                            'start edupage.py --restart --autologin --nointrof ' + translator_restart +
                                             '--waifu --music '
                                             + str(args.music), shell=True)
                                     else:
                                         subprocess.check_output(
-                                            'start edupage.py --restart --autologin --nointrof' +
+                                            'start edupage.py --restart --autologin --nointrof' + translator_restart +
                                             ' --music ' + str(args.music), shell=True)
                                     remove('crash_dump-' + datelog + '.txt')
                                 return 0
