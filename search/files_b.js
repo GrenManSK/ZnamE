@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_2epy_0',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]]
+  ['textractor_2epy_0',['textractor.py',['../d6/d51/textractor_8py.html',1,'']]]
 ];

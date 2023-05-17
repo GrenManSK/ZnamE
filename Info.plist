@@ -8,7 +8,7 @@
      <key>CFBundleIdentifier</key>
      <string>org.doxygen.Project</string>
      <key>CFBundleVersion</key>
-     <string>v2.1.0-alpha+build.20230507.232036</string>
+     <string>v2.4.1-alpha+build.20230517.081508</string>
      <key>DocSetFeedName</key>
      <string>Doxygen generated docs</string>
      <key>DocSetFeedUrl</key>

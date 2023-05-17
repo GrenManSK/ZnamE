@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'']]]
+  ['textractor_0',['textractor',['../dd/d30/namespacetextractor.html',1,'']]]
 ];

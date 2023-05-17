@@ -218,6 +218,15 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>textractor</Name>
+      <APILanguage>python</APILanguage>
+      <Type>ns</Type>
+      <Scope>textractor</Scope>
+    </TokenIdentifier>
+    <Path>dd/d30/namespacetextractor.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>uninstall</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -548,17 +557,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>allerror</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a7d5036f27c338a2167bfd7cc6e6c8ec2</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>args</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -812,17 +810,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>end</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>edupage</Scope>
-    </TokenIdentifier>
-    <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a01919618bff9e4585c0398bb84b30b08</Anchor>
-    <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>env_menu</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1054,6 +1041,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>install_font</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>textractor</Scope>
+    </TokenIdentifier>
+    <Path>dd/d30/namespacetextractor.html</Path>
+    <Anchor>a18631acfa18a54682f0cc86cc737b281</Anchor>
+    <DeclaredIn>textractor.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>install_packages</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1192,7 +1190,7 @@
       <Scope>edupage</Scope>
     </TokenIdentifier>
     <Path>d0/d52/namespaceedupage.html</Path>
-    <Anchor>a81bb76bbaeee9abec4243fc8bc9f976c</Anchor>
+    <Anchor>a976246b6c912124d6fdfdf1089eb5c59</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
   </Token>
   <Token>
@@ -1461,6 +1459,50 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>quiet</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>edupage</Scope>
+    </TokenIdentifier>
+    <Path>d0/d52/namespaceedupage.html</Path>
+    <Anchor>af187b2a21f18d7ad2d45a6f739e97dcf</Anchor>
+    <DeclaredIn>edupage.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>quiet</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>textractor</Scope>
+    </TokenIdentifier>
+    <Path>dd/d30/namespacetextractor.html</Path>
+    <Anchor>aa1003744b3389b54dba4334601a85352</Anchor>
+    <DeclaredIn>textractor.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>quiet</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>writing</Scope>
+    </TokenIdentifier>
+    <Path>d8/df3/namespacewriting.html</Path>
+    <Anchor>ab0fe405ab815a04f6423fa154fd1e5fb</Anchor>
+    <DeclaredIn>writing.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>quiet</Name>
+      <APILanguage>python</APILanguage>
+      <Type>data</Type>
+      <Scope>file_operations</Scope>
+    </TokenIdentifier>
+    <Path>d9/d8d/namespacefile__operations.html</Path>
+    <Anchor>a689b8bbf46757780d1dbbeeaf59a41a4</Anchor>
+    <DeclaredIn>file_operations.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>remove</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1659,6 +1701,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>textractor</Name>
+      <APILanguage>python</APILanguage>
+      <Type>func</Type>
+      <Scope>textractor</Scope>
+    </TokenIdentifier>
+    <Path>dd/d30/namespacetextractor.html</Path>
+    <Anchor>a28e068a793b22fa708a5a769637a5528</Anchor>
+    <DeclaredIn>textractor.py</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>to_info</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1754,17 +1807,6 @@
     </TokenIdentifier>
     <Path>d3/dc0/namespaceapp__alternations.html</Path>
     <Anchor>a4f421098632d5f7e3a4094accbb0176a</Anchor>
-    <DeclaredIn>app_alternations.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>updateapp</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>app_alternations</Scope>
-    </TokenIdentifier>
-    <Path>d3/dc0/namespaceapp__alternations.html</Path>
-    <Anchor>aa1afd604590fd0588c3e83354f0f4a85</Anchor>
     <DeclaredIn>app_alternations.py</DeclaredIn>
   </Token>
   <Token>

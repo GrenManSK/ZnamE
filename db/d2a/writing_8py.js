@@ -4,5 +4,6 @@ var writing_8py =
     [ "printnlog", "db/d2a/writing_8py.html#a636f8148c7ab1181c2ac3a1d15a626d4", null ],
     [ "show_version", "db/d2a/writing_8py.html#ac24ddd309c179428c04f8887827008c2", null ],
     [ "to_info", "db/d2a/writing_8py.html#a4e5821765c2a0833fa642cd6559b003c", null ],
-    [ "typewriter", "db/d2a/writing_8py.html#a46cc8d471e5fbadc94bb501b222cb4b9", null ]
+    [ "typewriter", "db/d2a/writing_8py.html#a46cc8d471e5fbadc94bb501b222cb4b9", null ],
+    [ "quiet", "db/d2a/writing_8py.html#ab0fe405ab815a04f6423fa154fd1e5fb", null ]
 ];

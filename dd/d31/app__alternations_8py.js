@@ -8,6 +8,5 @@ var app__alternations_8py =
     [ "install_packages", "dd/d31/app__alternations_8py.html#ad26ac0da1ded6d594b1798cfbfc10a88", null ],
     [ "on_rm_error", "dd/d31/app__alternations_8py.html#a14e5948489d716cccf71366983e95116", null ],
     [ "python_update", "dd/d31/app__alternations_8py.html#a633dfb0c70b064d9e50a4dcd354500f4", null ],
-    [ "update_app", "dd/d31/app__alternations_8py.html#a4f421098632d5f7e3a4094accbb0176a", null ],
-    [ "updateapp", "dd/d31/app__alternations_8py.html#aa1afd604590fd0588c3e83354f0f4a85", null ]
+    [ "update_app", "dd/d31/app__alternations_8py.html#a4f421098632d5f7e3a4094accbb0176a", null ]
 ];

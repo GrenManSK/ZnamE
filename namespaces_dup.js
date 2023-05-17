@@ -48,7 +48,6 @@ var namespaces_dup =
       [ "spot_music_dow", "d0/d52/namespaceedupage.html#ad9fa425db620b18457fe2d13d776a532", null ],
       [ "vlc_init", "d0/d52/namespaceedupage.html#a9f3e602dd8410da6eab7cf9b0758c6f8", null ],
       [ "was_updated", "d0/d52/namespaceedupage.html#ab37eeef09149edbff47a4c8d00d485c0", null ],
-      [ "allerror", "d0/d52/namespaceedupage.html#a7d5036f27c338a2167bfd7cc6e6c8ec2", null ],
       [ "args", "d0/d52/namespaceedupage.html#acba63c33bc68f8f8ab85c006c5bc8c2c", null ],
       [ "CACHENAME", "d0/d52/namespaceedupage.html#a8d21b6ebaf7cdd6f6d5900a5bdda4f27", null ],
       [ "config", "d0/d52/namespaceedupage.html#a77cd6f866d38b46933c0b4511d706bb8", null ],
@@ -56,7 +55,6 @@ var namespaces_dup =
       [ "datelog", "d0/d52/namespaceedupage.html#a92955d9826137108df5894d62b8f6d42", null ],
       [ "else", "d0/d52/namespaceedupage.html#aa8acb043f9701042328564500900df57", null ],
       [ "encoding", "d0/d52/namespaceedupage.html#aa29f5882f581637528eb78b2435a94f1", null ],
-      [ "end", "d0/d52/namespaceedupage.html#a01919618bff9e4585c0398bb84b30b08", null ],
       [ "error_line_number", "d0/d52/namespaceedupage.html#a02548ef811f8d04abf50a37b8d6e683e", null ],
       [ "filename", "d0/d52/namespaceedupage.html#a27591067896ebdad41069f6ea7e66476", null ],
       [ "format", "d0/d52/namespaceedupage.html#a4a5f10c3d0f57a6104ba8e97ea78c7fa", null ],
@@ -64,13 +62,14 @@ var namespaces_dup =
       [ "line_number", "d0/d52/namespaceedupage.html#aa3c7cc4c23e7f5ae3b1a5a2c2bbfe842", null ],
       [ "line_numbers", "d0/d52/namespaceedupage.html#aba5c5a586247c852a96ac46b09ea9d82", null ],
       [ "LOG_FILENAME", "d0/d52/namespaceedupage.html#a3997a332918ddb9b4c50cf3e147213a3", null ],
-      [ "logger", "d0/d52/namespaceedupage.html#a81bb76bbaeee9abec4243fc8bc9f976c", null ],
+      [ "logger", "d0/d52/namespaceedupage.html#a976246b6c912124d6fdfdf1089eb5c59", null ],
       [ "moduleminus", "d0/d52/namespaceedupage.html#a1db685fa6e5ce93bc5c43d824b2b9887", null ],
       [ "modulenames", "d0/d52/namespaceedupage.html#a91f0519898034c0c5414a393b98265a7", null ],
       [ "modulenames1", "d0/d52/namespaceedupage.html#af4b2846b12a3c50e3a183081f75c33fe", null ],
       [ "music", "d0/d52/namespaceedupage.html#a8a36a115bd8539c865d33dc6a11c7589", null ],
       [ "parser", "d0/d52/namespaceedupage.html#a2d5d660ba0d864e3c255021852b4a19a", null ],
       [ "PROGRESS_BAR_CHECK", "d0/d52/namespaceedupage.html#a9731dc71206a322f6a1fb095305de964", null ],
+      [ "quiet", "d0/d52/namespaceedupage.html#af187b2a21f18d7ad2d45a6f739e97dcf", null ],
       [ "screensize", "d0/d52/namespaceedupage.html#a7b26d1c4d02cd9dc1060abd9bbf338b7", null ],
       [ "screensizepercentage", "d0/d52/namespaceedupage.html#ac388ff14fbe6c03871027bfa64fa0ee3", null ],
       [ "server", "d0/d52/namespaceedupage.html#af46e517a54e8917a6351ae61c92bb955", null ],
@@ -90,7 +89,8 @@ var namespaces_dup =
       [ "remove", "d9/d8d/namespacefile__operations.html#a68250ea9331116e0bfd78d654bb99b45", null ],
       [ "to_zip", "d9/d8d/namespacefile__operations.html#ad1e190f470ae5f50defc77c65e0479ab", null ],
       [ "unpack", "d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc", null ],
-      [ "xp3_finalization", "d9/d8d/namespacefile__operations.html#a92e42a7313938f27c8d2368279f095d8", null ]
+      [ "xp3_finalization", "d9/d8d/namespacefile__operations.html#a92e42a7313938f27c8d2368279f095d8", null ],
+      [ "quiet", "d9/d8d/namespacefile__operations.html#a689b8bbf46757780d1dbbeeaf59a41a4", null ]
     ] ],
     [ "html", "da/d9d/namespacehtml.html", [
       [ "playhtml", "da/d9d/namespacehtml.html#ae0cfc9a12b0b1ffed23c27bf6fb7fb5e", null ]
@@ -127,6 +127,11 @@ var namespaces_dup =
       [ "show_cmd", "de/d05/namespacesystem__operations.html#a6ab686f93d4b08d56d8c14a3e11cb949", null ],
       [ "wait_for_file", "de/d05/namespacesystem__operations.html#a99b95316ff9feb1492b98309cfd7007e", null ]
     ] ],
+    [ "textractor", "dd/d30/namespacetextractor.html", [
+      [ "install_font", "dd/d30/namespacetextractor.html#a18631acfa18a54682f0cc86cc737b281", null ],
+      [ "textractor", "dd/d30/namespacetextractor.html#a28e068a793b22fa708a5a769637a5528", null ],
+      [ "quiet", "dd/d30/namespacetextractor.html#aa1003744b3389b54dba4334601a85352", null ]
+    ] ],
     [ "uninstall", "dd/de8/namespaceuninstall.html", [
       [ "uninstall", "dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd", null ]
     ] ],
@@ -139,6 +144,7 @@ var namespaces_dup =
       [ "printnlog", "d8/df3/namespacewriting.html#a636f8148c7ab1181c2ac3a1d15a626d4", null ],
       [ "show_version", "d8/df3/namespacewriting.html#ac24ddd309c179428c04f8887827008c2", null ],
       [ "to_info", "d8/df3/namespacewriting.html#a4e5821765c2a0833fa642cd6559b003c", null ],
-      [ "typewriter", "d8/df3/namespacewriting.html#a46cc8d471e5fbadc94bb501b222cb4b9", null ]
+      [ "typewriter", "d8/df3/namespacewriting.html#a46cc8d471e5fbadc94bb501b222cb4b9", null ],
+      [ "quiet", "d8/df3/namespacewriting.html#ab0fe405ab815a04f6423fa154fd1e5fb", null ]
     ] ]
 ];

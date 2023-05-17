@@ -9,5 +9,6 @@ var file__operations_8py =
     [ "remove", "d3/d1c/file__operations_8py.html#a68250ea9331116e0bfd78d654bb99b45", null ],
     [ "to_zip", "d3/d1c/file__operations_8py.html#ad1e190f470ae5f50defc77c65e0479ab", null ],
     [ "unpack", "d3/d1c/file__operations_8py.html#aa0282ee2aa6f3008a170c6b1d32409bc", null ],
-    [ "xp3_finalization", "d3/d1c/file__operations_8py.html#a92e42a7313938f27c8d2368279f095d8", null ]
+    [ "xp3_finalization", "d3/d1c/file__operations_8py.html#a92e42a7313938f27c8d2368279f095d8", null ],
+    [ "quiet", "d3/d1c/file__operations_8py.html#a689b8bbf46757780d1dbbeeaf59a41a4", null ]
 ];

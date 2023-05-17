@@ -8,6 +8,5 @@ var namespaceapp__alternations =
     [ "install_packages", "d3/dc0/namespaceapp__alternations.html#ad26ac0da1ded6d594b1798cfbfc10a88", null ],
     [ "on_rm_error", "d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116", null ],
     [ "python_update", "d3/dc0/namespaceapp__alternations.html#a633dfb0c70b064d9e50a4dcd354500f4", null ],
-    [ "update_app", "d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a", null ],
-    [ "updateapp", "d3/dc0/namespaceapp__alternations.html#aa1afd604590fd0588c3e83354f0f4a85", null ]
+    [ "update_app", "d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a", null ]
 ];

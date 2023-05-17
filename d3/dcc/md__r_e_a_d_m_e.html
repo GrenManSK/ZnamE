@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.1.0-alpha+build.20230507.232036</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.4.1-alpha+build.20230517.081508</span>
    </div>
   </td>
  </tr>
@@ -101,17 +101,121 @@ $(document).ready(function(){initNavTree('d3/dcc/md__r_e_a_d_m_e.html','../../')
 <p>Using <a href="https://github.com/Waifu-pics/waifu-api" target="_blank">waifu-api</a> for WAIFU photos</p>
 <p>Using <a href="https://github.com/KalebSchmidlkofer/ytdownload" target="_blank">ytdownload</a> for music from config</p>
 <p>Using <a href="https://github.com/zyddnys/manga-image-translator" target="_blank">manga-image-translator</a> for <a class="el" href="../../de/d7e/namespacemanga__translator.html">manga_translator</a> function</p>
+<p>Using <a href="https://github.com/Artikash/Textractor" target="_blank">textractor</a> for translate function</p>
 <hr  />
 <p><b>Test login credentials:</b> PID: 426738 Password: 123456</p>
 <p>Program will make backup files and credentials saves in 'C:/Users/your_name/AppData/Local/ZnámE'</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md157"></a>
+<h1><a class="anchor" id="autotoc_md158"></a>
 Installation</h1>
 <p>Firstly use the following command <code>pip install -r requirements.txt</code></p>
 <p>If in requirements.txt are some missing dependencies program will automatically install them</p>
 <p>In file <code>choco_packages.json</code>, you can see the list of other dependencies which will be installed as part of first time installation</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md159"></a>
+<h1><a class="anchor" id="autotoc_md160"></a>
+Main functions</h1>
+<ul>
+<li>waifu | neko</li>
+<li>VOICEVOX</li>
+<li>login</li>
+<li>music</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md162"></a>
+&lt;tt&gt;config.yml&lt;/tt&gt; hereinafter as config or config file</h2>
+<hr  />
+<h1><a class="anchor" id="autotoc_md164"></a>
+Important notice</h1>
+<h2><a class="anchor" id="autotoc_md165"></a>
+Works only on Windows</h2>
+<hr  />
+<h1><a class="anchor" id="autotoc_md167"></a>
+waifu | neko</h1>
+<ul>
+<li>Downloads image from API server and opens it</li>
+<li>neko - as title says, it will return cat-themed images</li>
+<li>waifu - returns image on theme which is configured in config file<ul>
+<li>If image is gif then program converts it to video and opens it</li>
+</ul>
+</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md169"></a>
+VOICEVOX</h1>
+<ul>
+<li>Ability to choose from conda environments or classic interpreter</li>
+<li>Downloads repository <a href="https://github.com/GrenManSK/VOICEVOX">https://github.com/GrenManSK/VOICEVOX</a>, installs pip requirements, downloads engine <a href="https://github.com/VOICEVOX/voicevox_engine/releases/tag/0.14.4">https://github.com/VOICEVOX/voicevox_engine/releases/tag/0.14.4</a> (986mb) and run VOICEVOX</li>
+<li>First time install will also download medium.en and base.en model from <a href="https://github.com/openai/whisper#available-models-and-languages">https://github.com/openai/whisper#available-models-and-languages</a> (Around 1.5gb)</li>
+<li>From microphone gets an input, AI process the audio file, get text from it, convert it to AI voice, play it through VB-Audio Virtual Cable as input device and current output device</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md171"></a>
+login</h1>
+<ul>
+<li>From encrypted file check if user inputed username and password are correct</li>
+<li>if yes then proceed to login</li>
+<li>else print error message and retry</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md173"></a>
+Music</h1>
+<h2><a class="anchor" id="autotoc_md174"></a>
+Config file</h2>
+<ul>
+<li><code>basic info =&gt; music</code> - change to <code>enable</code> to enable music</li>
+<li><code>basic info =&gt; musiclist</code> - From YouTube converts to mp3 file</li>
+<li><code>basic info =&gt; musicnumber</code> - Define index of which music file to play</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md175"></a>
+Function</h2>
+<ul>
+<li>Can select from existing music list which is configured in <code>basic info =&gt; musiclist</code></li>
+<li>Else can download music through <code>spot-dl</code></li>
+<li>Also updates <code>basic info =&gt; musiclist</code> in config</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md177"></a>
+Manga_translator</h1>
+<ul>
+<li>Choose from conda environments or classic interpreter</li>
+<li>Using <a href="https://github.com/zyddnys/manga-image-translator" target="_blank">manga-image-translator</a> for this function</li>
+<li>Translate manga images</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md179"></a>
+Motivational</h1>
+<ul>
+<li>Returns quote from anime</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md181"></a>
+KayoPy</h1>
+<ul>
+<li>Downloads repository <a href="https://github.com/GrenManSK/KayoPy" target="_blank">KayoPy</a>, installs pip requirements and run KayoPy</li>
+<li>Parser of <a href="https://kayoanime.com/" target="_blank">kayoanime</a> site for anime download</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md183"></a>
+cbzPrintable</h1>
+<ul>
+<li>Downloads repository <a href="https://github.com/GrenManSK/cbzPrintable" target="_blank">cbzPrintable</a>, installs pip requirements and run KayoPy</li>
+<li>From cbz files return pdf of multiple cbz files with some formatting so it could be printed like a book (Duplex printing)</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md185"></a>
+PlayVideo</h1>
+<ul>
+<li>Searches for video on YouTube and downloads it, then plays it</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md187"></a>
+Anime_search</h1>
+<ul>
+<li>Upload image or input an url to search for episode which image is from</li>
+<li>Works on trace.moe API</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md189"></a>
 &lt;strong&gt;Config options&lt;/strong&gt;</h1>
 <div class="fragment"><div class="line">basic info:</div>
 <div class="line">  environmentA: [0-f]</div>
@@ -139,13 +243,14 @@ Installation</h1>
 <div class="line">-ni --nointro {} # Will not start intro</div>
 <div class="line">-co --configoptions {} # Will make a file with all config options, frankly speaking it will put previous text to file</div>
 <div class="line">-music --music {Any number} # Max is number of items in &#39;basic info&#39; =&gt; &#39;musiclist&#39; in config file</div>
+<div class="line">--quiet =&gt; Won&#39;t print any unnecessary logging</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun May 7 2023 23:31:13 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed May 17 2023 08:32:35 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

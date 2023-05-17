@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'uninstall'],['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall.uninstall()']]],
-  ['uninstall_2epy_1',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]],
-  ['unpack_2',['unpack',['../d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc',1,'file_operations']]],
-  ['unpause_3',['unpause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a72c099261f8e502be3049875a139a591',1,'app_alternations::installing_carousel']]],
-  ['unspecified_4',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
-  ['update_5',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
-  ['update_5fapp_6',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]],
-  ['updateapp_7',['updateapp',['../d3/dc0/namespaceapp__alternations.html#aa1afd604590fd0588c3e83354f0f4a85',1,'app_alternations.updateapp()'],['../d8/d01/namespaceapp.html#a50333b18cd1fce382937e7857f2ca034',1,'app.updateapp()']]]
+  ['textractor_0',['textractor',['../dd/d30/namespacetextractor.html',1,'textractor'],['../dd/d30/namespacetextractor.html#a28e068a793b22fa708a5a769637a5528',1,'textractor.textractor()']]],
+  ['textractor_2epy_1',['textractor.py',['../d6/d51/textractor_8py.html',1,'']]],
+  ['to_5finfo_2',['to_info',['../d8/df3/namespacewriting.html#a4e5821765c2a0833fa642cd6559b003c',1,'writing']]],
+  ['to_5fzip_3',['to_zip',['../d9/d8d/namespacefile__operations.html#ad1e190f470ae5f50defc77c65e0479ab',1,'file_operations']]],
+  ['try_4',['try',['../d0/d52/namespaceedupage.html#a3b833a872a582269c7dd26729086ec6b',1,'edupage']]],
+  ['typewriter_5',['typewriter',['../d8/df3/namespacewriting.html#a46cc8d471e5fbadc94bb501b222cb4b9',1,'writing']]]
 ];
