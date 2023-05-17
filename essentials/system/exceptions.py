@@ -46,6 +46,8 @@ class argTranslateError(Exception):
 class argTranslatorError(Exception):
     pass
 
+class argQuietError(Exception):
+    pass
 
 def error_log(line: int, fname) -> None:
     """
