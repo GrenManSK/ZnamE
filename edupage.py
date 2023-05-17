@@ -1185,6 +1185,11 @@ try:  # type: ignore
                             continue
                         run_textractor(args, translator_vstup, config['basic info']['translator'])
                         translator = True
+                        if waifu or neko or waifuvid:
+                            window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                            window.activate()
+                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                            window.activate()
                         if logged:
                             completer(unlogged_completer)
                         else:
@@ -1472,6 +1477,9 @@ try:  # type: ignore
                                        end='\r', ttime=0.01)
                             os.remove('assets/waifu.mp4')
                         else:
+                            if translator:
+                                window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                                window.activate()
                             typewriter('Closing image', end='\r', ttime=0.01)
                             pg.keyDown('alt')
                             pg.press('tab')
@@ -1659,6 +1667,11 @@ try:  # type: ignore
                         pg.keyUp('alt')
                     if neko or waifu:
                         if not waifuvid:
+                            if translator:
+                                window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                                window.activate()
+                                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                                window.activate()
                             pg.keyDown('alt')
                             pg.press('tab')
                             pg.keyUp('alt')
