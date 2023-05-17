@@ -1064,7 +1064,7 @@ try:  # type: ignore
                             'start restart.py --autol', shell=True)
                     if vstup == 'manga_translator':
                         try:
-                            run_manga_image_translator(env_menu())
+                            run_manga_image_translator(env_menu(info=True))
                             print('\n')
                         except KeyboardInterrupt:
                             print('\n')
