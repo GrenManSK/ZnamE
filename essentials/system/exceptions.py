@@ -40,6 +40,9 @@ class argNekoError(Exception):
 class argGameError(Exception):
     pass
 
+class argTranslateError(Exception):
+    pass
+
 
 def error_log(line: int, fname) -> None:
     """
@@ -47,6 +50,12 @@ def error_log(line: int, fname) -> None:
 
     :param line: The line number of the error
     """
+    if fname[0] == '?':
+        try:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        except AttributeError:
+            pass
     with open('error.log', 'a', encoding='utf-8') as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exc_type = exc_type.__qualname__
@@ -56,7 +65,7 @@ def error_log(line: int, fname) -> None:
         f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}')
 
 
-def error_get(errors, line: list) -> None:
+def error_get(errors, line: list, fname: None|str = None) -> None:
     """
     The error_get function is used to raise the errors that are found in the error_log function.
         The error_get function takes two arguments:
@@ -69,15 +78,20 @@ def error_get(errors, line: list) -> None:
     """
 
     try:
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        if fname is None:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
     except AttributeError:
         pass
     try:
         for times, error in enumerate(errors.exceptions):
             try:
-                fname = os.path.basename(
-                    error.__traceback__.tb_frame.f_locals['__file__'])
+                try:
+                    if fname is None:
+                        fname = os.path.basename(
+                            error.__traceback__.tb_frame.f_locals['__file__'])
+                except AttributeError:
+                    fname = '?edupage.py'
                 try:
                     raise eval(
                         error.with_traceback.__qualname__.split('.')[0])(error)

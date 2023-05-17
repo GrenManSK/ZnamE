@@ -6,6 +6,7 @@ basic info:
   music: enable
   musiclist: ''
   musicnumber: 0
+  translate: Slovak
 game settings:
   computer_power: 0.5
   goal_score: 2000

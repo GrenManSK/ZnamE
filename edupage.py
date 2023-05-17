@@ -99,7 +99,7 @@ try:  # type: ignore
     except AttributeError:
         printnlog("'config.ini' file is corrupt -> option missing")
         error_get(configNoOption(
-            'Corruption of config file => option missing'), [line_number],)
+            'Corruption of config file => option missing'), [line_number], fname='edupage.py')
         input("Press 'enter' to quit")
         sys.exit(1)
 
@@ -120,7 +120,7 @@ try:  # type: ignore
                 args.update = UNSPECIFIED
                 error_get(ExceptionGroup('', [FileNotFoundError(
                     'update.py isn\'t present'), TypeError('NOT FATAL' +
-                                                           ' ERROR')]), [get_line_number()])
+                                                           ' ERROR')]), [get_line_number()], fname='edupage.py')
 
         logger.stay(printnlog('DONE', toprint=False))
 
@@ -790,7 +790,8 @@ try:  # type: ignore
             from essentials.functions.kayopy import run_kayopy
             from essentials.functions.manga_translator import run_manga_image_translator
             from essentials.system.conda import env_menu
-            from essentials.functions.textractor import textractor
+            from essentials.functions.textractor import run_textractor
+            from essentials.data.translate import t_languages
 
             musiclistnew: list = []
             for music_name in music:
@@ -823,6 +824,7 @@ try:  # type: ignore
             waifuvid: bool = False
             musicplay: bool = False
             savefilemode: bool = False
+            translator: bool = False
             offline_game: bool = config['game settings']['offline_game']
             maxlogins: int = 1
             if not inactive1:
@@ -867,6 +869,14 @@ try:  # type: ignore
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
+            if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
+                run_textractor(args, args.translate)
+                translator = True
+                pg.write('cls\n')
+            if config['basic info']['translate'] != '':
+                run_textractor(args, config['basic info']['translate'])
+                translator = True
+                pg.write('cls\n')
             while True:
                 completer(unlogged_completer)
                 internet_check(args)
@@ -1161,13 +1171,18 @@ try:  # type: ignore
                         except Exception:
                             pass
                     if vstup == 'translate':
-                        
-                        textractor(input('Select language *must be in google translate (e.g. slovak)> '))
-
-                        while not os.path.exists('textractor_done'):
-                            sleep(0.5)
-                        os.remove('textractor_done')
-                        move('Textractor', 0, 0, int(screensize[0]/2), int((round((322/1736)*screensize[0], 0))-35))
+                        if translator:
+                            continue
+                        completer(['quit'] + t_languages)
+                        translator_vstup = input('Select language *must be in google translate (e.g. slovak)> ')
+                        if translator_vstup == 'quit':
+                            continue
+                        run_textractor(args, translator_vstup)
+                        translator = True
+                        if logged:
+                            completer(unlogged_completer)
+                        else:
+                            completer(logged_completer)
                     if vstup == 'save':
                         if waifu or neko or waifuvid:
                             imagetime: str = str(
@@ -1630,6 +1645,12 @@ try:  # type: ignore
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
                     from essentials.system.file_operations import file_to_datafolder, xp3_finalization,\
                                                                                         to_zip
+                    if translator:
+                        window = pygetwindow.getWindowsWithTitle('Textractor')[1]
+                        window.activate()
+                        pg.keyDown('alt')
+                        pg.press('f4')
+                        pg.keyUp('alt')
                     if neko or waifu:
                         if not waifuvid:
                             pg.keyDown('alt')
@@ -1843,8 +1864,7 @@ try:  # type: ignore
                         return 0
         except *Exception as returned_error:
             printnlog('Writing an error to \'error.log\'!!!')
-            for error_dump in returned_error.exceptions:
-                printnlog(traceback.format_exc())
+            printnlog(traceback.format_exc())
             error_line_numbers: list = []
             for error in range(0, len(returned_error.exceptions)):
                 if (error_line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__)\
@@ -1877,8 +1897,7 @@ try:  # type: ignore
             pass
 except *Exception as e:
     printnlog('Writing an error to \'error.log\'!!!')
-    for error in e.exceptions:
-        printnlog(traceback.format_exc())
+    printnlog(traceback.format_exc())
     line_numbers: list = []
     for error in range(0, len(e.exceptions)):
         if (error_line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__) is None:

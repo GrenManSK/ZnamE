@@ -26,7 +26,7 @@ def uninstall():
                 pass
         except *Exception as e:
             error_get(eval(type(e).__name__),
-                        get_line_number(), 'Unknown error')
+                        get_line_number(), 'Unknown error', fname='uninstall.py')
     else:
         if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
             os.remove("C:/Users/" + os.getlogin() +

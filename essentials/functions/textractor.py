@@ -1,6 +1,7 @@
 from ..internet import download
 import os
-import shutil
+from ..system.system_operations import move
+from ..data.translate import t_languages
 import pyautogui as pg
 import zipfile
 from tqdm import tqdm
@@ -14,9 +15,13 @@ import pygetwindow
 load_dotenv()
 
 quiet = os.getenv('QUIET')
+screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
+screensize = [int(x) for x in screensize]
 
 
-def textractor(lang):
+def textractor(args, lang):
+    if not lang in t_languages:
+        return 0
     lang = lang.lower()
     if not os.path.exists('Textractor'):
         download('https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip', 'textractor.zip')
@@ -46,9 +51,11 @@ def textractor(lang):
     for i in range(3):
         pg.press('tab')
     pg.press('space')
+    sleep(0.2)
     pg.write('python.exe')
     pg.press('tab')
     pg.press('enter')
+    sleep(0.2)
     pg.keyDown('shift')
     pg.press('tab')
     pg.press('tab')
@@ -77,8 +84,9 @@ def textractor(lang):
     hwnd = win32gui.GetForegroundWindow()
     win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 100, 100, 200, 200, 0)
     open('textractor_done', 'x')
-    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-    window.activate()
+    if args.test is not None:
+        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+        window.activate()
 
 
 def install_font():
@@ -88,3 +96,13 @@ def install_font():
     pg.keyDown('alt')
     pg.press('f4')
     pg.keyUp('alt')
+
+
+def run_textractor(args, lang):
+    textractor(args, lang)
+
+    while not os.path.exists('textractor_done'):
+        sleep(0.5)
+    os.remove('textractor_done')
+    move('Textractor', 0, 0, int(
+        screensize[0]/2), int((round((322/1736)*screensize[0], 0))-35))
