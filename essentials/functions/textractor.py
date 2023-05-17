@@ -128,8 +128,7 @@ def textractor(args, lang, translator):
         pg.write('Extra Newlines.xdll')
         pg.press('enter')
         sleep(0.25)
-        
-        
+
         window = pygetwindow.getWindowsWithTitle('Textractor')[0]
         window.activate()
         pg.keyDown('shift')
@@ -194,3 +193,9 @@ def run_textractor(args, lang, translator):
     os.remove('textractor_done')
     move('Textractor', 0, 0, int(
         screensize[0]/2), int((round((322/1736)*screensize[0], 0))-35))
+
+
+def change_quiet_textractor(to):
+    global quiet
+    if to in [True, False]:
+        quiet = to

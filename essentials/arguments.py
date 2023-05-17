@@ -4,7 +4,7 @@ import os
 import yaml
 from .internet import get_line_number
 from .functions.writing import printnlog, typewriter
-from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError, argTranslateError, argTranslatorError
+from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError, argTranslateError, argTranslatorError, argQuietError
 from .system.exceptions import error_get
 from .data.translate import t_languages, t_translators
 from dotenv import load_dotenv
@@ -199,6 +199,13 @@ def check_correctness(args, config, logger, music):
         sys.exit(1)
     else:
         printnlog('basic info => translator')
+    if not eval(str(config['basic info']['quiet']).split(' ')[0]) in [True, False]:
+        error_get(ExceptionGroup('', [argTranslatorError('Wrong choice \'basic info\' => quiet character'), ValueError(
+            f'Not allowed option | Allowed: True|False')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
+        sys.exit(1)
+    else:
+        printnlog('basic info => quiet')
 
 
 def print_config(logger, config):
