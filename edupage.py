@@ -39,7 +39,7 @@ try:  # type: ignore
     with open('.env', 'w', encoding='utf-8') as dotenv:
         dotenv.write(f'DATELOG={datelog}\n')
         dotenv.write(f'QUIET={quiet}\n')
-    from essentials.functions.writing import printnlog, typewriter
+    from essentials.functions.writing import printnlog, typewriter, change_quiet
     from essentials.system.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))
@@ -113,6 +113,14 @@ try:  # type: ignore
         parser, music, UNSPECIFIED = arguments(config)
         args = parser.parse_args()
         check_correctness(args, config, logger, music)
+        
+        from essentials.system.system_info import get_screensize, system_info
+        screensize, screensizepercentage = get_screensize()
+        if config['basic info']['quiet']:
+            change_quiet(True)
+            logger = verbose.get_logger(quiet=True)
+            quiet = True
+        
         if args.update is None:
             try:
                 os.remove('update.py')
@@ -210,8 +218,6 @@ try:  # type: ignore
         os.system('color ' + str(config['basic info']['environmentA']
                                  ) + str(config['basic info']['environmentA']))
         os.system('Title ' + 'ZnámE')
-        from essentials.system.system_info import get_screensize, system_info
-        screensize, screensizepercentage = get_screensize()
         if not os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"):
             system_info(logger, screensize)
         if not os.path.exists("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/backup/"):

@@ -6,6 +6,7 @@ basic info:
   music: enable
   musiclist: ''
   musicnumber: 0
+  quiet: true
   translate: ''
   translator: Bing
 game settings:
