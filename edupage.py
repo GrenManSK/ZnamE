@@ -1361,9 +1361,8 @@ try:  # type: ignore
                             typewriter(":( You can't have -1 neko", ttime=0.01)
                             continue
                         typewriter('Closing image', end='\r', ttime=0.01)
-                        pg.keyDown('alt')
-                        pg.press('tab')
-                        pg.keyUp('alt')
+                        window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                        window.activate()
                         pg.keyDown('alt')
                         pg.press('f4')
                         pg.keyUp('alt')
@@ -1485,9 +1484,8 @@ try:  # type: ignore
                                 window = pygetwindow.getWindowsWithTitle('tmp')[0]
                                 window.activate()
                             typewriter('Closing image', end='\r', ttime=0.01)
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
+                            window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                            window.activate()
                             pg.keyDown('alt')
                             pg.press('f4')
                             pg.keyUp('alt')
