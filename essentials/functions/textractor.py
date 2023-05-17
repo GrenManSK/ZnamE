@@ -1,3 +1,4 @@
+import win32api
 from ..internet import download
 import os
 from ..system.system_operations import move
@@ -14,16 +15,25 @@ import win32con
 import pygetwindow
 load_dotenv()
 
+
 quiet = os.getenv('QUIET')
 screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
 screensize = [int(x) for x in screensize]
 
 
-def textractor(args, lang):
+def rclick(x, y):
+    win32api.SetCursorPos((x, y))
+    win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, x, y, 0, 0)
+
+
+def textractor(args, lang, translator):
     if not lang in t_languages:
         return 0
     lang = lang.lower()
+    update = False
     if not os.path.exists('Textractor'):
+        update = True
         download('https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip', 'textractor.zip')
         with zipfile.ZipFile('textractor.zip', mode='r') as zip:
             for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
@@ -43,11 +53,89 @@ def textractor(args, lang):
         print('Close the program if already installed')
         os.system('INSTALL_THIS_UNICODE_FONT.ttf')
         os.remove('INSTALL_THIS_UNICODE_FONT.ttf')
+
     os.system('start Textractor/x64/Textractor.exe')
     sleep(5)
 
     window = pygetwindow.getWindowsWithTitle('Textractor')[1]
     window.activate()
+    if update:
+        for i in range(13):
+            pg.press('tab')
+        pg.press('space')
+        move('Extensions', 0, 0, 100, 300)
+        rclick(50, 50)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.5)
+        pg.write(f'{translator} Translate.xdll')
+        pg.press('enter')
+        sleep(0.25)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        for i in range(7):
+            pg.press('up')
+        for i in range(3):
+            pg.press('down')
+        rclick(50, 200)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.25)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        for i in range(7):
+            pg.press('up')
+        for i in range(3):
+            pg.press('down')
+        rclick(50, 200)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.25)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        for i in range(7):
+            pg.press('up')
+        for i in range(3):
+            pg.press('down')
+        rclick(50, 200)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.5)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        rclick(50, 50)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.5)
+        pg.write('Extra Window.xdll')
+        pg.press('enter')
+        sleep(0.25)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        rclick(50, 50)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('enter')
+        sleep(0.5)
+        pg.write('Extra Newlines.xdll')
+        pg.press('enter')
+        sleep(0.25)
+        
+        
+        window = pygetwindow.getWindowsWithTitle('Textractor')[0]
+        window.activate()
+        pg.keyDown('shift')
+        for i in range(13):
+            pg.press('tab')
+        pg.keyUp('shift')
     for i in range(3):
         pg.press('tab')
     pg.press('space')
@@ -65,7 +153,7 @@ def textractor(args, lang):
     print('This is test')
     pg.press('down')
     pg.press('down')
-    window = pygetwindow.getWindowsWithTitle('Google Translate')[0]
+    window = pygetwindow.getWindowsWithTitle(f'{translator} Translate')[0]
     window.activate()
     sleep(0.5)
     pg.press('tab')
@@ -98,8 +186,8 @@ def install_font():
     pg.keyUp('alt')
 
 
-def run_textractor(args, lang):
-    textractor(args, lang)
+def run_textractor(args, lang, translator):
+    textractor(args, lang, translator)
 
     while not os.path.exists('textractor_done'):
         sleep(0.5)
