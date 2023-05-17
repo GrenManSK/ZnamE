@@ -870,11 +870,11 @@ try:  # type: ignore
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
             if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
-                run_textractor(args, args.translate)
+                run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 pg.write('cls\n')
             if config['basic info']['translate'] != '':
-                run_textractor(args, config['basic info']['translate'])
+                run_textractor(args, config['basic info']['translate'], config['basic info']['translator'])
                 translator = True
                 pg.write('cls\n')
             while True:
@@ -1177,7 +1177,7 @@ try:  # type: ignore
                         translator_vstup = input('Select language *must be in google translate (e.g. slovak)> ')
                         if translator_vstup == 'quit':
                             continue
-                        run_textractor(args, translator_vstup)
+                        run_textractor(args, translator_vstup, config['basic info']['translator'])
                         translator = True
                         if logged:
                             completer(unlogged_completer)

@@ -7,6 +7,7 @@ basic info:
   musiclist: ''
   musicnumber: 0
   translate: ''
+  translator: Bing
 game settings:
   computer_power: 0.5
   goal_score: 2000

@@ -43,6 +43,9 @@ class argGameError(Exception):
 class argTranslateError(Exception):
     pass
 
+class argTranslatorError(Exception):
+    pass
+
 
 def error_log(line: int, fname) -> None:
     """

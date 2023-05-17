@@ -4,9 +4,9 @@ import os
 import yaml
 from .internet import get_line_number
 from .functions.writing import printnlog, typewriter
-from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError, argTranslateError
+from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError, argTranslateError, argTranslatorError
 from .system.exceptions import error_get
-from .data.translate import t_languages
+from .data.translate import t_languages, t_translators
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -192,6 +192,13 @@ def check_correctness(args, config, logger, music):
         sys.exit(1)
     else:
         printnlog('basic info => translate')
+    if not str(config['basic info']['translator']).split(' ')[0] in t_translators:
+        error_get(ExceptionGroup('', [argTranslatorError('Wrong choice \'basic info\' => translator character'), ValueError(
+            f'Not allowed language | Allowed: {t_languages}')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
+        sys.exit(1)
+    else:
+        printnlog('basic info => translator')
 
 
 def print_config(logger, config):
@@ -209,6 +216,8 @@ def print_config(logger, config):
         'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
     logger.stay(printnlog('Translate: ' +
                 str(config['basic info']['translate']), toprint=False))
+    logger.stay(printnlog('Translator: ' +
+                str(config['basic info']['translator']), toprint=False))
     logger.stay(printnlog('User history: ' +
                 str(config['user history']), toprint=False))
     logger.prev('')
@@ -227,6 +236,8 @@ def write_config_options(server):
             f'  st: [Any Youtube video title, divided by comma]\n')
         config_file.write(
             f'  [Any number; Max is number of items in musiclist]\n')
+        config_file.write(f"  translate: [''|'Afrikaans','Albanian','Amharic','Arabic','Armenian','Assamese','Aymara','Azerbaijani','Bambara','Basque','Belarusian','Bengali','Bhojpuri','Bosnian','Bulgarian','Catalan','Cebuano','Chichewa','Chinese (Simplified)','Chinese (Traditional)','Corsican','Czech','Danish','Dhivehi','Dogri','Dutch','English','Esperanto','Estonian','Ewe','Filipino','Finnish','French','Frisian','Galician','Georgian','German','Greek','Guarani','Gujarati','Haitian Creole','Hausa','Hawaiian','Hindi','Hmong','Hungarian','Icelandic','Igbo','Ilocano','Indonesian','Irish','Italian','Japanese','Javanese','Kannada','Kazakh','Khmer','Kinyarwanda','Konkani','Korean','Krio','Kurdish (Kurmanji)','Kurdish (Sorani)','Kyrgyz','Lao','Latvian','Lingala','Lithuanian','Luganda','Luxembourgish','Macedonian','Maithili','Malagasy','Malay','Malayalam','Maltese','Maori','Marathi','Meiteilon (Manipuri)','Mizo','Mongolian','Myanmar (Burmese)','Nepali','Norwegian','Odia (Oriya)','Oromo','Pashto','Polish','Portuguese','Punjabi','Quechua','Romanian','Russian','Samoan','Sanskrit','Scots Gaelic','Sepedi','Serbian','Sesotho','Shona','Si ndhi','Sinhala','Slovak','Slovenian','Somali','Spanish','Sundanese','Swahili','Swedish','Tamil','Tatar','Telugu','Thai','Tigrinya','Tsonga','Turkish','Turkmen','Twi','Ukrainian','Urdu','Uyghur','Uzbek','Vietnamese','Welsh','Xhosa','Yiddish','Yoruba','Zulu']")
+        config_file.write(f"translator: [Bing|Google]")
         config_file.write('game settings:\n')
         config_file.write(
             f'  computer_power: [Any number; Lower the powerfull]\n')
