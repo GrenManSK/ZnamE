@@ -178,7 +178,7 @@ waifu settings:
 
 ---
 
-CLI Arguments
+## CLI Arguments
 
 ```plain
 -v --version {} # Show version of the app
