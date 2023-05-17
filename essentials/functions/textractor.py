@@ -18,25 +18,26 @@ quiet = os.getenv('QUIET')
 
 def textractor(lang):
     lang = lang.lower()
-    download('https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip', 'textractor.zip')
-    with zipfile.ZipFile('textractor.zip', mode='r') as zip:
-        for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-            try:
-                zip.extract(member)
-                if not quiet:
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
-                log(f"{os.path.basename(member)}(" +
-                    str(os.path.getsize(member)) + "B)")
-            except zipfile.error as e:
-                pass
-        zip.close()
-    os.remove('Textractor.zip')
+    if not os.path.exists('Textractor'):
+        download('https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip', 'textractor.zip')
+        with zipfile.ZipFile('textractor.zip', mode='r') as zip:
+            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                try:
+                    zip.extract(member)
+                    if not quiet:
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)")
+                    log(f"{os.path.basename(member)}(" +
+                        str(os.path.getsize(member)) + "B)")
+                except zipfile.error as e:
+                    pass
+            zip.close()
+        os.remove('Textractor.zip')
 
-    Thread(target=install_font).start()
-    print('Close the program if already installed')
-    os.system('INSTALL_THIS_UNICODE_FONT.ttf')
-    os.remove('INSTALL_THIS_UNICODE_FONT.ttf')
+        Thread(target=install_font).start()
+        print('Close the program if already installed')
+        os.system('INSTALL_THIS_UNICODE_FONT.ttf')
+        os.remove('INSTALL_THIS_UNICODE_FONT.ttf')
     os.system('start Textractor/x64/Textractor.exe')
     sleep(2)
 
@@ -76,6 +77,8 @@ def textractor(lang):
     hwnd = win32gui.GetForegroundWindow()
     win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 100, 100, 200, 200, 0)
     open('textractor_done', 'x')
+    window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+    window.activate()
 
 
 def install_font():

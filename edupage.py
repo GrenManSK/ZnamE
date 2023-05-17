@@ -1659,8 +1659,9 @@ try:  # type: ignore
                             window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
                             window.activate()
                             window.minimize()
-                            while os.path.exists('END'):
+                            while not os.path.exists('VIDEO_END'):
                                 sleep(0.1)
+                            os.remove('VIDEO_END')
                             media_player1.stop()
                             os.remove('green1.mp4')
                             
@@ -1730,6 +1731,7 @@ try:  # type: ignore
                     cv2.destroyAllWindows()
                     logger.stay("PACKING SECOND PART OF DATA")
                     to_zip(logger, CACHENAME, start)
+                    open('VIDEO_END', 'x')
                     if restart:
                         logger.stay('The program will restart automatically.')
                     elif not restart:
