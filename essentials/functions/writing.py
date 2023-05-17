@@ -6,10 +6,11 @@ load_dotenv('.env')
 
 quiet = eval(os.getenv('QUIET'))
 
+
 def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:
     """
     The printnlog function is a wrapper for the print function that also writes to a log file.
-    
+
     :param msg: str: Specify the message that will be printed and logged
     :param end: str: Specify the end of the line
     :param toprint: bool: Determine whether or not to print the message
@@ -81,3 +82,13 @@ def typewriter(word: str, ttime: float = 0.001, end: str = '\n') -> None:
 def show_version(args):
     with open('version', 'r') as verzia:
         typewriter('You\'re using ZnámE ' + verzia.read() + "\n")
+
+
+def change_quiet(to):
+    from .textractor import change_quiet_textractor
+    from ..system.file_operations import change_quiet_file_op
+    global quiet
+    if to in [True, False]:
+        quiet = to
+        change_quiet_file_op(to)
+        change_quiet_textractor(to)

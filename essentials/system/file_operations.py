@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 quiet = eval(os.getenv('QUIET'))
 
+
 def unpack(datelog, args, cachename: str) -> None:
     """
     The unpack function unpacks the downloaded zip file and extracts the data from it.
@@ -175,7 +176,7 @@ def to_zip(logger, cachename, start):
                 [zinfo.file_size for zinfo in zip.filelist])
             if not quiet:
                 tqdm.write(logger.stay(zipfileswopath[i] + "(" + str(os.path.getsize(
-            zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
+                    zipfiles[i])) + " KB) -> " + str(round(filesizeen - zip_kb_old, 2)) + " KB", end='', toprint=False))
             zip_kb_old: int = filesizeen
             os.remove(zipfiles[i])
             if i == len(zipfiles)-1:
@@ -217,3 +218,9 @@ def remove(file: str | list[str]):
 
 def mkdir(path):
     os.makedirs(path, exist_ok=True)
+
+
+def change_quiet_file_op(to):
+    global quiet
+    if to in [True, False]:
+        quiet = to
