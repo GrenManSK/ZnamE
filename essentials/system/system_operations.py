@@ -33,7 +33,7 @@ def getWindow(args) -> bool:
         cv2.imshow("Image", dummy)
     except cv2.error:
         error_get(cv2.error('File is corrupt (probably \'banner.png\')'), [
-            get_line_number()])
+            get_line_number()], fname='system_operations.py')
         return True
     cv2.waitKey(1)
     sleep(0.1)
@@ -45,7 +45,7 @@ def getWindow(args) -> bool:
             return False
         except IndexError:
             error_get(IndexError(
-                'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+                'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
             return True
     return False
 
@@ -274,7 +274,7 @@ def show_cmd():
     except IndexError:
         exit = True
         error_get(IndexError(
-            'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()])
+            'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
 
 
 def wait_for_file(path):

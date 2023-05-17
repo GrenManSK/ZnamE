@@ -4,8 +4,9 @@ import os
 import yaml
 from .internet import get_line_number
 from .functions.writing import printnlog, typewriter
-from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError
+from .system.exceptions import argenvironmentError, argInactiveLimitError, argIntroError, argMusicError, argWaifuError, argNekoError, argGameError, argTranslateError
 from .system.exceptions import error_get
+from .data.translate import t_languages
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -43,6 +44,8 @@ def arguments(config):
                         help='Starts music; you can select from: ' + str(i for i in music), default=0, nargs='?')
     parser.add_argument('-quiet', '--quiet', choices=[],
                         help='', default=UNSPECIFIED, nargs='?')
+    parser.add_argument('-translate', '--translate', choices=t_languages,
+                        help='', default=UNSPECIFIED, nargs='?')
 
     "These are arguments for program to use"
 
@@ -73,13 +76,15 @@ def check_correctness(args, config, logger, music):
     logger.stay(printnlog("Checking config correctness", toprint=False))
     if not str(config['basic info']['environmentA']).split(' ')[0] in hexnumber:
         error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environmentA character'), ValueError(
-            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
+            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     else:
         printnlog('basic info => environmentA')
     if not str(config['basic info']['environmentB']).split(' ')[0] in hexnumber:
         error_get(ExceptionGroup('', [argenvironmentError('Wrong choice \'basic info\' => environmentB character'), ValueError(
-            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()])
+            f'Not allowed character | Allowed: {hexnumber}')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     else:
         printnlog('basic info => environmentB')
@@ -88,11 +93,13 @@ def check_correctness(args, config, logger, music):
         printnlog('basic info => inactivelimit')
     except ValueError:
         error_get(ExceptionGroup('', [argInactiveLimitError(
-            'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()])
+            'Wrong choice in \'basic info\' => inactivelimit'), ValueError('take only numbers')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     if not config['basic info']['intro'] in [True, False]:
         error_get(ExceptionGroup('', [argIntroError('Wrong choice in \'basic info\' => intro'), ValueError(
-            'Only \'True\' or \'False\'')]), [get_line_number()])
+            'Only \'True\' or \'False\'')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     else:
         printnlog('basic info => intro')
@@ -104,11 +111,13 @@ def check_correctness(args, config, logger, music):
         pass
     else:
         error_get(ExceptionGroup('', [argMusicError('Wrong choice in \'basic info\' => music'), ValueError(
-            'Only \'enable\' or \'disable\'')]), [get_line_number()])
+            'Only \'enable\' or \'disable\'')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     if not config['waifu settings']['type'].split(' ')[0] in ['sfw', 'nsfw']:
         error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => type'), ValueError(
-            'Only \'sfw\' or \'nsfw\'')]), [get_line_number()])
+            'Only \'sfw\' or \'nsfw\'')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     else:
         printnlog('waifu settings => type')
@@ -117,7 +126,8 @@ def check_correctness(args, config, logger, music):
                                "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
         if not config['waifu settings']['category'].split(' ')[0] in category:
             error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
-                'Use \'waifu\' and see option in setup function')]), [get_line_number()])
+                'Use \'waifu\' and see option in setup function')]), [get_line_number()], fname='arguments.py')
+            input('Enter to exit')
             sys.exit(1)
         else:
             printnlog('waifu settings => category')
@@ -125,14 +135,16 @@ def check_correctness(args, config, logger, music):
         category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
         if not config['waifu settings']['category'].split(' ')[0] in category:
             error_get(ExceptionGroup('', [argWaifuError('Wrong choice in \'waifu settings\' => category'), ValueError(
-                'Use \'waifu\' and see option in setup function')]), [get_line_number()])
+                'Use \'waifu\' and see option in setup function')]), [get_line_number()], fname='arguments.py')
+            input('Enter to exit')
             sys.exit(1)
         else:
             printnlog('waifu settings => category')
     server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
     if not config['neko settings']['server'] in server:
         error_get(ExceptionGroup('', [argNekoError('Wrong choice in \'neko settings\' => server'), ValueError(
-            f'Only take {str(server)}')]), [get_line_number()])
+            f'Only take {str(server)}')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     else:
         printnlog('neko settings => server')
@@ -140,7 +152,8 @@ def check_correctness(args, config, logger, music):
         int(config['game settings']['goal_score'])
     except ValueError:
         error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => goal_score'), ValueError(
-            'take only numbers')]), [get_line_number()])
+            'take only numbers')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     try:
         if 10 <= int(config['game settings']['goal_score']):
@@ -149,14 +162,16 @@ def check_correctness(args, config, logger, music):
             raise ValueError
     except ValueError:
         error_get(ExceptionGroup('', [argGameError(
-            'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()])
+            'Wrong choice in \'game settings\' => goal_score'), ValueError('minimum is 10')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     try:
         float(config['game settings']['computer_power'])
         printnlog('game settings => computer_power')
     except ValueError:
         error_get(ExceptionGroup('', [argGameError('Wrong choice in \'game settings\' => computer_power'), ValueError(
-            'take only numbers')]), [get_line_number()])
+            'take only numbers')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
         sys.exit(1)
     if config['basic info']['music'] == 'enable':
         musiclimittext: bool = False
@@ -170,6 +185,13 @@ def check_correctness(args, config, logger, music):
             config = set_config('basic info', 'musicnumber', int(args.music)-1)
             configlenmusic = int(config['basic info']['musicnumber'])
             args.music = int(args.music) - 1
+    if not str(config['basic info']['translate']).split(' ')[0] in t_languages:
+        error_get(ExceptionGroup('', [argTranslateError('Wrong choice \'basic info\' => translate character'), ValueError(
+            f'Not allowed language | Allowed: {t_languages}')]), [get_line_number()], fname='arguments.py')
+        input('Enter to exit')
+        sys.exit(1)
+    else:
+        printnlog('basic info => translate')
 
 
 def print_config(logger, config):
@@ -185,10 +207,11 @@ def print_config(logger, config):
         'Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
     logger.stay(printnlog(
         'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
+    logger.stay(printnlog('Translate: ' +
+                str(config['basic info']['translate']), toprint=False))
     logger.stay(printnlog('User history: ' +
                 str(config['user history']), toprint=False))
     logger.prev('')
-
 
 
 def write_config_options(server):
@@ -213,14 +236,15 @@ def write_config_options(server):
         config_file.write(f'  server: {server}\n')
         config_file.write(f'user history:\n')
         category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
-                                "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+                               "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
         config_file.write(f'category (sfw) = {category}\n')
         category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
         config_file.write(f'category (nsfw) = {category}\n')
         config_file.write('  type: [sfw/nsfw]\n')
     os.remove(f'crash_dump-{datelog}.txt')
     sys.exit(1)
-    
+
+
 def set_config(section: str, name: str, info: any) -> any:
     """
     The set_config function is used to set a value in the config.yml file.
@@ -247,5 +271,6 @@ def music2str(musiclistnew):
     musiclistnewstring: str = ''
     for i in range(len(musiclistnew)):
         musiclistnewstring += str(musiclistnew[i]) + ','
-    config = set_config('basic info', 'musiclist', str(musiclistnewstring[0:-1]))
+    config = set_config('basic info', 'musiclist',
+                        str(musiclistnewstring[0:-1]))
     return config
