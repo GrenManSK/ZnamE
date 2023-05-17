@@ -1677,9 +1677,10 @@ try:  # type: ignore
                             media_player1.set_media(media)
                             media_player1.play()
                             sleep(4.5)
-                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                            window.activate()
-                            window.minimize()
+                            if args.test is not None:
+                                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+                                window.activate()
+                                window.minimize()
                             while not os.path.exists('VIDEO_END'):
                                 sleep(0.1)
                             os.remove('VIDEO_END')
