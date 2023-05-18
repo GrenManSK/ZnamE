@@ -4,7 +4,10 @@ from time import sleep
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-quiet = eval(os.getenv('QUIET'))
+try:
+    quiet = eval(os.getenv('QUIET'))
+except TypeError:
+    quiet = False
 
 
 def printnlog(msg: str, end: str = '\n', toprint: bool = True) -> str:

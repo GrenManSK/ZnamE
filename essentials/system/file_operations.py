@@ -9,7 +9,11 @@ import stat
 import time
 from dotenv import load_dotenv
 load_dotenv('.env')
-quiet = eval(os.getenv('QUIET'))
+
+try:
+    quiet = eval(os.getenv('QUIET'))
+except TypeError:
+    quiet = False
 
 
 def unpack(datelog, args, cachename: str) -> None:
