@@ -29,8 +29,7 @@ def run_kayopy():
                   ' -m pip install -r KayoPy/requirements.txt')
 
         kayopy()
-        
-        
-        
+
+
 def kayopy():
     os.system(f"{sys.executable} KayoPy/kayopy/kayopy.py")

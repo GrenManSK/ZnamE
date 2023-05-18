@@ -187,7 +187,7 @@ def pg_comb(operations: dict[str, str]):
     """
     The pg_comb function takes a dictionary of operations and keys as an argument.
     The function then iterates through the dictionary, performing each operation on the corresponding key.
-    
+
     :param operations: dict[str: Define the operations that can be used in this function
     :param str]: Define the type of data that will be passed into the function
     :return: A dictionary with the keys being operations and the values being keys
@@ -238,7 +238,7 @@ def intro_video(args, media_player):
     """
     The intro_video function is used to play the intro video and greeting audio.
         It also maximizes the VLC window if it's not already maximized.
-    
+
     :param args: Pass the arguments from the command line to this function
     :param media_player: Play the intro video
     :return: Nothing
@@ -265,7 +265,7 @@ def show_cmd():
     The show_cmd function is used to activate the window with the title 'Známé'
         if it exists. If it does not exist, then an IndexError will be raised and
         handled by error_get().
-    
+
     :return: The window object
     """
     try:
@@ -282,7 +282,7 @@ def wait_for_file(path):
     The wait_for_file function waits for a file to be created.
         It takes one argument, the path of the file to wait for.
         The function will loop until it finds that the file exists.
-    
+
     :param path: Specify the path of the file you want to wait for
     :return: Nothing
     """

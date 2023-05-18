@@ -8,11 +8,13 @@ def get_envs(info: bool = False) -> dict:
     with open('condaEnvList', 'w') as file:
         try:
             if info:
-                typewriter(printnlog('Running command: conda env list', toprint=False), ttime=0.01)
+                typewriter(
+                    printnlog('Running command: conda env list', toprint=False), ttime=0.01)
             subprocess.check_call(['conda', 'env', 'list'], stdout=file)
         except FileNotFoundError:
             if info:
-                typewriter(printnlog('Command not found; Returning emtpy dict', toprint=False))
+                typewriter(
+                    printnlog('Command not found; Returning emtpy dict', toprint=False))
             return dict()
     with open('condaEnvList', 'r') as file:
         fr = file.readlines()[2:-1]
