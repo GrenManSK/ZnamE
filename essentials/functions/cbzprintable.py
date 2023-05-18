@@ -74,7 +74,7 @@ def cbz_cli():
         vstup = input('> ')
         if vstup in ['q', 'quit', 'exit', '-q']:
             break
-        if "#" in vstup or "&" in vstup:
+        if "#" in vstup or "&" in vstup or ":" in vstup or ";" in vstup:
             print('Unallowed characters\n')
         parse_cbz_command(vstup)
 
