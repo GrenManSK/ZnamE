@@ -1835,7 +1835,7 @@ try:  # type: ignore
                             if vstup in ['', 'y']:
                                 translator_restart = ''
                                 if translator:
-                                    translator_restart = f' --translate {translator_langauge} ' 
+                                    translator_restart = f' --translate {translator_language} ' 
                                 os.system('cls')
                                 sys.stdout.flush()
                                 if os.path.isfile("C:/Users/" + os.getlogin()
