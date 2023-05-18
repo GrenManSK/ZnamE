@@ -879,6 +879,7 @@ try:  # type: ignore
                 translator_language = args.translate
                 pg.write('cls\n')
             if config['basic info']['translate'] != '':
+            elif config['basic info']['translate'] != '':
                 run_textractor(args, config['basic info']['translate'], config['basic info']['translator'])
                 translator = True
                 translator_language = config['basic info']['translate']
