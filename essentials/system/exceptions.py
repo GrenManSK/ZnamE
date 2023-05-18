@@ -40,14 +40,18 @@ class argNekoError(Exception):
 class argGameError(Exception):
     pass
 
+
 class argTranslateError(Exception):
     pass
+
 
 class argTranslatorError(Exception):
     pass
 
+
 class argQuietError(Exception):
     pass
+
 
 def error_log(line: int, fname) -> None:
     """
@@ -70,7 +74,7 @@ def error_log(line: int, fname) -> None:
         f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}')
 
 
-def error_get(errors, line: list, fname: None|str = None) -> None:
+def error_get(errors, line: list, fname: None | str = None) -> None:
     """
     The error_get function is used to raise the errors that are found in the error_log function.
         The error_get function takes two arguments:

@@ -134,7 +134,7 @@ def textractor(args, lang, translator):
         window = pygetwindow.getWindowsWithTitle('Textractor')[0]
         window.activate()
         sleep(0.25)
-        
+
         pg.keyDown('shift')
         for i in range(13):
             pg.press('tab')

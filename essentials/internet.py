@@ -14,7 +14,7 @@ def internet(args):
     The internet function checks if the internet connection is working.
         It does this by checking if a file called INTERNET_CHECK_CORRECT exists in the current directory.
         If it doesn't exist, then we know that there's no internet connection and we can exit with an error message.
-    
+
     :param args: Pass arguments to the function
     :return: A boolean value
     """
@@ -37,7 +37,7 @@ def internet_check(args) -> None:
     The internet_check function checks if the internet is up and running.
     If it is, then it will create a file called INTERNET_CHECK_CORRECT.
     If not, then it will print out that the internet connection is down and exit with an error code of 1.
-    
+
     :param args: Pass the arguments from the main function to this one
     :return: None
     """
