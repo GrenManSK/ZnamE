@@ -1396,6 +1396,7 @@ try:  # type: ignore
                                     download(data['url'], 'assets/waifu.gif')
                                 clip = mp.VideoFileClip("assets/waifu.gif")
                                 clip.write_videofile("assets/waifu.mp4")
+                                clip.close()
                                 sleep(0.5)
                                 waifuvid: bool = True
                                 media_player = play_loop()
