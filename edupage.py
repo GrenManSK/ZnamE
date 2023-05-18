@@ -77,8 +77,6 @@ try:  # type: ignore
     print_module()
     import yaml
     print_module()
-    import inspect
-    print_module()
     import time
     print_module()
     if __name__ == '__main__':
@@ -141,6 +139,7 @@ try:  # type: ignore
                                                 install_packages, update_app
         python_update(args, logger)
 
+    from essentials.system.system_operations import getWindow, getImg, move, show_cmd, wait_for_file, double_alt_tab
     from threading import Thread
     if __name__ == '__main__':
         print_module('Thread from threading')
@@ -148,12 +147,7 @@ try:  # type: ignore
     if __name__ == '__main__':
         print_module('pyautogui')
         if args.restart is None:
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
+            double_alt_tab()
         pg.keyDown('win')
         pg.press('up')
         pg.keyUp('win')
@@ -196,18 +190,12 @@ try:  # type: ignore
     import pygetwindow
     if __name__ == '__main__':
         print_module()
-    import keyboard
-    if __name__ == '__main__':
-        print_module()
     from PIL import Image
     if __name__ == '__main__':
         print_module('Image from PIL')
     from pygame import mixer
     if __name__ == '__main__':
         print_module('mixer from pygame')
-    import pygame
-    if __name__ == '__main__':
-        print_module()
     import logging
     if __name__ == '__main__':
         print_module()
@@ -250,7 +238,6 @@ try:  # type: ignore
                 printnlog('Checking for newer version of ZnámE', toprint=False))
             update_app(args, logger)
 
-    from essentials.system.system_operations import getWindow, getImg, move, show_cmd, wait_for_file
     from essentials.data.app import updateapp, codeapp, decodeapp, findapp, passwordapp, addapp,\
                                gameapp, restartapp
 
@@ -609,12 +596,7 @@ try:  # type: ignore
         getImg('assets/banner.png', 'banner', 0, 0,
                screensize[0], int((round((322/1736)*screensize[0], 0))))
         if neko or waifu:
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
+            double_alt_tab()
         os.mkdir("temp")
         shutil.move("data", 'temp/')
         os.rename('data1crypted', 'data')
@@ -857,19 +839,7 @@ try:  # type: ignore
                 mixer.music.play()
             show_version(args)
             from completer import completer  # type: ignore
-            unlogged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit','manga_translator',
-                                  'quitneko', 'quitwaifu', 'quitmusic', 'login', 'delsavlog','playvideo',
-                                  'waifu', 'neko', 'setup', 'settings', 'anotherwaifu','kayopy',
-                                  'anotherneko', 'music', 'game', 'offlinegame', 'motivational',
-                                  'history', 'help', 'pomoc', '-h', '-help', '?', '-?','cbzprintable',
-                                  'advanced help', 'ah', '-ah', '-advanced help', 'voicevox', 'translate']
-            logged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko','playvideo',
-                                'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
-                                'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox',
-                                'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
-                                'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
-                                '-advanced help','cbzprintable', 'kayopy', 'manga_translator', 'translate']
-            bq_completer = ['back', 'quit']
+            from essentials.data.completer import bq_completer, logged_completer, unlogged_completer
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
@@ -975,12 +945,7 @@ try:  # type: ignore
                         getImg('assets/banner.png', 'banner', 0, 0,
                                screensize[0], int((round((322/1736)*screensize[0], 0))))
                         if neko or waifu:
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
+                            double_alt_tab()
                         sleep(0.1)
                         if vstup == passwordp[0]:  # type: ignore
                             typewriter('You\'re logged\n')
@@ -1009,12 +974,7 @@ try:  # type: ignore
                                 getImg('assets/banner.png', 'banner', 0, 0,
                                        screensize[0], int((round((322/1736)*screensize[0], 0))))
                                 if neko or waifu:
-                                    pg.keyDown('alt')
-                                    pg.press('tab')
-                                    pg.keyUp('alt')
-                                    pg.keyDown('alt')
-                                    pg.press('tab')
-                                    pg.keyUp('alt')
+                                    double_alt_tab()
                                 typewriter(
                                     "All is set!!!\nYou can use progam\n")
                             with open(historyname, 'a', encoding='utf-8') as historyfile:
@@ -1101,11 +1061,7 @@ try:  # type: ignore
                             if musicvstup == '2':
                                 continue
                         if not musicnone:
-                            for times, music_name in range(0, len(musiclistnew)):
-                                typewriter(str(times + 1) + ') ' + music_name)
-                            typewriter(str(times + 2) + ') Delete audio')
-                            typewriter(str(times + 3) + ') Download music')
-                            typewriter(str(times + 4) + ') Back')
+                            times = get_music_menu(musiclistnew)
                             while True:
                                 try:
                                     musicvstup: int = int(input('> '))
@@ -1137,12 +1093,7 @@ try:  # type: ignore
                             lenmusic = len(musiclistnew) + 1
                             intconfig = int(
                                 config['basic info']['musicnumber'])
-                            while lenmusic < intconfig:
-                                config = set_config('basic info', 'musicnumber',
-                                                    int(args.music)-1)
-                                intconfig = int(
-                                    config['basic info']['musicnumber'])
-                                continue
+                            reduce_musicnumber(lenmusic, intconfig)
                             musiclistnewstring: str = ''
                             config = music2str(musiclistnew)
                             pg.write('music\n')
@@ -1159,7 +1110,7 @@ try:  # type: ignore
                                 pass
                             try:
                                 mixer.music.play()
-                            except pygame.error:
+                            except Exception:
                                 pass
                             musicplay: bool = True
                     if vstup == 'quitmusic':
@@ -1241,15 +1192,7 @@ try:  # type: ignore
                         os.system('cls')
                         show_version(args)
                     if vstup == 'motivational':
-                        resp = requests.get(
-                            "https://animechan.vercel.app/api/random", timeout=5)
-                        data: dict[str, str] = resp.json()
-                        anime: str = data["anime"]
-                        character: str = data["character"]
-                        quote: str = data["quote"]
-                        sleep(1)
-                        typewriter("Anime: " + anime + '\nCharacter: ' +
-                                   character + "\nQuote: " + quote, ttime=0.01)
+                        motivational()
                     if vstup == 'anotherneko':
                         pg.write("quitneko\nneko\n")
                     if vstup[0:4] == 'neko':
@@ -1271,7 +1214,7 @@ try:  # type: ignore
                                 data: dict[str, str] = resp.json()
                                 res = requests.get(
                                     data["results"][0]["url"], stream=True,\
-                                        timeout=5)  # type: ignore
+                                        timeout=5)
                             elif config['neko settings']['server'] == 'waifu.pics':
                                 typewriter(
                                     'Getting image from waifu.pics server', ttime=0.01)
@@ -1352,9 +1295,7 @@ try:  # type: ignore
                         typewriter('Closing image', end='\r', ttime=0.01)
                         window = pygetwindow.getWindowsWithTitle('tmp')[0]
                         window.activate()
-                        pg.keyDown('alt')
-                        pg.press('f4')
-                        pg.keyUp('alt')
+                        altF4()
                         try:
                             img.close()  # type: ignore
                         except UnboundLocalError:
@@ -1394,9 +1335,7 @@ try:  # type: ignore
                                 res = requests.get(data["url"], stream=True, timeout=5)
                                 if res.status_code == 200:
                                     download(data['url'], 'assets/waifu.gif')
-                                clip = mp.VideoFileClip("assets/waifu.gif")
-                                clip.write_videofile("assets/waifu.mp4")
-                                clip.close()
+                                gif_to_vid()
                                 sleep(0.5)
                                 waifuvid: bool = True
                                 media_player = play_loop()
@@ -1477,9 +1416,7 @@ try:  # type: ignore
                             typewriter('Closing image', end='\r', ttime=0.01)
                             window = pygetwindow.getWindowsWithTitle('tmp')[0]
                             window.activate()
-                            pg.keyDown('alt')
-                            pg.press('f4')
-                            pg.keyUp('alt')
+                            altF4()
                             try:
                                 img.close()  # type: ignore
                             except UnboundLocalError:
@@ -1504,18 +1441,7 @@ try:  # type: ignore
                         restart: bool = True
                         _exit: bool = True
                     if logged and vstup == "logout" and not restart:
-                        logged: bool = False
-                        os.remove(loginvstupuser)
-                        os.remove(passwordp[1])  # type: ignore
-                        print("You\'re logged out")
-                        with open(historyname, 'a', encoding='utf-8') as historyfile:
-                            historyfile.write(
-                                '[' + str(linenumber) + ', *logout]\n')
-                        mixer.music.pause()
-                        mixer.Channel(1).play(mixer.Sound(
-                            'assets\\horror.mp3'), fade_ms=10)
-                        sleep(6)
-                        mixer.music.unpause()
+                        logged = logout(historyname, linenumber)
                         continue
                     if logged and inactivelogout and restart:
                         logged: bool = False
@@ -1547,13 +1473,7 @@ try:  # type: ignore
                                       " \'quitneko\'")
                                 continue
                         if vstup == 'history':
-                            historylist = config['user history']
-                            for history_temp in historylist:
-                                print(
-                                    'Start time = ' + history_temp[0] + ', End time = '
-                                    + history_temp[1][0:26] + ', Input = ' + history_temp[1][26:])
-                            if len(historylist) == 0:
-                                print('History is empty')
+                            print_history()
                         if vstup == 'login' and not logged or tologin and not logged:
                             completer(bq_completer)
                             tologin: bool = False
@@ -1570,18 +1490,7 @@ try:  # type: ignore
                                     _exit: bool = True
                                     args.nointro = None
                                     continue
-                            if os.path.isfile("C:/Users/" + os.getlogin() +
-                                              "/AppData/Local/ZnámE/saved"):
-                                loginvstupuser = ''
-                                savefile = decode(
-                                    '1', "C:/Users/" + os.getlogin() +
-                                    "/AppData/Local/ZnámE/saved", mode=1)
-                                loginvstupuser = input(
-                                    str(linenumber) + " Do you want to auto-login? (Y/n) > ")
-                                linenumber += 1
-                                loginvstupuser.lower()
-                                if loginvstupuser in ["", "y"]:
-                                    savefilemode: bool = True
+                            savefilemode, savefile = auto_login(linenumber)
                             if savefilemode:
                                 loginvstupuser = savefile[0:6]   # type: ignore
                             else:
@@ -1628,12 +1537,7 @@ try:  # type: ignore
                                 getImg('assets/banner.png', 'banner', 0, 0,
                                        screensize[0], int((round((322/1736)*screensize[0], 0))))
                                 if neko or waifu:
-                                    pg.keyDown('alt')
-                                    pg.press('tab')
-                                    pg.keyUp('alt')
-                                    pg.keyDown('alt')
-                                    pg.press('tab')
-                                    pg.keyUp('alt')
+                                    double_alt_tab()
                                 if icofind[0]:
                                     logged: bool = False
                                     os.remove(loginvstupuser + 'crypted')
@@ -1655,9 +1559,7 @@ try:  # type: ignore
                     if translator:
                         window = pygetwindow.getWindowsWithTitle('Textractor')[1]
                         window.activate()
-                        pg.keyDown('alt')
-                        pg.press('f4')
-                        pg.keyUp('alt')
+                        altF4()
                     if neko or waifu:
                         if not waifuvid:
                             if translator:
@@ -1668,9 +1570,7 @@ try:  # type: ignore
                             pg.keyDown('alt')
                             pg.press('tab')
                             pg.keyUp('alt')
-                            pg.keyDown('alt')
-                            pg.press('f4')
-                            pg.keyUp('alt')
+                            altF4()
                             try:
                                 img.close()  # type: ignore
                             except UnboundLocalError:
@@ -1895,6 +1795,82 @@ try:  # type: ignore
             printnlog('End')
             input("Enter to quit")
             sys.exit(0)
+
+    def auto_login(linenumber):
+        if os.path.isfile("C:/Users/" + os.getlogin() +
+                                              "/AppData/Local/ZnámE/saved"):
+            loginvstupuser = ''
+            savefile = decode(
+                                    '1', "C:/Users/" + os.getlogin() +
+                                    "/AppData/Local/ZnámE/saved", mode=1)
+            loginvstupuser = input(
+                                    str(linenumber) + " Do you want to auto-login? (Y/n) > ")
+            linenumber += 1
+            loginvstupuser.lower()
+            if loginvstupuser in ["", "y"]:
+                savefilemode: bool = True
+        return savefilemode,savefile
+
+    def print_history():
+        historylist = config['user history']
+        for history_temp in historylist:
+            print(
+                                    'Start time = ' + history_temp[0] + ', End time = '
+                                    + history_temp[1][0:26] + ', Input = ' + history_temp[1][26:])
+        if len(historylist) == 0:
+            print('History is empty')
+
+    def logout(historyname, linenumber):
+        logged: bool = False
+        os.remove(loginvstupuser)
+        os.remove(passwordp[1])  # type: ignore
+        print("You\'re logged out")
+        with open(historyname, 'a', encoding='utf-8') as historyfile:
+            historyfile.write(
+                                '[' + str(linenumber) + ', *logout]\n')
+        mixer.music.pause()
+        mixer.Channel(1).play(mixer.Sound(
+                            'assets\\horror.mp3'), fade_ms=10)
+        sleep(6)
+        mixer.music.unpause()
+        return logged
+
+    def gif_to_vid():
+        clip = mp.VideoFileClip("assets/waifu.gif")
+        clip.write_videofile("assets/waifu.mp4")
+        clip.close()
+
+    def altF4():
+        pg.keyDown('alt')
+        pg.press('f4')
+        pg.keyUp('alt')
+
+    def motivational():
+        resp = requests.get(
+                            "https://animechan.vercel.app/api/random", timeout=5)
+        data: dict[str, str] = resp.json()
+        anime: str = data["anime"]
+        character: str = data["character"]
+        quote: str = data["quote"]
+        sleep(1)
+        typewriter("Anime: " + anime + '\nCharacter: ' +
+                                   character + "\nQuote: " + quote, ttime=0.01)
+
+    def reduce_musicnumber(lenmusic, intconfig):
+        while lenmusic < intconfig:
+            config = set_config('basic info', 'musicnumber',
+                                                    int(args.music)-1)
+            intconfig = int(
+                                    config['basic info']['musicnumber'])
+            continue
+
+    def get_music_menu(musiclistnew):
+        for times, music_name in range(0, len(musiclistnew)):
+            typewriter(str(times + 1) + ') ' + music_name)
+        typewriter(str(times + 2) + ') Delete audio')
+        typewriter(str(times + 3) + ') Download music')
+        typewriter(str(times + 4) + ') Back')
+        return times
 
     if __name__ == '__main__':
         logger.stay(printnlog('Function: main\n', toprint=False))
