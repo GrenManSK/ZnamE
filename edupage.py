@@ -877,13 +877,15 @@ try:  # type: ignore
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 translator_language = args.translate
-                pg.write('cls\n')
-            if config['basic info']['translate'] != '':
+                if args.waifu is not None or args.neko is not None:
+                    os.system('cls')
+                    show_version(args)
             elif config['basic info']['translate'] != '':
                 run_textractor(args, config['basic info']['translate'], config['basic info']['translator'])
                 translator = True
                 translator_language = config['basic info']['translate']
-                pg.write('cls\n')
+                os.system('cls')
+                show_version(args)
             while True:
                 completer(unlogged_completer)
                 internet_check(args)
@@ -1030,16 +1032,20 @@ try:  # type: ignore
                             typewriter("WRONG PASSWORD")
                             os.remove('data')
                             shutil.copy('data_backup', 'data')
-                    if args.neko is None:
+                    if args.neko is None and not neko:
                         sleep(1)
                         pg.write("nekon\n")
-                    if args.waifu is None:
+                        if args.translate is not UNSPECIFIED:
+                            pg.write('cls\n')
+                    if args.waifu is None and not waifu:
                         sleep(1)
                         pg.write("waifun\n")
+                        if args.translate is not UNSPECIFIED:
+                            pg.write('cls\n')
                     if args.restart is None:
                         args.restart = UNSPECIFIED
                         if args.autologin is None:
-                            pg.write('restarted\n')
+                            pg.write('restarted\ncls\n')
                     if not tologin and not logged:
                         vstup: str = input(str(linenumber) + ' > ')
                         if args.debug is None:
@@ -1060,6 +1066,7 @@ try:  # type: ignore
                     if vstup == 'restarted':
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
+                        continue
                     if vstup == 'manga_translator':
                         run_app('manga_image_translator')
                         continue
@@ -1403,6 +1410,7 @@ try:  # type: ignore
                             waifuvid: bool = True
                             media_player = play_loop()
                             args.waifu = UNSPECIFIED
+                            args.waifuvid = UNSPECIFIED
                             sleep(1)
                         elif args.waifu is None:
                             args.waifu = UNSPECIFIED
