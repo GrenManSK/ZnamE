@@ -24,7 +24,7 @@ functions = {
 
 
 def run_app(func):
-    os.system(f'title {func}')
+    os.system(f'title {func.title()}')
     try:
         try:
             if isinstance(functions[func]['args'], list):
