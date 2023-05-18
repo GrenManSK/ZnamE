@@ -15,8 +15,10 @@ import win32con
 import pygetwindow
 load_dotenv()
 
-
-quiet = os.getenv('QUIET')
+try:
+    quiet = eval(os.getenv('QUIET'))
+except TypeError:
+    quiet = False
 screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
 screensize = [int(x) for x in screensize]
 
@@ -131,6 +133,8 @@ def textractor(args, lang, translator):
 
         window = pygetwindow.getWindowsWithTitle('Textractor')[0]
         window.activate()
+        sleep(0.25)
+        
         pg.keyDown('shift')
         for i in range(13):
             pg.press('tab')

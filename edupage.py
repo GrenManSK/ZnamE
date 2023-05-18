@@ -791,13 +791,10 @@ try:  # type: ignore
             from login import save_credentials  # type: ignore
             from essentials.functions.writing import show_version
             from essentials.arguments import music2str
-            from essentials.functions.voicevox import run_voicevox
-            from essentials.functions.cbzprintable import run_cbz
-            from essentials.functions.kayopy import run_kayopy
-            from essentials.functions.manga_translator import run_manga_image_translator
             from essentials.system.conda import env_menu
             from essentials.functions.textractor import run_textractor
             from essentials.data.translate import t_languages
+            from essentials.functions.function import run_app
 
             musiclistnew: list = []
             for music_name in music:
@@ -1063,33 +1060,17 @@ try:  # type: ignore
                         subprocess.check_output(
                             'start restart.py --autol', shell=True)
                     if vstup == 'manga_translator':
-                        try:
-                            run_manga_image_translator(env_menu(info=True))
-                            print('\n')
-                        except KeyboardInterrupt:
-                            print('\n')
-                            continue
+                        run_app('manga_image_translator')
+                        continue
                     if vstup == 'cbzprintable':
-                        try:
-                            run_cbz()
-                            print('\n')
-                        except KeyboardInterrupt:
-                            print('\n')
-                            continue
+                        run_app('cbz')
+                        continue
                     if vstup == 'kayopy':
-                        try:
-                            run_kayopy()
-                            print('\n')
-                        except KeyboardInterrupt:
-                            print('\n')
-                            continue
+                        run_app('kayopy')
+                        continue
                     if vstup == 'voicevox':
-                        try:
-                            run_voicevox(env_menu(info=True))
-                            print('\n')
-                        except KeyboardInterrupt:
-                            print('\n')
-                            continue
+                        run_app('voicevox')    
+                        continue
                     if vstup == 'playvideo':
                         import playvideo  # type: ignore
                         playvideo.main()
