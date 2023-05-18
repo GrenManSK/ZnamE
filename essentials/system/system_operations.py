@@ -295,3 +295,12 @@ def wait_for_file(path):
         if leave:
             sleep(0.05)
             break
+
+
+def double_alt_tab():
+    pg.keyDown('alt')
+    pg.press('tab')
+    pg.keyUp('alt')
+    pg.keyDown('alt')
+    pg.press('tab')
+    pg.keyUp('alt')
