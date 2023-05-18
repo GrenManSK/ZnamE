@@ -1703,7 +1703,8 @@ try:  # type: ignore
                             datetime.now().strftime("%y-%m-%d-%H-%M-%S")) + '.xp2')
                     if args.endf is not None and not restart:
                         sleep(2.5)
-                    remove('green1.mp4')
+                    while os.path.exists('green1.mp4'):
+                        sleep(0.5)
                     if restart:
                         with open("restart.py", "w", encoding='utf-8') as crrestart:
                             crrestart.write(restartapp)
