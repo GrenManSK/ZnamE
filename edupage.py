@@ -1169,7 +1169,7 @@ try:  # type: ignore
                             continue
                         run_textractor(args, translator_vstup, config['basic info']['translator'])
                         translator = True
-                        translator_langauge = translator_vstup
+                        translator_language = translator_vstup
                         if waifu or neko or waifuvid:
                             window = pygetwindow.getWindowsWithTitle('tmp')[0]
                             window.activate()
