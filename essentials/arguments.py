@@ -220,7 +220,7 @@ def print_config(logger, config):
     logger.stay(printnlog(
         'Music: ' + config['basic info']['music'].split(' ')[0], toprint=False))
     logger.stay(printnlog(
-        'Musiclist: ' + str(str(config['basic info']['musiclist']).split(','))), toprint=False)
+        'Musiclist: ' + str(str(config['basic info']['musiclist']).split(',')), toprint=False))
     logger.stay(printnlog('Translate: ' +
                 str(config['basic info']['translate']), toprint=False))
     logger.stay(printnlog('Translator: ' +

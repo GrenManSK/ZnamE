@@ -2,7 +2,7 @@ import win32api
 from ..internet import download
 import os
 from .writing import printnlog
-from ..system.system_operations import move
+from ..system.system_operations import move, show_cmd
 from ..data.translate import t_languages
 import pyautogui as pg
 import zipfile
@@ -211,9 +211,7 @@ def textractor(args, lang: str, translator: str):
     hwnd = win32gui.GetForegroundWindow()
     win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 100, 100, 200, 200, 0)
     open('textractor_done', 'x')
-    if args.test is not None:
-        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-        window.activate()
+    show_cmd(args)
     printnlog('Setting window to always on top DONE')
     print('\n')
 

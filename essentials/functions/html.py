@@ -2,6 +2,7 @@ import webbrowser
 import pyautogui as pg
 from time import sleep
 import pygetwindow
+from ..system.system_operations import show_cmd
 
 
 def playhtml(args, config, htmlFile: str, mode: int = 0, time: int = 0):
@@ -39,8 +40,6 @@ def playhtml(args, config, htmlFile: str, mode: int = 0, time: int = 0):
                 mouseclick()
             elif mode == 1:
                 mouseclick(time=time)
-            if args.test is not None:
-                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                window.activate()
+            show_cmd(args)
         else:
             pass

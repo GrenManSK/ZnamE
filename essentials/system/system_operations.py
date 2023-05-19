@@ -40,8 +40,7 @@ def getWindow(args) -> bool:
     cv2.destroyWindow("Image")
     if args.test is not None:
         try:
-            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-            window.activate()
+            show_cmd(args)
             return False
         except IndexError:
             error_get(IndexError(
@@ -260,7 +259,7 @@ def intro_video(args, media_player):
         media_player.stop()
 
 
-def show_cmd():
+def show_cmd(args):
     """
     The show_cmd function is used to activate the window with the title 'Známé'
         if it exists. If it does not exist, then an IndexError will be raised and
@@ -269,8 +268,10 @@ def show_cmd():
     :return: The window object
     """
     try:
-        window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-        window.activate()
+        if args.test is not None:
+            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+            window.activate()
+            return window
     except IndexError:
         exit = True
         error_get(IndexError(

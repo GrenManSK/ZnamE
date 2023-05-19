@@ -223,8 +223,6 @@ try:  # type: ignore
                     ' it to your \'ZnámE\' directory')
             logger.stay(printnlog('Done'))
 
-        logger.stay(printnlog("Defining functions", toprint=False))
-
     LOG_FILENAME = 'completer.log'
     logging.basicConfig(filename=LOG_FILENAME,
                         level=logging.DEBUG,
@@ -242,12 +240,7 @@ try:  # type: ignore
                                gameapp, restartapp
 
     if __name__ == '__main__':
-        logger.stay(printnlog('Function: move', toprint=False))
-        logger.stay(printnlog('Function: getImg', toprint=False))
-        logger.stay(printnlog('Function: getWindow', toprint=False))
         logger.next(printnlog('\nDefining apps', toprint=False))
-
-    if __name__ == '__main__':
         logger.stay('codeapp')
         logger.stay('decodeapp')
         logger.stay('findapp')
@@ -260,7 +253,6 @@ try:  # type: ignore
             from essentials.system.system_info import get_log_info
             get_log_info()
         logger.stay(printnlog('DONE', toprint=False))
-        logger.next(printnlog('Defining functions', toprint=False))
 
     def delcache(cache_name: str, hist: str) -> None:
         """
@@ -298,9 +290,6 @@ try:  # type: ignore
             except SystemError:
                 break
 
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: delcache', toprint=False))
-
     PROGRESS_BAR_CHECK = 0
 
     CACHENAME = 'data.xp2'
@@ -324,9 +313,6 @@ try:  # type: ignore
             sleep(0.05)
             return True
         return False
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: inactive', toprint=False))
 
     def progress_bar(bar_name: str, number: int) -> None:
         """
@@ -356,9 +342,6 @@ try:  # type: ignore
                 if PROGRESS_BAR_CHECK != progress_bar_check_old:
                     progress_bar_check_old: int = PROGRESS_BAR_CHECK
                     break
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: progress_bar', toprint=False))
 
     def add(name1, ico: int, subject: str, mark: str) -> tuple[str, None]:
         """
@@ -392,9 +375,6 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK += 1
         result: tuple[str, None] = ('data1', None)
         return result
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: add', toprint=False))
 
     def decode(_file: str, _password, mode: int = 0) -> str:  # type: ignore
         """
@@ -446,9 +426,6 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK += 1
         return decodename1
 
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: decode', toprint=False))
-
     def password(file_name: str) -> list[str]:
         """
         Create a password file for the current session.
@@ -470,9 +447,6 @@ try:  # type: ignore
         os.remove('DONE')
         PROGRESS_BAR_CHECK += 1
         return [password_chars, file_name]
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: password', toprint=False))
 
     def find(find_file: str) -> list:  # type: ignore
         """
@@ -507,9 +481,6 @@ try:  # type: ignore
         tqdm.write('Finding Complete')
         PROGRESS_BAR_CHECK += 1
         return [loginvstupuser, end]
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: find', toprint=False))
 
     def code(code_name: str, new: str, mode: int = 0) -> list[str]:
         """
@@ -557,9 +528,6 @@ try:  # type: ignore
             return savelog
         return [code_name[1], new]
 
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: code', toprint=False))
-
     def add_marks(linenumber, historyname, neko, waifu):
         """
         The add_marks function is used to add marks to the user's account.
@@ -603,9 +571,6 @@ try:  # type: ignore
         shutil.rmtree('temp')
         os.remove('data1')
 
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: add_marks', toprint=False))
-
     def show_marks(pass_list):
         """
         The show_marks function is used to display the marks of a student.
@@ -641,9 +606,6 @@ try:  # type: ignore
                     print(pass_char, end="")
                     if countersubject > 2:
                         typewriter(" | ", end="")
-
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: show_marks', toprint=False))
 
     from essentials.functions.html import playhtml
 
@@ -693,9 +655,6 @@ try:  # type: ignore
         pg.write('music\n')
         return musiclistnewstring
 
-    if __name__ == '__main__':
-        logger.stay(printnlog('Function: spot_music_dow', toprint=False))
-
     def vlc_init():
         """
         The vlc_init function initializes the VLC media player.
@@ -717,8 +676,7 @@ try:  # type: ignore
         """
         from essentials.system.system_operations import intro_video
         move('ZnámE', -10, -10, screensize[0], screensize[1])
-        if args.test is not None:
-            show_cmd()
+        show_cmd(args)
         if args.restart is not None:
             media_player = vlc.MediaPlayer()
             media_player.set_fullscreen(True)
@@ -768,7 +726,6 @@ try:  # type: ignore
             extract(args, datelog)
             media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
-            print_module('DownloadMusic from downloadmusic')
             from media import play_loop  # type: ignore
             from login import save_credentials  # type: ignore
             from essentials.functions.writing import show_version
@@ -777,6 +734,7 @@ try:  # type: ignore
             from essentials.functions.textractor import run_textractor
             from essentials.data.translate import t_languages
             from essentials.functions.function import run_app
+            from essentials.functions.login import auto_login
 
             musiclistnew: list = []
             for music_name in music:
@@ -826,8 +784,7 @@ try:  # type: ignore
             move('ZnámE', 0, int((round((322/1736)*screensize[0], 0))-35),
                  screensize[0], screensize[1]-int(
                 (round((322/1736)*screensize[0], 0))))
-            if args.test is not None:
-                show_cmd()
+            show_cmd(args)
             pg.press('win')
             sleep(0.1)
             pg.press('win')
@@ -1132,8 +1089,7 @@ try:  # type: ignore
                         if waifu or neko or waifuvid:
                             window = pygetwindow.getWindowsWithTitle('tmp')[0]
                             window.activate()
-                            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                            window.activate()
+                            show_cmd(args)
                         if logged:
                             completer(unlogged_completer)
                         else:
@@ -1275,10 +1231,7 @@ try:  # type: ignore
                         sleep(0.1)
                         typewriter('Getting cli in foreground     ',
                                    end='\r', ttime=0.01)
-                        if args.test is not None:
-                            window = pygetwindow.getWindowsWithTitle('ZnámE')[
-                                0]
-                            window.activate()
+                        show_cmd(args)
                         mixer.Channel(0).play(mixer.Sound('assets/neko.mp3'))
                         typewriter('Playing sound                 ',
                                    end='\r', ttime=0.01)
@@ -1383,10 +1336,7 @@ try:  # type: ignore
                         pg.press('esc')
                         typewriter('Getting cli in foreground',
                                    end='\r', ttime=0.01)
-                        if args.test is not None:
-                            window = pygetwindow.getWindowsWithTitle('ZnámE')[
-                                0]
-                            window.activate()
+                        show_cmd(args)
                         sleep(0.5)
                         typewriter('..........                  ',
                                    end='\r', ttime=0.01)
@@ -1565,8 +1515,7 @@ try:  # type: ignore
                             if translator:
                                 window = pygetwindow.getWindowsWithTitle('tmp')[0]
                                 window.activate()
-                                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                                window.activate()
+                                show_cmd(args)
                             pg.keyDown('alt')
                             pg.press('tab')
                             pg.keyUp('alt')
@@ -1590,8 +1539,7 @@ try:  # type: ignore
                             media_player1.play()
                             sleep(4.5)
                             if args.test is not None:
-                                window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
-                                window.activate()
+                                window = show_cmd(args)
                                 window.minimize()
                             while not os.path.exists('VIDEO_END'):
                                 sleep(0.1)
@@ -1798,21 +1746,6 @@ try:  # type: ignore
             input("Enter to quit")
             sys.exit(0)
 
-    def auto_login(linenumber):
-        if os.path.isfile("C:/Users/" + os.getlogin() +
-                                              "/AppData/Local/ZnámE/saved"):
-            loginvstupuser = ''
-            savefile = decode(
-                                    '1', "C:/Users/" + os.getlogin() +
-                                    "/AppData/Local/ZnámE/saved", mode=1)
-            loginvstupuser = input(
-                                    str(linenumber) + " Do you want to auto-login? (Y/n) > ")
-            linenumber += 1
-            loginvstupuser.lower()
-            if loginvstupuser in ["", "y"]:
-                savefilemode: bool = True
-        return savefilemode,savefile
-
     def print_history():
         historylist = config['user history']
         for history_temp in historylist:
@@ -1875,8 +1808,6 @@ try:  # type: ignore
         return times
 
     if __name__ == '__main__':
-        logger.stay(printnlog('Function: main\n', toprint=False))
-        logger.prev(printnlog('Done defining functions\n', toprint=False))
         if args.debug is None:
             with cProfile.Profile() as pr:
                 main()
