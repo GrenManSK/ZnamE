@@ -71,6 +71,7 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 
 - Downloads image from API server and opens it
 - neko - as title says, it will return cat-themed images
+  - can define sevver from which image will be downloaded
 - waifu - returns image on theme which is configured in config file
   - If image is gif then program converts it to video and opens it
 
@@ -78,7 +79,7 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 
 ## VOICEVOX
 
-- Ability to choose from conda environments or classic interpreter
+- Ability to choose from conda environments if installed or classic interpreter
 - Downloads repository [VOICEVOX](https://github.com/GrenManSK/VOICEVOX), installs pip requirements, downloads engine [VOICEVOX_engine](https://github.com/VOICEVOX/voicevox_engine/releases/tag/0.14.4) (986mb) and run VOICEVOX
 - First time install will also download medium.en and base.en model from [whisper](https://github.com/openai/whisper#available-models-and-languages) (Around 1.5gb)
 - From microphone gets an input, AI process the audio file, get text from it, convert it to AI voice, play it through VB-Audio Virtual Cable as input device and current output device
@@ -104,7 +105,7 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 ### Function
 
 - Can select from existing music list which is configured in `basic info => musiclist`
-- Else can download music through `spot-dl`
+- Can download music through `spot-dl`
 - Also updates `basic info => musiclist` in config
 
 ---
