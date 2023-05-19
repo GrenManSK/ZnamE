@@ -60,18 +60,15 @@ def unpack(datelog, args, cachename: str) -> None:
     if cachename == 'data.xp2':
         for r, d, f in os.walk('data1/apphtml/'):
             for file in f:
-                printnlog(os.path.join('./', file))
                 shutil.move(os.path.join('data1/apphtml/',
                             file), os.path.join('apphtml/', file))
         for r, d, f in os.walk('data1/assets/'):
             for file in f:
-                printnlog(os.path.join('./', file))
                 shutil.move(os.path.join('data1/assets/', file),
                             os.path.join('assets/', file))
         shutil.rmtree('data1/apphtml')
         shutil.rmtree('data1/assets')
         for i in os.listdir('data1'):
-            printnlog(i)
             shutil.move(f'data1/{i}', i)
         shutil.rmtree('data1')
     remove(cachename)
