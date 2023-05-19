@@ -240,11 +240,11 @@ def write_config_options(server):
         config_file.write(f'  intro: [True/False]\n')
         config_file.write(f'  music: [disable/enable]\n')
         config_file.write(
-            f'  st: [Any Youtube video title, divided by comma]\n')
+            f'  musiclist: [Any Youtube video title, divided by comma]\n')
         config_file.write(
-            f'  [Any number; Max is number of items in musiclist]\n')
+            f'  musicnumber: [Any number; Max is number of items in musiclist]\n')
         config_file.write(f"  translate: [''|'Afrikaans','Albanian','Amharic','Arabic','Armenian','Assamese','Aymara','Azerbaijani','Bambara','Basque','Belarusian','Bengali','Bhojpuri','Bosnian','Bulgarian','Catalan','Cebuano','Chichewa','Chinese (Simplified)','Chinese (Traditional)','Corsican','Czech','Danish','Dhivehi','Dogri','Dutch','English','Esperanto','Estonian','Ewe','Filipino','Finnish','French','Frisian','Galician','Georgian','German','Greek','Guarani','Gujarati','Haitian Creole','Hausa','Hawaiian','Hindi','Hmong','Hungarian','Icelandic','Igbo','Ilocano','Indonesian','Irish','Italian','Japanese','Javanese','Kannada','Kazakh','Khmer','Kinyarwanda','Konkani','Korean','Krio','Kurdish (Kurmanji)','Kurdish (Sorani)','Kyrgyz','Lao','Latvian','Lingala','Lithuanian','Luganda','Luxembourgish','Macedonian','Maithili','Malagasy','Malay','Malayalam','Maltese','Maori','Marathi','Meiteilon (Manipuri)','Mizo','Mongolian','Myanmar (Burmese)','Nepali','Norwegian','Odia (Oriya)','Oromo','Pashto','Polish','Portuguese','Punjabi','Quechua','Romanian','Russian','Samoan','Sanskrit','Scots Gaelic','Sepedi','Serbian','Sesotho','Shona','Si ndhi','Sinhala','Slovak','Slovenian','Somali','Spanish','Sundanese','Swahili','Swedish','Tamil','Tatar','Telugu','Thai','Tigrinya','Tsonga','Turkish','Turkmen','Twi','Ukrainian','Urdu','Uyghur','Uzbek','Vietnamese','Welsh','Xhosa','Yiddish','Yoruba','Zulu']")
-        config_file.write(f"translator: [Bing|Google]")
+        config_file.write(f"  translator: [Bing|Google]")
         config_file.write('game settings:\n')
         config_file.write(
             f'  computer_power: [Any number; Lower the powerfull]\n')
@@ -255,9 +255,10 @@ def write_config_options(server):
         config_file.write(f'user history:\n')
         category: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet",
                                "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
-        config_file.write(f'category (sfw) = {category}\n')
+        config_file.write(f'waifu settings:\n')
+        config_file.write(f'  category (sfw) = {category}\n')
         category: list[str] = ['waifu', 'neko', 'trap', 'blowjob']
-        config_file.write(f'category (nsfw) = {category}\n')
+        config_file.write(f'  category (nsfw) = {category}\n')
         config_file.write('  type: [sfw/nsfw]\n')
     os.remove(f'crash_dump-{datelog}.txt')
     sys.exit(1)
