@@ -32,7 +32,7 @@ def rclick(x, y):
 
 def textractor(args, lang: str, translator: str):
     if not lang in t_languages:
-        return 0
+        return 39
     lang = lang.lower()
     update = False
     printnlog('Checking if Textractor is present')
@@ -77,10 +77,24 @@ def textractor(args, lang: str, translator: str):
     window = pygetwindow.getWindowsWithTitle('Textractor')[1]
     window.activate()
     if update:
+        printnlog('Opening extensions', end='\r')
         for i in range(13):
             pg.press('tab')
         pg.press('space')
+        printnlog('Opening extensions DONE')
         move('Extensions', 0, 0, 100, 300)
+        printnlog(f'Adding {translator} translator extension', end='\r')
+        rclick(50, 50)
+        sleep(0.1)
+        pg.press('tab')
+        pg.press('enter')
+        sleep(1)
+        pg.write(f'{translator} Translate.xdll')
+        pg.press('enter')
+        sleep(0.25)
+        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
+        window.activate()
+        printnlog(f'Adding {translator} translator extension DONE')
         printnlog('Removing Google Translator extension', end='\r')
         sleep(0.25)
         window = pygetwindow.getWindowsWithTitle('Extensions')[0]
@@ -95,18 +109,6 @@ def textractor(args, lang: str, translator: str):
         pg.press('tab')
         pg.press('enter')
         printnlog('Removing Google Translator extension DONE')
-        printnlog(f'Adding {translator} translator extension', end='\r')
-        rclick(50, 50)
-        sleep(0.1)
-        pg.press('tab')
-        pg.press('enter')
-        sleep(0.5)
-        pg.write(f'{translator} Translate.xdll')
-        pg.press('enter')
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle('Extensions')[0]
-        window.activate()
-        printnlog(f'Adding {translator} translator extension DONE')
         printnlog('Removing Extra Window extension', end='\r')
         for i in range(7):
             pg.press('up')
@@ -140,7 +142,7 @@ def textractor(args, lang: str, translator: str):
         sleep(0.1)
         pg.press('tab')
         pg.press('enter')
-        sleep(0.5)
+        sleep(1)
         pg.write('Extra Window.xdll')
         pg.press('enter')
         sleep(0.25)
@@ -155,9 +157,8 @@ def textractor(args, lang: str, translator: str):
         sleep(0.5)
         pg.write('Extra Newlines.xdll')
         pg.press('enter')
-        sleep(0.25)
         printnlog('Adding Extra Newlines extension DONE')
-
+        sleep(0.25)
         window = pygetwindow.getWindowsWithTitle('Textractor')[0]
         window.activate()
         sleep(0.25)
@@ -173,11 +174,22 @@ def textractor(args, lang: str, translator: str):
         pg.press('tab')
     pg.press('space')
     sleep(0.2)
-    printnlog('Searching python.exe')
+    printnlog('Searching python.exe', end='\r')
     pg.write('python.exe')
-    printnlog('Aknowledging confirmation')
+    printnlog('Searching python.exe DONE')
+    printnlog('Aknowledging confirmation', end='\r')
     pg.press('tab')
     pg.press('enter')
+    printnlog('Aknowledging confirmation DONE')
+    sleep(3)
+    printnlog('Selecting thread to \'MultiByteToWideChar (HS-4C@0:kernel32.dll:MultiByteToWideChar)\'', end='\r')
+    pg.keyDown('shift')
+    pg.press('tab')
+    pg.press('tab')
+    pg.keyUp('shift')
+    pg.press('down')
+    pg.press('down')
+    printnlog('Selecting thread to \'MultiByteToWideChar (HS-4C@0:kernel32.dll:MultiByteToWideChar)\' DONE')
     printnlog('Waiting for python.exe to hook (3 sec)', end='\r')
     sleep(1)
     printnlog('Waiting for python.exe to hook (3 sec) .', end='\r')
@@ -214,6 +226,7 @@ def textractor(args, lang: str, translator: str):
     show_cmd(args)
     printnlog('Setting window to always on top DONE')
     print('\n')
+    return 0
 
 
 def install_font():
@@ -229,8 +242,11 @@ def install_font():
 
 
 def run_textractor(args, lang, translator):
-    textractor(args, lang, translator)
+    return_code = textractor(args, lang, translator)
 
+    if return_code == 39:
+        printnlog(f'Incorrect language; Return Code: %s' % return_code)
+        return return_code
     while not os.path.exists('textractor_done'):
         sleep(0.5)
     os.remove('textractor_done')
