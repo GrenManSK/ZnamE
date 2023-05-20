@@ -1083,7 +1083,9 @@ try:  # type: ignore
                         translator_vstup = input('Select language *must be in google translate (e.g. slovak)> ')
                         if translator_vstup == 'quit':
                             continue
-                        run_textractor(args, translator_vstup, config['basic info']['translator'])
+                        return_code = run_textractor(args, translator_vstup, config['basic info']['translator'])
+                        if return_code == 39:
+                            continue
                         translator = True
                         translator_language = translator_vstup
                         if waifu or neko or waifuvid:
