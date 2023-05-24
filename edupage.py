@@ -747,9 +747,11 @@ try:  # type: ignore
             from essentials.data.translate import t_languages
             from essentials.functions.function import run_app
             from essentials.functions.login import auto_login
+            import copy
 
             musiclistnew: list = []
-            for music_name in music:
+            music_copy = copy.deepcopy(music)
+            for music_name in music_copy:
                 music.remove(music_name)
                 if not os.path.exists('assets/' + str(music_name) + '.mp3'):
                     musiclistnew.append(DownloadMusic(str(music_name)))
@@ -809,10 +811,11 @@ try:  # type: ignore
             show_version(args)
             from completer import completer  # type: ignore
             from essentials.data.completer import bq_completer, logged_completer, unlogged_completer
+            UNSPECIFIED = object()
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
-            if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
+            if args.translate is not UNSPECIFIED and config['basic info']['translate'] != '':
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 translator_language = args.translate
