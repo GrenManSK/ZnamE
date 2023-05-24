@@ -9,7 +9,14 @@ try:  # type: ignore
     import sys
     import os
     import traceback
+    import yaml
 
+    config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
+    if __name__ == "__main__":
+        from essentials.arguments import arguments
+        parser, music, UNSPECIFIED = arguments(config)
+        args = parser.parse_args()
+    
     quiet = True if '--quiet'in sys.argv[1:] or '-quiet' in sys.argv[1:] else False
     
     if os.path.isfile('INSTALL_RESTART'):
@@ -75,8 +82,6 @@ try:  # type: ignore
     print_module()
     import subprocess
     print_module()
-    import yaml
-    print_module()
     import time
     print_module()
     if __name__ == '__main__':
@@ -84,7 +89,6 @@ try:  # type: ignore
     from essentials.system.exceptions import configNoOption, error_get
     from essentials.system.system_info import get_line_number
     
-    config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
     
     if __name__ == '__main__':
         logger.stay(printnlog('Reading config file (yml)', toprint=False))
@@ -110,10 +114,8 @@ try:  # type: ignore
     screensize, screensizepercentage = get_screensize()
 
     if __name__ == '__main__':
-        from essentials.arguments import arguments, check_correctness
+        from essentials.arguments import check_correctness
         server: list[str] = ['nekos.best', 'waifu.pics', 'kyoko', 'nekos_api']
-        parser, music, UNSPECIFIED = arguments(config)
-        args = parser.parse_args()
         check_correctness(args, config, logger, music)
         
         if config['basic info']['quiet']:
