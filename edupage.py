@@ -718,6 +718,7 @@ try:  # type: ignore
         global loginvstupuser
         global historyfile
         global music
+        global UNSPECIFIED
         if __name__ != '__main__':
             from essentials.arguments import arguments
             global args
@@ -757,7 +758,7 @@ try:  # type: ignore
                     musiclistnew.append(DownloadMusic(str(music_name)))
                 else:
                     musiclistnew.append(music_name)
-            music = []
+            music = copy.deepcopy(musiclistnew)
             config = music2str(musiclistnew)
             intro()
             inactive1 = was_updated()
@@ -811,7 +812,6 @@ try:  # type: ignore
             show_version(args)
             from completer import completer  # type: ignore
             from essentials.data.completer import bq_completer, logged_completer, unlogged_completer
-            UNSPECIFIED = object()
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
@@ -819,9 +819,8 @@ try:  # type: ignore
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 translator_language = args.translate
-                if args.waifu is not None or args.neko is not None:
-                    os.system('cls')
-                    show_version(args)
+                os.system('cls')
+                show_version(args)
             elif config['basic info']['translate'] != '':
                 run_textractor(args, config['basic info']['translate'], config['basic info']['translator'])
                 translator = True
