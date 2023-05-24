@@ -718,7 +718,7 @@ try:  # type: ignore
         global loginvstupuser
         global historyfile
         global music
-        if __file__ != '__main__':
+        if __name__ != '__main__':
             from essentials.arguments import arguments
             global args
             parse_args = []
