@@ -84,6 +84,8 @@ try:  # type: ignore
     from essentials.system.exceptions import configNoOption, error_get
     from essentials.system.system_info import get_line_number
     
+    config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
+    
     if __name__ == '__main__':
         logger.stay(printnlog('Reading config file (yml)', toprint=False))
         config = yaml.safe_load(open('config.yml', 'r', encoding='utf-8'))
@@ -104,6 +106,8 @@ try:  # type: ignore
     logger.stay(printnlog('\nDone\n', toprint=False))
 
     from essentials.arguments import set_config
+    from essentials.system.system_info import get_screensize, system_info
+    screensize, screensizepercentage = get_screensize()
 
     if __name__ == '__main__':
         from essentials.arguments import arguments, check_correctness
@@ -112,8 +116,6 @@ try:  # type: ignore
         args = parser.parse_args()
         check_correctness(args, config, logger, music)
         
-        from essentials.system.system_info import get_screensize, system_info
-        screensize, screensizepercentage = get_screensize()
         if config['basic info']['quiet']:
             change_quiet(True)
             logger = verbose.get_logger(quiet=True)
@@ -711,11 +713,21 @@ try:  # type: ignore
         except Exception:
             return False
 
-    def main() -> None:
+    def main(**kwargs) -> None:
         global config
         global loginvstupuser
         global historyfile
         global music
+        if __file__ != '__main__':
+            from essentials.arguments import arguments
+            global args
+            parse_args = []
+            for key, value in kwargs.items():
+                parse_args.append(f"--{key}")
+                if value is not None:
+                    parse_args.append(value)
+            parser, music, UNSPECIFIED = arguments(config)
+            args = parser.parse_args(parse_args)
         try:
             historyname: str = str(datetime.now().strftime("%H-%M-%S"))
             with open(historyname, 'w', encoding='utf-8') as historyfile:
@@ -1162,6 +1174,7 @@ try:  # type: ignore
                             typewriter(
                                 "Sorry you can't have neko if you have waifu", ttime=0.01)
                             continue
+                        list_of_titles = pygetwindow.getAllTitles()
                         typewriter('WAIT', ttime=0.01)
                         if args.neko is not None:
                             if config['neko settings']['server'] == 'nekos.best':
@@ -1243,12 +1256,13 @@ try:  # type: ignore
                              int(screensize[0]/2), int(
                             (round((0.95-(0.31203703703703706))*screensize[1], 0))))  # 337/1080
                         neko = True
+                        neko_title = [title for title in pygetwindow.getAllTitles() if title not in list_of_titles][0]
                     if vstup == 'quitneko':
                         if not neko:
                             typewriter(":( You can't have -1 neko", ttime=0.01)
                             continue
                         typewriter('Closing image', end='\r', ttime=0.01)
-                        window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                        window = pygetwindow.getWindowsWithTitle(neko_title)[0]
                         window.activate()
                         altF4()
                         try:
@@ -1276,6 +1290,7 @@ try:  # type: ignore
                             typewriter(
                                 "Sorry you can't have waifu and neko", ttime=0.01)
                             continue
+                        list_of_titles = pygetwindow.getAllTitles()
                         typewriter('WAIT', ttime=0.01)
                         if args.waifu is not None:
                             typewriter(
@@ -1349,6 +1364,7 @@ try:  # type: ignore
                              int(screensize[0]/2), int(
                             (round((0.95-(0.31203703703703706))*screensize[1], 0))))  # 337/1080
                         waifu: bool = True
+                        waifu_title = [title for title in pygetwindow.getAllTitles() if title not in list_of_titles][0]
                     if vstup == 'quitwaifu':
                         if not waifu:
                             typewriter(
@@ -1362,11 +1378,8 @@ try:  # type: ignore
                                        end='\r', ttime=0.01)
                             os.remove('assets/waifu.mp4')
                         else:
-                            if translator:
-                                window = pygetwindow.getWindowsWithTitle('tmp')[0]
-                                window.activate()
                             typewriter('Closing image', end='\r', ttime=0.01)
-                            window = pygetwindow.getWindowsWithTitle('tmp')[0]
+                            window = pygetwindow.getWindowsWithTitle(waifu_title)[0]
                             window.activate()
                             altF4()
                             try:
@@ -1515,12 +1528,13 @@ try:  # type: ignore
                     if neko or waifu:
                         if not waifuvid:
                             if translator:
-                                window = pygetwindow.getWindowsWithTitle('tmp')[0]
-                                window.activate()
                                 show_cmd(args)
-                            pg.keyDown('alt')
-                            pg.press('tab')
-                            pg.keyUp('alt')
+                            if neko:
+                                window = pygetwindow.getWindowsWithTitle(neko_title)[0]
+                                window.activate()
+                            if waifu:
+                                window = pygetwindow.getWindowsWithTitle(waifu_title)[0]
+                                window.activate()
                             altF4()
                             try:
                                 img.close()  # type: ignore
