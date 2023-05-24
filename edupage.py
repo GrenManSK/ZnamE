@@ -815,7 +815,9 @@ try:  # type: ignore
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
-            if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
+            if __name__ != "__main__":
+                pass
+            elif args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 translator_language = args.translate
@@ -1091,7 +1093,7 @@ try:  # type: ignore
                         except Exception:
                             pass
                     if vstup == 'translate':
-                        if translator:
+                        if translator or __name__ != '__main__':
                             continue
                         completer(['quit'] + t_languages)
                         translator_vstup = input('Select language *must be in google translate (e.g. slovak)> ')
