@@ -1046,7 +1046,7 @@ try:  # type: ignore
                             remove('MUSIC')
                         elif musicvstup == len(musiclistnew) + 1 and not musicnone:
                             typewriter('Vymaž audio')
-                            for times, music_name in range(0, len(musiclistnew)):
+                            for times, music_name in enumerate(musiclistnew):
                                 typewriter(str(times + 1) + ') ' + music_name)
                             while True:
                                 try:
@@ -1816,7 +1816,7 @@ try:  # type: ignore
             continue
 
     def get_music_menu(musiclistnew):
-        for times, music_name in range(0, len(musiclistnew)):
+        for times, music_name in enumerate(musiclistnew):
             typewriter(str(times + 1) + ') ' + music_name)
         typewriter(str(times + 2) + ') Delete audio')
         typewriter(str(times + 3) + ') Download music')
