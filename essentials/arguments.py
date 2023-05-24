@@ -28,6 +28,7 @@ def arguments(config):
     musicchoices: list[str] = ['0']
     for i in range(1, len(music) + 1):
         musicchoices.append(str(i))
+    _music =  str([i for i in music])
     parser.add_argument('-v', '--version', choices=[],
                         help='Show version of this program', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-ef', '--endf', choices=[],
@@ -41,7 +42,7 @@ def arguments(config):
     parser.add_argument('-log', '--log', choices=[],
                         help='!!! Argument for program to use', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-music', '--music', choices=musicchoices,
-                        help='Starts music; you can select from: ' + str(i for i in music), default=0, nargs='?')
+                        help='Starts music; you can select from: ' + _music, default=0, nargs='?')
     parser.add_argument('-quiet', '--quiet', choices=[],
                         help='', default=UNSPECIFIED, nargs='?')
     parser.add_argument('-translate', '--translate', choices=t_languages,
