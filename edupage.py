@@ -815,7 +815,7 @@ try:  # type: ignore
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
-            if args.translate is not UNSPECIFIED and config['basic info']['translate'] != '':
+            if args.translate is not UNSPECIFIED and config['basic info']['translate'] == '':
                 run_textractor(args, args.translate, config['basic info']['translator'])
                 translator = True
                 translator_language = args.translate
