@@ -32,4 +32,12 @@ def run_kayopy():
 
 
 def kayopy():
-    os.system(f"{sys.executable} KayoPy/kayopy/kayopy.py")
+    while True:
+        vstup = input('Do you want to download anime in anime folder? (y/n): ')
+        if vstup == 'y':
+            arg = ' -ad -of Anime'
+            break
+        if vstup == 'n':
+            arg = ''
+            break
+    os.system(f"{sys.executable} KayoPy/kayopy/kayopy.py {arg}")
