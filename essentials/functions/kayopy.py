@@ -36,7 +36,7 @@ def run_kayopy():
 
 def kayopy():
     while True:
-        vstup = input('Do you want to download anime in anime folder? (y/n): ')
+        vstup = input('\nDo you want to download anime in anime folder? (y/n): ')
         if vstup == 'y':
             arg = ' -ad -of Anime'
             Thread(target=anime_mole, daemon=True).start()
