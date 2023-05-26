@@ -9,6 +9,7 @@ basic info:
   quiet: false
   translate: ''
   translator: Bing
+  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe
 game settings:
   computer_power: 0.5
   goal_score: 2000

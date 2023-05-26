@@ -750,6 +750,7 @@ try:  # type: ignore
             from essentials.data.translate import t_languages
             from essentials.functions.function import run_app
             from essentials.functions.login import auto_login
+            from essentials.functions.anime_watch import anime_menu
             import copy
 
             musiclistnew: list = []
@@ -1094,6 +1095,13 @@ try:  # type: ignore
                             musicplay: bool = False
                         except Exception:
                             pass
+                    if vstup == 'animewatch':
+                        completer(['q', 'quit'])
+                        anime_menu(config['basic info']['vlc-path'])
+                        if logged:
+                            completer(logged_completer)
+                        if not logged:
+                            completer(unlogged_completer)
                     if vstup == 'translate':
                         if translator or __name__ != '__main__':
                             continue
