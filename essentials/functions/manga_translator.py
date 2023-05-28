@@ -11,6 +11,7 @@ def run_manga_image_translator(env):
         typewriter(printnlog(
             f'\nChecking for updates\nRunning command\nRunning command: git -C manga-image-translator pull\n', toprint=False), ttime=0.01)
         subprocess.call(['git', '-C', 'manga-image-translator', 'pull'])
+        print('')
         manga_image_translator(env)
     else:
         while True:
