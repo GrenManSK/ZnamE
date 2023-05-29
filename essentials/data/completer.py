@@ -8,6 +8,6 @@ logged_completer = ['animesearch', 'save', 'clear', 'cls', 'quit', 'quitneko', '
                     'quitwaifu', 'quitmusic', 'logout', 'delsavlog', 'waifu', 'neko',
                     'setup', 'settings', 'anotherwaifu', 'anotherneko', 'voicevox', 'animewatch',
                     'music', 'game', 'offlinegame', 'motivational', 'history', 'help',
-                    'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah',
+                    'pomoc', '-h', '-help', '?', '-?', 'advanced help', 'ah', '-ah','zz','pz',
                     '-advanced help', 'cbzprintable', 'kayopy', 'manga_translator', 'translate']
 bq_completer = ['back', 'quit']
