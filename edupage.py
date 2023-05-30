@@ -96,16 +96,15 @@ try:  # type: ignore
         config['user history'] = {}
         line_number: int = get_line_number(-1)
 
-    try:
-        if __name__ == '__main__':
+        try:
             from essentials.arguments import print_config
             print_config(logger, config)
-    except AttributeError:
-        printnlog("'config.ini' file is corrupt -> option missing")
-        error_get(configNoOption(
-            'Corruption of config file => option missing'), [line_number], fname='edupage.py')
-        input("Press 'enter' to quit")
-        sys.exit(1)
+        except AttributeError:
+            printnlog("'config.ini' file is corrupt -> option missing")
+            error_get(configNoOption(
+                'Corruption of config file => option missing'), [line_number], fname='edupage.py')
+            input("Press 'enter' to quit")
+            sys.exit(1)
 
     logger.stay(printnlog('\nDone\n', toprint=False))
 
@@ -741,7 +740,7 @@ try:  # type: ignore
             extract(args, datelog)
             media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
-            from media import play_loop  # type: ignore
+            from essentials.functions.media.media import play_loop  # type: ignore
             from login import save_credentials  # type: ignore
             from essentials.functions.writing import show_version
             from essentials.arguments import music2str
@@ -1016,7 +1015,7 @@ try:  # type: ignore
                         run_app('voicevox')    
                         continue
                     if vstup == 'playvideo':
-                        import playvideo  # type: ignore
+                        import essentials.functions.media.playvideo as playvideo  # type: ignore
                         playvideo.main()
                     if vstup == 'music':
                         mixer.init()
@@ -1409,7 +1408,7 @@ try:  # type: ignore
                         waifu: bool = False
                         typewriter('Done               ', ttime=0.01)
                     if vstup == 'animesearch':
-                        import anime_search  # type: ignore
+                        from essentials.functions import anime_search
                         anime_search.main()
                     if vstup == 'delsavlog':
                         uninstall()
