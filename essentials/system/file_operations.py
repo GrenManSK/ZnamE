@@ -134,8 +134,8 @@ def file_to_datafolder():
     for file_name in os.listdir(source_dir):
         shutil.move(os.path.join(source_dir, file_name),
                     'datafolder/' + source_dir)
-    files: list = ['downloadmusic.py', 'anime_search.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
-                   'playvideo.py', 'settings.py', 'media.py', 'game_assets.py', 'completer.py']
+    files: list = ['downloadmusic.py', 'mouse.py', 'path.py', 'endscreen.py', 'login.py',
+                   'settings.py', 'game_assets.py', 'completer.py']
     for i in files:
         shutil.move(i, f'datafolder/{i}')
 
