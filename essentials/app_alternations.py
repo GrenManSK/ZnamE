@@ -19,6 +19,7 @@ import glob
 import stat
 import json
 import pkg_resources
+from .data.dependencies import potrebne
 load_dotenv('.env')
 
 
@@ -434,8 +435,6 @@ def on_rm_error(func, path, exc_info):
 def python_update(args, logger):
     datelog = os.getenv('DATELOG')
     printnlog('')
-    potrebne: set[str] = {'idna', 'commonmark', 'click', 'charset-normalizer', 'certifi', 'brotli', 'psutil', 'tqdm', 'spotdl', 'pyunpack', 'semantic-version', 'patool', 'gputil', 'py-cpuinfo', 'tabulate', 'opencv-python', 'glob2', 'wmi', 'translate', 'show-in-file-manager', 'verbose', 'numpy', 'opencv-python', 'pillow', 'python-vlc', 'pywinauto', 'validators', 'sponsorblock.py',
-                          'keyboard', 'cpufreq', 'pywin32', 'pypiwin32', 'pyautogui', 'moviepy', 'playsound', 'python-vlc', 'pygetwindow', 'pygame', 'pytube', 'bs4', 'uuid', 'pyreadline3', 'python-dotenv', 'lxml', 'mutagen', 'pyyaml', 'pycryptodomex', 'py-cpuinfo', 'pygments', 'requests', 'rich', 'setuptools', 'shellingham', 'typer', 'typing', 'yt-dlp'}
     printnlog('Libraries needed: ', end='')
     potrebne1: list[str] = list(potrebne)
     for i in range(0, len(potrebne1)):
