@@ -275,7 +275,7 @@ def show_cmd(args):
     except IndexError:
         exit = True
         error_get(IndexError(
-            'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
+            'Possible solution; run in cmd or python application not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
 
 
 def wait_for_file(path):
