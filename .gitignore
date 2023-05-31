@@ -39,8 +39,6 @@ assets/
 apphtml/
 structs/
 yt_dl/
-data
-data_backup
 crash_dump-*
 xp3*
 tests.py
