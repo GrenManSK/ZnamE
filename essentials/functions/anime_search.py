@@ -1,5 +1,5 @@
 from edupage import typewriter, download
-from essentials.functions.media.media import PlayVideo
+from .media.media import PlayVideo
 import os
 import datetime
 import shutil
