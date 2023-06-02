@@ -63,9 +63,9 @@ def run_voicevox(env):
                    toprint=False), ttime=0.01)
         os.system('git clone https://github.com/GrenManSK/VOICEVOX.git')
         typewriter(printnlog(
-            f'\nDownloading pip requirements\nRunning command: {env} -m pip install -r VOICEVOX/requirements.txt\n', toprint=False), ttime=0.01)
+            f'\nDownloading pip requirements\nRunning command: {env} -m pip install -r VOICEVOX/requirements.txt --no-warn-script-location\n', toprint=False), ttime=0.01)
         sleep(1)
-        os.system(env + ' -m pip install -r VOICEVOX/requirements.txt')
+        os.system(env + ' -m pip install -r VOICEVOX/requirements.txt --no-warn-script-location')
         typewriter(printnlog(
             f'\nRunning VOICEVOX\nRunning command: {env} -m VOICEVOX --force-reinstall\n', toprint=False), ttime=0.01)
         sleep(1)
