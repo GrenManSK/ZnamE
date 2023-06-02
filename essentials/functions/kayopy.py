@@ -26,10 +26,10 @@ def run_kayopy():
                 printnlog('Wrong character')
         os.system('git clone https://github.com/GrenManSK/KayoPy.git')
         typewriter(printnlog(
-            f'\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r KayoPy/requirements.txt\n', toprint=False), ttime=0.01)
+            f'\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r KayoPy/requirements.txt --no-warn-script-location\n', toprint=False), ttime=0.01)
         sleep(1)
         os.system(sys.executable +
-                  ' -m pip install -r KayoPy/requirements.txt')
+                  ' -m pip install -r KayoPy/requirements.txt --no-warn-script-location')
 
         kayopy()
 

@@ -26,12 +26,12 @@ def run_manga_image_translator(env):
         os.system(
             'git clone https://github.com/zyddnys/manga-image-translator.git')
         typewriter(printnlog(
-            f'\nDownloading pip requirements\nRunning command: {env} -m pip install -r manga-image-translator/requirements.txt\n', toprint=False), ttime=0.01)
+            f'\nDownloading pip requirements\nRunning command: {env} -m pip install -r manga-image-translator/requirements.txt --no-warn-script-location\n', toprint=False), ttime=0.01)
         sleep(1)
         os.system(env +
-                  ' -m pip install -r manga-image-translator/requirements.txt')
+                  ' -m pip install -r manga-image-translator/requirements.txt --no-warn-script-location')
         os.system(env +
-                  ' -m pip install git+https://github.com/lucasb-eyer/pydensecrf.git')
+                  ' -m pip install git+https://github.com/lucasb-eyer/pydensecrf.git --no-warn-script-location')
 
         manga_image_translator(env)
 
