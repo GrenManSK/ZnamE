@@ -30,6 +30,8 @@ def run_manga_image_translator(env):
         sleep(1)
         os.system(env +
                   ' -m pip install -r manga-image-translator/requirements.txt')
+        os.system(env +
+                  ' -m pip install git+https://github.com/lucasb-eyer/pydensecrf.git')
 
         manga_image_translator(env)
 
