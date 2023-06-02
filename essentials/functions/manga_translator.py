@@ -1,8 +1,10 @@
 import os
-import sys
 import subprocess
 from .writing import printnlog, typewriter
 from time import sleep
+from ..system.file_operations import mkdir
+import shutil
+from PIL import Image
 from tkinter import filedialog
 
 
@@ -30,9 +32,18 @@ def run_manga_image_translator(env):
         sleep(1)
         os.system(env +
                   ' -m pip install -r manga-image-translator/requirements.txt --no-warn-script-location')
+        typewriter(printnlog(
+            f'\nRunning command: {env} -m pip install -r manga-image-translator/requirements.txt --no-warn-script-location\n', toprint=False), ttime=0.01)
         os.system(env +
                   ' -m pip install git+https://github.com/lucasb-eyer/pydensecrf.git --no-warn-script-location')
 
+        mkdir('manga_translator_temp')
+        img = Image.new("RGB", (800, 1280), (255, 255, 255))
+        img.save("manga_translator_temp/image.png", "PNG")
+        os.system(
+            f"{env} -m manga-image-translator.manga_translator -v --mode batch --translator=google -l ENG -i manga_translator_temp")
+        shutil.rmtree('manga_translator_temp')
+        shutil.rmtree('manga_translator_temp-translated')
         manga_image_translator(env)
 
 
