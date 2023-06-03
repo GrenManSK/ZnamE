@@ -10,8 +10,7 @@ import glob
 import sys
 
 
-
-def DownloadVideo(link: str, name: str = 'video', directory: str = 'assets') -> str:
+def DownloadVideo(link: str, name: str = "video", directory: str = "assets") -> str:
     """
     The Download function downloads the video from YouTube.
     It takes in a link as an argument and then downloads the video.
@@ -19,27 +18,27 @@ def DownloadVideo(link: str, name: str = 'video', directory: str = 'assets') -> 
     :param link: Download the video from youtube
     :return: The name of the file that has been downloaded
     """
-    os.system(f"{sys.executable} -m yt_dl video -l \"{link}\" ")
-    for out_file in glob.glob('Video_File_Save/*.mp4'):
+    os.system(f'{sys.executable} -m yt_dl video -l "{link}" ')
+    for out_file in glob.glob("Video_File_Save/*.mp4"):
         pass
     base, ext = os.path.splitext(out_file)
     base = os.path.basename(base)
     base.replace("[", "(")
     base.replace("]", ")")
     base.replace("'", "")
-    base.replace("\"", "")
-    new_file = 'video.mp4'
+    base.replace('"', "")
+    new_file = "video.mp4"
     print(os.path.join(out_file))
-    print(os.path.join('assets\\' + new_file))
-    shutil.copy(os.path.join(out_file) ,os.path.join('assets\\' + new_file))
+    print(os.path.join("assets\\" + new_file))
+    shutil.copy(os.path.join(out_file), os.path.join("assets\\" + new_file))
     os.remove(out_file)
-    print('Done\n')
-    shutil.rmtree('Video_File_Save')
-    
+    print("Done\n")
+    shutil.rmtree("Video_File_Save")
+
     return base
 
 
-def PlayVideo(video_path: str = 'assets/video.mp4', repeat: bool = False) -> None:
+def PlayVideo(video_path: str = "assets/video.mp4", repeat: bool = False) -> None:
     """
     The PlayVideo function plays a video from the specified path.
         The function will play the video in full screen mode and will not return until the user presses 'Q' to quit.
@@ -55,18 +54,17 @@ def PlayVideo(video_path: str = 'assets/video.mp4', repeat: bool = False) -> Non
     media_player.set_media(media)
     sleep(1)
     print("Press 'Q' to stop video")
-    input('Press enter to continue')
+    input("Press enter to continue")
     media_player.play()
     try:
         sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle(
-            'VLC (Direct3D11 output)')[0]
+        window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 output)")[0]
         window.activate()
         window.maximize()
     except Exception:
         pass
     while True:
-        if keyboard.is_pressed('q'):
+        if keyboard.is_pressed("q"):
             media_player.stop()
             ctypes.windll.user32.keybd_event(0x8, 0, 0, 0)
             sleep(0.01)
@@ -76,14 +74,12 @@ def PlayVideo(video_path: str = 'assets/video.mp4', repeat: bool = False) -> Non
 
 
 def play_loop():
-    player = vlc.Instance('--input-repeat=999999')
+    player = vlc.Instance("--input-repeat=999999")
     media_list = player.media_list_new()  # type: ignore
     media_player = player.media_list_player_new()  # type: ignore
-    media = player.media_new(
-        "assets/waifu.mp4")  # type: ignore
+    media = player.media_new("assets/waifu.mp4")  # type: ignore
     media_list.add_media(media)
     media_player.set_media_list(media_list)
-    player.vlm_set_loop(
-        "waifu", True)  # type: ignore
+    player.vlm_set_loop("waifu", True)  # type: ignore
     media_player.play()
     return media_player

@@ -12,7 +12,8 @@ import ctypes
 import win32gui
 from dotenv import load_dotenv
 from pygame import mixer
-load_dotenv('.env')
+
+load_dotenv(".env")
 
 
 def getWindow(args) -> bool:
@@ -23,17 +24,19 @@ def getWindow(args) -> bool:
     :return: If error occured
     """
     dummy = None
-    cv2.namedWindow('frame2', cv2.WND_PROP_FULLSCREEN)
-    cv2.setWindowProperty(
-        'frame2', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    cv2.namedWindow("frame2", cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty("frame2", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     test: str = "assets/banner.png"
     for file in glob.glob(test):
         dummy = cv2.imread(file)
     try:
         cv2.imshow("Image", dummy)
     except cv2.error:
-        error_get(cv2.error('File is corrupt (probably \'banner.png\')'), [
-            get_line_number()], fname='system_operations.py')
+        error_get(
+            cv2.error("File is corrupt (probably 'banner.png')"),
+            [get_line_number()],
+            fname="system_operations.py",
+        )
         return True
     cv2.waitKey(1)
     sleep(0.1)
@@ -43,8 +46,13 @@ def getWindow(args) -> bool:
             show_cmd(args)
             return False
         except IndexError:
-            error_get(IndexError(
-                'Possible solution; run in cmd or python aplication not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
+            error_get(
+                IndexError(
+                    "Possible solution; run in cmd or python aplication not ide or put arguments '--test'"
+                ),
+                [get_line_number()],
+                fname="system_operations.py",
+            )
             return True
     return False
 
@@ -55,8 +63,9 @@ def isUserAdmin():
     This is for Windows only.
     :return: A boolean value
     """
-    if os.name == 'nt':
+    if os.name == "nt":
         import ctypes
+
         # WARNING: requires Windows XP SP2 or higher!
         try:
             return ctypes.windll.shell32.IsUserAnAdmin()
@@ -64,12 +73,13 @@ def isUserAdmin():
             traceback.print_exc()
             print("Admin check failed, assuming not an admin.")
             return False
-    elif os.name == 'posix':
+    elif os.name == "posix":
         # Check for root on Posix
         return os.getuid() == 0
     else:
         raise RuntimeError(
-            "Unsupported operating system for this module: %s" % (os.name,))
+            "Unsupported operating system for this module: %s" % (os.name,)
+        )
 
 
 def runAsAdmin(cmdLine=None, wait=True):
@@ -80,9 +90,8 @@ def runAsAdmin(cmdLine=None, wait=True):
     :param wait: Determine whether the function should wait for the process to finish or not
     :return: The process handle of the elevated process
     """
-    if os.name != 'nt':
-        raise RuntimeError(
-            "This function is only implemented on Windows.")
+    if os.name != "nt":
+        raise RuntimeError("This function is only implemented on Windows.")
 
     import win32api
     import win32con
@@ -99,18 +108,19 @@ def runAsAdmin(cmdLine=None, wait=True):
         raise ValueError("cmdLine is not a sequence.")
     cmd = '"%s"' % (cmdLine[0],)
     params = " ".join(['"%s"' % (x,) for x in cmdLine[1:]])
-    cmdDir = ''
+    cmdDir = ""
     showCmd = win32con.SW_SHOWNORMAL
-    lpVerb = 'runas'
-    procInfo = ShellExecuteEx(nShow=showCmd,
-                              fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,
-                              lpVerb=lpVerb,
-                              lpFile=cmd,
-                              lpParameters=params)
+    lpVerb = "runas"
+    procInfo = ShellExecuteEx(
+        nShow=showCmd,
+        fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,
+        lpVerb=lpVerb,
+        lpFile=cmd,
+        lpParameters=params,
+    )
     if wait:
-        procHandle = procInfo['hProcess']
-        obj = win32event.WaitForSingleObject(
-            procHandle, win32event.INFINITE)
+        procHandle = procInfo["hProcess"]
+        obj = win32event.WaitForSingleObject(procHandle, win32event.INFINITE)
         rc = win32process.GetExitCodeProcess(procHandle)
     else:
         rc = None
@@ -125,12 +135,10 @@ def checkAdmin():
     """
     rc = 0
     if not isUserAdmin():
-        print("You're not an admin.",
-              os.getpid(), "params: ", sys.argv)
+        print("You're not an admin.", os.getpid(), "params: ", sys.argv)
         rc = runAsAdmin()
     else:
-        print("You are an admin!", os.getpid(),
-              "params: ", sys.argv)
+        print("You are an admin!", os.getpid(), "params: ", sys.argv)
         rc = 0
     return rc
 
@@ -147,7 +155,7 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
     :param length: Set the length of the window
     :return: The image that is displayed
     """
-    screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
+    screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
     screensize = [int(i) for i in screensize]
     path: str = imgSrc
     for file in glob.glob(path):
@@ -159,20 +167,21 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
             xpos: int = x
             ypos: int = y
             if width is None:
-                width = int((screensize[0]/10)*9)
+                width = int((screensize[0] / 10) * 9)
             if length is None:
-                length = int((screensize[1]/10)*9)
+                length = int((screensize[1] / 10) * 9)
 
             def enumHandler(hwnd, lParam):
                 if win32gui.IsWindowVisible(hwnd):  # type: ignore
                     # type: ignore
                     if appname in win32gui.GetWindowText(hwnd):
                         win32gui.MoveWindow(
-                            hwnd, xpos, ypos, width, length, True)  # type: ignore
+                            hwnd, xpos, ypos, width, length, True
+                        )  # type: ignore
+
             win32gui.EnumWindows(enumHandler, None)  # type: ignore
         k = cv2.waitKey(33)
-        cv2.setWindowProperty(
-            name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        cv2.setWindowProperty(name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         if k == 27:
             break
         elif k == -1:
@@ -192,11 +201,11 @@ def pg_comb(operations: dict[str, str]):
     :return: A dictionary with the keys being operations and the values being keys
     """
     for oper, key in operations.items():
-        if oper == 'p':
+        if oper == "p":
             pg.press(key)
-        elif oper == 'ku':
+        elif oper == "ku":
             pg.keyUp(key)
-        elif oper == 'kd':
+        elif oper == "kd":
             pg.keyDown(key)
 
 
@@ -204,8 +213,8 @@ def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
     """
     The move function moves the specified window to a specified location.
     The move function takes four arguments:
-        1) The name of the window as a string. This is case sensitive and should be enclosed in quotation marks if it contains spaces or special characters (e.g., &quot;Microsoft Word&quot;). 
-        2) The x-coordinate of the desired location on your screen, measured in pixels from the left edge of your screen to where you want your window located (e.g., 100). 
+        1) The name of the window as a string. This is case sensitive and should be enclosed in quotation marks if it contains spaces or special characters (e.g., &quot;Microsoft Word&quot;).
+        2) The x-coordinate of the desired location on your screen, measured in pixels from the left edge of your screen to where you want your window located (e.g., 100).
         3) The y-coordinate of the desired location on your screen, measured in pixels from the top edge of your screen
 
     :param window: str: Specify the name of the window
@@ -215,21 +224,23 @@ def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
     :param length: Set the height of the window
     :return: None
     """
-    screensize = os.getenv('SCREENSIZE')[1:-1].split(', ')
+    screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
     screensize = [int(i) for i in screensize]
     appname: str = window
     xpos: int = x
     ypos: int = y
     if width is None:
-        width: int = int((screensize[0]/10)*9)
+        width: int = int((screensize[0] / 10) * 9)
     if length is None:
-        length: int = int((screensize[1]/10)*9)
+        length: int = int((screensize[1] / 10) * 9)
 
     def enumHandler(hwnd, lParam):  # type: ignore
         if win32gui.IsWindowVisible(hwnd):  # type: ignore
             if appname in win32gui.GetWindowText(hwnd):  # type: ignore
                 win32gui.MoveWindow(
-                    hwnd, xpos, ypos, width, length, True)  # type: ignore
+                    hwnd, xpos, ypos, width, length, True
+                )  # type: ignore
+
     win32gui.EnumWindows(enumHandler, None)  # type: ignore
 
 
@@ -245,15 +256,14 @@ def intro_video(args, media_player):
     if args.restart is not None:
         try:
             sleep(0.1)
-            window = pygetwindow.getWindowsWithTitle(
-                'VLC (Direct3D11 output)')[0]
+            window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 output)")[0]
             window.activate()
             window.maximize()
         except Exception:
             pass
         sleep(2.5)
         mixer.init()
-        mixer.music.load('assets/greeting.mp3')
+        mixer.music.load("assets/greeting.mp3")
         mixer.music.play()
         sleep(2.5)
         media_player.stop()
@@ -269,13 +279,18 @@ def show_cmd(args):
     """
     try:
         if args.test is not None:
-            window = pygetwindow.getWindowsWithTitle('ZnámE')[0]
+            window = pygetwindow.getWindowsWithTitle("ZnámE")[0]
             window.activate()
             return window
     except IndexError:
         exit = True
-        error_get(IndexError(
-            'Possible solution; run in cmd or python application not ide or put arguments \'--test\''), [get_line_number()], fname='system_operations.py')
+        error_get(
+            IndexError(
+                "Possible solution; run in cmd or python application not ide or put arguments '--test'"
+            ),
+            [get_line_number()],
+            fname="system_operations.py",
+        )
 
 
 def wait_for_file(path):
@@ -299,9 +314,9 @@ def wait_for_file(path):
 
 
 def double_alt_tab():
-    pg.keyDown('alt')
-    pg.press('tab')
-    pg.keyUp('alt')
-    pg.keyDown('alt')
-    pg.press('tab')
-    pg.keyUp('alt')
+    pg.keyDown("alt")
+    pg.press("tab")
+    pg.keyUp("alt")
+    pg.keyDown("alt")
+    pg.press("tab")
+    pg.keyUp("alt")
