@@ -4,10 +4,10 @@ basic info:
   inactivelimit: 300
   intro: false
   music: enable
-  musiclist: ''
+  musiclist: ""
   musicnumber: 0
   quiet: false
-  translate: ''
+  translate: ""
   translator: Bing
   vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe
 game settings:

@@ -21,8 +21,8 @@ def internet(args):
     number = 0
     while True:
         sleep(1)
-        if os.path.isfile('INTERNET_CHECK_CORRECT'):
-            os.remove('INTERNET_CHECK_CORRECT')
+        if os.path.isfile("INTERNET_CHECK_CORRECT"):
+            os.remove("INTERNET_CHECK_CORRECT")
             break
         number += 1
         if 10 >= number >= 5:
@@ -44,16 +44,17 @@ def internet_check(args) -> None:
     try:
         global requests
         import requests
+
         timeout: int = 10
         Thread(target=internet, args=(args,)).start()
         requests.head("http://www.google.com/", timeout=timeout)
         try:
-            open('INTERNET_CHECK_CORRECT', 'x')
+            open("INTERNET_CHECK_CORRECT", "x")
         except FileExistsError:
             pass
     except requests.ConnectionError:  # type: ignore
         line_number: int = get_line_number()
-        if __name__ == '__main__':
+        if __name__ == "__main__":
             printnlog("The internet connection is down")
             sleep(2)
             sys.exit(1)
@@ -74,11 +75,11 @@ def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
     """
     try:
         resp = requests.get(url, stream=True)
-        total: int = int(resp.headers.get('content-length', 0))
-        with open(fname, 'wb') as file, tqdm(
+        total: int = int(resp.headers.get("content-length", 0))
+        with open(fname, "wb") as file, tqdm(
             desc=fname,
             total=total,
-            unit='iB',
+            unit="iB",
             unit_scale=True,
             unit_divisor=1024,
         ) as bar:

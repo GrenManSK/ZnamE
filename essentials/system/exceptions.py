@@ -2,7 +2,8 @@ from ..functions.writing import printnlog
 import sys
 import os
 from dotenv import load_dotenv
-load_dotenv('.env')
+
+load_dotenv(".env")
 
 
 class configNoOption(Exception):
@@ -59,19 +60,21 @@ def error_log(line: int, fname) -> None:
 
     :param line: The line number of the error
     """
-    if fname[0] == '?':
+    if fname[0] == "?":
         try:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         except AttributeError:
             pass
-    with open('error.log', 'a', encoding='utf-8') as errorfile:
+    with open("error.log", "a", encoding="utf-8") as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exc_type = exc_type.__qualname__
         errorfile.write(
-            f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n')
+            f"Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
+        )
     printnlog(
-        f'Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}')
+        f"Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
+    )
 
 
 def error_get(errors, line: list, fname: None | str = None) -> None:
@@ -98,21 +101,24 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 try:
                     if fname is None:
                         fname = os.path.basename(
-                            error.__traceback__.tb_frame.f_locals['__file__'])
+                            error.__traceback__.tb_frame.f_locals["__file__"]
+                        )
                 except AttributeError:
-                    fname = '?edupage.py'
+                    fname = "?edupage.py"
                 try:
-                    raise eval(
-                        error.with_traceback.__qualname__.split('.')[0])(error)
-                except eval(error.with_traceback.__qualname__.split('.')[0]):
+                    raise eval(error.with_traceback.__qualname__.split(".")[0])(error)
+                except eval(error.with_traceback.__qualname__.split(".")[0]):
                     if len(line) == 1 and times > 0:
                         error_log(line[0], fname)
                     else:
                         error_log(line[times], fname)
             except NameError:
                 try:
-                    raise SystemError(error.with_traceback.__qualname__.split('.')[
-                        0] + ': ' + str(error))
+                    raise SystemError(
+                        error.with_traceback.__qualname__.split(".")[0]
+                        + ": "
+                        + str(error)
+                    )
                 except SystemError:
                     if len(line) == 1 and times > 0:
                         error_log(line[0], fname)
@@ -121,7 +127,7 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     except Exception:
         times = 0
         try:
-            error_name = errors.with_traceback.__qualname__.split('.')[0]
+            error_name = errors.with_traceback.__qualname__.split(".")[0]
             raise eval(error_name)(errors)
         except eval(error_name):
             if len(line) == 1 and times > 0:

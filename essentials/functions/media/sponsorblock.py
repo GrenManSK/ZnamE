@@ -14,11 +14,11 @@ def get_segments(url: str) -> list[Segment]:
         pass
 
 
-def sponsorblock(url, file='assets/video.mp4'):
+def sponsorblock(url, file="assets/video.mp4"):
     segments = get_segments(url)
 
     if segments is None:
-        print('sponsorblock failed')
+        print("sponsorblock failed")
         return 1
 
     clips = []
@@ -27,7 +27,7 @@ def sponsorblock(url, file='assets/video.mp4'):
     for segment in segments:
         end = segment.start
 
-        if segment.category in ['poi_hightlight', 'filler', 'interaction']:
+        if segment.category in ["poi_hightlight", "filler", "interaction"]:
             continue
         try:
             clips.append(clip.subclip(start, end))
@@ -40,9 +40,9 @@ def sponsorblock(url, file='assets/video.mp4'):
         return
 
     combined = concatenate_videoclips(clips)
-    combined.write_videofile('assets/video_final.mp4')
+    combined.write_videofile("assets/video_final.mp4")
 
     clip.close()
 
-    os.remove('assets/video.mp4')
-    os.rename('assets/video_final.mp4', file)
+    os.remove("assets/video.mp4")
+    os.rename("assets/video_final.mp4", file)
