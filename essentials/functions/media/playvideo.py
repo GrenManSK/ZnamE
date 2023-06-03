@@ -25,20 +25,23 @@ def main():
         if videovstup == "1":
             music_name: str = str(input("Name of the video> "))
             if not validators.url(music_name):
+                print("Refactoring to url-like string ...", end="\r")
                 query_string = urllib.parse.urlencode({"search_query": music_name})
+                print("Refactoring to url-like string DONE")
+                print("Opening site ...", end="\r")
                 formatUrl = urllib.request.urlopen(
                     "https://www.youtube.com/results?" + query_string
                 )
                 logging.debug(
                     "Searched in: https://www.youtube.com/results?" + query_string
                 )
+                print("Opening site DONE")
+                print("Finding video ...", end="\r")
                 search_results = re.findall(
                     r"watch\?v=(\S{11})", formatUrl.read().decode()
                 )
                 # deepcode ignore Ssrf: <User input to video on Youtube>
-                clip = requests.get(
-                    "https://www.youtube.com/watch?v=" + "{}".format(search_results[0])
-                )
+                print("Finding video DONE\n")
                 clip2 = "https://www.youtube.com/watch?v=" + "{}".format(
                     search_results[0]
                 )
@@ -46,10 +49,6 @@ def main():
                     "Found: https://www.youtube.com/watch?v="
                     + "{}".format(search_results[0])
                 )
-                inspect = BeautifulSoup(clip.content, "html.parser")
-                yt_title = inspect.find_all("meta", property="og:title")
-                for concatMusic1 in yt_title:
-                    pass
             else:
                 clip2 = music_name
             try:
@@ -67,3 +66,4 @@ def main():
                 pass
         elif videovstup == "2":
             break
+    print("")

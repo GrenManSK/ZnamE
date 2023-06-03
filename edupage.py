@@ -143,7 +143,7 @@ try:  # type: ignore
                         "",
                         [
                             FileNotFoundError("update.py isn't present"),
-                            TypeError("NOT FATAL" + " ERROR"),
+                            TypeError("NOT FATAL ERROR"),
                         ],
                     ),
                     [get_line_number()],
