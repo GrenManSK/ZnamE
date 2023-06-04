@@ -10,6 +10,9 @@ try:  # type: ignore
     import os
     import traceback
     import yaml
+    from essentials.functions.writing import printnlog, typewriter, change_quiet
+    from essentials.system.exceptions import configNoOption, error_get
+    from essentials.system.system_info import get_line_number
 
     config = yaml.safe_load(open("config.yml", "r", encoding="utf-8"))
     if __name__ == "__main__":
@@ -50,7 +53,6 @@ try:  # type: ignore
     with open(".env", "w", encoding="utf-8") as dotenv:
         dotenv.write(f"DATELOG={datelog}\n")
         dotenv.write(f"QUIET={quiet}\n")
-    from essentials.functions.writing import printnlog, typewriter, change_quiet
     from essentials.system.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))
@@ -92,8 +94,6 @@ try:  # type: ignore
     print_module()
     if __name__ == "__main__":
         logger.stay(printnlog("DONE", toprint=False))
-    from essentials.system.exceptions import configNoOption, error_get
-    from essentials.system.system_info import get_line_number
 
     if __name__ == "__main__":
         print("")
@@ -115,6 +115,8 @@ try:  # type: ignore
             )
             input("Press 'enter' to quit")
             sys.exit(1)
+
+        del line_number
 
     logger.stay(printnlog("\nDone\n", toprint=False))
 
