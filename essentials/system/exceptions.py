@@ -84,10 +84,6 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     :param line: list: Store the line numbers of the errors
     :return: The error code and the line number of the error
     """
-    try:
-        raise errors
-    except Exception:
-        pass
     exc_type, exc_obj, exc_tb = sys.exc_info()
     if None in line:
         line = []
