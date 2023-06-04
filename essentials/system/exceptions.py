@@ -56,7 +56,7 @@ class argQuietError(Exception):
     pass
 
 
-def error_log(line: int, fname) -> None:
+def error_log(line: int, fname, module, error) -> None:
     """
     It writes the error to a file and prints it to the console
 
@@ -64,12 +64,11 @@ def error_log(line: int, fname) -> None:
     """
     with open("error.log", "a", encoding="utf-8") as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        exc_type = exc_type.__qualname__
         errorfile.write(
-            f"Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
+            f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
         )
     printnlog(
-        f"Type of error: {str(exc_type)} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
+        f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
     )
 
 
@@ -89,93 +88,78 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
         line = []
     try:
         for times, error in enumerate(errors.exceptions):
-            import_module(error.__module__, error)
+            module_obj = import_module(
+                error.__module__, error.with_traceback.__qualname__.split(".")[0]
+            )
+            globals()[error.__module__] = module_obj
+            names = set(
+                os.path.basename(i)
+                for i in glob.glob("essentials/**/**/**.py", recursive=True)
+            )
+            error_tb = error.__traceback__
+            error_tb_to_use = []
+            while True:
+                if error_tb.tb_next is None:
+                    fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                    line.append(error_tb.tb_lineno)
+                    break
+                if (
+                    not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename)
+                    in names
+                ):
+                    fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                    line.append(error_tb.tb_lineno)
+                    break
+                else:
+                    error_tb_to_use.append(
+                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
+                    )
+                    error_tb = error_tb.tb_next
+            error_tb_to_use.reverse()
+            error_tb_format = f"{error.args[0]} ("
+            for i in error_tb_to_use:
+                error_tb_format += "" + i + " => "
+            error_tb_format = error_tb_format[0:-4] + ")"
             try:
-                names = set(
-                    os.path.basename(i)
-                    for i in glob.glob("essentials/**/**/**.py", recursive=True)
-                )
-                error_tb = error.__traceback__
-                error_tb_to_use = []
-                while True:
-                    if error_tb.tb_next is None:
-                        fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
-                        line.append(error_tb.tb_lineno)
-                        break
-                    if (
-                        not os.path.basename(
-                            error_tb.tb_next.tb_frame.f_code.co_filename
-                        )
-                        in names
-                    ):
-                        fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
-                        line.append(error_tb.tb_lineno)
-                        break
-                    else:
-                        error_tb_to_use.append(
-                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
-                        )
-                        error_tb = error_tb.tb_next
-                error_tb_to_use.reverse()
-                error_tb_format = f"{error.args[0]} ("
-                for i in error_tb_to_use:
-                    error_tb_format += "" + i + " => "
-                error_tb_format = error_tb_format[0:-4] + ")"
                 try:
                     raise eval(error.with_traceback.__qualname__.split(".")[0])(
                         error_tb_format
                     )
                 except eval(error.with_traceback.__qualname__.split(".")[0]):
-                    if len(line) == 1 and times > 0:
-                        error_log(line[0], fname)
-                    else:
-                        error_log(line[times], fname)
-            except NameError:
-                names = set(
-                    os.path.basename(i)
-                    for i in glob.glob("essentials/**/**/**.py", recursive=True)
-                )
-                error_tb = error.__traceback__
-                while True:
-                    try:
-                        if error_tb.tb_next is None:
-                            file_name = os.path.basename(
-                                error_tb.tb_frame.f_code.co_filename
-                            )
-                            break
-                    except AttributeError:
-                        pass
-                    if (
-                        not os.path.basename(
-                            error_tb.tb_next.tb_frame.f_code.co_filename
-                        )
-                        in names
-                    ):
-                        file_name = os.path.basename(
-                            error_tb.tb_frame.f_code.co_filename
-                        )
-                        break
-                    else:
-                        error_tb = error_tb.tb_next
-                try:
-                    raise SystemError(
-                        error.with_traceback.__qualname__.split(".")[0]
-                        + ": "
-                        + str(error)
-                        + f" | In file: {file_name}"
+                    error_log(
+                        line[times],
+                        fname,
+                        error.__module__,
+                        error.with_traceback.__qualname__.split(".")[0],
                     )
-                except SystemError:
-                    if len(line) == 1 and times > 0:
-                        error_log(line[0], fname)
-                    else:
-                        error_log(line[times], fname)
+            except NameError:
+                try:
+                    raise eval(
+                        error.__module__
+                        + "."
+                        + error.with_traceback.__qualname__.split(".")[0]
+                    )(error_tb_format)
+                except eval(
+                    error.__module__
+                    + "."
+                    + error.with_traceback.__qualname__.split(".")[0]
+                ):
+                    error_log(
+                        line[times],
+                        fname,
+                        error.__module__,
+                        error.with_traceback.__qualname__.split(".")[0],
+                    )
+
     except Exception:
         times = 0
         try:
             error_name = errors.with_traceback.__qualname__.split(".")[0]
             raise eval(error_name)(errors)
         except eval(error_name):
-            if len(line) == 1 and times > 0:
-                error_log(line[0], fname)
-            else:
-                error_log(line[times], fname)
+            error_log(
+                line[times],
+                fname,
+                error.__module__,
+                error.with_traceback.__qualname__.split(".")[0],
+            )
