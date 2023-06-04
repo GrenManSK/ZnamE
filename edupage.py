@@ -96,6 +96,7 @@ try:  # type: ignore
     from essentials.system.system_info import get_line_number
 
     if __name__ == "__main__":
+        print("")
         logger.stay(printnlog("Reading config file (yml)", toprint=False))
         config = yaml.safe_load(open("config.yml", "r", encoding="utf-8"))
         config["user history"] = {}
@@ -149,8 +150,6 @@ try:  # type: ignore
                     [get_line_number()],
                     fname="edupage.py",
                 )
-
-        logger.stay(printnlog("DONE", toprint=False))
 
         if args.configoptions is None:
             from essentials.arguments import write_config_options
@@ -317,20 +316,10 @@ try:  # type: ignore
     )
 
     if __name__ == "__main__":
-        logger.next(printnlog("\nDefining apps", toprint=False))
-        logger.stay("codeapp")
-        logger.stay("decodeapp")
-        logger.stay("findapp")
-        logger.stay("passwordapp")
-        logger.stay("addapp")
-        logger.stay("restartapp")
-        logger.stay("gameapp")
-        logger.prev("")
         if args.log is None:
             from essentials.system.system_info import get_log_info
 
             get_log_info()
-        logger.stay(printnlog("DONE", toprint=False))
 
     def delcache(cache_name: str, hist: str) -> None:
         """
@@ -927,7 +916,7 @@ try:  # type: ignore
             )
             show_cmd(args)
             pg.press("win")
-            sleep(0.1)
+            sleep(0.25)
             pg.press("win")
             os.system("cls")
             if args.music != 0:
@@ -1061,7 +1050,7 @@ try:  # type: ignore
                         cv2.destroyAllWindows()
                         getWindow(args)
                         pg.press("win")
-                        sleep(0.1)
+                        sleep(0.25)
                         pg.press("win")
                         getImg(
                             "assets/banner.png",
@@ -1100,7 +1089,7 @@ try:  # type: ignore
                                 cv2.destroyAllWindows()
                                 getWindow(args)
                                 pg.press("win")
-                                sleep(0.1)
+                                sleep(0.25)
                                 pg.press("win")
                                 getImg(
                                     "assets/banner.png",
@@ -1787,7 +1776,7 @@ try:  # type: ignore
                                 cv2.destroyAllWindows()
                                 getWindow(args)
                                 pg.press("win")
-                                sleep(0.1)
+                                sleep(0.25)
                                 pg.press("win")
                                 getImg(
                                     "assets/banner.png",
@@ -2118,6 +2107,10 @@ try:  # type: ignore
                         remove("crash_dump-" + datelog + ".txt")
                         return 0
         except* Exception as returned_error:
+            try:
+                line_number
+            except NameError:
+                line_number = None
             printnlog("Writing an error to 'error.log'!!!")
             printnlog(traceback.format_exc())
             error_line_numbers: list = []
@@ -2133,7 +2126,6 @@ try:  # type: ignore
                     error_line_number = error_line_number.tb_lineno
                     error_line_numbers.append(error_line_number)
             error_get(returned_error, error_line_numbers)
-            printnlog("End")
             input("Enter to quit")
             sys.exit(0)
 
@@ -2215,6 +2207,10 @@ try:  # type: ignore
         except FileNotFoundError:
             pass
 except* Exception as e:
+    try:
+        line_number
+    except NameError:
+        line_number = None
     printnlog("Writing an error to 'error.log'!!!")
     printnlog(traceback.format_exc())
     line_numbers: list = []
@@ -2228,6 +2224,5 @@ except* Exception as e:
             error_line_number = error_line_number.tb_lineno
             line_numbers.append(line_number)
     error_get(e, line_numbers)
-    printnlog("End")
     input("Enter to quit")
     sys.exit(0)

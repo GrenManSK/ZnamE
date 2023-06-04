@@ -1,6 +1,7 @@
 from ..functions.writing import printnlog
 import sys
 import os
+import glob
 from dotenv import load_dotenv
 
 load_dotenv(".env")
@@ -94,14 +95,22 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
     except AttributeError:
-        pass
+        try:
+            fname = os.path.basename(
+                exc_obj.exceptions[0].__traceback__.tb_frame.f_code.co_filename
+            )
+        except KeyError:
+            fname = '?edupage.py'
+    if None in line:
+        line = []
+        line.append(exc_obj.exceptions[0].__traceback__.tb_lineno)        
     try:
         for times, error in enumerate(errors.exceptions):
             try:
                 try:
                     if fname is None:
                         fname = os.path.basename(
-                            error.__traceback__.tb_frame.f_locals["__file__"]
+                            error.__traceback__.tb_frame.f_code.co_filename
                         )
                 except AttributeError:
                     fname = "?edupage.py"
@@ -113,11 +122,20 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                     else:
                         error_log(line[times], fname)
             except NameError:
+                names = set(os.path.basename(i) for i in glob.glob('essentials/**/**/**.py', recursive=True))
+                error_tb = error.__traceback__
+                while True:
+                    if not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename) in names:
+                        file_name = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                        break
+                    else:
+                        error_tb = error_tb.tb_next
                 try:
                     raise SystemError(
                         error.with_traceback.__qualname__.split(".")[0]
                         + ": "
                         + str(error)
+                        + f' | In file: {file_name}'
                     )
                 except SystemError:
                     if len(line) == 1 and times > 0:

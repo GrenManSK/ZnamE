@@ -16,6 +16,7 @@ from .system.exceptions import (
     argTranslatorError,
     argQuietError,
 )
+from verbose import inbetween, get_logger
 from .system.exceptions import error_get
 from .data.translate import t_languages, t_translators
 from dotenv import load_dotenv
@@ -185,7 +186,7 @@ def arguments(config):
     return parser, music, UNSPECIFIED
 
 
-def check_correctness(args, config, logger, music):
+def check_correctness(args, config, logger: get_logger, music):
     hexnumber: list[str] = [
         "0",
         "1",
@@ -204,7 +205,9 @@ def check_correctness(args, config, logger, music):
         "e",
         "f",
     ]
-    logger.stay(printnlog("Checking config correctness", toprint=False))
+    logger.next(
+        printnlog("Checking config correctness", toprint=False), where=inbetween
+    )
     if not str(config["basic info"]["environmentA"]).split(" ")[0] in hexnumber:
         error_get(
             ExceptionGroup(
@@ -222,7 +225,7 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => environmentA")
+        logger.stay(printnlog("basic info => environmentA", toprint=False))
     if not str(config["basic info"]["environmentB"]).split(" ")[0] in hexnumber:
         error_get(
             ExceptionGroup(
@@ -240,10 +243,10 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => environmentB")
+        logger.stay(printnlog("basic info => environmentB", toprint=False))
     try:
         int(config["basic info"]["inactivelimit"])
-        printnlog("basic info => inactivelimit")
+        logger.stay(printnlog("basic info => inactivelimit", toprint=False))
     except ValueError:
         error_get(
             ExceptionGroup(
@@ -275,12 +278,12 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => intro")
+        logger.stay(printnlog("basic info => intro", toprint=False))
     if config["basic info"]["music"].split(" ")[0] == "enable":
         args.music = config["basic info"]["musicnumber"]
-        printnlog("basic info => music")
+        logger.stay(printnlog("basic info => music", toprint=False))
     elif config["basic info"]["music"].split(" ")[0] == "disable":
-        printnlog("basic info => music")
+        logger.stay(printnlog("basic info => music", toprint=False))
         pass
     else:
         error_get(
@@ -311,7 +314,7 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("waifu settings => type")
+        logger.stay(printnlog("waifu settings => type", toprint=False))
     if config["waifu settings"]["type"] == "sfw":
         category: list[str] = [
             "waifu",
@@ -361,7 +364,7 @@ def check_correctness(args, config, logger, music):
             input("Enter to exit")
             sys.exit(1)
         else:
-            printnlog("waifu settings => category")
+            logger.stay(printnlog("waifu settings => category", toprint=False))
     elif config["waifu settings"]["type"] == "nsfw":
         category: list[str] = ["waifu", "neko", "trap", "blowjob"]
         if not config["waifu settings"]["category"].split(" ")[0] in category:
@@ -379,7 +382,7 @@ def check_correctness(args, config, logger, music):
             input("Enter to exit")
             sys.exit(1)
         else:
-            printnlog("waifu settings => category")
+            logger.stay(printnlog("waifu settings => category", toprint=False))
     server: list[str] = ["nekos.best", "waifu.pics", "kyoko", "nekos_api"]
     if not config["neko settings"]["server"] in server:
         error_get(
@@ -396,7 +399,7 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("neko settings => server")
+        logger.stay(printnlog("neko settings => server", toprint=False))
     try:
         int(config["game settings"]["goal_score"])
     except ValueError:
@@ -415,7 +418,7 @@ def check_correctness(args, config, logger, music):
         sys.exit(1)
     try:
         if 10 <= int(config["game settings"]["goal_score"]):
-            printnlog("game settings => goal_score")
+            logger.stay(printnlog("game settings => goal_score", toprint=False))
         else:
             raise ValueError
     except ValueError:
@@ -434,7 +437,7 @@ def check_correctness(args, config, logger, music):
         sys.exit(1)
     try:
         float(config["game settings"]["computer_power"])
-        printnlog("game settings => computer_power")
+        logger.stay(printnlog("game settings => computer_power", toprint=False))
     except ValueError:
         error_get(
             ExceptionGroup(
@@ -483,7 +486,7 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => translate")
+        logger.stay(printnlog("basic info => translate", toprint=False))
     if not str(config["basic info"]["translator"]).split(" ")[0] in t_translators:
         error_get(
             ExceptionGroup(
@@ -501,7 +504,7 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => translator")
+        logger.stay(printnlog("basic info => translator", toprint=False))
     if not eval(str(config["basic info"]["quiet"]).split(" ")[0]) in [True, False]:
         error_get(
             ExceptionGroup(
@@ -517,10 +520,11 @@ def check_correctness(args, config, logger, music):
         input("Enter to exit")
         sys.exit(1)
     else:
-        printnlog("basic info => quiet")
+        logger.stay(printnlog("basic info => quiet", toprint=False))
+    logger.prev(printnlog("DONE", toprint=False), where=inbetween)
 
 
-def print_config(logger, config):
+def print_config(logger: get_logger, config):
     logger.next(
         printnlog(
             "environmentA: " + str(config["basic info"]["environmentA"]).split(" ")[0],
