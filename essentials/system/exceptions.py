@@ -61,12 +61,6 @@ def error_log(line: int, fname) -> None:
 
     :param line: The line number of the error
     """
-    if fname[0] == "?":
-        try:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        except AttributeError:
-            pass
     with open("error.log", "a", encoding="utf-8") as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         exc_type = exc_type.__qualname__
@@ -90,43 +84,77 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     :return: The error code and the line number of the error
     """
 
-    try:
-        if fname is None:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname: str = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    except AttributeError:
-        try:
-            fname = os.path.basename(
-                exc_obj.exceptions[0].__traceback__.tb_frame.f_code.co_filename
-            )
-        except KeyError:
-            fname = '?edupage.py'
+    exc_type, exc_obj, exc_tb = sys.exc_info()
     if None in line:
         line = []
-        line.append(exc_obj.exceptions[0].__traceback__.tb_lineno)        
     try:
         for times, error in enumerate(errors.exceptions):
             try:
+                if fname is None:
+                    names = set(
+                        os.path.basename(i)
+                        for i in glob.glob("essentials/**/**/**.py", recursive=True)
+                    )
+                    error_tb = error.__traceback__
+                    error_tb_to_use = []
+                    while True:
+                        if error_tb.tb_next is None:
+                            fname = os.path.basename(
+                                error_tb.tb_frame.f_code.co_filename
+                            )
+                            line.append(error_tb.tb_lineno)
+                            break
+                        if (
+                            not os.path.basename(
+                                error_tb.tb_next.tb_frame.f_code.co_filename
+                            )
+                            in names
+                        ):
+                            fname = os.path.basename(
+                                error_tb.tb_frame.f_code.co_filename
+                            )
+                            line.append(error_tb.tb_lineno)
+                            break
+                        else:
+                            error_tb_to_use.append(
+                                f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
+                            )
+                            error_tb = error_tb.tb_next
+                    error_tb_to_use.reverse()
+                    error_tb_format = f"{error.args[0]} ("
+                    for i in error_tb_to_use:
+                        error_tb_format += "" + i + " => "
+                    error_tb_format = error_tb_format[0:-4] + ")"
                 try:
-                    if fname is None:
-                        fname = os.path.basename(
-                            error.__traceback__.tb_frame.f_code.co_filename
-                        )
-                except AttributeError:
-                    fname = "?edupage.py"
-                try:
-                    raise eval(error.with_traceback.__qualname__.split(".")[0])(error)
+                    raise eval(error.with_traceback.__qualname__.split(".")[0])(
+                        error_tb_format
+                    )
                 except eval(error.with_traceback.__qualname__.split(".")[0]):
                     if len(line) == 1 and times > 0:
                         error_log(line[0], fname)
                     else:
                         error_log(line[times], fname)
             except NameError:
-                names = set(os.path.basename(i) for i in glob.glob('essentials/**/**/**.py', recursive=True))
+                names = set(
+                    os.path.basename(i)
+                    for i in glob.glob("essentials/**/**/**.py", recursive=True)
+                )
                 error_tb = error.__traceback__
                 while True:
-                    if not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename) in names:
-                        file_name = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                    if error_tb.tb_next is None:
+                        file_name = os.path.basename(
+                            error_tb.tb_frame.f_code.co_filename
+                        )
+                        break
+                    if (
+                        not os.path.basename(
+                            error_tb.tb_next.tb_frame.f_code.co_filename
+                        )
+                        in names
+                    ):
+                        file_name = os.path.basename(
+                            error_tb.tb_frame.f_code.co_filename
+                        )
                         break
                     else:
                         error_tb = error_tb.tb_next
@@ -135,7 +163,7 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                         error.with_traceback.__qualname__.split(".")[0]
                         + ": "
                         + str(error)
-                        + f' | In file: {file_name}'
+                        + f" | In file: {file_name}"
                     )
                 except SystemError:
                     if len(line) == 1 and times > 0:
