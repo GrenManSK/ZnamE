@@ -142,14 +142,8 @@ try:  # type: ignore
             except FileNotFoundError:
                 args.update = UNSPECIFIED
                 error_get(
-                    ExceptionGroup(
-                        "",
-                        [
-                            FileNotFoundError("update.py isn't present"),
-                            TypeError("NOT FATAL ERROR"),
-                        ],
-                    ),
-                    [get_line_number()],
+                    FileNotFoundError("update.py isn't present"),
+                    [get_line_number(1)],
                     fname="edupage.py",
                 )
 
