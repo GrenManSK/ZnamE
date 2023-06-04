@@ -3,6 +3,7 @@ import sys
 import os
 import glob
 from dotenv import load_dotenv
+from importlib import import_module
 
 load_dotenv(".env")
 
@@ -83,48 +84,47 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     :param line: list: Store the line numbers of the errors
     :return: The error code and the line number of the error
     """
-
+    try:
+        raise errors
+    except Exception:
+        pass
     exc_type, exc_obj, exc_tb = sys.exc_info()
     if None in line:
         line = []
     try:
         for times, error in enumerate(errors.exceptions):
+            import_module(error.__module__, error)
             try:
-                if fname is None:
-                    names = set(
-                        os.path.basename(i)
-                        for i in glob.glob("essentials/**/**/**.py", recursive=True)
-                    )
-                    error_tb = error.__traceback__
-                    error_tb_to_use = []
-                    while True:
-                        if error_tb.tb_next is None:
-                            fname = os.path.basename(
-                                error_tb.tb_frame.f_code.co_filename
-                            )
-                            line.append(error_tb.tb_lineno)
-                            break
-                        if (
-                            not os.path.basename(
-                                error_tb.tb_next.tb_frame.f_code.co_filename
-                            )
-                            in names
-                        ):
-                            fname = os.path.basename(
-                                error_tb.tb_frame.f_code.co_filename
-                            )
-                            line.append(error_tb.tb_lineno)
-                            break
-                        else:
-                            error_tb_to_use.append(
-                                f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
-                            )
-                            error_tb = error_tb.tb_next
-                    error_tb_to_use.reverse()
-                    error_tb_format = f"{error.args[0]} ("
-                    for i in error_tb_to_use:
-                        error_tb_format += "" + i + " => "
-                    error_tb_format = error_tb_format[0:-4] + ")"
+                names = set(
+                    os.path.basename(i)
+                    for i in glob.glob("essentials/**/**/**.py", recursive=True)
+                )
+                error_tb = error.__traceback__
+                error_tb_to_use = []
+                while True:
+                    if error_tb.tb_next is None:
+                        fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                        line.append(error_tb.tb_lineno)
+                        break
+                    if (
+                        not os.path.basename(
+                            error_tb.tb_next.tb_frame.f_code.co_filename
+                        )
+                        in names
+                    ):
+                        fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                        line.append(error_tb.tb_lineno)
+                        break
+                    else:
+                        error_tb_to_use.append(
+                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
+                        )
+                        error_tb = error_tb.tb_next
+                error_tb_to_use.reverse()
+                error_tb_format = f"{error.args[0]} ("
+                for i in error_tb_to_use:
+                    error_tb_format += "" + i + " => "
+                error_tb_format = error_tb_format[0:-4] + ")"
                 try:
                     raise eval(error.with_traceback.__qualname__.split(".")[0])(
                         error_tb_format
@@ -141,11 +141,14 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 )
                 error_tb = error.__traceback__
                 while True:
-                    if error_tb.tb_next is None:
-                        file_name = os.path.basename(
-                            error_tb.tb_frame.f_code.co_filename
-                        )
-                        break
+                    try:
+                        if error_tb.tb_next is None:
+                            file_name = os.path.basename(
+                                error_tb.tb_frame.f_code.co_filename
+                            )
+                            break
+                    except AttributeError:
+                        pass
                     if (
                         not os.path.basename(
                             error_tb.tb_next.tb_frame.f_code.co_filename

@@ -209,74 +209,24 @@ def check_correctness(args, config, logger: get_logger, music):
         printnlog("Checking config correctness", toprint=False), where=inbetween
     )
     if not str(config["basic info"]["environmentA"]).split(" ")[0] in hexnumber:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argenvironmentError(
-                        "Wrong choice 'basic info' => environmentA character"
-                    ),
-                    ValueError(f"Not allowed character | Allowed: {hexnumber}"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
+        raise argenvironmentError(
+            f"Wrong choice 'basic info' => environmentA character | Not allowed character | Allowed: {hexnumber}"
         )
-        input("Enter to exit")
-        sys.exit(1)
     else:
         logger.stay(printnlog("basic info => environmentA", toprint=False))
     if not str(config["basic info"]["environmentB"]).split(" ")[0] in hexnumber:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argenvironmentError(
-                        "Wrong choice 'basic info' => environmentB character"
-                    ),
-                    ValueError(f"Not allowed character | Allowed: {hexnumber}"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
+        raise argenvironmentError(
+            f"Wrong choice 'basic info' => environmentB character | Not allowed character | Allowed: {hexnumber}"
         )
-        input("Enter to exit")
-        sys.exit(1)
     else:
         logger.stay(printnlog("basic info => environmentB", toprint=False))
     try:
         int(config["basic info"]["inactivelimit"])
         logger.stay(printnlog("basic info => inactivelimit", toprint=False))
     except ValueError:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argInactiveLimitError(
-                        "Wrong choice in 'basic info' => inactivelimit"
-                    ),
-                    ValueError("take only numbers"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argInactiveLimitError("Wrong choice in 'basic info' => inactivelimit | Take only numbers")
     if not config["basic info"]["intro"] in [True, False]:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argIntroError("Wrong choice in 'basic info' => intro"),
-                    ValueError("Only 'True' or 'False'"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argIntroError("Wrong choice in 'basic info' => intro | Only 'True' or 'False'")
     else:
         logger.stay(printnlog("basic info => intro", toprint=False))
     if config["basic info"]["music"].split(" ")[0] == "enable":
@@ -286,33 +236,9 @@ def check_correctness(args, config, logger: get_logger, music):
         logger.stay(printnlog("basic info => music", toprint=False))
         pass
     else:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argMusicError("Wrong choice in 'basic info' => music"),
-                    ValueError("Only 'enable' or 'disable'"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argMusicError("Wrong choice in 'basic info' => music | Only 'enable' or 'disable'")
     if not config["waifu settings"]["type"].split(" ")[0] in ["sfw", "nsfw"]:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argWaifuError("Wrong choice in 'waifu settings' => type"),
-                    ValueError("Only 'sfw' or 'nsfw'"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argWaifuError("Wrong choice in 'waifu settings' => type | Only 'sfw' or 'nsfw'")
     else:
         logger.stay(printnlog("waifu settings => type", toprint=False))
     if config["waifu settings"]["type"] == "sfw":
@@ -350,108 +276,36 @@ def check_correctness(args, config, logger: get_logger, music):
             "cringe",
         ]
         if not config["waifu settings"]["category"].split(" ")[0] in category:
-            error_get(
-                ExceptionGroup(
-                    "",
-                    [
-                        argWaifuError("Wrong choice in 'waifu settings' => category"),
-                        ValueError("Use 'waifu' and see option in setup function"),
-                    ],
-                ),
-                [get_line_number()],
-                fname="arguments.py",
-            )
-            input("Enter to exit")
-            sys.exit(1)
+            raise argWaifuError("Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function")
         else:
             logger.stay(printnlog("waifu settings => category", toprint=False))
     elif config["waifu settings"]["type"] == "nsfw":
         category: list[str] = ["waifu", "neko", "trap", "blowjob"]
         if not config["waifu settings"]["category"].split(" ")[0] in category:
-            error_get(
-                ExceptionGroup(
-                    "",
-                    [
-                        argWaifuError("Wrong choice in 'waifu settings' => category"),
-                        ValueError("Use 'waifu' and see option in setup function"),
-                    ],
-                ),
-                [get_line_number()],
-                fname="arguments.py",
-            )
-            input("Enter to exit")
-            sys.exit(1)
+            raise argWaifuError("Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function")
         else:
             logger.stay(printnlog("waifu settings => category", toprint=False))
     server: list[str] = ["nekos.best", "waifu.pics", "kyoko", "nekos_api"]
     if not config["neko settings"]["server"] in server:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argNekoError("Wrong choice in 'neko settings' => server"),
-                    ValueError(f"Only take {str(server)}"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argNekoError(f"Wrong choice in 'neko settings' => server | Only take {str(server)}")
     else:
         logger.stay(printnlog("neko settings => server", toprint=False))
     try:
         int(config["game settings"]["goal_score"])
     except ValueError:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argGameError("Wrong choice in 'game settings' => goal_score"),
-                    ValueError("take only numbers"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argGameError("Wrong choice in 'game settings' => goal_score | Take only numbers")
     try:
         if 10 <= int(config["game settings"]["goal_score"]):
             logger.stay(printnlog("game settings => goal_score", toprint=False))
         else:
             raise ValueError
     except ValueError:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argGameError("Wrong choice in 'game settings' => goal_score"),
-                    ValueError("minimum is 10"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        argGameError("Wrong choice in 'game settings' => goal_score | Minimum is 10")
     try:
         float(config["game settings"]["computer_power"])
         logger.stay(printnlog("game settings => computer_power", toprint=False))
     except ValueError:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argGameError("Wrong choice in 'game settings' => computer_power"),
-                    ValueError("take only numbers"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        argGameError("Wrong choice in 'game settings' => computer_power | Take only numbers")
     if config["basic info"]["music"] == "enable":
         musiclimittext: bool = False
         lenmusic = len(music)
@@ -470,55 +324,15 @@ def check_correctness(args, config, logger: get_logger, music):
             configlenmusic = int(config["basic info"]["musicnumber"])
             args.music = int(args.music) - 1
     if not str(config["basic info"]["translate"]).split(" ")[0] in t_languages + [""]:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argTranslateError(
-                        "Wrong choice 'basic info' => translate character"
-                    ),
-                    ValueError(f"Not allowed language | Allowed: {t_languages}"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argTranslateError(f"Wrong choice 'basic info' => translate character | Not allowed language | Allowed: {t_languages}")
     else:
         logger.stay(printnlog("basic info => translate", toprint=False))
     if not str(config["basic info"]["translator"]).split(" ")[0] in t_translators:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argTranslatorError(
-                        "Wrong choice 'basic info' => translator character"
-                    ),
-                    ValueError(f"Not allowed language | Allowed: {t_languages}"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        raise argTranslatorError(f"Wrong choice 'basic info' => translator character | Not allowed language | Allowed: {t_translators}")
     else:
         logger.stay(printnlog("basic info => translator", toprint=False))
     if not eval(str(config["basic info"]["quiet"]).split(" ")[0]) in [True, False]:
-        error_get(
-            ExceptionGroup(
-                "",
-                [
-                    argTranslatorError("Wrong choice 'basic info' => quiet character"),
-                    ValueError(f"Not allowed option | Allowed: True|False"),
-                ],
-            ),
-            [get_line_number()],
-            fname="arguments.py",
-        )
-        input("Enter to exit")
-        sys.exit(1)
+        argTranslatorError("Wrong choice 'basic info' => quiet character | Not allowed option | Allowed: True/False")
     else:
         logger.stay(printnlog("basic info => quiet", toprint=False))
     logger.prev(printnlog("DONE", toprint=False), where=inbetween)
