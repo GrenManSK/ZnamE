@@ -46,14 +46,7 @@ def getWindow(args) -> bool:
             show_cmd(args)
             return False
         except IndexError:
-            error_get(
-                IndexError(
-                    "Possible solution; run in cmd or python aplication not ide or put arguments '--test'"
-                ),
-                [get_line_number()],
-                fname="system_operations.py",
-            )
-            return True
+            raise IndexError("Possible solution; run in cmd or python aplication not ide or put arguments '--test'")
     return False
 
 
@@ -284,12 +277,8 @@ def show_cmd(args):
             return window
     except IndexError:
         exit = True
-        error_get(
-            IndexError(
-                "Possible solution; run in cmd or python application not ide or put arguments '--test'"
-            ),
-            [get_line_number()],
-            fname="system_operations.py",
+        raise IndexError(
+            "Possible solution; run in cmd or python application not ide or put arguments '--test'"
         )
 
 
