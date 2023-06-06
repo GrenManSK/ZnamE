@@ -107,6 +107,9 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 if error_tb.tb_next is None:
                     fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
                     line.append(error_tb.tb_lineno)
+                    error_tb_to_use.append(
+                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}:{error_tb.tb_lineno}"
+                    )
                     break
                 if (
                     not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename)
@@ -116,15 +119,22 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                     line.append(error_tb.tb_lineno)
                     break
                 else:
-                    error_tb_to_use.append(
-                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
-                    )
+                    if error_tb.tb_frame.f_code.co_name == '<module>':
+                        error_tb_to_use.append(
+                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
+                        )
+                    else:
+                        error_tb_to_use.append(
+                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}:{error_tb.tb_lineno}"
+                        )
                     error_tb = error_tb.tb_next
-            error_tb_to_use.reverse()
-            error_tb_format = f"{error.args[0]} ("
-            for i in error_tb_to_use:
-                error_tb_format += "" + i + " => "
-            error_tb_format = error_tb_format[0:-4] + ")"
+            if len(error_tb_to_use) != 0:
+                error_tb_format = f"{error.args[0]} ("
+                for i in error_tb_to_use:
+                    error_tb_format += "" + i + " => "
+                error_tb_format = error_tb_format[0:-4] + ")"
+            else:
+                error_tb_format = error.args[0]
             try:
                 try:
                     raise eval(error.with_traceback.__qualname__.split(".")[0])(
