@@ -88,14 +88,19 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
         line = []
     try:
         for times, error in enumerate(errors.exceptions):
-            module_obj = import_module(
-                error.__module__, error.with_traceback.__qualname__.split(".")[0]
-            )
-            globals()[error.__module__] = module_obj
+            module = True
+            try:
+                module_obj = import_module(
+                    error.__module__, error.with_traceback.__qualname__.split(".")[0]
+                )
+                globals()[error.__module__] = module_obj
+            except Exception:
+                module = False
             names = set(
                 os.path.basename(i)
                 for i in glob.glob("essentials/**/**/**.py", recursive=True)
             )
+            names.add('edupage.py')
             error_tb = error.__traceback__
             error_tb_to_use = []
             while True:
@@ -126,12 +131,20 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                         error_tb_format
                     )
                 except eval(error.with_traceback.__qualname__.split(".")[0]):
-                    error_log(
-                        line[times],
-                        fname,
-                        error.__module__,
-                        error.with_traceback.__qualname__.split(".")[0],
-                    )
+                    if module:
+                        error_log(
+                            line[times],
+                            fname,
+                            error.__module__,
+                            error.with_traceback.__qualname__.split(".")[0],
+                        )
+                    else:
+                        error_log(
+                            line[times],
+                            fname,
+                            'builtins',
+                            error.with_traceback.__qualname__.split(".")[0],
+                        )
             except NameError:
                 try:
                     raise eval(
