@@ -53,6 +53,10 @@ try:  # type: ignore
     with open(".env", "w", encoding="utf-8") as dotenv:
         dotenv.write(f"DATELOG={datelog}\n")
         dotenv.write(f"QUIET={quiet}\n")
+        if args.debug is None:
+            dotenv.write(f"DEBUG=True\n")
+        else:
+            dotenv.write(f"DEBUG=False\n")
     from essentials.system.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))

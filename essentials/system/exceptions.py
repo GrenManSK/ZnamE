@@ -64,12 +64,20 @@ def error_log(line: int, fname, module, error) -> None:
     """
     with open("error.log", "a", encoding="utf-8") as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
-        errorfile.write(
-            f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
-        )
-    printnlog(
-        f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
-    )
+        if module is not None:
+            errorfile.write(
+                f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
+            )
+            printnlog(
+                f"Type of error: {module}.{error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
+            )
+        else:
+            errorfile.write(
+                f"Type of error: {error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}\n"
+            )
+            printnlog(
+                f"Type of error: {error} | Comment: {str(exc_obj)} | In file: {str(fname)} | On line: {str(line)}"
+            )
 
 
 def error_get(errors, line: list, fname: None | str = None) -> None:
@@ -83,6 +91,11 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     :param line: list: Store the line numbers of the errors
     :return: The error code and the line number of the error
     """
+    debug = os.getenv("DEBUG")
+    if debug is None:
+        debug = False
+    else:
+        debug = eval(debug)
     exc_type, exc_obj, exc_tb = sys.exc_info()
     if None in line:
         line = []
@@ -100,15 +113,26 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 os.path.basename(i)
                 for i in glob.glob("essentials/**/**/**.py", recursive=True)
             )
-            names.add('edupage.py')
+            names.add("edupage.py")
             error_tb = error.__traceback__
             error_tb_to_use = []
             while True:
                 if error_tb.tb_next is None:
                     fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
                     line.append(error_tb.tb_lineno)
+                    args = "("
+                    for i in error_tb.tb_frame.f_locals:
+                        if debug:
+                            value = error_tb.tb_frame.f_locals[i]
+                            if isinstance(value, str):
+                                value = "'" + str(value) + "'"
+                            args += str(i) + "=" + str(value) + ", "
+                    if len(args) > 1:
+                        args = args[0:-2] + ")"
+                    else:
+                        args = ""
                     error_tb_to_use.append(
-                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}:{error_tb.tb_lineno}"
+                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
                     )
                     break
                 if (
@@ -119,13 +143,24 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                     line.append(error_tb.tb_lineno)
                     break
                 else:
-                    if error_tb.tb_frame.f_code.co_name == '<module>':
+                    if error_tb.tb_frame.f_code.co_name == "<module>":
                         error_tb_to_use.append(
                             f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
                         )
                     else:
+                        args = "("
+                        for i in error_tb.tb_frame.f_locals:
+                            if debug:
+                                value = error_tb.tb_frame.f_locals[i]
+                                if isinstance(value, str):
+                                    value = "'" + str(value) + "'"
+                                args += str(i) + "=" + str(value) + ", "
+                        if len(args) > 1:
+                            args = args[0:-2] + ")"
+                        else:
+                            args = ""
                         error_tb_to_use.append(
-                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}:{error_tb.tb_lineno}"
+                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
                         )
                     error_tb = error_tb.tb_next
             if len(error_tb_to_use) != 0:
@@ -152,7 +187,7 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                         error_log(
                             line[times],
                             fname,
-                            'builtins',
+                            None,
                             error.with_traceback.__qualname__.split(".")[0],
                         )
             except NameError:
