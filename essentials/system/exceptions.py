@@ -126,6 +126,10 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                             value = error_tb.tb_frame.f_locals[i]
                             if isinstance(value, str):
                                 value = "'" + str(value) + "'"
+                            if isinstance(value, object):
+                                value = str(value)[1:].split(' ')[0]
+                            if callable(value):
+                                value = str(i) + '()'
                             args += str(i) + "=" + str(value) + ", "
                     if len(args) > 1:
                         args = args[0:-2] + ")"
@@ -154,6 +158,10 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                                 value = error_tb.tb_frame.f_locals[i]
                                 if isinstance(value, str):
                                     value = "'" + str(value) + "'"
+                                if isinstance(value, object):
+                                    value = str(value)[1:].split(' ')[0]
+                                if callable(value):
+                                    value = str(i) + '()'
                                 args += str(i) + "=" + str(value) + ", "
                         if len(args) > 1:
                             args = args[0:-2] + ")"
@@ -218,6 +226,6 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
             error_log(
                 line[times],
                 fname,
-                error.__module__,
-                error.with_traceback.__qualname__.split(".")[0],
+                None,
+                error_name,
             )

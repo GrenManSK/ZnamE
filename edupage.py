@@ -27,6 +27,7 @@ try:  # type: ignore
         sleep(1)
     try:
         import verbose
+        from verbose import inbetween
     except ModuleNotFoundError:
         print(
             f"Verbose not found\nUse this command to install it {sys.executable} -m"
@@ -50,13 +51,14 @@ try:  # type: ignore
     if quiet:
         logger = verbose.get_logger(quiet=True)
     datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
-    with open(".env", "w", encoding="utf-8") as dotenv:
-        dotenv.write(f"DATELOG={datelog}\n")
-        dotenv.write(f"QUIET={quiet}\n")
-        if args.debug is None:
-            dotenv.write(f"DEBUG=True\n")
-        else:
-            dotenv.write(f"DEBUG=False\n")
+    if __name__ == "__main__":
+        with open(".env", "w", encoding="utf-8") as dotenv:
+            dotenv.write(f"DATELOG={datelog}\n")
+            dotenv.write(f"QUIET={quiet}\n")
+            if args.debug is None:
+                dotenv.write(f"DEBUG=True\n")
+            else:
+                dotenv.write(f"DEBUG=False\n")
     from essentials.system.file_operations import mkdir, remove
 
     modulenames: list = list(set(sys.modules) & set(globals()))
@@ -177,6 +179,7 @@ try:  # type: ignore
     from threading import Thread
 
     if __name__ == "__main__":
+        logger.next(printnlog("Importing libraries for initial setup", toprint=False), where=inbetween)
         print_module("Thread from threading")
     import pyautogui as pg
 
@@ -187,7 +190,7 @@ try:  # type: ignore
         pg.keyDown("win")
         pg.press("up")
         pg.keyUp("win")
-    if __name__ == "__main__":
+        logger.prev(printnlog('DONE', toprint=False), where=inbetween)
         if not os.path.isfile(
             "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"
         ):
@@ -205,9 +208,7 @@ try:  # type: ignore
 
     if __name__ == "__main__":
         internet_check(args)
-        logger.stay(printnlog("DONE", toprint=False))
-        logger.stay(printnlog("Importing libraries", toprint=False))
-        logger.next("")
+        logger.next(printnlog("Importing libraries", toprint=False), where=inbetween)
     from tqdm import tqdm
 
     if __name__ == "__main__":
@@ -252,7 +253,7 @@ try:  # type: ignore
 
     if __name__ == "__main__":
         print_module("moviepy.editor")
-        logger.prev(printnlog("DONE", toprint=False))
+        logger.prev(printnlog("DONE", toprint=False), where=inbetween)
         os.system(
             "color "
             + str(config["basic info"]["environmentA"])
