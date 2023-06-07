@@ -4,6 +4,7 @@ import os
 import glob
 from dotenv import load_dotenv
 from importlib import import_module
+from inspect import signature
 
 load_dotenv(".env")
 
@@ -99,133 +100,145 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     exc_type, exc_obj, exc_tb = sys.exc_info()
     if None in line:
         line = []
-    try:
-        for times, error in enumerate(errors.exceptions):
-            module = True
-            try:
-                module_obj = import_module(
-                    error.__module__, error.with_traceback.__qualname__.split(".")[0]
-                )
-                globals()[error.__module__] = module_obj
-            except Exception:
-                module = False
-            names = set(
-                os.path.basename(i)
-                for i in glob.glob("essentials/**/**/**.py", recursive=True)
+    for times, error in enumerate(errors.exceptions):
+        module = True
+        try:
+            module_obj = import_module(
+                error.__module__, error.with_traceback.__qualname__.split(".")[0]
             )
-            names.add("edupage.py")
-            error_tb = error.__traceback__
-            error_tb_to_use = []
-            while True:
-                if error_tb.tb_next is None:
-                    fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
-                    line.append(error_tb.tb_lineno)
-                    args = "("
-                    for i in error_tb.tb_frame.f_locals:
-                        if debug:
+            globals()[error.__module__] = module_obj
+        except Exception:
+            module = False
+        names = set(
+            os.path.basename(i)
+            for i in glob.glob("essentials/**/**/**.py", recursive=True)
+        )
+        [names.add(i) for i in glob.glob("*.py")]
+        error_tb = error.__traceback__
+        error_tb_to_use = []
+        while True:
+            if error_tb.tb_next is None:
+                fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                line.append(error_tb.tb_lineno)
+                args = "("
+                _module = error_tb.tb_frame.f_globals["__name__"]
+                module_obj = import_module(_module)
+                globals()[_module] = module_obj
+                _module = getattr(globals()[_module], error_tb.tb_frame.f_code.co_name)
+                sig = str(signature(_module))
+                if debug:
+                    sig = sig[1:-1].split(", ")
+                    sig = [i.split(":")[0] for i in sig]
+                for i in error_tb.tb_frame.f_locals:
+                    if debug:
+                        if i in sig:
                             value = error_tb.tb_frame.f_locals[i]
                             if isinstance(value, str):
                                 value = "'" + str(value) + "'"
-                            if isinstance(value, object):
-                                value = str(value)[1:].split(' ')[0]
-                            if callable(value):
-                                value = str(i) + '()'
+                            elif isinstance(value, int):
+                                value = str(value)
+                            elif isinstance(value, object):
+                                value = str(value)[1:].split(" ")[0]
+                            elif callable(value):
+                                value = str(i) + "()"
                             args += str(i) + "=" + str(value) + ", "
-                    if len(args) > 1:
-                        args = args[0:-2] + ")"
-                    else:
-                        args = ""
+                if not debug:
+                    args = sig.split(")")[0] + ")"
+                if len(args) > 1 and debug:
+                    args = args[0:-2] + ")"
+                elif debug:
+                    args = ""
+                error_tb_to_use.append(
+                    f"In {os.path.basename(error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
+                )
+                break
+            if (
+                not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename)
+                in names
+            ):
+                fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
+                line.append(error_tb.tb_lineno)
+                break
+            else:
+                if error_tb.tb_frame.f_code.co_name == "<module>":
                     error_tb_to_use.append(
-                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
+                        f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
                     )
-                    break
-                if (
-                    not os.path.basename(error_tb.tb_next.tb_frame.f_code.co_filename)
-                    in names
-                ):
-                    fname = os.path.basename(error_tb.tb_frame.f_code.co_filename)
-                    line.append(error_tb.tb_lineno)
-                    break
                 else:
-                    if error_tb.tb_frame.f_code.co_name == "<module>":
-                        error_tb_to_use.append(
-                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_lineno}"
-                        )
-                    else:
-                        args = "("
-                        for i in error_tb.tb_frame.f_locals:
-                            if debug:
+                    args = "("
+                    _module = error_tb.tb_frame.f_globals["__name__"]
+                    module_obj = import_module(_module)
+                    globals()[_module] = module_obj
+                    _module = getattr(
+                        globals()[_module], error_tb.tb_frame.f_code.co_name
+                    )
+                    sig = str(signature(_module))
+                    if debug:
+                        sig = sig[1:-1].split(", ")
+                        sig = [i.split(":")[0] for i in sig]
+                    for i in error_tb.tb_frame.f_locals:
+                        if debug:
+                            if i in sig:
                                 value = error_tb.tb_frame.f_locals[i]
                                 if isinstance(value, str):
                                     value = "'" + str(value) + "'"
-                                if isinstance(value, object):
-                                    value = str(value)[1:].split(' ')[0]
-                                if callable(value):
-                                    value = str(i) + '()'
+                                elif isinstance(value, int):
+                                    value = str(value)
+                                elif isinstance(value, object):
+                                    value = str(value)[1:].split(" ")[0]
+                                elif callable(value):
+                                    value = str(i) + "()"
                                 args += str(i) + "=" + str(value) + ", "
-                        if len(args) > 1:
-                            args = args[0:-2] + ")"
-                        else:
-                            args = ""
-                        error_tb_to_use.append(
-                            f"In {os.path.basename( error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
-                        )
-                    error_tb = error_tb.tb_next
-            if len(error_tb_to_use) != 0:
-                error_tb_format = f"{error.args[0]} ("
-                for i in error_tb_to_use:
-                    error_tb_format += "" + i + " => "
-                error_tb_format = error_tb_format[0:-4] + ")"
-            else:
-                error_tb_format = error.args[0]
-            try:
-                try:
-                    raise eval(error.with_traceback.__qualname__.split(".")[0])(
-                        error_tb_format
+                    if not debug:
+                        args = sig.split(")")[0] + ")"
+                    if len(args) > 1 and debug:
+                        args = args[0:-2] + ")"
+                    elif debug:
+                        args = ""
+                    error_tb_to_use.append(
+                        f"In {os.path.basename(error_tb.tb_frame.f_code.co_filename)}:{error_tb.tb_frame.f_code.co_name}{args}:{error_tb.tb_lineno}"
                     )
-                except eval(error.with_traceback.__qualname__.split(".")[0]):
-                    if module:
-                        error_log(
-                            line[times],
-                            fname,
-                            error.__module__,
-                            error.with_traceback.__qualname__.split(".")[0],
-                        )
-                    else:
-                        error_log(
-                            line[times],
-                            fname,
-                            None,
-                            error.with_traceback.__qualname__.split(".")[0],
-                        )
-            except NameError:
-                try:
-                    raise eval(
-                        error.__module__
-                        + "."
-                        + error.with_traceback.__qualname__.split(".")[0]
-                    )(error_tb_format)
-                except eval(
-                    error.__module__
-                    + "."
-                    + error.with_traceback.__qualname__.split(".")[0]
-                ):
+                error_tb = error_tb.tb_next
+        if len(error_tb_to_use) != 0:
+            error_tb_format = f"{error.args[0]} ("
+            for i in error_tb_to_use:
+                error_tb_format += "" + i + " => "
+            error_tb_format = error_tb_format[0:-4] + ")"
+        else:
+            error_tb_format = error.args[0]
+        try:
+            try:
+                raise eval(error.with_traceback.__qualname__.split(".")[0])(
+                    error_tb_format
+                )
+            except eval(error.with_traceback.__qualname__.split(".")[0]):
+                if module:
                     error_log(
                         line[times],
                         fname,
                         error.__module__,
                         error.with_traceback.__qualname__.split(".")[0],
                     )
-
-    except Exception:
-        times = 0
-        try:
-            error_name = errors.with_traceback.__qualname__.split(".")[0]
-            raise eval(error_name)(errors)
-        except eval(error_name):
-            error_log(
-                line[times],
-                fname,
-                None,
-                error_name,
-            )
+                else:
+                    error_log(
+                        line[times],
+                        fname,
+                        None,
+                        error.with_traceback.__qualname__.split(".")[0],
+                    )
+        except NameError:
+            try:
+                raise eval(
+                    error.__module__
+                    + "."
+                    + error.with_traceback.__qualname__.split(".")[0]
+                )(error_tb_format)
+            except eval(
+                error.__module__ + "." + error.with_traceback.__qualname__.split(".")[0]
+            ):
+                error_log(
+                    line[times],
+                    fname,
+                    error.__module__,
+                    error.with_traceback.__qualname__.split(".")[0],
+                )
