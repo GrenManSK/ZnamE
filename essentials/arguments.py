@@ -30,7 +30,7 @@ def arguments(config):
 
     "Setting up music if none leaving empty list"
 
-    music: list[str] = list(set(str(config["basic info"]["musiclist"]).split(",")[0:]))
+    music: list[str] = list(set(str(config["music"]["musiclist"]).split(",")[0:]))
     if music[0] == "None":
         music = []
     else:
@@ -229,14 +229,14 @@ def check_correctness(args, config, logger: get_logger, music):
         raise argIntroError("Wrong choice in 'basic info' => intro | Only 'True' or 'False'")
     else:
         logger.stay(printnlog("basic info => intro", toprint=False))
-    if config["basic info"]["music"].split(" ")[0] == "enable":
-        args.music = config["basic info"]["musicnumber"]
-        logger.stay(printnlog("basic info => music", toprint=False))
-    elif config["basic info"]["music"].split(" ")[0] == "disable":
-        logger.stay(printnlog("basic info => music", toprint=False))
+    if config["music"]["music"].split(" ")[0] == "enable":
+        args.music = config["music"]["musicnumber"]
+        logger.stay(printnlog("music => music", toprint=False))
+    elif config["music"]["music"].split(" ")[0] == "disable":
+        logger.stay(printnlog("music => music", toprint=False))
         pass
     else:
-        raise argMusicError("Wrong choice in 'basic info' => music | Only 'enable' or 'disable'")
+        raise argMusicError("Wrong choice in 'music' => music | Only 'enable' or 'disable'")
     if not config["waifu settings"]["type"].split(" ")[0] in ["sfw", "nsfw"]:
         raise argWaifuError("Wrong choice in 'waifu settings' => type | Only 'sfw' or 'nsfw'")
     else:
@@ -306,31 +306,31 @@ def check_correctness(args, config, logger: get_logger, music):
         logger.stay(printnlog("game settings => computer_power", toprint=False))
     except ValueError:
         argGameError("Wrong choice in 'game settings' => computer_power | Take only numbers")
-    if config["basic info"]["music"] == "enable":
+    if config["music"]["music"] == "enable":
         musiclimittext: bool = False
         lenmusic = len(music)
-        configlenmusic = int(config["basic info"]["musicnumber"])
+        configlenmusic = int(config["music"]["musicnumber"])
         while lenmusic < configlenmusic:
             if not musiclimittext:
                 typewriter(
                     printnlog(
-                        "basic info => musicnumber; you have exceeded the limit by "
-                        + str(int(config["basic info"]["musicnumber"]) - len(music)),
+                        "music => musicnumber; you have exceeded the limit by "
+                        + str(int(config["music"]["musicnumber"]) - len(music)),
                         toprint=False,
                     )
                 )
                 musiclimittext: bool = True
-            config = set_config("basic info", "musicnumber", int(args.music) - 1)
-            configlenmusic = int(config["basic info"]["musicnumber"])
+            config = set_config("music", "musicnumber", int(args.music) - 1)
+            configlenmusic = int(config["music"]["musicnumber"])
             args.music = int(args.music) - 1
-    if not str(config["basic info"]["translate"]).split(" ")[0] in t_languages + [""]:
-        raise argTranslateError(f"Wrong choice 'basic info' => translate character | Not allowed language | Allowed: {t_languages}")
+    if not str(config["translator"]["translate"]).split(" ")[0] in t_languages + [""]:
+        raise argTranslateError(f"Wrong choice 'translator' => translate character | Not allowed language | Allowed: {t_languages}")
     else:
-        logger.stay(printnlog("basic info => translate", toprint=False))
-    if not str(config["basic info"]["translator"]).split(" ")[0] in t_translators:
-        raise argTranslatorError(f"Wrong choice 'basic info' => translator character | Not allowed language | Allowed: {t_translators}")
+        logger.stay(printnlog("translator => translate", toprint=False))
+    if not str(config["translator"]["translator"]).split(" ")[0] in t_translators:
+        raise argTranslatorError(f"Wrong choice 'translator' => translator character | Not allowed language | Allowed: {t_translators}")
     else:
-        logger.stay(printnlog("basic info => translator", toprint=False))
+        logger.stay(printnlog("translator => translator", toprint=False))
     if not eval(str(config["basic info"]["quiet"]).split(" ")[0]) in [True, False]:
         argTranslatorError("Wrong choice 'basic info' => quiet character | Not allowed option | Allowed: True/False")
     else:
@@ -365,21 +365,21 @@ def print_config(logger: get_logger, config):
     )
     logger.stay(
         printnlog(
-            "Music: " + config["basic info"]["music"].split(" ")[0], toprint=False
+            "Music: " + config["music"]["music"].split(" ")[0], toprint=False
         )
     )
     logger.stay(
         printnlog(
-            "Musiclist: " + str(str(config["basic info"]["musiclist"]).split(",")),
+            "Musiclist: " + str(str(config["music"]["musiclist"]).split(",")),
             toprint=False,
         )
     )
     logger.stay(
-        printnlog("Translate: " + str(config["basic info"]["translate"]), toprint=False)
+        printnlog("Translate: " + str(config["translator"]["translate"]), toprint=False)
     )
     logger.stay(
         printnlog(
-            "Translator: " + str(config["basic info"]["translator"]), toprint=False
+            "Translator: " + str(config["translator"]["translator"]), toprint=False
         )
     )
     logger.stay(
@@ -481,5 +481,5 @@ def music2str(musiclistnew):
     musiclistnewstring: str = ""
     for i in range(len(musiclistnew)):
         musiclistnewstring += str(musiclistnew[i]) + ","
-    config = set_config("basic info", "musiclist", str(musiclistnewstring[0:-1]))
+    config = set_config("music", "musiclist", str(musiclistnewstring[0:-1]))
     return config

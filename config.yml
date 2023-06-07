@@ -3,19 +3,22 @@ basic info:
   environmentB: f
   inactivelimit: 300
   intro: false
-  music: enable
-  musiclist: ""
-  musicnumber: 0
   quiet: false
-  translate: ""
-  translator: Bing
-  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe
 game settings:
   computer_power: 0.5
   goal_score: 2000
   offline_game: false
+music:
+  music: enable
+  musiclist: ''
+  musicnumber: 0
 neko settings:
   server: nekos.best
+path:
+  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe
+translator:
+  translate: ''
+  translator: Bing
 user history:
 waifu settings:
   category: waifu
