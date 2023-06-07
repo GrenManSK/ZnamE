@@ -179,7 +179,10 @@ try:  # type: ignore
     from threading import Thread
 
     if __name__ == "__main__":
-        logger.next(printnlog("Importing libraries for initial setup", toprint=False), where=inbetween)
+        logger.next(
+            printnlog("Importing libraries for initial setup", toprint=False),
+            where=inbetween,
+        )
         print_module("Thread from threading")
     import pyautogui as pg
 
@@ -190,7 +193,7 @@ try:  # type: ignore
         pg.keyDown("win")
         pg.press("up")
         pg.keyUp("win")
-        logger.prev(printnlog('DONE', toprint=False), where=inbetween)
+        logger.prev(printnlog("DONE", toprint=False), where=inbetween)
         if not os.path.isfile(
             "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"
         ):
