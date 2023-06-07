@@ -1178,6 +1178,9 @@ try:  # type: ignore
                     if vstup == "kayopy":
                         run_app("kayopy")
                         continue
+                    if vstup == "database":
+                        run_app("database")
+                        continue
                     if vstup == "voicevox":
                         run_app("voicevox")
                         continue

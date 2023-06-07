@@ -37,6 +37,7 @@ unlogged_completer = [
     "-advanced help",
     "voicevox",
     "translate",
+    "database",
 ]
 logged_completer = [
     "animesearch",
@@ -79,5 +80,6 @@ logged_completer = [
     "kayopy",
     "manga_translator",
     "translate",
+    "database",
 ]
 bq_completer = ["back", "quit"]
