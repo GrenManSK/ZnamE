@@ -734,7 +734,7 @@ try:  # type: ignore
             sleep(1)
         open("SPOTDL_QUIT", "x")
         carousel.stop()
-        _music: list[str] = list(set(config["basic info"]["musiclist"].split(",")[0:]))
+        _music: list[str] = list(set(config["music"]["musiclist"].split(",")[0:]))
         if _music[0] == "":
             _music = []
         else:
@@ -942,21 +942,21 @@ try:  # type: ignore
                 pass
             elif (
                 args.translate is not UNSPECIFIED
-                and config["basic info"]["translate"] == ""
+                and config["translator"]["translate"] == ""
             ):
-                run_textractor(args, args.translate, config["basic info"]["translator"])
+                run_textractor(args, args.translate, config["translator"]["translator"])
                 translator = True
                 translator_language = args.translate
                 os.system("cls")
                 show_version(args)
-            elif config["basic info"]["translate"] != "":
+            elif config["translator"]["translate"] != "":
                 run_textractor(
                     args,
-                    config["basic info"]["translate"],
-                    config["basic info"]["translator"],
+                    config["translator"]["translate"],
+                    config["translator"]["translator"],
                 )
                 translator = True
-                translator_language = config["basic info"]["translate"]
+                translator_language = config["translator"]["translate"]
                 os.system("cls")
                 show_version(args)
             while True:
@@ -1231,7 +1231,7 @@ try:  # type: ignore
                             os.remove("assets/" + musiclistnew[musicvstup - 1] + ".mp3")
                             musiclistnew.remove(musiclistnew[musicvstup - 1])
                             lenmusic = len(musiclistnew) + 1
-                            intconfig = int(config["basic info"]["musicnumber"])
+                            intconfig = int(config["music"]["musicnumber"])
                             reduce_musicnumber(lenmusic, intconfig)
                             musiclistnewstring: str = ""
                             config = music2str(musiclistnew)
@@ -1261,7 +1261,7 @@ try:  # type: ignore
                             pass
                     if vstup == "animewatch":
                         completer(["q", "quit"])
-                        anime_menu(config["basic info"]["vlc-path"])
+                        anime_menu(config["path"]["vlc-path"])
                         if logged:
                             completer(logged_completer)
                         if not logged:
@@ -1276,7 +1276,7 @@ try:  # type: ignore
                         if translator_vstup == "quit":
                             continue
                         return_code = run_textractor(
-                            args, translator_vstup, config["basic info"]["translator"]
+                            args, translator_vstup, config["translator"]["translator"]
                         )
                         if return_code == 39:
                             continue
@@ -2184,8 +2184,8 @@ try:  # type: ignore
 
     def reduce_musicnumber(lenmusic, intconfig):
         while lenmusic < intconfig:
-            config = set_config("basic info", "musicnumber", int(args.music) - 1)
-            intconfig = int(config["basic info"]["musicnumber"])
+            config = set_config("music", "musicnumber", int(args.music) - 1)
+            intconfig = int(config["music"]["musicnumber"])
             continue
 
     def get_music_menu(musiclistnew):
