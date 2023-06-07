@@ -127,8 +127,8 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 _module = getattr(globals()[_module], error_tb.tb_frame.f_code.co_name)
                 sig = str(signature(_module))
                 if debug:
-                    sig = sig[1:-1].split(", ")
-                    sig = [i.split(":")[0] for i in sig]
+                    sig = sig.split(' -> ')[0][1:-1].split(", ")
+                    sig = [i.split(":")[0].split("**")[-1].split("*")[-1] for i in sig]
                 for i in error_tb.tb_frame.f_locals:
                     if debug:
                         if i in sig:
@@ -136,6 +136,10 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                             if isinstance(value, str):
                                 value = "'" + str(value) + "'"
                             elif isinstance(value, int):
+                                value = str(value)
+                            elif isinstance(value, dict):
+                                value = str(value)
+                            elif isinstance(value, list):
                                 value = str(value)
                             elif isinstance(value, object):
                                 value = str(value)[1:].split(" ")[0]
@@ -200,7 +204,11 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                     )
                 error_tb = error_tb.tb_next
         if len(error_tb_to_use) != 0:
-            error_tb_format = f"{error.args[0]} ("
+            if len(error.args) > 0:
+                error_message = error.args[0]
+            else:
+                error_message = ''
+            error_tb_format = f"{error_message} ("
             for i in error_tb_to_use:
                 error_tb_format += "" + i + " => "
             error_tb_format = error_tb_format[0:-4] + ")"
