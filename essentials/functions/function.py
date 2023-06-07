@@ -2,6 +2,7 @@ from .voicevox import run_voicevox
 from .cbzprintable import run_cbz
 from .kayopy import run_kayopy
 from .manga_translator import run_manga_image_translator
+from .database import run_database_project
 from ..system.conda import env_menu
 import os
 
@@ -13,6 +14,9 @@ functions = {
     },
     "kayopy": {
         "function": run_kayopy,
+    },
+    "database": {
+        "function": run_database_project,
     },
     "manga_image_translator": {
         "function": run_manga_image_translator,
