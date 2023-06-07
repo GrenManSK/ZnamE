@@ -244,7 +244,7 @@ def get_screensize():
         (1 / 1920) * screensize[0]
     ), float((1 / 1080) * screensize[1])
     with open(".env", "a") as dotenv:
-        dotenv.write(f"SCREENSIZE={str(screensize)}")
+        dotenv.write(f"SCREENSIZE={str(screensize)}\n")
     return screensize, screensizepercentage
 
 

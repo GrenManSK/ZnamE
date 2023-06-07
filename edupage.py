@@ -129,7 +129,8 @@ try:  # type: ignore
     from essentials.arguments import set_config
     from essentials.system.system_info import get_screensize, system_info
 
-    screensize, screensizepercentage = get_screensize()
+    if __name__ == "__main__":
+        screensize, screensizepercentage = get_screensize()
 
     if __name__ == "__main__":
         from essentials.arguments import check_correctness
