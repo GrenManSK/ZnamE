@@ -805,11 +805,6 @@ try:  # type: ignore
                     if file == "INACTIVE":
                         inactive1: bool = True
                         os.remove("INACTIVE")
-                        sleep(0.25)
-                        printnlog(
-                            "You were inactive, you were logged out and the "
-                            + "program restarted!!!\n"
-                        )
             if args.update is None:
                 sleep(0.25)
                 printnlog("Program was updated!!!\n")
@@ -962,6 +957,9 @@ try:  # type: ignore
                 translator_language = config["translator"]["translate"]
                 os.system("cls")
                 show_version(args)
+            if inactive1:
+                sleep(0.5)
+                printnlog("You have been inactive | Program was restarted")
             while True:
                 completer(unlogged_completer)
                 internet_check()
