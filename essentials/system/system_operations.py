@@ -165,14 +165,14 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
                 length = int((screensize[1] / 10) * 9)
 
             def enumHandler(hwnd, lParam):
-                if win32gui.IsWindowVisible(hwnd):  # type: ignore
-                    # type: ignore
+                if win32gui.IsWindowVisible(hwnd):
+                  
                     if appname in win32gui.GetWindowText(hwnd):
                         win32gui.MoveWindow(
                             hwnd, xpos, ypos, width, length, True
-                        )  # type: ignore
+                        )
 
-            win32gui.EnumWindows(enumHandler, None)  # type: ignore
+            win32gui.EnumWindows(enumHandler, None)
         k = cv2.waitKey(33)
         cv2.setWindowProperty(name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         if k == 27:
@@ -202,7 +202,7 @@ def pg_comb(operations: dict[str, str]):
             pg.keyDown(key)
 
 
-def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
+def move(window: str, x: int, y: int, width, length) -> None:
     """
     The move function moves the specified window to a specified location.
     The move function takes four arguments:
@@ -227,14 +227,14 @@ def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
     if length is None:
         length: int = int((screensize[1] / 10) * 9)
 
-    def enumHandler(hwnd, lParam):  # type: ignore
-        if win32gui.IsWindowVisible(hwnd):  # type: ignore
-            if appname in win32gui.GetWindowText(hwnd):  # type: ignore
+    def enumHandler(hwnd, lParam):
+        if win32gui.IsWindowVisible(hwnd):
+            if appname in win32gui.GetWindowText(hwnd):
                 win32gui.MoveWindow(
                     hwnd, xpos, ypos, width, length, True
-                )  # type: ignore
+                )
 
-    win32gui.EnumWindows(enumHandler, None)  # type: ignore
+    win32gui.EnumWindows(enumHandler, None)
 
 
 def intro_video(args, media_player):
