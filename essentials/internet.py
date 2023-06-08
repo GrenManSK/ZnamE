@@ -49,7 +49,7 @@ def internet_check() -> None:
             open("INTERNET_CHECK_CORRECT", "x")
         except FileExistsError:
             pass
-    except requests.ConnectionError:  # type: ignore
+    except requests.ConnectionError:
         line_number: int = get_line_number()
         printnlog("The internet connection is down")
         sleep(2)

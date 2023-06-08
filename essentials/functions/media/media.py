@@ -75,11 +75,11 @@ def PlayVideo(video_path: str = "assets/video.mp4", repeat: bool = False) -> Non
 
 def play_loop():
     player = vlc.Instance("--input-repeat=999999")
-    media_list = player.media_list_new()  # type: ignore
-    media_player = player.media_list_player_new()  # type: ignore
-    media = player.media_new("assets/waifu.mp4")  # type: ignore
+    media_list = player.media_list_new()
+    media_player = player.media_list_player_new()
+    media = player.media_new("assets/waifu.mp4")
     media_list.add_media(media)
     media_player.set_media_list(media_list)
-    player.vlm_set_loop("waifu", True)  # type: ignore
+    player.vlm_set_loop("waifu", True)
     media_player.play()
     return media_player

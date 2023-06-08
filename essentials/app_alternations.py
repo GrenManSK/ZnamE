@@ -103,7 +103,7 @@ def update_app(args, logger):
             else:
                 subprocess.call(sys.executable + " update.py " + directory, shell=True)
             sys.exit(0)
-    except requests.ConnectionError:  # type: ignore
+    except requests.ConnectionError:
         line_number: int = get_line_number()
         pass
 

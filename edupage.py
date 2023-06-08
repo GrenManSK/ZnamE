@@ -459,7 +459,7 @@ try:  # type: ignore
         result: tuple[str, None] = ("data1", None)
         return result
 
-    def decode(_file: str, _password, mode: int = 0) -> str:  # type: ignore
+    def decode(_file: str, _password, mode: int = 0) -> str:
         """
         The decode function takes two arguments, _file and _password. If the _file
         argument is not provided it will default to None.
@@ -540,7 +540,7 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK += 1
         return [password_chars, file_name]
 
-    def find(find_file: str) -> list:  # type: ignore
+    def find(find_file: str) -> list:
         """
         The find function is used to find the password of a user. It takes in two arguments,
         the first being the find_file of the file that contains all usernames and passwords, and
@@ -840,7 +840,7 @@ try:  # type: ignore
             extract(args, datelog)
             media_player = vlc_init()
             from downloadmusic import DownloadMusic  # type: ignore
-            from essentials.functions.media.media import play_loop  # type: ignore
+            from essentials.functions.media.media import play_loop
             from login import save_credentials  # type: ignore
             from essentials.functions.writing import show_version
             from essentials.arguments import music2str
@@ -877,7 +877,7 @@ try:  # type: ignore
             logins: int = 0
             help: list[str] = ["help", "pomoc", "-h", "-help", "?", "-?"]
             advhelp: list[str] = ["advanced help", "ah", "-ah", "-advanced help"]
-            linenumber: int = 1  # type: ignore
+            linenumber: int = 1
             neko: bool = False
             waifu: bool = False
             waifuvid: bool = False
@@ -1012,8 +1012,8 @@ try:  # type: ignore
                             )
                     if topassword:
                         completer(bq_completer)
-                        if savefilemode:  # type: ignore
-                            vstup: str = savefile[9:15]  # type: ignore
+                        if savefilemode:
+                            vstup: str = savefile[9:15]
                             linenumber -= 1
                         else:
                             vstup = input(str(linenumber) + " Password > ")
@@ -1021,7 +1021,7 @@ try:  # type: ignore
                         with open(historyname, "a", encoding="utf-8") as historyfile:
                             historyfile.write(
                                 "[" + str(linenumber) + ", " + len(vstup) * "*" + "]\n"
-                            )  # type: ignore
+                            )
                         vstup.lower()
                         help: list[str] = ["help", "pomoc", "-h", "-help", "?", "-?"]
                         for help_name in help:
@@ -1068,7 +1068,7 @@ try:  # type: ignore
                         if neko or waifu:
                             double_alt_tab()
                         sleep(0.1)
-                        if vstup == passwordp[0]:  # type: ignore
+                        if vstup == passwordp[0]:
                             typewriter("You're logged\n")
                             os.rename(loginvstupuser + "crypted", loginvstupuser)
                             with open(
@@ -1122,10 +1122,10 @@ try:  # type: ignore
                                 daemon=True,
                             ).start()
                             continue
-                        if vstup != passwordp[0]:  # type: ignore
+                        if vstup != passwordp[0]:
                             topassword: bool = False
                             os.remove(loginvstupuser + "crypted")
-                            os.remove(passwordp[1])  # type: ignore
+                            os.remove(passwordp[1])
                             global PROGRESS_BAR_CHECK
                             sleep(0.1)
                             typewriter("WRONG PASSWORD")
@@ -1185,7 +1185,7 @@ try:  # type: ignore
                         run_app("voicevox")
                         continue
                     if vstup == "playvideo":
-                        import essentials.functions.media.playvideo as playvideo  # type: ignore
+                        import essentials.functions.media.playvideo as playvideo
 
                         playvideo.main()
                     if vstup == "music":
@@ -1494,7 +1494,7 @@ try:  # type: ignore
                         window.activate()
                         altF4()
                         try:
-                            img.close()  # type: ignore
+                            img.close()
                         except UnboundLocalError:
                             pass
                         typewriter("Done             ", end="\r", ttime=0.01)
@@ -1629,7 +1629,7 @@ try:  # type: ignore
                             continue
                         if waifuvid:
                             typewriter("Stoping video", end="\r", ttime=0.01)
-                            media_player.stop()  # type: ignore
+                            media_player.stop()
                             waifuvid: bool = False
                             typewriter("Removing video   ", end="\r", ttime=0.01)
                             os.remove("assets/waifu.mp4")
@@ -1639,7 +1639,7 @@ try:  # type: ignore
                             window.activate()
                             altF4()
                             try:
-                                img.close()  # type: ignore
+                                img.close()
                             except UnboundLocalError:
                                 pass
                         typewriter("Resizing cli      ", end="\r", ttime=0.01)
@@ -1724,7 +1724,7 @@ try:  # type: ignore
                                     continue
                             savefilemode, savefile = auto_login(linenumber)
                             if savefilemode:
-                                loginvstupuser = savefile[0:6]  # type: ignore
+                                loginvstupuser = savefile[0:6]
                             else:
                                 loginvstupuser = input(
                                     str(linenumber) + " Login Number (PID) > "
@@ -1834,7 +1834,7 @@ try:  # type: ignore
                                 window.activate()
                             altF4()
                             try:
-                                img.close()  # type: ignore
+                                img.close()
                             except UnboundLocalError:
                                 pass
                         else:
@@ -1880,7 +1880,7 @@ try:  # type: ignore
                         try:
                             sleep(0.25)
                             os.remove(loginvstupuser)
-                            os.remove(passwordp[1])  # type: ignore
+                            os.remove(passwordp[1])
                         except FileNotFoundError:
                             pass
                         typewriter("\nYou are logged out\n")
@@ -2154,7 +2154,7 @@ try:  # type: ignore
     def logout(historyname, linenumber):
         logged: bool = False
         os.remove(loginvstupuser)
-        os.remove(passwordp[1])  # type: ignore
+        os.remove(passwordp[1])
         print("You're logged out")
         with open(historyname, "a", encoding="utf-8") as historyfile:
             historyfile.write("[" + str(linenumber) + ", *logout]\n")
