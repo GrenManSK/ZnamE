@@ -211,7 +211,7 @@ try:  # type: ignore
     from essentials.internet import internet_check, download
 
     if __name__ == "__main__":
-        internet_check(args)
+        internet_check()
         logger.next(printnlog("Importing libraries", toprint=False), where=inbetween)
     from tqdm import tqdm
 
@@ -962,7 +962,7 @@ try:  # type: ignore
                 show_version(args)
             while True:
                 completer(unlogged_completer)
-                internet_check(args)
+                internet_check()
                 if not _exit:
                     if logged:
                         completer(logged_completer)

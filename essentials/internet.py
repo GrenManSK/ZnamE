@@ -9,14 +9,13 @@ import logging
 from .system.system_info import get_line_number
 
 
-def internet(args):
+def internet():
     """
-    The internet function checks if the internet connection is working.
-        It does this by checking if a file called INTERNET_CHECK_CORRECT exists in the current directory.
-        If it doesn't exist, then we know that there's no internet connection and we can exit with an error message.
-
-    :param args: Pass arguments to the function
-    :return: A boolean value
+    The internet function checks if the internet is working.
+        It does this by checking if a file called INTERNET_CHECK_CORRECT exists.
+        If it doesn't exist, then we know that there's no internet connection.
+    
+    :return: A boolean value, true if the internet is working and false if it's not
     """
     number = 0
     while True:
@@ -32,21 +31,19 @@ def internet(args):
             break
 
 
-def internet_check(args) -> None:
+def internet_check() -> None:
     """
     The internet_check function checks if the internet is up and running.
-    If it is, then it will create a file called INTERNET_CHECK_CORRECT.
-    If not, then it will print out that the internet connection is down and exit with an error code of 1.
-
-    :param args: Pass the arguments from the main function to this one
-    :return: None
+    If it isn't, then the program will exit with an error code of 1.
+    
+    :return: Nothing
     """
     try:
         global requests
         import requests
 
         timeout: int = 10
-        Thread(target=internet, args=(args,)).start()
+        Thread(target=internet).start()
         requests.head("http://www.google.com/", timeout=timeout)
         try:
             open("INTERNET_CHECK_CORRECT", "x")
@@ -54,10 +51,9 @@ def internet_check(args) -> None:
             pass
     except requests.ConnectionError:  # type: ignore
         line_number: int = get_line_number()
-        if __name__ == "__main__":
-            printnlog("The internet connection is down")
-            sleep(2)
-            sys.exit(1)
+        printnlog("The internet connection is down")
+        sleep(2)
+        sys.exit(1)
 
 
 def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
