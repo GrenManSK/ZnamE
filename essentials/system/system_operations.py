@@ -17,6 +17,7 @@ import moviepy.editor as mp
 
 load_dotenv(".env")
 
+
 def get_music_menu(musiclistnew):
     for times, music_name in enumerate(musiclistnew):
         typewriter(str(times + 1) + ") " + music_name)
@@ -25,15 +26,18 @@ def get_music_menu(musiclistnew):
     typewriter(str(times + 4) + ") Back")
     return times
 
+
 def altF4():
     pg.keyDown("alt")
     pg.press("f4")
     pg.keyUp("alt")
-    
+
+
 def gif_to_vid():
     clip = mp.VideoFileClip("assets/waifu.gif")
     clip.write_videofile("assets/waifu.mp4")
     clip.close()
+
 
 def delcache(config, cache_name: str, hist: str) -> None:
     """
@@ -69,6 +73,7 @@ def delcache(config, cache_name: str, hist: str) -> None:
         except SystemError:
             break
 
+
 def getWindow(args) -> bool:
     """
     The getWindow function is used to find the window of Známý (the game) and activate it.
@@ -99,7 +104,9 @@ def getWindow(args) -> bool:
             show_cmd(args)
             return False
         except IndexError:
-            raise IndexError("Possible solution; run in cmd or python aplication not ide or put arguments '--test'")
+            raise IndexError(
+                "Possible solution; run in cmd or python aplication not ide or put arguments '--test'"
+            )
     return False
 
 
@@ -219,11 +226,8 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
 
             def enumHandler(hwnd, lParam):
                 if win32gui.IsWindowVisible(hwnd):
-                  
                     if appname in win32gui.GetWindowText(hwnd):
-                        win32gui.MoveWindow(
-                            hwnd, xpos, ypos, width, length, True
-                        )
+                        win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
 
             win32gui.EnumWindows(enumHandler, None)
         k = cv2.waitKey(33)
@@ -283,9 +287,7 @@ def move(window: str, x: int, y: int, width, length) -> None:
     def enumHandler(hwnd, lParam):
         if win32gui.IsWindowVisible(hwnd):
             if appname in win32gui.GetWindowText(hwnd):
-                win32gui.MoveWindow(
-                    hwnd, xpos, ypos, width, length, True
-                )
+                win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
 
     win32gui.EnumWindows(enumHandler, None)
 
