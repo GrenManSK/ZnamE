@@ -2,6 +2,7 @@ import cv2
 import glob
 from .exceptions import error_get
 from .system_info import get_line_number
+from ..functions.writing import typewriter
 from time import sleep
 import pyautogui as pg
 import pygetwindow
@@ -12,9 +13,61 @@ import ctypes
 import win32gui
 from dotenv import load_dotenv
 from pygame import mixer
+import moviepy.editor as mp
 
 load_dotenv(".env")
 
+def get_music_menu(musiclistnew):
+    for times, music_name in enumerate(musiclistnew):
+        typewriter(str(times + 1) + ") " + music_name)
+    typewriter(str(times + 2) + ") Delete audio")
+    typewriter(str(times + 3) + ") Download music")
+    typewriter(str(times + 4) + ") Back")
+    return times
+
+def altF4():
+    pg.keyDown("alt")
+    pg.press("f4")
+    pg.keyUp("alt")
+    
+def gif_to_vid():
+    clip = mp.VideoFileClip("assets/waifu.gif")
+    clip.write_videofile("assets/waifu.mp4")
+    clip.close()
+
+def delcache(config, cache_name: str, hist: str) -> None:
+    """
+    The delcache function deletes the cache file if it is empty.
+
+    :param cache_name: cache_Name the file that is used to store the time
+    :param hist: Check if the history file has changed
+    :return: The value of the timer
+    """
+    time_got: int = int(config["basic info"]["inactivelimit"])
+    timer = time_got
+    filesize: int = os.path.getsize(hist)
+    sizehist: int = filesize
+    while True:
+        try:
+            for end_file in os.listdir():
+                if end_file == "END":
+                    raise SystemError
+            if timer <= 0:
+                os.remove(cache_name)
+                open("INACTIVE", "x", encoding="utf-8")
+                os.system("cls")
+                pg.write("\n")
+                break
+            if filesize != sizehist:
+                timer = time_got
+                sizehist: int = filesize
+            else:
+                sizehist: int = filesize
+                filesize: int = os.path.getsize(hist)
+                sleep(1)
+                timer -= 1
+        except SystemError:
+            break
 
 def getWindow(args) -> bool:
     """
