@@ -118,12 +118,6 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 
 ---
 
-## Motivational
-
-- Returns quote from anime
-
----
-
 ## KayoPy
 
 - Downloads repository [KayoPy](https://github.com/GrenManSK/KayoPy), installs pip requirements and run KayoPy

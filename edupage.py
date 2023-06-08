@@ -1336,8 +1336,6 @@ try:  # type: ignore
                         os.system("title ZnámE")
                         os.system("cls")
                         show_version(args)
-                    if vstup == "motivational":
-                        motivational()
                     if vstup == "anotherneko":
                         pg.write("quitneko\nneko\n")
                     if vstup[0:4] == "neko":
@@ -1668,8 +1666,7 @@ try:  # type: ignore
                                     + "\n\nFor more detailed help, type '-ah' or '-advanced"
                                     + " help' or 'ah' or 'advanced help'\n'history' show"
                                     + " your currently saved history'waifu' for waifu\n"
-                                    + "'neko' for neko\n'motivational' for motivational"
-                                    + " message\n'game' for game\n'music' for music\n'"
+                                    + "'neko' for neko\n''game' for game\n'music' for music\n'"
                                     + "quit* **' to quit music use 'quitmusic' if you want"
                                     + " to quit waifu 'quitwaifu' if you want to quit neko"
                                     + " 'quitneko'"
@@ -2135,18 +2132,6 @@ try:  # type: ignore
         sleep(6)
         mixer.music.unpause()
         return logged
-
-    def motivational():
-        resp = requests.get("https://animechan.vercel.app/api/random", timeout=5)
-        data: dict[str, str] = resp.json()
-        anime: str = data["anime"]
-        character: str = data["character"]
-        quote: str = data["quote"]
-        sleep(1)
-        typewriter(
-            "Anime: " + anime + "\nCharacter: " + character + "\nQuote: " + quote,
-            ttime=0.01,
-        )
 
     def reduce_musicnumber(lenmusic, intconfig):
         while lenmusic < intconfig:
