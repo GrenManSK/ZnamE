@@ -727,7 +727,9 @@ try:  # type: ignore
         typewriter("Starting web player", ttime=0.01)
         Thread(target=downloadmusic.spotdl_get).start()
         with open("SPOTDL_OUTPUT", "w", encoding="utf-8") as file:
-            subprocess.run([sys.executable, "-m", "spotdl", "web"], stdout=file, text=True)
+            subprocess.run(
+                [sys.executable, "-m", "spotdl", "web"], stdout=file, text=True
+            )
         sleep(1)
         carousel = installing_carousel("", comment="Waiting for synchronization")
         Thread(target=carousel.start()).start()
