@@ -803,12 +803,12 @@ try:  # type: ignore
             for root, dirs, files in os.walk("..\\"):
                 for file in files:
                     if file == "INACTIVE":
-                        inactive1: bool = True
+                        _inactive: bool = True
                         os.remove("INACTIVE")
             if args.update is None:
                 sleep(0.25)
                 printnlog("Program was updated!!!\n")
-            return inactive1
+            return _inactive
         except Exception:
             return False
 
@@ -863,7 +863,7 @@ try:  # type: ignore
             music = copy.deepcopy(musiclistnew)
             config = music2str(musiclistnew)
             intro()
-            inactive1 = was_updated()
+            _inactive = was_updated()
             logged: bool = False
             _exit: bool = False
             tologin: bool = False
@@ -887,7 +887,7 @@ try:  # type: ignore
             translator_language: None | str = None
             offline_game: bool = config["game settings"]["offline_game"]
             maxlogins: int = 1
-            if not inactive1:
+            if not _inactive:
                 playhtml(
                     args,
                     config,
@@ -957,7 +957,7 @@ try:  # type: ignore
                 translator_language = config["translator"]["translate"]
                 os.system("cls")
                 show_version(args)
-            if inactive1:
+            if _inactive:
                 sleep(0.5)
                 printnlog("You have been inactive | Program was restarted")
             while True:
