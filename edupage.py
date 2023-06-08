@@ -326,41 +326,12 @@ try:  # type: ignore
 
             get_log_info()
 
-    def delcache(cache_name: str, hist: str) -> None:
-        """
-        The delcache function deletes the cache file if it is empty.
-
-        :param cache_name: cache_Name the file that is used to store the time
-        :param hist: Check if the history file has changed
-        :return: The value of the timer
-        """
-        global timer
-        time_got: int = int(config["basic info"]["inactivelimit"])
-        timer = time_got
-        filesize: int = os.path.getsize(hist)
-        sizehist: int = filesize
-        while True:
-            try:
-                for end_file in os.listdir():
-                    if end_file == "END":
-                        raise SystemError
-                if timer <= 0:
-                    os.remove(cache_name)
-                    open("INACTIVE", "x", encoding="utf-8")
-                    os.system("cls")
-                    pg.write("\n")
-                    playhtml(args, config, "apphtml\\inactive")
-                    break
-                if filesize != sizehist:
-                    timer = time_got
-                    sizehist: int = filesize
-                else:
-                    sizehist: int = filesize
-                    filesize: int = os.path.getsize(hist)
-                    sleep(1)
-                    timer -= 1
-            except SystemError:
-                break
+    from essentials.system.system_operations import (
+        delcache,
+        altF4,
+        get_music_menu,
+        gif_to_vid,
+    )
 
     PROGRESS_BAR_CHECK = 0
 
@@ -1116,6 +1087,7 @@ try:  # type: ignore
                             Thread(
                                 target=delcache,
                                 args=(
+                                    config,
                                     loginvstupuser,
                                     historyname,
                                 ),
@@ -2153,8 +2125,8 @@ try:  # type: ignore
 
     def logout(historyname, linenumber):
         logged: bool = False
-        os.remove(loginvstupuser)
-        os.remove(passwordp[1])
+        remove(loginvstupuser)
+        remove(passwordp[1])
         print("You're logged out")
         with open(historyname, "a", encoding="utf-8") as historyfile:
             historyfile.write("[" + str(linenumber) + ", *logout]\n")
@@ -2163,16 +2135,6 @@ try:  # type: ignore
         sleep(6)
         mixer.music.unpause()
         return logged
-
-    def gif_to_vid():
-        clip = mp.VideoFileClip("assets/waifu.gif")
-        clip.write_videofile("assets/waifu.mp4")
-        clip.close()
-
-    def altF4():
-        pg.keyDown("alt")
-        pg.press("f4")
-        pg.keyUp("alt")
 
     def motivational():
         resp = requests.get("https://animechan.vercel.app/api/random", timeout=5)
@@ -2191,14 +2153,6 @@ try:  # type: ignore
             config = set_config("music", "musicnumber", int(args.music) - 1)
             intconfig = int(config["music"]["musicnumber"])
             continue
-
-    def get_music_menu(musiclistnew):
-        for times, music_name in enumerate(musiclistnew):
-            typewriter(str(times + 1) + ") " + music_name)
-        typewriter(str(times + 2) + ") Delete audio")
-        typewriter(str(times + 3) + ") Download music")
-        typewriter(str(times + 4) + ") Back")
-        return times
 
     if __name__ == "__main__":
         if args.debug is None:
