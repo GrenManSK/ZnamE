@@ -2116,6 +2116,12 @@ try:  # type: ignore
             sys.exit(0)
 
     def print_history():
+        """
+        The print_history function prints the user history.
+            It takes no arguments and returns nothing.
+        
+        :return: The user history from the config file
+        """
         historylist = config["user history"]
         for history_temp in historylist:
             print(
@@ -2130,6 +2136,14 @@ try:  # type: ignore
             print("History is empty")
 
     def logout(historyname, linenumber):
+        """
+        The logout function is used to logout the user from the system.
+        It removes all of his data and logs him out. It also plays a sound effect.
+        
+        :param historyname: Write the history file, and the linenumber parameter is used to write the line number of each command in that file
+        :param linenumber: Write the line number of the command into a history file
+        :return: A boolean value, which is false
+        """
         logged: bool = False
         remove(loginvstupuser)
         remove(passwordp[1])
@@ -2143,6 +2157,13 @@ try:  # type: ignore
         return logged
 
     def reduce_musicnumber(lenmusic, intconfig):
+        """
+        The reduce_musicnumber function reduces the number of music files to be played by 1 if the total length of all music files is less than the desired length.
+        
+        :param lenmusic: Compare to the intconfig parameter
+        :param intconfig: Store the value of the config file, and is used to compare it with lenmusic
+        :return: A boolean value
+        """
         while lenmusic < intconfig:
             config = set_config("music", "musicnumber", int(args.music) - 1)
             intconfig = int(config["music"]["musicnumber"])

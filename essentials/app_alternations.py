@@ -25,6 +25,14 @@ load_dotenv(".env")
 
 
 def update_app(args, logger):
+    """
+    The update_app function checks if there is a newer version of the program available.
+    If there is, it downloads the new version and replaces all files with the new ones.
+    
+    :param args: Pass the arguments from the main function to this one
+    :param logger: Log the output of the function
+    :return: Nothing
+    """
     datelog = os.getenv("DATELOG")
     try:
         url = "https://raw.githubusercontent.com/GrenManSK/ZnamE/main/version"
@@ -361,6 +369,14 @@ def choco_check(module: str, carousel: installing_carousel) -> None:
 
 
 def install_choco(logger):
+    """
+    The install_choco function is used to install chocolatey on the user's machine.
+        It does this by first checking if chocolatey is already installed, and if not, it downloads a powershell script from the official Chocolatey website that installs it.
+        The function then runs this script using subprocess.run() and waits for it to finish before continuing.
+    
+    :param logger: Display the progress of the installation
+    :return: Nothing
+    """
     datelog = os.getenv("DATELOG")
     with open("choco.ps1", "w") as file:
         file.write(
@@ -424,6 +440,11 @@ def install_choco(logger):
 
 
 def get_packages() -> list[str]:
+    """
+    The get_packages function reads the choco_packages.json file and returns a list of strings that are formatted to be used in the install_chocolatey function.
+    
+    :return: A list of strings
+    """
     with open("choco_packages.json") as json_file:
         data = json.load(json_file)
         return_data = []
@@ -435,6 +456,13 @@ def get_packages() -> list[str]:
 
 
 def install_packages(args, logger):
+    """
+    The install_packages function is used to install the required packages for EduPage.
+    
+    :param args: Pass the command line arguments to the function
+    :param logger: Log the output of the function
+    :return: Nothing
+    """
     datelog = os.getenv("DATELOG")
     os.remove("INSTALL")
 
@@ -460,11 +488,29 @@ def install_packages(args, logger):
 
 
 def on_rm_error(func, path, exc_info):
+    """
+    The on_rm_error function is a callback function that will be called by the shutil.rmtree() function
+    if an error occurs while attempting to remove a file or directory. The on_rm_error() function will attempt
+    to change the permissions of the file or directory so that it can be removed, and then it will try again.
+    
+    :param func: Pass the function to be called when an error occurs
+    :param path: Specify the path of the file to be deleted
+    :param exc_info: Pass information about the exception that caused the error
+    :return: A function that will be called for each file or directory being removed
+    """
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
 
 
 def python_update(args, logger):
+    """
+    The python_update function checks if there are any updates available for the program.
+    If there are, it asks the user if they want to install them and then restarts the program.
+    
+    :param args: Get the arguments from the command line
+    :param logger: Write to the log file
+    :return: Nothing
+    """
     datelog = os.getenv("DATELOG")
     printnlog("")
     printnlog("Libraries needed: ", end="")

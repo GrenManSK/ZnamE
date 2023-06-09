@@ -9,6 +9,12 @@ from tkinter import filedialog
 
 
 def run_manga_image_translator(env):
+    """
+    The run_manga_image_translator function is used to install and run the manga-image-translator program.
+    
+    :param env: Run the program in a specific environment
+    :return: The following:
+    """
     if os.path.exists("manga-image-translator"):
         typewriter(
             printnlog(
@@ -71,7 +77,13 @@ def run_manga_image_translator(env):
 
 
 def manga_image_translator(env):
-    folder = None
+    """
+    The manga_image_translator function is a command line interface for the manga_image_translator_command function.
+    It allows you to specify the folder and language of your choice, then it calls the manga_image_translator command with those parameters.
+    
+    :param env: Get the environment variables
+    :return: The manga_image_translator function
+    """folder = None
     lang = "ENG"
     typewriter(
         printnlog(
@@ -147,6 +159,18 @@ VIN: Vietnames""",
 
 
 def manga_image_translator_command(env, folder, lang):
+    """
+    The manga_image_translator_command function is a wrapper for the manga-image-translator package.
+    It takes in three arguments: env, folder, and lang.
+    env is the environment variable that points to your Python executable (e.g., /usr/bin/python3).
+    folder is the path to your manga image directory (e.g., /home/user/manga_images). 
+    lang is the language you want translated into (e.g., ENG for English).
+    
+    :param env: Specify the environment for the script to run in
+    :param folder: Specify the folder where the images are located
+    :param lang: Determine the language of the translated text
+    :return: The following:
+    """
     os.system(
         f"{env} -m manga-image-translator.manga_translator -v --mode batch  --translator=google -l {lang} -i {folder}"
     )

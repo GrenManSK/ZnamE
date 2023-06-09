@@ -28,12 +28,28 @@ except TypeError:
     screensize = [1920, 1080]
 
 def rclick(x, y):
+    """
+    The rclick function takes two arguments, x and y.
+    It then sets the cursor position to (x,y) and performs a right click.
+    
+    :param x: Set the x coordinate of the mouse cursor
+    :param y: Set the y position of the mouse
+    :return: Nothing
+    """
     win32api.SetCursorPos((x, y))
     win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
     win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, x, y, 0, 0)
 
 
 def textractor(args, lang: str, translator: str):
+    """
+    The textractor function is used to download and install Textractor, a program that hooks into the game's process and translates text in real time.
+    
+    :param args: Pass arguments to the function
+    :param lang: str: Set the language of the game, and translator: str is used to set which translation service will be used
+    :param translator: str: Specify which translator to use
+    :return: 0, so this is never called
+    """
     if not lang in t_languages:
         return 39
     lang = lang.lower()
@@ -249,6 +265,12 @@ def textractor(args, lang: str, translator: str):
 
 
 def install_font():
+    """
+    The install_font function is used to install a font from the Fonts folder.
+    It does this by opening the Fonts folder, selecting a font, and pressing 'i' to install it.
+    
+    :return: None
+    """
     sleep(0.5)
     pg.press("i")
     pg.press("tab")
@@ -261,6 +283,17 @@ def install_font():
 
 
 def run_textractor(args, lang, translator):
+    """
+    The run_textractor function is used to run the textractor program.
+        It takes in two arguments: args and lang.
+        The args argument is a list of strings that are passed into the textractor function as command line arguments.
+        The lang argument is a string that specifies which language to use for translation.
+    
+    :param args: Pass in the arguments for textractor
+    :param lang: Set the language of textractor
+    :param translator: Determine which language to translate the text into
+    :return: A return code, which is then checked against the error codes listed in the textractor
+    """
     return_code = textractor(args, lang, translator)
 
     if return_code == 39:
@@ -281,6 +314,14 @@ def run_textractor(args, lang, translator):
 
 
 def change_quiet_textractor(to):
+    """
+    The change_quiet_textractor function changes the global variable quiet to True or False.
+        If it is set to True, then textractor will not print anything out when it runs.
+        If it is set to False, then textractor will print everything out when it runs.
+    
+    :param to: Set the quiet variable to true or false
+    :return: A boolean value
+    """
     global quiet
     if to in [True, False]:
         quiet = to

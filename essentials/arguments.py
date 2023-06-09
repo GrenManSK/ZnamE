@@ -25,6 +25,14 @@ load_dotenv()
 
 
 def arguments(config):
+    """
+    The arguments function is used to set up the arguments for the program.
+    It also sets up a list of music that can be played in-game, and it returns
+    the parser object, the music list, and an unspecified value.
+    
+    :param config: Get the config file
+    :return: The parser, music and unspecified
+    """
     parser = argparse.ArgumentParser()
     UNSPECIFIED = object()
 
@@ -388,6 +396,12 @@ def print_config(logger: get_logger, config):
 
 
 def write_config_options(server):
+    """
+    The write_config_options function writes the CONFIG_OPTIONS.txt file, which is used to store all of the configuration options for NekoBot.
+    
+    :param server: Write the server name in the config_options
+    :return: Nothing
+    """
     datelog = os.getenv("DATELOG")
     with open("CONFIG_OPTIONS.txt", "w") as config_file:
         config_file.write("basic info:\n")
@@ -477,6 +491,13 @@ def set_config(section: str, name: str, info: any) -> any:
 
 
 def music2str(musiclistnew):
+    """
+    The music2str function takes a list of music and converts it to a string.
+        It then sets the config file's musiclist value to that string.
+    
+    :param musiclistnew: Store the musiclistnew variable, which is a list of all the songs in the playlist
+    :return: A string with all the music in it
+    """
     musiclistnewstring: str = ""
     for i in range(len(musiclistnew)):
         musiclistnewstring += str(musiclistnew[i]) + ","

@@ -7,6 +7,14 @@ import shutil
 
 
 def get_size(start_path="."):
+    """
+    The get_size function returns the total size of a directory in bytes.
+        It takes one argument, start_path, which is the path to be measured.
+        The default value for start_path is &quot;.&quot; (the current working directory).
+    
+    :param start_path: Specify the path of the directory to be scanned
+    :return: The total size of the directory in bytes
+    """
     total_size = 0
     for dirpath, dirnames, filenames in os.walk(start_path):
         for f in filenames:
@@ -19,6 +27,16 @@ def get_size(start_path="."):
 
 
 def run_voicevox(env):
+    """
+    The run_voicevox function is used to run the VOICEVOX program.
+    It checks if the VOICEVOX folder exists and if it does, it runs a git pull command on that folder.
+    If there are any updates, they will be downloaded and installed automatically.
+    If there are no updates available or the folder doesn't exist, then it asks you whether you want to download 
+    the latest version of VOICEVOX from GitHub using git clone command or not.
+    
+    :param env: Determine the python environment to run the program in
+    :return: The value of the run_voicevox function
+    """
     damaged = False
     if os.path.exists("VOICEVOX"):
         size = get_size("VOICEVOX") / 1024 / 1024
