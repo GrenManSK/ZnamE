@@ -1,7 +1,7 @@
 import cv2
 import glob
 from .exceptions import error_get
-from .system_info import get_line_number
+from .system_info import get_line_number, get_screensize
 from ..functions.writing import typewriter
 from time import sleep
 import pyautogui as pg
@@ -208,8 +208,11 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
     :param length: Set the length of the window
     :return: The image that is displayed
     """
-    screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
-    screensize = [int(i) for i in screensize]
+    try:
+        screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
+        screensize = [int(i) for i in screensize]
+    except TypeError:
+        screensize = get_screensize()[0]
     path: str = imgSrc
     for file in glob.glob(path):
         global dummy
@@ -274,8 +277,11 @@ def move(window: str, x: int, y: int, width, length) -> None:
     :param length: Set the height of the window
     :return: None
     """
-    screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
-    screensize = [int(i) for i in screensize]
+    try:
+        screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
+        screensize = [int(i) for i in screensize]
+    except TypeError:
+        screensize = get_screensize()[0]
     appname: str = window
     xpos: int = x
     ypos: int = y
