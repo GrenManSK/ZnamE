@@ -511,3 +511,5 @@ def python_update(args, logger):
             else:
                 sys.exit(0)
         printnlog("DONE\n")
+    else:
+        printnlog("\nDONE")

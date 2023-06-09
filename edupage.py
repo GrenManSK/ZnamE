@@ -103,7 +103,7 @@ try:  # type: ignore
 
     if __name__ == "__main__":
         print("")
-        logger.stay(printnlog("Reading config file (yml)", toprint=False))
+        logger.next(printnlog("Reading config file (yml)", toprint=False), where=inbetween)
         config = yaml.safe_load(open("config.yml", "r", encoding="utf-8"))
         config["user history"] = {}
         line_number: int = get_line_number(-1)
@@ -124,7 +124,7 @@ try:  # type: ignore
 
         del line_number
 
-    logger.stay(printnlog("\nDone\n", toprint=False))
+        logger.prev(printnlog("Done", toprint=False), where=inbetween)
 
     from essentials.arguments import set_config
     from essentials.system.system_info import get_screensize, system_info
