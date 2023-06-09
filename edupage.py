@@ -790,9 +790,9 @@ try:  # type: ignore
         global music
         global UNSPECIFIED
         if __name__ != "__main__":
-            from essentials.arguments import arguments
-
+            from essentials.arguments import arguments, check_correctness
             global args
+            global screensize
             parse_args = []
             for key, value in kwargs.items():
                 parse_args.append(f"--{key}")
@@ -800,6 +800,15 @@ try:  # type: ignore
                     parse_args.append(value)
             parser, music, UNSPECIFIED = arguments(config)
             args = parser.parse_args(parse_args)
+            check_correctness(args, config, logger, music)
+            screensize, screensize_percentage = get_screensize()
+            with open(".env", "w", encoding="utf-8") as dotenv:
+                dotenv.write(f"DATELOG={datelog}\n")
+                dotenv.write(f"QUIET={quiet}\n")
+                if args.debug is None:
+                    dotenv.write(f"DEBUG=True\n")
+                else:
+                    dotenv.write(f"DEBUG=False\n")
         try:
             historyname: str = str(datetime.now().strftime("%H-%M-%S"))
             with open(historyname, "w", encoding="utf-8") as historyfile:
