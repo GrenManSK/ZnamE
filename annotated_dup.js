@@ -11,6 +11,9 @@ var annotated_dup =
       [ "argMusicError", "d5/d36/classexceptions_1_1arg_music_error.html", null ],
       [ "argMusicListError", "df/de6/classexceptions_1_1arg_music_list_error.html", null ],
       [ "argNekoError", "d1/d60/classexceptions_1_1arg_neko_error.html", null ],
+      [ "argQuietError", "dc/d30/classexceptions_1_1arg_quiet_error.html", null ],
+      [ "argTranslateError", "d3/d4f/classexceptions_1_1arg_translate_error.html", null ],
+      [ "argTranslatorError", "d9/d31/classexceptions_1_1arg_translator_error.html", null ],
       [ "argWaifuError", "da/dcb/classexceptions_1_1arg_waifu_error.html", null ],
       [ "configNoOption", "dd/d3d/classexceptions_1_1config_no_option.html", null ]
     ] ]

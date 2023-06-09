@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['textractor_0',['textractor',['../dd/d30/namespacetextractor.html',1,'']]]
+  ['manga_5ftranslator_0',['manga_translator',['../de/d7e/namespacemanga__translator.html',1,'']]],
+  ['media_1',['media',['../dd/dc4/namespacemedia.html',1,'']]]
 ];

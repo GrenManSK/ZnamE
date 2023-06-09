@@ -7,5 +7,8 @@ var searchData=
   ['argmusicerror_4',['argMusicError',['../d5/d36/classexceptions_1_1arg_music_error.html',1,'exceptions']]],
   ['argmusiclisterror_5',['argMusicListError',['../df/de6/classexceptions_1_1arg_music_list_error.html',1,'exceptions']]],
   ['argnekoerror_6',['argNekoError',['../d1/d60/classexceptions_1_1arg_neko_error.html',1,'exceptions']]],
-  ['argwaifuerror_7',['argWaifuError',['../da/dcb/classexceptions_1_1arg_waifu_error.html',1,'exceptions']]]
+  ['argquieterror_7',['argQuietError',['../dc/d30/classexceptions_1_1arg_quiet_error.html',1,'exceptions']]],
+  ['argtranslateerror_8',['argTranslateError',['../d3/d4f/classexceptions_1_1arg_translate_error.html',1,'exceptions']]],
+  ['argtranslatorerror_9',['argTranslatorError',['../d9/d31/classexceptions_1_1arg_translator_error.html',1,'exceptions']]],
+  ['argwaifuerror_10',['argWaifuError',['../da/dcb/classexceptions_1_1arg_waifu_error.html',1,'exceptions']]]
 ];

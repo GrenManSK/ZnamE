@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['internet_2epy_0',['internet.py',['../d6/da3/internet_8py.html',1,'']]]
+  ['html_2epy_0',['html.py',['../d3/d2a/html_8py.html',1,'']]]
 ];

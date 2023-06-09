@@ -7,5 +7,5 @@ digraph "voicevox.run_voicevox"
   rankdir="LR";
   Node1 [label="voicevox.run_voicevox",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="voicevox.get_size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/da7/namespacevoicevox.html#a594748a27a8637d666f9c36a5050cb73",tooltip=" "];
+  Node2 [label="voicevox.get_size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/da7/namespacevoicevox.html#a52bd36be1a1cc6f08d550fa7fad4bf1e",tooltip=" "];
 }

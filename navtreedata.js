@@ -40,48 +40,28 @@ var NAVTREE =
       [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
     ] ],
     [ "patch", "de/dac/md_patch.html", null ],
-    [ "v1.0.4-alpha+build.20230214.223759", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html", [
-      [ ".gitignore", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md137", null ],
-      [ "verbose folder", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md138", null ],
-      [ "edupage.py", "d1/dc7/md_patch_notes_v1_0_4_alpha_build_20230214_223759.html#autotoc_md139", null ]
-    ] ],
-    [ "v1.0.4-alpha+build.20230216.161608", "d0/d28/md_patch_notes_v1_0_4_alpha_build_20230216_161608.html", null ],
-    [ "v1.0.5-alpha+build.20230216.162308", "d3/d03/md_patch_notes_v1_0_5_alpha_build_20230216_162308.html", null ],
-    [ "v1.0.5-alpha+build.20230220.151027", "df/d52/md_patch_notes_v1_0_5_alpha_build_20230220_151027.html", null ],
-    [ "v1.0.5-alpha+build.20230304.140155", "d4/d37/md_patch_notes_v1_0_5_alpha_build_20230304_140155.html", null ],
-    [ "v1.0.5-alpha+build.20230315.161335", "d4/d05/md_patch_notes_v1_0_5_alpha_build_20230315_161335.html", null ],
-    [ "v1.0.5-alpha+build.20230317.100818", "d6/d2c/md_patch_notes_v1_0_5_alpha_build_20230317_100818.html", null ],
-    [ "v1.1.0-alpha+build.20230320.145926", "d3/d37/md_patch_notes_v1_1_0_alpha_build_20230320_145926.html", null ],
-    [ "v1.1.0-alpha+build.20230327.122543", "d5/dcf/md_patch_notes_v1_1_0_alpha_build_20230327_122543.html", null ],
-    [ "v1.1.0-alpha+build.20230328.210246", "d0/d5c/md_patch_notes_v1_1_0_alpha_build_20230328_210246.html", null ],
-    [ "v1.1.0-alpha+build.20230329.224720", "de/d89/md_patch_notes_v1_1_0_alpha_build_20230329_224720.html", null ],
-    [ "v1.1.0-alpha+build.20230407.113203", "d7/dcd/md_patch_notes_v1_1_0_alpha_build_20230407_113203.html", null ],
-    [ "v1.1.0-alpha+build.20230428.095526", "d4/da8/md_patch_notes_v1_1_0_alpha_build_20230428_095526.html", null ],
-    [ "v1.1.1-alpha+build.20230428.172227", "d5/dc8/md_patch_notes_v1_1_1_alpha_build_20230428_172227.html", null ],
-    [ "v1.2.0-alpha+build.20230429.122048", "d0/d8b/md_patch_notes_v1_2_0_alpha_build_20230429_122048.html", null ],
-    [ "v1.3.0-alpha+build.20230430.155859", "da/de2/md_patch_notes_v1_3_0_alpha_build_20230430_155859.html", null ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md158", null ],
-      [ "Main functions", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md160", [
-        [ "<tt>config.yml</tt> hereinafter as config or config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md162", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md141", null ],
+      [ "Main functions", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md143", [
+        [ "<tt>config.yml</tt> hereinafter as config or config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md145", null ]
       ] ],
-      [ "Important notice", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md164", [
-        [ "Works only on Windows", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md165", null ]
+      [ "Important notice", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md147", [
+        [ "Works only on Windows", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md148", null ]
       ] ],
-      [ "waifu | neko", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md167", null ],
-      [ "VOICEVOX", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md169", null ],
-      [ "login", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md171", null ],
-      [ "Music", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md173", [
-        [ "Config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md174", null ],
-        [ "Function", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md175", null ]
+      [ "waifu | neko", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md150", null ],
+      [ "VOICEVOX", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md152", null ],
+      [ "login", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md154", null ],
+      [ "Music", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md156", [
+        [ "Config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md157", null ],
+        [ "Function", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md158", null ]
       ] ],
-      [ "Manga_translator", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md177", null ],
-      [ "Motivational", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md179", null ],
-      [ "KayoPy", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md181", null ],
-      [ "cbzPrintable", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md183", null ],
-      [ "PlayVideo", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md185", null ],
-      [ "Anime_search", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md187", null ],
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md189", null ]
+      [ "Manga_translator", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md160", null ],
+      [ "KayoPy", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md162", null ],
+      [ "cbzPrintable", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md164", null ],
+      [ "PlayVideo", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md166", null ],
+      [ "Anime_search", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md168", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md170", null ],
+      [ "CLI Arguments", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md172", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -110,7 +90,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"da/db2/kayopy_8py_source.html"
+"d8/df3/namespacewriting.html#ab124ce75ac2bbc58e0cd4d514b3be12b",
+"df/deb/classexceptions_1_1arg_inactive_limit_error.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

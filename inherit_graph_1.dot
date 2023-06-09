@@ -19,9 +19,15 @@ digraph "Graphical Class Hierarchy"
   Node0 -> Node6 [dir="back",color="steelblue1",style="solid"];
   Node6 [label="exceptions.argNekoError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/d60/classexceptions_1_1arg_neko_error.html",tooltip=" "];
   Node0 -> Node7 [dir="back",color="steelblue1",style="solid"];
-  Node7 [label="exceptions.argWaifuError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/dcb/classexceptions_1_1arg_waifu_error.html",tooltip=" "];
+  Node7 [label="exceptions.argQuietError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/d30/classexceptions_1_1arg_quiet_error.html",tooltip=" "];
   Node0 -> Node8 [dir="back",color="steelblue1",style="solid"];
-  Node8 [label="exceptions.argenvironment\lError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d37/classexceptions_1_1argenvironment_error.html",tooltip=" "];
+  Node8 [label="exceptions.argTranslateError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d4f/classexceptions_1_1arg_translate_error.html",tooltip=" "];
   Node0 -> Node9 [dir="back",color="steelblue1",style="solid"];
-  Node9 [label="exceptions.configNoOption",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/d3d/classexceptions_1_1config_no_option.html",tooltip=" "];
+  Node9 [label="exceptions.argTranslator\lError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d31/classexceptions_1_1arg_translator_error.html",tooltip=" "];
+  Node0 -> Node10 [dir="back",color="steelblue1",style="solid"];
+  Node10 [label="exceptions.argWaifuError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/dcb/classexceptions_1_1arg_waifu_error.html",tooltip=" "];
+  Node0 -> Node11 [dir="back",color="steelblue1",style="solid"];
+  Node11 [label="exceptions.argenvironment\lError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d37/classexceptions_1_1argenvironment_error.html",tooltip=" "];
+  Node0 -> Node12 [dir="back",color="steelblue1",style="solid"];
+  Node12 [label="exceptions.configNoOption",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/d3d/classexceptions_1_1config_no_option.html",tooltip=" "];
 }

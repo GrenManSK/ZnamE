@@ -7,6 +7,10 @@ digraph "essentials/functions"
   compound=true
   subgraph clusterdir_d5b1ed787a0439ef5e70cb4862ae5db0 {
     graph [ bgcolor="#edf0f7", pencolor="grey25", label="essentials", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_d5b1ed787a0439ef5e70cb4862ae5db0.html",tooltip=""]
-  dir_643e18308e1fb8943d3adb3f912126b6 [label="functions", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_643e18308e1fb8943d3adb3f912126b6.html",tooltip=""];
+  subgraph clusterdir_643e18308e1fb8943d3adb3f912126b6 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_643e18308e1fb8943d3adb3f912126b6.html",tooltip=""]
+    dir_643e18308e1fb8943d3adb3f912126b6 [shape=plaintext, label="functions"];
+  dir_1f2d337c9955d3de0c25ffab2b121e3a [label="media", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_1f2d337c9955d3de0c25ffab2b121e3a.html",tooltip=""];
+  }
   }
 }

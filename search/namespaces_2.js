@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['edupage_0',['edupage',['../d0/d52/namespaceedupage.html',1,'']]],
-  ['exceptions_1',['exceptions',['../d0/d6e/namespaceexceptions.html',1,'']]]
+  ['database_0',['database',['../da/df2/namespacedatabase.html',1,'']]],
+  ['dependencies_1',['dependencies',['../dd/d2d/namespacedependencies.html',1,'']]]
 ];

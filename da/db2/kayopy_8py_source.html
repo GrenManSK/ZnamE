@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.4.1-alpha+build.20230517.081508</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.11.0-alpha+build.20230608.215215</span>
    </div>
   </td>
  </tr>
@@ -97,47 +97,126 @@ $(document).ready(function(){initNavTree('da/db2/kayopy_8py_source.html','../../
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> subprocess</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">from</span> .writing <span class="keyword">import</span> printnlog, typewriter</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">from</span> time <span class="keyword">import</span> sleep</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">    8</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">run_kayopy</a>():</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordflow">if</span> os.path.exists(<span class="stringliteral">&#39;KayoPy&#39;</span>):</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        typewriter(printnlog(</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>            f<span class="stringliteral">&#39;\nChecking for updates\nRunning command\nRunning command: git -C KayoPy pull\n&#39;</span>, toprint=<span class="keyword">False</span>), ttime=0.01)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        subprocess.call([<span class="stringliteral">&#39;git&#39;</span>, <span class="stringliteral">&#39;-C&#39;</span>, <span class="stringliteral">&#39;KayoPy&#39;</span>, <span class="stringliteral">&#39;pull&#39;</span>])</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_namespace" href="../../d6/d36/namespacekayopy.html">kayopy</a>()</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            vstup = input(printnlog(</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                <span class="stringliteral">&quot;\nTo install KayoPy run this command \&#39;git clone https://github.com/GrenManSK/KayoPy.git\&#39;\nDo you want to complete this action automatically (Y/n) &gt; &quot;</span>, toprint=<span class="keyword">False</span>)).lower()</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keywordflow">if</span> vstup <span class="keywordflow">in</span> [<span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;y&#39;</span>]:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                <span class="keywordflow">break</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keywordflow">elif</span> vstup == <span class="stringliteral">&#39;n&#39;</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                <span class="keywordflow">return</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                printnlog(<span class="stringliteral">&#39;Wrong character&#39;</span>)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        os.system(<span class="stringliteral">&#39;git clone https://github.com/GrenManSK/KayoPy.git&#39;</span>)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        typewriter(printnlog(</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            f<span class="stringliteral">&#39;\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r KayoPy/requirements.txt\n&#39;</span>, toprint=<span class="keyword">False</span>), ttime=0.01)</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        sleep(1)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        os.system(sys.executable +</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                  <span class="stringliteral">&#39; -m pip install -r KayoPy/requirements.txt&#39;</span>)</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_namespace" href="../../d6/d36/namespacekayopy.html">kayopy</a>()</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">   35</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">kayopy</a>():</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    os.system(f<span class="stringliteral">&quot;{sys.executable} KayoPy/kayopy/kayopy.py&quot;</span>)</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> glob</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> copy</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">   11</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">run_kayopy</a>():</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="stringliteral">    The run_kayopy function </span><span class="keywordflow">is</span> used to check <span class="keywordflow">if</span> the KayoPy folder exists.</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    If it does, then it will run a git pull command <span class="keywordflow">and</span> then call the kayopy function.</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    If <span class="keywordflow">not</span>, then it will ask you <span class="keywordflow">if</span> you want to install KayoPy automatically <span class="keywordflow">or</span> manually.</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    :<span class="keywordflow">return</span>: The kayopy function</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.path.exists(<span class="stringliteral">&quot;KayoPy&quot;</span>):</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        typewriter(</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            printnlog(</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                f<span class="stringliteral">&quot;\nChecking for updates\nRunning command\nRunning command: git -C KayoPy pull\n&quot;</span>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                toprint=<span class="keyword">False</span>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            ),</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            ttime=0.01,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        )</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        subprocess.call([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;-C&quot;</span>, <span class="stringliteral">&quot;KayoPy&quot;</span>, <span class="stringliteral">&quot;pull&quot;</span>])</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_namespace" href="../../d6/d36/namespacekayopy.html">kayopy</a>()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            vstup = input(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                printnlog(</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                    <span class="stringliteral">&quot;\nTo install KayoPy run this command &#39;git clone https://github.com/GrenManSK/KayoPy.git&#39;\nDo you want to complete this action automatically (Y/n) &gt; &quot;</span>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                    toprint=<span class="keyword">False</span>,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                )</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            ).lower()</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keywordflow">if</span> vstup <span class="keywordflow">in</span> [<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;y&quot;</span>]:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">elif</span> vstup == <span class="stringliteral">&quot;n&quot;</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                <span class="keywordflow">return</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                printnlog(<span class="stringliteral">&quot;Wrong character&quot;</span>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        os.system(<span class="stringliteral">&quot;git clone https://github.com/GrenManSK/KayoPy.git&quot;</span>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        typewriter(</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            printnlog(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                f<span class="stringliteral">&quot;\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r KayoPy/requirements.txt --no-warn-script-location\n&quot;</span>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                toprint=<span class="keyword">False</span>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            ),</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            ttime=0.01,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        )</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        sleep(1)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        os.system(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            sys.executable</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            + <span class="stringliteral">&quot; -m pip install -r KayoPy/requirements.txt --no-warn-script-location&quot;</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        )</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_namespace" href="../../d6/d36/namespacekayopy.html">kayopy</a>()</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">   60</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">kayopy</a>():</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="stringliteral">    The kayopy function </span><span class="keywordflow">is</span> used to start the KayoPy program.</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    It asks <span class="keywordflow">if</span> you want to download anime <span class="keywordflow">in</span> a folder called Anime, <span class="keywordflow">and</span> then starts the KayoPy program <span class="keyword">with</span> <span class="keywordflow">or</span> without that argument.</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    :<span class="keywordflow">return</span>: This function</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="stringliteral">    </span><span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        vstup = input(<span class="stringliteral">&quot;\nDo you want to download anime in anime folder? (y/n): &quot;</span>)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">if</span> vstup == <span class="stringliteral">&quot;y&quot;</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            arg = <span class="stringliteral">&quot; -ad -of Anime&quot;</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            Thread(target=anime_mole, daemon=<span class="keyword">True</span>).start()</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> vstup == <span class="stringliteral">&quot;n&quot;</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            arg = <span class="stringliteral">&quot;&quot;</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    os.system(f<span class="stringliteral">&quot;{sys.executable} KayoPy/kayopy/kayopy.py {arg}&quot;</span>)</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    open(<span class="stringliteral">&quot;kayopyEND&quot;</span>, <span class="stringliteral">&quot;x&quot;</span>)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="../../d6/d36/namespacekayopy.html#a0b11cec32ae1f27c3f1fdfcfb7e933f6">   80</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d6/d36/namespacekayopy.html#a0b11cec32ae1f27c3f1fdfcfb7e933f6">anime_mole</a>():</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="stringliteral">    The anime_mole function </span><span class="keywordflow">is</span> a daemon that runs <span class="keywordflow">in</span> the background <span class="keywordflow">and</span> monitors</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    the Anime directory <span class="keywordflow">for</span> new files. When it finds one, it adds the file to a set</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    of anime files. It then writes this set of anime files to disk <span class="keyword">as</span> an archive.</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.path.exists(<span class="stringliteral">&quot;AnimeArchive&quot;</span>):</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">with</span> open(<span class="stringliteral">&quot;AnimeArchive&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            filer = file.readlines()</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        anime_tmp: set = set(filer)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        anime: set = set(copy.deepcopy(anime_tmp))</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> anime_tmp:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(item):</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                anime.remove(item)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        anime: set = set()</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        sleep(1)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">if</span> os.path.exists(<span class="stringliteral">&quot;kayopyEND&quot;</span>):</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">if</span> os.path.exists(<span class="stringliteral">&quot;Anime&quot;</span>):</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">for</span> filename <span class="keywordflow">in</span> set(glob.glob(<span class="stringliteral">&quot;Anime/**/**/*&quot;</span>, recursive=<span class="keyword">True</span>)):</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                <span class="keywordflow">if</span> filename.endswith(<span class="stringliteral">&quot;tmp&quot;</span>) <span class="keywordflow">or</span> os.path.isdir(filename):</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    <span class="keywordflow">continue</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                anime.add(filename)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        anime_text = <span class="stringliteral">&quot;&quot;</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">for</span> item <span class="keywordflow">in</span> anime:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            anime_text += item + <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keyword">with</span> open(<span class="stringliteral">&quot;AnimeArchive&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> file:</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            file.write(anime_text)</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    os.remove(<span class="stringliteral">&quot;kayopyEND&quot;</span>)</div>
 <div class="ttc" id="anamespacekayopy_html"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html">kayopy</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00001">kayopy.py:1</a></div></div>
-<div class="ttc" id="anamespacekayopy_html_a65e3d3e15c8498c9a01acae662b952b7"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">kayopy.kayopy</a></div><div class="ttdeci">def kayopy()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00035">kayopy.py:35</a></div></div>
-<div class="ttc" id="anamespacekayopy_html_affd5de59d9a82abb99c8df343d8ce4e7"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">kayopy.run_kayopy</a></div><div class="ttdeci">def run_kayopy()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00008">kayopy.py:8</a></div></div>
+<div class="ttc" id="anamespacekayopy_html_a0b11cec32ae1f27c3f1fdfcfb7e933f6"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html#a0b11cec32ae1f27c3f1fdfcfb7e933f6">kayopy.anime_mole</a></div><div class="ttdeci">def anime_mole()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00080">kayopy.py:80</a></div></div>
+<div class="ttc" id="anamespacekayopy_html_a65e3d3e15c8498c9a01acae662b952b7"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7">kayopy.kayopy</a></div><div class="ttdeci">def kayopy()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00060">kayopy.py:60</a></div></div>
+<div class="ttc" id="anamespacekayopy_html_affd5de59d9a82abb99c8df343d8ce4e7"><div class="ttname"><a href="../../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7">kayopy.run_kayopy</a></div><div class="ttdeci">def run_kayopy()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/db2/kayopy_8py_source.html#l00011">kayopy.py:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_d5b1ed787a0439ef5e70cb4862ae5db0.html">essentials</a></li><li class="navelem"><a class="el" href="../../dir_643e18308e1fb8943d3adb3f912126b6.html">functions</a></li><li class="navelem"><a class="el" href="../../da/db2/kayopy_8py.html">kayopy.py</a></li>
-    <li class="footer">Generated on Wed May 17 2023 08:32:35 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Jun 9 2023 09:20:36 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

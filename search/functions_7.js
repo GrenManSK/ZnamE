@@ -5,8 +5,8 @@ var searchData=
   ['install_5fchoco_2',['install_choco',['../d3/dc0/namespaceapp__alternations.html#a9da6ea45a2df1e252ebae0caffbc602d',1,'app_alternations']]],
   ['install_5ffont_3',['install_font',['../dd/d30/namespacetextractor.html#a18631acfa18a54682f0cc86cc737b281',1,'textractor']]],
   ['install_5fpackages_4',['install_packages',['../d3/dc0/namespaceapp__alternations.html#ad26ac0da1ded6d594b1798cfbfc10a88',1,'app_alternations']]],
-  ['internet_5',['internet',['../d1/d22/namespaceinternet.html#a5afa8639d2262b7d8f8299aaab30d9e0',1,'internet']]],
-  ['internet_5fcheck_6',['internet_check',['../d1/d22/namespaceinternet.html#adddc8d04d1313e597e4365c3011de6f4',1,'internet']]],
+  ['internet_5',['internet',['../d1/d22/namespaceinternet.html#a98a21d6b2f7742fa0c11b97b284ee2ec',1,'internet']]],
+  ['internet_5fcheck_6',['internet_check',['../d1/d22/namespaceinternet.html#ab226dc0e04cdf793dff796c17aaa6b19',1,'internet']]],
   ['intro_7',['intro',['../d0/d52/namespaceedupage.html#a316dc71e49505324d14deee19eccd566',1,'edupage']]],
   ['intro_5fvideo_8',['intro_video',['../de/d05/namespacesystem__operations.html#ac0306634f5a32966c3cd07a86d5bf0fc',1,'system_operations']]],
   ['isuseradmin_9',['isUserAdmin',['../de/d05/namespacesystem__operations.html#aa3fb45e81ca75b65dfa7ad1c6819300c',1,'system_operations']]]

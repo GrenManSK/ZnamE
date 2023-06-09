@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['writing_0',['writing',['../d8/df3/namespacewriting.html',1,'']]]
+  ['textractor_0',['textractor',['../dd/d30/namespacetextractor.html',1,'']]],
+  ['translate_1',['translate',['../d3/d32/namespacetranslate.html',1,'']]]
 ];

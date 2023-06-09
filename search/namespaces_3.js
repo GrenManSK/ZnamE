@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['file_5foperations_0',['file_operations',['../d9/d8d/namespacefile__operations.html',1,'']]]
+  ['edupage_0',['edupage',['../d0/d52/namespaceedupage.html',1,'']]],
+  ['exceptions_1',['exceptions',['../d0/d6e/namespaceexceptions.html',1,'']]]
 ];

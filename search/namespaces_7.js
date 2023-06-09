@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['manga_5ftranslator_0',['manga_translator',['../de/d7e/namespacemanga__translator.html',1,'']]]
+  ['kayopy_0',['kayopy',['../d6/d36/namespacekayopy.html',1,'']]]
 ];
