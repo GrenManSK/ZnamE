@@ -83,7 +83,8 @@ def manga_image_translator(env):
     
     :param env: Get the environment variables
     :return: The manga_image_translator function
-    """folder = None
+    """
+    folder = None
     lang = "ENG"
     typewriter(
         printnlog(
