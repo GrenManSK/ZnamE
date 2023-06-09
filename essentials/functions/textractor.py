@@ -21,9 +21,11 @@ try:
     quiet = eval(os.getenv("QUIET"))
 except TypeError:
     quiet = False
-screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
-screensize = [int(x) for x in screensize]
-
+try:
+    screensize = os.getenv("SCREENSIZE")[1:-1].split(", ")
+    screensize = [int(x) for x in screensize]
+except TypeError:
+    screensize = [1920, 1080]
 
 def rclick(x, y):
     win32api.SetCursorPos((x, y))

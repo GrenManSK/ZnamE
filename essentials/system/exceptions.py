@@ -122,13 +122,16 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 line.append(error_tb.tb_lineno)
                 args = "("
                 _module = error_tb.tb_frame.f_globals["__name__"]
-                module_obj = import_module(_module)
-                globals()[_module] = module_obj
-                _module = getattr(globals()[_module], error_tb.tb_frame.f_code.co_name)
-                sig = str(signature(_module))
-                if debug:
-                    sig = sig.split(' -> ')[0][1:-1].split(", ")
-                    sig = [i.split(":")[0].split("**")[-1].split("*")[-1] for i in sig]
+                try:
+                    module_obj = import_module(_module)
+                    globals()[_module] = module_obj
+                    _module = getattr(globals()[_module], error_tb.tb_frame.f_code.co_name)
+                    sig = str(signature(_module))
+                    if debug:
+                        sig = sig.split(' -> ')[0][1:-1].split(", ")
+                        sig = [i.split(":")[0].split("**")[-1].split("*")[-1] for i in sig]
+                except Exception:
+                    sig = ""
                 for i in error_tb.tb_frame.f_locals:
                     if debug:
                         if i in sig:
@@ -171,15 +174,16 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 else:
                     args = "("
                     _module = error_tb.tb_frame.f_globals["__name__"]
-                    module_obj = import_module(_module)
-                    globals()[_module] = module_obj
-                    _module = getattr(
-                        globals()[_module], error_tb.tb_frame.f_code.co_name
-                    )
-                    sig = str(signature(_module))
-                    if debug:
-                        sig = sig[1:-1].split(", ")
-                        sig = [i.split(":")[0] for i in sig]
+                    try:
+                        module_obj = import_module(_module)
+                        globals()[_module] = module_obj
+                        _module = getattr(globals()[_module], error_tb.tb_frame.f_code.co_name)
+                        sig = str(signature(_module))
+                        if debug:
+                            sig = sig.split(' -> ')[0][1:-1].split(", ")
+                            sig = [i.split(":")[0].split("**")[-1].split("*")[-1] for i in sig]
+                    except Exception:
+                        sig = ""
                     for i in error_tb.tb_frame.f_locals:
                         if debug:
                             if i in sig:
