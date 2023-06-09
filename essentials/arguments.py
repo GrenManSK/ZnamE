@@ -339,7 +339,7 @@ def check_correctness(args, config, logger: get_logger, music):
 
 
 def print_config(logger: get_logger, config):
-    logger.next(
+    logger.stay(
         printnlog(
             "environmentA: " + str(config["basic info"]["environmentA"]).split(" ")[0],
             toprint=False,
@@ -385,7 +385,6 @@ def print_config(logger: get_logger, config):
     logger.stay(
         printnlog("User history: " + str(config["user history"]), toprint=False)
     )
-    logger.prev("")
 
 
 def write_config_options(server):
