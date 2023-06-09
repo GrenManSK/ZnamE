@@ -238,6 +238,14 @@ def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
 
 
 def get_screensize():
+    """
+    The get_screensize function is used to get the screensize of the user's monitor.
+    It returns a tuple containing two integers, which are the width and height of 
+    the screen in pixels. It also returns a tuple containing two floats, which are 
+    the percentage values for each pixel on the screen.
+    
+    :return: A tuple of the screensize in pixels and a tuple of the screensize as a percentage
+    """
     user32 = ctypes.windll.user32
     screensize: tuple[int, int] = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
     screensizepercentage: tuple[float, float] = float(
@@ -249,6 +257,12 @@ def get_screensize():
 
 
 def get_log_info():
+    """
+    The get_log_info function is used to write the code of each app into a file.
+    This allows for easy access to the code in case it needs to be changed or updated.
+    
+    :return: Nothing
+    """
     x = open("log_codeapp.py", "w")
     x.write(codeapp)
     x.close()

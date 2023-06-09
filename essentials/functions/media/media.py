@@ -74,6 +74,12 @@ def PlayVideo(video_path: str = "assets/video.mp4", repeat: bool = False) -> Non
 
 
 def play_loop():
+    """
+    The play_loop function creates a new instance of VLC, then creates a media list and player.
+    It adds the video to the media list, sets it to loop infinitely, and plays it.
+
+    :return: A media_player object
+    """
     player = vlc.Instance("--input-repeat=999999")
     media_list = player.media_list_new()
     media_player = player.media_list_player_new()

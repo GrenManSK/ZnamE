@@ -9,6 +9,13 @@ import copy
 
 
 def run_kayopy():
+    """
+    The run_kayopy function is used to check if the KayoPy folder exists.
+    If it does, then it will run a git pull command and then call the kayopy function.
+    If not, then it will ask you if you want to install KayoPy automatically or manually.
+    
+    :return: The kayopy function
+    """
     if os.path.exists("KayoPy"):
         typewriter(
             printnlog(
@@ -51,6 +58,12 @@ def run_kayopy():
 
 
 def kayopy():
+    """
+    The kayopy function is used to start the KayoPy program.
+    It asks if you want to download anime in a folder called Anime, and then starts the KayoPy program with or without that argument.
+    
+    :return: This function
+    """
     while True:
         vstup = input("\nDo you want to download anime in anime folder? (y/n): ")
         if vstup == "y":
@@ -65,6 +78,13 @@ def kayopy():
 
 
 def anime_mole():
+    """
+    The anime_mole function is a daemon that runs in the background and monitors
+    the Anime directory for new files. When it finds one, it adds the file to a set
+    of anime files. It then writes this set of anime files to disk as an archive.
+    
+    :return: None
+    """
     if os.path.exists("AnimeArchive"):
         with open("AnimeArchive", "r") as file:
             filer = file.readlines()

@@ -19,6 +19,13 @@ load_dotenv(".env")
 
 
 def get_music_menu(musiclistnew):
+    """
+    The get_music_menu function takes a list of music files as an argument and prints out the menu for the user to select from.
+    It returns the number of items in that list.
+    
+    :param musiclistnew: Display the music list
+    :return: The number of songs in the music list
+    """
     for times, music_name in enumerate(musiclistnew):
         typewriter(str(times + 1) + ") " + music_name)
     typewriter(str(times + 2) + ") Delete audio")
@@ -28,12 +35,24 @@ def get_music_menu(musiclistnew):
 
 
 def altF4():
+    """
+    The altF4 function simulates the pressing of the Alt+F4 key combination.
+    This is useful for closing windows in Windows.
+    
+    :return: Nothing
+    """
     pg.keyDown("alt")
     pg.press("f4")
     pg.keyUp("alt")
 
 
 def gif_to_vid():
+    """
+    The gif_to_vid function converts a gif to an mp4 video file.
+        This is done because the discord.py library does not support uploading gifs, only videos.
+    
+    :return: Nothing
+    """
     clip = mp.VideoFileClip("assets/waifu.gif")
     clip.write_videofile("assets/waifu.mp4")
     clip.close()
@@ -364,6 +383,13 @@ def wait_for_file(path):
 
 
 def double_alt_tab():
+    """
+    The double_alt_tab function is used to switch between windows.
+    It does this by pressing the alt key, then tab, then releasing the alt key.
+    Then it presses the alt key again and tabs once more before releasing it.
+    
+    :return: None
+    """
     pg.keyDown("alt")
     pg.press("tab")
     pg.keyUp("alt")

@@ -95,6 +95,17 @@ def unpack(datelog, args, cachename: str) -> None:
 
 
 def extract(args, datelog):
+    """
+    The extract function is used to extract the data files from the game.
+    It does this by first finding all of the .xp2 files in your current directory, and then unpacking them using unpack().
+    After that, it copies &quot;data&quot; into a backup file called &quot;data_backup&quot;. It then opens up both data and a new file called 
+    &quot;data_dummy&quot;, which will be used to replace data. The reason for this is because there are some characters in data that 
+    are not allowed on Windows (such as ':'). This function replaces those characters with ones that are allowed on Windows.
+    
+    :param args: Pass the arguments from the command line to this function
+    :param datelog: Write to the log file
+    :return: A list of the files that have been extracted
+    """
     typewriter(printnlog("\nStarting to extract\n", toprint=False))
     try:
         datafiles: list = []
@@ -126,6 +137,15 @@ def extract(args, datelog):
 
 
 def delete(file):
+    """
+    The delete function is used to delete a file or directory.
+        It will attempt to remove the file/directory, and if it fails,
+        it will call on_rm_error() which attempts to change permissions of the 
+        file/directory before attempting removal again.
+    
+    :param file: Specify the file to be deleted
+    :return: Nothing
+    """
     try:
         shutil.rmtree(file, onerror=on_rm_error)
     except:
@@ -133,11 +153,27 @@ def delete(file):
 
 
 def on_rm_error(func, path, exc_info):
+    """
+    The on_rm_error function is a callback function that will be called by the shutil.rmtree() function
+    if an error occurs while attempting to remove a file or directory. The on_rm_error() function will attempt
+    to change the permissions of the file or directory so that it can be removed, and then it will try again.
+    
+    :param func: Pass the function that raised the exception
+    :param path: Specify the directory to be removed
+    :param exc_info: Pass information about the exception that caused the error
+    :return: A function that handles the error
+    """
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
 
 
 def file_to_datafolder():
+    """
+    The file_to_datafolder function moves all the files in the current directory to a new folder called datafolder.
+    The function also creates subfolders for assets, apphtml, and yt_dl.
+    
+    :return: A list of files that are in the datafolder
+    """
     source_dir: str = "assets/"
     os.mkdir("datafolder/" + source_dir)
     for file_name in os.listdir(source_dir):
@@ -165,6 +201,12 @@ def file_to_datafolder():
 
 
 def xp3_finalization():
+    """
+    The xp3_finalization function is used to repack the data.xp3 file after all of the necessary changes have been made.
+    It also deletes any temporary folders that were created during the process.
+    
+    :return: None
+    """
     if not quiet:
         subprocess.call(
             [
@@ -199,6 +241,17 @@ def xp3_finalization():
 
 
 def to_zip(logger, cachename, start):
+    """
+    The to_zip function takes a logger, cachename, and start as arguments.
+    It then creates two lists of strings: zipfiles and zipfileswopath.
+    The first list contains the names of files to be zipped; the second is identical but without paths.
+    Then it creates a list called folders which contains one string: &quot;structs&quot;.  It loops through this list with an index i from 0 to len(folders).  For each value of i, it walks through the folder named by folders[i] (which is always &quot;structs&quot;) and adds all files in that folder to both lists created earlier.
+    
+    :param logger: Print the progress of the packing process
+    :param cachename: Specify the name of the zip file
+    :param start: Calculate the elapsed time of packing
+    :return: Nothing
+    """
     zipfiles: list[str] = [
         "tests.py",
         "xp3.py",
@@ -256,6 +309,15 @@ def to_zip(logger, cachename, start):
 
 
 def del_wn():
+    """
+    The del_wn function deletes the following files:
+        - neko.png
+        - waifu.png
+        - waifu.gif
+        - waifu.mp4
+    
+    :return: Nothing
+    """
     remove("assets/neko.png")
     remove("assets/waifu.png")
     remove("assets/waifu.gif")
@@ -264,6 +326,13 @@ def del_wn():
 
 
 def remove(file: str | list[str]):
+    """
+    The remove function is a wrapper for the os.remove function that allows you to pass in either a single filepath or
+    a list of filepaths and will attempt to remove each one. If an exception occurs, it will be caught and ignored.
+    
+    :param file: str | list[str]: Specify the file or files to be removed
+    :return: None, which is not a valid return type for the function
+    """
     if isinstance(file, str):
         try:
             return os.remove(file)
@@ -278,10 +347,24 @@ def remove(file: str | list[str]):
 
 
 def mkdir(path):
+    """
+    The mkdir function creates a directory at the specified path.
+        If the directory already exists, it will not raise an error.
+    
+    :param path: Specify the path of the directory to be created
+    :return: None
+    """
     os.makedirs(path, exist_ok=True)
 
 
 def change_quiet_file_op(to):
+    """
+    The change_quiet_file_op function changes the global variable quiet to True or False.
+        This is used in the file_op function to determine whether or not a message should be printed.
+    
+    :param to: Set the global quiet variable to true or false
+    :return: Nothing
+    """
     global quiet
     if to in [True, False]:
         quiet = to

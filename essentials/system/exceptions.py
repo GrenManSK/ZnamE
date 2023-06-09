@@ -59,9 +59,17 @@ class argQuietError(Exception):
 
 def error_log(line: int, fname, module, error) -> None:
     """
-    It writes the error to a file and prints it to the console
-
-    :param line: The line number of the error
+    The error_log function is used to log errors that occur in the program.
+    It takes four arguments: line, fname, module and error.
+    Line is the line number where the error occurred (this can be found using sys.exc_info()).
+    Fname is a string containing the name of file where an error occurred (this can also be found using sys.exc_info()).
+    Module and Error are strings containing information about what type of exception was raised.
+    
+    :param line: int: Specify the line number where the error occurred
+    :param fname: Get the name of the file that is being executed
+    :param module: Specify the module that the error occurred in
+    :param error: Specify the type of error
+    :return: None
     """
     with open("error.log", "a", encoding="utf-8") as errorfile:
         exc_type, exc_obj, exc_tb = sys.exc_info()
@@ -83,14 +91,14 @@ def error_log(line: int, fname, module, error) -> None:
 
 def error_get(errors, line: list, fname: None | str = None) -> None:
     """
-    The error_get function is used to raise the errors that are found in the error_log function.
-        The error_get function takes two arguments:
-            1) errors - a list of exceptions that were raised by the code being tested.
-            2) line - a list of strings containing information about each exception raised.
-
-    :param errors: Store the errors that are raised by the function
-    :param line: list: Store the line numbers of the errors
-    :return: The error code and the line number of the error
+    The error_get function is used to get the error that was raised and then
+        raise it again with a traceback. This function also logs the error in a file
+        called 'error_logs.txt'
+    
+    :param errors: Get the errors from the error_get function
+    :param line: list: Get the line number of the error
+    :param fname: None | str: Specify the file name of the error
+    :return: The error and the line number of where it occured
     """
     debug = os.getenv("DEBUG")
     if debug is None:

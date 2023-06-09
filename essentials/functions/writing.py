@@ -93,11 +93,23 @@ def typewriter(word: str, ttime: float = 0.001, end: str = "\n") -> None:
 
 
 def show_version(args):
+    """
+    The show_version function prints the version of Známé to the user.
+    
+    :param args: Pass arguments to the function
+    :return: The version of the program
+    """
     with open("version", "r") as verzia:
         typewriter("You're using ZnámE " + verzia.read() + "\n")
 
 
 def change_quiet(to):
+    """
+    The change_quiet function changes the quiet variable to True or False.
+    
+    :param to: Set the global variable quiet to true or false
+    :return: Nothing
+    """
     from .textractor import change_quiet_textractor
     from ..system.file_operations import change_quiet_file_op
 

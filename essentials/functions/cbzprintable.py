@@ -8,6 +8,13 @@ import argparse
 
 
 def run_cbz():
+    """
+    The run_cbz function is used to run the cbzPrintable program.
+    It checks if the cbzPrintable folder exists and if it does, it updates it using git pull.
+    If not, then it asks you whether you want to install the program automatically or not.
+
+    :return: None
+    """
     if os.path.exists("cbzPrintable"):
         typewriter(
             printnlog(
@@ -50,6 +57,11 @@ def run_cbz():
 
 
 def cbz():
+    """
+    The cbz function is the main function of this program. It asks the user whether they want to use CLI or GUI, and then calls either cbz_cli() or cbz_gui() accordingly.
+
+    :return: The cbz_cli function or the cbz_gui function&lt;/code&gt;
+    """
     while True:
         vstup = input("Do you wanna use CLI or GUI? (c/g)")
         if vstup.lower() in ["c", "g"]:
@@ -63,6 +75,15 @@ def cbz():
 
 
 def run_cbz_command(args):
+    """
+    The run_cbz_command function is a wrapper for the cbzPrintable.py script, which
+    is used to create printable PDF files from CBZs. The run_cbz_command function takes
+    a single argument, args, which is a string containing all of the arguments that 
+    would normally be passed to cbzPrintable.py on the command line.
+    
+    :param args: Pass in the arguments that will be used by cbzprintable
+    :return: The result of the cbzprintable
+    """
     typewriter(
         printnlog(
             f"{sys.executable} cbzPrintable/cbzPrintable/cbzPrintable.py {args}",
@@ -75,6 +96,13 @@ def run_cbz_command(args):
 
 
 def parse_cbz_command(command):
+    """
+    The parse_cbz_command function takes a command string as input and parses it into an argparse.ArgumentParser object.
+    The function then uses the parsed arguments to run the cbz_command function with appropriate parameters.
+    
+    :param command: Pass the command to be run in the terminal
+    :return: The command to run the cbz script
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("input", type=str)
     parser.add_argument("-fp", "--file_pattern", type=str, default=None, nargs="?")
@@ -88,6 +116,14 @@ def parse_cbz_command(command):
 
 
 def cbz_cli():
+    """
+    The cbz_cli function is a command line interface for the cbzPrintable program.
+    It allows users to interact with the program in a more user-friendly way than
+    using command line arguments. It also provides an easy way to test out different
+    arguments without having to retype them every time.
+    
+    :return: Nothing
+    """
     typewriter(
         printnlog(
             "Here you will put arguments for program\nSee README here 'https://github.com/GrenManSK/cbzPrintable/blob/main/README.md'\nYou will add only arguments | Wihtout 'cbzPrintable'",
@@ -105,6 +141,12 @@ def cbz_cli():
 
 
 def cbz_gui():
+    """
+    The cbz_gui function is a simple command line interface for the parse_cbz_command function.
+    It allows you to select a directory and file pattern using glob, then it calls the parse_cbz_command function with those arguments.
+    
+    :return: The parse_cbz_command function with the directory and pattern arguments
+    """
     dir = None
     pattern = None
     typewriter(

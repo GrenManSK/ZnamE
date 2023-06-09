@@ -26,6 +26,14 @@ functions = {
 
 
 def run_app(func):
+    """
+    The run_app function is a wrapper for the functions in the functions dictionary.
+    It takes one argument, which is a string that corresponds to one of the keys in 
+    the functions dictionary. It then runs that function with its arguments (if any).
+    
+    :param func: Determine which function to run
+    :return: A function, which is why it's not working
+    """
     os.system(f"title {func.title()}")
     try:
         try:

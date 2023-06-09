@@ -5,6 +5,13 @@ from ..functions.writing import printnlog, typewriter
 
 
 def get_envs(info: bool = False) -> dict:
+    """
+    The get_envs function returns a dictionary of conda environments.
+    The keys are the names of the environments, and the values are their paths.
+    
+    :param info: bool: Print the command that is being run
+    :return: A dictionary of all the conda environments on your system
+    """
     with open("condaEnvList", "w") as file:
         try:
             if info:
@@ -30,6 +37,14 @@ def get_envs(info: bool = False) -> dict:
 
 
 def env_menu(info: bool = False):
+    """
+    The env_menu function is used to select the environment in which you want to run your code.
+    It prints out all of the environments that are available on your computer, and then asks for a number input.
+    The number corresponds with an environment name, and when you enter it, it returns the path to that environment.
+    
+    :param info: bool: Determine whether the function should return a dictionary of all environments or just their names
+    :return: The path to the selected environment
+    """
     conda = get_envs(info)
     times = -1
     for times, env in enumerate(conda):
