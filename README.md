@@ -9,6 +9,7 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/GrenManSK/ZnamE)
 ![Star](https://img.shields.io/github/stars/GrenManSK/ZnamE?style=social)
 ![Last Commit](https://img.shields.io/github/last-commit/GrenManSK/ZnamE)
+![Repo Size](https://img.shields.io/github/repo-size/GrenManSK/ZnamE)
 
 Using [krkr-xp3](https://github.com/awaken1ng/krkr-xp3) as extraction tool
 
