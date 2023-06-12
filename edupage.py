@@ -21,11 +21,15 @@ try:  # type: ignore
         parser, music, UNSPECIFIED = arguments(config)
         args = parser.parse_args()
 
-    quiet = True if "--quiet" in sys.argv[1:] or "-quiet" in sys.argv[1:] else False
+    quiet = (
+        True if "--quiet" in sys.argv[1:] or "-quiet" in sys.argv[1:] else False
+    )  # if user doesn't want any logging
 
+    if quiet:
+        change_quiet(True)
     if os.path.isfile("INSTALL_RESTART"):
         sleep(1)
-    try:
+    try:  # Message to be sent to if dependencies are not installed
         import verbose
         from verbose import inbetween
     except ModuleNotFoundError:
@@ -35,7 +39,7 @@ try:  # type: ignore
         )
         input()
         sys.exit(1)
-    try:
+    try:  # Will check if it's installed because other modules required it, it will delete itself
         from final import mathematical
 
         del mathematical
@@ -50,7 +54,7 @@ try:  # type: ignore
         logger = verbose.get_logger()
     if quiet:
         logger = verbose.get_logger(quiet=True)
-    datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
+    datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")  # Startup timestamp
     if __name__ == "__main__":
         with open(".env", "w", encoding="utf-8") as dotenv:
             dotenv.write(f"DATELOG={datelog}\n")
@@ -61,6 +65,7 @@ try:  # type: ignore
                 dotenv.write(f"DEBUG=False\n")
     from essentials.system.file_operations import mkdir, remove
 
+    # ALl modules
     modulenames: list = list(set(sys.modules) & set(globals()))
     modulenames1: list = list(set(sys.modules) & set(globals()))
     moduleminus: int = 0
@@ -86,6 +91,7 @@ try:  # type: ignore
             if addto != "":
                 logger.stay(printnlog(addto, toprint=False))
 
+    # Printing forgotten modules
     print_module("datetime")
     print_module("sleep from time")
     print_module("cProfile")
@@ -101,9 +107,11 @@ try:  # type: ignore
     if __name__ == "__main__":
         logger.stay(printnlog("DONE", toprint=False))
 
-    if __name__ == "__main__":
+    if __name__ == "__main__":  # Checking config correctness
         print("")
-        logger.next(printnlog("Reading config file (yml)", toprint=False), where=inbetween)
+        logger.next(
+            printnlog("Reading config file (yml)", toprint=False), where=inbetween
+        )
         config = yaml.safe_load(open("config.yml", "r", encoding="utf-8"))
         config["user history"] = {}
         line_number: int = get_line_number(-1)
@@ -114,13 +122,7 @@ try:  # type: ignore
             print_config(logger, config)
         except AttributeError:
             printnlog("'config.ini' file is corrupt -> option missing")
-            error_get(
-                configNoOption("Corruption of config file => option missing"),
-                [line_number],
-                fname="edupage.py",
-            )
-            input("Press 'enter' to quit")
-            sys.exit(1)
+            raise configNoOption("Corruption of config file => option missing")
 
         del line_number
 
@@ -132,7 +134,7 @@ try:  # type: ignore
     if __name__ == "__main__":
         screensize, screensizepercentage = get_screensize()
 
-    if __name__ == "__main__":
+    if __name__ == "__main__":  # Checking argument correctness
         from essentials.arguments import check_correctness
 
         server: list[str] = ["nekos.best", "waifu.pics", "kyoko", "nekos_api"]
@@ -159,7 +161,7 @@ try:  # type: ignore
 
             write_config_options(server)
 
-    if __name__ == "__main__":
+    if __name__ == "__main__":  # Updating dependencies
         from essentials.app_alternations import (
             python_update,
             install_choco,
@@ -179,7 +181,7 @@ try:  # type: ignore
     )
     from threading import Thread
 
-    if __name__ == "__main__":
+    if __name__ == "__main__":  # Initial setup deployment
         logger.next(
             printnlog("Importing libraries for initial setup", toprint=False),
             where=inbetween,
@@ -197,7 +199,7 @@ try:  # type: ignore
         logger.prev(printnlog("DONE", toprint=False), where=inbetween)
         if not os.path.isfile(
             "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt"
-        ):
+        ):  # Checking if first time setup is applicable
             logger.stay(printnlog("First time setup", toprint=False))
             if not os.path.isfile("INSTALL_RESTART"):
                 install_choco(logger)
@@ -210,7 +212,9 @@ try:  # type: ignore
 
     from essentials.internet import internet_check, download
 
-    if __name__ == "__main__":
+    if (
+        __name__ == "__main__"
+    ):  # Importing dependencies and logging if this module is not import
         internet_check()
         logger.next(printnlog("Importing libraries", toprint=False), where=inbetween)
     from tqdm import tqdm
@@ -258,6 +262,8 @@ try:  # type: ignore
     if __name__ == "__main__":
         print_module("moviepy.editor")
         logger.prev(printnlog("DONE", toprint=False), where=inbetween)
+
+        # Setting up enviroment
         os.system(
             "color "
             + str(config["basic info"]["environmentA"])
@@ -304,7 +310,7 @@ try:  # type: ignore
         datefmt="%Y-%m-%d:%H:%M:%S",
     )
 
-    if __name__ == "__main__":
+    if __name__ == "__main__":  # Updating application if newer version is available
         if args.test is not None:
             logger.stay(printnlog("Checking for newer version of ZnámE", toprint=False))
             update_app(args, logger)
@@ -480,15 +486,15 @@ try:  # type: ignore
         os.remove(decodename + ".py")
         os.remove("DONE")
         if mode == 1:
-            with open("1", "r", encoding="utf-8") as file:
-                fileline: str = str(file.readlines())
+            with open("1", "r", encoding="utf-8") as _file:
+                fileline: str = str(_file.readlines())
                 fileline: str = fileline[2 : len(fileline) - 2]
             os.remove("1")
             return fileline
         PROGRESS_BAR_CHECK += 1
         return decodename1
 
-    def password(file_name: str) -> list[str]:
+    def password(file_name: str) -> list[str, str]:
         """
         Create a password file for the current session.
         @param file_name - the file_name of the file to be created.
@@ -511,7 +517,7 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK += 1
         return [password_chars, file_name]
 
-    def find(find_file: str) -> list:
+    def find(find_file: str) -> list[str, bool]:
         """
         The find function is used to find the password of a user. It takes in two arguments,
         the first being the find_file of the file that contains all usernames and passwords, and
@@ -566,8 +572,8 @@ try:  # type: ignore
             crcode.write(codeapp)
         tqdm.write("Coding ...", end="\r")
         if mode == 1:
-            with open("1", "w", encoding="utf-8") as file:
-                file.write(str(code_name) + " = " + str(new))
+            with open("1", "w", encoding="utf-8") as _file:
+                _file.write(str(code_name) + " = " + str(new))
             subprocess.check_output("start " + codename + ".py 1", shell=True)
         if mode == 0:
             subprocess.check_output(
@@ -586,14 +592,14 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK += 1
         os.remove("DONE")
         if mode == 1:
-            with open("1crypted", "r", encoding="utf-8") as file:
-                savelog: list[str] = file.readlines()
+            with open("1crypted", "r", encoding="utf-8") as _file:
+                savelog: list[str] = _file.readlines()
             os.remove("1")
             os.remove("1crypted")
             return savelog
         return [code_name[1], new]
 
-    def add_marks(linenumber, historyname, neko, waifu):
+    def add_marks(linenumber, historyname, neko, waifu) -> None:
         """
         The add_marks function is used to add marks to the user's account.
         It takes in three arguments: linenumber, historyname and neko.
@@ -646,7 +652,7 @@ try:  # type: ignore
         shutil.rmtree("temp")
         os.remove("data1")
 
-    def show_marks(pass_list):
+    def show_marks(pass_list) -> None:
         """
         The show_marks function is used to display the marks of a student.
             It takes in a list as an argument, which contains the name of the file and its path.
@@ -684,7 +690,7 @@ try:  # type: ignore
 
     from essentials.functions.html import playhtml
 
-    def spot_music_dow():
+    def spot_music_dow() -> str:
         """
         The spot_music_dow function is a function that downloads music from Spotify.
         It uses the spotdl module to download music from Spotify, and then adds
@@ -697,9 +703,9 @@ try:  # type: ignore
 
         typewriter("Starting web player", ttime=0.01)
         Thread(target=downloadmusic.spotdl_get).start()
-        with open("SPOTDL_OUTPUT", "w", encoding="utf-8") as file:
+        with open("SPOTDL_OUTPUT", "w", encoding="utf-8") as _file:
             subprocess.run(
-                [sys.executable, "-m", "spotdl", "web"], stdout=file, text=True
+                [sys.executable, "-m", "spotdl", "web"], stdout=_file, text=True
             )
         sleep(1)
         carousel = installing_carousel("", comment="Waiting for synchronization")
@@ -728,9 +734,12 @@ try:  # type: ignore
         remove("SPOTDL_OUTPUT")
         sleep(1)
         pg.write("music\n")
-        return musiclistnewstring
+        music = musiclistnewstring.split(",")
+        if music[0] == "":
+            music = []
+        return music
 
-    def vlc_init():
+    def vlc_init() -> vlc.MediaPlayer:
         """
         The vlc_init function initializes the VLC media player.
             It returns a MediaPlayer object that can be used to play audio files.
@@ -761,7 +770,7 @@ try:  # type: ignore
             media_player.play()
             intro_video(args, media_player)
 
-    def was_updated():
+    def was_updated() -> bool:
         """
         The was_updated function checks if the program was updated or not.
             If it was, then it will print a message to the log file and console.
@@ -772,8 +781,8 @@ try:  # type: ignore
         """
         try:
             for root, dirs, files in os.walk("..\\"):
-                for file in files:
-                    if file == "INACTIVE":
+                for _file in files:
+                    if _file == "INACTIVE":
                         _inactive: bool = True
                         os.remove("INACTIVE")
             if args.update is None:
@@ -789,8 +798,9 @@ try:  # type: ignore
         global historyfile
         global music
         global UNSPECIFIED
-        if __name__ != "__main__":
+        if __name__ != "__main__":  # If import then will parse and check arguments
             from essentials.arguments import arguments, check_correctness
+
             global args
             global screensize
             parse_args = []
@@ -812,13 +822,15 @@ try:  # type: ignore
         try:
             historyname: str = str(datetime.now().strftime("%H-%M-%S"))
             with open(historyname, "w", encoding="utf-8") as historyfile:
-                if args.nointrof is None:
+                if args.restart is None:
                     historyfile.write("[*restarted]\n")
             global passwordp
             from essentials.system.file_operations import extract
 
             extract(args, datelog)
             media_player = vlc_init()
+
+            # Importing main functions
             from downloadmusic import DownloadMusic  # type: ignore
             from essentials.functions.media.media import play_loop
             from login import save_credentials  # type: ignore
@@ -832,6 +844,7 @@ try:  # type: ignore
             from essentials.functions.anime_watch import anime_menu
             import copy
 
+            # Downloading music files if not present
             musiclistnew: list = []
             music_copy = copy.deepcopy(music)
             for music_name in music_copy:
@@ -843,6 +856,7 @@ try:  # type: ignore
             music = copy.deepcopy(musiclistnew)
             config = music2str(musiclistnew)
             intro()
+
             _inactive = was_updated()
             logged: bool = False
             _exit: bool = False
@@ -901,7 +915,7 @@ try:  # type: ignore
             sleep(0.25)
             pg.press("win")
             os.system("cls")
-            if args.music != 0:
+            if args.music != 0:  # Start music
                 mixer.init()
                 mixer.music.load("assets/" + musiclistnew[int(args.music) - 1] + ".mp3")
                 mixer.music.play()
@@ -916,6 +930,8 @@ try:  # type: ignore
             if args.debug is None:
                 unlogged_completer.extend(dir())
                 logged_completer.extend(dir())
+
+            # Setting up translator
             if __name__ != "__main__":
                 pass
             elif (
@@ -940,11 +956,11 @@ try:  # type: ignore
             if _inactive:
                 sleep(0.5)
                 printnlog("You have been inactive | Program was restarted")
-            while True:
+            while True:  # Main loop
                 completer(unlogged_completer)
                 internet_check()
                 if not _exit:
-                    if logged:
+                    if logged:  # If user is logged this will be included
                         completer(logged_completer)
                         if firstlogin:
                             logins += 1
@@ -961,14 +977,16 @@ try:  # type: ignore
                         if loggedhelp:
                             typewriter("'zz' to display marks\n'pz' to add marks")
                             loggedhelp: bool = False
-                        vstup: str = input(str(linenumber) + " > ")
+                        vstup: str = input(str(linenumber) + " > ")  # User input
                         if args.debug is None:
                             try:
                                 print(str(eval(vstup)))
                             except Exception:
                                 pass
                         linenumber += 1
-                        with open(historyname, "a", encoding="utf-8") as historyfile:
+                        with open(
+                            historyname, "a", encoding="utf-8"
+                        ) as historyfile:  # Write history file
                             historyfile.write(
                                 "[" + str(linenumber) + ", " + vstup + "]\n"
                             )
@@ -990,7 +1008,7 @@ try:  # type: ignore
                                 neko=neko,
                                 waifu=waifu,
                             )
-                    if topassword:
+                    if topassword:  # Second phase of login
                         completer(bq_completer)
                         if savefilemode:
                             vstup: str = savefile[9:15]
@@ -1048,7 +1066,7 @@ try:  # type: ignore
                         if neko or waifu:
                             double_alt_tab()
                         sleep(0.1)
-                        if vstup == passwordp[0]:
+                        if vstup == passwordp[0]:  # If password is correct
                             typewriter("You're logged\n")
                             os.rename(loginvstupuser + "crypted", loginvstupuser)
                             with open(
@@ -1056,9 +1074,9 @@ try:  # type: ignore
                             ) as passwordfile:
                                 with open(
                                     loginvstupuser + "1", "w", encoding="utf-8"
-                                ) as file:
+                                ) as _file:
                                     for pass_char in passwordfile.read():
-                                        file.write(pass_char)
+                                        _file.write(pass_char)
                             os.remove(loginvstupuser)
                             os.rename(loginvstupuser + "1", loginvstupuser)
                             topassword: bool = False
@@ -1103,7 +1121,7 @@ try:  # type: ignore
                                 daemon=True,
                             ).start()
                             continue
-                        if vstup != passwordp[0]:
+                        if vstup != passwordp[0]:  # If password is incorrect
                             topassword: bool = False
                             os.remove(loginvstupuser + "crypted")
                             os.remove(passwordp[1])
@@ -1174,17 +1192,25 @@ try:  # type: ignore
                         musicnone = False
                         if len(musiclistnew) == 0:
                             musicnone = True
-                            typewriter("No audio is downloaded")
-                            musicvstup: str = input("1) Download music\n2) Back\n> ")
-                            if musicvstup == "1":
-                                to_append = spot_music_dow().split(",")
-                                for item in to_append:
-                                    if item == "":
-                                        continue
-                                    musiclistnew.append(item)
-                                remove("MUSIC")
-                                continue
-                            if musicvstup == "2":
+                            while True:
+                                typewriter("No audio is downloaded")
+                                musicvstup: str = input(
+                                    "1) Download music\n2) Back\n> "
+                                )
+                                if musicvstup == "1":
+                                    to_append = spot_music_dow()
+                                    for item in to_append:
+                                        if item == "":
+                                            continue
+                                        musiclistnew.append(item)
+                                    remove("MUSIC")
+                                    continue
+                                if musicvstup == "2":
+                                    _end = True
+                                    break
+                                else:
+                                    continue
+                            if _end:
                                 continue
                         if not musicnone:
                             times = get_music_menu(musiclistnew)
@@ -1195,7 +1221,7 @@ try:  # type: ignore
                                 except ValueError:
                                     continue
                         if musicnone or musicvstup == times + 3:
-                            to_append = spot_music_dow().split(",")
+                            to_append = spot_music_dow()
                             for item in to_append:
                                 musiclistnew.append(item)
                             musiclistnewstring: str = ""
@@ -1788,7 +1814,9 @@ try:  # type: ignore
                                 tologin: bool = True
                         elif logged and vstup == "login":
                             print("You are already logged in!!!")
-                elif vstup == "quit" or vstup == "koniec" or vstup == "end" or _exit:
+                elif (
+                    vstup == "quit" or vstup == "koniec" or vstup == "end" or _exit
+                ):  # Ending sequence
                     from endscreen import not_restart, mixer_stop, not_offline_game  # type: ignore
                     from essentials.system.file_operations import (
                         file_to_datafolder,
@@ -2119,7 +2147,7 @@ try:  # type: ignore
         """
         The print_history function prints the user history.
             It takes no arguments and returns nothing.
-        
+
         :return: The user history from the config file
         """
         historylist = config["user history"]
@@ -2139,7 +2167,7 @@ try:  # type: ignore
         """
         The logout function is used to logout the user from the system.
         It removes all of his data and logs him out. It also plays a sound effect.
-        
+
         :param historyname: Write the history file, and the linenumber parameter is used to write the line number of each command in that file
         :param linenumber: Write the line number of the command into a history file
         :return: A boolean value, which is false
@@ -2159,7 +2187,7 @@ try:  # type: ignore
     def reduce_musicnumber(lenmusic, intconfig):
         """
         The reduce_musicnumber function reduces the number of music files to be played by 1 if the total length of all music files is less than the desired length.
-        
+
         :param lenmusic: Compare to the intconfig parameter
         :param intconfig: Store the value of the config file, and is used to compare it with lenmusic
         :return: A boolean value

@@ -24,7 +24,7 @@ from ..data.app import (
 )
 
 
-def system_info(logger, screensize):
+def system_info(logger, screensize) -> None:
     try:
         os.makedirs("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
     except FileExistsError:
@@ -237,7 +237,7 @@ def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
     return int(inspect.stack()[relative_frame][0].f_lineno) - int(goback)
 
 
-def get_screensize():
+def get_screensize() -> tuple[tuple[int, int], tuple[float, float]]:
     """
     The get_screensize function is used to get the screensize of the user's monitor.
     It returns a tuple containing two integers, which are the width and height of 
@@ -256,7 +256,7 @@ def get_screensize():
     return screensize, screensizepercentage
 
 
-def get_log_info():
+def get_log_info() -> None:
     """
     The get_log_info function is used to write the code of each app into a file.
     This allows for easy access to the code in case it needs to be changed or updated.

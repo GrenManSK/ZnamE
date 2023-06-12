@@ -1,5 +1,6 @@
 from .functions.writing import printnlog, typewriter
 from .system.system_info import get_line_number
+from .system.file_operations import remove
 from .internet import download
 import requests
 import semantic_version
@@ -92,18 +93,9 @@ def update_app(args, logger):
             sleep(2)
             os.remove("crash_dump-" + datelog + ".txt")
             shutil.rmtree("ZnamE", onerror=on_rm_error)
-            try:
-                os.remove("choco_end")
-            except Exception:
-                pass
-            try:
-                os.remove("INSTALL")
-            except Exception:
-                pass
-            try:
-                os.remove("INSTALL_RESTART")
-            except Exception:
-                pass
+            remove("choco_end")
+            remove("INSTALL")
+            remove("INSTALL_RESTART")
             if args.endf is None:
                 subprocess.call(
                     sys.executable + " update.py " + directory + " -endf", shell=True
@@ -238,18 +230,9 @@ class installing_carousel:
                 print(f"{self.comment} {self.package} DONE             ")
             if self.bar:
                 tqdm.write(f"{self.comment} {self.package} DONE             ")
-        try:
-            os.remove(f"INSTALL_DONE{self.id}")
-        except Exception:
-            pass
-        try:
-            os.remove(f"INSTALL_ERROR{self.id}")
-        except Exception:
-            pass
-        try:
-            os.remove(f"INSTALL_ALINST{self.id}")
-        except Exception:
-            pass
+        remove(f"INSTALL_DONE{self.id}")
+        remove(f"INSTALL_ERROR{self.id}")
+        remove(f"INSTALL_ALINST{self.id}")
 
 
 def choco_install(*packages: str):
