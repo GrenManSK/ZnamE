@@ -811,7 +811,7 @@ try:  # type: ignore
             parser, music, UNSPECIFIED = arguments(config)
             args = parser.parse_args(parse_args)
             check_correctness(args, config, logger, music)
-            screensize, screensize_percentage = get_screensize()
+            screensize, screensizepercentage = get_screensize()
             with open(".env", "w", encoding="utf-8") as dotenv:
                 dotenv.write(f"DATELOG={datelog}\n")
                 dotenv.write(f"QUIET={quiet}\n")
