@@ -16,22 +16,22 @@ def run_database_project():
 
     :return: None
     """
-    if os.path.exists("database_project"):
+    if os.path.exists("Data-Dynamics"):
         typewriter(
             printnlog(
-                f"\nChecking for updates\nRunning command\nRunning command: git -C database_project pull\n",
+                f"\nChecking for updates\nRunning command\nRunning command: git -C Data-Dynamics pull\n",
                 toprint=False,
             ),
             ttime=0.01,
         )
-        subprocess.call(["git", "-C", "database_project", "pull"])
+        subprocess.call(["git", "-C", "Data-Dynamics", "pull"])
         printnlog("")
         database_project()
     else:
         while True:
             vstup = input(
                 printnlog(
-                    "\nTo install database_project run this command 'git clone https://github.com/GrenManSK/database_project.git'\nDo you want to complete this action automatically (Y/n) > ",
+                    "\nTo install Data-Dynamics run this command 'git clone https://github.com/GrenManSK/Data-Dynamics.git'\nDo you want to complete this action automatically (Y/n) > ",
                     toprint=False,
                 )
             ).lower()
@@ -41,10 +41,10 @@ def run_database_project():
                 return
             else:
                 printnlog("Wrong character")
-        os.system("git clone https://github.com/GrenManSK/database_project.git")
+        os.system("git clone https://github.com/GrenManSK/Data-Dynamics.git")
         typewriter(
             printnlog(
-                f"\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r database_project/requirements.txt --no-warn-script-location\n",
+                f"\nDownloading pip requirements\nRunning command: {sys.executable} -m pip install -r Data-Dynamics/requirements.txt --no-warn-script-location\n",
                 toprint=False,
             ),
             ttime=0.01,
@@ -52,10 +52,10 @@ def run_database_project():
         sleep(1)
         os.system(
             sys.executable
-            + " -m pip install -r database_project/requirements.txt --no-warn-script-location"
+            + " -m pip install -r Data-Dynamics/requirements.txt --no-warn-script-location"
         )
         print("\n")
-        os.system(f"{sys.executable} database_project/install.py")
+        os.system(f"{sys.executable} Data-Dynamics/install.py")
 
         database_project()
 
