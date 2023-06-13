@@ -19,6 +19,7 @@ digraph "edupage.main"
   Node6 [label="edupage.inactive",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a341571d7a41b53af5510ed61722c2847",tooltip=" "];
   Node1 -> Node7 [color="steelblue1",style="solid"];
   Node7 [label="edupage.intro",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a316dc71e49505324d14deee19eccd566",tooltip=" "];
+  Node7 -> Node1 [color="steelblue1",style="solid"];
   Node1 -> Node8 [color="steelblue1",style="solid"];
   Node8 [label="edupage.logout",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#ac820991cd8d23a0cc095060d0db57bb6",tooltip=" "];
   Node1 -> Node9 [color="steelblue1",style="solid"];
@@ -36,6 +37,7 @@ digraph "edupage.main"
   Node14 -> Node14 [color="steelblue1",style="solid"];
   Node1 -> Node15 [color="steelblue1",style="solid"];
   Node15 [label="edupage.reduce_musicnumber",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a11c2d421fc103b70ae07e919a3929cd8",tooltip=" "];
+  Node15 -> Node1 [color="steelblue1",style="solid"];
   Node1 -> Node16 [color="steelblue1",style="solid"];
   Node16 [label="edupage.show_marks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#afb381cb44a8c29fd8418a55eb143a06a",tooltip=" "];
   Node1 -> Node17 [color="steelblue1",style="solid"];

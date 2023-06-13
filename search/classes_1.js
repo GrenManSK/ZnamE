@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['builder_0',['builder',['../df/dc0/classcurses__builder_1_1builder.html',1,'curses_builder']]]
+  ['confignooption_0',['configNoOption',['../dd/d3d/classexceptions_1_1config_no_option.html',1,'exceptions']]]
 ];

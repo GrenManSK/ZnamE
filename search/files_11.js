@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['voicevox_2epy_0',['voicevox.py',['../de/d74/voicevox_8py.html',1,'']]]
+  ['writing_2epy_0',['writing.py',['../db/d2a/writing_8py.html',1,'']]]
 ];

@@ -8,6 +8,5 @@ var searchData=
   ['unspecified_5',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
   ['update_6',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
   ['update_5fapp_7',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]],
-  ['updateapp_8',['updateapp',['../d8/d01/namespaceapp.html#a50333b18cd1fce382937e7857f2ca034',1,'app']]],
-  ['user_9',['USER',['../d2/dc1/namespacemain.html#a943a4335653ffd17eafc85f8ba4bb587',1,'main']]]
+  ['updateapp_8',['updateapp',['../d8/d01/namespaceapp.html#a50333b18cd1fce382937e7857f2ca034',1,'app']]]
 ];

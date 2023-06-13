@@ -44,7 +44,6 @@ var namespaces_dup =
       [ "env_menu", "d7/d3c/namespaceconda.html#a8db2c180e8eded5298bb8116e5de49cf", null ],
       [ "get_envs", "d7/d3c/namespaceconda.html#a5b003fd914d12da26b90c1f1df8899dc", null ]
     ] ],
-    [ "curses_builder", "d0/d70/namespacecurses__builder.html", "d0/d70/namespacecurses__builder" ],
     [ "database", "da/df2/namespacedatabase.html", [
       [ "Data_Dynamics", "da/df2/namespacedatabase.html#a070a461c10402aa3794362170058bc1d", null ],
       [ "run_database_project", "da/df2/namespacedatabase.html#a7541741a9bd73f03d9e0cab9fe100f7f", null ]
@@ -127,9 +126,6 @@ var namespaces_dup =
     [ "html", "da/d9d/namespacehtml.html", [
       [ "playhtml", "da/d9d/namespacehtml.html#ae0cfc9a12b0b1ffed23c27bf6fb7fb5e", null ]
     ] ],
-    [ "install", "d3/d29/namespaceinstall.html", [
-      [ "try", "d3/d29/namespaceinstall.html#ad7c6349e8f2829b6f24ca46234850ea5", null ]
-    ] ],
     [ "internet", "d1/d22/namespaceinternet.html", [
       [ "download", "d1/d22/namespaceinternet.html#aeb2f9868381f66da42a5e39bbe1114f3", null ],
       [ "internet", "d1/d22/namespaceinternet.html#a98a21d6b2f7742fa0c11b97b284ee2ec", null ],
@@ -142,31 +138,6 @@ var namespaces_dup =
     ] ],
     [ "login", "d2/d99/namespacelogin.html", [
       [ "auto_login", "d2/d99/namespacelogin.html#a45d76b61d71b9d7416c86b958b957f2f", null ]
-    ] ],
-    [ "main", "d2/dc1/namespacemain.html", [
-      [ "add_anime", "d2/dc1/namespacemain.html#a5d87b187701eea0d42c7af5222c11b34", null ],
-      [ "add_anime_to_dat", "d2/dc1/namespacemain.html#a7ac4018862a91abeade2db0a0fd13a3e", null ],
-      [ "is_available", "d2/dc1/namespacemain.html#a22ee906bad724ecc408efa8dc70fde2d", null ],
-      [ "login", "d2/dc1/namespacemain.html#a3423598e1608042ddce57ffd9e377f46", null ],
-      [ "logout", "d2/dc1/namespacemain.html#a27e72161a2060436a23b0a8955b890e4", null ],
-      [ "main", "d2/dc1/namespacemain.html#a059381d8f545e9cf90252c527d7079f7", null ],
-      [ "register", "d2/dc1/namespacemain.html#a45b9a937bde5490e7a540cb283bbcf05", null ],
-      [ "search_engine", "d2/dc1/namespacemain.html#a6c4685620cc20000fe42db5a3a8b5925", null ],
-      [ "show_anime", "d2/dc1/namespacemain.html#a7bd35c551693156d67911e5a1575221f", null ],
-      [ "_return", "d2/dc1/namespacemain.html#a176833d86ac8bc5fe93e08a67ca427d7", null ],
-      [ "account_id", "d2/dc1/namespacemain.html#a1ba48230227ec66b6d820364c80ff84a", null ],
-      [ "account_name", "d2/dc1/namespacemain.html#a6cc3c417352c170694ff8e5681ed180d", null ],
-      [ "anime_status", "d2/dc1/namespacemain.html#a28c6b2927c7bd274bd934aea38958f27", null ],
-      [ "COLS", "d2/dc1/namespacemain.html#af802feece43757c806c5d35e7538691a", null ],
-      [ "DATABASE", "d2/dc1/namespacemain.html#af65314523ff1e3da50334de0c35c4a4e", null ],
-      [ "date", "d2/dc1/namespacemain.html#a82f1d7bdfa97e39b934ed2cd2a5c275a", null ],
-      [ "HOST_NAME", "d2/dc1/namespacemain.html#ab0a5714d34815ba7f7be4dd73430d2e8", null ],
-      [ "LINES", "d2/dc1/namespacemain.html#a86ca7368ed4a22192a2b8fbe44488ef1", null ],
-      [ "PASSWORD", "d2/dc1/namespacemain.html#a545fb804ee1a845bb7f0b924875af7b5", null ],
-      [ "PORT", "d2/dc1/namespacemain.html#aa696001e8c360dc8f56e3d2fdc74d8b7", null ],
-      [ "privilege", "d2/dc1/namespacemain.html#ad739b26bc5877b6ad9af2ab0caead756", null ],
-      [ "server", "d2/dc1/namespacemain.html#ade2e9fd24a19d36e99928f8656eb90db", null ],
-      [ "USER", "d2/dc1/namespacemain.html#a943a4335653ffd17eafc85f8ba4bb587", null ]
     ] ],
     [ "manga_translator", "de/d7e/namespacemanga__translator.html", [
       [ "manga_image_translator", "de/d7e/namespacemanga__translator.html#a019b0983a68679c07f664c968712b8f8", null ],

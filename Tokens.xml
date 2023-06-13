@@ -101,33 +101,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>curses_builder::builder</Name>
-      <APILanguage>python</APILanguage>
-      <Type>cl</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>curses_builder::cinput</Name>
-      <APILanguage>python</APILanguage>
-      <Type>cl</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>curses_builder::component</Name>
-      <APILanguage>python</APILanguage>
-      <Type>cl</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>exceptions::configNoOption</Name>
       <APILanguage>python</APILanguage>
       <Type>cl</Type>
@@ -143,15 +116,6 @@
       <Scope>app_alternations.installing_carousel</Scope>
     </TokenIdentifier>
     <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>curses_builder::OnlyOneCharKey</Name>
-      <APILanguage>python</APILanguage>
-      <Type>cl</Type>
-      <Scope>curses_builder.OnlyOneCharKey</Scope>
-    </TokenIdentifier>
-    <Path>d7/dce/classcurses__builder_1_1_only_one_char_key.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -227,15 +191,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>curses_builder</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>database</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -299,15 +254,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>install</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>install</Scope>
-    </TokenIdentifier>
-    <Path>d3/d29/namespaceinstall.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>internet</Name>
       <APILanguage>python</APILanguage>
       <Type>ns</Type>
@@ -332,15 +278,6 @@
       <Scope>login</Scope>
     </TokenIdentifier>
     <Path>d2/d99/namespacelogin.html</Path>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>main</Name>
-      <APILanguage>python</APILanguage>
-      <Type>ns</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -473,61 +410,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>__call__</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a2395e5cf0313e42756b765facc11f12e</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>__call__</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>aadfd0d61bfa0f6fb4d9f87eb91e60bdb</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>__init__</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>a418fb3e5c4bfabd8b4ea1eb00b2ae1b8</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>__init__</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a8f8bb7bc92bdb834c3bbfc5ea5d77b1e</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>__init__</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>a2dbde87433693a9fb13aaddbda4d3dd2</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>__init__</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
@@ -549,28 +431,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>add</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>aa7318a3c0102085db10e98afcb85ddc6</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>add_history</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>a880c4cef30ad4afc828da33d5dbedb61</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>bar</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -581,37 +441,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>border</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>acb6a0c44b492f3c2bd044c87e38e0952</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>border</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>a3e9ae658cbb418bfe64ed0ac5b8f3810</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>build</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>a7abf922e7bb2ef151bb5c7a1086bbd6a</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>comment</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -619,36 +448,6 @@
     </TokenIdentifier>
     <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
     <Anchor>a0204bf1a59f9a42b329e1832f6ceab8f</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>content</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a458fe3b47505def2497e44fc4b919ba7</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>function</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>af46dc9030f073600b1b7c7ebf6c2a55b</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>height</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a9a663885a030b6fddacae489c07fa002</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -673,36 +472,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>key</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>a03f7de6e0f5ba012992a7dfbc90f44ea</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lenght</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>a74d7b25c2c3d6e4a2d517793b078c8a6</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>limit</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>aa440a0480d49eafc4d6a8dff99e35de8</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>move</Name>
       <APILanguage>python</APILanguage>
       <Type>instm</Type>
@@ -724,16 +493,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>nof</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>abcaf1fc1ce8def381753c87d084e79b2</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>package</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -752,28 +511,6 @@
     <Path>d5/d77/classapp__alternations_1_1installing__carousel.html</Path>
     <Anchor>a5987356057063952d028a07b75349f80</Anchor>
     <DeclaredIn>app_alternations.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>reset</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>aeb5d535168cddf2f5fd605f9829d9e0c</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>restore</Name>
-      <APILanguage>python</APILanguage>
-      <Type>instm</Type>
-      <Scope>curses_builder.builder</Scope>
-    </TokenIdentifier>
-    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
-    <Anchor>aab9bc3c66fbac9d7e7bdc61e60230307</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -810,99 +547,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>width</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>afc8a131908f1d6ff7b0b80fcc75c2105</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>width</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>a92c42b1bd2a6de12c3d47dd3c2815217</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>x</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a0ce3b502ff071741d568ba6d8508449f</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>x</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>a87cc9e99d44c2ef59c423c094ec68bbf</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>y</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.component</Scope>
-    </TokenIdentifier>
-    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
-    <Anchor>a996644ff2cf1ec3e577f7efdb9f8ad4c</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>y</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder.cinput</Scope>
-    </TokenIdentifier>
-    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
-    <Anchor>affea72b3ca33154d581af0bde9410b80</Anchor>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>_return</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a176833d86ac8bc5fe93e08a67ca427d7</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>account_id</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a1ba48230227ec66b6d820364c80ff84a</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>account_name</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a6cc3c417352c170694ff8e5681ed180d</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>add</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -911,28 +555,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>af8155c1c90674d76615b11b6d0c5c8ba</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>add_anime</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a5d87b187701eea0d42c7af5222c11b34</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>add_anime_to_dat</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a7ac4018862a91abeade2db0a0fd13a3e</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1002,17 +624,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>anime_status</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a28c6b2927c7bd274bd934aea38958f27</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>args</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1032,17 +643,6 @@
     <Path>d2/d33/namespacearguments.html</Path>
     <Anchor>a1fbdde8a504f62b1e1885c204392c4f0</Anchor>
     <DeclaredIn>arguments.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>AUTHOR</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>aaa846e4e91f3c3b5d11d4813c4b20b08</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1222,17 +822,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>COLS</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>af802feece43757c806c5d35e7538691a</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>config</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1244,28 +833,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>current_id</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a68d4fe067f53d44f6fd2a0fed12fd08d</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>current_row</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>ab26bb65a952e244c0cd23d38de7c7146</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>Data_Dynamics</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1274,28 +841,6 @@
     <Path>da/df2/namespacedatabase.html</Path>
     <Anchor>a070a461c10402aa3794362170058bc1d</Anchor>
     <DeclaredIn>database.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>DATABASE</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>af65314523ff1e3da50334de0c35c4a4e</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>date</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a82f1d7bdfa97e39b934ed2cd2a5c275a</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1552,17 +1097,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>func_reset</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a9a350fbeac57f18cdfa063b380d20b02</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>functions</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -1593,17 +1127,6 @@
     <Path>d7/d3c/namespaceconda.html</Path>
     <Anchor>a5b003fd914d12da26b90c1f1df8899dc</Anchor>
     <DeclaredIn>conda.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>get_id</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>aff43af63a0bd48b2618742929bf6dc12</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1717,61 +1240,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>history</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>aa92920d043ea6962482c51cc5be392e5</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>history_number</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a12d268240b8bbd69f9e7dba124ca0a81</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>HOST_NAME</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>ab0a5714d34815ba7f7be4dd73430d2e8</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>ids</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a0217a25f9b423feb9e553e026f1a9682</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>in_func</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a8e32463d10290ed1a486520044fccd2b</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>inactive</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1780,17 +1248,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a341571d7a41b53af5510ed61722c2847</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>init</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a08104964ad09bfd698830d71381aa26f</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1871,17 +1328,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>is_available</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a22ee906bad724ecc408efa8dc70fde2d</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>isUserAdmin</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -1901,17 +1347,6 @@
     <Path>d6/d36/namespacekayopy.html</Path>
     <Anchor>a65e3d3e15c8498c9a01acae662b952b7</Anchor>
     <DeclaredIn>kayopy.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>last_command_history</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a3a15e4320048e906545de3436d45cc27</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1945,17 +1380,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>aba5c5a586247c852a96ac46b09ea9d82</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>LINES</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a86ca7368ed4a22192a2b8fbe44488ef1</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2003,28 +1427,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>login</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a3423598e1608042ddce57ffd9e377f46</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>logout</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a27e72161a2060436a23b0a8955b890e4</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>logout</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -2033,17 +1435,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>ac820991cd8d23a0cc095060d0db57bb6</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>main</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a059381d8f545e9cf90252c527d7079f7</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2245,17 +1636,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>PASSWORD</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a545fb804ee1a845bb7f0b924875af7b5</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>password</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -2322,17 +1702,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>PORT</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>aa696001e8c360dc8f56e3d2fdc74d8b7</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>potrebne</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -2396,17 +1765,6 @@
     <Path>d8/df3/namespacewriting.html</Path>
     <Anchor>aaf436662f2eb8133c26da3747f627e5e</Anchor>
     <DeclaredIn>writing.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>privilege</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>ad739b26bc5877b6ad9af2ab0caead756</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2506,17 +1864,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>a11c2d421fc103b70ae07e919a3929cd8</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>register</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a45b9a937bde5490e7a540cb283bbcf05</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2674,28 +2021,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>search_engine</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a6c4685620cc20000fe42db5a3a8b5925</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>server</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>ade2e9fd24a19d36e99928f8656eb90db</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>server</Name>
       <APILanguage>python</APILanguage>
       <Type>data</Type>
@@ -2737,17 +2062,6 @@
     <Path>de/d05/namespacesystem__operations.html</Path>
     <Anchor>abba81c23e3f2ab3e8d49a44d2553d53a</Anchor>
     <DeclaredIn>system_operations.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>show_anime</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a7bd35c551693156d67911e5a1575221f</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2817,17 +2131,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>string</Name>
-      <APILanguage>python</APILanguage>
-      <Type>func</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>aa6d6a336afddb8314b70939716b88ed1</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>system_info</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -2891,17 +2194,6 @@
     <Path>d9/d8d/namespacefile__operations.html</Path>
     <Anchor>ad1e190f470ae5f50defc77c65e0479ab</Anchor>
     <DeclaredIn>file_operations.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>try</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>install</Scope>
-    </TokenIdentifier>
-    <Path>d3/d29/namespaceinstall.html</Path>
-    <Anchor>ad7c6349e8f2829b6f24ca46234850ea5</Anchor>
-    <DeclaredIn>install.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -3037,28 +2329,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>USER</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>main</Scope>
-    </TokenIdentifier>
-    <Path>d2/dc1/namespacemain.html</Path>
-    <Anchor>a943a4335653ffd17eafc85f8ba4bb587</Anchor>
-    <DeclaredIn>main.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>VERSION</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>ac64a13ff8444796edb70372d22d23c63</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>vlc_init</Name>
       <APILanguage>python</APILanguage>
       <Type>func</Type>
@@ -3111,17 +2381,6 @@
     <Path>d0/d52/namespaceedupage.html</Path>
     <Anchor>affab33b5424c3de7af76ae388eb3c806</Anchor>
     <DeclaredIn>edupage.py</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>window</Name>
-      <APILanguage>python</APILanguage>
-      <Type>data</Type>
-      <Scope>curses_builder</Scope>
-    </TokenIdentifier>
-    <Path>d0/d70/namespacecurses__builder.html</Path>
-    <Anchor>a38bc0e428721a2ce34235601b339cafb</Anchor>
-    <DeclaredIn>__init__.py</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>

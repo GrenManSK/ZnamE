@@ -1,15 +1,13 @@
 var searchData=
 [
-  ['get_5fenvs_0',['get_envs',['../d7/d3c/namespaceconda.html#a5b003fd914d12da26b90c1f1df8899dc',1,'conda']]],
-  ['get_5fid_1',['get_id',['../d0/d70/namespacecurses__builder.html#aff43af63a0bd48b2618742929bf6dc12',1,'curses_builder']]],
-  ['get_5fline_5fnumber_2',['get_line_number',['../d5/df5/namespacesystem__info.html#a0f69d44535db5c0aff95a677e1380133',1,'system_info']]],
-  ['get_5flog_5finfo_3',['get_log_info',['../d5/df5/namespacesystem__info.html#afab65105f70908a7cea682bba5f71db6',1,'system_info']]],
-  ['get_5fmusic_5fmenu_4',['get_music_menu',['../de/d05/namespacesystem__operations.html#ae0f832926b0734e5fa0d643762b5ea76',1,'system_operations']]],
-  ['get_5fpackages_5',['get_packages',['../d3/dc0/namespaceapp__alternations.html#aae358fb985b5d678bd85f4042eb5e062',1,'app_alternations']]],
-  ['get_5fscreensize_6',['get_screensize',['../d5/df5/namespacesystem__info.html#a827de6d1d9dcdd108451ac1a5efb476c',1,'system_info']]],
-  ['get_5fsegments_7',['get_segments',['../de/d7b/namespacesponsorblock.html#aaa8808f1b90b5aa7415fdb719d150c4d',1,'sponsorblock']]],
-  ['get_5fsize_8',['get_size',['../d0/da7/namespacevoicevox.html#a52bd36be1a1cc6f08d550fa7fad4bf1e',1,'voicevox']]],
-  ['getimg_9',['getImg',['../de/d05/namespacesystem__operations.html#ab7f6f1490c9ace89a495ec832aba1be5',1,'system_operations']]],
-  ['getwindow_10',['getWindow',['../de/d05/namespacesystem__operations.html#ae1c540b83755223d324045f0383ce68d',1,'system_operations']]],
-  ['gif_5fto_5fvid_11',['gif_to_vid',['../de/d05/namespacesystem__operations.html#ae0f6c747e9feffe126616fc7811ef954',1,'system_operations']]]
+  ['inactive_0',['inactive',['../d0/d52/namespaceedupage.html#a341571d7a41b53af5510ed61722c2847',1,'edupage']]],
+  ['init_1',['init',['../d5/d77/classapp__alternations_1_1installing__carousel.html#af4623bada2affb56db8208c0d2333e33',1,'app_alternations::installing_carousel']]],
+  ['install_5fchoco_2',['install_choco',['../d3/dc0/namespaceapp__alternations.html#a9da6ea45a2df1e252ebae0caffbc602d',1,'app_alternations']]],
+  ['install_5ffont_3',['install_font',['../dd/d30/namespacetextractor.html#a18631acfa18a54682f0cc86cc737b281',1,'textractor']]],
+  ['install_5fpackages_4',['install_packages',['../d3/dc0/namespaceapp__alternations.html#ad26ac0da1ded6d594b1798cfbfc10a88',1,'app_alternations']]],
+  ['internet_5',['internet',['../d1/d22/namespaceinternet.html#a98a21d6b2f7742fa0c11b97b284ee2ec',1,'internet']]],
+  ['internet_5fcheck_6',['internet_check',['../d1/d22/namespaceinternet.html#ab226dc0e04cdf793dff796c17aaa6b19',1,'internet']]],
+  ['intro_7',['intro',['../d0/d52/namespaceedupage.html#a316dc71e49505324d14deee19eccd566',1,'edupage']]],
+  ['intro_5fvideo_8',['intro_video',['../de/d05/namespacesystem__operations.html#ac0306634f5a32966c3cd07a86d5bf0fc',1,'system_operations']]],
+  ['isuseradmin_9',['isUserAdmin',['../de/d05/namespacesystem__operations.html#aa3fb45e81ca75b65dfa7ad1c6819300c',1,'system_operations']]]
 ];

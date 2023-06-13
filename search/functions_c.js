@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nekof_0',['nekof',['../dd/d62/namespaceneko.html#a80dd25a2b2bde4fb06913fb0706a388e',1,'neko']]]
+  ['on_5frm_5ferror_0',['on_rm_error',['../d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116',1,'app_alternations.on_rm_error()'],['../d9/d8d/namespacefile__operations.html#aaa0e67b24c1ac905e67d777aee2498d0',1,'file_operations.on_rm_error()']]]
 ];

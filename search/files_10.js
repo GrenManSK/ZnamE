@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uninstall_2epy_0',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]]
+  ['voicevox_2epy_0',['voicevox.py',['../de/d74/voicevox_8py.html',1,'']]]
 ];

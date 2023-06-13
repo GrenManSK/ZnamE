@@ -1,17 +1,15 @@
 var searchData=
 [
-  ['parse_5fcbz_5fcommand_0',['parse_cbz_command',['../d2/d06/namespacecbzprintable.html#af15d54219ad947c010ef6e7d31fa6619',1,'cbzprintable']]],
-  ['password_1',['password',['../d0/d52/namespaceedupage.html#a947a9e740a4068b10f03b3e9d0bd18af',1,'edupage']]],
-  ['pause_2',['pause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a5987356057063952d028a07b75349f80',1,'app_alternations::installing_carousel']]],
-  ['pg_5fcomb_3',['pg_comb',['../de/d05/namespacesystem__operations.html#a27f29c99e700b61a8b3e3d43d86bbcdc',1,'system_operations']]],
-  ['play_5floop_4',['play_loop',['../dd/dc4/namespacemedia.html#afa762a121380c871ba894395c9315936',1,'media']]],
-  ['playhtml_5',['playhtml',['../da/d9d/namespacehtml.html#ae0cfc9a12b0b1ffed23c27bf6fb7fb5e',1,'html']]],
-  ['playvideo_6',['PlayVideo',['../dd/dc4/namespacemedia.html#a6938b07ced07a9e782019e9bad56f6d5',1,'media']]],
-  ['press_5fwin_7',['press_win',['../de/d05/namespacesystem__operations.html#ae5250bbda183f2ba33981313924b4307',1,'system_operations']]],
-  ['print_5fconfig_8',['print_config',['../d2/d33/namespacearguments.html#a37e8d64108eb1973346a96599ab03f55',1,'arguments']]],
-  ['print_5fhistory_9',['print_history',['../d0/d52/namespaceedupage.html#ab61c7be85bb0e6a5468c992b61992781',1,'edupage']]],
-  ['print_5fmodule_10',['print_module',['../d0/d52/namespaceedupage.html#a153bbbaa356309a404f3c218b26dc562',1,'edupage']]],
-  ['printnlog_11',['printnlog',['../d8/df3/namespacewriting.html#aaf436662f2eb8133c26da3747f627e5e',1,'writing']]],
-  ['progress_5fbar_12',['progress_bar',['../d0/d52/namespaceedupage.html#a7775a0617be38287f322386389fe89ab',1,'edupage']]],
-  ['python_5fupdate_13',['python_update',['../d3/dc0/namespaceapp__alternations.html#a633dfb0c70b064d9e50a4dcd354500f4',1,'app_alternations']]]
+  ['rclick_0',['rclick',['../dd/d30/namespacetextractor.html#add3d6e795d3eff9a8c6de6d13f6a3be1',1,'textractor']]],
+  ['reduce_5fmusicnumber_1',['reduce_musicnumber',['../d0/d52/namespaceedupage.html#a11c2d421fc103b70ae07e919a3929cd8',1,'edupage']]],
+  ['remove_2',['remove',['../d9/d8d/namespacefile__operations.html#a68250ea9331116e0bfd78d654bb99b45',1,'file_operations']]],
+  ['run_5fapp_3',['run_app',['../d3/d62/namespacefunction.html#a5c0ca85404af68c15ab50ba15bb6ff8d',1,'function']]],
+  ['run_5fcbz_4',['run_cbz',['../d2/d06/namespacecbzprintable.html#ae16a934c330a0b490905d28d2f531051',1,'cbzprintable']]],
+  ['run_5fcbz_5fcommand_5',['run_cbz_command',['../d2/d06/namespacecbzprintable.html#a534e74f01301c1ddc92fff0b4d48c1ff',1,'cbzprintable']]],
+  ['run_5fdatabase_5fproject_6',['run_database_project',['../da/df2/namespacedatabase.html#a7541741a9bd73f03d9e0cab9fe100f7f',1,'database']]],
+  ['run_5fkayopy_7',['run_kayopy',['../d6/d36/namespacekayopy.html#affd5de59d9a82abb99c8df343d8ce4e7',1,'kayopy']]],
+  ['run_5fmanga_5fimage_5ftranslator_8',['run_manga_image_translator',['../de/d7e/namespacemanga__translator.html#a168a8dbba24c93797e71833c54675975',1,'manga_translator']]],
+  ['run_5ftextractor_9',['run_textractor',['../dd/d30/namespacetextractor.html#ae207218da92df1c1e6746c880e009cb8',1,'textractor']]],
+  ['run_5fvoicevox_10',['run_voicevox',['../d0/da7/namespacevoicevox.html#afa37262df773484b9ff8784b2743e6e1',1,'voicevox']]],
+  ['runasadmin_11',['runAsAdmin',['../de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb',1,'system_operations']]]
 ];

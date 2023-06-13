@@ -3,12 +3,6 @@ var annotated_dup =
     [ "app_alternations", "d3/dc0/namespaceapp__alternations.html", [
       [ "installing_carousel", "d5/d77/classapp__alternations_1_1installing__carousel.html", "d5/d77/classapp__alternations_1_1installing__carousel" ]
     ] ],
-    [ "curses_builder", "d0/d70/namespacecurses__builder.html", [
-      [ "builder", "df/dc0/classcurses__builder_1_1builder.html", "df/dc0/classcurses__builder_1_1builder" ],
-      [ "cinput", "df/dd6/classcurses__builder_1_1cinput.html", "df/dd6/classcurses__builder_1_1cinput" ],
-      [ "component", "d5/d5d/classcurses__builder_1_1component.html", "d5/d5d/classcurses__builder_1_1component" ],
-      [ "OnlyOneCharKey", "d7/dce/classcurses__builder_1_1_only_one_char_key.html", null ]
-    ] ],
     [ "exceptions", "d0/d6e/namespaceexceptions.html", [
       [ "argenvironmentError", "d2/d37/classexceptions_1_1argenvironment_error.html", null ],
       [ "argGameError", "dc/d31/classexceptions_1_1arg_game_error.html", null ],

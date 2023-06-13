@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['textractor_0',['textractor',['../dd/d30/namespacetextractor.html#a60042d9393c93df35c1b9c5e5f96b1ad',1,'textractor']]],
-  ['to_5finfo_1',['to_info',['../d8/df3/namespacewriting.html#aee8b8a2f2bbaecb78b851fbdc6c451ef',1,'writing']]],
-  ['to_5fzip_2',['to_zip',['../d9/d8d/namespacefile__operations.html#ad1e190f470ae5f50defc77c65e0479ab',1,'file_operations']]],
-  ['typewriter_3',['typewriter',['../d8/df3/namespacewriting.html#a8ab0f963736e5f6f3470762216fe8eb2',1,'writing']]]
+  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall']]],
+  ['unpack_1',['unpack',['../d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc',1,'file_operations']]],
+  ['unpause_2',['unpause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a72c099261f8e502be3049875a139a591',1,'app_alternations::installing_carousel']]],
+  ['update_5fapp_3',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]]
 ];

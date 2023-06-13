@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../d9/dd6/_r_e_a_d_m_e_8md.html',1,'']]]
+  ['sponsorblock_2epy_0',['sponsorblock.py',['../db/dc9/sponsorblock_8py.html',1,'']]],
+  ['system_5finfo_2epy_1',['system_info.py',['../de/d3c/system__info_8py.html',1,'']]],
+  ['system_5foperations_2epy_2',['system_operations.py',['../dd/d18/system__operations_8py.html',1,'']]]
 ];
