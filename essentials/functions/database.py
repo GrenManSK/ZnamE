@@ -13,7 +13,7 @@ def run_database_project():
     The run_database_project function is used to run the database_project.
         It checks if the database_project folder exists and if it does, it updates it using git pull.
         If not, then it asks you whether you want to install the project automatically or not.
-    
+
     :return: None
     """
     if os.path.exists("database_project"):
@@ -25,6 +25,7 @@ def run_database_project():
             ttime=0.01,
         )
         subprocess.call(["git", "-C", "database_project", "pull"])
+        printnlog("")
         database_project()
     else:
         while True:
@@ -64,7 +65,7 @@ def database_project():
     The database_project function is a function that allows the user to create an .env file for the database_project folder.
     The .env file will contain all of the information needed to connect to a MySQL database, and it will be used by main.py in order
     to connect and interact with said database.
-    
+
     :return: None
     """
     printnlog(
