@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'uninstall'],['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall.uninstall()']]],
-  ['uninstall_2epy_1',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]],
-  ['unlogged_5fcompleter_2',['unlogged_completer',['../df/d0a/namespacecompleter.html#ac200d23439b3f4fbb0c2db8b5c86d1c6',1,'completer']]],
-  ['unpack_3',['unpack',['../d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc',1,'file_operations']]],
-  ['unpause_4',['unpause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a72c099261f8e502be3049875a139a591',1,'app_alternations::installing_carousel']]],
-  ['unspecified_5',['UNSPECIFIED',['../d0/d52/namespaceedupage.html#a2d1548a24d43be5c9233559e23312724',1,'edupage']]],
-  ['update_6',['update',['../d0/d52/namespaceedupage.html#abe116cd210f52b2928aec345f836e80b',1,'edupage']]],
-  ['update_5fapp_7',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]],
-  ['updateapp_8',['updateapp',['../d8/d01/namespaceapp.html#a50333b18cd1fce382937e7857f2ca034',1,'app']]]
+  ['t_5flanguages_0',['t_languages',['../d3/d32/namespacetranslate.html#a2d0fb4f4f2a786d7f751df2e9ec184ef',1,'translate']]],
+  ['t_5ftranslators_1',['t_translators',['../d3/d32/namespacetranslate.html#a3efcd5670d0832924efa8fdf22fb7e8d',1,'translate']]],
+  ['textractor_2',['textractor',['../dd/d30/namespacetextractor.html',1,'textractor'],['../dd/d30/namespacetextractor.html#a60042d9393c93df35c1b9c5e5f96b1ad',1,'textractor.textractor()']]],
+  ['textractor_2epy_3',['textractor.py',['../d6/d51/textractor_8py.html',1,'']]],
+  ['to_5finfo_4',['to_info',['../d8/df3/namespacewriting.html#aee8b8a2f2bbaecb78b851fbdc6c451ef',1,'writing']]],
+  ['to_5fzip_5',['to_zip',['../d9/d8d/namespacefile__operations.html#ad1e190f470ae5f50defc77c65e0479ab',1,'file_operations']]],
+  ['translate_6',['translate',['../d3/d32/namespacetranslate.html',1,'']]],
+  ['translate_2epy_7',['translate.py',['../d2/dde/translate_8py.html',1,'']]],
+  ['try_8',['try',['../d3/d29/namespaceinstall.html#ad7c6349e8f2829b6f24ca46234850ea5',1,'install.try()'],['../d0/d52/namespaceedupage.html#a3b833a872a582269c7dd26729086ec6b',1,'edupage.try()'],['../dd/d30/namespacetextractor.html#ac721ae405f6a025a7f8d457d8bb4ae52',1,'textractor.try()'],['../d8/df3/namespacewriting.html#aafd73a50983fa534f7da246578df0640',1,'writing.try()'],['../d9/d8d/namespacefile__operations.html#a71a6849b59b575580a7d6806471944b4',1,'file_operations.try()']]],
+  ['typewriter_9',['typewriter',['../d8/df3/namespacewriting.html#a8ab0f963736e5f6f3470762216fe8eb2',1,'writing']]]
 ];

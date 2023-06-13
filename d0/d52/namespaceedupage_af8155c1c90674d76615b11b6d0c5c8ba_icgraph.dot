@@ -7,13 +7,7 @@ digraph "edupage.add"
   rankdir="RL";
   Node1 [label="edupage.add",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
-  Node2 [label="edupage.add_marks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a21f2f303ad4d1e33a43bd2b8207130a4",tooltip=" "];
+  Node2 [label="edupage.add_marks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a9d8a9e9e0972b929f85d5e9bdb2b0107",tooltip=" "];
   Node2 -> Node3 [dir="back",color="steelblue1",style="solid"];
   Node3 [label="edupage.main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a187508ee0d9f19d584a130cc5cba0c27",tooltip=" "];
-  Node3 -> Node4 [dir="back",color="steelblue1",style="solid"];
-  Node4 [label="edupage.intro",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a316dc71e49505324d14deee19eccd566",tooltip=" "];
-  Node4 -> Node3 [dir="back",color="steelblue1",style="solid"];
-  Node3 -> Node5 [dir="back",color="steelblue1",style="solid"];
-  Node5 [label="edupage.reduce_musicnumber",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d52/namespaceedupage.html#a11c2d421fc103b70ae07e919a3929cd8",tooltip=" "];
-  Node5 -> Node3 [dir="back",color="steelblue1",style="solid"];
 }

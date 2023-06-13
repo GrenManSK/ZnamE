@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['wait_5ffor_5ffile_0',['wait_for_file',['../de/d05/namespacesystem__operations.html#a99b95316ff9feb1492b98309cfd7007e',1,'system_operations']]],
-  ['was_5fupdated_1',['was_updated',['../d0/d52/namespaceedupage.html#ab37eeef09149edbff47a4c8d00d485c0',1,'edupage']]],
-  ['where_2',['where',['../d0/d52/namespaceedupage.html#affab33b5424c3de7af76ae388eb3c806',1,'edupage']]],
-  ['write_5fconfig_5foptions_3',['write_config_options',['../d2/d33/namespacearguments.html#a8306eef1955be6471a2781e555a24c1f',1,'arguments']]],
-  ['writing_4',['writing',['../d8/df3/namespacewriting.html',1,'']]],
-  ['writing_2epy_5',['writing.py',['../db/d2a/writing_8py.html',1,'']]]
+  ['version_0',['VERSION',['../d0/d70/namespacecurses__builder.html#ac64a13ff8444796edb70372d22d23c63',1,'curses_builder']]],
+  ['vlc_5finit_1',['vlc_init',['../d0/d52/namespaceedupage.html#a04c9c212427b30c15b9858bbbae21b45',1,'edupage']]],
+  ['vlc_5fpath_2',['vlc_path',['../dc/df6/namespaceanime__watch.html#a165a9b212303bad060e72ff964ce1b8d',1,'anime_watch']]],
+  ['voicevox_3',['voicevox',['../d0/da7/namespacevoicevox.html',1,'']]],
+  ['voicevox_2epy_4',['voicevox.py',['../de/d74/voicevox_8py.html',1,'']]]
 ];

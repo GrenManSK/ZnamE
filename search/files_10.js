@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writing_2epy_0',['writing.py',['../db/d2a/writing_8py.html',1,'']]]
+  ['uninstall_2epy_0',['uninstall.py',['../d5/d47/uninstall_8py.html',1,'']]]
 ];

@@ -12,7 +12,10 @@ var system__operations_8py =
     [ "isUserAdmin", "dd/d18/system__operations_8py.html#aa3fb45e81ca75b65dfa7ad1c6819300c", null ],
     [ "move", "dd/d18/system__operations_8py.html#a13881264d5df0e98e40b449a051592fd", null ],
     [ "pg_comb", "dd/d18/system__operations_8py.html#a27f29c99e700b61a8b3e3d43d86bbcdc", null ],
+    [ "press_win", "dd/d18/system__operations_8py.html#ae5250bbda183f2ba33981313924b4307", null ],
     [ "runAsAdmin", "dd/d18/system__operations_8py.html#ad91b2c3c346993d5f478e23670f61aeb", null ],
+    [ "set_image", "dd/d18/system__operations_8py.html#adecc8156e8e605fd58b37f25037d5bed", null ],
+    [ "set_up", "dd/d18/system__operations_8py.html#abba81c23e3f2ab3e8d49a44d2553d53a", null ],
     [ "show_cmd", "dd/d18/system__operations_8py.html#a455dd6b9d95036e222680e02dc1c6fc1", null ],
     [ "wait_for_file", "dd/d18/system__operations_8py.html#a99b95316ff9feb1492b98309cfd7007e", null ]
 ];

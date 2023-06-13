@@ -7,5 +7,5 @@ digraph "database.run_database_project"
   rankdir="LR";
   Node1 [label="database.run_database\l_project",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="database.database_project",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/df2/namespacedatabase.html#a8b3ba447d10561dc7accd4805ba8ad0b",tooltip=" "];
+  Node2 [label="database.Data_Dynamics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/df2/namespacedatabase.html#a070a461c10402aa3794362170058bc1d",tooltip=" "];
 }

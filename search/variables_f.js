@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['t_5flanguages_0',['t_languages',['../d3/d32/namespacetranslate.html#a2d0fb4f4f2a786d7f751df2e9ec184ef',1,'translate']]],
-  ['t_5ftranslators_1',['t_translators',['../d3/d32/namespacetranslate.html#a3efcd5670d0832924efa8fdf22fb7e8d',1,'translate']]],
-  ['try_2',['try',['../d0/d52/namespaceedupage.html#a3b833a872a582269c7dd26729086ec6b',1,'edupage.try()'],['../dd/d30/namespacetextractor.html#ac721ae405f6a025a7f8d457d8bb4ae52',1,'textractor.try()'],['../d8/df3/namespacewriting.html#aafd73a50983fa534f7da246578df0640',1,'writing.try()'],['../d9/d8d/namespacefile__operations.html#a71a6849b59b575580a7d6806471944b4',1,'file_operations.try()']]]
+  ['quiet_0',['quiet',['../d0/d52/namespaceedupage.html#ae4b8e5eeb094a9d7571532714e5fc837',1,'edupage.quiet()'],['../dd/d30/namespacetextractor.html#ab633470b907ea6e84dad58bdbbb21bd6',1,'textractor.quiet()'],['../d8/df3/namespacewriting.html#a37e52b1ade02b7542ab69abb6da35850',1,'writing.quiet()'],['../d9/d8d/namespacefile__operations.html#ab1687daff2bc18ea7431e21e77ac6110',1,'file_operations.quiet()']]]
 ];

@@ -1,25 +1,5 @@
 var searchData=
 [
-  ['package_0',['package',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a3ccb82632ddb0002c78fc4bf9503a3df',1,'app_alternations::installing_carousel']]],
-  ['parse_5fcbz_5fcommand_1',['parse_cbz_command',['../d2/d06/namespacecbzprintable.html#af15d54219ad947c010ef6e7d31fa6619',1,'cbzprintable']]],
-  ['parser_2',['parser',['../d0/d52/namespaceedupage.html#a2d5d660ba0d864e3c255021852b4a19a',1,'edupage']]],
-  ['password_3',['password',['../d0/d52/namespaceedupage.html#ab6bc445b1d72dc317235f930a3c3865f',1,'edupage']]],
-  ['passwordapp_4',['passwordapp',['../d8/d01/namespaceapp.html#af40b61b8bfc8b8a65714b5a40803a3fc',1,'app']]],
-  ['patch_5',['patch',['../de/dac/md_patch.html',1,'']]],
-  ['patch_2emd_6',['patch.md',['../d1/d76/patch_8md.html',1,'']]],
-  ['pause_7',['pause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a5987356057063952d028a07b75349f80',1,'app_alternations::installing_carousel']]],
-  ['pg_5fcomb_8',['pg_comb',['../de/d05/namespacesystem__operations.html#a27f29c99e700b61a8b3e3d43d86bbcdc',1,'system_operations']]],
-  ['play_5floop_9',['play_loop',['../dd/dc4/namespacemedia.html#afa762a121380c871ba894395c9315936',1,'media']]],
-  ['playhtml_10',['playhtml',['../da/d9d/namespacehtml.html#ae0cfc9a12b0b1ffed23c27bf6fb7fb5e',1,'html']]],
-  ['playvideo_11',['playvideo',['../d3/db6/namespaceplayvideo.html',1,'']]],
-  ['playvideo_12',['PlayVideo',['../dd/dc4/namespacemedia.html#a6938b07ced07a9e782019e9bad56f6d5',1,'media']]],
-  ['playvideo_2epy_13',['playvideo.py',['../d7/d4d/playvideo_8py.html',1,'']]],
-  ['potrebne_14',['potrebne',['../dd/d2d/namespacedependencies.html#a693bdfbbd8f35d4be2423ea5bc02545a',1,'dependencies']]],
-  ['print_5fconfig_15',['print_config',['../d2/d33/namespacearguments.html#a37e8d64108eb1973346a96599ab03f55',1,'arguments']]],
-  ['print_5fhistory_16',['print_history',['../d0/d52/namespaceedupage.html#ab61c7be85bb0e6a5468c992b61992781',1,'edupage']]],
-  ['print_5fmodule_17',['print_module',['../d0/d52/namespaceedupage.html#a153bbbaa356309a404f3c218b26dc562',1,'edupage']]],
-  ['printnlog_18',['printnlog',['../d8/df3/namespacewriting.html#aaf436662f2eb8133c26da3747f627e5e',1,'writing']]],
-  ['progress_5fbar_19',['progress_bar',['../d0/d52/namespaceedupage.html#a7775a0617be38287f322386389fe89ab',1,'edupage']]],
-  ['progress_5fbar_5fcheck_20',['PROGRESS_BAR_CHECK',['../d0/d52/namespaceedupage.html#a9731dc71206a322f6a1fb095305de964',1,'edupage']]],
-  ['python_5fupdate_21',['python_update',['../d3/dc0/namespaceapp__alternations.html#a633dfb0c70b064d9e50a4dcd354500f4',1,'app_alternations']]]
+  ['on_5frm_5ferror_0',['on_rm_error',['../d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116',1,'app_alternations.on_rm_error()'],['../d9/d8d/namespacefile__operations.html#aaa0e67b24c1ac905e67d777aee2498d0',1,'file_operations.on_rm_error()']]],
+  ['onlyonecharkey_1',['OnlyOneCharKey',['../d7/dce/classcurses__builder_1_1_only_one_char_key.html',1,'curses_builder']]]
 ];

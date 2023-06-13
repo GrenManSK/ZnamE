@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.11.0-alpha+build.20230608.215215</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.12.0-alpha+build.20230613.205052</span>
    </div>
   </td>
  </tr>
@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('de/d3c/system__info_8py_source.html','
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>)</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#a92c091405f05267c225d0925fc422937">   27</a></span><span class="keyword">def </span><a class="code hl_namespace" href="../../d5/df5/namespacesystem__info.html">system_info</a>(logger, screensize):</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#a55e647e6eb060173fdd698092940ae01">   27</a></span><span class="keyword">def </span><a class="code hl_namespace" href="../../d5/df5/namespacesystem__info.html">system_info</a>(logger, screensize) -&gt; None:</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">try</span>:</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        os.makedirs(<span class="stringliteral">&quot;C:/Users/&quot;</span> + os.getlogin() + <span class="stringliteral">&quot;/AppData/Local/ZnámE/&quot;</span>)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">except</span> FileExistsError:</div>
@@ -331,7 +331,7 @@ $(document).ready(function(){initNavTree('de/d3c/system__info_8py_source.html','
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="stringliteral">    </span><span class="keywordflow">return</span> int(inspect.stack()[relative_frame][0].f_lineno) - int(goback)</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#ade39fb3bb4d66856e5b1747ebaa3dd35">  240</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d5/df5/namespacesystem__info.html#ade39fb3bb4d66856e5b1747ebaa3dd35">get_screensize</a>():</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#a827de6d1d9dcdd108451ac1a5efb476c">  240</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d5/df5/namespacesystem__info.html#a827de6d1d9dcdd108451ac1a5efb476c">get_screensize</a>() -&gt; tuple[tuple[int, int], tuple[float, float]]:</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="stringliteral">    The get_screensize function </span><span class="keywordflow">is</span> used to get the screensize of the user<span class="stringliteral">&#39;s monitor.</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="stringliteral">    It returns a tuple containing two integers, which are the width </span><span class="keywordflow">and</span> height of </div>
@@ -350,7 +350,7 @@ $(document).ready(function(){initNavTree('de/d3c/system__info_8py_source.html','
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span> screensize, screensizepercentage</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#a8e3f2cfac3035ffac20259dd877f294c">  259</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d5/df5/namespacesystem__info.html#a8e3f2cfac3035ffac20259dd877f294c">get_log_info</a>():</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="../../d5/df5/namespacesystem__info.html#afab65105f70908a7cea682bba5f71db6">  259</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d5/df5/namespacesystem__info.html#afab65105f70908a7cea682bba5f71db6">get_log_info</a>() -&gt; None:</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="stringliteral">    The get_log_info function </span><span class="keywordflow">is</span> used to write the code of each app into a file.</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    This allows <span class="keywordflow">for</span> easy access to the code <span class="keywordflow">in</span> case it needs to be changed <span class="keywordflow">or</span> updated.</div>
@@ -382,15 +382,15 @@ $(document).ready(function(){initNavTree('de/d3c/system__info_8py_source.html','
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    x.write(gameapp)</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    x.close()</div>
 <div class="ttc" id="anamespacesystem__info_html"><div class="ttname"><a href="../../d5/df5/namespacesystem__info.html">system_info</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3c/system__info_8py_source.html#l00001">system_info.py:1</a></div></div>
-<div class="ttc" id="anamespacesystem__info_html_a8e3f2cfac3035ffac20259dd877f294c"><div class="ttname"><a href="../../d5/df5/namespacesystem__info.html#a8e3f2cfac3035ffac20259dd877f294c">system_info.get_log_info</a></div><div class="ttdeci">def get_log_info()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3c/system__info_8py_source.html#l00259">system_info.py:259</a></div></div>
-<div class="ttc" id="anamespacesystem__info_html_ade39fb3bb4d66856e5b1747ebaa3dd35"><div class="ttname"><a href="../../d5/df5/namespacesystem__info.html#ade39fb3bb4d66856e5b1747ebaa3dd35">system_info.get_screensize</a></div><div class="ttdeci">def get_screensize()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3c/system__info_8py_source.html#l00240">system_info.py:240</a></div></div>
+<div class="ttc" id="anamespacesystem__info_html_a827de6d1d9dcdd108451ac1a5efb476c"><div class="ttname"><a href="../../d5/df5/namespacesystem__info.html#a827de6d1d9dcdd108451ac1a5efb476c">system_info.get_screensize</a></div><div class="ttdeci">tuple[tuple[int, int], tuple[float, float]] get_screensize()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3c/system__info_8py_source.html#l00240">system_info.py:240</a></div></div>
+<div class="ttc" id="anamespacesystem__info_html_afab65105f70908a7cea682bba5f71db6"><div class="ttname"><a href="../../d5/df5/namespacesystem__info.html#afab65105f70908a7cea682bba5f71db6">system_info.get_log_info</a></div><div class="ttdeci">None get_log_info()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3c/system__info_8py_source.html#l00259">system_info.py:259</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_d5b1ed787a0439ef5e70cb4862ae5db0.html">essentials</a></li><li class="navelem"><a class="el" href="../../dir_8fef2c341c2c9d5faf344d4e8f638ccf.html">system</a></li><li class="navelem"><a class="el" href="../../de/d3c/system__info_8py.html">system_info.py</a></li>
-    <li class="footer">Generated on Fri Jun 9 2023 09:20:36 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Jun 13 2023 20:54:17 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['voicevox_2epy_0',['voicevox.py',['../de/d74/voicevox_8py.html',1,'']]]
+  ['textractor_2epy_0',['textractor.py',['../d6/d51/textractor_8py.html',1,'']]],
+  ['translate_2epy_1',['translate.py',['../d2/dde/translate_8py.html',1,'']]]
 ];

@@ -10,6 +10,7 @@ var dir_643e18308e1fb8943d3adb3f912126b6 =
     [ "kayopy.py", "da/db2/kayopy_8py.html", "da/db2/kayopy_8py" ],
     [ "login.py", "d4/d13/login_8py.html", "d4/d13/login_8py" ],
     [ "manga_translator.py", "d9/d71/manga__translator_8py.html", "d9/d71/manga__translator_8py" ],
+    [ "neko.py", "dc/d11/neko_8py.html", "dc/d11/neko_8py" ],
     [ "textractor.py", "d6/d51/textractor_8py.html", "d6/d51/textractor_8py" ],
     [ "voicevox.py", "de/d74/voicevox_8py.html", "de/d74/voicevox_8py" ],
     [ "writing.py", "db/d2a/writing_8py.html", "db/d2a/writing_8py" ]

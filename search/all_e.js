@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['on_5frm_5ferror_0',['on_rm_error',['../d3/dc0/namespaceapp__alternations.html#a14e5948489d716cccf71366983e95116',1,'app_alternations.on_rm_error()'],['../d9/d8d/namespacefile__operations.html#aaa0e67b24c1ac905e67d777aee2498d0',1,'file_operations.on_rm_error()']]]
+  ['neko_0',['neko',['../dd/d62/namespaceneko.html',1,'']]],
+  ['neko_2epy_1',['neko.py',['../dc/d11/neko_8py.html',1,'']]],
+  ['nekof_2',['nekof',['../dd/d62/namespaceneko.html#a80dd25a2b2bde4fb06913fb0706a388e',1,'neko']]],
+  ['nof_3',['nof',['../df/dd6/classcurses__builder_1_1cinput.html#abcaf1fc1ce8def381753c87d084e79b2',1,'curses_builder::cinput']]]
 ];

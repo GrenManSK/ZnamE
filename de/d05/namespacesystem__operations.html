@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.11.0-alpha+build.20230608.215215</span>
+   <div id="projectname">ZnamE<span id="projectnumber">&#160;v2.12.0-alpha+build.20230613.205052</span>
    </div>
   </td>
  </tr>
@@ -107,6 +107,10 @@ Functions</h2></td></tr>
 <tr class="separator:a898097efa1544745d54246979d588fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1c540b83755223d324045f0383ce68d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#ae1c540b83755223d324045f0383ce68d">getWindow</a> (args)</td></tr>
 <tr class="separator:ae1c540b83755223d324045f0383ce68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adecc8156e8e605fd58b37f25037d5bed"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#adecc8156e8e605fd58b37f25037d5bed">set_image</a> ()</td></tr>
+<tr class="separator:adecc8156e8e605fd58b37f25037d5bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abba81c23e3f2ab3e8d49a44d2553d53a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#abba81c23e3f2ab3e8d49a44d2553d53a">set_up</a> (args)</td></tr>
+<tr class="separator:abba81c23e3f2ab3e8d49a44d2553d53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3fb45e81ca75b65dfa7ad1c6819300c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#aa3fb45e81ca75b65dfa7ad1c6819300c">isUserAdmin</a> ()</td></tr>
 <tr class="separator:aa3fb45e81ca75b65dfa7ad1c6819300c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad91b2c3c346993d5f478e23670f61aeb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb">runAsAdmin</a> (cmdLine=None, wait=True)</td></tr>
@@ -127,6 +131,8 @@ Functions</h2></td></tr>
 <tr class="separator:a99b95316ff9feb1492b98309cfd7007e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad05f0ed45f166c853306d270bf195ab"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#aad05f0ed45f166c853306d270bf195ab">double_alt_tab</a> ()</td></tr>
 <tr class="separator:aad05f0ed45f166c853306d270bf195ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5250bbda183f2ba33981313924b4307"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d05/namespacesystem__operations.html#ae5250bbda183f2ba33981313924b4307">press_win</a> ()</td></tr>
+<tr class="separator:ae5250bbda183f2ba33981313924b4307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a168233482e1f64b3af4424c151d99ae6" name="a168233482e1f64b3af4424c151d99ae6"></a>
@@ -153,7 +159,7 @@ This is useful for closing windows in Windows.
 <div class="line"><span class="lineno">   38</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   39</span><span class="stringliteral">    The altF4 function simulates the pressing of the Alt+F4 key combination.</span></div>
 <div class="line"><span class="lineno">   40</span><span class="stringliteral">    This </span><span class="keywordflow">is</span> useful <span class="keywordflow">for</span> closing windows <span class="keywordflow">in</span> Windows.</div>
-<div class="line"><span class="lineno">   41</span>    </div>
+<div class="line"><span class="lineno">   41</span> </div>
 <div class="line"><span class="lineno">   42</span>    :<span class="keywordflow">return</span>: Nothing</div>
 <div class="line"><span class="lineno">   43</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   44</span><span class="stringliteral">    pg.keyDown(&quot;alt&quot;</span>)</div>
@@ -182,23 +188,23 @@ This is useful for closing windows in Windows.
 :return: 0 if the user is an admin, and returns 1 if the user is not an admin
 :doc-author: Trelent
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00202">202</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  202</span><span class="keyword">def </span>checkAdmin():</div>
-<div class="line"><span class="lineno">  203</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  204</span><span class="stringliteral">    The checkAdmin function checks </span><span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin. If <span class="keywordflow">not</span>, it will run the program <span class="keyword">as</span> an admin.</div>
-<div class="line"><span class="lineno">  205</span>    :<span class="keywordflow">return</span>: 0 <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin, <span class="keywordflow">and</span> returns 1 <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> <span class="keywordflow">not</span> an admin</div>
-<div class="line"><span class="lineno">  206</span>    :doc-author: Trelent</div>
-<div class="line"><span class="lineno">  207</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  208</span><span class="stringliteral">    rc = 0</span></div>
-<div class="line"><span class="lineno">  209</span><span class="stringliteral">    </span><span class="keywordflow">if</span> <span class="keywordflow">not</span> isUserAdmin():</div>
-<div class="line"><span class="lineno">  210</span>        print(<span class="stringliteral">&quot;You&#39;re not an admin.&quot;</span>, os.getpid(), <span class="stringliteral">&quot;params: &quot;</span>, sys.argv)</div>
-<div class="line"><span class="lineno">  211</span>        rc = runAsAdmin()</div>
-<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  213</span>        print(<span class="stringliteral">&quot;You are an admin!&quot;</span>, os.getpid(), <span class="stringliteral">&quot;params: &quot;</span>, sys.argv)</div>
-<div class="line"><span class="lineno">  214</span>        rc = 0</div>
-<div class="line"><span class="lineno">  215</span>    <span class="keywordflow">return</span> rc</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00244">244</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  244</span><span class="keyword">def </span>checkAdmin():</div>
+<div class="line"><span class="lineno">  245</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  246</span><span class="stringliteral">    The checkAdmin function checks </span><span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin. If <span class="keywordflow">not</span>, it will run the program <span class="keyword">as</span> an admin.</div>
+<div class="line"><span class="lineno">  247</span>    :<span class="keywordflow">return</span>: 0 <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> an admin, <span class="keywordflow">and</span> returns 1 <span class="keywordflow">if</span> the user <span class="keywordflow">is</span> <span class="keywordflow">not</span> an admin</div>
+<div class="line"><span class="lineno">  248</span>    :doc-author: Trelent</div>
+<div class="line"><span class="lineno">  249</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  250</span><span class="stringliteral">    rc = 0</span></div>
+<div class="line"><span class="lineno">  251</span><span class="stringliteral">    </span><span class="keywordflow">if</span> <span class="keywordflow">not</span> isUserAdmin():</div>
+<div class="line"><span class="lineno">  252</span>        print(<span class="stringliteral">&quot;You&#39;re not an admin.&quot;</span>, os.getpid(), <span class="stringliteral">&quot;params: &quot;</span>, sys.argv)</div>
+<div class="line"><span class="lineno">  253</span>        rc = runAsAdmin()</div>
+<div class="line"><span class="lineno">  254</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  255</span>        print(<span class="stringliteral">&quot;You are an admin!&quot;</span>, os.getpid(), <span class="stringliteral">&quot;params: &quot;</span>, sys.argv)</div>
+<div class="line"><span class="lineno">  256</span>        rc = 0</div>
+<div class="line"><span class="lineno">  257</span>    <span class="keywordflow">return</span> rc</div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span> </div>
 </div><!-- fragment --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -305,21 +311,23 @@ Then it presses the alt key again and tabs once more before releasing it.
 
 :return: None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00385">385</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  385</span><span class="keyword">def </span>double_alt_tab():</div>
-<div class="line"><span class="lineno">  386</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  387</span><span class="stringliteral">    The double_alt_tab function </span><span class="keywordflow">is</span> used to switch between windows.</div>
-<div class="line"><span class="lineno">  388</span>    It does this by pressing the alt key, then tab, then releasing the alt key.</div>
-<div class="line"><span class="lineno">  389</span>    Then it presses the alt key again <span class="keywordflow">and</span> tabs once more before releasing it.</div>
-<div class="line"><span class="lineno">  390</span>    </div>
-<div class="line"><span class="lineno">  391</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  392</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  393</span><span class="stringliteral">    pg.keyDown(&quot;alt&quot;</span>)</div>
-<div class="line"><span class="lineno">  394</span>    pg.press(<span class="stringliteral">&quot;tab&quot;</span>)</div>
-<div class="line"><span class="lineno">  395</span>    pg.keyUp(<span class="stringliteral">&quot;alt&quot;</span>)</div>
-<div class="line"><span class="lineno">  396</span>    pg.keyDown(<span class="stringliteral">&quot;alt&quot;</span>)</div>
-<div class="line"><span class="lineno">  397</span>    pg.press(<span class="stringliteral">&quot;tab&quot;</span>)</div>
-<div class="line"><span class="lineno">  398</span>    pg.keyUp(<span class="stringliteral">&quot;alt&quot;</span>)</div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00427">427</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  427</span><span class="keyword">def </span>double_alt_tab():</div>
+<div class="line"><span class="lineno">  428</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  429</span><span class="stringliteral">    The double_alt_tab function </span><span class="keywordflow">is</span> used to switch between windows.</div>
+<div class="line"><span class="lineno">  430</span>    It does this by pressing the alt key, then tab, then releasing the alt key.</div>
+<div class="line"><span class="lineno">  431</span>    Then it presses the alt key again <span class="keywordflow">and</span> tabs once more before releasing it.</div>
+<div class="line"><span class="lineno">  432</span> </div>
+<div class="line"><span class="lineno">  433</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  434</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  435</span><span class="stringliteral">    pg.keyDown(&quot;alt&quot;</span>)</div>
+<div class="line"><span class="lineno">  436</span>    pg.press(<span class="stringliteral">&quot;tab&quot;</span>)</div>
+<div class="line"><span class="lineno">  437</span>    pg.keyUp(<span class="stringliteral">&quot;alt&quot;</span>)</div>
+<div class="line"><span class="lineno">  438</span>    pg.keyDown(<span class="stringliteral">&quot;alt&quot;</span>)</div>
+<div class="line"><span class="lineno">  439</span>    pg.press(<span class="stringliteral">&quot;tab&quot;</span>)</div>
+<div class="line"><span class="lineno">  440</span>    pg.keyUp(<span class="stringliteral">&quot;alt&quot;</span>)</div>
+<div class="line"><span class="lineno">  441</span> </div>
+<div class="line"><span class="lineno">  442</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -349,7 +357,7 @@ It returns the number of items in that list.
 <div class="line"><span class="lineno">   22</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   23</span><span class="stringliteral">    The get_music_menu function takes a list of music files </span><span class="keyword">as</span> an argument <span class="keywordflow">and</span> prints out the menu <span class="keywordflow">for</span> the user to select <span class="keyword">from</span>.</div>
 <div class="line"><span class="lineno">   24</span>    It returns the number of items <span class="keywordflow">in</span> that list.</div>
-<div class="line"><span class="lineno">   25</span>    </div>
+<div class="line"><span class="lineno">   25</span> </div>
 <div class="line"><span class="lineno">   26</span>    :param musiclistnew: Display the music list</div>
 <div class="line"><span class="lineno">   27</span>    :<span class="keywordflow">return</span>: The number of songs <span class="keywordflow">in</span> the music list</div>
 <div class="line"><span class="lineno">   28</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
@@ -423,55 +431,55 @@ It returns the number of items in that list.
 :param length: Set the length of the window
 :return: The image that is displayed
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00218">218</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  218</span><span class="keyword">def </span>getImg(imgSrc: str, name: str, x=<span class="keywordtype">None</span>, y=<span class="keywordtype">None</span>, width=<span class="keywordtype">None</span>, length=<span class="keywordtype">None</span>) -&gt; <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  219</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  220</span><span class="stringliteral">    The getImg function displays an image </span><span class="keyword">from</span> the source. If x, y, width, <span class="keywordflow">and</span> length are specified, then the image will be displayed at those coordinates <span class="keyword">with</span> the specified width <span class="keywordflow">and</span> length. Otherwise, the image will be displayed at the default coordinates <span class="keywordflow">and</span> default width <span class="keywordflow">and</span> length.</div>
-<div class="line"><span class="lineno">  221</span> </div>
-<div class="line"><span class="lineno">  222</span>    :param imgSrc: str: Specify the source of the image</div>
-<div class="line"><span class="lineno">  223</span>    :param name: str: Name the window</div>
-<div class="line"><span class="lineno">  224</span>    :param x: Set the x coordinate of the window</div>
-<div class="line"><span class="lineno">  225</span>    :param y: Specify the y coordinate of the window</div>
-<div class="line"><span class="lineno">  226</span>    :param width: Set the width of the window</div>
-<div class="line"><span class="lineno">  227</span>    :param length: Set the length of the window</div>
-<div class="line"><span class="lineno">  228</span>    :<span class="keywordflow">return</span>: The image that <span class="keywordflow">is</span> displayed</div>
-<div class="line"><span class="lineno">  229</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  230</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  231</span>        screensize = os.getenv(<span class="stringliteral">&quot;SCREENSIZE&quot;</span>)[1:-1].split(<span class="stringliteral">&quot;, &quot;</span>)</div>
-<div class="line"><span class="lineno">  232</span>        screensize = [int(i) <span class="keywordflow">for</span> i <span class="keywordflow">in</span> screensize]</div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">except</span> TypeError:</div>
-<div class="line"><span class="lineno">  234</span>        screensize = get_screensize()[0]</div>
-<div class="line"><span class="lineno">  235</span>    path: str = imgSrc</div>
-<div class="line"><span class="lineno">  236</span>    <span class="keywordflow">for</span> file <span class="keywordflow">in</span> glob.glob(path):</div>
-<div class="line"><span class="lineno">  237</span>        <span class="keyword">global</span> dummy</div>
-<div class="line"><span class="lineno">  238</span>        dummy = cv2.imread(file)</div>
-<div class="line"><span class="lineno">  239</span>        cv2.imshow(name, dummy)</div>
-<div class="line"><span class="lineno">  240</span>        <span class="keywordflow">if</span> x <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> y <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> width <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> length <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  241</span>            appname: str = name</div>
-<div class="line"><span class="lineno">  242</span>            xpos: int = x</div>
-<div class="line"><span class="lineno">  243</span>            ypos: int = y</div>
-<div class="line"><span class="lineno">  244</span>            <span class="keywordflow">if</span> width <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  245</span>                width = int((screensize[0] / 10) * 9)</div>
-<div class="line"><span class="lineno">  246</span>            <span class="keywordflow">if</span> length <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  247</span>                length = int((screensize[1] / 10) * 9)</div>
-<div class="line"><span class="lineno">  248</span> </div>
-<div class="line"><span class="lineno">  249</span>            <span class="keyword">def </span>enumHandler(hwnd, lParam):</div>
-<div class="line"><span class="lineno">  250</span>                <span class="keywordflow">if</span> win32gui.IsWindowVisible(hwnd):</div>
-<div class="line"><span class="lineno">  251</span>                    <span class="keywordflow">if</span> appname <span class="keywordflow">in</span> win32gui.GetWindowText(hwnd):</div>
-<div class="line"><span class="lineno">  252</span>                        win32gui.MoveWindow(hwnd, xpos, ypos, width, length, <span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  253</span> </div>
-<div class="line"><span class="lineno">  254</span>            win32gui.EnumWindows(enumHandler, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno">  255</span>        k = cv2.waitKey(33)</div>
-<div class="line"><span class="lineno">  256</span>        cv2.setWindowProperty(name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)</div>
-<div class="line"><span class="lineno">  257</span>        <span class="keywordflow">if</span> k == 27:</div>
-<div class="line"><span class="lineno">  258</span>            <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">elif</span> k == -1:</div>
-<div class="line"><span class="lineno">  260</span>            <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">  261</span>        <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  262</span>            print(k)</div>
-<div class="line"><span class="lineno">  263</span>            cv2.destroyAllWindows()</div>
-<div class="line"><span class="lineno">  264</span> </div>
-<div class="line"><span class="lineno">  265</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00260">260</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  260</span><span class="keyword">def </span>getImg(imgSrc: str, name: str, x=<span class="keywordtype">None</span>, y=<span class="keywordtype">None</span>, width=<span class="keywordtype">None</span>, length=<span class="keywordtype">None</span>) -&gt; <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  261</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  262</span><span class="stringliteral">    The getImg function displays an image </span><span class="keyword">from</span> the source. If x, y, width, <span class="keywordflow">and</span> length are specified, then the image will be displayed at those coordinates <span class="keyword">with</span> the specified width <span class="keywordflow">and</span> length. Otherwise, the image will be displayed at the default coordinates <span class="keywordflow">and</span> default width <span class="keywordflow">and</span> length.</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>    :param imgSrc: str: Specify the source of the image</div>
+<div class="line"><span class="lineno">  265</span>    :param name: str: Name the window</div>
+<div class="line"><span class="lineno">  266</span>    :param x: Set the x coordinate of the window</div>
+<div class="line"><span class="lineno">  267</span>    :param y: Specify the y coordinate of the window</div>
+<div class="line"><span class="lineno">  268</span>    :param width: Set the width of the window</div>
+<div class="line"><span class="lineno">  269</span>    :param length: Set the length of the window</div>
+<div class="line"><span class="lineno">  270</span>    :<span class="keywordflow">return</span>: The image that <span class="keywordflow">is</span> displayed</div>
+<div class="line"><span class="lineno">  271</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  272</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  273</span>        screensize = os.getenv(<span class="stringliteral">&quot;SCREENSIZE&quot;</span>)[1:-1].split(<span class="stringliteral">&quot;, &quot;</span>)</div>
+<div class="line"><span class="lineno">  274</span>        screensize = [int(i) <span class="keywordflow">for</span> i <span class="keywordflow">in</span> screensize]</div>
+<div class="line"><span class="lineno">  275</span>    <span class="keywordflow">except</span> TypeError:</div>
+<div class="line"><span class="lineno">  276</span>        screensize = get_screensize()[0]</div>
+<div class="line"><span class="lineno">  277</span>    path: str = imgSrc</div>
+<div class="line"><span class="lineno">  278</span>    <span class="keywordflow">for</span> file <span class="keywordflow">in</span> glob.glob(path):</div>
+<div class="line"><span class="lineno">  279</span>        <span class="keyword">global</span> dummy</div>
+<div class="line"><span class="lineno">  280</span>        dummy = cv2.imread(file)</div>
+<div class="line"><span class="lineno">  281</span>        cv2.imshow(name, dummy)</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> x <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> y <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> width <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span> <span class="keywordflow">and</span> length <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  283</span>            appname: str = name</div>
+<div class="line"><span class="lineno">  284</span>            xpos: int = x</div>
+<div class="line"><span class="lineno">  285</span>            ypos: int = y</div>
+<div class="line"><span class="lineno">  286</span>            <span class="keywordflow">if</span> width <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  287</span>                width = int((screensize[0] / 10) * 9)</div>
+<div class="line"><span class="lineno">  288</span>            <span class="keywordflow">if</span> length <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  289</span>                length = int((screensize[1] / 10) * 9)</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>            <span class="keyword">def </span>enumHandler(hwnd, lParam):</div>
+<div class="line"><span class="lineno">  292</span>                <span class="keywordflow">if</span> win32gui.IsWindowVisible(hwnd):</div>
+<div class="line"><span class="lineno">  293</span>                    <span class="keywordflow">if</span> appname <span class="keywordflow">in</span> win32gui.GetWindowText(hwnd):</div>
+<div class="line"><span class="lineno">  294</span>                        win32gui.MoveWindow(hwnd, xpos, ypos, width, length, <span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  295</span> </div>
+<div class="line"><span class="lineno">  296</span>            win32gui.EnumWindows(enumHandler, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno">  297</span>        k = cv2.waitKey(33)</div>
+<div class="line"><span class="lineno">  298</span>        cv2.setWindowProperty(name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)</div>
+<div class="line"><span class="lineno">  299</span>        <span class="keywordflow">if</span> k == 27:</div>
+<div class="line"><span class="lineno">  300</span>            <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  301</span>        <span class="keywordflow">elif</span> k == -1:</div>
+<div class="line"><span class="lineno">  302</span>            <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">  303</span>        <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  304</span>            print(k)</div>
+<div class="line"><span class="lineno">  305</span>            cv2.destroyAllWindows()</div>
+<div class="line"><span class="lineno">  306</span> </div>
+<div class="line"><span class="lineno">  307</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -559,7 +567,7 @@ It also checks if the file 'banner.png' exists in the assets folder.
 <div class="line"><span class="lineno">   50</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   51</span><span class="stringliteral">    The gif_to_vid function converts a gif to an mp4 video file.</span></div>
 <div class="line"><span class="lineno">   52</span><span class="stringliteral">        This </span><span class="keywordflow">is</span> done because the discord.py library does <span class="keywordflow">not</span> support uploading gifs, only videos.</div>
-<div class="line"><span class="lineno">   53</span>    </div>
+<div class="line"><span class="lineno">   53</span> </div>
 <div class="line"><span class="lineno">   54</span>    :<span class="keywordflow">return</span>: Nothing</div>
 <div class="line"><span class="lineno">   55</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   56</span><span class="stringliteral">    clip = mp.VideoFileClip(&quot;assets/waifu.gif&quot;</span>)</div>
@@ -602,32 +610,32 @@ It also checks if the file 'banner.png' exists in the assets folder.
 :param media_player: Play the intro video
 :return: Nothing
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00320">320</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  320</span><span class="keyword">def </span>intro_video(args, media_player):</div>
-<div class="line"><span class="lineno">  321</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  322</span><span class="stringliteral">    The intro_video function </span><span class="keywordflow">is</span> used to play the intro video <span class="keywordflow">and</span> greeting audio.</div>
-<div class="line"><span class="lineno">  323</span>        It also maximizes the VLC window <span class="keywordflow">if</span> it<span class="stringliteral">&#39;s not already maximized.</span></div>
-<div class="line"><span class="lineno">  324</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  325</span><span class="stringliteral">    :param args: Pass the arguments </span><span class="keyword">from</span> the command line to this function</div>
-<div class="line"><span class="lineno">  326</span>    :param media_player: Play the intro video</div>
-<div class="line"><span class="lineno">  327</span>    :<span class="keywordflow">return</span>: Nothing</div>
-<div class="line"><span class="lineno">  328</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  329</span><span class="stringliteral">    </span><span class="keywordflow">if</span> args.restart <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  330</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  331</span>            sleep(0.1)</div>
-<div class="line"><span class="lineno">  332</span>            window = pygetwindow.getWindowsWithTitle(<span class="stringliteral">&quot;VLC (Direct3D11 output)&quot;</span>)[0]</div>
-<div class="line"><span class="lineno">  333</span>            window.activate()</div>
-<div class="line"><span class="lineno">  334</span>            window.maximize()</div>
-<div class="line"><span class="lineno">  335</span>        <span class="keywordflow">except</span> Exception:</div>
-<div class="line"><span class="lineno">  336</span>            <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">  337</span>        sleep(2.5)</div>
-<div class="line"><span class="lineno">  338</span>        mixer.init()</div>
-<div class="line"><span class="lineno">  339</span>        mixer.music.load(<span class="stringliteral">&quot;assets/greeting.mp3&quot;</span>)</div>
-<div class="line"><span class="lineno">  340</span>        mixer.music.play()</div>
-<div class="line"><span class="lineno">  341</span>        sleep(2.5)</div>
-<div class="line"><span class="lineno">  342</span>        media_player.stop()</div>
-<div class="line"><span class="lineno">  343</span> </div>
-<div class="line"><span class="lineno">  344</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00362">362</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  362</span><span class="keyword">def </span>intro_video(args, media_player):</div>
+<div class="line"><span class="lineno">  363</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  364</span><span class="stringliteral">    The intro_video function </span><span class="keywordflow">is</span> used to play the intro video <span class="keywordflow">and</span> greeting audio.</div>
+<div class="line"><span class="lineno">  365</span>        It also maximizes the VLC window <span class="keywordflow">if</span> it<span class="stringliteral">&#39;s not already maximized.</span></div>
+<div class="line"><span class="lineno">  366</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  367</span><span class="stringliteral">    :param args: Pass the arguments </span><span class="keyword">from</span> the command line to this function</div>
+<div class="line"><span class="lineno">  368</span>    :param media_player: Play the intro video</div>
+<div class="line"><span class="lineno">  369</span>    :<span class="keywordflow">return</span>: Nothing</div>
+<div class="line"><span class="lineno">  370</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  371</span><span class="stringliteral">    </span><span class="keywordflow">if</span> args.restart <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  372</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  373</span>            sleep(0.1)</div>
+<div class="line"><span class="lineno">  374</span>            window = pygetwindow.getWindowsWithTitle(<span class="stringliteral">&quot;VLC (Direct3D11 output)&quot;</span>)[0]</div>
+<div class="line"><span class="lineno">  375</span>            window.activate()</div>
+<div class="line"><span class="lineno">  376</span>            window.maximize()</div>
+<div class="line"><span class="lineno">  377</span>        <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><span class="lineno">  378</span>            <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">  379</span>        sleep(2.5)</div>
+<div class="line"><span class="lineno">  380</span>        mixer.init()</div>
+<div class="line"><span class="lineno">  381</span>        mixer.music.load(<span class="stringliteral">&quot;assets/greeting.mp3&quot;</span>)</div>
+<div class="line"><span class="lineno">  382</span>        mixer.music.play()</div>
+<div class="line"><span class="lineno">  383</span>        sleep(2.5)</div>
+<div class="line"><span class="lineno">  384</span>        media_player.stop()</div>
+<div class="line"><span class="lineno">  385</span> </div>
+<div class="line"><span class="lineno">  386</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -649,32 +657,32 @@ It also checks if the file 'banner.png' exists in the assets folder.
 This is for Windows only.
 :return: A boolean value
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00132">132</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span><span class="keyword">def </span>isUserAdmin():</div>
-<div class="line"><span class="lineno">  133</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  134</span><span class="stringliteral">    The isUserAdmin function checks to see </span><span class="keywordflow">if</span> the user running this script <span class="keywordflow">is</span> an admin.</div>
-<div class="line"><span class="lineno">  135</span>    This <span class="keywordflow">is</span> <span class="keywordflow">for</span> Windows only.</div>
-<div class="line"><span class="lineno">  136</span>    :<span class="keywordflow">return</span>: A boolean value</div>
-<div class="line"><span class="lineno">  137</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  138</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.name == <span class="stringliteral">&quot;nt&quot;</span>:</div>
-<div class="line"><span class="lineno">  139</span>        <span class="keyword">import</span> ctypes</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>        <span class="comment"># WARNING: requires Windows XP SP2 or higher!</span></div>
-<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  143</span>            <span class="keywordflow">return</span> ctypes.windll.shell32.IsUserAnAdmin()</div>
-<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">except</span>:</div>
-<div class="line"><span class="lineno">  145</span>            traceback.print_exc()</div>
-<div class="line"><span class="lineno">  146</span>            print(<span class="stringliteral">&quot;Admin check failed, assuming not an admin.&quot;</span>)</div>
-<div class="line"><span class="lineno">  147</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">elif</span> os.name == <span class="stringliteral">&quot;posix&quot;</span>:</div>
-<div class="line"><span class="lineno">  149</span>        <span class="comment"># Check for root on Posix</span></div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">return</span> os.getuid() == 0</div>
-<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  152</span>        <span class="keywordflow">raise</span> RuntimeError(</div>
-<div class="line"><span class="lineno">  153</span>            <span class="stringliteral">&quot;Unsupported operating system for this module: %s&quot;</span> % (os.name,)</div>
-<div class="line"><span class="lineno">  154</span>        )</div>
-<div class="line"><span class="lineno">  155</span> </div>
-<div class="line"><span class="lineno">  156</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00174">174</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  174</span><span class="keyword">def </span>isUserAdmin():</div>
+<div class="line"><span class="lineno">  175</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  176</span><span class="stringliteral">    The isUserAdmin function checks to see </span><span class="keywordflow">if</span> the user running this script <span class="keywordflow">is</span> an admin.</div>
+<div class="line"><span class="lineno">  177</span>    This <span class="keywordflow">is</span> <span class="keywordflow">for</span> Windows only.</div>
+<div class="line"><span class="lineno">  178</span>    :<span class="keywordflow">return</span>: A boolean value</div>
+<div class="line"><span class="lineno">  179</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  180</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.name == <span class="stringliteral">&quot;nt&quot;</span>:</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keyword">import</span> ctypes</div>
+<div class="line"><span class="lineno">  182</span> </div>
+<div class="line"><span class="lineno">  183</span>        <span class="comment"># WARNING: requires Windows XP SP2 or higher!</span></div>
+<div class="line"><span class="lineno">  184</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  185</span>            <span class="keywordflow">return</span> ctypes.windll.shell32.IsUserAnAdmin()</div>
+<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">except</span>:</div>
+<div class="line"><span class="lineno">  187</span>            traceback.print_exc()</div>
+<div class="line"><span class="lineno">  188</span>            print(<span class="stringliteral">&quot;Admin check failed, assuming not an admin.&quot;</span>)</div>
+<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  190</span>    <span class="keywordflow">elif</span> os.name == <span class="stringliteral">&quot;posix&quot;</span>:</div>
+<div class="line"><span class="lineno">  191</span>        <span class="comment"># Check for root on Posix</span></div>
+<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">return</span> os.getuid() == 0</div>
+<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">raise</span> RuntimeError(</div>
+<div class="line"><span class="lineno">  195</span>            <span class="stringliteral">&quot;Unsupported operating system for this module: %s&quot;</span> % (os.name,)</div>
+<div class="line"><span class="lineno">  196</span>        )</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span> </div>
 </div><!-- fragment --><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -741,43 +749,43 @@ The move function takes four arguments:
 :param length: Set the height of the window
 :return: None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00284">284</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  284</span><span class="keyword">def </span>move(window: str, x: int, y: int, width, length) -&gt; <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  285</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  286</span><span class="stringliteral">    The move function moves the specified window to a specified location.</span></div>
-<div class="line"><span class="lineno">  287</span><span class="stringliteral">    The move function takes four arguments:</span></div>
-<div class="line"><span class="lineno">  288</span><span class="stringliteral">        1) The name of the window </span><span class="keyword">as</span> a string. This <span class="keywordflow">is</span> case sensitive <span class="keywordflow">and</span> should be enclosed <span class="keywordflow">in</span> quotation marks <span class="keywordflow">if</span> it contains spaces <span class="keywordflow">or</span> special characters (e.g., &amp;quot;Microsoft Word&amp;quot;).</div>
-<div class="line"><span class="lineno">  289</span>        2) The x-coordinate of the desired location on your screen, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the left edge of your screen to where you want your window located (e.g., 100).</div>
-<div class="line"><span class="lineno">  290</span>        3) The y-coordinate of the desired location on your screen, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the top edge of your screen</div>
-<div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>    :param window: str: Specify the name of the window</div>
-<div class="line"><span class="lineno">  293</span>    :param x: int: Set the x position of the window, y <span class="keywordflow">is</span> used to set the y position</div>
-<div class="line"><span class="lineno">  294</span>    :param y: int: Set the y position of the window, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the top edge of your screen</div>
-<div class="line"><span class="lineno">  295</span>    :param width: Set the width of the window</div>
-<div class="line"><span class="lineno">  296</span>    :param length: Set the height of the window</div>
-<div class="line"><span class="lineno">  297</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  298</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  299</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  300</span>        screensize = os.getenv(<span class="stringliteral">&quot;SCREENSIZE&quot;</span>)[1:-1].split(<span class="stringliteral">&quot;, &quot;</span>)</div>
-<div class="line"><span class="lineno">  301</span>        screensize = [int(i) <span class="keywordflow">for</span> i <span class="keywordflow">in</span> screensize]</div>
-<div class="line"><span class="lineno">  302</span>    <span class="keywordflow">except</span> TypeError:</div>
-<div class="line"><span class="lineno">  303</span>        screensize = get_screensize()[0]</div>
-<div class="line"><span class="lineno">  304</span>    appname: str = window</div>
-<div class="line"><span class="lineno">  305</span>    xpos: int = x</div>
-<div class="line"><span class="lineno">  306</span>    ypos: int = y</div>
-<div class="line"><span class="lineno">  307</span>    <span class="keywordflow">if</span> width <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  308</span>        width: int = int((screensize[0] / 10) * 9)</div>
-<div class="line"><span class="lineno">  309</span>    <span class="keywordflow">if</span> length <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  310</span>        length: int = int((screensize[1] / 10) * 9)</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span>    <span class="keyword">def </span>enumHandler(hwnd, lParam):</div>
-<div class="line"><span class="lineno">  313</span>        <span class="keywordflow">if</span> win32gui.IsWindowVisible(hwnd):</div>
-<div class="line"><span class="lineno">  314</span>            <span class="keywordflow">if</span> appname <span class="keywordflow">in</span> win32gui.GetWindowText(hwnd):</div>
-<div class="line"><span class="lineno">  315</span>                win32gui.MoveWindow(hwnd, xpos, ypos, width, length, <span class="keyword">True</span>)</div>
-<div class="line"><span class="lineno">  316</span> </div>
-<div class="line"><span class="lineno">  317</span>    win32gui.EnumWindows(enumHandler, <span class="keywordtype">None</span>)</div>
-<div class="line"><span class="lineno">  318</span> </div>
-<div class="line"><span class="lineno">  319</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00326">326</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  326</span><span class="keyword">def </span>move(window: str, x: int, y: int, width, length) -&gt; <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  327</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  328</span><span class="stringliteral">    The move function moves the specified window to a specified location.</span></div>
+<div class="line"><span class="lineno">  329</span><span class="stringliteral">    The move function takes four arguments:</span></div>
+<div class="line"><span class="lineno">  330</span><span class="stringliteral">        1) The name of the window </span><span class="keyword">as</span> a string. This <span class="keywordflow">is</span> case sensitive <span class="keywordflow">and</span> should be enclosed <span class="keywordflow">in</span> quotation marks <span class="keywordflow">if</span> it contains spaces <span class="keywordflow">or</span> special characters (e.g., &amp;quot;Microsoft Word&amp;quot;).</div>
+<div class="line"><span class="lineno">  331</span>        2) The x-coordinate of the desired location on your screen, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the left edge of your screen to where you want your window located (e.g., 100).</div>
+<div class="line"><span class="lineno">  332</span>        3) The y-coordinate of the desired location on your screen, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the top edge of your screen</div>
+<div class="line"><span class="lineno">  333</span> </div>
+<div class="line"><span class="lineno">  334</span>    :param window: str: Specify the name of the window</div>
+<div class="line"><span class="lineno">  335</span>    :param x: int: Set the x position of the window, y <span class="keywordflow">is</span> used to set the y position</div>
+<div class="line"><span class="lineno">  336</span>    :param y: int: Set the y position of the window, measured <span class="keywordflow">in</span> pixels <span class="keyword">from</span> the top edge of your screen</div>
+<div class="line"><span class="lineno">  337</span>    :param width: Set the width of the window</div>
+<div class="line"><span class="lineno">  338</span>    :param length: Set the height of the window</div>
+<div class="line"><span class="lineno">  339</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  340</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  341</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  342</span>        screensize = os.getenv(<span class="stringliteral">&quot;SCREENSIZE&quot;</span>)[1:-1].split(<span class="stringliteral">&quot;, &quot;</span>)</div>
+<div class="line"><span class="lineno">  343</span>        screensize = [int(i) <span class="keywordflow">for</span> i <span class="keywordflow">in</span> screensize]</div>
+<div class="line"><span class="lineno">  344</span>    <span class="keywordflow">except</span> TypeError:</div>
+<div class="line"><span class="lineno">  345</span>        screensize = get_screensize()[0]</div>
+<div class="line"><span class="lineno">  346</span>    appname: str = window</div>
+<div class="line"><span class="lineno">  347</span>    xpos: int = x</div>
+<div class="line"><span class="lineno">  348</span>    ypos: int = y</div>
+<div class="line"><span class="lineno">  349</span>    <span class="keywordflow">if</span> width <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  350</span>        width: int = int((screensize[0] / 10) * 9)</div>
+<div class="line"><span class="lineno">  351</span>    <span class="keywordflow">if</span> length <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  352</span>        length: int = int((screensize[1] / 10) * 9)</div>
+<div class="line"><span class="lineno">  353</span> </div>
+<div class="line"><span class="lineno">  354</span>    <span class="keyword">def </span>enumHandler(hwnd, lParam):</div>
+<div class="line"><span class="lineno">  355</span>        <span class="keywordflow">if</span> win32gui.IsWindowVisible(hwnd):</div>
+<div class="line"><span class="lineno">  356</span>            <span class="keywordflow">if</span> appname <span class="keywordflow">in</span> win32gui.GetWindowText(hwnd):</div>
+<div class="line"><span class="lineno">  357</span>                win32gui.MoveWindow(hwnd, xpos, ypos, width, length, <span class="keyword">True</span>)</div>
+<div class="line"><span class="lineno">  358</span> </div>
+<div class="line"><span class="lineno">  359</span>    win32gui.EnumWindows(enumHandler, <span class="keywordtype">None</span>)</div>
+<div class="line"><span class="lineno">  360</span> </div>
+<div class="line"><span class="lineno">  361</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -803,26 +811,64 @@ The function then iterates through the dictionary, performing each operation on 
 :param str]: Define the type of data that will be passed into the function
 :return: A dictionary with the keys being operations and the values being keys
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00266">266</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  266</span><span class="keyword">def </span>pg_comb(operations: dict[str, str]):</div>
-<div class="line"><span class="lineno">  267</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  268</span><span class="stringliteral">    The pg_comb function takes a dictionary of operations </span><span class="keywordflow">and</span> keys <span class="keyword">as</span> an argument.</div>
-<div class="line"><span class="lineno">  269</span>    The function then iterates through the dictionary, performing each operation on the corresponding key.</div>
-<div class="line"><span class="lineno">  270</span> </div>
-<div class="line"><span class="lineno">  271</span>    :param operations: dict[str: Define the operations that can be used <span class="keywordflow">in</span> this function</div>
-<div class="line"><span class="lineno">  272</span>    :param str]: Define the type of data that will be passed into the function</div>
-<div class="line"><span class="lineno">  273</span>    :<span class="keywordflow">return</span>: A dictionary <span class="keyword">with</span> the keys being operations <span class="keywordflow">and</span> the values being keys</div>
-<div class="line"><span class="lineno">  274</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  275</span><span class="stringliteral">    </span><span class="keywordflow">for</span> oper, key <span class="keywordflow">in</span> operations.items():</div>
-<div class="line"><span class="lineno">  276</span>        <span class="keywordflow">if</span> oper == <span class="stringliteral">&quot;p&quot;</span>:</div>
-<div class="line"><span class="lineno">  277</span>            pg.press(key)</div>
-<div class="line"><span class="lineno">  278</span>        <span class="keywordflow">elif</span> oper == <span class="stringliteral">&quot;ku&quot;</span>:</div>
-<div class="line"><span class="lineno">  279</span>            pg.keyUp(key)</div>
-<div class="line"><span class="lineno">  280</span>        <span class="keywordflow">elif</span> oper == <span class="stringliteral">&quot;kd&quot;</span>:</div>
-<div class="line"><span class="lineno">  281</span>            pg.keyDown(key)</div>
-<div class="line"><span class="lineno">  282</span> </div>
-<div class="line"><span class="lineno">  283</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00308">308</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  308</span><span class="keyword">def </span>pg_comb(operations: dict[str, str]):</div>
+<div class="line"><span class="lineno">  309</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  310</span><span class="stringliteral">    The pg_comb function takes a dictionary of operations </span><span class="keywordflow">and</span> keys <span class="keyword">as</span> an argument.</div>
+<div class="line"><span class="lineno">  311</span>    The function then iterates through the dictionary, performing each operation on the corresponding key.</div>
+<div class="line"><span class="lineno">  312</span> </div>
+<div class="line"><span class="lineno">  313</span>    :param operations: dict[str: Define the operations that can be used <span class="keywordflow">in</span> this function</div>
+<div class="line"><span class="lineno">  314</span>    :param str]: Define the type of data that will be passed into the function</div>
+<div class="line"><span class="lineno">  315</span>    :<span class="keywordflow">return</span>: A dictionary <span class="keyword">with</span> the keys being operations <span class="keywordflow">and</span> the values being keys</div>
+<div class="line"><span class="lineno">  316</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  317</span><span class="stringliteral">    </span><span class="keywordflow">for</span> oper, key <span class="keywordflow">in</span> operations.items():</div>
+<div class="line"><span class="lineno">  318</span>        <span class="keywordflow">if</span> oper == <span class="stringliteral">&quot;p&quot;</span>:</div>
+<div class="line"><span class="lineno">  319</span>            pg.press(key)</div>
+<div class="line"><span class="lineno">  320</span>        <span class="keywordflow">elif</span> oper == <span class="stringliteral">&quot;ku&quot;</span>:</div>
+<div class="line"><span class="lineno">  321</span>            pg.keyUp(key)</div>
+<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">elif</span> oper == <span class="stringliteral">&quot;kd&quot;</span>:</div>
+<div class="line"><span class="lineno">  323</span>            pg.keyDown(key)</div>
+<div class="line"><span class="lineno">  324</span> </div>
+<div class="line"><span class="lineno">  325</span> </div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ae5250bbda183f2ba33981313924b4307" name="ae5250bbda183f2ba33981313924b4307"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5250bbda183f2ba33981313924b4307">&#9670;&#160;</a></span>press_win()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def system_operations.press_win </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">The press_win function presses the Windows key twice.
+
+:return: Nothing
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00443">443</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  443</span><span class="keyword">def </span>press_win():</div>
+<div class="line"><span class="lineno">  444</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  445</span><span class="stringliteral">    The press_win function presses the Windows key twice.</span></div>
+<div class="line"><span class="lineno">  446</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  447</span><span class="stringliteral">    :</span><span class="keywordflow">return</span>: Nothing</div>
+<div class="line"><span class="lineno">  448</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  449</span><span class="stringliteral">    pg.press(&quot;win&quot;</span>)</div>
+<div class="line"><span class="lineno">  450</span>    sleep(0.25)</div>
+<div class="line"><span class="lineno">  451</span>    pg.press(<span class="stringliteral">&quot;win&quot;</span>)</div>
+</div><!-- fragment --><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../de/d05/namespacesystem__operations_ae5250bbda183f2ba33981313924b4307_icgraph.png" border="0" usemap="#ade/d05/namespacesystem__operations_ae5250bbda183f2ba33981313924b4307_icgraph" alt=""/></div>
+</div>
+
 </div>
 </div>
 <a id="ad91b2c3c346993d5f478e23670f61aeb" name="ad91b2c3c346993d5f478e23670f61aeb"></a>
@@ -856,58 +902,164 @@ This function will attempt to do the following:
 :param wait: Determine whether the function should wait for the process to finish or not
 :return: The process handle of the elevated process
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00157">157</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  157</span><span class="keyword">def </span>runAsAdmin(cmdLine=None, wait=True):</div>
-<div class="line"><span class="lineno">  158</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  159</span><span class="stringliteral">    The runAsAdmin function </span><span class="keywordflow">is</span> a simple function that will run your python script <span class="keyword">as</span> the Administrator.</div>
-<div class="line"><span class="lineno">  160</span>    This function will attempt to do the following:</div>
-<div class="line"><span class="lineno">  161</span>    :param cmdLine: Pass arguments to the executable</div>
-<div class="line"><span class="lineno">  162</span>    :param wait: Determine whether the function should wait <span class="keywordflow">for</span> the process to finish <span class="keywordflow">or</span> <span class="keywordflow">not</span></div>
-<div class="line"><span class="lineno">  163</span>    :<span class="keywordflow">return</span>: The process handle of the elevated process</div>
-<div class="line"><span class="lineno">  164</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  165</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.name != <span class="stringliteral">&quot;nt&quot;</span>:</div>
-<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">raise</span> RuntimeError(<span class="stringliteral">&quot;This function is only implemented on Windows.&quot;</span>)</div>
-<div class="line"><span class="lineno">  167</span> </div>
-<div class="line"><span class="lineno">  168</span>    <span class="keyword">import</span> win32api</div>
-<div class="line"><span class="lineno">  169</span>    <span class="keyword">import</span> win32con</div>
-<div class="line"><span class="lineno">  170</span>    <span class="keyword">import</span> win32event</div>
-<div class="line"><span class="lineno">  171</span>    <span class="keyword">import</span> win32process</div>
-<div class="line"><span class="lineno">  172</span>    <span class="keyword">from</span> win32com.shell.shell <span class="keyword">import</span> ShellExecuteEx  <span class="comment"># type: ignore</span></div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">from</span> win32com.shell <span class="keyword">import</span> shellcon  <span class="comment"># type: ignore</span></div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    python_exe = sys.executable</div>
-<div class="line"><span class="lineno">  176</span> </div>
-<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">if</span> cmdLine <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  178</span>        cmdLine = [python_exe] + sys.argv</div>
-<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">elif</span> type(cmdLine) <span class="keywordflow">not</span> <span class="keywordflow">in</span> (ctypes.TupleType, ctypes.ListType):</div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&quot;cmdLine is not a sequence.&quot;</span>)</div>
-<div class="line"><span class="lineno">  181</span>    cmd = <span class="stringliteral">&#39;&quot;%s&quot;&#39;</span> % (cmdLine[0],)</div>
-<div class="line"><span class="lineno">  182</span>    params = <span class="stringliteral">&quot; &quot;</span>.join([<span class="stringliteral">&#39;&quot;%s&quot;&#39;</span> % (x,) <span class="keywordflow">for</span> x <span class="keywordflow">in</span> cmdLine[1:]])</div>
-<div class="line"><span class="lineno">  183</span>    cmdDir = <span class="stringliteral">&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  184</span>    showCmd = win32con.SW_SHOWNORMAL</div>
-<div class="line"><span class="lineno">  185</span>    lpVerb = <span class="stringliteral">&quot;runas&quot;</span></div>
-<div class="line"><span class="lineno">  186</span>    procInfo = ShellExecuteEx(</div>
-<div class="line"><span class="lineno">  187</span>        nShow=showCmd,</div>
-<div class="line"><span class="lineno">  188</span>        fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,</div>
-<div class="line"><span class="lineno">  189</span>        lpVerb=lpVerb,</div>
-<div class="line"><span class="lineno">  190</span>        lpFile=cmd,</div>
-<div class="line"><span class="lineno">  191</span>        lpParameters=params,</div>
-<div class="line"><span class="lineno">  192</span>    )</div>
-<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">if</span> wait:</div>
-<div class="line"><span class="lineno">  194</span>        procHandle = procInfo[<span class="stringliteral">&quot;hProcess&quot;</span>]</div>
-<div class="line"><span class="lineno">  195</span>        obj = win32event.WaitForSingleObject(procHandle, win32event.INFINITE)</div>
-<div class="line"><span class="lineno">  196</span>        rc = win32process.GetExitCodeProcess(procHandle)</div>
-<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">  198</span>        rc = <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">  199</span>    <span class="keywordflow">return</span> rc</div>
-<div class="line"><span class="lineno">  200</span> </div>
-<div class="line"><span class="lineno">  201</span> </div>
-</div><!-- fragment --><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00199">199</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  199</span><span class="keyword">def </span>runAsAdmin(cmdLine=None, wait=True):</div>
+<div class="line"><span class="lineno">  200</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  201</span><span class="stringliteral">    The runAsAdmin function </span><span class="keywordflow">is</span> a simple function that will run your python script <span class="keyword">as</span> the Administrator.</div>
+<div class="line"><span class="lineno">  202</span>    This function will attempt to do the following:</div>
+<div class="line"><span class="lineno">  203</span>    :param cmdLine: Pass arguments to the executable</div>
+<div class="line"><span class="lineno">  204</span>    :param wait: Determine whether the function should wait <span class="keywordflow">for</span> the process to finish <span class="keywordflow">or</span> <span class="keywordflow">not</span></div>
+<div class="line"><span class="lineno">  205</span>    :<span class="keywordflow">return</span>: The process handle of the elevated process</div>
+<div class="line"><span class="lineno">  206</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  207</span><span class="stringliteral">    </span><span class="keywordflow">if</span> os.name != <span class="stringliteral">&quot;nt&quot;</span>:</div>
+<div class="line"><span class="lineno">  208</span>        <span class="keywordflow">raise</span> RuntimeError(<span class="stringliteral">&quot;This function is only implemented on Windows.&quot;</span>)</div>
+<div class="line"><span class="lineno">  209</span> </div>
+<div class="line"><span class="lineno">  210</span>    <span class="keyword">import</span> win32api</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keyword">import</span> win32con</div>
+<div class="line"><span class="lineno">  212</span>    <span class="keyword">import</span> win32event</div>
+<div class="line"><span class="lineno">  213</span>    <span class="keyword">import</span> win32process</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keyword">from</span> win32com.shell.shell <span class="keyword">import</span> ShellExecuteEx  <span class="comment"># type: ignore</span></div>
+<div class="line"><span class="lineno">  215</span>    <span class="keyword">from</span> win32com.shell <span class="keyword">import</span> shellcon  <span class="comment"># type: ignore</span></div>
+<div class="line"><span class="lineno">  216</span> </div>
+<div class="line"><span class="lineno">  217</span>    python_exe = sys.executable</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>    <span class="keywordflow">if</span> cmdLine <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  220</span>        cmdLine = [python_exe] + sys.argv</div>
+<div class="line"><span class="lineno">  221</span>    <span class="keywordflow">elif</span> type(cmdLine) <span class="keywordflow">not</span> <span class="keywordflow">in</span> (ctypes.TupleType, ctypes.ListType):</div>
+<div class="line"><span class="lineno">  222</span>        <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&quot;cmdLine is not a sequence.&quot;</span>)</div>
+<div class="line"><span class="lineno">  223</span>    cmd = <span class="stringliteral">&#39;&quot;%s&quot;&#39;</span> % (cmdLine[0],)</div>
+<div class="line"><span class="lineno">  224</span>    params = <span class="stringliteral">&quot; &quot;</span>.join([<span class="stringliteral">&#39;&quot;%s&quot;&#39;</span> % (x,) <span class="keywordflow">for</span> x <span class="keywordflow">in</span> cmdLine[1:]])</div>
+<div class="line"><span class="lineno">  225</span>    cmdDir = <span class="stringliteral">&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  226</span>    showCmd = win32con.SW_SHOWNORMAL</div>
+<div class="line"><span class="lineno">  227</span>    lpVerb = <span class="stringliteral">&quot;runas&quot;</span></div>
+<div class="line"><span class="lineno">  228</span>    procInfo = ShellExecuteEx(</div>
+<div class="line"><span class="lineno">  229</span>        nShow=showCmd,</div>
+<div class="line"><span class="lineno">  230</span>        fMask=shellcon.SEE_MASK_NOCLOSEPROCESS,</div>
+<div class="line"><span class="lineno">  231</span>        lpVerb=lpVerb,</div>
+<div class="line"><span class="lineno">  232</span>        lpFile=cmd,</div>
+<div class="line"><span class="lineno">  233</span>        lpParameters=params,</div>
+<div class="line"><span class="lineno">  234</span>    )</div>
+<div class="line"><span class="lineno">  235</span>    <span class="keywordflow">if</span> wait:</div>
+<div class="line"><span class="lineno">  236</span>        procHandle = procInfo[<span class="stringliteral">&quot;hProcess&quot;</span>]</div>
+<div class="line"><span class="lineno">  237</span>        obj = win32event.WaitForSingleObject(procHandle, win32event.INFINITE)</div>
+<div class="line"><span class="lineno">  238</span>        rc = win32process.GetExitCodeProcess(procHandle)</div>
+<div class="line"><span class="lineno">  239</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">  240</span>        rc = <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">  241</span>    <span class="keywordflow">return</span> rc</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span> </div>
+</div><!-- fragment --><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../de/d05/namespacesystem__operations_ad91b2c3c346993d5f478e23670f61aeb_icgraph.png" border="0" usemap="#ade/d05/namespacesystem__operations_ad91b2c3c346993d5f478e23670f61aeb_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="adecc8156e8e605fd58b37f25037d5bed" name="adecc8156e8e605fd58b37f25037d5bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adecc8156e8e605fd58b37f25037d5bed">&#9670;&#160;</a></span>set_image()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def system_operations.set_image </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">The set_image function is used to set the image of the banner.
+    The function takes no arguments and returns nothing.
+
+:return: A tuple with the image and its size
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00132">132</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span><span class="keyword">def </span>set_image():</div>
+<div class="line"><span class="lineno">  133</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  134</span><span class="stringliteral">    The set_image function </span><span class="keywordflow">is</span> used to set the image of the banner.</div>
+<div class="line"><span class="lineno">  135</span>        The function takes no arguments <span class="keywordflow">and</span> returns nothing.</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    :<span class="keywordflow">return</span>: A tuple <span class="keyword">with</span> the image <span class="keywordflow">and</span> its size</div>
+<div class="line"><span class="lineno">  138</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  139</span><span class="stringliteral">    screensize = get_screensize()[0]</span></div>
+<div class="line"><span class="lineno">  140</span><span class="stringliteral">    getImg(</span></div>
+<div class="line"><span class="lineno">  141</span><span class="stringliteral">        &quot;assets/banner.png&quot;</span>,</div>
+<div class="line"><span class="lineno">  142</span>        <span class="stringliteral">&quot;banner&quot;</span>,</div>
+<div class="line"><span class="lineno">  143</span>        0,</div>
+<div class="line"><span class="lineno">  144</span>        0,</div>
+<div class="line"><span class="lineno">  145</span>        screensize[0],</div>
+<div class="line"><span class="lineno">  146</span>        int((round((322 / 1736) * screensize[0], 0))),</div>
+<div class="line"><span class="lineno">  147</span>    )</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span> </div>
+</div><!-- fragment --><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../de/d05/namespacesystem__operations_adecc8156e8e605fd58b37f25037d5bed_icgraph.png" border="0" usemap="#ade/d05/namespacesystem__operations_adecc8156e8e605fd58b37f25037d5bed_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="abba81c23e3f2ab3e8d49a44d2553d53a" name="abba81c23e3f2ab3e8d49a44d2553d53a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abba81c23e3f2ab3e8d49a44d2553d53a">&#9670;&#160;</a></span>set_up()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def system_operations.set_up </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">The set_up function is used to set up the environment for the program.
+It sets up a screensize variable, which is used in other functions. It also
+sets an image as wallpaper and moves it to the right place on screen, so that
+the user can see it while using this program.
+
+:param args: Pass the arguments from the command line to this function
+:return: The screensize and the image of the screen
+</pre> 
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00150">150</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  150</span><span class="keyword">def </span>set_up(args):</div>
+<div class="line"><span class="lineno">  151</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  152</span><span class="stringliteral">    The set_up function </span><span class="keywordflow">is</span> used to set up the environment <span class="keywordflow">for</span> the program.</div>
+<div class="line"><span class="lineno">  153</span>    It sets up a screensize variable, which <span class="keywordflow">is</span> used <span class="keywordflow">in</span> other functions. It also</div>
+<div class="line"><span class="lineno">  154</span>    sets an image <span class="keyword">as</span> wallpaper <span class="keywordflow">and</span> moves it to the right place on screen, so that</div>
+<div class="line"><span class="lineno">  155</span>    the user can see it <span class="keywordflow">while</span> using this program.</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>    :param args: Pass the arguments <span class="keyword">from</span> the command line to this function</div>
+<div class="line"><span class="lineno">  158</span>    :<span class="keywordflow">return</span>: The screensize <span class="keywordflow">and</span> the image of the screen</div>
+<div class="line"><span class="lineno">  159</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  160</span><span class="stringliteral">    screensize = get_screensize()[0]</span></div>
+<div class="line"><span class="lineno">  161</span><span class="stringliteral">    set_image()</span></div>
+<div class="line"><span class="lineno">  162</span><span class="stringliteral">    move(</span></div>
+<div class="line"><span class="lineno">  163</span><span class="stringliteral">        &quot;ZnámE&quot;</span>,</div>
+<div class="line"><span class="lineno">  164</span>        0,</div>
+<div class="line"><span class="lineno">  165</span>        int((round((322 / 1736) * screensize[0], 0)) - 35),</div>
+<div class="line"><span class="lineno">  166</span>        screensize[0],</div>
+<div class="line"><span class="lineno">  167</span>        screensize[1] - int((round((322 / 1736) * screensize[0], 0))),</div>
+<div class="line"><span class="lineno">  168</span>    )</div>
+<div class="line"><span class="lineno">  169</span>    show_cmd(args)</div>
+<div class="line"><span class="lineno">  170</span>    press_win()</div>
+<div class="line"><span class="lineno">  171</span>    os.system(<span class="stringliteral">&quot;cls&quot;</span>)</div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span> </div>
+</div><!-- fragment --><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="../../de/d05/namespacesystem__operations_abba81c23e3f2ab3e8d49a44d2553d53a_cgraph.png" border="0" usemap="#ade/d05/namespacesystem__operations_abba81c23e3f2ab3e8d49a44d2553d53a_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -933,27 +1085,27 @@ This function will attempt to do the following:
 
 :return: The window object
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00345">345</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  345</span><span class="keyword">def </span>show_cmd(args):</div>
-<div class="line"><span class="lineno">  346</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  347</span><span class="stringliteral">    The show_cmd function </span><span class="keywordflow">is</span> used to activate the window <span class="keyword">with</span> the title <span class="stringliteral">&#39;Známé&#39;</span></div>
-<div class="line"><span class="lineno">  348</span>        <span class="keywordflow">if</span> it exists. If it does <span class="keywordflow">not</span> exist, then an IndexError will be raised <span class="keywordflow">and</span></div>
-<div class="line"><span class="lineno">  349</span>        handled by error_get().</div>
-<div class="line"><span class="lineno">  350</span> </div>
-<div class="line"><span class="lineno">  351</span>    :<span class="keywordflow">return</span>: The window object</div>
-<div class="line"><span class="lineno">  352</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  353</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">  354</span>        <span class="keywordflow">if</span> args.test <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><span class="lineno">  355</span>            window = pygetwindow.getWindowsWithTitle(<span class="stringliteral">&quot;ZnámE&quot;</span>)[0]</div>
-<div class="line"><span class="lineno">  356</span>            window.activate()</div>
-<div class="line"><span class="lineno">  357</span>            <span class="keywordflow">return</span> window</div>
-<div class="line"><span class="lineno">  358</span>    <span class="keywordflow">except</span> IndexError:</div>
-<div class="line"><span class="lineno">  359</span>        exit = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  360</span>        <span class="keywordflow">raise</span> IndexError(</div>
-<div class="line"><span class="lineno">  361</span>            <span class="stringliteral">&quot;Possible solution; run in cmd or python application not ide or put arguments &#39;--test&#39;&quot;</span></div>
-<div class="line"><span class="lineno">  362</span>        )</div>
-<div class="line"><span class="lineno">  363</span> </div>
-<div class="line"><span class="lineno">  364</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00387">387</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  387</span><span class="keyword">def </span>show_cmd(args):</div>
+<div class="line"><span class="lineno">  388</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  389</span><span class="stringliteral">    The show_cmd function </span><span class="keywordflow">is</span> used to activate the window <span class="keyword">with</span> the title <span class="stringliteral">&#39;Známé&#39;</span></div>
+<div class="line"><span class="lineno">  390</span>        <span class="keywordflow">if</span> it exists. If it does <span class="keywordflow">not</span> exist, then an IndexError will be raised <span class="keywordflow">and</span></div>
+<div class="line"><span class="lineno">  391</span>        handled by error_get().</div>
+<div class="line"><span class="lineno">  392</span> </div>
+<div class="line"><span class="lineno">  393</span>    :<span class="keywordflow">return</span>: The window object</div>
+<div class="line"><span class="lineno">  394</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  395</span><span class="stringliteral">    </span><span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">  396</span>        <span class="keywordflow">if</span> args.test <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><span class="lineno">  397</span>            window = pygetwindow.getWindowsWithTitle(<span class="stringliteral">&quot;ZnámE&quot;</span>)[0]</div>
+<div class="line"><span class="lineno">  398</span>            window.activate()</div>
+<div class="line"><span class="lineno">  399</span>            <span class="keywordflow">return</span> window</div>
+<div class="line"><span class="lineno">  400</span>    <span class="keywordflow">except</span> IndexError:</div>
+<div class="line"><span class="lineno">  401</span>        exit = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  402</span>        <span class="keywordflow">raise</span> IndexError(</div>
+<div class="line"><span class="lineno">  403</span>            <span class="stringliteral">&quot;Possible solution; run in cmd or python application not ide or put arguments &#39;--test&#39;&quot;</span></div>
+<div class="line"><span class="lineno">  404</span>        )</div>
+<div class="line"><span class="lineno">  405</span> </div>
+<div class="line"><span class="lineno">  406</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -979,27 +1131,27 @@ This function will attempt to do the following:
 :param path: Specify the path of the file you want to wait for
 :return: Nothing
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00365">365</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  365</span><span class="keyword">def </span>wait_for_file(path):</div>
-<div class="line"><span class="lineno">  366</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  367</span><span class="stringliteral">    The wait_for_file function waits </span><span class="keywordflow">for</span> a file to be created.</div>
-<div class="line"><span class="lineno">  368</span>        It takes one argument, the path of the file to wait <span class="keywordflow">for</span>.</div>
-<div class="line"><span class="lineno">  369</span>        The function will loop until it finds that the file exists.</div>
-<div class="line"><span class="lineno">  370</span> </div>
-<div class="line"><span class="lineno">  371</span>    :param path: Specify the path of the file you want to wait <span class="keywordflow">for</span></div>
-<div class="line"><span class="lineno">  372</span>    :<span class="keywordflow">return</span>: Nothing</div>
-<div class="line"><span class="lineno">  373</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">  374</span><span class="stringliteral">    </span><span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
-<div class="line"><span class="lineno">  375</span>        leave: bool = <span class="keyword">False</span></div>
-<div class="line"><span class="lineno">  376</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> os.listdir():</div>
-<div class="line"><span class="lineno">  377</span>            <span class="keywordflow">if</span> i == path:</div>
-<div class="line"><span class="lineno">  378</span>                leave: bool = <span class="keyword">True</span></div>
-<div class="line"><span class="lineno">  379</span>                <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  380</span>        <span class="keywordflow">if</span> leave:</div>
-<div class="line"><span class="lineno">  381</span>            sleep(0.05)</div>
-<div class="line"><span class="lineno">  382</span>            <span class="keywordflow">break</span></div>
-<div class="line"><span class="lineno">  383</span> </div>
-<div class="line"><span class="lineno">  384</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../dd/d18/system__operations_8py_source.html#l00407">407</a> of file <a class="el" href="../../dd/d18/system__operations_8py_source.html">system_operations.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  407</span><span class="keyword">def </span>wait_for_file(path):</div>
+<div class="line"><span class="lineno">  408</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  409</span><span class="stringliteral">    The wait_for_file function waits </span><span class="keywordflow">for</span> a file to be created.</div>
+<div class="line"><span class="lineno">  410</span>        It takes one argument, the path of the file to wait <span class="keywordflow">for</span>.</div>
+<div class="line"><span class="lineno">  411</span>        The function will loop until it finds that the file exists.</div>
+<div class="line"><span class="lineno">  412</span> </div>
+<div class="line"><span class="lineno">  413</span>    :param path: Specify the path of the file you want to wait <span class="keywordflow">for</span></div>
+<div class="line"><span class="lineno">  414</span>    :<span class="keywordflow">return</span>: Nothing</div>
+<div class="line"><span class="lineno">  415</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">  416</span><span class="stringliteral">    </span><span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><span class="lineno">  417</span>        leave: bool = <span class="keyword">False</span></div>
+<div class="line"><span class="lineno">  418</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> os.listdir():</div>
+<div class="line"><span class="lineno">  419</span>            <span class="keywordflow">if</span> i == path:</div>
+<div class="line"><span class="lineno">  420</span>                leave: bool = <span class="keyword">True</span></div>
+<div class="line"><span class="lineno">  421</span>                <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  422</span>        <span class="keywordflow">if</span> leave:</div>
+<div class="line"><span class="lineno">  423</span>            sleep(0.05)</div>
+<div class="line"><span class="lineno">  424</span>            <span class="keywordflow">break</span></div>
+<div class="line"><span class="lineno">  425</span> </div>
+<div class="line"><span class="lineno">  426</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1009,7 +1161,7 @@ This function will attempt to do the following:
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../de/d05/namespacesystem__operations.html">system_operations</a></li>
-    <li class="footer">Generated on Fri Jun 9 2023 09:20:37 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Jun 13 2023 20:54:18 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

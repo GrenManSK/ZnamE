@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['voicevox_0',['voicevox',['../d0/da7/namespacevoicevox.html',1,'']]]
+  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html',1,'']]]
 ];

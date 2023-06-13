@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['wait_5ffor_5ffile_0',['wait_for_file',['../de/d05/namespacesystem__operations.html#a99b95316ff9feb1492b98309cfd7007e',1,'system_operations']]],
-  ['was_5fupdated_1',['was_updated',['../d0/d52/namespaceedupage.html#ab37eeef09149edbff47a4c8d00d485c0',1,'edupage']]],
-  ['write_5fconfig_5foptions_2',['write_config_options',['../d2/d33/namespacearguments.html#a8306eef1955be6471a2781e555a24c1f',1,'arguments']]]
+  ['uninstall_0',['uninstall',['../dd/de8/namespaceuninstall.html#a9c4fc960681931cdc878bae58b9ce6dd',1,'uninstall']]],
+  ['unpack_1',['unpack',['../d9/d8d/namespacefile__operations.html#aa0282ee2aa6f3008a170c6b1d32409bc',1,'file_operations']]],
+  ['unpause_2',['unpause',['../d5/d77/classapp__alternations_1_1installing__carousel.html#a72c099261f8e502be3049875a139a591',1,'app_alternations::installing_carousel']]],
+  ['update_5fapp_3',['update_app',['../d3/dc0/namespaceapp__alternations.html#a4f421098632d5f7e3a4094accbb0176a',1,'app_alternations']]]
 ];

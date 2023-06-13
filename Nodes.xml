@@ -487,13 +487,236 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>curses_builder</Name>
+            <Path>d0/d70/namespacecurses__builder.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>builder</Name>
+              <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a418fb3e5c4bfabd8b4ea1eb00b2ae1b8</Anchor>
+               </Node>
+               <Node>
+                <Name>add</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aa7318a3c0102085db10e98afcb85ddc6</Anchor>
+               </Node>
+               <Node>
+                <Name>add_history</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a880c4cef30ad4afc828da33d5dbedb61</Anchor>
+               </Node>
+               <Node>
+                <Name>build</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a7abf922e7bb2ef151bb5c7a1086bbd6a</Anchor>
+               </Node>
+               <Node>
+                <Name>reset</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aeb5d535168cddf2f5fd605f9829d9e0c</Anchor>
+               </Node>
+               <Node>
+                <Name>restore</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aab9bc3c66fbac9d7e7bdc61e60230307</Anchor>
+               </Node>
+               <Node>
+                <Name>lenght</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a74d7b25c2c3d6e4a2d517793b078c8a6</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>cinput</Name>
+              <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a2dbde87433693a9fb13aaddbda4d3dd2</Anchor>
+               </Node>
+               <Node>
+                <Name>__call__</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>aadfd0d61bfa0f6fb4d9f87eb91e60bdb</Anchor>
+               </Node>
+               <Node>
+                <Name>border</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a3e9ae658cbb418bfe64ed0ac5b8f3810</Anchor>
+               </Node>
+               <Node>
+                <Name>function</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>af46dc9030f073600b1b7c7ebf6c2a55b</Anchor>
+               </Node>
+               <Node>
+                <Name>key</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a03f7de6e0f5ba012992a7dfbc90f44ea</Anchor>
+               </Node>
+               <Node>
+                <Name>limit</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>aa440a0480d49eafc4d6a8dff99e35de8</Anchor>
+               </Node>
+               <Node>
+                <Name>nof</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>abcaf1fc1ce8def381753c87d084e79b2</Anchor>
+               </Node>
+               <Node>
+                <Name>width</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a92c42b1bd2a6de12c3d47dd3c2815217</Anchor>
+               </Node>
+               <Node>
+                <Name>x</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a87cc9e99d44c2ef59c423c094ec68bbf</Anchor>
+               </Node>
+               <Node>
+                <Name>y</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>affea72b3ca33154d581af0bde9410b80</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>component</Name>
+              <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a8f8bb7bc92bdb834c3bbfc5ea5d77b1e</Anchor>
+               </Node>
+               <Node>
+                <Name>__call__</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a2395e5cf0313e42756b765facc11f12e</Anchor>
+               </Node>
+               <Node>
+                <Name>border</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>acb6a0c44b492f3c2bd044c87e38e0952</Anchor>
+               </Node>
+               <Node>
+                <Name>content</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a458fe3b47505def2497e44fc4b919ba7</Anchor>
+               </Node>
+               <Node>
+                <Name>height</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a9a663885a030b6fddacae489c07fa002</Anchor>
+               </Node>
+               <Node>
+                <Name>width</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>afc8a131908f1d6ff7b0b80fcc75c2105</Anchor>
+               </Node>
+               <Node>
+                <Name>x</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a0ce3b502ff071741d568ba6d8508449f</Anchor>
+               </Node>
+               <Node>
+                <Name>y</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a996644ff2cf1ec3e577f7efdb9f8ad4c</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>OnlyOneCharKey</Name>
+              <Path>d7/dce/classcurses__builder_1_1_only_one_char_key.html</Path>
+             </Node>
+             <Node>
+              <Name>get_id</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>aff43af63a0bd48b2618742929bf6dc12</Anchor>
+             </Node>
+             <Node>
+              <Name>init</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a08104964ad09bfd698830d71381aa26f</Anchor>
+             </Node>
+             <Node>
+              <Name>string</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>aa6d6a336afddb8314b70939716b88ed1</Anchor>
+             </Node>
+             <Node>
+              <Name>AUTHOR</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>aaa846e4e91f3c3b5d11d4813c4b20b08</Anchor>
+             </Node>
+             <Node>
+              <Name>current_id</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a68d4fe067f53d44f6fd2a0fed12fd08d</Anchor>
+             </Node>
+             <Node>
+              <Name>current_row</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>ab26bb65a952e244c0cd23d38de7c7146</Anchor>
+             </Node>
+             <Node>
+              <Name>func_reset</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a9a350fbeac57f18cdfa063b380d20b02</Anchor>
+             </Node>
+             <Node>
+              <Name>history</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>aa92920d043ea6962482c51cc5be392e5</Anchor>
+             </Node>
+             <Node>
+              <Name>history_number</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a12d268240b8bbd69f9e7dba124ca0a81</Anchor>
+             </Node>
+             <Node>
+              <Name>ids</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a0217a25f9b423feb9e553e026f1a9682</Anchor>
+             </Node>
+             <Node>
+              <Name>in_func</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a8e32463d10290ed1a486520044fccd2b</Anchor>
+             </Node>
+             <Node>
+              <Name>last_command_history</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a3a15e4320048e906545de3436d45cc27</Anchor>
+             </Node>
+             <Node>
+              <Name>VERSION</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>ac64a13ff8444796edb70372d22d23c63</Anchor>
+             </Node>
+             <Node>
+              <Name>window</Name>
+              <Path>d0/d70/namespacecurses__builder.html</Path>
+              <Anchor>a38bc0e428721a2ce34235601b339cafb</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>database</Name>
             <Path>da/df2/namespacedatabase.html</Path>
           <Subnodes>
              <Node>
-              <Name>database_project</Name>
+              <Name>Data_Dynamics</Name>
               <Path>da/df2/namespacedatabase.html</Path>
-              <Anchor>a8b3ba447d10561dc7accd4805ba8ad0b</Anchor>
+              <Anchor>a070a461c10402aa3794362170058bc1d</Anchor>
              </Node>
              <Node>
               <Name>run_database_project</Name>
@@ -525,7 +748,7 @@
              <Node>
               <Name>add_marks</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
+              <Anchor>a9d8a9e9e0972b929f85d5e9bdb2b0107</Anchor>
              </Node>
              <Node>
               <Name>code</Name>
@@ -540,7 +763,7 @@
              <Node>
               <Name>find</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a026d51b7cff5026af09d0dd68c5e66fb</Anchor>
+              <Anchor>a53debba256f42edb6b4b01bd368f189f</Anchor>
              </Node>
              <Node>
               <Name>inactive</Name>
@@ -563,9 +786,14 @@
               <Anchor>a187508ee0d9f19d584a130cc5cba0c27</Anchor>
              </Node>
              <Node>
+              <Name>music_check</Name>
+              <Path>d0/d52/namespaceedupage.html</Path>
+              <Anchor>a26d2d05eabf3782dc22c8ebc54bcd1ae</Anchor>
+             </Node>
+             <Node>
               <Name>password</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ab6bc445b1d72dc317235f930a3c3865f</Anchor>
+              <Anchor>a947a9e740a4068b10f03b3e9d0bd18af</Anchor>
              </Node>
              <Node>
               <Name>print_history</Name>
@@ -590,22 +818,22 @@
              <Node>
               <Name>show_marks</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a78d356f449887b742d23a2f1c98ce4ac</Anchor>
+              <Anchor>afb381cb44a8c29fd8418a55eb143a06a</Anchor>
              </Node>
              <Node>
               <Name>spot_music_dow</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ad9fa425db620b18457fe2d13d776a532</Anchor>
+              <Anchor>ad01aeb52409e66e1b1a4c99da9728675</Anchor>
              </Node>
              <Node>
               <Name>vlc_init</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>a9f3e602dd8410da6eab7cf9b0758c6f8</Anchor>
+              <Anchor>a04c9c212427b30c15b9858bbbae21b45</Anchor>
              </Node>
              <Node>
               <Name>was_updated</Name>
               <Path>d0/d52/namespaceedupage.html</Path>
-              <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
+              <Anchor>ace1585dbbb7d7564c87b8154c519ec73</Anchor>
              </Node>
              <Node>
               <Name>args</Name>
@@ -927,6 +1155,17 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>install</Name>
+            <Path>d3/d29/namespaceinstall.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>try</Name>
+              <Path>d3/d29/namespaceinstall.html</Path>
+              <Anchor>ad7c6349e8f2829b6f24ca46234850ea5</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>internet</Name>
             <Path>d1/d22/namespaceinternet.html</Path>
           <Subnodes>
@@ -980,6 +1219,127 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>main</Name>
+            <Path>d2/dc1/namespacemain.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>add_anime</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a5d87b187701eea0d42c7af5222c11b34</Anchor>
+             </Node>
+             <Node>
+              <Name>add_anime_to_dat</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a7ac4018862a91abeade2db0a0fd13a3e</Anchor>
+             </Node>
+             <Node>
+              <Name>is_available</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a22ee906bad724ecc408efa8dc70fde2d</Anchor>
+             </Node>
+             <Node>
+              <Name>login</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a3423598e1608042ddce57ffd9e377f46</Anchor>
+             </Node>
+             <Node>
+              <Name>logout</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a27e72161a2060436a23b0a8955b890e4</Anchor>
+             </Node>
+             <Node>
+              <Name>main</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a059381d8f545e9cf90252c527d7079f7</Anchor>
+             </Node>
+             <Node>
+              <Name>register</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a45b9a937bde5490e7a540cb283bbcf05</Anchor>
+             </Node>
+             <Node>
+              <Name>search_engine</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a6c4685620cc20000fe42db5a3a8b5925</Anchor>
+             </Node>
+             <Node>
+              <Name>show_anime</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a7bd35c551693156d67911e5a1575221f</Anchor>
+             </Node>
+             <Node>
+              <Name>_return</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a176833d86ac8bc5fe93e08a67ca427d7</Anchor>
+             </Node>
+             <Node>
+              <Name>account_id</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a1ba48230227ec66b6d820364c80ff84a</Anchor>
+             </Node>
+             <Node>
+              <Name>account_name</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a6cc3c417352c170694ff8e5681ed180d</Anchor>
+             </Node>
+             <Node>
+              <Name>anime_status</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a28c6b2927c7bd274bd934aea38958f27</Anchor>
+             </Node>
+             <Node>
+              <Name>COLS</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>af802feece43757c806c5d35e7538691a</Anchor>
+             </Node>
+             <Node>
+              <Name>DATABASE</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>af65314523ff1e3da50334de0c35c4a4e</Anchor>
+             </Node>
+             <Node>
+              <Name>date</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a82f1d7bdfa97e39b934ed2cd2a5c275a</Anchor>
+             </Node>
+             <Node>
+              <Name>HOST_NAME</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>ab0a5714d34815ba7f7be4dd73430d2e8</Anchor>
+             </Node>
+             <Node>
+              <Name>LINES</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a86ca7368ed4a22192a2b8fbe44488ef1</Anchor>
+             </Node>
+             <Node>
+              <Name>PASSWORD</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a545fb804ee1a845bb7f0b924875af7b5</Anchor>
+             </Node>
+             <Node>
+              <Name>PORT</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>aa696001e8c360dc8f56e3d2fdc74d8b7</Anchor>
+             </Node>
+             <Node>
+              <Name>privilege</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>ad739b26bc5877b6ad9af2ab0caead756</Anchor>
+             </Node>
+             <Node>
+              <Name>server</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>ade2e9fd24a19d36e99928f8656eb90db</Anchor>
+             </Node>
+             <Node>
+              <Name>USER</Name>
+              <Path>d2/dc1/namespacemain.html</Path>
+              <Anchor>a943a4335653ffd17eafc85f8ba4bb587</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>manga_translator</Name>
             <Path>de/d7e/namespacemanga__translator.html</Path>
           <Subnodes>
@@ -1018,6 +1378,17 @@
               <Name>PlayVideo</Name>
               <Path>dd/dc4/namespacemedia.html</Path>
               <Anchor>a6938b07ced07a9e782019e9bad56f6d5</Anchor>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>neko</Name>
+            <Path>dd/d62/namespaceneko.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>nekof</Name>
+              <Path>dd/d62/namespaceneko.html</Path>
+              <Anchor>a80dd25a2b2bde4fb06913fb0706a388e</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -1065,17 +1436,17 @@
              <Node>
               <Name>get_log_info</Name>
               <Path>d5/df5/namespacesystem__info.html</Path>
-              <Anchor>a8e3f2cfac3035ffac20259dd877f294c</Anchor>
+              <Anchor>afab65105f70908a7cea682bba5f71db6</Anchor>
              </Node>
              <Node>
               <Name>get_screensize</Name>
               <Path>d5/df5/namespacesystem__info.html</Path>
-              <Anchor>ade39fb3bb4d66856e5b1747ebaa3dd35</Anchor>
+              <Anchor>a827de6d1d9dcdd108451ac1a5efb476c</Anchor>
              </Node>
              <Node>
               <Name>system_info</Name>
               <Path>d5/df5/namespacesystem__info.html</Path>
-              <Anchor>a92c091405f05267c225d0925fc422937</Anchor>
+              <Anchor>a55e647e6eb060173fdd698092940ae01</Anchor>
              </Node>
             </Subnodes>
            </Node>
@@ -1144,9 +1515,24 @@
               <Anchor>a27f29c99e700b61a8b3e3d43d86bbcdc</Anchor>
              </Node>
              <Node>
+              <Name>press_win</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>ae5250bbda183f2ba33981313924b4307</Anchor>
+             </Node>
+             <Node>
               <Name>runAsAdmin</Name>
               <Path>de/d05/namespacesystem__operations.html</Path>
               <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
+             </Node>
+             <Node>
+              <Name>set_image</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>adecc8156e8e605fd58b37f25037d5bed</Anchor>
+             </Node>
+             <Node>
+              <Name>set_up</Name>
+              <Path>de/d05/namespacesystem__operations.html</Path>
+              <Anchor>abba81c23e3f2ab3e8d49a44d2553d53a</Anchor>
              </Node>
              <Node>
               <Name>show_cmd</Name>
@@ -1304,6 +1690,104 @@
            <Node>
             <Name>All</Name>
             <Path>namespacemembers.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>_</Name>
+              <Path>namespacemembers.html</Path>
+             </Node>
+             <Node>
+              <Name>a</Name>
+              <Path>namespacemembers_a.html</Path>
+             </Node>
+             <Node>
+              <Name>b</Name>
+              <Path>namespacemembers_b.html</Path>
+             </Node>
+             <Node>
+              <Name>c</Name>
+              <Path>namespacemembers_c.html</Path>
+             </Node>
+             <Node>
+              <Name>d</Name>
+              <Path>namespacemembers_d.html</Path>
+             </Node>
+             <Node>
+              <Name>e</Name>
+              <Path>namespacemembers_e.html</Path>
+             </Node>
+             <Node>
+              <Name>f</Name>
+              <Path>namespacemembers_f.html</Path>
+             </Node>
+             <Node>
+              <Name>g</Name>
+              <Path>namespacemembers_g.html</Path>
+             </Node>
+             <Node>
+              <Name>h</Name>
+              <Path>namespacemembers_h.html</Path>
+             </Node>
+             <Node>
+              <Name>i</Name>
+              <Path>namespacemembers_i.html</Path>
+             </Node>
+             <Node>
+              <Name>k</Name>
+              <Path>namespacemembers_k.html</Path>
+             </Node>
+             <Node>
+              <Name>l</Name>
+              <Path>namespacemembers_l.html</Path>
+             </Node>
+             <Node>
+              <Name>m</Name>
+              <Path>namespacemembers_m.html</Path>
+             </Node>
+             <Node>
+              <Name>n</Name>
+              <Path>namespacemembers_n.html</Path>
+             </Node>
+             <Node>
+              <Name>o</Name>
+              <Path>namespacemembers_o.html</Path>
+             </Node>
+             <Node>
+              <Name>p</Name>
+              <Path>namespacemembers_p.html</Path>
+             </Node>
+             <Node>
+              <Name>q</Name>
+              <Path>namespacemembers_q.html</Path>
+             </Node>
+             <Node>
+              <Name>r</Name>
+              <Path>namespacemembers_r.html</Path>
+             </Node>
+             <Node>
+              <Name>s</Name>
+              <Path>namespacemembers_s.html</Path>
+             </Node>
+             <Node>
+              <Name>t</Name>
+              <Path>namespacemembers_t.html</Path>
+             </Node>
+             <Node>
+              <Name>u</Name>
+              <Path>namespacemembers_u.html</Path>
+             </Node>
+             <Node>
+              <Name>v</Name>
+              <Path>namespacemembers_v.html</Path>
+             </Node>
+             <Node>
+              <Name>w</Name>
+              <Path>namespacemembers_w.html</Path>
+             </Node>
+             <Node>
+              <Name>x</Name>
+              <Path>namespacemembers_x.html</Path>
+             </Node>
+            </Subnodes>
            </Node>
            <Node>
             <Name>Functions</Name>
@@ -1403,6 +1887,159 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>curses_builder</Name>
+            <Path>d0/d70/namespacecurses__builder.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>builder</Name>
+              <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a418fb3e5c4bfabd8b4ea1eb00b2ae1b8</Anchor>
+               </Node>
+               <Node>
+                <Name>add</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aa7318a3c0102085db10e98afcb85ddc6</Anchor>
+               </Node>
+               <Node>
+                <Name>add_history</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a880c4cef30ad4afc828da33d5dbedb61</Anchor>
+               </Node>
+               <Node>
+                <Name>build</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a7abf922e7bb2ef151bb5c7a1086bbd6a</Anchor>
+               </Node>
+               <Node>
+                <Name>reset</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aeb5d535168cddf2f5fd605f9829d9e0c</Anchor>
+               </Node>
+               <Node>
+                <Name>restore</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>aab9bc3c66fbac9d7e7bdc61e60230307</Anchor>
+               </Node>
+               <Node>
+                <Name>lenght</Name>
+                <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Anchor>a74d7b25c2c3d6e4a2d517793b078c8a6</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>cinput</Name>
+              <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a2dbde87433693a9fb13aaddbda4d3dd2</Anchor>
+               </Node>
+               <Node>
+                <Name>__call__</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>aadfd0d61bfa0f6fb4d9f87eb91e60bdb</Anchor>
+               </Node>
+               <Node>
+                <Name>border</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a3e9ae658cbb418bfe64ed0ac5b8f3810</Anchor>
+               </Node>
+               <Node>
+                <Name>function</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>af46dc9030f073600b1b7c7ebf6c2a55b</Anchor>
+               </Node>
+               <Node>
+                <Name>key</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a03f7de6e0f5ba012992a7dfbc90f44ea</Anchor>
+               </Node>
+               <Node>
+                <Name>limit</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>aa440a0480d49eafc4d6a8dff99e35de8</Anchor>
+               </Node>
+               <Node>
+                <Name>nof</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>abcaf1fc1ce8def381753c87d084e79b2</Anchor>
+               </Node>
+               <Node>
+                <Name>width</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a92c42b1bd2a6de12c3d47dd3c2815217</Anchor>
+               </Node>
+               <Node>
+                <Name>x</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>a87cc9e99d44c2ef59c423c094ec68bbf</Anchor>
+               </Node>
+               <Node>
+                <Name>y</Name>
+                <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Anchor>affea72b3ca33154d581af0bde9410b80</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>component</Name>
+              <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a8f8bb7bc92bdb834c3bbfc5ea5d77b1e</Anchor>
+               </Node>
+               <Node>
+                <Name>__call__</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a2395e5cf0313e42756b765facc11f12e</Anchor>
+               </Node>
+               <Node>
+                <Name>border</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>acb6a0c44b492f3c2bd044c87e38e0952</Anchor>
+               </Node>
+               <Node>
+                <Name>content</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a458fe3b47505def2497e44fc4b919ba7</Anchor>
+               </Node>
+               <Node>
+                <Name>height</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a9a663885a030b6fddacae489c07fa002</Anchor>
+               </Node>
+               <Node>
+                <Name>width</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>afc8a131908f1d6ff7b0b80fcc75c2105</Anchor>
+               </Node>
+               <Node>
+                <Name>x</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a0ce3b502ff071741d568ba6d8508449f</Anchor>
+               </Node>
+               <Node>
+                <Name>y</Name>
+                <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Anchor>a996644ff2cf1ec3e577f7efdb9f8ad4c</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>OnlyOneCharKey</Name>
+              <Path>d7/dce/classcurses__builder_1_1_only_one_char_key.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>exceptions</Name>
             <Path>d0/d6e/namespaceexceptions.html</Path>
           <Subnodes>
@@ -1467,9 +2104,27 @@
           <Path>hierarchy.html</Path>
         <Subnodes>
            <Node>
+            <Name>curses_builder.builder</Name>
+            <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>curses_builder.cinput</Name>
+              <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+             </Node>
+             <Node>
+              <Name>curses_builder.component</Name>
+              <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Exception</Name>
             <Path></Path>
           <Subnodes>
+             <Node>
+              <Name>curses_builder.OnlyOneCharKey</Name>
+              <Path>d7/dce/classcurses__builder_1_1_only_one_char_key.html</Path>
+             </Node>
              <Node>
               <Name>exceptions.argGameError</Name>
               <Path>dc/d31/classexceptions_1_1arg_game_error.html</Path>
@@ -1554,6 +2209,373 @@
           <Name>File List</Name>
           <Path>files.html</Path>
         <Subnodes>
+           <Node>
+            <Name>Data-Dynamics</Name>
+            <Path>dir_cd7f295b89c9a740b8e3813e8f8d7b8c.html</Path>
+          <Subnodes>
+             <Node>
+              <Name>curses_builder</Name>
+              <Path>dir_7f725da81d1b85541d9091415394fbc7.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>__init__.py</Name>
+                <Path>d3/d9a/____init_____8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>curses_builder.OnlyOneCharKey</Name>
+                  <Path>d7/dce/classcurses__builder_1_1_only_one_char_key.html</Path>
+                 </Node>
+                 <Node>
+                  <Name>curses_builder.builder</Name>
+                  <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                <Subnodes>
+                   <Node>
+                    <Name>__init__</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>a418fb3e5c4bfabd8b4ea1eb00b2ae1b8</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>add</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>aa7318a3c0102085db10e98afcb85ddc6</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>add_history</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>a880c4cef30ad4afc828da33d5dbedb61</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>build</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>a7abf922e7bb2ef151bb5c7a1086bbd6a</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>reset</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>aeb5d535168cddf2f5fd605f9829d9e0c</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>restore</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>aab9bc3c66fbac9d7e7bdc61e60230307</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>lenght</Name>
+                    <Path>df/dc0/classcurses__builder_1_1builder.html</Path>
+                    <Anchor>a74d7b25c2c3d6e4a2d517793b078c8a6</Anchor>
+                   </Node>
+                  </Subnodes>
+                 </Node>
+                 <Node>
+                  <Name>curses_builder.component</Name>
+                  <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                <Subnodes>
+                   <Node>
+                    <Name>__init__</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a8f8bb7bc92bdb834c3bbfc5ea5d77b1e</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>__call__</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a2395e5cf0313e42756b765facc11f12e</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>border</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>acb6a0c44b492f3c2bd044c87e38e0952</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>content</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a458fe3b47505def2497e44fc4b919ba7</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>height</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a9a663885a030b6fddacae489c07fa002</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>width</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>afc8a131908f1d6ff7b0b80fcc75c2105</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>x</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a0ce3b502ff071741d568ba6d8508449f</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>y</Name>
+                    <Path>d5/d5d/classcurses__builder_1_1component.html</Path>
+                    <Anchor>a996644ff2cf1ec3e577f7efdb9f8ad4c</Anchor>
+                   </Node>
+                  </Subnodes>
+                 </Node>
+                 <Node>
+                  <Name>curses_builder.cinput</Name>
+                  <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                <Subnodes>
+                   <Node>
+                    <Name>__init__</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>a2dbde87433693a9fb13aaddbda4d3dd2</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>__call__</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>aadfd0d61bfa0f6fb4d9f87eb91e60bdb</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>border</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>a3e9ae658cbb418bfe64ed0ac5b8f3810</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>function</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>af46dc9030f073600b1b7c7ebf6c2a55b</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>key</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>a03f7de6e0f5ba012992a7dfbc90f44ea</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>limit</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>aa440a0480d49eafc4d6a8dff99e35de8</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>nof</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>abcaf1fc1ce8def381753c87d084e79b2</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>width</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>a92c42b1bd2a6de12c3d47dd3c2815217</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>x</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>a87cc9e99d44c2ef59c423c094ec68bbf</Anchor>
+                   </Node>
+                   <Node>
+                    <Name>y</Name>
+                    <Path>df/dd6/classcurses__builder_1_1cinput.html</Path>
+                    <Anchor>affea72b3ca33154d581af0bde9410b80</Anchor>
+                   </Node>
+                  </Subnodes>
+                 </Node>
+                 <Node>
+                  <Name>get_id</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>aff43af63a0bd48b2618742929bf6dc12</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>init</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a08104964ad09bfd698830d71381aa26f</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>string</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>aa6d6a336afddb8314b70939716b88ed1</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>AUTHOR</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>aaa846e4e91f3c3b5d11d4813c4b20b08</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>current_id</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a68d4fe067f53d44f6fd2a0fed12fd08d</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>current_row</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>ab26bb65a952e244c0cd23d38de7c7146</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>func_reset</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a9a350fbeac57f18cdfa063b380d20b02</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>history</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>aa92920d043ea6962482c51cc5be392e5</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>history_number</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a12d268240b8bbd69f9e7dba124ca0a81</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>ids</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a0217a25f9b423feb9e553e026f1a9682</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>in_func</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a8e32463d10290ed1a486520044fccd2b</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>last_command_history</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a3a15e4320048e906545de3436d45cc27</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>VERSION</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>ac64a13ff8444796edb70372d22d23c63</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>window</Name>
+                  <Path>d3/d9a/____init_____8py.html</Path>
+                  <Anchor>a38bc0e428721a2ce34235601b339cafb</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>install.py</Name>
+              <Path>df/d30/install_8py.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>try</Name>
+                <Path>df/d30/install_8py.html</Path>
+                <Anchor>ad7c6349e8f2829b6f24ca46234850ea5</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>main.py</Name>
+              <Path>dc/dba/main_8py.html</Path>
+            <Subnodes>
+               <Node>
+                <Name>add_anime</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a5d87b187701eea0d42c7af5222c11b34</Anchor>
+               </Node>
+               <Node>
+                <Name>add_anime_to_dat</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a7ac4018862a91abeade2db0a0fd13a3e</Anchor>
+               </Node>
+               <Node>
+                <Name>is_available</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a22ee906bad724ecc408efa8dc70fde2d</Anchor>
+               </Node>
+               <Node>
+                <Name>login</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a3423598e1608042ddce57ffd9e377f46</Anchor>
+               </Node>
+               <Node>
+                <Name>logout</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a27e72161a2060436a23b0a8955b890e4</Anchor>
+               </Node>
+               <Node>
+                <Name>main</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a059381d8f545e9cf90252c527d7079f7</Anchor>
+               </Node>
+               <Node>
+                <Name>register</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a45b9a937bde5490e7a540cb283bbcf05</Anchor>
+               </Node>
+               <Node>
+                <Name>search_engine</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a6c4685620cc20000fe42db5a3a8b5925</Anchor>
+               </Node>
+               <Node>
+                <Name>show_anime</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a7bd35c551693156d67911e5a1575221f</Anchor>
+               </Node>
+               <Node>
+                <Name>_return</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a176833d86ac8bc5fe93e08a67ca427d7</Anchor>
+               </Node>
+               <Node>
+                <Name>account_id</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a1ba48230227ec66b6d820364c80ff84a</Anchor>
+               </Node>
+               <Node>
+                <Name>account_name</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a6cc3c417352c170694ff8e5681ed180d</Anchor>
+               </Node>
+               <Node>
+                <Name>anime_status</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a28c6b2927c7bd274bd934aea38958f27</Anchor>
+               </Node>
+               <Node>
+                <Name>COLS</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>af802feece43757c806c5d35e7538691a</Anchor>
+               </Node>
+               <Node>
+                <Name>DATABASE</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>af65314523ff1e3da50334de0c35c4a4e</Anchor>
+               </Node>
+               <Node>
+                <Name>date</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a82f1d7bdfa97e39b934ed2cd2a5c275a</Anchor>
+               </Node>
+               <Node>
+                <Name>HOST_NAME</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>ab0a5714d34815ba7f7be4dd73430d2e8</Anchor>
+               </Node>
+               <Node>
+                <Name>LINES</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a86ca7368ed4a22192a2b8fbe44488ef1</Anchor>
+               </Node>
+               <Node>
+                <Name>PASSWORD</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a545fb804ee1a845bb7f0b924875af7b5</Anchor>
+               </Node>
+               <Node>
+                <Name>PORT</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>aa696001e8c360dc8f56e3d2fdc74d8b7</Anchor>
+               </Node>
+               <Node>
+                <Name>privilege</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>ad739b26bc5877b6ad9af2ab0caead756</Anchor>
+               </Node>
+               <Node>
+                <Name>server</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>ade2e9fd24a19d36e99928f8656eb90db</Anchor>
+               </Node>
+               <Node>
+                <Name>USER</Name>
+                <Path>dc/dba/main_8py.html</Path>
+                <Anchor>a943a4335653ffd17eafc85f8ba4bb587</Anchor>
+               </Node>
+              </Subnodes>
+             </Node>
+            </Subnodes>
+           </Node>
            <Node>
             <Name>essentials</Name>
             <Path>dir_d5b1ed787a0439ef5e70cb4862ae5db0.html</Path>
@@ -1794,9 +2816,9 @@
                 <Path>d8/ddc/database_8py.html</Path>
               <Subnodes>
                  <Node>
-                  <Name>database_project</Name>
+                  <Name>Data_Dynamics</Name>
                   <Path>d8/ddc/database_8py.html</Path>
-                  <Anchor>a8b3ba447d10561dc7accd4805ba8ad0b</Anchor>
+                  <Anchor>a070a461c10402aa3794362170058bc1d</Anchor>
                  </Node>
                  <Node>
                   <Name>run_database_project</Name>
@@ -1882,6 +2904,17 @@
                   <Name>run_manga_image_translator</Name>
                   <Path>d9/d71/manga__translator_8py.html</Path>
                   <Anchor>a168a8dbba24c93797e71833c54675975</Anchor>
+                 </Node>
+                </Subnodes>
+               </Node>
+               <Node>
+                <Name>neko.py</Name>
+                <Path>dc/d11/neko_8py.html</Path>
+              <Subnodes>
+                 <Node>
+                  <Name>nekof</Name>
+                  <Path>dc/d11/neko_8py.html</Path>
+                  <Anchor>a80dd25a2b2bde4fb06913fb0706a388e</Anchor>
                  </Node>
                 </Subnodes>
                </Node>
@@ -2162,17 +3195,17 @@
                  <Node>
                   <Name>get_log_info</Name>
                   <Path>de/d3c/system__info_8py.html</Path>
-                  <Anchor>a8e3f2cfac3035ffac20259dd877f294c</Anchor>
+                  <Anchor>afab65105f70908a7cea682bba5f71db6</Anchor>
                  </Node>
                  <Node>
                   <Name>get_screensize</Name>
                   <Path>de/d3c/system__info_8py.html</Path>
-                  <Anchor>ade39fb3bb4d66856e5b1747ebaa3dd35</Anchor>
+                  <Anchor>a827de6d1d9dcdd108451ac1a5efb476c</Anchor>
                  </Node>
                  <Node>
                   <Name>system_info</Name>
                   <Path>de/d3c/system__info_8py.html</Path>
-                  <Anchor>a92c091405f05267c225d0925fc422937</Anchor>
+                  <Anchor>a55e647e6eb060173fdd698092940ae01</Anchor>
                  </Node>
                 </Subnodes>
                </Node>
@@ -2241,9 +3274,24 @@
                   <Anchor>a27f29c99e700b61a8b3e3d43d86bbcdc</Anchor>
                  </Node>
                  <Node>
+                  <Name>press_win</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>ae5250bbda183f2ba33981313924b4307</Anchor>
+                 </Node>
+                 <Node>
                   <Name>runAsAdmin</Name>
                   <Path>dd/d18/system__operations_8py.html</Path>
                   <Anchor>ad91b2c3c346993d5f478e23670f61aeb</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>set_image</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>adecc8156e8e605fd58b37f25037d5bed</Anchor>
+                 </Node>
+                 <Node>
+                  <Name>set_up</Name>
+                  <Path>dd/d18/system__operations_8py.html</Path>
+                  <Anchor>abba81c23e3f2ab3e8d49a44d2553d53a</Anchor>
                  </Node>
                  <Node>
                   <Name>show_cmd</Name>
@@ -2447,7 +3495,7 @@
              <Node>
               <Name>add_marks</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a21f2f303ad4d1e33a43bd2b8207130a4</Anchor>
+              <Anchor>a9d8a9e9e0972b929f85d5e9bdb2b0107</Anchor>
              </Node>
              <Node>
               <Name>code</Name>
@@ -2462,7 +3510,7 @@
              <Node>
               <Name>find</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a026d51b7cff5026af09d0dd68c5e66fb</Anchor>
+              <Anchor>a53debba256f42edb6b4b01bd368f189f</Anchor>
              </Node>
              <Node>
               <Name>inactive</Name>
@@ -2485,9 +3533,14 @@
               <Anchor>a187508ee0d9f19d584a130cc5cba0c27</Anchor>
              </Node>
              <Node>
+              <Name>music_check</Name>
+              <Path>df/dd7/edupage_8py.html</Path>
+              <Anchor>a26d2d05eabf3782dc22c8ebc54bcd1ae</Anchor>
+             </Node>
+             <Node>
               <Name>password</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ab6bc445b1d72dc317235f930a3c3865f</Anchor>
+              <Anchor>a947a9e740a4068b10f03b3e9d0bd18af</Anchor>
              </Node>
              <Node>
               <Name>print_history</Name>
@@ -2512,22 +3565,22 @@
              <Node>
               <Name>show_marks</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a78d356f449887b742d23a2f1c98ce4ac</Anchor>
+              <Anchor>afb381cb44a8c29fd8418a55eb143a06a</Anchor>
              </Node>
              <Node>
               <Name>spot_music_dow</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ad9fa425db620b18457fe2d13d776a532</Anchor>
+              <Anchor>ad01aeb52409e66e1b1a4c99da9728675</Anchor>
              </Node>
              <Node>
               <Name>vlc_init</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>a9f3e602dd8410da6eab7cf9b0758c6f8</Anchor>
+              <Anchor>a04c9c212427b30c15b9858bbbae21b45</Anchor>
              </Node>
              <Node>
               <Name>was_updated</Name>
               <Path>df/dd7/edupage_8py.html</Path>
-              <Anchor>ab37eeef09149edbff47a4c8d00d485c0</Anchor>
+              <Anchor>ace1585dbbb7d7564c87b8154c519ec73</Anchor>
              </Node>
              <Node>
               <Name>args</Name>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['restartapp_0',['restartapp',['../d8/d01/namespaceapp.html#ae35893d3008cac9575721f869d92e47b',1,'app']]]
+  ['nof_0',['nof',['../df/dd6/classcurses__builder_1_1cinput.html#abcaf1fc1ce8def381753c87d084e79b2',1,'curses_builder::cinput']]]
 ];

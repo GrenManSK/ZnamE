@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['log_0',['log',['../d8/df3/namespacewriting.html#ab1b5615a4534fb83308f017e1e4d300d',1,'writing']]],
-  ['logout_1',['logout',['../d0/d52/namespaceedupage.html#ac820991cd8d23a0cc095060d0db57bb6',1,'edupage']]]
+  ['kayopy_0',['kayopy',['../d6/d36/namespacekayopy.html#a65e3d3e15c8498c9a01acae662b952b7',1,'kayopy']]]
 ];

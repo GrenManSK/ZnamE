@@ -44,8 +44,9 @@ var namespaces_dup =
       [ "env_menu", "d7/d3c/namespaceconda.html#a8db2c180e8eded5298bb8116e5de49cf", null ],
       [ "get_envs", "d7/d3c/namespaceconda.html#a5b003fd914d12da26b90c1f1df8899dc", null ]
     ] ],
+    [ "curses_builder", "d0/d70/namespacecurses__builder.html", "d0/d70/namespacecurses__builder" ],
     [ "database", "da/df2/namespacedatabase.html", [
-      [ "database_project", "da/df2/namespacedatabase.html#a8b3ba447d10561dc7accd4805ba8ad0b", null ],
+      [ "Data_Dynamics", "da/df2/namespacedatabase.html#a070a461c10402aa3794362170058bc1d", null ],
       [ "run_database_project", "da/df2/namespacedatabase.html#a7541741a9bd73f03d9e0cab9fe100f7f", null ]
     ] ],
     [ "dependencies", "dd/d2d/namespacedependencies.html", [
@@ -53,23 +54,24 @@ var namespaces_dup =
     ] ],
     [ "edupage", "d0/d52/namespaceedupage.html", [
       [ "add", "d0/d52/namespaceedupage.html#af8155c1c90674d76615b11b6d0c5c8ba", null ],
-      [ "add_marks", "d0/d52/namespaceedupage.html#a21f2f303ad4d1e33a43bd2b8207130a4", null ],
+      [ "add_marks", "d0/d52/namespaceedupage.html#a9d8a9e9e0972b929f85d5e9bdb2b0107", null ],
       [ "code", "d0/d52/namespaceedupage.html#a8cda85c4ec08c9ac94a9f7b99dd13168", null ],
       [ "decode", "d0/d52/namespaceedupage.html#a516061cb476f02c697dc730085faaf33", null ],
-      [ "find", "d0/d52/namespaceedupage.html#a026d51b7cff5026af09d0dd68c5e66fb", null ],
+      [ "find", "d0/d52/namespaceedupage.html#a53debba256f42edb6b4b01bd368f189f", null ],
       [ "inactive", "d0/d52/namespaceedupage.html#a341571d7a41b53af5510ed61722c2847", null ],
       [ "intro", "d0/d52/namespaceedupage.html#a316dc71e49505324d14deee19eccd566", null ],
       [ "logout", "d0/d52/namespaceedupage.html#ac820991cd8d23a0cc095060d0db57bb6", null ],
       [ "main", "d0/d52/namespaceedupage.html#a187508ee0d9f19d584a130cc5cba0c27", null ],
-      [ "password", "d0/d52/namespaceedupage.html#ab6bc445b1d72dc317235f930a3c3865f", null ],
+      [ "music_check", "d0/d52/namespaceedupage.html#a26d2d05eabf3782dc22c8ebc54bcd1ae", null ],
+      [ "password", "d0/d52/namespaceedupage.html#a947a9e740a4068b10f03b3e9d0bd18af", null ],
       [ "print_history", "d0/d52/namespaceedupage.html#ab61c7be85bb0e6a5468c992b61992781", null ],
       [ "print_module", "d0/d52/namespaceedupage.html#a153bbbaa356309a404f3c218b26dc562", null ],
       [ "progress_bar", "d0/d52/namespaceedupage.html#a7775a0617be38287f322386389fe89ab", null ],
       [ "reduce_musicnumber", "d0/d52/namespaceedupage.html#a11c2d421fc103b70ae07e919a3929cd8", null ],
-      [ "show_marks", "d0/d52/namespaceedupage.html#a78d356f449887b742d23a2f1c98ce4ac", null ],
-      [ "spot_music_dow", "d0/d52/namespaceedupage.html#ad9fa425db620b18457fe2d13d776a532", null ],
-      [ "vlc_init", "d0/d52/namespaceedupage.html#a9f3e602dd8410da6eab7cf9b0758c6f8", null ],
-      [ "was_updated", "d0/d52/namespaceedupage.html#ab37eeef09149edbff47a4c8d00d485c0", null ],
+      [ "show_marks", "d0/d52/namespaceedupage.html#afb381cb44a8c29fd8418a55eb143a06a", null ],
+      [ "spot_music_dow", "d0/d52/namespaceedupage.html#ad01aeb52409e66e1b1a4c99da9728675", null ],
+      [ "vlc_init", "d0/d52/namespaceedupage.html#a04c9c212427b30c15b9858bbbae21b45", null ],
+      [ "was_updated", "d0/d52/namespaceedupage.html#ace1585dbbb7d7564c87b8154c519ec73", null ],
       [ "args", "d0/d52/namespaceedupage.html#acba63c33bc68f8f8ab85c006c5bc8c2c", null ],
       [ "CACHENAME", "d0/d52/namespaceedupage.html#a8d21b6ebaf7cdd6f6d5900a5bdda4f27", null ],
       [ "config", "d0/d52/namespaceedupage.html#a0ffe55637eddd6c9825c6263e5888b80", null ],
@@ -125,6 +127,9 @@ var namespaces_dup =
     [ "html", "da/d9d/namespacehtml.html", [
       [ "playhtml", "da/d9d/namespacehtml.html#ae0cfc9a12b0b1ffed23c27bf6fb7fb5e", null ]
     ] ],
+    [ "install", "d3/d29/namespaceinstall.html", [
+      [ "try", "d3/d29/namespaceinstall.html#ad7c6349e8f2829b6f24ca46234850ea5", null ]
+    ] ],
     [ "internet", "d1/d22/namespaceinternet.html", [
       [ "download", "d1/d22/namespaceinternet.html#aeb2f9868381f66da42a5e39bbe1114f3", null ],
       [ "internet", "d1/d22/namespaceinternet.html#a98a21d6b2f7742fa0c11b97b284ee2ec", null ],
@@ -138,6 +143,31 @@ var namespaces_dup =
     [ "login", "d2/d99/namespacelogin.html", [
       [ "auto_login", "d2/d99/namespacelogin.html#a45d76b61d71b9d7416c86b958b957f2f", null ]
     ] ],
+    [ "main", "d2/dc1/namespacemain.html", [
+      [ "add_anime", "d2/dc1/namespacemain.html#a5d87b187701eea0d42c7af5222c11b34", null ],
+      [ "add_anime_to_dat", "d2/dc1/namespacemain.html#a7ac4018862a91abeade2db0a0fd13a3e", null ],
+      [ "is_available", "d2/dc1/namespacemain.html#a22ee906bad724ecc408efa8dc70fde2d", null ],
+      [ "login", "d2/dc1/namespacemain.html#a3423598e1608042ddce57ffd9e377f46", null ],
+      [ "logout", "d2/dc1/namespacemain.html#a27e72161a2060436a23b0a8955b890e4", null ],
+      [ "main", "d2/dc1/namespacemain.html#a059381d8f545e9cf90252c527d7079f7", null ],
+      [ "register", "d2/dc1/namespacemain.html#a45b9a937bde5490e7a540cb283bbcf05", null ],
+      [ "search_engine", "d2/dc1/namespacemain.html#a6c4685620cc20000fe42db5a3a8b5925", null ],
+      [ "show_anime", "d2/dc1/namespacemain.html#a7bd35c551693156d67911e5a1575221f", null ],
+      [ "_return", "d2/dc1/namespacemain.html#a176833d86ac8bc5fe93e08a67ca427d7", null ],
+      [ "account_id", "d2/dc1/namespacemain.html#a1ba48230227ec66b6d820364c80ff84a", null ],
+      [ "account_name", "d2/dc1/namespacemain.html#a6cc3c417352c170694ff8e5681ed180d", null ],
+      [ "anime_status", "d2/dc1/namespacemain.html#a28c6b2927c7bd274bd934aea38958f27", null ],
+      [ "COLS", "d2/dc1/namespacemain.html#af802feece43757c806c5d35e7538691a", null ],
+      [ "DATABASE", "d2/dc1/namespacemain.html#af65314523ff1e3da50334de0c35c4a4e", null ],
+      [ "date", "d2/dc1/namespacemain.html#a82f1d7bdfa97e39b934ed2cd2a5c275a", null ],
+      [ "HOST_NAME", "d2/dc1/namespacemain.html#ab0a5714d34815ba7f7be4dd73430d2e8", null ],
+      [ "LINES", "d2/dc1/namespacemain.html#a86ca7368ed4a22192a2b8fbe44488ef1", null ],
+      [ "PASSWORD", "d2/dc1/namespacemain.html#a545fb804ee1a845bb7f0b924875af7b5", null ],
+      [ "PORT", "d2/dc1/namespacemain.html#aa696001e8c360dc8f56e3d2fdc74d8b7", null ],
+      [ "privilege", "d2/dc1/namespacemain.html#ad739b26bc5877b6ad9af2ab0caead756", null ],
+      [ "server", "d2/dc1/namespacemain.html#ade2e9fd24a19d36e99928f8656eb90db", null ],
+      [ "USER", "d2/dc1/namespacemain.html#a943a4335653ffd17eafc85f8ba4bb587", null ]
+    ] ],
     [ "manga_translator", "de/d7e/namespacemanga__translator.html", [
       [ "manga_image_translator", "de/d7e/namespacemanga__translator.html#a019b0983a68679c07f664c968712b8f8", null ],
       [ "manga_image_translator_command", "de/d7e/namespacemanga__translator.html#a1d72b571e167348486881cd5fa19427c", null ],
@@ -147,6 +177,9 @@ var namespaces_dup =
       [ "DownloadVideo", "dd/dc4/namespacemedia.html#ae0e03aeb96980a77f0ba9d047aa0567a", null ],
       [ "play_loop", "dd/dc4/namespacemedia.html#afa762a121380c871ba894395c9315936", null ],
       [ "PlayVideo", "dd/dc4/namespacemedia.html#a6938b07ced07a9e782019e9bad56f6d5", null ]
+    ] ],
+    [ "neko", "dd/d62/namespaceneko.html", [
+      [ "nekof", "dd/d62/namespaceneko.html#a80dd25a2b2bde4fb06913fb0706a388e", null ]
     ] ],
     [ "playvideo", "d3/db6/namespaceplayvideo.html", [
       [ "main", "d3/db6/namespaceplayvideo.html#a86582d0c1d78493131487c51adad545a", null ]
@@ -158,9 +191,9 @@ var namespaces_dup =
     ] ],
     [ "system_info", "d5/df5/namespacesystem__info.html", [
       [ "get_line_number", "d5/df5/namespacesystem__info.html#a0f69d44535db5c0aff95a677e1380133", null ],
-      [ "get_log_info", "d5/df5/namespacesystem__info.html#a8e3f2cfac3035ffac20259dd877f294c", null ],
-      [ "get_screensize", "d5/df5/namespacesystem__info.html#ade39fb3bb4d66856e5b1747ebaa3dd35", null ],
-      [ "system_info", "d5/df5/namespacesystem__info.html#a92c091405f05267c225d0925fc422937", null ]
+      [ "get_log_info", "d5/df5/namespacesystem__info.html#afab65105f70908a7cea682bba5f71db6", null ],
+      [ "get_screensize", "d5/df5/namespacesystem__info.html#a827de6d1d9dcdd108451ac1a5efb476c", null ],
+      [ "system_info", "d5/df5/namespacesystem__info.html#a55e647e6eb060173fdd698092940ae01", null ]
     ] ],
     [ "system_operations", "de/d05/namespacesystem__operations.html", [
       [ "altF4", "de/d05/namespacesystem__operations.html#a168233482e1f64b3af4424c151d99ae6", null ],
@@ -175,7 +208,10 @@ var namespaces_dup =
       [ "isUserAdmin", "de/d05/namespacesystem__operations.html#aa3fb45e81ca75b65dfa7ad1c6819300c", null ],
       [ "move", "de/d05/namespacesystem__operations.html#a13881264d5df0e98e40b449a051592fd", null ],
       [ "pg_comb", "de/d05/namespacesystem__operations.html#a27f29c99e700b61a8b3e3d43d86bbcdc", null ],
+      [ "press_win", "de/d05/namespacesystem__operations.html#ae5250bbda183f2ba33981313924b4307", null ],
       [ "runAsAdmin", "de/d05/namespacesystem__operations.html#ad91b2c3c346993d5f478e23670f61aeb", null ],
+      [ "set_image", "de/d05/namespacesystem__operations.html#adecc8156e8e605fd58b37f25037d5bed", null ],
+      [ "set_up", "de/d05/namespacesystem__operations.html#abba81c23e3f2ab3e8d49a44d2553d53a", null ],
       [ "show_cmd", "de/d05/namespacesystem__operations.html#a455dd6b9d95036e222680e02dc1c6fc1", null ],
       [ "wait_for_file", "de/d05/namespacesystem__operations.html#a99b95316ff9feb1492b98309cfd7007e", null ]
     ] ],
