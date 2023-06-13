@@ -10,8 +10,8 @@ import copy
 
 def run_database_project():
     """
-    The run_database_project function is used to run the database_project.
-        It checks if the database_project folder exists and if it does, it updates it using git pull.
+    The run_database_project function is used to run the Data-Dynamics.
+        It checks if the Data-Dynamics folder exists and if it does, it updates it using git pull.
         If not, then it asks you whether you want to install the project automatically or not.
 
     :return: None
@@ -26,7 +26,7 @@ def run_database_project():
         )
         subprocess.call(["git", "-C", "Data-Dynamics", "pull"])
         printnlog("")
-        database_project()
+        Data_Dynamics()
     else:
         while True:
             vstup = input(
@@ -57,19 +57,19 @@ def run_database_project():
         print("\n")
         os.system(f"{sys.executable} Data-Dynamics/install.py")
 
-        database_project()
+        Data_Dynamics()
 
 
-def database_project():
+def Data_Dynamics():
     """
-    The database_project function is a function that allows the user to create an .env file for the database_project folder.
+    The Data-Dynamics function is a function that allows the user to create an .env file for the Data-Dynamics folder.
     The .env file will contain all of the information needed to connect to a MySQL database, and it will be used by main.py in order
     to connect and interact with said database.
 
     :return: None
     """
     printnlog(
-        "This will only work with my own set of database located in 'database_project\\anime.sql'"
+        "This will only work with my own set of database located in 'Data-Dynamics\\anime.sql'"
     )
     with open(".env", "a", encoding="utf-8") as dotenv:
         dotenv.write("DAT_PORT=3306\nHOST_NAME=localhost\n")
@@ -81,4 +81,4 @@ def database_project():
         dotenv.write(f"DAT_USER={input()}\n")
     print("Check '.env' file for configuration")
     input("Enter to continue")
-    os.system(f"{sys.executable} database_project/main.py")
+    os.system(f"{sys.executable} Data-Dynamics/main.py")
