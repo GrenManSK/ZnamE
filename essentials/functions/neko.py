@@ -3,6 +3,13 @@ import requests
 
 
 def nekof(config):
+    """
+    The nekof function is used to get a random neko image from the server specified in the config.json file.
+    The function returns a tuple containing an image and some metadata about it.
+
+    :param config: Get the server from the config file
+    :return: A tuple of two elements
+    """
     if config["neko settings"]["server"] == "nekos.best":
         typewriter("Getting image from nekos.best server", ttime=0.01)
         resp = requests.get("https://nekos.best/api/v2/neko", timeout=5)
