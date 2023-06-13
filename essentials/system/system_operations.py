@@ -130,6 +130,12 @@ def getWindow(args) -> bool:
 
 
 def set_image():
+    """
+    The set_image function is used to set the image of the banner.
+        The function takes no arguments and returns nothing.
+
+    :return: A tuple with the image and its size
+    """
     screensize = get_screensize()[0]
     getImg(
         "assets/banner.png",
@@ -142,6 +148,15 @@ def set_image():
 
 
 def set_up(args):
+    """
+    The set_up function is used to set up the environment for the program.
+    It sets up a screensize variable, which is used in other functions. It also
+    sets an image as wallpaper and moves it to the right place on screen, so that
+    the user can see it while using this program.
+
+    :param args: Pass the arguments from the command line to this function
+    :return: The screensize and the image of the screen
+    """
     screensize = get_screensize()[0]
     set_image()
     move(
@@ -426,6 +441,11 @@ def double_alt_tab():
 
 
 def press_win():
+    """
+    The press_win function presses the Windows key twice.
+
+    :return: Nothing
+    """
     pg.press("win")
     sleep(0.25)
     pg.press("win")
