@@ -237,6 +237,10 @@ try:  # type: ignore
 
     if __name__ == "__main__":
         print_module()
+    import copy
+
+    if __name__ == "__main__":
+        print_module()
     import vlc
 
     if __name__ == "__main__":
@@ -614,6 +618,8 @@ try:  # type: ignore
         :param waifu: Determine if the user is using a waifu or not
         :return: Nothing
         """
+        from essentials.system.system_operations import set_image
+
         subject: str = input(str(linenumber) + " Subject > ")
         with open(historyname, "a", encoding="utf-8") as _historyfile:
             _historyfile.write("[" + str(linenumber) + ", " + subject + "]\n")
@@ -636,14 +642,7 @@ try:  # type: ignore
         ).start()
         code(add(decode(True, False), loginvstupuser, subject, mark), "justcode")
         cv2.destroyAllWindows()
-        getImg(
-            "assets/banner.png",
-            "banner",
-            0,
-            0,
-            screensize[0],
-            int((round((322 / 1736) * screensize[0], 0))),
-        )
+        set_image()
         if neko or waifu:
             double_alt_tab()
         os.mkdir("temp")
@@ -792,6 +791,19 @@ try:  # type: ignore
         except Exception:
             return False
 
+    def music_check():
+        from downloadmusic import DownloadMusic  # type: ignore
+
+        musiclistnew: list = []
+        music_copy = copy.deepcopy(music)
+        for music_name in music_copy:
+            music.remove(music_name)
+            if not os.path.exists("assets/" + str(music_name) + ".mp3"):
+                musiclistnew.append(DownloadMusic(str(music_name)))
+            else:
+                musiclistnew.append(music_name)
+        return copy.deepcopy(musiclistnew)
+
     def main(**kwargs) -> None:
         global config
         global loginvstupuser
@@ -842,18 +854,12 @@ try:  # type: ignore
             from essentials.functions.function import run_app
             from essentials.functions.login import auto_login
             from essentials.functions.anime_watch import anime_menu
-            import copy
+            from essentials.system.system_operations import set_up, set_image, press_win
+            from essentials.functions.neko import nekof
 
             # Downloading music files if not present
-            musiclistnew: list = []
-            music_copy = copy.deepcopy(music)
-            for music_name in music_copy:
-                music.remove(music_name)
-                if not os.path.exists("assets/" + str(music_name) + ".mp3"):
-                    musiclistnew.append(DownloadMusic(str(music_name)))
-                else:
-                    musiclistnew.append(music_name)
-            music = copy.deepcopy(musiclistnew)
+            music = music_check()
+            musiclistnew = copy.deepcopy(music)
             config = music2str(musiclistnew)
             intro()
 
@@ -895,26 +901,7 @@ try:  # type: ignore
             else:
                 window = pygetwindow.getWindowsWithTitle("frame2")[0]
                 window.activate()
-            getImg(
-                "assets/banner.png",
-                "banner",
-                0,
-                0,
-                screensize[0],
-                int((round((322 / 1736) * screensize[0], 0))),
-            )
-            move(
-                "ZnámE",
-                0,
-                int((round((322 / 1736) * screensize[0], 0)) - 35),
-                screensize[0],
-                screensize[1] - int((round((322 / 1736) * screensize[0], 0))),
-            )
-            show_cmd(args)
-            pg.press("win")
-            sleep(0.25)
-            pg.press("win")
-            os.system("cls")
+            set_up(args)
             if args.music != 0:  # Start music
                 mixer.init()
                 mixer.music.load("assets/" + musiclistnew[int(args.music) - 1] + ".mp3")
@@ -1052,17 +1039,8 @@ try:  # type: ignore
                         passwordp = password(decode(loginvstupuser + "crypted", True))
                         cv2.destroyAllWindows()
                         getWindow(args)
-                        pg.press("win")
-                        sleep(0.25)
-                        pg.press("win")
-                        getImg(
-                            "assets/banner.png",
-                            "banner",
-                            0,
-                            0,
-                            screensize[0],
-                            int((round((322 / 1736) * screensize[0], 0))),
-                        )
+                        press_win()
+                        set_image()
                         if neko or waifu:
                             double_alt_tab()
                         sleep(0.1)
@@ -1091,17 +1069,8 @@ try:  # type: ignore
                                 os.remove("restart.py")
                                 cv2.destroyAllWindows()
                                 getWindow(args)
-                                pg.press("win")
-                                sleep(0.25)
-                                pg.press("win")
-                                getImg(
-                                    "assets/banner.png",
-                                    "banner",
-                                    0,
-                                    0,
-                                    screensize[0],
-                                    int((round((322 / 1736) * screensize[0], 0))),
-                                )
+                                press_win()
+                                set_image()
                                 if neko or waifu:
                                     double_alt_tab()
                                 typewriter("All is set!!!\nYou can use progam\n")
@@ -1386,51 +1355,8 @@ try:  # type: ignore
                         list_of_titles = pygetwindow.getAllTitles()
                         typewriter("WAIT", ttime=0.01)
                         if args.neko is not None:
-                            if config["neko settings"]["server"] == "nekos.best":
-                                typewriter(
-                                    "Getting image from nekos.best server", ttime=0.01
-                                )
-                                resp = requests.get(
-                                    "https://nekos.best/api/v2/neko", timeout=5
-                                )
-                                data: dict[str, str] = resp.json()
-                                res = requests.get(
-                                    data["results"][0]["url"], stream=True, timeout=5
-                                )
-                            elif config["neko settings"]["server"] == "waifu.pics":
-                                typewriter(
-                                    "Getting image from waifu.pics server", ttime=0.01
-                                )
-                                resp = requests.get(
-                                    "https://api.waifu.pics/sfw/neko", timeout=5
-                                )
-                                data: dict[str, str] = resp.json()
-                                res = requests.get(data["url"], stream=True, timeout=5)
-                            elif config["neko settings"]["server"] == "kyoko":
-                                typewriter(
-                                    "Getting image from kyoko server", ttime=0.01
-                                )
-                                resp = requests.get(
-                                    "https://kyoko.rei.my.id/api/sfw.php", timeout=5
-                                )
-                                data: dict[str, str] = resp.json()
-                                res = requests.get(
-                                    data["apiResult"]["url"][0], stream=True, timeout=5
-                                )
-                            elif config["neko settings"]["server"] == "nekos_api":
-                                typewriter(
-                                    "Getting image from nekos_api server", ttime=0.01
-                                )
-                                resp = requests.get(
-                                    "https://nekos.nekidev.com/api/image/random?categories=catgirl",
-                                    timeout=5,
-                                )
-                                data: dict[str, str] = resp.json()
-                                res = requests.get(
-                                    data["data"][0]["url"], stream=True, timeout=5
-                                )
-                            else:
-                                typewriter("No server provided", ttime=0.01)
+                            res, data = nekof(config)
+                            if res is None:
                                 continue
                             typewriter("Downloading image", ttime=0.01)
                             if res.status_code == 200:
@@ -1787,17 +1713,8 @@ try:  # type: ignore
                                 icofind = code(find(decode(True, False)), False)
                                 cv2.destroyAllWindows()
                                 getWindow(args)
-                                pg.press("win")
-                                sleep(0.25)
-                                pg.press("win")
-                                getImg(
-                                    "assets/banner.png",
-                                    "banner",
-                                    0,
-                                    0,
-                                    screensize[0],
-                                    int((round((322 / 1736) * screensize[0], 0))),
-                                )
+                                press_win()
+                                set_image()
                                 if neko or waifu:
                                     double_alt_tab()
                                 if icofind[0]:
