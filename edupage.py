@@ -173,7 +173,6 @@ try:  # type: ignore
 
     from essentials.system.system_operations import (
         getWindow,
-        getImg,
         move,
         show_cmd,
         wait_for_file,
