@@ -1098,6 +1098,7 @@ try:  # type: ignore
                             typewriter("WRONG PASSWORD")
                             os.remove("data")
                             shutil.copy("data_backup", "data")
+                            pg.write("login\n")
                     if args.neko is None and not neko:
                         sleep(1)
                         pg.write("nekon\n")
