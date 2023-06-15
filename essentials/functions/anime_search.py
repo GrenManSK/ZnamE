@@ -16,10 +16,7 @@ def main():
     while True:
         anime_vstup: str = input("1) image upload\n2) url link\n3) back\n> ")
         if anime_vstup == "1":
-            try:
-                os.mkdir("anime_search/")
-            except FileExistsError:
-                pass
+            os.makedirs("anime_search/", exist_ok=True)
             input(
                 "Firstly you will be redirected to 'anime_search' directory and you need to put your image to folder as 'anime.png' click enter to continue> "
             )
@@ -170,6 +167,7 @@ def main():
                 elif anime_vstup_success == "5":
                     break
         elif anime_vstup == "2":
+            os.makedirs("anime_search/", exist_ok=True)
             try:
                 anime = requests.get(
                     "https://api.trace.moe/search?url={}".format(
