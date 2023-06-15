@@ -54,7 +54,10 @@ def anime_menu(vlc_path_tmp=None):
                 return 0
 
             vstup = int(vstup)
-            anime_file = anime[vstup - 1]
+            try:
+                anime_file = anime[vstup - 1]
+            except IndexError:
+                anime_file [-1]
 
             anime_play(anime_file)
 
