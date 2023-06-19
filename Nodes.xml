@@ -73,104 +73,108 @@
         <Path>de/dac/md_patch.html</Path>
        </Node>
        <Node>
+        <Name>Info</Name>
+        <Path>d9/d32/md_project_info.html</Path>
+       </Node>
+       <Node>
         <Name>&lt;strong&gt;ZnamE&lt;/strong&gt;</Name>
         <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
       <Subnodes>
          <Node>
           <Name>Installation</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md141</Anchor>
+          <Anchor>autotoc_md182</Anchor>
          </Node>
          <Node>
           <Name>Main functions</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md143</Anchor>
+          <Anchor>autotoc_md184</Anchor>
         <Subnodes>
            <Node>
             <Name>&lt;tt&gt;config.yml&lt;/tt&gt; hereinafter as config or config file</Name>
             <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-            <Anchor>autotoc_md145</Anchor>
+            <Anchor>autotoc_md186</Anchor>
            </Node>
           </Subnodes>
          </Node>
          <Node>
           <Name>Important notice</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md147</Anchor>
+          <Anchor>autotoc_md188</Anchor>
         <Subnodes>
            <Node>
             <Name>Works only on Windows</Name>
             <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-            <Anchor>autotoc_md148</Anchor>
+            <Anchor>autotoc_md189</Anchor>
            </Node>
           </Subnodes>
          </Node>
          <Node>
           <Name>waifu | neko</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md150</Anchor>
+          <Anchor>autotoc_md191</Anchor>
          </Node>
          <Node>
           <Name>VOICEVOX</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md152</Anchor>
+          <Anchor>autotoc_md193</Anchor>
          </Node>
          <Node>
           <Name>login</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md154</Anchor>
+          <Anchor>autotoc_md195</Anchor>
          </Node>
          <Node>
           <Name>Music</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md156</Anchor>
+          <Anchor>autotoc_md197</Anchor>
         <Subnodes>
            <Node>
             <Name>Config file</Name>
             <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-            <Anchor>autotoc_md157</Anchor>
+            <Anchor>autotoc_md198</Anchor>
            </Node>
            <Node>
             <Name>Function</Name>
             <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-            <Anchor>autotoc_md158</Anchor>
+            <Anchor>autotoc_md199</Anchor>
            </Node>
           </Subnodes>
          </Node>
          <Node>
           <Name>Manga_translator</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md160</Anchor>
+          <Anchor>autotoc_md201</Anchor>
          </Node>
          <Node>
           <Name>KayoPy</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md162</Anchor>
+          <Anchor>autotoc_md203</Anchor>
          </Node>
          <Node>
           <Name>cbzPrintable</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md164</Anchor>
+          <Anchor>autotoc_md205</Anchor>
          </Node>
          <Node>
           <Name>PlayVideo</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md166</Anchor>
+          <Anchor>autotoc_md207</Anchor>
          </Node>
          <Node>
           <Name>Anime_search</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md168</Anchor>
+          <Anchor>autotoc_md209</Anchor>
          </Node>
          <Node>
           <Name>&lt;strong&gt;Config options&lt;/strong&gt;</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md170</Anchor>
+          <Anchor>autotoc_md211</Anchor>
          </Node>
          <Node>
           <Name>CLI Arguments</Name>
           <Path>d3/dcc/md__r_e_a_d_m_e.html</Path>
-          <Anchor>autotoc_md172</Anchor>
+          <Anchor>autotoc_md213</Anchor>
          </Node>
         </Subnodes>
        </Node>
@@ -2490,6 +2494,12 @@
                </Node>
               </Subnodes>
              </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>project</Name>
+            <Path>dir_167790342fb55959539d550b874be046.html</Path>
+          <Subnodes>
             </Subnodes>
            </Node>
            <Node>

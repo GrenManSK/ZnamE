@@ -403,6 +403,13 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>md_project_info</Name>
+      <APILanguage>markdown</APILanguage>
+    </TokenIdentifier>
+    <Path>d9/d32/md_project_info.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>md_README</Name>
       <APILanguage>markdown</APILanguage>
     </TokenIdentifier>

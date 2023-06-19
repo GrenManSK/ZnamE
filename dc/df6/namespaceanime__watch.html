@@ -180,17 +180,24 @@ It then plays it using VLC.
 <div class="line"><span class="lineno">   54</span>                <span class="keywordflow">return</span> 0</div>
 <div class="line"><span class="lineno">   55</span> </div>
 <div class="line"><span class="lineno">   56</span>            vstup = int(vstup)</div>
-<div class="line"><span class="lineno">   57</span>            anime_file = anime[vstup - 1]</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>            anime_play(anime_file)</div>
-<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   58</span>                anime_file = anime[vstup - 1]</div>
+<div class="line"><span class="lineno">   59</span>            <span class="keywordflow">except</span> IndexError:</div>
+<div class="line"><span class="lineno">   60</span>                anime_file [-1]</div>
 <div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>            anime_play(anime_file)</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span> </div>
 </div><!-- fragment --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../dc/df6/namespaceanime__watch_a175c94f8159bc39baf298c8bc3f2f731_cgraph.png" border="0" usemap="#adc/df6/namespaceanime__watch_a175c94f8159bc39baf298c8bc3f2f731_cgraph" alt=""/></div>
+<map name="adc/df6/namespaceanime__watch_a175c94f8159bc39baf298c8bc3f2f731_cgraph" id="adc/df6/namespaceanime__watch_a175c94f8159bc39baf298c8bc3f2f731_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,181,32"/>
+<area shape="rect" href="../../dc/df6/namespaceanime__watch.html#a56f2c7a644d2503f90c1398a5189e8d6" title=" " alt="" coords="229,5,396,32"/>
+</map>
 </div>
 
 </div>
@@ -216,22 +223,26 @@ It then plays it using VLC.
 :param file_path: Pass the file path of the anime to be played
 :return: None
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../d3/d85/anime__watch_8py_source.html#l00062">62</a> of file <a class="el" href="../../d3/d85/anime__watch_8py_source.html">anime_watch.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span><span class="keyword">def </span>anime_play(file_path):</div>
-<div class="line"><span class="lineno">   63</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   64</span><span class="stringliteral">    The anime_play function takes a file path </span><span class="keyword">as</span> an argument <span class="keywordflow">and</span> plays the video at that location using VLC.</div>
-<div class="line"><span class="lineno">   65</span>        The function <span class="keywordflow">is</span> used to play videos <span class="keyword">from</span> the anime_list list.</div>
-<div class="line"><span class="lineno">   66</span>    </div>
-<div class="line"><span class="lineno">   67</span>    :param file_path: Pass the file path of the anime to be played</div>
-<div class="line"><span class="lineno">   68</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
-<div class="line"><span class="lineno">   69</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   70</span><span class="stringliteral">    subprocess.check_output([vlc_path, file_path])</span></div>
+<p class="definition">Definition at line <a class="el" href="../../d3/d85/anime__watch_8py_source.html#l00065">65</a> of file <a class="el" href="../../d3/d85/anime__watch_8py_source.html">anime_watch.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span><span class="keyword">def </span>anime_play(file_path):</div>
+<div class="line"><span class="lineno">   66</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   67</span><span class="stringliteral">    The anime_play function takes a file path </span><span class="keyword">as</span> an argument <span class="keywordflow">and</span> plays the video at that location using VLC.</div>
+<div class="line"><span class="lineno">   68</span>        The function <span class="keywordflow">is</span> used to play videos <span class="keyword">from</span> the anime_list list.</div>
+<div class="line"><span class="lineno">   69</span>    </div>
+<div class="line"><span class="lineno">   70</span>    :param file_path: Pass the file path of the anime to be played</div>
+<div class="line"><span class="lineno">   71</span>    :<span class="keywordflow">return</span>: <span class="keywordtype">None</span></div>
+<div class="line"><span class="lineno">   72</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   73</span><span class="stringliteral">    subprocess.check_output([vlc_path, file_path])</span></div>
 </div><!-- fragment --><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="../../dc/df6/namespaceanime__watch_a56f2c7a644d2503f90c1398a5189e8d6_icgraph.png" border="0" usemap="#adc/df6/namespaceanime__watch_a56f2c7a644d2503f90c1398a5189e8d6_icgraph" alt=""/></div>
+<map name="adc/df6/namespaceanime__watch_a56f2c7a644d2503f90c1398a5189e8d6_icgraph" id="adc/df6/namespaceanime__watch_a56f2c7a644d2503f90c1398a5189e8d6_icgraph">
+<area shape="rect" title=" " alt="" coords="229,5,396,32"/>
+<area shape="rect" href="../../dc/df6/namespaceanime__watch.html#a175c94f8159bc39baf298c8bc3f2f731" title=" " alt="" coords="5,5,181,32"/>
+</map>
 </div>
 
 </div>
@@ -259,7 +270,7 @@ It then plays it using VLC.
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/df6/namespaceanime__watch.html">anime_watch</a></li>
-    <li class="footer">Generated on Tue Jun 13 2023 20:59:46 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jun 19 2023 13:30:16 for ZnamE by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -40,28 +40,29 @@ var NAVTREE =
       [ "Attribution", "d4/d4c/md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md11", null ]
     ] ],
     [ "patch", "de/dac/md_patch.html", null ],
+    [ "Info", "d9/d32/md_project_info.html", null ],
     [ "<strong>ZnamE</strong>", "d3/dcc/md__r_e_a_d_m_e.html", [
-      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md141", null ],
-      [ "Main functions", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md143", [
-        [ "<tt>config.yml</tt> hereinafter as config or config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md145", null ]
+      [ "Installation", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md182", null ],
+      [ "Main functions", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md184", [
+        [ "<tt>config.yml</tt> hereinafter as config or config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md186", null ]
       ] ],
-      [ "Important notice", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md147", [
-        [ "Works only on Windows", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md148", null ]
+      [ "Important notice", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md188", [
+        [ "Works only on Windows", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md189", null ]
       ] ],
-      [ "waifu | neko", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md150", null ],
-      [ "VOICEVOX", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md152", null ],
-      [ "login", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md154", null ],
-      [ "Music", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md156", [
-        [ "Config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md157", null ],
-        [ "Function", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md158", null ]
+      [ "waifu | neko", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md191", null ],
+      [ "VOICEVOX", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md193", null ],
+      [ "login", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md195", null ],
+      [ "Music", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md197", [
+        [ "Config file", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md198", null ],
+        [ "Function", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md199", null ]
       ] ],
-      [ "Manga_translator", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md160", null ],
-      [ "KayoPy", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md162", null ],
-      [ "cbzPrintable", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md164", null ],
-      [ "PlayVideo", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md166", null ],
-      [ "Anime_search", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md168", null ],
-      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md170", null ],
-      [ "CLI Arguments", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md172", null ]
+      [ "Manga_translator", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md201", null ],
+      [ "KayoPy", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md203", null ],
+      [ "cbzPrintable", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md205", null ],
+      [ "PlayVideo", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md207", null ],
+      [ "Anime_search", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md209", null ],
+      [ "<strong>Config options</strong>", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md211", null ],
+      [ "CLI Arguments", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md213", null ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
@@ -91,7 +92,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "d8/df3/namespacewriting.html#aafd73a50983fa534f7da246578df0640",
-"df/dd7/edupage_8py.html#ad01aeb52409e66e1b1a4c99da9728675"
+"df/dd7/edupage_8py.html#ace1585dbbb7d7564c87b8154c519ec73"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
