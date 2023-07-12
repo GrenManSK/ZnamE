@@ -6,7 +6,7 @@ commonmark==0.9.1
 GPUtil==1.4.0
 idna==3.4
 keyboard==0.13.5
-lxml==4.9.2
+lxml==4.9.3
 moviepy>=1.0.3
 mutagen==1.46.0
 numpy>=1.22.2
