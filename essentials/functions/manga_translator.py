@@ -68,9 +68,11 @@ def run_manga_image_translator(env):
         mkdir("manga_translator_temp")
         img = Image.new("RGB", (800, 1280), (255, 255, 255))
         img.save("manga_translator_temp/image.png", "PNG")
+        os.chdir("manga-image-translator")
         os.system(
-            f"{env} -m manga-image-translator.manga_translator -v --mode batch --translator=google -l ENG -i manga_translator_temp"
+            f"{env} -m manga_translator -v --mode batch --translator=google -l ENG -i ../manga_translator_temp"
         )
+        os.chdir("..")
         shutil.rmtree("manga_translator_temp")
         shutil.rmtree("manga_translator_temp-translated")
         manga_image_translator(env)
