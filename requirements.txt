@@ -1,7 +1,7 @@
 Brotli==1.0.9
 certifi==2023.7.22
 charset-normalizer==3.2.0
-click==8.1.6
+click==8.1.7
 commonmark==0.9.1
 GPUtil==1.4.0
 idna==3.4
