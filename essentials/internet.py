@@ -1,3 +1,4 @@
+import contextlib
 import requests
 from time import sleep
 import os
@@ -14,7 +15,7 @@ def internet():
     The internet function checks if the internet is working.
         It does this by checking if a file called INTERNET_CHECK_CORRECT exists.
         If it doesn't exist, then we know that there's no internet connection.
-    
+
     :return: A boolean value, true if the internet is working and false if it's not
     """
     number = 0
@@ -35,25 +36,27 @@ def internet_check() -> None:
     """
     The internet_check function checks if the internet is up and running.
     If it isn't, then the program will exit with an error code of 1.
-    
+
     :return: Nothing
     """
     try:
-        global requests
-        import requests
-
-        timeout: int = 10
-        Thread(target=internet).start()
-        requests.head("http://www.google.com/", timeout=timeout)
-        try:
-            open("INTERNET_CHECK_CORRECT", "x")
-        except FileExistsError:
-            pass
+        handle_check_internet()
     except requests.ConnectionError:
         line_number: int = get_line_number()
         printnlog("The internet connection is down")
         sleep(2)
         sys.exit(1)
+
+
+def handle_check_internet():
+    global requests
+    import requests
+
+    timeout: int = 10
+    Thread(target=internet).start()
+    requests.head("http://www.google.com/", timeout=timeout)
+    with contextlib.suppress(FileExistsError):
+        open("INTERNET_CHECK_CORRECT", "x")
 
 
 def download(url: str, fname: str, chunk_size: int = 1024) -> bool:

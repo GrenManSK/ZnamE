@@ -1,3 +1,4 @@
+import contextlib
 import sponsorblock as sb
 from sponsorblock import Segment
 import os
@@ -18,10 +19,8 @@ def get_segments(url: str) -> list[Segment]:
     :param url: str: Pass in the url of the video to be downloaded
     :return: A list of segment objects
     """
-    try:
+    with contextlib.suppress(Exception):
         return client.get_skip_segments(url)
-    except Exception:
-        pass
 
 
 def sponsorblock(url, file="assets/video.mp4"):
@@ -51,11 +50,8 @@ def sponsorblock(url, file="assets/video.mp4"):
 
         if segment.category in ["poi_hightlight", "filler", "interaction"]:
             continue
-        try:
+        with contextlib.suppress(ValueError):
             clips.append(clip.subclip(start, end))
-        except ValueError:
-            pass
-
         start = segment.end
 
     if len(clips) == 1:

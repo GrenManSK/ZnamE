@@ -62,22 +62,7 @@ def run_voicevox(env):
         subprocess.call([env, "-m", "VOICEVOX"])
     else:
         if os.path.exists("VOICEVOX"):
-            typewriter(
-                printnlog(f"\nFound damaged VOICEVOX\nDeleting ...\n", toprint=False),
-                ttime=0.01,
-            )
-            print("\nWaiting 2 seconds to clear Access Denied Error\n")
-            sleep(2)
-            for i in os.listdir("VOICEVOX"):
-                if i.endswith("git"):
-                    tmp = os.path.join("VOICEVOX", i)
-                    while True:
-                        subprocess.call(["attrib", "-H", tmp])
-                        break
-                    shutil.rmtree(tmp, onerror=on_rm_error)
-            print("\nWaiting 2 seconds to clear Access Denied Error\n")
-            sleep(2)
-            shutil.rmtree("VOICEVOX", onerror=on_rm_error)
+            delete_damaged_goods()
         else:
             printnlog("VOICEVOX not found")
         while True:
@@ -116,3 +101,22 @@ def run_voicevox(env):
         )
         sleep(1)
         subprocess.call([env, "-m", "VOICEVOX", "--force-reinstall"])
+
+
+def delete_damaged_goods():
+    typewriter(
+        printnlog(f"\nFound damaged VOICEVOX\nDeleting ...\n", toprint=False),
+        ttime=0.01,
+    )
+    print("\nWaiting 2 seconds to clear Access Denied Error\n")
+    sleep(2)
+    for i in os.listdir("VOICEVOX"):
+        if i.endswith("git"):
+            tmp = os.path.join("VOICEVOX", i)
+            while True:
+                subprocess.call(["attrib", "-H", tmp])
+                break
+            shutil.rmtree(tmp, onerror=on_rm_error)
+    print("\nWaiting 2 seconds to clear Access Denied Error\n")
+    sleep(2)
+    shutil.rmtree("VOICEVOX", onerror=on_rm_error)

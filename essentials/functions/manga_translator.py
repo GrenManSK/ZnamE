@@ -25,7 +25,6 @@ def run_manga_image_translator(env):
         )
         subprocess.call(["git", "-C", "manga-image-translator", "pull"])
         print("")
-        manga_image_translator(env)
     else:
         while True:
             vstup = input(
@@ -75,7 +74,8 @@ def run_manga_image_translator(env):
         os.chdir("..")
         shutil.rmtree("manga_translator_temp")
         shutil.rmtree("manga_translator_temp-translated")
-        manga_image_translator(env)
+
+    manga_image_translator(env)
 
 
 def manga_image_translator(env):
@@ -129,7 +129,7 @@ VIN: Vietnames""",
                     ttime=0.01,
                 )
                 vstup = input("Select language")
-                if not vstup in [
+                if vstup not in [
                     "CHS",
                     "CHT",
                     "CSY",

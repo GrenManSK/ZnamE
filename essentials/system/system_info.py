@@ -1,3 +1,4 @@
+import contextlib
 import os
 import wmi
 import GPUtil
@@ -25,17 +26,15 @@ from ..data.app import (
 
 
 def system_info(logger, screensize) -> None:
-    try:
-        os.makedirs("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/")
-    except FileExistsError:
-        pass
-    open("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/info.txt", "x")
+    with contextlib.suppress(FileExistsError):
+        os.makedirs(f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/")
+    open(f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/info.txt", "x")
     verzia = open("version", "r", encoding="utf-8")
     logger.stay(to_info(verzia.read(), end="", file="version", mode="w", toprint=False))
     logger.stay(printnlog("Getting system information", toprint=False))
     logger.next(
         to_info(
-            "Resolution: " + str(screensize[0]) + "x" + str(screensize[1]) + "\n",
+            f"Resolution: {str(screensize[0])}x{str(screensize[1])}" + "\n",
             toprint=False,
         )
     )
@@ -91,10 +90,13 @@ def system_info(logger, screensize) -> None:
     logger.stay(to_info("=" * 40 + "CPU Info" + "=" * 40, toprint=False))
     logger.stay(to_info(f"CPU architecture: {my_cpuinfo['arch']}", toprint=False))
     logger.stay(
-        to_info("Physical cores:" + str(psutil.cpu_count(logical=False)), toprint=False)
+        to_info(
+            f"Physical cores:{str(psutil.cpu_count(logical=False))}",
+            toprint=False,
+        )
     )
     logger.stay(
-        to_info("Total cores:" + str(psutil.cpu_count(logical=True)), toprint=False)
+        to_info(f"Total cores:{str(psutil.cpu_count(logical=True))}", toprint=False)
     )
     logger.stay(to_info(f"Max Frequency: {cpufreq.max:.2f}Mhz", toprint=False))
     logger.stay(to_info(f"Min Frequency: {cpufreq.min:.2f}Mhz", toprint=False))
@@ -218,7 +220,7 @@ def system_info(logger, screensize) -> None:
         to_info(f"Total Bytes Received: {get_size1(net_io.bytes_recv)}", toprint=False)
     )
     logger.stay(to_info(pc.Win32_VideoController()[0], toprint=False))
-    logger.stay(to_info("User Current Version:-" + str(sys.version), toprint=False))
+    logger.stay(to_info(f"User Current Version:-{str(sys.version)}", toprint=False))
     logger.stay(printnlog("\nDONE\n", toprint=False))
 
 
@@ -234,16 +236,16 @@ def get_line_number(goback: int = 0, relative_frame: int = 1) -> int:
     :param relative_frame: int: Specify the frame in the stack to get the line number from
     :return: The line number of the function call
     """
-    return int(inspect.stack()[relative_frame][0].f_lineno) - int(goback)
+    return int(inspect.stack()[relative_frame][0].f_lineno) - goback
 
 
 def get_screensize() -> tuple[tuple[int, int], tuple[float, float]]:
     """
     The get_screensize function is used to get the screensize of the user's monitor.
-    It returns a tuple containing two integers, which are the width and height of 
-    the screen in pixels. It also returns a tuple containing two floats, which are 
+    It returns a tuple containing two integers, which are the width and height of
+    the screen in pixels. It also returns a tuple containing two floats, which are
     the percentage values for each pixel on the screen.
-    
+
     :return: A tuple of the screensize in pixels and a tuple of the screensize as a percentage
     """
     user32 = ctypes.windll.user32
@@ -252,7 +254,7 @@ def get_screensize() -> tuple[tuple[int, int], tuple[float, float]]:
         (1 / 1920) * screensize[0]
     ), float((1 / 1080) * screensize[1])
     with open(".env", "a") as dotenv:
-        dotenv.write(f"SCREENSIZE={str(screensize)}\n")
+        dotenv.write(f"SCREENSIZE={screensize}\n")
     return screensize, screensizepercentage
 
 
@@ -260,30 +262,22 @@ def get_log_info() -> None:
     """
     The get_log_info function is used to write the code of each app into a file.
     This allows for easy access to the code in case it needs to be changed or updated.
-    
+
     :return: Nothing
     """
-    x = open("log_codeapp.py", "w")
-    x.write(codeapp)
-    x.close()
-    x = open("log_decodeapp.py", "w")
-    x.write(decodeapp)
-    x.close()
-    x = open("log_findapp.py", "w")
-    x.write(findapp)
-    x.close()
-    x = open("log_passwordapp.py", "w")
-    x.write(passwordapp)
-    x.close()
-    x = open("log_addapp.py", "w")
-    x.write(addapp)
-    x.close()
-    x = open("log_restartapp.py", "w")
-    x.write(restartapp)
-    x.close()
-    x = open("log_update.py", "w")
-    x.write(updateapp)
-    x.close()
-    x = open("log_game.py", "w")
-    x.write(gameapp)
-    x.close()
+    with open("log_codeapp.py", "w") as x:
+        x.write(codeapp)
+    with open("log_decodeapp.py", "w") as x:
+        x.write(decodeapp)
+    with open("log_findapp.py", "w") as x:
+        x.write(findapp)
+    with open("log_passwordapp.py", "w") as x:
+        x.write(passwordapp)
+    with open("log_addapp.py", "w") as x:
+        x.write(addapp)
+    with open("log_restartapp.py", "w") as x:
+        x.write(restartapp)
+    with open("log_update.py", "w") as x:
+        x.write(updateapp)
+    with open("log_game.py", "w") as x:
+        x.write(gameapp)

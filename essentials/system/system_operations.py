@@ -1,3 +1,4 @@
+import contextlib
 import cv2
 import glob
 from .exceptions import error_get
@@ -27,10 +28,10 @@ def get_music_menu(musiclistnew):
     :return: The number of songs in the music list
     """
     for times, music_name in enumerate(musiclistnew):
-        typewriter(str(times + 1) + ") " + music_name)
-    typewriter(str(times + 2) + ") Delete audio")
-    typewriter(str(times + 3) + ") Download music")
-    typewriter(str(times + 4) + ") Back")
+        typewriter(f"{str(times + 1)}) {music_name}")
+    typewriter(f"{str(times + 2)}) Delete audio")
+    typewriter(f"{str(times + 3)}) Download music")
+    typewriter(f"{str(times + 4)}) Back")
     return times
 
 
@@ -191,9 +192,7 @@ def isUserAdmin():
         # Check for root on Posix
         return os.getuid() == 0
     else:
-        raise RuntimeError(
-            "Unsupported operating system for this module: %s" % (os.name,)
-        )
+        raise RuntimeError(f"Unsupported operating system for this module: {os.name}")
 
 
 def runAsAdmin(cmdLine=None, wait=True):
@@ -220,8 +219,8 @@ def runAsAdmin(cmdLine=None, wait=True):
         cmdLine = [python_exe] + sys.argv
     elif type(cmdLine) not in (ctypes.TupleType, ctypes.ListType):
         raise ValueError("cmdLine is not a sequence.")
-    cmd = '"%s"' % (cmdLine[0],)
-    params = " ".join(['"%s"' % (x,) for x in cmdLine[1:]])
+    cmd = f'"{cmdLine[0]}"'
+    params = " ".join([f'"{x}"' for x in cmdLine[1:]])
     cmdDir = ""
     showCmd = win32con.SW_SHOWNORMAL
     lpVerb = "runas"
@@ -235,10 +234,9 @@ def runAsAdmin(cmdLine=None, wait=True):
     if wait:
         procHandle = procInfo["hProcess"]
         obj = win32event.WaitForSingleObject(procHandle, win32event.INFINITE)
-        rc = win32process.GetExitCodeProcess(procHandle)
+        return win32process.GetExitCodeProcess(procHandle)
     else:
-        rc = None
-    return rc
+        return None
 
 
 def checkAdmin():
@@ -250,11 +248,10 @@ def checkAdmin():
     rc = 0
     if not isUserAdmin():
         print("You're not an admin.", os.getpid(), "params: ", sys.argv)
-        rc = runAsAdmin()
+        return runAsAdmin()
     else:
         print("You are an admin!", os.getpid(), "params: ", sys.argv)
-        rc = 0
-    return rc
+        return 0
 
 
 def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> None:
@@ -289,9 +286,8 @@ def getImg(imgSrc: str, name: str, x=None, y=None, width=None, length=None) -> N
                 length = int((screensize[1] / 10) * 9)
 
             def enumHandler(hwnd, lParam):
-                if win32gui.IsWindowVisible(hwnd):
-                    if appname in win32gui.GetWindowText(hwnd):
-                        win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
+                if win32gui.IsWindowVisible(hwnd) and appname in win32gui.GetWindowText(hwnd):
+                    win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
 
             win32gui.EnumWindows(enumHandler, None)
         k = cv2.waitKey(33)
@@ -352,9 +348,8 @@ def move(window: str, x: int, y: int, width, length) -> None:
         length: int = int((screensize[1] / 10) * 9)
 
     def enumHandler(hwnd, lParam):
-        if win32gui.IsWindowVisible(hwnd):
-            if appname in win32gui.GetWindowText(hwnd):
-                win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
+        if win32gui.IsWindowVisible(hwnd) and appname in win32gui.GetWindowText(hwnd):
+            win32gui.MoveWindow(hwnd, xpos, ypos, width, length, True)
 
     win32gui.EnumWindows(enumHandler, None)
 
@@ -368,20 +363,19 @@ def intro_video(args, media_player):
     :param media_player: Play the intro video
     :return: Nothing
     """
-    if args.restart is not None:
-        try:
-            sleep(0.1)
-            window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 output)")[0]
-            window.activate()
-            window.maximize()
-        except Exception:
-            pass
-        sleep(2.5)
-        mixer.init()
-        mixer.music.load("assets/greeting.mp3")
-        mixer.music.play()
-        sleep(2.5)
-        media_player.stop()
+    if args.restart is None:
+        return
+    with contextlib.suppress(Exception):
+        sleep(0.1)
+        window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 output)")[0]
+        window.activate()
+        window.maximize()
+    sleep(2.5)
+    mixer.init()
+    mixer.music.load("assets/greeting.mp3")
+    mixer.music.play()
+    sleep(2.5)
+    media_player.stop()
 
 
 def show_cmd(args):
@@ -414,11 +408,7 @@ def wait_for_file(path):
     :return: Nothing
     """
     while True:
-        leave: bool = False
-        for i in os.listdir():
-            if i == path:
-                leave: bool = True
-                break
+        leave: bool = any(i == path for i in os.listdir())
         if leave:
             sleep(0.05)
             break
@@ -432,9 +422,11 @@ def double_alt_tab():
 
     :return: None
     """
-    pg.keyDown("alt")
-    pg.press("tab")
-    pg.keyUp("alt")
+    alt_tab()
+    alt_tab()
+
+
+def alt_tab():
     pg.keyDown("alt")
     pg.press("tab")
     pg.keyUp("alt")

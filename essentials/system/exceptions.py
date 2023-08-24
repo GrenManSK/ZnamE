@@ -98,7 +98,7 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
     :param errors: Get the errors from the error_get function
     :param line: list: Get the line number of the error
     :param fname: None | str: Specify the file name of the error
-    :return: The error and the line number of where it occured
+    :return: The error and the line number of where it occurred
     """
     debug = os.getenv("DEBUG")
     if debug is None:
@@ -141,22 +141,21 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                 except Exception:
                     sig = ""
                 for i in error_tb.tb_frame.f_locals:
-                    if debug:
-                        if i in sig:
-                            value = error_tb.tb_frame.f_locals[i]
-                            if isinstance(value, str):
-                                value = "'" + str(value) + "'"
-                            elif isinstance(value, int):
-                                value = str(value)
-                            elif isinstance(value, dict):
-                                value = str(value)
-                            elif isinstance(value, list):
-                                value = str(value)
-                            elif isinstance(value, object):
-                                value = str(value)[1:].split(" ")[0]
-                            elif callable(value):
-                                value = str(i) + "()"
-                            args += str(i) + "=" + str(value) + ", "
+                    if debug and i in sig:
+                        value = error_tb.tb_frame.f_locals[i]
+                        if isinstance(value, str):
+                            value = "'" + str(value) + "'"
+                        elif isinstance(value, int):
+                            value = str(value)
+                        elif isinstance(value, dict):
+                            value = str(value)
+                        elif isinstance(value, list):
+                            value = str(value)
+                        elif isinstance(value, object):
+                            value = str(value)[1:].split(" ")[0]
+                        elif callable(value):
+                            value = str(i) + "()"
+                        args += str(i) + "=" + str(value) + ", "
                 if not debug:
                     args = sig.split(")")[0] + ")"
                 if len(args) > 1 and debug:
@@ -193,18 +192,17 @@ def error_get(errors, line: list, fname: None | str = None) -> None:
                     except Exception:
                         sig = ""
                     for i in error_tb.tb_frame.f_locals:
-                        if debug:
-                            if i in sig:
-                                value = error_tb.tb_frame.f_locals[i]
-                                if isinstance(value, str):
-                                    value = "'" + str(value) + "'"
-                                elif isinstance(value, int):
-                                    value = str(value)
-                                elif isinstance(value, object):
-                                    value = str(value)[1:].split(" ")[0]
-                                elif callable(value):
-                                    value = str(i) + "()"
-                                args += str(i) + "=" + str(value) + ", "
+                        if debug and i in sig:
+                            value = error_tb.tb_frame.f_locals[i]
+                            if isinstance(value, str):
+                                value = "'" + str(value) + "'"
+                            elif isinstance(value, int):
+                                value = str(value)
+                            elif isinstance(value, object):
+                                value = str(value)[1:].split(" ")[0]
+                            elif callable(value):
+                                value = str(i) + "()"
+                            args += str(i) + "=" + str(value) + ", "
                     if not debug:
                         args = sig.split(")")[0] + ")"
                     if len(args) > 1 and debug:

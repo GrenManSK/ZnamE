@@ -23,24 +23,19 @@ def playhtml(args, config, htmlFile: str, mode: int = 0, time: int = 0):
     if args.nointro is None or args.nointrof is None:
         args.nointrof = object()
         if args.test is None and config["basic info"]["intro"] == True:
-            webbrowser.open(htmlFile + ".html", 1)
+            webbrowser.open(f"{htmlFile}.html", 1)
             sleep(1)
             pg.press("f11")
             if mode == 0:
                 mouseclick()
             elif mode == 1:
                 mouseclick(time=time)
-        else:
-            pass
-    else:
-        if config["basic info"]["intro"] == True:
-            webbrowser.open(htmlFile + ".html", 1)
-            sleep(1.5)
-            pg.press("f11")
-            if mode == 0:
-                mouseclick()
-            elif mode == 1:
-                mouseclick(time=time)
-            show_cmd(args)
-        else:
-            pass
+    elif config["basic info"]["intro"] == True:
+        webbrowser.open(f"{htmlFile}.html", 1)
+        sleep(1.5)
+        pg.press("f11")
+        if mode == 0:
+            mouseclick()
+        elif mode == 1:
+            mouseclick(time=time)
+        show_cmd(args)

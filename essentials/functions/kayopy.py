@@ -25,7 +25,6 @@ def run_kayopy():
             ttime=0.01,
         )
         subprocess.call(["git", "-C", "KayoPy", "pull"])
-        kayopy()
     else:
         while True:
             vstup = input(
@@ -54,7 +53,8 @@ def run_kayopy():
             + " -m pip install -r KayoPy/requirements.txt --no-warn-script-location"
         )
 
-        kayopy()
+
+    kayopy()
 
 
 def kayopy():
@@ -106,9 +106,7 @@ def anime_mole():
                     continue
                 anime.add(filename)
 
-        anime_text = ""
-        for item in anime:
-            anime_text += item + "\n"
+        anime_text = "".join(item + "\n" for item in anime)
         with open("AnimeArchive", "w") as file:
             file.write(anime_text)
     os.remove("kayopyEND")

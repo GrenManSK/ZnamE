@@ -1,3 +1,4 @@
+import contextlib
 import zipfile
 from tqdm import tqdm
 import os
@@ -30,19 +31,13 @@ def unpack(datelog, args, cachename: str) -> None:
         for member in tqdm(
             iterable=zip.namelist(), total=len(zip.namelist()), desc="Extracting "
         ):
-            try:
+            with contextlib.suppress(zipfile.error):
                 zip.extract(member)
                 if not quiet:
                     tqdm.write(
-                        f"{os.path.basename(member)}("
-                        + str(os.path.getsize(member))
-                        + "B)"
+                        f"{os.path.basename(member)}({str(os.path.getsize(member))}B)"
                     )
-                log(
-                    f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "B)"
-                )
-            except zipfile.error as e:
-                pass
+                log(f"{os.path.basename(member)}({str(os.path.getsize(member))}B)")
         zip.close()
     typewriter(printnlog("Done\n", toprint=False))
     typewriter(printnlog("Unpacking second part...\n", toprint=False))
@@ -68,63 +63,64 @@ def unpack(datelog, args, cachename: str) -> None:
                 "-silent",
             ]
         )
-    try:
+    with contextlib.suppress(Exception):
         shutil.move("data1/data", "data")
-    except Exception:
-        pass
     mkdir("apphtml")
     mkdir("assets")
     if cachename == "data.xp2":
-        for r, d, f in os.walk("data1/apphtml/"):
-            for file in f:
-                shutil.move(
-                    os.path.join("data1/apphtml/", file), os.path.join("apphtml/", file)
-                )
-        for r, d, f in os.walk("data1/assets/"):
-            for file in f:
-                shutil.move(
-                    os.path.join("data1/assets/", file), os.path.join("assets/", file)
-                )
-        shutil.rmtree("data1/apphtml")
-        shutil.rmtree("data1/assets")
-        for i in os.listdir("data1"):
-            shutil.move(f"data1/{i}", i)
-        shutil.rmtree("data1")
+        move_apphtml()
     remove(cachename)
     remove("data.xp3")
+
+
+def move_apphtml():
+    for r, d, f in os.walk("data1/apphtml/"):
+        for file in f:
+            shutil.move(
+                os.path.join("data1/apphtml/", file), os.path.join("apphtml/", file)
+            )
+    for r, d, f in os.walk("data1/assets/"):
+        for file in f:
+            shutil.move(
+                os.path.join("data1/assets/", file), os.path.join("assets/", file)
+            )
+    shutil.rmtree("data1/apphtml")
+    shutil.rmtree("data1/assets")
+    for i in os.listdir("data1"):
+        shutil.move(f"data1/{i}", i)
+    shutil.rmtree("data1")
 
 
 def extract(args, datelog):
     """
     The extract function is used to extract the data files from the game.
     It does this by first finding all of the .xp2 files in your current directory, and then unpacking them using unpack().
-    After that, it copies &quot;data&quot; into a backup file called &quot;data_backup&quot;. It then opens up both data and a new file called 
-    &quot;data_dummy&quot;, which will be used to replace data. The reason for this is because there are some characters in data that 
+    After that, it copies &quot;data&quot; into a backup file called &quot;data_backup&quot;. It then opens up both data and a new file called
+    &quot;data_dummy&quot;, which will be used to replace data. The reason for this is because there are some characters in data that
     are not allowed on Windows (such as ':'). This function replaces those characters with ones that are allowed on Windows.
-    
+
     :param args: Pass the arguments from the command line to this function
     :param datelog: Write to the log file
     :return: A list of the files that have been extracted
     """
     typewriter(printnlog("\nStarting to extract\n", toprint=False))
-    try:
-        datafiles: list = []
-        for file in os.listdir("./"):
-            if file.startswith("data"):
-                if file.endswith(".xp2"):
-                    datafiles.append(file)
+    with contextlib.suppress(FileNotFoundError):
+        datafiles: list = [
+            file
+            for file in os.listdir("./")
+            if file.startswith("data") and file.endswith(".xp2")
+        ]
         for i in range(1, len(datafiles) + 1):
             unpack(datelog, args, datafiles[-i])
         shutil.copy("data", "data_backup")
         printnlog("\nDone\n")
-        check = open("data", "r")
-        check_new = open("data_dummy", "w")
-        for i in check.read():
-            if i == "G":
-                check_new.write("[")
-            else:
-                check_new.write(i)
-        check.close()
+        with open("data", "r") as check:
+            check_new = open("data_dummy", "w")
+            for i in check.read():
+                if i == "G":
+                    check_new.write("[")
+                else:
+                    check_new.write(i)
         check_new.close()
         os.mkdir("temp")
         shutil.move("data_dummy", "temp/")
@@ -132,24 +128,20 @@ def extract(args, datelog):
         shutil.move("temp/data_dummy", "data")
         shutil.rmtree("temp")
         os.rename("data_dummy", "data")
-    except FileNotFoundError:
-        pass
 
 
 def delete(file):
     """
     The delete function is used to delete a file or directory.
         It will attempt to remove the file/directory, and if it fails,
-        it will call on_rm_error() which attempts to change permissions of the 
+        it will call on_rm_error() which attempts to change permissions of the
         file/directory before attempting removal again.
-    
+
     :param file: Specify the file to be deleted
     :return: Nothing
     """
-    try:
+    with contextlib.suppress(Exception):
         shutil.rmtree(file, onerror=on_rm_error)
-    except:
-        pass
 
 
 def on_rm_error(func, path, exc_info):
@@ -157,7 +149,7 @@ def on_rm_error(func, path, exc_info):
     The on_rm_error function is a callback function that will be called by the shutil.rmtree() function
     if an error occurs while attempting to remove a file or directory. The on_rm_error() function will attempt
     to change the permissions of the file or directory so that it can be removed, and then it will try again.
-    
+
     :param func: Pass the function that raised the exception
     :param path: Specify the directory to be removed
     :param exc_info: Pass information about the exception that caused the error
@@ -171,21 +163,12 @@ def file_to_datafolder():
     """
     The file_to_datafolder function moves all the files in the current directory to a new folder called datafolder.
     The function also creates subfolders for assets, apphtml, and yt_dl.
-    
+
     :return: A list of files that are in the datafolder
     """
-    source_dir: str = "assets/"
-    os.mkdir("datafolder/" + source_dir)
-    for file_name in os.listdir(source_dir):
-        shutil.move(os.path.join(source_dir, file_name), "datafolder/" + source_dir)
-    source_dir: str = "apphtml/"
-    os.mkdir("datafolder/" + source_dir)
-    for file_name in os.listdir(source_dir):
-        shutil.move(os.path.join(source_dir, file_name), "datafolder/" + source_dir)
-    source_dir: str = "yt_dl/"
-    os.mkdir("datafolder/" + source_dir)
-    for file_name in os.listdir(source_dir):
-        shutil.move(os.path.join(source_dir, file_name), "datafolder/" + source_dir)
+    source_dir = move_to_datafolder("assets/")
+    source_dir = move_to_datafolder("apphtml/")
+    source_dir = move_to_datafolder("yt_dl/")
     files: list = [
         "downloadmusic.py",
         "mouse.py",
@@ -200,11 +183,19 @@ def file_to_datafolder():
         shutil.move(i, f"datafolder/{i}")
 
 
+def move_to_datafolder(arg0):
+    result: str = arg0
+    os.mkdir(f"datafolder/{result}")
+    for file_name in os.listdir(result):
+        shutil.move(os.path.join(result, file_name), f"datafolder/{result}")
+    return result
+
+
 def xp3_finalization():
     """
     The xp3_finalization function is used to repack the data.xp3 file after all of the necessary changes have been made.
     It also deletes any temporary folders that were created during the process.
-    
+
     :return: None
     """
     if not quiet:
@@ -246,7 +237,7 @@ def to_zip(logger, cachename, start):
     It then creates two lists of strings: zipfiles and zipfileswopath.
     The first list contains the names of files to be zipped; the second is identical but without paths.
     Then it creates a list called folders which contains one string: &quot;structs&quot;.  It loops through this list with an index i from 0 to len(folders).  For each value of i, it walks through the folder named by folders[i] (which is always &quot;structs&quot;) and adds all files in that folder to both lists created earlier.
-    
+
     :param logger: Print the progress of the packing process
     :param cachename: Specify the name of the zip file
     :param start: Calculate the elapsed time of packing
@@ -267,45 +258,43 @@ def to_zip(logger, cachename, start):
         "data.xp3",
     ]
     folders: list[str] = ["structs"]
-    for i in range(0, len(folders)):
-        for path, directories, files in os.walk(folders[i]):
+    for folder in folders:
+        for path, directories, files in os.walk(folder):
             for file in files:
                 file_name: str = os.path.join(path, file)
                 zipfiles.append(file_name)
                 zipfileswopath.append(file)
     logger.next("")
     with zipfile.ZipFile(cachename, mode="w", compresslevel=5) as zip:
-        zip_kb_old: int = 0
-        zipfilesnumber: int = len(zipfiles)
-        bar = tqdm(range(0, len(zipfiles)), desc="Packing ")
-        for i in bar:
-            zip.write(zipfiles[i])
-            filesizeen: int = sum([zinfo.file_size for zinfo in zip.filelist])
-            if not quiet:
-                tqdm.write(
-                    logger.stay(
-                        zipfileswopath[i]
-                        + "("
-                        + str(os.path.getsize(zipfiles[i]))
-                        + " KB) -> "
-                        + str(round(filesizeen - zip_kb_old, 2))
-                        + " KB",
-                        end="",
-                        toprint=False,
-                    )
-                )
-            zip_kb_old: int = filesizeen
-            os.remove(zipfiles[i])
-            if i == len(zipfiles) - 1:
-                if not quiet:
-                    tqdm.write("\n")
-        filesizeenend: int = sum([zinfo.file_size for zinfo in zip.filelist])
-        logger.prev("\nPacked data have > " + str(filesizeenend) + " KB")
-        zip.close()
-    for i in range(0, len(folders)):
-        shutil.rmtree(folders[i])
+        _extracted_from_to_zip_36(zipfiles, zip, logger, zipfileswopath)
+    for folder_ in folders:
+        shutil.rmtree(folder_)
     end = time.time()
-    logger.stay("Elapsed time of packing: " + str(end - start) + "\n")
+    logger.stay(f"Elapsed time of packing: {str(end - start)}" + "\n")
+
+
+def _extracted_from_to_zip_36(zipfiles, zip, logger, zipfileswopath):
+    zipfilesnumber: int = len(zipfiles)
+    bar = tqdm(range(len(zipfiles)), desc="Packing ")
+    zip_kb_old: int = 0
+    for i in bar:
+        zip.write(zipfiles[i])
+        filesizeen: int = sum(zinfo.file_size for zinfo in zip.filelist)
+        if not quiet:
+            tqdm.write(
+                logger.stay(
+                    f"{zipfileswopath[i]}({str(os.path.getsize(zipfiles[i]))} KB) -> {str(round(filesizeen - zip_kb_old, 2))} KB",
+                    end="",
+                    toprint=False,
+                )
+            )
+        zip_kb_old: int = filesizeen
+        os.remove(zipfiles[i])
+        if i == len(zipfiles) - 1 and not quiet:
+            tqdm.write("\n")
+    filesizeenend: int = sum(zinfo.file_size for zinfo in zip.filelist)
+    logger.prev("\nPacked data have > " + str(filesizeenend) + " KB")
+    zip.close()
 
 
 def del_wn():
@@ -315,7 +304,7 @@ def del_wn():
         - waifu.png
         - waifu.gif
         - waifu.mp4
-    
+
     :return: Nothing
     """
     remove("assets/neko.png")
@@ -329,28 +318,24 @@ def remove(file: str | list[str]):
     """
     The remove function is a wrapper for the os.remove function that allows you to pass in either a single filepath or
     a list of filepaths and will attempt to remove each one. If an exception occurs, it will be caught and ignored.
-    
+
     :param file: str | list[str]: Specify the file or files to be removed
     :return: None, which is not a valid return type for the function
     """
     if isinstance(file, str):
-        try:
+        with contextlib.suppress(Exception):
             return os.remove(file)
-        except Exception:
-            pass
     elif isinstance(file, list):
         for filepath in file:
-            try:
+            with contextlib.suppress(Exception):
                 return os.remove(filepath)
-            except Exception:
-                pass
 
 
 def mkdir(path):
     """
     The mkdir function creates a directory at the specified path.
         If the directory already exists, it will not raise an error.
-    
+
     :param path: Specify the path of the directory to be created
     :return: None
     """
@@ -361,7 +346,7 @@ def change_quiet_file_op(to):
     """
     The change_quiet_file_op function changes the global variable quiet to True or False.
         This is used in the file_op function to determine whether or not a message should be printed.
-    
+
     :param to: Set the global quiet variable to true or false
     :return: Nothing
     """

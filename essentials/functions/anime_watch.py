@@ -29,9 +29,7 @@ def anime_menu(vlc_path_tmp=None):
                 if filename.endswith("tmp") or os.path.isdir(filename):
                     continue
                 anime.add(filename)
-        anime_text = ""
-        for item in anime:
-            anime_text += item + "\n"
+        anime_text = "".join(item + "\n" for item in anime)
         with open("AnimeArchive", "w") as file:
             file.write(anime_text)
     else:

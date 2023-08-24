@@ -1,6 +1,9 @@
 """_summary_
 Main program execution
 """
+
+import contextlib
+
 try:  # type: ignore
     import cProfile
     import pstats
@@ -313,10 +316,11 @@ try:  # type: ignore
         datefmt="%Y-%m-%d:%H:%M:%S",
     )
 
-    if __name__ == "__main__":  # Updating application if newer version is available
-        if args.test is not None:
-            logger.stay(printnlog("Checking for newer version of ZnámE", toprint=False))
-            update_app(args, logger)
+    if (
+        __name__ == "__main__" and args.test is not None
+    ):  # Updating application if newer version is available
+        logger.stay(printnlog("Checking for newer version of ZnámE", toprint=False))
+        update_app(args, logger)
 
     from essentials.data.app import (
         updateapp,
@@ -329,11 +333,10 @@ try:  # type: ignore
         restartapp,
     )
 
-    if __name__ == "__main__":
-        if args.log is None:
-            from essentials.system.system_info import get_log_info
+    if __name__ == "__main__" and args.log is None:
+        from essentials.system.system_info import get_log_info
 
-            get_log_info()
+        get_log_info()
 
     from essentials.system.system_operations import (
         delcache,
@@ -382,16 +385,16 @@ try:  # type: ignore
         PROGRESS_BAR_CHECK = 0
         progress_bar_check_old: int = 0
         end: bool = False
-        for bar_temp in tqdm(range(0, number), desc=bar_name + " "):
+        for _ in tqdm(range(number), desc=f"{bar_name} "):
             if end:
                 break
             while True:
                 if PROGRESS_BAR_CHECK >= 100:
                     end: bool = True
                     break
-                if PROGRESS_BAR_CHECK == progress_bar_check_old:
+                elif PROGRESS_BAR_CHECK == progress_bar_check_old:
                     continue
-                if PROGRESS_BAR_CHECK != progress_bar_check_old:
+                else:
                     progress_bar_check_old: int = PROGRESS_BAR_CHECK
                     break
 
@@ -414,25 +417,16 @@ try:  # type: ignore
         global PROGRESS_BAR_CHECK
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = "add"
-        with open(decodename + ".py", "w", encoding="utf-8") as crdecode:
+        with open(f"{decodename}.py", "w", encoding="utf-8") as crdecode:
             crdecode.write(addapp)
         subprocess.check_output(
-            "start "
-            + decodename
-            + ".py "
-            + str(name1)
-            + " "
-            + str(ico)
-            + " "
-            + str(subject)
-            + " "
-            + str(mark),
+            f"start {decodename}.py {name1} {ico} {subject} {mark}",
             shell=True,
         )
         tqdm.write("Adding ...", end="\r")
         wait_for_file("DONE")
         tqdm.write("Adding Complete")
-        os.remove(decodename + ".py")
+        os.remove(f"{decodename}.py")
         os.remove(name1)
         os.remove("DONE")
         PROGRESS_BAR_CHECK += 1
@@ -457,36 +451,28 @@ try:  # type: ignore
         global PROGRESS_BAR_CHECK
         decodename: str = str(datetime.now().strftime("%H-%M-%S"))
         decodename: str = "decode"
-        decodename2: str = "False"
-        if _password:
-            decodename2: str = _file
+        decodename2: str = _file if _password else "False"
         if _file:
             decodename1: str = decodename
         elif isinstance(_file, str):
             decodename1: str = _file
         else:
             decodename1: str = "None"
-        with open(decodename + ".py", "w", encoding="utf-8") as crdecode:
+        with open(f"{decodename}.py", "w", encoding="utf-8") as crdecode:
             crdecode.write(decodeapp)
-        if mode == 1:
+        if mode == 0:
             subprocess.check_output(
-                "start " + decodename + ".py " + str(_file) + " " + str(_password),
+                f"start {decodename}.py {str(decodename1)} {decodename2}",
                 shell=True,
             )
-        elif mode == 0:
+        elif mode == 1:
             subprocess.check_output(
-                "start "
-                + decodename
-                + ".py "
-                + str(decodename1)
-                + " "
-                + str(decodename2),
-                shell=True,
+                f"start {decodename}.py {_file} {str(_password)}", shell=True
             )
         tqdm.write("Encrypting ...", end="\r")
         wait_for_file("DONE")
         tqdm.write("Encrypting Complete")
-        os.remove(decodename + ".py")
+        os.remove(f"{decodename}.py")
         os.remove("DONE")
         if mode == 1:
             with open("1", "r", encoding="utf-8") as _file:
@@ -504,18 +490,16 @@ try:  # type: ignore
         """
         global PROGRESS_BAR_CHECK
         passwordname: str = str(datetime.now().strftime("%H-%M-%S"))
-        with open(passwordname + ".py", "w", encoding="utf-8") as crfind:
+        with open(f"{passwordname}.py", "w", encoding="utf-8") as crfind:
             crfind.write(passwordapp)
-        tqdm.write("Controling ...", end="\r")
-        subprocess.check_output(
-            "start " + passwordname + ".py " + str(file_name), shell=True
-        )
+        tqdm.write("Controlling ...", end="\r")
+        subprocess.check_output(f"start {passwordname}.py {file_name}", shell=True)
         wait_for_file("DONE")
-        os.remove(passwordname + ".py")
-        password_chars: str = ""
-        for pass_chars in open("DONE", "r", encoding="utf-8").read():
-            password_chars += str(pass_chars)
-        tqdm.write("Controling Complete")
+        os.remove(f"{passwordname}.py")
+        password_chars: str = "".join(
+            str(pass_chars) for pass_chars in open("DONE", "r", encoding="utf-8").read()
+        )
+        tqdm.write("Controlling Complete")
         os.remove("DONE")
         PROGRESS_BAR_CHECK += 1
         return [password_chars, file_name]
@@ -533,15 +517,14 @@ try:  # type: ignore
         global PROGRESS_BAR_CHECK
         findname: str = str(datetime.now().strftime("%H-%M-%S"))
         findname: str = "find"
-        with open(findname + ".py", "w", encoding="utf-8") as crfind:
+        with open(f"{findname}.py", "w", encoding="utf-8") as crfind:
             crfind.write(findapp)
         tqdm.write("Finding ...", end="\r")
         subprocess.check_output(
-            "start " + findname + ".py " + str(find_file) + " " + str(loginvstupuser),
-            shell=True,
+            f"start {findname}.py {find_file} {str(loginvstupuser)}", shell=True
         )
         wait_for_file("DONE")
-        os.remove(findname + ".py")
+        os.remove(f"{findname}.py")
         os.remove(find_file)
         os.remove("DONE")
         with open(loginvstupuser, "r", encoding="utf-8") as test:
@@ -571,25 +554,28 @@ try:  # type: ignore
         global PROGRESS_BAR_CHECK
         codename = str(datetime.now().strftime("%H-%M-%S"))
         codename = "code"
-        with open(codename + ".py", "w", encoding="utf-8") as crcode:
+        with open(f"{codename}.py", "w", encoding="utf-8") as crcode:
             crcode.write(codeapp)
         tqdm.write("Coding ...", end="\r")
-        if mode == 1:
-            with open("1", "w", encoding="utf-8") as _file:
-                _file.write(str(code_name) + " = " + str(new))
-            subprocess.check_output("start " + codename + ".py 1", shell=True)
         if mode == 0:
             subprocess.check_output(
-                "start " + codename + ".py " + str(code_name[0]), shell=True
+                f"start {codename}.py {str(code_name[0])}", shell=True
             )
+        elif mode == 1:
+            with open("1", "w", encoding="utf-8") as _file:
+                _file.write(f"{code_name} = {new}")
+            subprocess.check_output(f"start {codename}.py 1", shell=True)
         wait_for_file("DONE")
         tqdm.write("Coding Complete")
-        os.remove(codename + ".py")
-        if mode == 0 and new == "justcode":
+        os.remove(f"{codename}.py")
+        if new == "justcode":
             pass
-        elif mode == 0 and new:
-            os.remove(loginvstupuser + "crypted")
-            shutil.move(loginvstupuser + "cryptedcrypted", loginvstupuser + "crypted")
+        elif new:
+            if mode == 0:
+                os.remove(f"{loginvstupuser}crypted")
+                shutil.move(
+                    f"{loginvstupuser}cryptedcrypted", f"{loginvstupuser}crypted"
+                )
         elif mode == 0:
             os.remove(loginvstupuser)
         PROGRESS_BAR_CHECK += 1
@@ -619,16 +605,10 @@ try:  # type: ignore
         """
         from essentials.system.system_operations import set_image
 
-        subject: str = input(str(linenumber) + " Subject > ")
-        with open(historyname, "a", encoding="utf-8") as _historyfile:
-            _historyfile.write("[" + str(linenumber) + ", " + subject + "]\n")
-        subject.lower()
+        subject = get_u_input(linenumber, " Subject > ", historyname)
         if subject in ["quit", "back"]:
             return
-        mark: str = input(str(linenumber) + " Mark > ")
-        with open(historyname, "a", encoding="utf-8") as _historyfile:
-            _historyfile.write("[" + str(linenumber) + ", " + (mark) + "]\n")
-        mark.lower()
+        mark = get_u_input(linenumber, " Mark > ", historyname)
         if subject == "back" or mark == "back":
             return
         Thread(
@@ -649,6 +629,13 @@ try:  # type: ignore
         os.rename("data1crypted", "data")
         shutil.rmtree("temp")
         os.remove("data1")
+
+    def get_u_input(linenumber, arg1, historyname):
+        result: str = input(f"{str(linenumber)}{arg1}")
+        with open(historyname, "a", encoding="utf-8") as _historyfile:
+            _historyfile.write(f"[{str(linenumber)}, {result}" + "]\n")
+        result.lower()
+        return result
 
     def show_marks(pass_list) -> None:
         """
@@ -676,7 +663,7 @@ try:  # type: ignore
                     if counterfirst:
                         typewriter(pass_char, end="")
                     else:
-                        typewriter("," + pass_char, end="")
+                        typewriter(f",{pass_char}", end="")
                 except ValueError:
                     if countersubject > 2:
                         countersubject: int = 0
@@ -712,21 +699,17 @@ try:  # type: ignore
             sleep(1)
         open("SPOTDL_QUIT", "x")
         carousel.stop()
-        _music: list[str] = list(set(config["music"]["musiclist"].split(",")[0:]))
+        _music: list[str] = list(set(config["music"]["musiclist"].split(",")[:]))
         if _music[0] == "":
             _music = []
         else:
             for music_name in _music:
                 if music_name == "":
                     _music.remove("")
-        musiclistnewstring: str = ""
-        for music_n in _music:
-            musiclistnewstring += str(music_n) + ","
-        try:
-            for content in open("MUSIC", "r", encoding="utf-8").readlines():
-                musiclistnewstring += content + ","
-        except Exception:
-            pass
+        musiclistnewstring: str = "".join(f"{str(music_n)}," for music_n in _music)
+        with contextlib.suppress(Exception):
+            for content in open("MUSIC", "r", encoding="utf-8"):
+                musiclistnewstring += f"{content},"
         remove("MUSIC")
         remove("SPOTDL_QUIT")
         remove("SPOTDL_OUTPUT")
@@ -761,12 +744,15 @@ try:  # type: ignore
         move("ZnámE", -10, -10, screensize[0], screensize[1])
         show_cmd(args)
         if args.restart is not None:
-            media_player = vlc.MediaPlayer()
-            media_player.set_fullscreen(True)
-            media = vlc.Media("assets/transition.mp4")
-            media_player.set_media(media)
-            media_player.play()
-            intro_video(args, media_player)
+            change_to_transition(intro_video)
+
+    def change_to_transition(intro_video):
+        media_player = vlc.MediaPlayer()
+        media_player.set_fullscreen(True)
+        media = vlc.Media("assets/transition.mp4")
+        media_player.set_media(media)
+        media_player.play()
+        intro_video(args, media_player)
 
     def was_updated() -> bool:
         """
@@ -797,7 +783,7 @@ try:  # type: ignore
         music_copy = copy.deepcopy(music)
         for music_name in music_copy:
             music.remove(music_name)
-            if not os.path.exists("assets/" + str(music_name) + ".mp3"):
+            if not os.path.exists(f"assets/{str(music_name)}.mp3"):
                 musiclistnew.append(DownloadMusic(str(music_name)))
             else:
                 musiclistnew.append(music_name)
@@ -1430,7 +1416,7 @@ try:  # type: ignore
                             pass
                         typewriter("Done             ", end="\r", ttime=0.01)
                         sleep(0.1)
-                        typewriter("Removeing image", end="\r", ttime=0.01)
+                        typewriter("Removing image", end="\r", ttime=0.01)
                         os.remove("assets/neko.png")
                         typewriter("Resizing cli", end="\r", ttime=0.01)
                         move(
@@ -1559,7 +1545,7 @@ try:  # type: ignore
                             typewriter(":( You can't have -1 waifu", ttime=0.01)
                             continue
                         if waifuvid:
-                            typewriter("Stoping video", end="\r", ttime=0.01)
+                            typewriter("Stopping video", end="\r", ttime=0.01)
                             media_player.stop()
                             waifuvid: bool = False
                             typewriter("Removing video   ", end="\r", ttime=0.01)
@@ -2045,7 +2031,7 @@ try:  # type: ignore
             printnlog("Writing an error to 'error.log'!!!")
             printnlog(traceback.format_exc())
             error_line_numbers: list = []
-            for error in range(0, len(returned_error.exceptions)):
+            for error in range(len(returned_error.exceptions)):
                 if (
                     error_line_number := sys.exc_info()[-2]
                     .exceptions[0 + error]
@@ -2070,12 +2056,7 @@ try:  # type: ignore
         historylist = config["user history"]
         for history_temp in historylist:
             print(
-                "Start time = "
-                + history_temp[0]
-                + ", End time = "
-                + history_temp[1][0:26]
-                + ", Input = "
-                + history_temp[1][26:]
+                f"Start time = {history_temp[0]}, End time = {history_temp[1][:26]}, Input = {history_temp[1][26:]}"
             )
         if len(historylist) == 0:
             print("History is empty")
@@ -2094,7 +2075,7 @@ try:  # type: ignore
         remove(passwordp[1])
         print("You're logged out")
         with open(historyname, "a", encoding="utf-8") as historyfile:
-            historyfile.write("[" + str(linenumber) + ", *logout]\n")
+            historyfile.write(f"[{str(linenumber)}" + ", *logout]\n")
         mixer.music.pause()
         mixer.Channel(1).play(mixer.Sound("assets\\horror.mp3"), fade_ms=10)
         sleep(6)
@@ -2136,7 +2117,7 @@ except* Exception as e:
     printnlog("Writing an error to 'error.log'!!!")
     printnlog(traceback.format_exc())
     line_numbers: list = []
-    for error in range(0, len(e.exceptions)):
+    for error in range(len(e.exceptions)):
         if (
             error_line_number := sys.exc_info()[-2].exceptions[0 + error].__traceback__
         ) is None:
