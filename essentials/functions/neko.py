@@ -11,28 +11,36 @@ def nekof(config):
     :return: A tuple of two elements
     """
     if config["neko settings"]["server"] == "nekos.best":
-        typewriter("Getting image from nekos.best server", ttime=0.01)
-        resp = requests.get("https://nekos.best/api/v2/neko", timeout=5)
-        data: dict[str, str] = resp.json()
+        data = get_response(
+            "Getting image from nekos.best server",
+            "https://nekos.best/api/v2/neko",
+        )
         return requests.get(data["results"][0]["url"], stream=True, timeout=5), data
     elif config["neko settings"]["server"] == "waifu.pics":
-        typewriter("Getting image from waifu.pics server", ttime=0.01)
-        resp = requests.get("https://api.waifu.pics/sfw/neko", timeout=5)
-        data: dict[str, str] = resp.json()
+        data = get_response(
+            "Getting image from waifu.pics server",
+            "https://api.waifu.pics/sfw/neko",
+        )
         return requests.get(data["url"], stream=True, timeout=5), data
     elif config["neko settings"]["server"] == "kyoko":
-        typewriter("Getting image from kyoko server", ttime=0.01)
-        resp = requests.get("https://kyoko.rei.my.id/api/sfw.php", timeout=5)
-        data: dict[str, str] = resp.json()
+        data = get_response(
+            "Getting image from kyoko server",
+            "https://kyoko.rei.my.id/api/sfw.php",
+        )
         return requests.get(data["apiResult"]["url"][0], stream=True, timeout=5), data
     elif config["neko settings"]["server"] == "nekos_api":
-        typewriter("Getting image from nekos_api server", ttime=0.01)
-        resp = requests.get(
+        data = get_response(
+            "Getting image from nekos_api server",
             "https://nekos.nekidev.com/api/image/random?categories=catgirl",
-            timeout=5,
         )
-        data: dict[str, str] = resp.json()
         return requests.get(data["data"][0]["url"], stream=True, timeout=5), data
     else:
         typewriter("No server provided", ttime=0.01)
         return None
+
+
+def get_response(arg0, arg1):
+    typewriter(arg0, ttime=0.01)
+    resp = requests.get(arg1, timeout=5)
+    result: dict[str, str] = resp.json()
+    return result

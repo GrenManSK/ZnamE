@@ -12,12 +12,14 @@ def auto_login(linenumber):
     """
     savefilemode = False
     savefile = False
-    if os.path.isfile("C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved"):
+    if os.path.isfile(f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/saved"):
         loginvstupuser = ""
         savefile = decode(
-            "1", "C:/Users/" + os.getlogin() + "/AppData/Local/ZnámE/saved", mode=1
+            "1", f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/saved", mode=1
         )
-        loginvstupuser = input(str(linenumber) + " Do you want to auto-login? (Y/n) > ")
+        loginvstupuser = input(
+            f"{str(linenumber)} Do you want to auto-login? (Y/n) > "
+        )
         linenumber += 1
         loginvstupuser.lower()
         if loginvstupuser in ["", "y"]:

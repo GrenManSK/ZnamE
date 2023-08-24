@@ -1,3 +1,4 @@
+import contextlib
 from pytube import YouTube
 import os
 import shutil
@@ -56,13 +57,11 @@ def PlayVideo(video_path: str = "assets/video.mp4", repeat: bool = False) -> Non
     print("Press 'Q' to stop video")
     input("Press enter to continue")
     media_player.play()
-    try:
+    with contextlib.suppress(Exception):
         sleep(0.25)
         window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 output)")[0]
         window.activate()
         window.maximize()
-    except Exception:
-        pass
     while True:
         if keyboard.is_pressed("q"):
             media_player.stop()

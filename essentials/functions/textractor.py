@@ -1,3 +1,4 @@
+import contextlib
 import win32api
 from ..internet import download
 import os
@@ -50,157 +51,30 @@ def textractor(args, lang: str, translator: str):
     :param translator: str: Specify which translator to use
     :return: 0, so this is never called
     """
-    if not lang in t_languages:
+    if lang not in t_languages:
         return 39
     lang = lang.lower()
-    update = False
     printnlog("Checking if Textractor is present")
-    if not os.path.exists("Textractor"):
-        printnlog("Textractor not found")
-        update = True
-        printnlog("Downloading Textractor")
-        download(
-            "https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip",
-            "textractor.zip",
-        )
-        printnlog("Extracting downloaded package")
-        with zipfile.ZipFile("textractor.zip", mode="r") as zip:
-            for member in tqdm(
-                iterable=zip.namelist(), total=len(zip.namelist()), desc="Extracting "
-            ):
-                try:
-                    zip.extract(member)
-                    if not quiet:
-                        tqdm.write(
-                            f"{os.path.basename(member)}("
-                            + str(os.path.getsize(member))
-                            + "B)"
-                        )
-                    log(
-                        f"{os.path.basename(member)}("
-                        + str(os.path.getsize(member))
-                        + "B)"
-                    )
-                except zipfile.error as e:
-                    pass
-            zip.close()
-        os.remove("Textractor.zip")
-        printnlog("Installing font")
-        Thread(target=install_font).start()
-        os.system("INSTALL_THIS_UNICODE_FONT.ttf")
-        os.remove("INSTALL_THIS_UNICODE_FONT.ttf")
-
+    update = False if os.path.exists("Textractor") else download_textractor()
     printnlog("Starting Textractor")
     os.system("start Textractor/x64/Textractor.exe")
-    printnlog("Waiting for Textractor to start (5 sec)", end="\r")
-    sleep(1)
-    printnlog("Waiting for Textractor to start (5 sec) .", end="\r")
-    sleep(1)
-    printnlog("Waiting for Textractor to start (5 sec) ..", end="\r")
-    sleep(1)
-    printnlog("Waiting for Textractor to start (5 sec) ...", end="\r")
-    sleep(1)
-    printnlog("Waiting for Textractor to start (5 sec) ....", end="\r")
-    sleep(1)
+    triple_print_sleep_one(
+        "Waiting for Textractor to start (5 sec)",
+        "Waiting for Textractor to start (5 sec) .",
+        "Waiting for Textractor to start (5 sec) ..",
+    )
+    double_print_sleep_twice(
+        "Waiting for Textractor to start (5 sec) ...",
+        "Waiting for Textractor to start (5 sec) ....",
+    )
     printnlog("Waiting for Textractor to start (5 sec) DONE")
 
     window = pygetwindow.getWindowsWithTitle("Textractor")[1]
     window.activate()
     if update:
-        printnlog("Opening extensions", end="\r")
-        for i in range(13):
-            pg.press("tab")
-        pg.press("space")
-        printnlog("Opening extensions DONE")
-        move("Extensions", 0, 0, 100, 300)
-        printnlog(f"Adding {translator} translator extension", end="\r")
-        rclick(50, 50)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("enter")
-        sleep(1)
-        pg.write(f"{translator} Translate.xdll")
-        pg.press("enter")
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle("Extensions")[0]
-        window.activate()
-        printnlog(f"Adding {translator} translator extension DONE")
-        printnlog("Removing Google Translator extension", end="\r")
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle("Extensions")[0]
-        window.activate()
-        for i in range(7):
-            pg.press("up")
-        for i in range(3):
-            pg.press("down")
-        rclick(50, 200)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("tab")
-        pg.press("enter")
-        printnlog("Removing Google Translator extension DONE")
-        printnlog("Removing Extra Window extension", end="\r")
-        for i in range(7):
-            pg.press("up")
-        for i in range(3):
-            pg.press("down")
-        rclick(50, 200)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("tab")
-        pg.press("enter")
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle("Extensions")[0]
-        window.activate()
-        printnlog("Removing Extra Window extension DONE")
-        printnlog("Removing Extra Newlines extension", end="\r")
-        for i in range(7):
-            pg.press("up")
-        for i in range(3):
-            pg.press("down")
-        rclick(50, 200)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("tab")
-        pg.press("enter")
-        sleep(0.5)
-        window = pygetwindow.getWindowsWithTitle("Extensions")[0]
-        window.activate()
-        printnlog("Removing Extra Newlines extension DONE")
-        printnlog("Adding Extra Window extension", end="\r")
-        rclick(50, 50)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("enter")
-        sleep(1)
-        pg.write("Extra Window.xdll")
-        pg.press("enter")
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle("Extensions")[0]
-        window.activate()
-        printnlog("Adding Extra Window extension DONE")
-        printnlog("Adding Extra Newlines extension", end="\r")
-        rclick(50, 50)
-        sleep(0.1)
-        pg.press("tab")
-        pg.press("enter")
-        sleep(0.5)
-        pg.write("Extra Newlines.xdll")
-        pg.press("enter")
-        printnlog("Adding Extra Newlines extension DONE")
-        sleep(0.25)
-        window = pygetwindow.getWindowsWithTitle("Textractor")[0]
-        window.activate()
-        sleep(0.25)
-
-        pg.keyDown("shift")
-        for i in range(13):
-            pg.press("tab")
-        pg.keyUp("shift")
-        printnlog("Setup DONE")
-
+        window = extension_setup(translator)
     printnlog("Hooking python.exe")
-    for i in range(3):
+    for _ in range(3):
         pg.press("tab")
     pg.press("space")
     sleep(0.2)
@@ -208,9 +82,9 @@ def textractor(args, lang: str, translator: str):
     pg.write("python.exe")
     printnlog("Searching python.exe DONE")
     printnlog("Aknowledging confirmation", end="\r")
-    pg.press("tab")
-    pg.press("enter")
-    printnlog("Aknowledging confirmation DONE")
+    press_two_print(
+        "tab", "enter", "Aknowledging confirmation DONE"
+    )
     sleep(3)
     printnlog(
         "Selecting thread to 'MultiByteToWideChar (HS-4C@0:kernel32.dll:MultiByteToWideChar)'",
@@ -220,26 +94,23 @@ def textractor(args, lang: str, translator: str):
     pg.press("tab")
     pg.press("tab")
     pg.keyUp("shift")
-    pg.press("down")
-    pg.press("down")
-    printnlog(
-        "Selecting thread to 'MultiByteToWideChar (HS-4C@0:kernel32.dll:MultiByteToWideChar)' DONE"
+    press_two_print(
+        "down",
+        "down",
+        "Selecting thread to 'MultiByteToWideChar (HS-4C@0:kernel32.dll:MultiByteToWideChar)' DONE",
     )
-    printnlog("Waiting for python.exe to hook (3 sec)", end="\r")
-    sleep(1)
-    printnlog("Waiting for python.exe to hook (3 sec) .", end="\r")
-    sleep(1)
-    printnlog("Waiting for python.exe to hook (3 sec) ..", end="\r")
-    sleep(1)
+    triple_print_sleep_one(
+        "Waiting for python.exe to hook (3 sec)",
+        "Waiting for python.exe to hook (3 sec) .",
+        "Waiting for python.exe to hook (3 sec) ..",
+    )
     printnlog("Waiting for python.exe to hook (3 sec) DONE")
     pg.press("down")
     pg.press("down")
     printnlog("Setting source language to English", end="\r")
     window = pygetwindow.getWindowsWithTitle(f"{translator} Translate")[0]
     window.activate()
-    sleep(0.5)
-    pg.press("tab")
-    pg.press("space")
+    sleep_tab_press(0.5, "space")
     pg.write("english")
     pg.press("enter")
     printnlog("Setting source language to English DONE")
@@ -262,6 +133,148 @@ def textractor(args, lang: str, translator: str):
     printnlog("Setting window to always on top DONE")
     print("\n")
     return 0
+
+
+def extension_setup(translator):
+    printnlog("Opening extensions", end="\r")
+    for _ in range(13):
+        pg.press("tab")
+    pg.press("space")
+    printnlog("Opening extensions DONE")
+    move("Extensions", 0, 0, 100, 300)
+    printnlog(f"Adding {translator} translator extension", end="\r")
+    rclick_on_50_arg_sleep_tab_press(50, "enter")
+    sleep(1)
+    pg.write(f"{translator} Translate.xdll")
+    pg.press("enter")
+    result = sleep_and_maximize_window(0.25, "Extensions")
+    printnlog(f"Adding {translator} translator extension DONE")
+    printnlog("Removing Google Translator extension", end="\r")
+    result = sleep_and_maximize_window(0.25, "Extensions")
+    seven_up_three_down_rclick_adv_enter()
+    result = print_print_w_o_end_7u_3d_rclick_adv_enter_sleep_maximize_window(
+        "Removing Google Translator extension DONE",
+        "Removing Extra Window extension",
+        0.25,
+    )
+    result = print_print_w_o_end_7u_3d_rclick_adv_enter_sleep_maximize_window(
+        "Removing Extra Window extension DONE",
+        "Removing Extra Newlines extension",
+        0.5,
+    )
+    print_print_w_o_end_rclick_adv_sleep_write_enter(
+        "Removing Extra Newlines extension DONE",
+        "Adding Extra Window extension",
+        1,
+        "Extra Window.xdll",
+    )
+    result = sleep_and_maximize_window(0.25, "Extensions")
+    print_print_w_o_end_rclick_adv_sleep_write_enter(
+        "Adding Extra Window extension DONE",
+        "Adding Extra Newlines extension",
+        0.5,
+        "Extra Newlines.xdll",
+    )
+    printnlog("Adding Extra Newlines extension DONE")
+    result = sleep_and_maximize_window(0.25, "Textractor")
+    sleep(0.25)
+
+    pg.keyDown("shift")
+    for _ in range(13):
+        pg.press("tab")
+    pg.keyUp("shift")
+    printnlog("Setup DONE")
+
+    return result
+
+
+def download_textractor():
+    printnlog("Textractor not found")
+    printnlog("Downloading Textractor")
+    download(
+        "https://github.com/Artikash/Textractor/releases/download/v5.2.0/Textractor-5.2.0-Zip-Version-English-Only.zip",
+        "textractor.zip",
+    )
+    printnlog("Extracting downloaded package")
+    with zipfile.ZipFile("textractor.zip", mode="r") as zip:
+        for member in tqdm(
+            iterable=zip.namelist(), total=len(zip.namelist()), desc="Extracting "
+        ):
+            with contextlib.suppress(zipfile.error):
+                zip.extract(member)
+                if not quiet:
+                    tqdm.write(f"{os.path.basename(member)}({str(os.path.getsize(member))}B)")
+                log(f"{os.path.basename(member)}({str(os.path.getsize(member))}B)")
+        zip.close()
+    os.remove("Textractor.zip")
+    printnlog("Installing font")
+    Thread(target=install_font).start()
+    os.system("INSTALL_THIS_UNICODE_FONT.ttf")
+    os.remove("INSTALL_THIS_UNICODE_FONT.ttf")
+
+    return True
+
+
+def sleep_tab_press(arg0, arg1):
+    sleep(arg0)
+    pg.press("tab")
+    pg.press(arg1)
+
+
+def press_two_print(arg0, arg1, arg2):
+    pg.press(arg0)
+    pg.press(arg1)
+    printnlog(arg2)
+
+
+def double_print_sleep_twice(arg0, arg1):
+    printnlog(arg0, end="\r")
+    sleep(1)
+    printnlog(arg1, end="\r")
+    sleep(1)
+
+
+def print_print_w_o_end_7u_3d_rclick_adv_enter_sleep_maximize_window(arg0, arg1, arg2):
+    printnlog(arg0)
+    printnlog(arg1, end="\r")
+    seven_up_three_down_rclick_adv_enter()
+    return sleep_and_maximize_window(arg2, "Extensions")
+
+
+def triple_print_sleep_one(arg0, arg1, arg2):
+    double_print_sleep_twice(arg0, arg1)
+    printnlog(arg2, end="\r")
+    sleep(1)
+
+
+def print_print_w_o_end_rclick_adv_sleep_write_enter(arg0, arg1, arg2, arg3):
+    printnlog(arg0)
+    printnlog(arg1, end="\r")
+    rclick_on_50_arg_sleep_tab_press(50, "enter")
+    sleep(arg2)
+    pg.write(arg3)
+    pg.press("enter")
+
+
+def seven_up_three_down_rclick_adv_enter():
+    for _ in range(7):
+        pg.press("up")
+    for _ in range(3):
+        pg.press("down")
+    rclick_on_50_arg_sleep_tab_press(200, "tab")
+    pg.press("enter")
+
+
+def sleep_and_maximize_window(arg0, arg1):
+    sleep(arg0)
+    result = pygetwindow.getWindowsWithTitle(arg1)[0]
+    result.activate()
+    return result
+
+
+def rclick_on_50_arg_sleep_tab_press(arg0, arg1):
+    rclick(50, arg0)
+    sleep_tab_press(0.1, arg1)
 
 
 def install_font():
@@ -297,7 +310,7 @@ def run_textractor(args, lang, translator):
     return_code = textractor(args, lang, translator)
 
     if return_code == 39:
-        printnlog(f"Incorrect language; Return Code: %s" % return_code)
+        printnlog(f"Incorrect language; Return Code: {return_code}")
         return return_code
     while not os.path.exists("textractor_done"):
         sleep(0.5)

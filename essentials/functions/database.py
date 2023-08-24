@@ -26,7 +26,6 @@ def run_database_project():
         )
         subprocess.call(["git", "-C", "Data-Dynamics", "pull"])
         printnlog("")
-        Data_Dynamics()
     else:
         while True:
             vstup = input(
@@ -57,7 +56,8 @@ def run_database_project():
         print("\n")
         os.system(f"{sys.executable} Data-Dynamics/install.py")
 
-        Data_Dynamics()
+
+    Data_Dynamics()
 
 
 def Data_Dynamics():
@@ -72,13 +72,17 @@ def Data_Dynamics():
         "This will only work with my own set of database located in 'Data-Dynamics\\anime.sql'"
     )
     with open(".env", "a", encoding="utf-8") as dotenv:
-        dotenv.write("DAT_PORT=3306\nHOST_NAME=localhost\n")
-        printnlog("Add your password > ", end="")
-        dotenv.write(f"PASSWORD={input()}\n")
-        printnlog("Add your database name > ", end="")
-        dotenv.write(f"DATABASE={input()}\n")
-        printnlog("Add your user name > ", end="")
-        dotenv.write(f"DAT_USER={input()}\n")
+        write_env_file(dotenv)
     print("Check '.env' file for configuration")
     input("Enter to continue")
     os.system(f"{sys.executable} Data-Dynamics/main.py")
+
+
+def write_env_file(dotenv):
+    dotenv.write("DAT_PORT=3306\nHOST_NAME=localhost\n")
+    printnlog("Add your password > ", end="")
+    dotenv.write(f"PASSWORD={input()}\n")
+    printnlog("Add your database name > ", end="")
+    dotenv.write(f"DATABASE={input()}\n")
+    printnlog("Add your user name > ", end="")
+    dotenv.write(f"DAT_USER={input()}\n")

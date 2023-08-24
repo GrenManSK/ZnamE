@@ -1,3 +1,4 @@
+import contextlib
 import urllib
 import requests
 import re
@@ -24,17 +25,17 @@ def main():
         videovstup: str = input("1) Search your own video\n2) back\n> ")
         if videovstup == "1":
             music_name: str = str(input("Name of the video> "))
-            if not validators.url(music_name):
+            if validators.url(music_name):
+                clip2 = music_name
+            else:
                 print("Refactoring to url-like string ...", end="\r")
                 query_string = urllib.parse.urlencode({"search_query": music_name})
                 print("Refactoring to url-like string DONE")
                 print("Opening site ...", end="\r")
                 formatUrl = urllib.request.urlopen(
-                    "https://www.youtube.com/results?" + query_string
+                    f"https://www.youtube.com/results?{query_string}"
                 )
-                logging.debug(
-                    "Searched in: https://www.youtube.com/results?" + query_string
-                )
+                logging.debug(f"Searched in: https://www.youtube.com/results?{query_string}")
                 print("Opening site DONE")
                 print("Finding video ...", end="\r")
                 search_results = re.findall(
@@ -42,28 +43,17 @@ def main():
                 )
                 # deepcode ignore Ssrf: <User input to video on Youtube>
                 print("Finding video DONE\n")
-                clip2 = "https://www.youtube.com/watch?v=" + "{}".format(
-                    search_results[0]
-                )
-                logging.debug(
-                    "Found: https://www.youtube.com/watch?v="
-                    + "{}".format(search_results[0])
-                )
-            else:
-                clip2 = music_name
-            try:
+                clip2 = f"https://www.youtube.com/watch?v={search_results[0]}"
+                logging.debug(f"Found: https://www.youtube.com/watch?v={search_results[0]}")
+            with contextlib.suppress(Exception):
                 mixer.music.pause()
-            except Exception:
-                pass
             DownloadVideo(clip2)
             os.system("Title ZnámE")
             if _sponsorblock:
                 sponsorblock(clip2)
             PlayVideo()
-            try:
+            with contextlib.suppress(Exception):
                 mixer.music.unpause()
-            except Exception:
-                pass
         elif videovstup == "2":
             break
     print("")

@@ -1,3 +1,4 @@
+import contextlib
 from .functions.writing import printnlog, typewriter
 from .system.system_info import get_line_number
 from .system.file_operations import remove
@@ -29,7 +30,7 @@ def update_app(args, logger):
     """
     The update_app function checks if there is a newer version of the program available.
     If there is, it downloads the new version and replaces all files with the new ones.
-    
+
     :param args: Pass the arguments from the main function to this one
     :param logger: Log the output of the function
     :return: Nothing
@@ -44,68 +45,68 @@ def update_app(args, logger):
             logger.next(printnlog("You have the latest version", toprint=False))
             logger.prev("")
         else:
-            printnlog("Newer version was found: " + page.text)
-            os.system(f"git clone https://github.com/GrenManSK/ZnamE.git")
-            directory = None
-            for path, currentDirectory, files in os.walk(Path.cwd()):
-                for directory1 in currentDirectory:
-                    if directory1.startswith("ZnamE"):
-                        printnlog(directory1)
-                        directory = directory1
-                        break
-            if directory is None:
-                "If program fails to download update refer user to website"
-
-                printnlog(
-                    "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'"
-                )
-                input()
-                sys.exit(1)
-            os.mkdir("old")
-            shutil.move("data.xp2", "old/data.xp2")
-            shutil.move("help.txt", "old/help.txt")
-            shutil.move("LICENSE", "old/LICENSE")
-            shutil.move("README.md", "old/README.md")
-            shutil.move("version", "old/version")
-            shutil.move("config.yml", "config_old.yml")
-            for file_name in glob.glob("./ZnamE/**/**/*", recursive=True):
-                if os.path.isdir(file_name):
-                    continue
-                print(file_name)
-                print(file_name.replace("ZnamE\\", ""))
-                try:
-                    shutil.move(file_name, file_name.replace("ZnamE\\", ""))
-                except FileNotFoundError:
-                    break
-            crupdate = open("update.py", "w")
-            crupdate.write(updateapp)
-            crupdate.close()
-            print("Waiting 2 seconds to clear Access Denied Error")
-            sleep(2)
-            for i in os.listdir("ZnamE"):
-                if i.endswith("git"):
-                    tmp = os.path.join("ZnamE", i)
-                    while True:
-                        subprocess.call(["attrib", "-H", tmp])
-                        break
-                    shutil.rmtree(tmp, onerror=on_rm_error)
-            print("Waiting 2 seconds to clear Access Denied Error")
-            sleep(2)
-            os.remove("crash_dump-" + datelog + ".txt")
-            shutil.rmtree("ZnamE", onerror=on_rm_error)
-            remove("choco_end")
-            remove("INSTALL")
-            remove("INSTALL_RESTART")
-            if args.endf is None:
-                subprocess.call(
-                    sys.executable + " update.py " + directory + " -endf", shell=True
-                )
-            else:
-                subprocess.call(sys.executable + " update.py " + directory, shell=True)
-            sys.exit(0)
+            download_app(page, datelog, args)
     except requests.ConnectionError:
         line_number: int = get_line_number()
-        pass
+
+
+def download_app(page, datelog, args):
+    printnlog(f"Newer version was found: {page.text}")
+    os.system("git clone https://github.com/GrenManSK/ZnamE.git")
+    directory = None
+    for path, currentDirectory, files in os.walk(Path.cwd()):
+        for directory1 in currentDirectory:
+            if directory1.startswith("ZnamE"):
+                printnlog(directory1)
+                directory = directory1
+                break
+    if directory is None:
+        "If program fails to download update refer user to website"
+
+        printnlog(
+            "DOWNLOADING ERROR\nManually download newer version from\n'https://github.com/GrenManSK/ZnamE'"
+        )
+        input()
+        sys.exit(1)
+    os.mkdir("old")
+    shutil.move("data.xp2", "old/data.xp2")
+    shutil.move("help.txt", "old/help.txt")
+    shutil.move("LICENSE", "old/LICENSE")
+    shutil.move("README.md", "old/README.md")
+    shutil.move("version", "old/version")
+    shutil.move("config.yml", "config_old.yml")
+    for file_name in glob.glob("./ZnamE/**/**/*", recursive=True):
+        if os.path.isdir(file_name):
+            continue
+        print(file_name)
+        print(file_name.replace("ZnamE\\", ""))
+        try:
+            shutil.move(file_name, file_name.replace("ZnamE\\", ""))
+        except FileNotFoundError:
+            break
+    with open("update.py", "w") as crupdate:
+        crupdate.write(updateapp)
+    print("Waiting 2 seconds to clear Access Denied Error")
+    sleep(2)
+    for i in os.listdir("ZnamE"):
+        if i.endswith("git"):
+            tmp = os.path.join("ZnamE", i)
+            while True:
+                subprocess.call(["attrib", "-H", tmp])
+                break
+            shutil.rmtree(tmp, onerror=on_rm_error)
+    print("Waiting 2 seconds to clear Access Denied Error")
+    sleep(2)
+    os.remove(f"crash_dump-{datelog}.txt")
+    shutil.rmtree("ZnamE", onerror=on_rm_error)
+    remove("choco_end")
+    remove("INSTALL")
+    remove("INSTALL_RESTART")
+    if args.endf is None:
+        subprocess.call(f"{sys.executable} update.py {directory} -endf", shell=True)
+    else:
+        subprocess.call(f"{sys.executable} update.py {directory}", shell=True)
+    sys.exit(0)
 
 
 class installing_carousel:
@@ -179,9 +180,7 @@ class installing_carousel:
         alinst = False
         number = 0
         char = ["|", "/", "-", "\\"]
-        while True:
-            if os.path.isfile(f"INSTALL_DONE{self.id}"):
-                break
+        while not os.path.isfile(f"INSTALL_DONE{self.id}"):
             if os.path.isfile(f"INSTALL_ERROR{self.id}"):
                 error = True
                 break
@@ -206,7 +205,7 @@ class installing_carousel:
                 tqdm.write(
                     f"{self.comment} {self.package} {char[number]}               "
                 )
-            if not self.move_by_command or self._move != 0 and self.move_by_command:
+            if not self.move_by_command or self._move != 0:
                 number += 1
                 if self.move_by_command:
                     self._move -= 1
@@ -261,16 +260,14 @@ def choco_install(*packages: str):
             )
         with open("choco_output", "r") as file:
             alinst = False
-            for line, content in enumerate(file.readlines()):
+            for content in file:
                 if "already installed." in content and package in content:
                     carousel.stop("ali")
                     alinst = True
                     alinst_number += 1
                     break
-        try:
+        with contextlib.suppress(Exception):
             open("choco_end", "x")
-        except Exception:
-            pass
         if not alinst:
             carousel.stop()
             inst_number += 1
@@ -304,34 +301,30 @@ def choco_check(module: str, carousel: installing_carousel) -> None:
                 and module == "chocolatey"
             ):
                 return False
-            if "Chocolatey detected you are not running" in content and admin:
-                if adminline == line:
-                    pass
-                else:
-                    admin = False
-                    adminline = line
-            if "Do you want to continue" in content and not admin:
-                if contline == line:
-                    pass
-                else:
-                    cont = True
-                    contline = line
+            if (
+                "Chocolatey detected you are not running" in content
+                and admin
+                and adminline != line
+            ):
+                admin = False
+                adminline = line
+            if "Do you want to continue" in content and not admin and contline != line:
+                cont = True
+                contline = line
             if (
                 "ffmpeg package files install completed. Performing other installation steps."
                 in content
                 and module == "ffmpeg"
+            ) and ffmpegline != line:
+                ffmpeg_conf = True
+                ffmpegline = line
+            if (
+                "Do you want to run the script" in content
+                and module == "ffmpeg"
+                and ffmpeg_confline != line
             ):
-                if ffmpegline == line:
-                    pass
-                else:
-                    ffmpeg_conf = True
-                    ffmpegline = line
-            if "Do you want to run the script" in content and module == "ffmpeg":
-                if ffmpeg_confline == line:
-                    pass
-                else:
-                    cont = True
-                    ffmpeg_confline = line
+                cont = True
+                ffmpeg_confline = line
         if not admin or ffmpeg_conf or cont:
             carousel.pause()
             sleep(0.25)
@@ -356,7 +349,7 @@ def install_choco(logger):
     The install_choco function is used to install chocolatey on the user's machine.
         It does this by first checking if chocolatey is already installed, and if not, it downloads a powershell script from the official Chocolatey website that installs it.
         The function then runs this script using subprocess.run() and waits for it to finish before continuing.
-    
+
     :param logger: Display the progress of the installation
     :return: Nothing
     """
@@ -425,23 +418,22 @@ def install_choco(logger):
 def get_packages() -> list[str]:
     """
     The get_packages function reads the choco_packages.json file and returns a list of strings that are formatted to be used in the install_chocolatey function.
-    
+
     :return: A list of strings
     """
     with open("choco_packages.json") as json_file:
         data = json.load(json_file)
-        return_data = []
-        for package in data.values():
-            return_data.append(
-                f"{package['command']} {package['package']} --version {package['version']} {package['additional-command']}"
-            )
+        return_data = [
+            f"{package['command']} {package['package']} --version {package['version']} {package['additional-command']}"
+            for package in data.values()
+        ]
     return return_data
 
 
 def install_packages(args, logger):
     """
     The install_packages function is used to install the required packages for EduPage.
-    
+
     :param args: Pass the command line arguments to the function
     :param logger: Log the output of the function
     :return: Nothing
@@ -462,10 +454,8 @@ def install_packages(args, logger):
         subprocess.check_output("start edupage.py ", shell=True)
         os.remove(f"crash_dump-{datelog}.txt")
     os.remove("choco_output")
-    try:
+    with contextlib.suppress(Exception):
         os.remove("choco_end")
-    except Exception:
-        pass
     if inst_number != 0:
         sys.exit(0)
 
@@ -475,7 +465,7 @@ def on_rm_error(func, path, exc_info):
     The on_rm_error function is a callback function that will be called by the shutil.rmtree() function
     if an error occurs while attempting to remove a file or directory. The on_rm_error() function will attempt
     to change the permissions of the file or directory so that it can be removed, and then it will try again.
-    
+
     :param func: Pass the function to be called when an error occurs
     :param path: Specify the path of the file to be deleted
     :param exc_info: Pass information about the exception that caused the error
@@ -489,7 +479,7 @@ def python_update(args, logger):
     """
     The python_update function checks if there are any updates available for the program.
     If there are, it asks the user if they want to install them and then restarts the program.
-    
+
     :param args: Get the arguments from the command line
     :param logger: Write to the log file
     :return: Nothing
@@ -498,8 +488,8 @@ def python_update(args, logger):
     printnlog("")
     printnlog("Libraries needed: ", end="")
     potrebne1: list[str] = list(potrebne)
-    for i in range(0, len(potrebne1)):
-        printnlog(potrebne1[i], end=" ")
+    for item in potrebne1:
+        printnlog(item, end=" ")
     printnlog("\n\nChecking for updates\n")
     nainstalovane: set[str] = {pkg.key for pkg in pkg_resources.working_set}
     nenajdene: set[str] = potrebne - nainstalovane
@@ -510,7 +500,7 @@ def python_update(args, logger):
             logger.stay(printnlog(verzia.read(), toprint=False))
         if nenajdene:
             print("Update is available: ", *nenajdene)
-        os.remove("crash_dump-" + datelog + ".txt")
+        os.remove(f"crash_dump-{datelog}.txt")
         sys.exit(1)
     if __name__ == "__main__":
         if nenajdene:
@@ -518,27 +508,27 @@ def python_update(args, logger):
             vstup: str = input(
                 f"Do you want to install following modules? {nenajdene} (Y/n)> "
             ).lower()
-            if vstup in ["", "y"]:
-                printnlog("\nDownloading updates")
-                subprocess.check_call(["python", "-m", "pip", "install", *nenajdene])
-                if "pytube" in nenajdene:
-                    import site
-
-                    site_packages = site.getsitepackages()[1]
-                    input(
-                        "Now you will be transferred to the script file in which you need to change code in line 411\nto 'transform_plan_raw = js'\n!!! This is important without it downloading music won't work"
-                    )
-                    os.system(f"notepad.exe {site_packages}/pytube/cipher.py")
-                printnlog("The program is restarting!!!")
-                sleep(1)
-                os.system("cls")
-                os.remove("crash_dump-" + datelog + ".txt")
-                subprocess.call(
-                    [sys.executable, os.path.realpath(__file__)] + sys.argv[1:]
-                )
-                sys.exit(0)
-            else:
-                sys.exit(0)
+            if vstup in {"", "y"}:
+                _extracted_from_python_update_35(nenajdene, datelog)
+            sys.exit(0)
         printnlog("DONE\n")
     else:
         printnlog("\nDONE")
+
+
+def _extracted_from_python_update_35(nenajdene, datelog):
+    printnlog("\nDownloading updates")
+    subprocess.check_call(["python", "-m", "pip", "install", *nenajdene])
+    if "pytube" in nenajdene:
+        import site
+
+        site_packages = site.getsitepackages()[1]
+        input(
+            "Now you will be transferred to the script file in which you need to change code in line 411\nto 'transform_plan_raw = js'\n!!! This is important without it downloading music won't work"
+        )
+        os.system(f"notepad.exe {site_packages}/pytube/cipher.py")
+    printnlog("The program is restarting!!!")
+    sleep(1)
+    os.system("cls")
+    os.remove(f"crash_dump-{datelog}.txt")
+    subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])

@@ -23,8 +23,8 @@ def printnlog(msg: str, end: str = "\n", toprint: bool = True) -> str:
     datelog = os.getenv("DATELOG")
     with open(f"crash_dump-{datelog}.txt", "a", encoding="utf-8") as crashfile:
         if toprint and not quiet:
-            print(str(msg), end=str(end))
-        crashfile.write(str(msg) + str(end))
+            print(msg, end=end)
+        crashfile.write(msg + end)
     return msg
 
 
@@ -48,15 +48,15 @@ def to_info(
     datelog = os.getenv("DATELOG")
     with open(f"crash_dump-{datelog}.txt", "a", encoding="utf-8") as crashfile:
         if toprint and not quiet:
-            print(str(msg), end=str(end))
-        crashfile.write(str(msg) + str(end))
+            print(msg, end=end)
+        crashfile.write(msg + end)
         crashfile.close()
         crashfile1 = open(
             f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/{file}",
             mode,
             encoding="utf-8",
         )
-        crashfile1.write(str(msg) + str(end))
+        crashfile1.write(msg + end)
     return msg
 
 
@@ -69,7 +69,7 @@ def log(msg: str, end: str = "\n") -> str:
     """
     datelog = os.getenv("DATELOG")
     with open(f"crash_dump-{datelog}.txt", "a", encoding="utf-8") as crashfile:
-        crashfile.write(str(msg) + str(end))
+        crashfile.write(msg + end)
     return msg
 
 
@@ -100,7 +100,7 @@ def show_version(args):
     :return: The version of the program
     """
     with open("version", "r") as verzia:
-        typewriter("You're using ZnámE " + verzia.read() + "\n")
+        typewriter(f"You're using ZnámE {verzia.read()}" + "\n")
 
 
 def change_quiet(to):

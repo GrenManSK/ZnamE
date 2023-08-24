@@ -25,7 +25,7 @@ def get_envs(info: bool = False) -> dict:
                 typewriter(
                     printnlog("Command not found; Returning emtpy dict", toprint=False)
                 )
-            return dict()
+            return {}
     with open("condaEnvList", "r") as file:
         fr = file.readlines()[2:-1]
     conda = {}

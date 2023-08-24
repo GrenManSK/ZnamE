@@ -29,7 +29,7 @@ def arguments(config):
     The arguments function is used to set up the arguments for the program.
     It also sets up a list of music that can be played in-game, and it returns
     the parser object, the music list, and an unspecified value.
-    
+
     :param config: Get the config file
     :return: The parser, music and unspecified
     """
@@ -38,7 +38,7 @@ def arguments(config):
 
     "Setting up music if none leaving empty list"
 
-    music: list[str] = list(set(str(config["music"]["musiclist"]).split(",")[0:]))
+    music: list[str] = list(set(str(config["music"]["musiclist"]).split(",")[:]))
     if music[0] == "None":
         music = []
     else:
@@ -46,9 +46,8 @@ def arguments(config):
             if i == "":
                 music.remove("")
     musicchoices: list[str] = ["0"]
-    for i in range(1, len(music) + 1):
-        musicchoices.append(str(i))
-    _music = str([i for i in music])
+    musicchoices.extend(str(i) for i in range(1, len(music) + 1))
+    _music = str(list(music))
     parser.add_argument(
         "-v",
         "--version",
@@ -108,7 +107,7 @@ def arguments(config):
         "--music",
         choices=musicchoices,
         metavar="",
-        help="Starts music; you can select from: " + _music,
+        help=f"Starts music; you can select from: {_music}",
         default=0,
         nargs="?",
     )
@@ -233,13 +232,13 @@ def check_correctness(args, config, logger: get_logger, music):
     logger.next(
         printnlog("Checking config correctness", toprint=False), where=inbetween
     )
-    if not str(config["basic info"]["environmentA"]).split(" ")[0] in hexnumber:
+    if str(config["basic info"]["environmentA"]).split(" ")[0] not in hexnumber:
         raise argenvironmentError(
             f"Wrong choice 'basic info' => environmentA character | Not allowed character | Allowed: {hexnumber}"
         )
     else:
         logger.stay(printnlog("basic info => environmentA", toprint=False))
-    if not str(config["basic info"]["environmentB"]).split(" ")[0] in hexnumber:
+    if str(config["basic info"]["environmentB"]).split(" ")[0] not in hexnumber:
         raise argenvironmentError(
             f"Wrong choice 'basic info' => environmentB character | Not allowed character | Allowed: {hexnumber}"
         )
@@ -248,10 +247,14 @@ def check_correctness(args, config, logger: get_logger, music):
     try:
         int(config["basic info"]["inactivelimit"])
         logger.stay(printnlog("basic info => inactivelimit", toprint=False))
-    except ValueError:
-        raise argInactiveLimitError("Wrong choice in 'basic info' => inactivelimit | Take only numbers")
-    if not config["basic info"]["intro"] in [True, False]:
-        raise argIntroError("Wrong choice in 'basic info' => intro | Only 'True' or 'False'")
+    except ValueError as e:
+        raise argInactiveLimitError(
+            "Wrong choice in 'basic info' => inactivelimit | Take only numbers"
+        ) from e
+    if config["basic info"]["intro"] not in [True, False]:
+        raise argIntroError(
+            "Wrong choice in 'basic info' => intro | Only 'True' or 'False'"
+        )
     else:
         logger.stay(printnlog("basic info => intro", toprint=False))
     if config["music"]["music"].split(" ")[0] == "enable":
@@ -259,11 +262,14 @@ def check_correctness(args, config, logger: get_logger, music):
         logger.stay(printnlog("music => music", toprint=False))
     elif config["music"]["music"].split(" ")[0] == "disable":
         logger.stay(printnlog("music => music", toprint=False))
-        pass
     else:
-        raise argMusicError("Wrong choice in 'music' => music | Only 'enable' or 'disable'")
-    if not config["waifu settings"]["type"].split(" ")[0] in ["sfw", "nsfw"]:
-        raise argWaifuError("Wrong choice in 'waifu settings' => type | Only 'sfw' or 'nsfw'")
+        raise argMusicError(
+            "Wrong choice in 'music' => music | Only 'enable' or 'disable'"
+        )
+    if config["waifu settings"]["type"].split(" ")[0] not in ["sfw", "nsfw"]:
+        raise argWaifuError(
+            "Wrong choice in 'waifu settings' => type | Only 'sfw' or 'nsfw'"
+        )
     else:
         logger.stay(printnlog("waifu settings => type", toprint=False))
     if config["waifu settings"]["type"] == "sfw":
@@ -300,27 +306,35 @@ def check_correctness(args, config, logger: get_logger, music):
             "dance",
             "cringe",
         ]
-        if not config["waifu settings"]["category"].split(" ")[0] in category:
-            raise argWaifuError("Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function")
+        if config["waifu settings"]["category"].split(" ")[0] not in category:
+            raise argWaifuError(
+                "Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function"
+            )
         else:
             logger.stay(printnlog("waifu settings => category", toprint=False))
     elif config["waifu settings"]["type"] == "nsfw":
         category: list[str] = ["waifu", "neko", "trap", "blowjob"]
-        if not config["waifu settings"]["category"].split(" ")[0] in category:
-            raise argWaifuError("Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function")
+        if config["waifu settings"]["category"].split(" ")[0] not in category:
+            raise argWaifuError(
+                "Wrong choice in 'waifu settings' => category | Use 'waifu' and see option in setup function"
+            )
         else:
             logger.stay(printnlog("waifu settings => category", toprint=False))
     server: list[str] = ["nekos.best", "waifu.pics", "kyoko", "nekos_api"]
-    if not config["neko settings"]["server"] in server:
-        raise argNekoError(f"Wrong choice in 'neko settings' => server | Only take {str(server)}")
+    if config["neko settings"]["server"] not in server:
+        raise argNekoError(
+            f"Wrong choice in 'neko settings' => server | Only take {server}"
+        )
     else:
         logger.stay(printnlog("neko settings => server", toprint=False))
     try:
         int(config["game settings"]["goal_score"])
-    except ValueError:
-        raise argGameError("Wrong choice in 'game settings' => goal_score | Take only numbers")
+    except ValueError as e:
+        raise argGameError(
+            "Wrong choice in 'game settings' => goal_score | Take only numbers"
+        ) from e
     try:
-        if 10 <= int(config["game settings"]["goal_score"]):
+        if int(config["game settings"]["goal_score"]) >= 10:
             logger.stay(printnlog("game settings => goal_score", toprint=False))
         else:
             raise ValueError
@@ -330,7 +344,9 @@ def check_correctness(args, config, logger: get_logger, music):
         float(config["game settings"]["computer_power"])
         logger.stay(printnlog("game settings => computer_power", toprint=False))
     except ValueError:
-        argGameError("Wrong choice in 'game settings' => computer_power | Take only numbers")
+        argGameError(
+            "Wrong choice in 'game settings' => computer_power | Take only numbers"
+        )
     if config["music"]["music"] == "enable":
         musiclimittext: bool = False
         lenmusic = len(music)
@@ -348,16 +364,25 @@ def check_correctness(args, config, logger: get_logger, music):
             config = set_config("music", "musicnumber", int(args.music) - 1)
             configlenmusic = int(config["music"]["musicnumber"])
             args.music = int(args.music) - 1
-    if not str(config["translator"]["translate"]).split(" ")[0] in t_languages + [""]:
-        raise argTranslateError(f"Wrong choice 'translator' => translate character | Not allowed language | Allowed: {t_languages}")
+    if str(config["translator"]["translate"]).split(" ")[0] not in t_languages + [""]:
+        raise argTranslateError(
+            f"Wrong choice 'translator' => translate character | Not allowed language | Allowed: {t_languages}"
+        )
     else:
         logger.stay(printnlog("translator => translate", toprint=False))
-    if not str(config["translator"]["translator"]).split(" ")[0] in t_translators:
-        raise argTranslatorError(f"Wrong choice 'translator' => translator character | Not allowed language | Allowed: {t_translators}")
+    if str(config["translator"]["translator"]).split(" ")[0] not in t_translators:
+        raise argTranslatorError(
+            f"Wrong choice 'translator' => translator character | Not allowed language | Allowed: {t_translators}"
+        )
     else:
         logger.stay(printnlog("translator => translator", toprint=False))
-    if not eval(str(config["basic info"]["quiet"]).split(" ")[0]) in [True, False]:
-        argTranslatorError("Wrong choice 'basic info' => quiet character | Not allowed option | Allowed: True/False")
+    if eval(str(config["basic info"]["quiet"]).split(" ")[0]) not in [
+        True,
+        False,
+    ]:
+        argTranslatorError(
+            "Wrong choice 'basic info' => quiet character | Not allowed option | Allowed: True/False"
+        )
     else:
         logger.stay(printnlog("basic info => quiet", toprint=False))
     logger.prev(printnlog("DONE", toprint=False), where=inbetween)
@@ -389,9 +414,7 @@ def print_config(logger: get_logger, config):
         )
     )
     logger.stay(
-        printnlog(
-            "Music: " + config["music"]["music"].split(" ")[0], toprint=False
-        )
+        printnlog("Music: " + config["music"]["music"].split(" ")[0], toprint=False)
     )
     logger.stay(
         printnlog(
@@ -415,7 +438,7 @@ def print_config(logger: get_logger, config):
 def write_config_options(server):
     """
     The write_config_options function writes the CONFIG_OPTIONS.txt file, which is used to store all of the configuration options for NekoBot.
-    
+
     :param server: Write the server name in the config_options
     :return: Nothing
     """
@@ -432,10 +455,10 @@ def write_config_options(server):
             f"  musicnumber: [Any number; Max is number of items in musiclist]\n"
         )
         config_file.write(
-            f"  translate: [''|'Afrikaans','Albanian','Amharic','Arabic','Armenian','Assamese','Aymara','Azerbaijani','Bambara','Basque','Belarusian','Bengali','Bhojpuri','Bosnian','Bulgarian','Catalan','Cebuano','Chichewa','Chinese (Simplified)','Chinese (Traditional)','Corsican','Czech','Danish','Dhivehi','Dogri','Dutch','English','Esperanto','Estonian','Ewe','Filipino','Finnish','French','Frisian','Galician','Georgian','German','Greek','Guarani','Gujarati','Haitian Creole','Hausa','Hawaiian','Hindi','Hmong','Hungarian','Icelandic','Igbo','Ilocano','Indonesian','Irish','Italian','Japanese','Javanese','Kannada','Kazakh','Khmer','Kinyarwanda','Konkani','Korean','Krio','Kurdish (Kurmanji)','Kurdish (Sorani)','Kyrgyz','Lao','Latvian','Lingala','Lithuanian','Luganda','Luxembourgish','Macedonian','Maithili','Malagasy','Malay','Malayalam','Maltese','Maori','Marathi','Meiteilon (Manipuri)','Mizo','Mongolian','Myanmar (Burmese)','Nepali','Norwegian','Odia (Oriya)','Oromo','Pashto','Polish','Portuguese','Punjabi','Quechua','Romanian','Russian','Samoan','Sanskrit','Scots Gaelic','Sepedi','Serbian','Sesotho','Shona','Si ndhi','Sinhala','Slovak','Slovenian','Somali','Spanish','Sundanese','Swahili','Swedish','Tamil','Tatar','Telugu','Thai','Tigrinya','Tsonga','Turkish','Turkmen','Twi','Ukrainian','Urdu','Uyghur','Uzbek','Vietnamese','Welsh','Xhosa','Yiddish','Yoruba','Zulu']"
+            "  translate: [''|'Afrikaans','Albanian','Amharic','Arabic','Armenian','Assamese','Aymara','Azerbaijani','Bambara','Basque','Belarusian','Bengali','Bhojpuri','Bosnian','Bulgarian','Catalan','Cebuano','Chichewa','Chinese (Simplified)','Chinese (Traditional)','Corsican','Czech','Danish','Dhivehi','Dogri','Dutch','English','Esperanto','Estonian','Ewe','Filipino','Finnish','French','Frisian','Galician','Georgian','German','Greek','Guarani','Gujarati','Haitian Creole','Hausa','Hawaiian','Hindi','Hmong','Hungarian','Icelandic','Igbo','Ilocano','Indonesian','Irish','Italian','Japanese','Javanese','Kannada','Kazakh','Khmer','Kinyarwanda','Konkani','Korean','Krio','Kurdish (Kurmanji)','Kurdish (Sorani)','Kyrgyz','Lao','Latvian','Lingala','Lithuanian','Luganda','Luxembourgish','Macedonian','Maithili','Malagasy','Malay','Malayalam','Maltese','Maori','Marathi','Meiteilon (Manipuri)','Mizo','Mongolian','Myanmar (Burmese)','Nepali','Norwegian','Odia (Oriya)','Oromo','Pashto','Polish','Portuguese','Punjabi','Quechua','Romanian','Russian','Samoan','Sanskrit','Scots Gaelic','Sepedi','Serbian','Sesotho','Shona','Si ndhi','Sinhala','Slovak','Slovenian','Somali','Spanish','Sundanese','Swahili','Swedish','Tamil','Tatar','Telugu','Thai','Tigrinya','Tsonga','Turkish','Turkmen','Twi','Ukrainian','Urdu','Uyghur','Uzbek','Vietnamese','Welsh','Xhosa','Yiddish','Yoruba','Zulu']"
         )
-        config_file.write(f"  translator: [Bing|Google]")
-        config_file.write(f"  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe")
+        config_file.write("  translator: [Bing|Google]")
+        config_file.write("  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe")
         config_file.write("game settings:\n")
         config_file.write(f"  computer_power: [Any number; Lower the powerfull]\n")
         config_file.write(f"  goal_score: [Any number]\n")
@@ -511,12 +534,11 @@ def music2str(musiclistnew):
     """
     The music2str function takes a list of music and converts it to a string.
         It then sets the config file's musiclist value to that string.
-    
+
     :param musiclistnew: Store the musiclistnew variable, which is a list of all the songs in the playlist
     :return: A string with all the music in it
     """
-    musiclistnewstring: str = ""
-    for i in range(len(musiclistnew)):
-        musiclistnewstring += str(musiclistnew[i]) + ","
-    config = set_config("music", "musiclist", str(musiclistnewstring[0:-1]))
-    return config
+    musiclistnewstring: str = "".join(
+        f"{str(musiclistnew[i])}," for i in range(len(musiclistnew))
+    )
+    return set_config("music", "musiclist", str(musiclistnewstring[:-1]))

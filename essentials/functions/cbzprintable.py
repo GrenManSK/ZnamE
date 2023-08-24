@@ -24,7 +24,6 @@ def run_cbz():
             ttime=0.01,
         )
         subprocess.call(["git", "-C", "cbzPrintable", "pull"])
-        cbz()
     else:
         while True:
             vstup = input(
@@ -53,7 +52,7 @@ def run_cbz():
             + " -m pip install -r cbzPrintable/requirements.txt --no-warn-script-location"
         )
 
-        cbz()
+    cbz()
 
 
 def cbz():
@@ -78,9 +77,9 @@ def run_cbz_command(args):
     """
     The run_cbz_command function is a wrapper for the cbzPrintable.py script, which
     is used to create printable PDF files from CBZs. The run_cbz_command function takes
-    a single argument, args, which is a string containing all of the arguments that 
+    a single argument, args, which is a string containing all of the arguments that
     would normally be passed to cbzPrintable.py on the command line.
-    
+
     :param args: Pass in the arguments that will be used by cbzprintable
     :return: The result of the cbzprintable
     """
@@ -99,7 +98,7 @@ def parse_cbz_command(command):
     """
     The parse_cbz_command function takes a command string as input and parses it into an argparse.ArgumentParser object.
     The function then uses the parsed arguments to run the cbz_command function with appropriate parameters.
-    
+
     :param command: Pass the command to be run in the terminal
     :return: The command to run the cbz script
     """
@@ -121,7 +120,7 @@ def cbz_cli():
     It allows users to interact with the program in a more user-friendly way than
     using command line arguments. It also provides an easy way to test out different
     arguments without having to retype them every time.
-    
+
     :return: Nothing
     """
     typewriter(
@@ -144,10 +143,9 @@ def cbz_gui():
     """
     The cbz_gui function is a simple command line interface for the parse_cbz_command function.
     It allows you to select a directory and file pattern using glob, then it calls the parse_cbz_command function with those arguments.
-    
+
     :return: The parse_cbz_command function with the directory and pattern arguments
     """
-    dir = None
     pattern = None
     typewriter(
         printnlog(
