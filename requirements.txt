@@ -8,7 +8,7 @@ idna==3.4
 keyboard==0.13.5
 lxml==4.9.3
 moviepy>=1.0.3
-mutagen==1.46.0
+mutagen==1.47.0
 numpy>=1.22.2
 opencv_python>=4.7.0.7
 Pillow>=9.3.0
