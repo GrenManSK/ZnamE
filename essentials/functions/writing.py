@@ -34,7 +34,7 @@ def to_info(
     file: str = "info.txt",
     mode: str = "a",
     toprint: bool = True,
-) -> str:
+) -> str:  # sourcery skip: remove-unnecessary-cast
     """
     The to_info function takes a message and an end character, and prints the message to the console
     and to a file. It is used for logging purposes.
@@ -49,14 +49,14 @@ def to_info(
     with open(f"crash_dump-{datelog}.txt", "a", encoding="utf-8") as crashfile:
         if toprint and not quiet:
             print(msg, end=end)
-        crashfile.write(msg + end)
+        crashfile.write(str(msg) + end)
         crashfile.close()
         crashfile1 = open(
             f"C:/Users/{os.getlogin()}/AppData/Local/ZnámE/{file}",
             mode,
             encoding="utf-8",
         )
-        crashfile1.write(msg + end)
+        crashfile1.write(str(msg) + end)
     return msg
 
 
