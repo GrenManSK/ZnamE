@@ -21,7 +21,7 @@ pywin32>=305
 pywinauto>=0.6.8
 PyYAML>=6.0
 python-dotenv>=1.0.0
-pycryptodomex==3.16.0
+pycryptodomex==3.19.0
 py_cpuinfo==9.0.0
 python-dotenv==1.0.0
 Pygments>=2.15.0
