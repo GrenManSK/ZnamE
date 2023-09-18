@@ -17,7 +17,7 @@ Rewritten to python3 and added some functions to work with ZnámE
 
 Using [spotDL](https://github.com/spotDL/spotify-downloader) for music function
 
-Using [anime-chan](https://github.com/RocktimSaikia/anime-chan) for motivation function
+Using [anime-chan](https://github.com/RocktimSaikia/anime-chan) for motivation function (deprecated)
 
 Using [nekos-best](https://github.com/nekos-best) for NEKO photos
 
