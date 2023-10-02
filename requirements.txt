@@ -26,7 +26,7 @@ py_cpuinfo==9.0.0
 python-dotenv==1.0.0
 Pygments>=2.15.0
 requests>=2.29.0
-rich==13.5.3
+rich==13.6.0
 semantic_version>=2.10.0
 setuptools>=49.2.1
 shellingham==1.5.3
