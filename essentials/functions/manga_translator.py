@@ -123,7 +123,7 @@ RUS: Russian
 ESP: Spanish
 TRK: Turkish
 UKR: Ukrainian
-VIN: Vietnames""",
+VIN: Vietnamese""",
                         toprint=False,
                     ),
                     ttime=0.01,

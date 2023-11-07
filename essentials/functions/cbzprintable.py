@@ -125,7 +125,7 @@ def cbz_cli():
     """
     typewriter(
         printnlog(
-            "Here you will put arguments for program\nSee README here 'https://github.com/GrenManSK/cbzPrintable/blob/main/README.md'\nYou will add only arguments | Wihtout 'cbzPrintable'",
+            "Here you will put arguments for program\nSee README here 'https://github.com/GrenManSK/cbzPrintable/blob/main/README.md'\nYou will add only arguments | Without 'cbzPrintable'",
             toprint=False,
         ),
         ttime=0.01,
