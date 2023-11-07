@@ -23,7 +23,7 @@ def get_envs(info: bool = False) -> dict:
         except FileNotFoundError:
             if info:
                 typewriter(
-                    printnlog("Command not found; Returning emtpy dict", toprint=False)
+                    printnlog("Command not found; Returning empty dict", toprint=False)
                 )
             os.remove("condaEnvList")
             return {}
