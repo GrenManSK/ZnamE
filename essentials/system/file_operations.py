@@ -162,13 +162,12 @@ def on_rm_error(func, path, exc_info):
 def file_to_datafolder():
     """
     The file_to_datafolder function moves all the files in the current directory to a new folder called datafolder.
-    The function also creates subfolders for assets, apphtml, and yt_dl.
+    The function also creates subfolders for assets, apphtml.
 
     :return: A list of files that are in the datafolder
     """
     source_dir = move_to_datafolder("assets/")
     source_dir = move_to_datafolder("apphtml/")
-    source_dir = move_to_datafolder("yt_dl/")
     files: list = [
         "downloadmusic.py",
         "mouse.py",
@@ -227,7 +226,6 @@ def xp3_finalization():
         )
     shutil.rmtree("datafolder")
     shutil.rmtree("apphtml")
-    shutil.rmtree("yt_dl")
     shutil.rmtree("assets")
 
 
