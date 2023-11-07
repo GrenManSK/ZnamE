@@ -21,39 +21,32 @@ def main():
             _sponsorblock = False
             break
 
-    while True:
-        videovstup: str = input("1) Search your own video\n2) back\n> ")
-        if videovstup == "1":
-            music_name: str = str(input("Name of the video> "))
-            if validators.url(music_name):
-                clip2 = music_name
-            else:
-                print("Refactoring to url-like string ...", end="\r")
-                query_string = urllib.parse.urlencode({"search_query": music_name})
-                print("Refactoring to url-like string DONE")
-                print("Opening site ...", end="\r")
-                formatUrl = urllib.request.urlopen(
-                    f"https://www.youtube.com/results?{query_string}"
-                )
-                logging.debug(f"Searched in: https://www.youtube.com/results?{query_string}")
-                print("Opening site DONE")
-                print("Finding video ...", end="\r")
-                search_results = re.findall(
-                    r"watch\?v=(\S{11})", formatUrl.read().decode()
-                )
-                # deepcode ignore Ssrf: <User input to video on Youtube>
-                print("Finding video DONE\n")
-                clip2 = f"https://www.youtube.com/watch?v={search_results[0]}"
-                logging.debug(f"Found: https://www.youtube.com/watch?v={search_results[0]}")
-            with contextlib.suppress(Exception):
-                mixer.music.pause()
-            DownloadVideo(clip2)
-            os.system("Title ZnámE")
-            if _sponsorblock:
-                sponsorblock(clip2)
-            PlayVideo()
-            with contextlib.suppress(Exception):
-                mixer.music.unpause()
-        elif videovstup == "2":
-            break
+    music_name: str = str(input("Name of the video> "))
+    clip2 = music_name if validators.url(music_name) else get_url(music_name)
+    with contextlib.suppress(Exception):
+        mixer.music.pause()
+    path = DownloadVideo(clip2, directory=".", sponsorblock=_sponsorblock)
+    os.system("Title ZnámE")
+    os.system(f"\"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe\" {path}")
+    with contextlib.suppress(Exception):
+        mixer.music.unpause()
+
     print("")
+
+
+def get_url(music_name):
+    print("Refactoring to url-like string ...", end="\r")
+    query_string = urllib.parse.urlencode({"search_query": music_name})
+    print("Refactoring to url-like string DONE")
+    print("Opening site ...", end="\r")
+    formatUrl = urllib.request.urlopen(
+        f"https://www.youtube.com/results?{query_string}"
+    )
+    logging.debug(f"Searched in: https://www.youtube.com/results?{query_string}")
+    print("Opening site DONE")
+    print("Finding video ...", end="\r")
+    search_results = re.findall(r"watch\?v=(\S{11})", formatUrl.read().decode())
+    print("Finding video DONE\n")
+    result = f"https://www.youtube.com/watch?v={search_results[0]}"
+    logging.debug(f"Found: https://www.youtube.com/watch?v={search_results[0]}")
+    return result
