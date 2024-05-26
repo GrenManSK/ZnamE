@@ -48,7 +48,7 @@ def sponsorblock(url, file="assets/video.mp4"):
     for segment in segments:
         end = segment.start
 
-        if segment.category in ["poi_hightlight", "filler", "interaction"]:
+        if segment.category in ["poi_highlight", "filler", "interaction"]:
             continue
         with contextlib.suppress(ValueError):
             clips.append(clip.subclip(start, end))

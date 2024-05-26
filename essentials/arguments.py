@@ -460,7 +460,7 @@ def write_config_options(server):
         config_file.write("  translator: [Bing|Google]")
         config_file.write("  vlc-path: C:/Program Files/VideoLAN/VLC/vlc.exe")
         config_file.write("game settings:\n")
-        config_file.write(f"  computer_power: [Any number; Lower the powerfull]\n")
+        config_file.write(f"  computer_power: [Any number; Lower the powerful]\n")
         config_file.write(f"  goal_score: [Any number]\n")
         config_file.write(f"  offline_game: [true/false]\n")
         config_file.write(f"neko settings:\n")

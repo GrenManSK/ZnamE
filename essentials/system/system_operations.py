@@ -123,10 +123,10 @@ def getWindow(args) -> bool:
         try:
             show_cmd(args)
             return False
-        except IndexError:
+        except IndexError as e:
             raise IndexError(
-                "Possible solution; run in cmd or python aplication not ide or put arguments '--test'"
-            )
+                "Possible solution; run in cmd or python application not ide or put arguments '--test'"
+            ) from e
     return False
 
 

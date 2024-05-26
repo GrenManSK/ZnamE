@@ -269,7 +269,7 @@ try:  # type: ignore
         print_module("moviepy.editor")
         logger.prev(printnlog("DONE", toprint=False), where=inbetween)
 
-        # Setting up enviroment
+        # Setting up environment
         os.system(
             "color "
             + str(config["basic info"]["environmentA"])
@@ -1058,7 +1058,7 @@ try:  # type: ignore
                                 set_image()
                                 if neko or waifu:
                                     double_alt_tab()
-                                typewriter("All is set!!!\nYou can use progam\n")
+                                typewriter("All is set!!!\nYou can use program\n")
                             with open(
                                 historyname, "a", encoding="utf-8"
                             ) as historyfile:
