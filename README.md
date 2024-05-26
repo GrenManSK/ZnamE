@@ -153,7 +153,7 @@ basic info:
   environmentA: [0-f]
   environmentB: [0-f]
   inactivelimit: [Any number]
-  intro: [True/False]]
+  intro: [True/False]
   quiet: [True/False]
 game settings:
   computer_power: [Any number; Lower the powerfull]
