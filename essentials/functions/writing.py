@@ -94,7 +94,7 @@ def typewriter(word: str, ttime: float = 0.001, end: str = "\n") -> None:
 
 def show_version(args):
     """
-    The show_version function prints the version of Známé to the user.
+    The show_version function prints the version of Známe to the user.
     
     :param args: Pass arguments to the function
     :return: The version of the program

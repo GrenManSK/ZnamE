@@ -162,12 +162,12 @@ def system_info(logger, screensize) -> None:
     )
     logger.stay(
         to_info(
-            f"IP Adress: {socket.gethostbyname(socket.gethostname())}", toprint=False
+            f"IP Address: {socket.gethostbyname(socket.gethostname())}", toprint=False
         )
     )
     logger.stay(
         to_info(
-            f"MAC Adress: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}, toprint=False"
+            f"MAC Address: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}, toprint=False"
         )
     )
     logger.stay(to_info("=" * 40 + "Disk Information" + "=" * 40, toprint=False))
