@@ -72,7 +72,7 @@ In file `choco_packages.json`, you can see the list of other dependencies which 
 
 - Downloads image from API server and opens it
 - neko - as title says, it will return cat-themed images
-  - can define sevver from which image will be downloaded
+  - can define server from which image will be downloaded
 - waifu - returns image on theme which is configured in config file
   - If image is gif then program converts it to video and opens it
 
