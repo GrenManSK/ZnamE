@@ -4,7 +4,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 commonmark==0.9.1
 GPUtil==1.4.0
-idna==3.8
+idna==3.10
 keyboard==0.13.5
 lxml==5.3.0
 moviepy>=1.0.3
