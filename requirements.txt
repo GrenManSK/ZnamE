@@ -1,6 +1,6 @@
 Brotli==1.1.0
 certifi==2024.12.14
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
 click==8.1.8
 commonmark==0.9.1
 GPUtil==1.4.0
