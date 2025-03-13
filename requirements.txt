@@ -38,5 +38,5 @@ tqdm>=4.64.1
 typer==0.15.2
 typing==3.7.4.3
 validators==0.34.0 
-yt-dlp==2025.1.26
+yt-dlp==2025.2.19
 WMI>=1.5.1
