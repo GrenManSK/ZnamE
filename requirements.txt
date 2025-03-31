@@ -24,7 +24,7 @@ python-dotenv>=1.0.0
 pycryptodomex==3.21.0
 py_cpuinfo==9.0.0
 pyreadline3>=2.1
-python-dotenv==1.0.1
+python-dotenv==1.1.0
 Pygments>=2.15.0
 requests>=2.29.0
 rich==13.9.4
