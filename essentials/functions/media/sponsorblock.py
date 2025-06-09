@@ -3,7 +3,7 @@ import sponsorblock as sb
 from sponsorblock import Segment
 import os
 import datetime
-from moviepy.editor import VideoFileClip, concatenate_videoclips
+from moviepy import VideoFileClip, concatenate_videoclips
 
 client = sb.Client()
 
