@@ -14,7 +14,7 @@ import ctypes
 import win32gui
 from dotenv import load_dotenv
 from pygame import mixer
-import moviepy.editor as mp
+import moviepy as mp
 
 load_dotenv(".env")
 

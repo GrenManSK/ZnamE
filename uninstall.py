@@ -24,7 +24,7 @@ def uninstall():
                 shutil.rmtree("game/")
             except Exception:
                 pass
-        except* Exception as e:
+        except Exception as e:
             error_get(
                 eval(type(e).__name__),
                 get_line_number(),

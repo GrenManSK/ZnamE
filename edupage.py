@@ -263,10 +263,10 @@ try:  # type: ignore
 
     if __name__ == "__main__":
         print_module()
-    import moviepy.editor as mp
+    import moviepy as mp
 
     if __name__ == "__main__":
-        print_module("moviepy.editor")
+        print_module("moviepy")
         logger.prev(printnlog("DONE", toprint=False), where=inbetween)
 
         # Setting up environment
@@ -2023,7 +2023,7 @@ try:  # type: ignore
                             os.remove("restart.py")
                         remove("crash_dump-" + datelog + ".txt")
                         return 0
-        except* Exception as returned_error:
+        except Exception as returned_error:
             try:
                 line_number
             except NameError:
@@ -2109,7 +2109,7 @@ try:  # type: ignore
             remove("crash_dump-" + datelog + ".txt")
         except FileNotFoundError:
             pass
-except* Exception as e:
+except Exception as e:
     try:
         line_number
     except NameError:
