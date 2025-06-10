@@ -32,7 +32,7 @@ Using [textractor](https://github.com/Artikash/Textractor) for translate functio
 ---
 
 **Test login credentials:**
-PID: 426738
+PID: 425738
 Password: 123456
 
 Program will make backup files and credentials saves in 'C:/Users/your_name/AppData/Local/ZnámE'
