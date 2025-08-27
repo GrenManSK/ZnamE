@@ -1,4 +1,4 @@
-# **ZnamE**
+# **ZnamE** (Project just for fun, not supposed to work :))
 
 ![Commit activity](https://img.shields.io/github/commit-activity/m/GrenManSK/ZnamE)
 ![Lines of code](https://img.shields.io/tokei/lines/github/GrenManSK/ZnamE?label=lines%20of%20code)
