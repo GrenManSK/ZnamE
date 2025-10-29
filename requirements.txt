@@ -27,7 +27,7 @@ pyreadline3>=2.1
 python-dotenv==1.2.1
 Pygments>=2.15.0
 requests>=2.29.0
-rich==14.2.0
+rich==13.9.4
 semantic_version>=2.10.0
 setuptools>=49.2.1
 spotdl>=4.2.1
