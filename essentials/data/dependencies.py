@@ -7,7 +7,7 @@ potrebne: set[str] = {
     "brotli",
     "psutil",
     "tqdm",
-    "spotdl",
+    #"spotdl",
     "pyunpack",
     "semantic-version",
     "patool",
