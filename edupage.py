@@ -675,50 +675,50 @@ try:  # type: ignore
 
     from essentials.functions.html import playhtml
 
-    def spot_music_dow() -> str:
-        """
-        The spot_music_dow function is a function that downloads music from Spotify.
-        It uses the spotdl module to download music from Spotify, and then adds
-        it to the user's playlist.
+    # def spot_music_dow() -> str:
+    #     """
+    #     The spot_music_dow function is a function that downloads music from Spotify.
+    #     It uses the spotdl module to download music from Spotify, and then adds
+    #     it to the user's playlist.
 
-        :return: A string
-        """
-        import downloadmusic  # type: ignore
-        from essentials.app_alternations import installing_carousel
+    #     :return: A string
+    #     """
+    #     import downloadmusic  # type: ignore
+    #     from essentials.app_alternations import installing_carousel
 
-        typewriter("Starting web player", ttime=0.01)
-        Thread(target=downloadmusic.spotdl_get).start()
-        with open("SPOTDL_OUTPUT", "w", encoding="utf-8") as _file:
-            subprocess.run(
-                [sys.executable, "-m", "spotdl", "web"], stdout=_file, text=True
-            )
-        sleep(1)
-        carousel = installing_carousel("", comment="Waiting for synchronization")
-        Thread(target=carousel.start()).start()
-        while os.path.isfile("SPOTDL_QUEUE"):
-            sleep(1)
-        open("SPOTDL_QUIT", "x")
-        carousel.stop()
-        _music: list[str] = list(set(config["music"]["musiclist"].split(",")[:]))
-        if _music[0] == "":
-            _music = []
-        else:
-            for music_name in _music:
-                if music_name == "":
-                    _music.remove("")
-        musiclistnewstring: str = "".join(f"{str(music_n)}," for music_n in _music)
-        with contextlib.suppress(Exception):
-            for content in open("MUSIC", "r", encoding="utf-8"):
-                musiclistnewstring += f"{content},"
-        remove("MUSIC")
-        remove("SPOTDL_QUIT")
-        remove("SPOTDL_OUTPUT")
-        sleep(1)
-        pg.write("music\n")
-        music = musiclistnewstring.split(",")
-        if music[0] == "":
-            music = []
-        return music
+    #     typewriter("Starting web player", ttime=0.01)
+    #     Thread(target=downloadmusic.spotdl_get).start()
+    #     with open("SPOTDL_OUTPUT", "w", encoding="utf-8") as _file:
+    #         subprocess.run(
+    #             [sys.executable, "-m", "spotdl", "web"], stdout=_file, text=True
+    #         )
+    #     sleep(1)
+    #     carousel = installing_carousel("", comment="Waiting for synchronization")
+    #     Thread(target=carousel.start()).start()
+    #     while os.path.isfile("SPOTDL_QUEUE"):
+    #         sleep(1)
+    #     open("SPOTDL_QUIT", "x")
+    #     carousel.stop()
+    #     _music: list[str] = list(set(config["music"]["musiclist"].split(",")[:]))
+    #     if _music[0] == "":
+    #         _music = []
+    #     else:
+    #         for music_name in _music:
+    #             if music_name == "":
+    #                 _music.remove("")
+    #     musiclistnewstring: str = "".join(f"{str(music_n)}," for music_n in _music)
+    #     with contextlib.suppress(Exception):
+    #         for content in open("MUSIC", "r", encoding="utf-8"):
+    #             musiclistnewstring += f"{content},"
+    #     remove("MUSIC")
+    #     remove("SPOTDL_QUIT")
+    #     remove("SPOTDL_OUTPUT")
+    #     sleep(1)
+    #     pg.write("music\n")
+    #     music = musiclistnewstring.split(",")
+    #     if music[0] == "":
+    #         music = []
+    #     return music
 
     def vlc_init() -> vlc.MediaPlayer:
         """
