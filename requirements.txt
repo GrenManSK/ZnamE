@@ -34,7 +34,7 @@ setuptools>=49.2.1
 sponsorblock.py==0.2.3
 shellingham==1.5.4
 tabulate==0.10.0
-tqdm>=4.64.1
+tqdm>=4.67.3
 typer==0.24.1
 typing==3.7.4.3
 validators==0.35.0 
