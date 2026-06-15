@@ -25,7 +25,7 @@ pycryptodomex==3.23.0
 py_cpuinfo==9.0.0
 pyreadline3>=2.1
 python-dotenv==1.2.2
-Pygments>=2.15.0
+Pygments>=2.20.0
 requests>=2.29.0
 rich==15.0.0
 semantic_version>=2.10.0
