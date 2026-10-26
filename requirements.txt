@@ -31,7 +31,7 @@ rich==15.0.0
 semantic_version>=2.10.0
 setuptools>=84.0.0
 #spotdl>=4.2.1
-sponsorblock.py==0.2.3
+sponsorblock.py==1.0.0
 shellingham==1.5.4
 tabulate==0.10.0
 tqdm>=4.70.1
