@@ -1,4 +1,4 @@
-Brotli==1.2.0
+Brotli==1.2.1
 certifi==2026.2.25
 charset-normalizer==3.5.2
 click==8.5.0
